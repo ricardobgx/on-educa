@@ -1,36 +1,91 @@
+import React from 'react';
 import {
-  OverviewBox,
-  PlatformDescription,
-  Description,
+  Page,
+  PlatformInformation,
+  PlatformInformationBox,
+  Information,
   Title,
-  Content,
-  Sign,
   Slogan,
-  SignButton,
-  OverviewImage,
-  SignButtons
-} from './styles';
-import overviewBook from '../../assets/ilustrations/overview-book.png';
+  Description,
+  Functions,
+  Function,
+  Icon,
+  Name,
+  Sign,
+  ScrollIcon,
+  SignTypeLabel,
+  SignTypeButton
+} from './components';
 
-const Overview = () => {
-  return (
-    <OverviewBox>
-      <PlatformDescription>
-        <Description>
-          <Title>Plataforma de apoio educacional para escolas públicas do Brasil</Title>
-          <Content>A ON EDUCA é uma plataforma desenvolvida para web e mobile com o intuito de ajudar na educação de crianças e adolescentes no ensino fundamental disponibilizando exercícios e materiais de apoio ao estudante além de os professores terem uma visão melhor das dificuldades dos alunos</Content>
-        </Description>
-        <Sign>
-          <Slogan>Cadastre-se e venha colaborar para um futuro melhor. Já tem uma conta? Faça o login e continue seus estudos</Slogan>
-          <SignButtons>
-            <SignButton to="/register">Cadastrar</SignButton>
-            <SignButton to="/login">Login</SignButton>
-          </SignButtons>
-        </Sign>
-      </PlatformDescription>
-      <OverviewImage src={overviewBook}></OverviewImage>
-    </OverviewBox>
-  );
+import teacherChat from '../../assets/icons/teacher.png';
+import books from '../../assets/icons/book.png';
+import joystick from '../../assets/icons/console.png';
+import Register from '../../components/Sign/Register';
+import Login from '../../components/Sign/Login';
+
+interface IState {
+  signType: string;
 }
 
-export default Overview;
+export default class Overview extends React.Component {
+  state: IState = {
+    signType: 'register',
+  }
+
+  isRegister = () => {
+    const { signType } = this.state;
+
+    if (signType === 'register') return true;
+    return false;
+  }
+
+  render() {
+
+    const minHeight = window.innerHeight;
+
+    return (
+      <Page>
+        <PlatformInformation style={{ minHeight }}>
+          <PlatformInformationBox>
+            <Information>
+              <Title>ON EDUCA</Title>
+              <Slogan>Sua plataforma de revisões online</Slogan>
+              <Description>A ON EDUCA é uma plataforma desenvolvida com o intuito de ajudar no aprendizado de jovens do ensino médio disponibilizando exercícios e materiais de apoio ao estudante além de os professores terem uma visão melhor das dificuldades dos alunos</Description>
+            </Information>
+            <Functions>
+              <Function>
+                <Icon src={teacherChat}></Icon>
+                <Name>Chat com professores</Name>
+              </Function>
+              <Function>
+                <Icon src={books}></Icon>
+                <Name>Conteúdos gratuitos</Name>
+              </Function>
+              <Function>
+                <Icon src={joystick}></Icon>
+                <Name>Gamificação</Name>
+              </Function>
+            </Functions>
+          </PlatformInformationBox>
+          <ScrollIcon className="fas fa-chevron-down"></ScrollIcon>
+        </PlatformInformation>
+        <Sign style={{ minHeight }}>
+          {
+            (this.isRegister() ?
+              <Register></Register>
+              :
+              <Login></Login>
+            )
+          }
+          <SignTypeLabel>{(this.isRegister() ? 'Já tem uma conta? ' : 'Ainda não tem uma conta? ')}<SignTypeButton onClick={() => {
+            if (this.isRegister()) {
+              this.setState({ signType: 'login' });
+            } else {
+              this.setState({ signType: 'register' });
+            }
+          }}>{(this.isRegister() ? 'Faça login' : 'Cadastre-se')}</SignTypeButton></SignTypeLabel>
+        </Sign>
+      </Page>
+    );
+  }
+}

@@ -20,7 +20,7 @@ const NavBar = () => {
         <LogoBall></LogoBall>
         <Title>Educa</Title>
       </Logo>
-      <Actions>
+      {/*<Actions>
         <UserLabel>Olá, xxxxxxxxxxxxx</UserLabel>
         <UserPhoto src="https://stickerly.pstatic.net/sticker_pack/QJQPtMdUccpIu3EbYZn6HA/NFOEYK/4/0b7d59f9-4d26-4ac7-b15e-0d9710768b81.png"></UserPhoto>
         <UserFriends>
@@ -35,7 +35,7 @@ const NavBar = () => {
         <Logout>
           <NavBarIcon></NavBarIcon>
         </Logout>
-      </Actions>
+      </Actions>*/}
     </NavBarBox>
   );
 }

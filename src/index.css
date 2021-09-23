@@ -4,6 +4,7 @@
   --primary-color: #007F5F;
   --secondary-color: #FFFFFF;
   --third-color: #AAAAAA;
+  --button-input-height: 50px;
 }
 
 * {
