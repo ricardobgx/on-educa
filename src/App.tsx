@@ -1,7 +1,9 @@
-import { BrowserRouter, Switch, Route, RouteComponentProps } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, RouteComponentProps, Redirect } from 'react-router-dom';
 import routes from './routes';
 
 function App() {
+  const token = window.localStorage.getItem('token');
+
   return (
     <div>
       <BrowserRouter>
@@ -12,7 +14,9 @@ function App() {
               path={route.path}
               exact={route.exact}
               render={(props: RouteComponentProps<any>) => (
-                <route.component {...props} {...route.props} />
+                (route.path !== '/' && !token ? <Redirect to='/' /> :
+                  (route.path === '/' && token ? <Redirect to='/home' /> :
+                    <route.component {...props} {...route.props} />))
               )}
             />
           ))}

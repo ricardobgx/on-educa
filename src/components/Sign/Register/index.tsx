@@ -33,6 +33,8 @@ import {
 
 import OnEducaAPI from '../../../services/api';
 
+// State
+
 interface ISubject {
   id: string;
   name: string;
@@ -40,15 +42,41 @@ interface ISubject {
 
 interface IState {
   userType: string;
+  name: string;
+  email: string;
+  password: string;
+  schoolGrade: number;
   subjects: ISubject[];
   teacherSubjects: ISubject[];
   subjectsBoxVisibility: boolean;
+}
+
+// User Params
+
+interface IUser {
+  name: string;
+  email: string;
+  password: string;
+  isOnline: boolean;
+  profilePicture: string;
+}
+
+interface IStudent extends IUser {
+  schoolGrade: number;
+}
+
+interface ITeacher extends IUser {
+  subjects: ISubject[];
 }
 
 export default class Register extends React.Component {
 
   state: IState = {
     userType: 'student',
+    name: '',
+    email: '',
+    password: '',
+    schoolGrade: 1,
     subjects: [],
     teacherSubjects: [],
     subjectsBoxVisibility: false
@@ -58,12 +86,60 @@ export default class Register extends React.Component {
     this.getAllSubjects();
   }
 
+  // Registro
+
+  clearFields = () => {
+    this.setState({
+      name: '',
+      email: '',
+      password: '',
+      schoolGrade: 1,
+      teacherSubjects: [],
+      subjectsBoxVisibility: false
+    });
+  }
+
+  registerUser = async () => {
+    const { userType, name, email, password, schoolGrade, teacherSubjects: subjects } = this.state;
+
+    const userParams = {
+      name,
+      email,
+      password,
+      isOnline: true,
+      profilePicture: 'https://stickerly.pstatic.net/sticker_pack/CvAjyhY5iy9P96g8E0nqYQ/B0F27T/33/4a548d61-c9b1-4ef0-bb29-2c3429c50e63.png'
+    } as IUser;
+
+    if (userType === 'student') await this.registerStudent({ ...userParams, schoolGrade, });
+    else await this.registerTeacher({ ...userParams, subjects });
+  }
+
+  registerStudent = async (studentParams: IStudent) => {
+    await OnEducaAPI.post('/students/', studentParams).then(response => {
+      this.clearFields();
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  registerTeacher = async (teacherParams: ITeacher) => {
+    await OnEducaAPI.post('/teachers/', teacherParams).then(response => {
+      this.clearFields();
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  // Tipo de formulario
+
   isStudent = () => {
     const { userType } = this.state;
 
     if (userType === 'student') return true;
     return false;
   }
+
+  // Funcoes para as disciplinas dos professores
 
   getAllSubjects = async () => {
     await OnEducaAPI.get('/subjects').then(response => {
@@ -81,8 +157,6 @@ export default class Register extends React.Component {
       return null;
     });
 
-    console.log(newArray);
-
     return newArray;
   }
 
@@ -99,17 +173,25 @@ export default class Register extends React.Component {
       <SignBox>
         <SignLabel>Cadastre-se</SignLabel>
         <SignFieldsBox>
-          <SignField type="text" placeholder="Nome"></SignField>
-          <SignField type="text" placeholder="E-mail"></SignField>
-          <SignField type="text" placeholder="Senha"></SignField>
+          <SignField type="text" placeholder="Nome" value={this.state.name} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            this.setState({ name: event.target.value });
+          }}></SignField>
+          <SignField type="email" placeholder="E-mail" value={this.state.email} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            this.setState({ email: event.target.value });
+          }}></SignField>
+          <SignField type="password" placeholder="Senha" value={this.state.password} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            this.setState({ password: event.target.value });
+          }}></SignField>
           {
             (this.isStudent() ?
               <SignSchoolGradeBox>
                 <SignSchoolGradeLabel>Que ano você faz?</SignSchoolGradeLabel>
-                <SignSchoolGradeSelect>
-                  <SignSchoolGradeOption>1º ano</SignSchoolGradeOption>
-                  <SignSchoolGradeOption>2º ano</SignSchoolGradeOption>
-                  <SignSchoolGradeOption>3º ano</SignSchoolGradeOption>
+                <SignSchoolGradeSelect value={this.state.schoolGrade} onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
+                  this.setState({ schoolGrade: Number(event.target.value) })
+                }}>
+                  <SignSchoolGradeOption value={1}>1º ano</SignSchoolGradeOption>
+                  <SignSchoolGradeOption value={2}>2º ano</SignSchoolGradeOption>
+                  <SignSchoolGradeOption value={3}>3º ano</SignSchoolGradeOption>
                 </SignSchoolGradeSelect>
               </SignSchoolGradeBox>
               :
@@ -120,13 +202,16 @@ export default class Register extends React.Component {
           }
         </SignFieldsBox>
         <SignActions>
-          <SignButton>Cadastrar</SignButton>
+          <SignButton onClick={() => {
+            this.registerUser();
+          }}>Cadastrar</SignButton>
           <ChangeSignUser onClick={() => {
             if (this.isStudent()) {
               this.setState({ userType: 'teacher' });
             } else {
               this.setState({ userType: 'student' });
             }
+            this.clearFields();
           }}>Sou {(this.isStudent() ? 'professor' : 'aluno')}</ChangeSignUser>
         </SignActions>
         {
