@@ -11,80 +11,70 @@ import {
   Function,
   Icon,
   Name,
-  Sign,
   ScrollIcon,
-  SignTypeLabel,
-  SignTypeButton
 } from './components';
 
-import teacherChat from '../../assets/icons/teacher.png';
-import books from '../../assets/icons/book.png';
-import joystick from '../../assets/icons/console.png';
-import Register from '../../components/Sign/Register';
-import Login from '../../components/Sign/Login';
+import LoadAnimation from '../../components/App/LoadAnimation';
+import Sign from '../../components/Overview/Sign/SignForm';
 
 interface IState {
-  signType: string;
+  loading: boolean;
 }
 
 export default class Overview extends React.Component {
-  state: IState = {
-    signType: 'register',
+  constructor(props: Record<string, never>) {
+    super(props);
+    this.state = {
+      loading: false,
+    };
   }
 
-  isRegister = () => {
-    const { signType } = this.state;
+  loadAnimation = (): void => {
+    const { loading } = this.state as IState;
+    if (loading) {
+      this.setState({ loading: false });
+    } else {
+      this.setState({ loading: true });
+    }
+  };
 
-    if (signType === 'register') return true;
-    return false;
-  }
-
-  render() {
-
+  render(): JSX.Element {
     const minHeight = window.innerHeight;
+    const { loading } = this.state as IState;
 
     return (
       <Page>
+        {loading ? <LoadAnimation /> : null}
         <PlatformInformation style={{ minHeight }}>
           <PlatformInformationBox>
             <Information>
               <Title>ON EDUCA</Title>
               <Slogan>Sua plataforma de revisões online</Slogan>
-              <Description>A ON EDUCA é uma plataforma desenvolvida com o intuito de ajudar no aprendizado de jovens do ensino médio disponibilizando exercícios e materiais de apoio ao estudante além de os professores terem uma visão melhor das dificuldades dos alunos</Description>
+              <Description>
+                A ON EDUCA é uma plataforma desenvolvida com o intuito de ajudar
+                no aprendizado de jovens do ensino médio disponibilizando
+                exercícios e materiais de apoio ao estudante além de os
+                professores terem uma visão melhor das dificuldades dos alunos
+              </Description>
             </Information>
             <Functions>
               <Function>
-                <Icon src={teacherChat}></Icon>
+                <Icon className="fas fa-comment-alt" />
                 <Name>Chat com professores</Name>
               </Function>
               <Function>
-                <Icon src={books}></Icon>
+                <Icon className="fas fa-book" />
                 <Name>Conteúdos gratuitos</Name>
               </Function>
               <Function>
-                <Icon src={joystick}></Icon>
+                <Icon className="fas fa-gamepad" />
                 <Name>Gamificação</Name>
               </Function>
             </Functions>
           </PlatformInformationBox>
-          <ScrollIcon className="fas fa-chevron-down"></ScrollIcon>
+          <ScrollIcon className="fas fa-chevron-down" />
         </PlatformInformation>
-        <Sign style={{ minHeight }}>
-          {
-            (this.isRegister() ?
-              <Register></Register>
-              :
-              <Login></Login>
-            )
-          }
-          <SignTypeLabel>{(this.isRegister() ? 'Já tem uma conta? ' : 'Ainda não tem uma conta? ')}<SignTypeButton onClick={() => {
-            if (this.isRegister()) {
-              this.setState({ signType: 'login' });
-            } else {
-              this.setState({ signType: 'register' });
-            }
-          }}>{(this.isRegister() ? 'Faça login' : 'Cadastre-se')}</SignTypeButton></SignTypeLabel>
-        </Sign>
+        <Sign minHeight={minHeight} loadAnimation={this.loadAnimation} />
       </Page>
     );
   }

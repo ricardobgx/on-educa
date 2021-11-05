@@ -1,33 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Page,
   PageBox,
   HomeActionsBox,
-  HomeActions
+  HomeActions,
+  SectionLabelBox,
+  SectionLabelText,
+  PerformanceBox,
+  AchievementsBox,
+  AchievementsLabel,
+  DailyGoalBox,
+  DailyGoalLabel,
+  DailyGoalDataBox,
+  DailyGoalEditIcon,
+  DailyGoalIcon,
+  AchievementsIcon,
+  DailyGoalEditButton,
 } from './components';
 
-import study from '../../assets/icons/study.png';
-import league from '../../assets/icons/league.png';
-import duel from '../../assets/icons/duel.png';
-import doubt from '../../assets/icons/doubt.png';
-import question from '../../assets/icons/question.png';
-import chat from '../../assets/icons/chat.png';
-import interativeRoom from '../../assets/icons/interativeRoom.png';
-import HomeAction from '../../components/HomeAction';
-import PerformanceBar from '../../components/PerfomanceBar';
-import NavBar from '../../components/NavBar';
-import NewsBoard from '../../components/NewsBoard';
+import HomeAction from '../../components/Home/HomeAction';
+import NavBar from '../../components/App/NavBar';
 import OnEducaAPI from '../../services/api';
+import DailyPerformance from '../../components/Home/DailyPerformance';
+import EditDailyGoal from '../../components/Home/EditDailyGoal';
 
 interface IHomeAction {
   icon: string;
   label: string;
   link: string;
-  userType: string;
-}
-
-interface IState {
-  user: IUser;
   userType: string;
 }
 
@@ -45,138 +45,171 @@ interface IUser {
 
 const actions: IHomeAction[] = [
   {
-    icon: study,
+    icon: 'fas fa-book',
     label: 'Estudar',
-    link: '/contents',
-    userType: 'student'
+    link: '/study',
+    userType: 'student',
   },
   {
-    icon: study,
+    icon: 'fas fa-book',
     label: 'Ensinar',
-    link: '/contents',
-    userType: 'teacher'
+    link: '/teach',
+    userType: 'teacher',
   },
   {
-    icon: duel,
+    icon: 'fas fa-gamepad',
     label: 'Duelos',
     link: '/duels',
-    userType: 'student'
+    userType: 'student',
   },
   {
-    icon: question,
+    icon: 'fas fa-file-alt',
     label: 'Questões',
     link: '/questions',
-    userType: 'teacher'
+    userType: 'teacher',
   },
   {
-    icon: league,
+    icon: 'fas fa-trophy',
     label: 'Ligas',
     link: '/leagues',
-    userType: 'both'
+    userType: 'both',
   },
   {
-    icon: doubt,
+    icon: 'fas fa-question',
     label: 'Dúvidas',
     link: '/doubts',
-    userType: 'both'
+    userType: 'both',
   },
   {
-    icon: chat,
+    icon: 'fas fa-comment-alt',
     label: 'Chat',
     link: '/chats',
-    userType: 'both'
+    userType: 'both',
   },
   {
-    icon: interativeRoom,
+    icon: 'fas fa-chalkboard-teacher',
     label: 'Sala Interativa',
     link: '/interative-rooms',
-    userType: 'both'
+    userType: 'both',
   },
-]
+];
 
-export default class Home extends React.Component {
-  state: IState = {
-    user: {
-      email: '',
-      name: '',
-      schoolGrade: -1,
-      subjects: []
-    },
-    userType: ''
-  }
+const DEFAULT_USER: IUser = {
+  name: '',
+  email: '',
+  schoolGrade: 1,
+  subjects: new Array<ISubject>(),
+};
 
-  async componentDidMount() {
+const Home = (): JSX.Element => {
+  const [user, setUser] = useState(DEFAULT_USER);
+  const [userType, setUserType] = useState('');
+  const [dailyGoal, setDailyGoal] = useState(50);
+  const [completedDailyGoal, setCompletedDailyGoal] = useState(10);
+  const [editDailyGoal, setEditDailyGoal] = useState(false);
+
+  const getStudent = async (email: string, token: string): Promise<void> => {
+    await OnEducaAPI.get(`/students/${email}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((response) => {
+      const { name, schoolGrade }: IUser = response.data;
+      const student = { email, name, schoolGrade } as IUser;
+
+      setUser(student);
+    });
+  };
+
+  const getTeacher = async (email: string, token: string): Promise<void> => {
+    await OnEducaAPI.get(`/teachers/${email}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((response) => {
+      const { name, subjects }: IUser = response.data;
+      const teacher = { email, name, subjects } as IUser;
+
+      setUser(teacher);
+    });
+  };
+
+  const getUser = async (token: string, email: string): Promise<void> => {
+    if (userType === 'student') {
+      await getStudent(email, token);
+    } else if (userType === 'teacher') {
+      await getTeacher(email, token);
+    }
+  };
+
+  const loadUser = async (): Promise<void> => {
     const email = window.localStorage.getItem('email') || '';
     const token = window.localStorage.getItem('token') || '';
-    const userType = window.localStorage.getItem('userType') || '';
+    setUserType(window.localStorage.getItem('userType') || '');
+    await getUser(token, email);
+  };
 
-    this.setState({ userType });
-
-    await this.getUser(token, email, userType);
-  }
-
-  getUser = async (token: string, email: string, userType: string) => {
-    if (userType === 'student') {
-      await this.getStudent(email, token);
-    } else if (userType === 'teacher') {
-      await this.getTeacher(email, token);
+  useEffect(() => {
+    if (user === DEFAULT_USER) {
+      loadUser();
     }
-  }
+  });
 
-  getStudent = async (email: string, token: string) => {
-    await OnEducaAPI.get('/students/' + email, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }).then(response => {
+  return (
+    <Page>
+      <NavBar />
+      {editDailyGoal ? (
+        <EditDailyGoal
+          dailyGoal={dailyGoal}
+          setDailyGoal={setDailyGoal}
+          setEditDailyGoal={setEditDailyGoal}
+        />
+      ) : null}
+      <PageBox>
+        <HomeActionsBox>
+          <SectionLabelBox>
+            <SectionLabelText>Painel principal</SectionLabelText>
+          </SectionLabelBox>
+          <HomeActions>
+            {actions.map((action) =>
+              action.userType === 'both' || action.userType === userType ? (
+                <HomeAction
+                  key={action.label}
+                  icon={action.icon}
+                  label={action.label}
+                  link={action.link}
+                />
+              ) : null,
+            )}
+          </HomeActions>
+        </HomeActionsBox>
+        <PerformanceBox>
+          <SectionLabelBox>
+            <SectionLabelText>Desempenho</SectionLabelText>
+          </SectionLabelBox>
+          <DailyPerformance />
+          <AchievementsBox to="/achievements">
+            <AchievementsIcon className="fas fa-star" />
+            <AchievementsLabel>Conquistas</AchievementsLabel>
+          </AchievementsBox>
+          <DailyGoalBox>
+            <DailyGoalDataBox>
+              <DailyGoalIcon className="fas fa-bullseye" />
+              <DailyGoalLabel>Meta diária</DailyGoalLabel>
+            </DailyGoalDataBox>
+            <DailyGoalDataBox>
+              <DailyGoalLabel>
+                {completedDailyGoal}/{dailyGoal} XP
+              </DailyGoalLabel>
+              <DailyGoalEditButton onClick={() => setEditDailyGoal(true)}>
+                <DailyGoalEditIcon className="fas fa-pen" />
+              </DailyGoalEditButton>
+            </DailyGoalDataBox>
+          </DailyGoalBox>
+        </PerformanceBox>
+      </PageBox>
+    </Page>
+  );
+};
 
-      const { name, schoolGrade }: IUser = response.data;
-      const user = { email, name, schoolGrade } as IUser;
-
-      this.setState({ user });
-    })
-  }
-
-  getTeacher = async (email: string, token: string) => {
-    await OnEducaAPI.get('/teachers/' + email, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }).then(response => {
-
-      const { name, subjects }: IUser = response.data;
-      const user = { email, name, subjects } as IUser;
-
-      this.setState({ user });
-    })
-  }
-
-  logout = () => {
-    window.localStorage.removeItem('token');
-    window.localStorage.removeItem('email');
-    window.location.reload();
-  }
-
-  render() {
-
-    const { user, userType } = this.state;
-
-    return (
-      <Page>
-        <NavBar name={user.name} />
-        <PageBox>
-          <HomeActionsBox>
-            <PerformanceBar user={user} userType={userType}>
-            </PerformanceBar>
-            <HomeActions>
-              {actions.map(action => (
-                (action.userType === 'both' || action.userType === userType ? <HomeAction key={action.label} icon={action.icon} label={action.label} link={action.link} /> : null)
-              ))}
-            </HomeActions>
-          </HomeActionsBox>
-          <NewsBoard />
-        </PageBox>
-      </Page>
-    );
-  }
-}
+export default Home;

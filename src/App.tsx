@@ -1,28 +1,13 @@
-import { BrowserRouter, Switch, Route, RouteComponentProps, Redirect } from 'react-router-dom';
-import routes from './routes';
+import React from 'react';
+import GlobalStyle from './components';
+import Routes from './Routes';
 
-function App() {
-  const token = window.localStorage.getItem('token');
-
+function App(): JSX.Element {
   return (
-    <div>
-      <BrowserRouter>
-        <Switch>
-          {routes.map((route, index) => (
-            <Route
-              key={index}
-              path={route.path}
-              exact={route.exact}
-              render={(props: RouteComponentProps<any>) => (
-                (route.path !== '/' && !token ? <Redirect to='/' /> :
-                  (route.path === '/' && token ? <Redirect to='/home' /> :
-                    <route.component {...props} {...route.props} />))
-              )}
-            />
-          ))}
-        </Switch>
-      </BrowserRouter>
-    </div>
+    <>
+      <GlobalStyle />
+      <Routes />
+    </>
   );
 }
 

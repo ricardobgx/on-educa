@@ -5,9 +5,10 @@ export const Page = styled.div`
   flex-wrap: wrap;
   min-height: 100vh;
 `;
+
 export const PlatformInformation = styled.div`
-  color: var(--secondary-color);
-  background: var(--primary-color);
+  color: ${({ theme }) => theme.colors.commonTextColor};
+  background: ${({ theme }) => theme.colors.commonColor};
   width: 67%;
   padding: 5rem;
   position: relative;
@@ -24,15 +25,13 @@ export const PlatformInformationBox = styled.div`
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  
+
   @media (max-width: 900px) {
     width: 100%;
   }
 `;
 
-export const Information = styled.div`
-  
-`;
+export const Information = styled.div``;
 export const Title = styled.h1`
   font-size: 2.5rem;
 `;
@@ -54,12 +53,12 @@ export const Function = styled.div`
   align-items: center;
   width: 8rem;
 `;
-export const Icon = styled.img`
-  width: 4.5rem;
+export const Icon = styled.i`
+  font-size: 4rem;
   margin-bottom: 1rem;
 
-  @media (max-width: 900px) {
-    width: 3rem;
+  @media (max-width: 1150px) {
+    font-size: 3rem;
   }
 `;
 export const Name = styled.p`
@@ -69,16 +68,6 @@ export const Name = styled.p`
 
   @media (max-width: 900px) {
     font-size: 1rem;
-  }
-`;
-export const Sign = styled.div`
-  width: 33%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  @media (max-width: 900px) {
-    width: 100%;
   }
 `;
 
@@ -106,18 +95,4 @@ export const ScrollIcon = styled.i`
   @media (max-width: 900px) {
     display: unset;
   }
-`;
-
-export const SignTypeLabel = styled.p`
-  color: var(--primary-color);
-  font-size: 1rem;
-`;
-export const SignTypeButton = styled.button`
-  background: none;
-  border: none;
-  font-weight: bold;
-  font-size: 1rem;
-  color: var(--primary-color);
-  margin: .25rem 0;
-  cursor: pointer;
 `;
