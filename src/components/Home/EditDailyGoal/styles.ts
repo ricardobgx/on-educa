@@ -12,6 +12,7 @@ export const ShadowBackground = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: 0.2s fadeIn linear;
 `;
 export const EditDailyGoalBox = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};
@@ -30,7 +31,7 @@ export const GoalInputBox = styled.div`
   display: flex;
   align-items: center;
   border: 3px solid ${({ theme }) => theme.colors.textColor};
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 10px;
 `;
 export const GoalInput = styled.input`
@@ -48,7 +49,7 @@ export const EditDailyGoalButton = styled.button`
   border: none;
   height: 40px;
   width: 100%;
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;

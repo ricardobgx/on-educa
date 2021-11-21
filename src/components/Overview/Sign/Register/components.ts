@@ -19,9 +19,24 @@ export const SignSchoolGradeSelect = styled.select`
   padding: 0 0.25rem;
   font-size: 1.1rem;
   cursor: pointer;
+  transition: all 0.2s linear;
+
+  &:focus {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
 `;
 
-export const SignSchoolGradeOption = styled.option``;
+export const SignSchoolGradeOption = styled.option`
+  background: ${({ theme }) => theme.colors.boxColor};
+  color: ${({ theme }) => theme.colors.textColor};
+  transition: all 0.2s linear;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.textColor};
+    color: ${({ theme }) => theme.colors.boxColor};
+  }
+`;
 
 export const AddSubjectButton = styled.button`
   width: 100%;

@@ -2,11 +2,6 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { paragraph } from '../../components';
 
-export const Page = styled.div`
-  min-height: 100vh;
-  padding-top: 55px;
-`;
-
 export const PageBox = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -61,7 +56,7 @@ export const AchievementsBox = styled(Link)`
   background: ${({ theme }) => theme.colors.boxColor};
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 10px;
-  padding: 1rem 2rem;
+  padding: 20px;
   margin: 20px;
   height: calc(6rem - 20px);
   display: flex;
@@ -75,7 +70,7 @@ export const AchievementsBox = styled(Link)`
 `;
 export const AchievementsIcon = styled.i`
   font-size: 1.05rem;
-  margin-right: 1rem;
+  margin-right: 20px;
   color: ${({ theme }) => theme.colors.textColor};
 `;
 export const AchievementsLabel = styled(paragraph)`
@@ -87,7 +82,7 @@ export const DailyGoalBox = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 10px;
-  padding: 1rem 2rem;
+  padding: 20px;
   margin: 20px;
   height: calc(6rem - 20px);
   display: flex;
@@ -97,7 +92,7 @@ export const DailyGoalBox = styled.div`
 `;
 export const DailyGoalIcon = styled.i`
   font-size: 1.05rem;
-  margin-right: 1rem;
+  margin-right: 20px;
   color: ${({ theme }) => theme.colors.textColor};
 `;
 export const DailyGoalDataBox = styled.div`
@@ -116,5 +111,5 @@ export const DailyGoalEditButton = styled.button`
 export const DailyGoalEditIcon = styled.i`
   color: ${({ theme }) => theme.colors.textColor};
   font-size: 1rem;
-  margin-left: 1rem;
+  margin-left: 20px;
 `;

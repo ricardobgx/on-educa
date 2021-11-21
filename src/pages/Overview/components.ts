@@ -8,9 +8,14 @@ export const Page = styled.div`
 
 export const PlatformInformation = styled.div`
   color: ${({ theme }) => theme.colors.commonTextColor};
-  background: ${({ theme }) => theme.colors.commonColor};
+  background: linear-gradient(
+    135deg,
+    ${({ theme }) => theme.colors.commonColor},
+    ${({ theme }) => theme.colors.secondaryColor}
+  );
+  /* background: ${({ theme }) => theme.colors.secondaryColor}; */
   width: 67%;
-  padding: 5rem;
+  padding: 4.55rem;
   position: relative;
 
   @media (max-width: 900px) {
@@ -20,7 +25,7 @@ export const PlatformInformation = styled.div`
 `;
 
 export const PlatformInformationBox = styled.div`
-  width: 75%;
+  width: 76%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -33,14 +38,14 @@ export const PlatformInformationBox = styled.div`
 
 export const Information = styled.div``;
 export const Title = styled.h1`
-  font-size: 2.5rem;
+  font-size: 2.35rem;
 `;
 export const Slogan = styled.h2`
-  font-size: 2.2rem;
+  font-size: 2.1rem;
 `;
 export const Description = styled.p`
   margin-top: 2rem;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   text-align: justify;
 `;
 export const Functions = styled.div`

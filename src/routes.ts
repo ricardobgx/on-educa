@@ -2,9 +2,11 @@ import IRoute from './interfaces/routes';
 import Achievements from './pages/Achievements';
 import Content from './pages/Content';
 import Doubts from './pages/Doubts';
+import Duels from './pages/Duels';
 import Home from './pages/Home';
 import Overview from './pages/Overview';
 import Performance from './pages/Performance';
+import Practice from './pages/Practice';
 import StartLearn from './pages/StartLearn';
 
 const routes: IRoute[] = [
@@ -24,6 +26,12 @@ const routes: IRoute[] = [
     path: '/study',
     name: 'Study',
     component: StartLearn,
+    exact: true,
+  },
+  {
+    path: '/duels',
+    name: 'Duels',
+    component: Duels,
     exact: true,
   },
   {
@@ -48,6 +56,12 @@ const routes: IRoute[] = [
     path: '/achievements',
     name: 'Achievements',
     component: Achievements,
+    exact: true,
+  },
+  {
+    path: '/contents/:id/practice',
+    name: 'Practice',
+    component: Practice,
     exact: true,
   },
 ];

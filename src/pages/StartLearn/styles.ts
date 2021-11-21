@@ -77,6 +77,7 @@ export const LearnOptionSelect = styled.select`
   width: 300px;
   height: 40px;
   cursor: pointer;
+  border: none;
 
   @media (max-width: 1150px) {
     width: 100%;
@@ -89,7 +90,7 @@ export const StartLearnButton = styled(Link)`
   justify-content: center;
   align-items: center;
   min-height: 40px;
-  border-radius: 10px;
+  border-radius: 5px;
   background: ${({ theme }) => theme.colors.textColor};
   margin: 20px;
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};

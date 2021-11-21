@@ -13,14 +13,33 @@ export const DoubtBox = styled(Link)`
 `;
 export const DoubtInfo = styled.div`
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
+`;
+export const DoubtStatus = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+`;
+export const DoubtComments = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+`;
+export const DoubtCommentsNumber = styled(paragraph)`
+  margin-right: 10px;
+  color: ${({ theme }) => theme.colors.textColor};
+  font-weight: bold;
+`;
+export const DoubtCommentsIcon = styled.i`
+  font-size: 25px;
+  color: ${({ theme }) => theme.colors.textColor};
 `;
 export const DoubtInfoBox = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  width: 100%;
 `;
 export const DoubtDescription = styled(paragraph)`
   color: ${({ theme }) => theme.colors.textColor};

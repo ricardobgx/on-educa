@@ -52,4 +52,5 @@ export const InputLabel = styled.label`
   transform: translateY(-50%);
   color: #bbbbbb;
   transition: all 0.2s linear;
+  cursor: text;
 `;

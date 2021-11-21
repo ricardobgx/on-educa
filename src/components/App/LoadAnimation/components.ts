@@ -3,7 +3,12 @@ import styled from 'styled-components';
 export const LoadAnimationBox = styled.div`
   width: 100vw;
   height: 100vh;
-  background: ${({ theme }) => theme.colors.commonColor};
+  /* background: ${({ theme }) => theme.colors.secondaryColor}; */
+  background: linear-gradient(
+    135deg,
+    ${({ theme }) => theme.colors.commonColor},
+    ${({ theme }) => theme.colors.secondaryColor}
+  );
   position: fixed;
   top: 0;
   left: 0;

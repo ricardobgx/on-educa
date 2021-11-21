@@ -1,8 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Sen&display=swap');
-
   * {
     margin: 0;
     padding: 0;
@@ -56,6 +54,15 @@ export default createGlobalStyle`
     100% {
       opacity: 1;
       transform: translateX(0%);
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
     }
   }
 

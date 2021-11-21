@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import {
-  Page,
   PageBox,
   HomeActionsBox,
   HomeActions,
@@ -23,6 +24,9 @@ import NavBar from '../../components/App/NavBar';
 import OnEducaAPI from '../../services/api';
 import DailyPerformance from '../../components/Home/DailyPerformance';
 import EditDailyGoal from '../../components/Home/EditDailyGoal';
+import { ActionCreators, State } from '../../store';
+import { DEFAULT_USER } from '../../store/reducers/user';
+import { Page } from '../components';
 
 interface IHomeAction {
   icon: string;
@@ -39,6 +43,7 @@ interface ISubject {
 interface IUser {
   email: string;
   name: string;
+  profilePicture: string;
   schoolGrade: number;
   subjects: ISubject[];
 }
@@ -94,19 +99,16 @@ const actions: IHomeAction[] = [
   },
 ];
 
-const DEFAULT_USER: IUser = {
-  name: '',
-  email: '',
-  schoolGrade: 1,
-  subjects: new Array<ISubject>(),
-};
-
 const Home = (): JSX.Element => {
-  const [user, setUser] = useState(DEFAULT_USER);
   const [userType, setUserType] = useState('');
   const [dailyGoal, setDailyGoal] = useState(50);
   const [completedDailyGoal, setCompletedDailyGoal] = useState(10);
   const [editDailyGoal, setEditDailyGoal] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const { loginUser } = bindActionCreators(ActionCreators, dispatch);
+  const user = useSelector((store: State) => store.user);
 
   const getStudent = async (email: string, token: string): Promise<void> => {
     await OnEducaAPI.get(`/students/${email}`, {
@@ -114,10 +116,10 @@ const Home = (): JSX.Element => {
         Authorization: `Bearer ${token}`,
       },
     }).then((response) => {
-      const { name, schoolGrade }: IUser = response.data;
-      const student = { email, name, schoolGrade } as IUser;
+      const { name, profilePicture, schoolGrade }: IUser = response.data;
+      const student = { email, name, profilePicture, schoolGrade } as IUser;
 
-      setUser(student);
+      loginUser({ ...student, token });
     });
   };
 
@@ -127,10 +129,10 @@ const Home = (): JSX.Element => {
         Authorization: `Bearer ${token}`,
       },
     }).then((response) => {
-      const { name, subjects }: IUser = response.data;
-      const teacher = { email, name, subjects } as IUser;
+      const { name, profilePicture, subjects }: IUser = response.data;
+      const teacher = { email, name, profilePicture, subjects } as IUser;
 
-      setUser(teacher);
+      loginUser({ ...teacher, token });
     });
   };
 
@@ -145,14 +147,13 @@ const Home = (): JSX.Element => {
   const loadUser = async (): Promise<void> => {
     const email = window.localStorage.getItem('email') || '';
     const token = window.localStorage.getItem('token') || '';
-    setUserType(window.localStorage.getItem('userType') || '');
     await getUser(token, email);
   };
 
   useEffect(() => {
-    if (user === DEFAULT_USER) {
-      loadUser();
-    }
+    if (userType === '')
+      setUserType(window.localStorage.getItem('userType') || '');
+    if (user === DEFAULT_USER) loadUser();
   });
 
   return (
