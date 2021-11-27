@@ -37,7 +37,7 @@ export const AnswerButton = styled.button`
   margin-bottom: 20px;
   min-height: 40px;
   border: none;
-  font-weight: bold;
+  /* font-weight: bold; */
   color: ${({ theme }) => theme.colors.boxColor};
   background: ${({ theme }) => theme.colors.textColor};
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
@@ -48,7 +48,7 @@ export const AnswerButtonLabel = styled(paragraph)``;
 export const SkipButton = styled.button`
   min-height: 40px;
   border: none;
-  font-weight: bold;
+  /* font-weight: bold; */
   color: ${({ theme }) => theme.colors.textColor};
   background: ${({ theme }) => theme.colors.boxColor};
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};

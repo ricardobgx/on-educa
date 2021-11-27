@@ -1,23 +1,23 @@
 import styled from 'styled-components';
+import { bigIcon } from '../../../components';
 
 export const LoadAnimationBox = styled.div`
   width: 100vw;
   height: 100vh;
-  /* background: ${({ theme }) => theme.colors.secondaryColor}; */
-  background: linear-gradient(
+  background: ${({ theme }) => theme.colors.boxColor};
+  /* background: linear-gradient(
     135deg,
     ${({ theme }) => theme.colors.commonColor},
     ${({ theme }) => theme.colors.secondaryColor}
-  );
+  ); */
   position: fixed;
   top: 0;
   left: 0;
   z-index: 95;
 `;
 
-export const LoadIcon = styled.i`
-  font-size: 4rem;
-  color: ${({ theme }) => theme.colors.commonTextColor};
+export const LoadIcon = styled(bigIcon)`
+  color: ${({ theme }) => theme.colors.textColor};
   position: fixed;
   top: 50%;
   left: 50%;

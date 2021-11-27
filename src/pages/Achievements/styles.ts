@@ -20,8 +20,8 @@ export const AllAchievementsBox = styled.div`
   display: flex;
   flex-direction: column;
   background: ${({ theme }) => theme.colors.boxColor};
-  min-height: calc(100vh - 230px);
-  max-height: calc(100vh - 230px);
+  min-height: calc(100vh - 225px);
+  max-height: calc(100vh - 225px);
   overflow: auto;
   margin: 20px;
   padding: 10px;

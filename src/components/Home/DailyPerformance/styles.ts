@@ -8,7 +8,7 @@ export const DailyPerformanceBox = styled.div`
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 10px;
   padding: 20px;
-  height: 12rem;
+  height: calc((100vh - 265px) / 2);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -47,7 +47,7 @@ export const PerformanceLabel = styled(paragraph)`
 `;
 export const PerformanceDataLabel = styled(paragraph)`
   color: ${({ theme }) => theme.colors.textColor};
-  font-weight: bold;
+  /* font-weight: bold; */
 `;
 export const WeekPerformanceButton = styled(Link)`
   background: ${({ theme }) => theme.colors.textColor};
@@ -56,6 +56,5 @@ export const WeekPerformanceButton = styled(Link)`
 `;
 export const WeekPerformanceButtonLabel = styled(paragraph)`
   color: ${({ theme }) => theme.colors.boxColor};
-  font-weight: bold;
   text-align: center;
 `;

@@ -75,7 +75,59 @@ export default createGlobalStyle`
   }
 `;
 
+// Text
+
 export const paragraph = styled.p`
+  font-size: ${({ theme }) => theme.fontsSize.computer};
+
+  @media (min-width: 600px) and (max-width: 1150px) {
+    font-size: ${({ theme }) => theme.fontsSize.tablet};
+  }
+
+  @media (max-width: 600px) {
+    font-size: ${({ theme }) => theme.fontsSize.smartphone};
+  }
+`;
+
+// Icon
+
+export const smallIcon = styled.i`
+  font-size: ${({ theme }) => theme.fontsSize.computer};
+
+  @media (min-width: 600px) and (max-width: 1150px) {
+    font-size: ${({ theme }) => theme.fontsSize.tablet};
+  }
+
+  @media (max-width: 600px) {
+    font-size: ${({ theme }) => theme.fontsSize.smartphone};
+  }
+`;
+export const mediumIcon = styled.i`
+  font-size: 3vh;
+
+  @media (min-width: 600px) and (max-width: 1150px) {
+    font-size: 3vw;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 5vw;
+  }
+`;
+export const bigIcon = styled.i`
+  font-size: 4rem;
+
+  @media (min-width: 600px) and (max-width: 1150px) {
+    font-size: 8vw;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 13vw;
+  }
+`;
+
+// Input
+
+export const inputText = styled.input`
   font-size: ${({ theme }) => theme.fontsSize.computer};
 
   @media (min-width: 600px) and (max-width: 1150px) {

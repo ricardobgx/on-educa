@@ -11,7 +11,7 @@ const FieldWarning = (props: IFieldWarningProps): JSX.Element => {
   return (
     <Container
       style={{
-        height: isActive ? '1.2rem' : '0rem',
+        height: isActive ? '20px' : '0rem',
         animation: isActive ? '' : 'none',
       }}
     >

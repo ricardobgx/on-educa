@@ -1,6 +1,6 @@
 export interface ISignProps {
   loadAnimation(): void;
-  minHeight: number;
+  minHeight: string;
 }
 
 export interface ISignFormProps {

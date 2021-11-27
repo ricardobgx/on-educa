@@ -1,52 +1,83 @@
 import styled from 'styled-components';
+import { bigIcon } from '../../components';
 
 export const Page = styled.div`
   display: flex;
   flex-wrap: wrap;
   min-height: 100vh;
+  background: ${({ theme }) => theme.colors.backgroundColor};
 `;
 
 export const PlatformInformation = styled.div`
-  color: ${({ theme }) => theme.colors.commonTextColor};
+  color: ${({ theme }) => theme.colors.whiteColor};
   background: linear-gradient(
     135deg,
     ${({ theme }) => theme.colors.commonColor},
     ${({ theme }) => theme.colors.secondaryColor}
   );
-  /* background: ${({ theme }) => theme.colors.secondaryColor}; */
   width: 67%;
-  padding: 4.55rem;
   position: relative;
+  height: 100vh;
 
   @media (max-width: 900px) {
     width: 100%;
-    padding: 5rem 3rem;
+    /* padding: 5rem 3rem; */
   }
 `;
 
 export const PlatformInformationBox = styled.div`
   width: 76%;
+  height: 100%;
+  padding: 4.55rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
 
-  @media (max-width: 900px) {
+  @media (max-width: 1150px) {
     width: 100%;
+    padding: 40px;
+    padding-bottom: 80px;
   }
 `;
 
 export const Information = styled.div``;
 export const Title = styled.h1`
   font-size: 2.35rem;
+
+  @media (min-width: 600px) and (max-width: 1150px) {
+    font-size: 5.5vw;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 9vw;
+  }
 `;
 export const Slogan = styled.h2`
-  font-size: 2.1rem;
+  text-align: justify;
+  font-size: 2rem;
+
+  @media (min-width: 600px) and (max-width: 1150px) {
+    font-size: 4.2vw;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 8vw;
+  }
 `;
 export const Description = styled.p`
   margin-top: 2rem;
-  font-size: 1.25rem;
   text-align: justify;
+  font-size: 1.25rem;
+
+  @media (min-width: 600px) and (max-width: 1150px) {
+    font-size: 3.1vw;
+    margin-top: 4vw;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 5vw;
+    margin-top: 6vw;
+  }
 `;
 export const Functions = styled.div`
   display: flex;
@@ -57,22 +88,38 @@ export const Function = styled.div`
   flex-direction: column;
   align-items: center;
   width: 8rem;
+
+  @media (min-width: 600px) and (max-width: 1150px) {
+    width: 20vw;
+  }
+
+  @media (max-width: 600px) {
+    width: 25vw;
+  }
 `;
-export const Icon = styled.i`
-  font-size: 4rem;
+export const Icon = styled(bigIcon)`
   margin-bottom: 1rem;
 
-  @media (max-width: 1150px) {
-    font-size: 3rem;
+  @media (min-width: 600px) and (max-width: 1150px) {
+    margin-bottom: 2vw;
+  }
+
+  @media (max-width: 600px) {
+    margin-bottom: 3vw;
   }
 `;
 export const Name = styled.p`
   font-size: 1.1rem;
   text-align: center;
   font-weight: bold;
+  font-size: 1.1rem;
 
-  @media (max-width: 900px) {
-    font-size: 1rem;
+  @media (min-width: 600px) and (max-width: 1150px) {
+    font-size: 2.6vw;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 4vw;
   }
 `;
 

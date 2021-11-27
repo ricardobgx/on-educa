@@ -19,6 +19,7 @@ import {
   SubjectActionButton,
   AllSubjects,
   CloseIconButton,
+  AddSubjectButtonLabel,
 } from './components';
 
 import {
@@ -28,6 +29,8 @@ import {
   SignActions,
   SignButton,
   ChangeSignUser,
+  SignButtonLabel,
+  ChangeSignUserLabel,
 } from '../components';
 
 import OnEducaAPI from '../../../../services/api';
@@ -292,7 +295,7 @@ export default class Register extends React.Component<ISignFormProps> {
                 this.setState({ subjectsBoxVisibility: true });
               }}
             >
-              Suas disciplinas
+              <AddSubjectButtonLabel>Suas disciplinas</AddSubjectButtonLabel>
               <AddIcon className="fas fa-plus" />
             </AddSubjectButton>
           )}
@@ -303,7 +306,7 @@ export default class Register extends React.Component<ISignFormProps> {
               this.registerUser();
             }}
           >
-            Cadastrar
+            <SignButtonLabel>Cadastrar</SignButtonLabel>
           </SignButton>
           <ChangeSignUser
             onClick={() => {
@@ -311,8 +314,10 @@ export default class Register extends React.Component<ISignFormProps> {
               this.clearFields();
             }}
           >
-            Sou
-            {isStudent() ? ' professor' : ' aluno'}
+            <ChangeSignUserLabel>
+              Sou
+              {isStudent() ? ' professor' : ' aluno'}
+            </ChangeSignUserLabel>
           </ChangeSignUser>
         </SignActions>
         {subjectsBoxVisibility ? (

@@ -45,11 +45,11 @@ export default class Sign extends React.Component<ISignProps> {
   };
 
   render(): JSX.Element {
-    const { loadAnimation } = this.props;
+    const { loadAnimation, minHeight } = this.props;
     const { userType } = this.state as IState;
 
     return (
-      <SignBox>
+      <SignBox style={{ minHeight }}>
         {this.isRegister() ? (
           <Register
             isStudent={this.isStudent}

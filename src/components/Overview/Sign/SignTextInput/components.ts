@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { inputText } from '../../../../components';
 
 export const Container = styled.div`
   width: 100%;
@@ -19,22 +20,21 @@ export const InputBox = styled.div`
   position: relative;
 `;
 
-export const Input = styled.input`
+export const Input = styled(inputText)`
   width: 100%;
   height: 50px;
-  padding: 1rem;
+  padding: 20px 15px;
   color: #bbbbbb;
   background: ${({ theme }) => theme.colors.boxColor};
   border: 2px solid ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 10px;
-  margin: 0.25rem 0;
-  font-size: 1.1rem;
+  margin: 5px 0;
   transition: all 0.4s linear;
 
   &:focus {
     border-color: ${({ theme }) => theme.colors.textColor};
     color: ${({ theme }) => theme.colors.textColor};
-    padding-top: 2rem;
+    padding-top: 20px;
   }
 
   &:focus ~ label {
@@ -42,15 +42,33 @@ export const Input = styled.input`
     font-size: 0.8rem;
     top: 15%;
     transform: translateY(0%);
+    font-size: 2vh;
+
+    @media (min-width: 600px) and (max-width: 1150px) {
+      font-size: 2vw;
+    }
+
+    @media (max-width: 600px) {
+      font-size: 3.5vw;
+    }
   }
 `;
 
 export const InputLabel = styled.label`
   position: absolute;
   top: 50%;
-  left: 1rem;
+  left: 15px;
   transform: translateY(-50%);
   color: #bbbbbb;
   transition: all 0.2s linear;
   cursor: text;
+  font-size: ${({ theme }) => theme.fontsSize.computer};
+
+  @media (min-width: 600px) and (max-width: 1150px) {
+    font-size: ${({ theme }) => theme.fontsSize.tablet};
+  }
+
+  @media (max-width: 600px) {
+    font-size: ${({ theme }) => theme.fontsSize.smartphone};
+  }
 `;

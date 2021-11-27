@@ -39,7 +39,7 @@ const SignTextInput = (props: ISignFieldProps): JSX.Element => {
           value={value}
           style={{
             color: value ? theme.colors.textColor : '',
-            paddingTop: !isActive ? '2rem' : '',
+            paddingTop: !isActive ? '30px' : '',
             borderColor: value ? theme.colors.textColor : '',
           }}
           onBlur={() => {
@@ -55,7 +55,7 @@ const SignTextInput = (props: ISignFieldProps): JSX.Element => {
         <InputLabel
           htmlFor={id}
           style={{
-            fontSize: value ? '.8rem' : '',
+            fontSize: value ? '14px' : '',
             color: value ? theme.colors.textColor : '',
             top: value ? '15%' : '',
             transform: value ? 'translateY(0%)' : '',

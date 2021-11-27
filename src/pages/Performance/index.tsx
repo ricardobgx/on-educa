@@ -6,7 +6,6 @@ import PerformanceChart, {
   IPerformanceChartProps,
 } from '../../components/Performance/PerformanceChart';
 import { Page } from '../components';
-import { SectionLabelBox, SectionLabelText } from '../Home/components';
 import {
   PageBox,
   PerformanceCharts,
@@ -102,9 +101,7 @@ const Performance = (): JSX.Element => {
           </WeekPerformanceBox>
         </WeekPerformance>
         <Ranking>
-          <SectionLabelBox>
-            <SectionLabelText>Ranking</SectionLabelText>
-          </SectionLabelBox>
+          <SectionLabel backLink="" label="Ranking" />
           <RankingBox>
             <Students>
               <Student>

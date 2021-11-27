@@ -31,7 +31,7 @@ export const ChartHeightBar = styled.div`
   justify-content: center;
 `;
 export const ChartHeightBarBox = styled.div`
-  width: 5px;
+  width: 3px;
   height: calc(100% - 10px);
   position: absolute;
   left: 50%;
@@ -47,7 +47,7 @@ export const ChartHeightPoints = styled.div`
 `;
 export const ChartHeightPoint = styled.div`
   width: 15px;
-  height: 5px;
+  height: 3px;
   background: ${({ theme }) => theme.colors.textColor};
 `;
 export const ChartHeightLabels = styled.div`

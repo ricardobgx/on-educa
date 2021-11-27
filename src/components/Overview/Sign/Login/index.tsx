@@ -6,6 +6,8 @@ import {
   SignActions,
   SignButton,
   ChangeSignUser,
+  SignButtonLabel,
+  ChangeSignUserLabel,
 } from '../components';
 import OnEducaAPI from '../../../../services/api';
 import { ISignFormProps } from '../SignForm/interfaces';
@@ -115,7 +117,7 @@ const Login = (props: ISignFormProps): JSX.Element => {
             loginUser();
           }}
         >
-          Entrar
+          <SignButtonLabel>Entrar</SignButtonLabel>
         </SignButton>
         <ChangeSignUser
           onClick={() => {
@@ -123,8 +125,10 @@ const Login = (props: ISignFormProps): JSX.Element => {
             clearFields();
           }}
         >
-          Sou
-          {isStudent() ? ' professor' : ' aluno'}
+          <ChangeSignUserLabel>
+            Sou
+            {isStudent() ? ' professor' : ' aluno'}
+          </ChangeSignUserLabel>
         </ChangeSignUser>
       </SignActions>
     </SignBox>

@@ -1,25 +1,34 @@
 import styled from 'styled-components';
+import { mediumIcon, paragraph } from '../../../../components';
 
 export const SignSchoolGradeBox = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0.25rem 0;
+  margin: 10px 0;
   height: 50px;
 `;
-export const SignSchoolGradeLabel = styled.p`
+export const SignSchoolGradeLabel = styled(paragraph)`
   color: ${({ theme }) => theme.colors.textColor};
-  font-size: 1.1rem;
 `;
 export const SignSchoolGradeSelect = styled.select`
   color: ${({ theme }) => theme.colors.boxColor};
   background: ${({ theme }) => theme.colors.textColor};
   border-radius: 5px;
-  padding: 0 0.25rem;
-  font-size: 1.1rem;
+  padding: 0 5px;
   cursor: pointer;
   transition: all 0.2s linear;
+  border-right: 5px solid ${({ theme }) => theme.colors.textColor};
+  font-size: ${({ theme }) => theme.fontsSize.computer};
+
+  @media (min-width: 600px) and (max-width: 1150px) {
+    font-size: ${({ theme }) => theme.fontsSize.tablet};
+  }
+
+  @media (max-width: 600px) {
+    font-size: ${({ theme }) => theme.fontsSize.smartphone};
+  }
 
   &:focus {
     border-bottom-left-radius: 0px;
@@ -42,9 +51,9 @@ export const AddSubjectButton = styled.button`
   width: 100%;
   border-radius: 10px;
   border: none;
-  padding: 0.8rem 1rem;
-  margin: 0.25rem 0;
-  color: ${({ theme }) => theme.colors.boxColor};
+  min-height: 50px;
+  padding: 0 20px;
+  margin: 10px 0;
   background: ${({ theme }) => theme.colors.textColor};
   font-size: 1.1rem;
   display: flex;
@@ -52,14 +61,16 @@ export const AddSubjectButton = styled.button`
   align-items: center;
   cursor: pointer;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  color: ${({ theme }) => theme.colors.boxColor};
 `;
-
-export const AddIcon = styled.i``;
+export const AddSubjectButtonLabel = styled(paragraph)``;
+export const AddIcon = styled(mediumIcon)``;
 
 export const SubjectsBoxBackground = styled.div`
   background: ${({ theme }) => theme.colors.boxShadowColor};
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  padding: 40px;
   position: fixed;
   top: 0%;
   left: 0%;
@@ -75,8 +86,7 @@ export const AllSubjectsBox = styled.div`
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 10px;
   position: relative;
-  margin: 40px;
-  padding: 20px;
+  padding: 40px;
   /* z-index: 95; */
   @media (max-width: 900px) {
     width: 100%;
@@ -84,44 +94,51 @@ export const AllSubjectsBox = styled.div`
 `;
 export const Subjects = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   @media (max-width: 900px) {
     flex-wrap: wrap;
   }
 `;
 export const SubjectsBox = styled.div`
-  width: 45%;
+  height: 100%;
+  width: calc(50% - 20px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px;
+  margin-bottom: 20px;
   @media (max-width: 900px) {
     width: 100%;
   }
+
+  &:last-of-type {
+    margin: 0;
+  }
 `;
-export const SubjectsBoxLabel = styled.p`
+export const SubjectsBoxLabel = styled(paragraph)`
   color: ${({ theme }) => theme.colors.textColor};
-  margin: 0.5rem 0;
+  margin-bottom: 10px;
   text-align: center;
 `;
 export const Subject = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1rem;
-  margin: 0.5rem 0;
+  padding: 0 20px;
+  margin-bottom: 20px;
   width: 100%;
   height: 50px;
   color: ${({ theme }) => theme.colors.textColor};
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
+  border-radius: 5px;
+  &:last-of-type {
+    margin: 0;
+  }
 `;
-export const SubjectLabel = styled.p``;
-export const RemoveSubjectIcon = styled.p`
-  font-size: 1.2rem;
+export const SubjectLabel = styled(paragraph)``;
+export const RemoveSubjectIcon = styled(paragraph)`
   font-weight: bold;
 `;
-export const AddSubjectIcon = styled.i``;
+export const AddSubjectIcon = styled(mediumIcon)``;
 
 export const SubjectsDivision = styled.div`
   height: 1px;
@@ -138,8 +155,8 @@ export const SubjectActionButton = styled.button`
 
 export const AllSubjects = styled.div`
   width: 100%;
-  height: 20rem;
-  padding: 0.5rem 1rem;
+  height: 50vh;
+  padding: 20px;
   overflow: auto;
   border: 2px solid ${({ theme }) => theme.colors.textColor};
   border-radius: 10px;
@@ -155,8 +172,8 @@ export const CloseIconButton = styled.button`
   top: 0%;
   left: 100%;
   transform: translateX(-100%);
-  padding: 1rem;
+  padding: 20px;
   background: none;
   border: none;
 `;
-export const CloseIcon = styled.i``;
+export const CloseIcon = styled(mediumIcon)``;

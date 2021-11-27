@@ -1,5 +1,6 @@
 import React from 'react';
 import SectionLabel from '../../components/App/SectionLabel';
+import DuelCard from '../../components/Duels/DuelCard';
 import { Page } from '../components';
 import {
   PageBox,
@@ -20,7 +21,55 @@ import {
   DuelsFiltersButtonIcon,
   DuelsList,
   DuelsActionsBox,
+  DuelsListBox,
 } from './styles';
+
+const duels = [
+  {
+    id: '1',
+    ownerName: 'Aluno 1',
+    ownerPicture:
+      'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
+    subjects: ['Matemática, Física, Biologia'],
+    contents: ['Funções', 'Leis de Newton', 'Células'],
+    status: 'waiting',
+    participants: 7,
+    maxParticipants: 8,
+  },
+  {
+    id: '2',
+    ownerName: 'Aluno 1',
+    ownerPicture:
+      'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
+    subjects: ['Matemática, Física, Biologia'],
+    contents: ['Funções', 'Leis de Newton', 'Células'],
+    status: 'started',
+    participants: 4,
+    maxParticipants: 4,
+  },
+  {
+    id: '3',
+    ownerName: 'Aluno 1',
+    ownerPicture:
+      'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
+    subjects: ['Matemática, Física, Biologia'],
+    contents: ['Funções', 'Leis de Newton', 'Células'],
+    status: 'waiting',
+    participants: 7,
+    maxParticipants: 8,
+  },
+  {
+    id: '4',
+    ownerName: 'Aluno 1',
+    ownerPicture:
+      'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
+    subjects: ['Matemática, Física, Biologia'],
+    contents: ['Funções', 'Leis de Newton', 'Células'],
+    status: 'waiting',
+    participants: 7,
+    maxParticipants: 8,
+  },
+];
 
 const Duels = (): JSX.Element => {
   return (
@@ -31,7 +80,10 @@ const Duels = (): JSX.Element => {
           <DuelsActions>
             <SearchDuels>
               <SearchDuelsInputBox>
-                <SearchDuelsInput type="text" />
+                <SearchDuelsInput
+                  type="text"
+                  placeholder="Digite algo (código do duelo, nome do aluno)"
+                />
                 <ClearSearchDuelsInputButton>
                   <ClearSearchDuelsInputButtonIcon className="fas fa-times" />
                 </ClearSearchDuelsInputButton>
@@ -41,7 +93,7 @@ const Duels = (): JSX.Element => {
               </SearchDuelsButton>
             </SearchDuels>
             <DuelsActionsBox>
-              <NewDuelButton>
+              <NewDuelButton to="/new-duel">
                 <NewDuelButtonLabel>Novo duelo</NewDuelButtonLabel>
                 <NewDuelButtonIcon className="fas fa-plus" />
               </NewDuelButton>
@@ -51,7 +103,23 @@ const Duels = (): JSX.Element => {
               </DuelsFiltersButton>
             </DuelsActionsBox>
           </DuelsActions>
-          <DuelsList />
+          <DuelsList>
+            <DuelsListBox>
+              {duels.map((duel) => (
+                <DuelCard
+                  key={duel.id}
+                  id={duel.id}
+                  contents={duel.contents}
+                  maxParticipants={duel.maxParticipants}
+                  participants={duel.participants}
+                  ownerName={duel.ownerName}
+                  ownerPicture={duel.ownerPicture}
+                  status={duel.status}
+                  subjects={duel.subjects}
+                />
+              ))}
+            </DuelsListBox>
+          </DuelsList>
         </DuelsBox>
       </PageBox>
     </Page>

@@ -1,29 +1,24 @@
 const themeType = window.localStorage.getItem('theme') || 'light';
 
 const fontsSize = {
-  computer: '1.05rem',
+  computer: '2.5vh',
   tablet: '2.5vw',
   smartphone: '4vw',
 };
 
-const practiceColors = {
-  rightQuestion: '#52b788',
-  wrongQuestion: '#FF0404',
-  skippedQuestion: '#126699',
-};
-
 const lightTheme = {
   colors: {
-    warningColor: '#D90429',
     backgroundColor: '#fcfcfc',
     boxColor: '#FFFFFF',
     hoverColor: 'rgba(0, 0, 0, 0.03)',
     textColor: '#126699',
     boxShadowColor: 'rgba(0, 0, 0, 0.2)',
     commonColor: '#52b788',
-    commonTextColor: '#FFFFFF',
+    whiteColor: '#FFFFFF',
     secondaryColor: '#00509d',
     questionTextColor: '#000000',
+    duelCongratulationsBackground: '#007F5F',
+    duelCongratulationsButtonColor: '#007F5F',
   },
 };
 
@@ -33,22 +28,30 @@ const lightTheme = {
 
 const darkTheme = {
   colors: {
-    warningColor: '#D90429',
     backgroundColor: '#212121',
     boxColor: '#3C3C3C',
     hoverColor: 'rgba(255, 255, 255, 0.2)',
     textColor: '#E5E5E5',
     boxShadowColor: 'rgba(0, 0, 0, 0.5)',
     commonColor: '#3C3C3C',
-    commonTextColor: '#E5E5E5',
-    secondaryColor: '#0077b6',
+    whiteColor: '#E5E5E5',
+    secondaryColor: '#3C3C3C',
     questionTextColor: '#E5E5E5',
+    duelCongratulationsBackground: '#212121',
+    duelCongratulationsButtonColor: '#E5E5E5',
   },
+};
+
+const similarColors = {
+  warningColor: '#E00000',
+  rightQuestion: '#52b788',
+  wrongQuestion: '#FF0404',
+  skippedQuestion: '#126699',
 };
 
 const theme =
   themeType === 'light'
-    ? { ...lightTheme, fontsSize, practiceColors }
-    : { ...darkTheme, fontsSize, practiceColors };
+    ? { ...lightTheme, fontsSize, similarColors }
+    : { ...darkTheme, fontsSize, similarColors };
 
 export default theme;

@@ -42,7 +42,7 @@ const NavBar = (): JSX.Element => {
         <Title>Educa</Title>
       </Logo>
       <Actions style={{ right: menuRight }}>
-        <Action to="/profile">
+        <Action to="/profile/12345">
           <UserPhoto src="https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg" />
           <IconLabel>Perfil</IconLabel>
         </Action>

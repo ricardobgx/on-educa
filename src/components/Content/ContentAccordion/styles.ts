@@ -73,5 +73,5 @@ export const HiddenContent = styled(Link)`
 `;
 export const HiddenContentLabel = styled(paragraph)`
   color: ${({ theme }) => theme.colors.textColor};
-  font-weight: bold;
+  /* font-weight: bold; */
 `;

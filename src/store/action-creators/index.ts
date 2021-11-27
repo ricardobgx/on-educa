@@ -1,9 +1,12 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 import { Dispatch } from 'redux';
-import { IQuestion } from '../../interfaces/practice';
+import { IDuel } from '../../interfaces/Duel';
+import { IQuestion } from '../../interfaces/Question';
+import { DuelActionType } from '../action-types/duel';
 import { PracticeActionType } from '../action-types/practice';
 import { UserActionType } from '../action-types/user';
+import { DuelAction } from '../actions/duel';
 import { PracticeAction } from '../actions/practice';
 import { IUser, UserAction } from '../actions/user';
 
@@ -27,18 +30,37 @@ export const logoutUser = () => {
 
 // Practice
 
-export const loadQuestions = (questions: IQuestion[]) => {
+export const loadPracticeQuestions = (questions: IQuestion[]) => {
   return (dispatch: Dispatch<PracticeAction>) => {
     dispatch({
-      type: PracticeActionType.LOAD,
+      type: PracticeActionType.LOAD_PRACTICE_QUESTIONS,
       questions,
     });
   };
 };
-export const answerQuestion = (questions: IQuestion[]) => {
+export const answerPracticeQuestion = (questions: IQuestion[]) => {
   return (dispatch: Dispatch<PracticeAction>) => {
     dispatch({
-      type: PracticeActionType.ANSWER,
+      type: PracticeActionType.ANSWER_PRACTICE_QUESTION,
+      questions,
+    });
+  };
+};
+
+// Duel
+
+export const loadDuel = (duel: IDuel) => {
+  return (dispatch: Dispatch<DuelAction>) => {
+    dispatch({
+      type: DuelActionType.LOAD_DUEL,
+      duel,
+    });
+  };
+};
+export const answerDuelQuestion = (questions: IQuestion[]) => {
+  return (dispatch: Dispatch<DuelAction>) => {
+    dispatch({
+      type: DuelActionType.ANSWER_DUEL_QUESTION,
       questions,
     });
   };

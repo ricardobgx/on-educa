@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IQuestion } from '../../../interfaces/practice';
+import { IQuestion } from '../../../interfaces/Question';
 import ConfirmQuitPractice from '../ConfirmQuitPractice';
 import {
   Container,

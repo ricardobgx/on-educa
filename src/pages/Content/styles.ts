@@ -89,7 +89,7 @@ export const PracticeButton = styled(Link)`
 `;
 export const PracticeButtonLabel = styled(paragraph)`
   color: ${({ theme }) => theme.colors.boxColor};
-  font-weight: bold;
+  /* font-weight: bold; */
 `;
 export const ContentDescription = styled.div`
   display: flex;

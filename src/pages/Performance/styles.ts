@@ -25,24 +25,23 @@ export const WeekPerformance = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-
-  @media (max-width: 1150px) {
-    width: 100%;
-  }
 `;
 export const WeekPerformanceBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  min-height: calc(100vh - 225px);
+  max-height: calc(100vh - 225px);
   background: ${({ theme }) => theme.colors.boxColor};
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
   margin: 20px;
   border-radius: 10px;
-  width: max-content;
+  width: calc(100% - 40px);
 
   @media (max-width: 1150px) {
     width: unset;
+    min-height: unset;
+    max-height: unset;
   }
 `;
 
@@ -61,7 +60,6 @@ export const PerformanceCharts = styled.div`
 
 export const WeekDays = styled.div`
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   margin: 10px;
   overflow: auto;
@@ -81,9 +79,9 @@ export const WeekDayButton = styled.button`
   background: ${({ theme }) => theme.colors.boxColor};
   border: 2px solid ${({ theme }) => theme.colors.textColor};
   color: ${({ theme }) => theme.colors.textColor};
-  width: 75px;
-  padding: 0.5rem 0;
-  border-radius: 10px;
+  min-width: 75px;
+  height: 40px;
+  border-radius: 5px;
   margin: 10px;
 
   @media (max-width: 1150px) {
@@ -118,7 +116,8 @@ export const Ranking = styled.div`
 `;
 export const RankingBox = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};
-  height: calc((85px + 20px) * 4 + 20px);
+  min-height: calc(100vh - 225px);
+  max-height: calc(100vh - 225px);
   padding: 10px;
   margin: 20px;
   border-radius: 10px;
@@ -126,6 +125,11 @@ export const RankingBox = styled.div`
   flex-direction: column;
   overflow: auto;
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+
+  @media (max-width: 1150px) {
+    min-height: calc((85px + 20px) * 4 + 20px);
+    max-height: calc((85px + 20px) * 4 + 20px);
+  }
 `;
 
 // Posições dos estudantes no ranking

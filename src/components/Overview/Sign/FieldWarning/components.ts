@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { paragraph } from '../../../../components';
 
 export const Container = styled.div`
   width: 100%;
@@ -21,7 +22,6 @@ export const Container = styled.div`
     }
   }
 `;
-export const WarningLabel = styled.p`
-  font-size: 0.9rem;
+export const WarningLabel = styled(paragraph)`
   color: ${({ theme }) => theme.colors.textColor};
 `;

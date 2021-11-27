@@ -58,22 +58,22 @@ export const TotalLabel = styled(paragraph)`
   font-weight: bold;
 `;
 export const NewContentLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.practiceColors.rightQuestion};
-  font-weight: bold;
+  color: ${({ theme }) => theme.similarColors.rightQuestion};
+  /* font-weight: bold; */
   margin-bottom: 20px;
 `;
 export const RightQuestionsLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.practiceColors.rightQuestion};
-  font-weight: bold;
+  color: ${({ theme }) => theme.similarColors.rightQuestion};
+  /* font-weight: bold; */
 `;
 export const WrongQuestionsLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.practiceColors.wrongQuestion};
-  font-weight: bold;
+  color: ${({ theme }) => theme.similarColors.wrongQuestion};
+  /* font-weight: bold; */
   margin: 20px 0;
 `;
 export const SkippedQuestionsLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.practiceColors.skippedQuestion};
-  font-weight: bold;
+  color: ${({ theme }) => theme.similarColors.skippedQuestion};
+  /* font-weight: bold; */
   margin-bottom: 20px;
 `;
 export const NextContentButton = styled(Link)`
@@ -88,5 +88,5 @@ export const NextContentButton = styled(Link)`
   border-radius: 5px;
 `;
 export const NextContentButtonLabel = styled(paragraph)`
-  font-weight: bold;
+  /* font-weight: bold; */
 `;

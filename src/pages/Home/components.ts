@@ -1,19 +1,22 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { paragraph } from '../../components';
+import { mediumIcon, paragraph } from '../../components';
 
 export const PageBox = styled.div`
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   height: 100%;
   margin: 20px;
+
+  @media (max-width: 1150px) {
+    flex-wrap: wrap;
+  }
 `;
 
 export const HomeActionsBox = styled.div`
   display: flex;
   flex-direction: column;
-  width: calc(3 * 12rem + 3 * 40px);
+  /* width: calc(3 * 12rem + 3 * 40px); */
 
   @media (max-width: 1150px) {
     width: 100%;
@@ -24,6 +27,11 @@ export const HomeActions = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  min-width: calc(((100vh - 265px) / 2 + 40px) * 3);
+
+  @media (max-width: 1150px) {
+    min-width: unset;
+  }
 `;
 
 export const SectionLabelBox = styled.div`
@@ -45,7 +53,7 @@ export const SectionLabelText = styled(paragraph)`
 export const PerformanceBox = styled.div`
   display: flex;
   flex-direction: column;
-  width: calc(100% - (3 * 12rem + 3 * 40px));
+  width: 100%;
 
   @media (max-width: 1150px) {
     width: 100%;
@@ -58,7 +66,7 @@ export const AchievementsBox = styled(Link)`
   border-radius: 10px;
   padding: 20px;
   margin: 20px;
-  height: calc(6rem - 20px);
+  height: calc(((100vh - 265px) / 4) - 20px);
   display: flex;
   align-items: center;
   border: 3px solid transparent;
@@ -68,8 +76,7 @@ export const AchievementsBox = styled(Link)`
     border-color: ${({ theme }) => theme.colors.textColor};
   }
 `;
-export const AchievementsIcon = styled.i`
-  font-size: 1.05rem;
+export const AchievementsIcon = styled(mediumIcon)`
   margin-right: 20px;
   color: ${({ theme }) => theme.colors.textColor};
 `;
@@ -84,14 +91,13 @@ export const DailyGoalBox = styled.div`
   border-radius: 10px;
   padding: 20px;
   margin: 20px;
-  height: calc(6rem - 20px);
+  height: calc(((100vh - 265px) / 4) - 20px);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 3px solid transparent;
 `;
-export const DailyGoalIcon = styled.i`
-  font-size: 1.05rem;
+export const DailyGoalIcon = styled(mediumIcon)`
   margin-right: 20px;
   color: ${({ theme }) => theme.colors.textColor};
 `;
@@ -108,8 +114,7 @@ export const DailyGoalEditButton = styled.button`
   border: none;
   cursor: pointer;
 `;
-export const DailyGoalEditIcon = styled.i`
+export const DailyGoalEditIcon = styled(mediumIcon)`
   color: ${({ theme }) => theme.colors.textColor};
-  font-size: 1rem;
   margin-left: 20px;
 `;

@@ -66,7 +66,7 @@ export const LearnOptionBoxLabel = styled(paragraph)`
 `;
 export const LearnOptionBoxRequiredFieldLabel = styled(paragraph)`
   margin-bottom: 10px;
-  color: ${({ theme }) => theme.colors.warningColor};
+  color: ${({ theme }) => theme.similarColors.warningColor};
   font-weight: bold;
 `;
 export const LearnOptionSelect = styled.select`
@@ -78,6 +78,7 @@ export const LearnOptionSelect = styled.select`
   height: 40px;
   cursor: pointer;
   border: none;
+  border-right: 10px solid ${({ theme }) => theme.colors.textColor};
 
   @media (max-width: 1150px) {
     width: 100%;
@@ -97,5 +98,5 @@ export const StartLearnButton = styled(Link)`
 `;
 export const StartLearnButtonLabel = styled(paragraph)`
   color: ${({ theme }) => theme.colors.boxColor};
-  font-weight: bold;
+  /* font-weight: bold; */
 `;

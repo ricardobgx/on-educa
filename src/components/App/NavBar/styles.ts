@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { paragraph } from '../../../components';
+import { mediumIcon, paragraph } from '../../../components';
 
 export const NavBarBox = styled.div`
   width: 100%;
@@ -26,7 +26,7 @@ export const LogoBall = styled.div`
   width: 11px;
   border-radius: 50%;
   background: ${({ theme }) => theme.colors.textColor};
-  margin-right: 0.5rem;
+  margin-right: 10px;
 `;
 
 export const Title = styled(paragraph)`
@@ -45,9 +45,9 @@ export const Actions = styled.div`
     position: fixed;
     top: 0;
     right: 0;
-    width: 15rem;
+    width: 75vw;
     height: 100vh;
-    padding: 0.5rem;
+    padding: 10px;
     padding-top: calc(50px + 0.5rem);
     background: ${({ theme }) => theme.colors.boxColor};
     box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
@@ -57,23 +57,16 @@ export const Actions = styled.div`
   }
 `;
 
-export const UserLabel = styled(paragraph)`
-  margin: 0 0.5rem;
-
-  @media (max-width: 600px) {
-    display: none;
-  }
-`;
-
 export const UserPhoto = styled.img`
-  width: 2rem;
-  height: 2rem;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   background: ${({ theme }) => theme.colors.textColor};
   border: 2px solid ${({ theme }) => theme.colors.textColor};
+  margin: 5px;
 
   @media (max-width: 600px) {
-    margin: 0 0.5rem;
+    margin: 5px 10px;
   }
 `;
 
@@ -86,17 +79,17 @@ export const UserName = styled(paragraph)`
 `;
 
 export const Action = styled(Link)`
-  margin: 0 0.5rem;
+  margin: 0 10px;
   display: flex;
   align-items: center;
   color: ${({ theme }) => theme.colors.textColor};
 
   @media (max-width: 600px) {
-    padding: 0.5rem 0;
+    padding: 10px 0;
     width: 100%;
-    height: 3rem;
-    margin: 0.25rem 0;
-    border-radius: 0.5rem;
+    height: 50px;
+    margin: 5px 0;
+    border-radius: 5px;
 
     &:hover {
       background: ${({ theme }) => theme.colors.hoverColor};
@@ -104,22 +97,19 @@ export const Action = styled(Link)`
   }
 `;
 
-export const NavBarIcon = styled.i`
-  font-size: 1.2rem;
+export const NavBarIcon = styled(mediumIcon)`
   color: ${({ theme }) => theme.colors.textColor};
   text-align: center;
 
   @media (max-width: 600px) {
-    font-size: 1.5rem;
-    width: 2rem;
-    margin: 0 0.5rem;
+    width: 35px;
+    margin: 0 10px;
   }
 `;
 
 export const IconLabel = styled(paragraph)`
   display: none;
   color: ${({ theme }) => theme.colors.textColor};
-  font-size: 1rem;
 
   @media (max-width: 600px) {
     display: unset;
@@ -130,8 +120,8 @@ export const ToggleMenuButton = styled.label`
   background: none;
   border: none;
   cursor: pointer;
-  width: 2rem;
-  height: 2rem;
+  width: 40px;
+  height: 40px;
   border-radius: 0.25rem;
   position: fixed;
   right: 0;
@@ -149,8 +139,7 @@ export const ToggleMenuButton = styled.label`
   }
 `;
 
-export const ToggleMenuIcon = styled.i`
-  font-size: 1.2rem;
+export const ToggleMenuIcon = styled(mediumIcon)`
   color: ${({ theme }) => theme.colors.textColor};
   text-align: center;
 `;

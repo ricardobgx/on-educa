@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import bookLover from '../../../assets/ilustrations/undraw_book_lover_mkck.svg';
-import { IQuestion } from '../../../interfaces/practice';
+import { IQuestion } from '../../../interfaces/Question';
 import { ActionCreators, State } from '../../../store';
 import { DEFAULT_PRACTICE } from '../../../store/reducers/practice';
 import SectionLabel from '../../App/SectionLabel';
@@ -35,7 +35,10 @@ const PracticePerformance = (): JSX.Element => {
 
   // Actions
 
-  const { loadQuestions } = bindActionCreators(ActionCreators, dispatch);
+  const { loadPracticeQuestions: loadQuestions } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
 
   // State
 

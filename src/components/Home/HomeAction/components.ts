@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { paragraph } from '../../../components';
+import { bigIcon, paragraph } from '../../../components';
 
 export const HomeActionBox = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  width: 12rem;
-  height: 12rem;
+  width: calc((100vh - 265px) / 2);
+  height: calc((100vh - 265px) / 2);
   background: ${({ theme }) => theme.colors.boxColor};
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
   margin: 20px;
-  padding: 1.5rem;
+  padding: calc(((100vh - 265px) / 2) / 6);
   border-radius: 10px;
   border: 3px solid transparent;
   transition: all 0.2s linear;
@@ -35,8 +35,8 @@ export const HomeActionBox = styled(Link)`
   }
 `;
 
-export const HomeActionIcon = styled.i`
-  font-size: 4rem;
+export const HomeActionIcon = styled(bigIcon)`
+  font-size: calc((100vh - 120px) / 7);
   display: flex;
   justify-content: center;
   color: ${({ theme }) => theme.colors.textColor};

@@ -1,7 +1,4 @@
-export interface IAlternative {
-  id: string;
-  description: string;
-}
+import { IAlternative } from './Alternative';
 
 export interface IQuestion {
   id: string;

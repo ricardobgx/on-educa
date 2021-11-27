@@ -1,4 +1,4 @@
-import { IQuestion } from '../../interfaces/practice';
+import { IQuestion } from '../../interfaces/Question';
 import { PracticeActionType } from '../action-types/practice';
 
 export interface IPractice {
@@ -6,12 +6,12 @@ export interface IPractice {
 }
 
 interface LoadQuestions {
-  type: PracticeActionType.LOAD;
+  type: PracticeActionType.LOAD_PRACTICE_QUESTIONS;
   questions: IQuestion[];
 }
 
 interface AnswerQuestion {
-  type: PracticeActionType.ANSWER;
+  type: PracticeActionType.ANSWER_PRACTICE_QUESTION;
   questions: IQuestion[];
 }
 

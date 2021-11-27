@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { IQuestion } from '../../../interfaces/practice';
+import { IQuestion } from '../../../interfaces/Question';
 import { ActionCreators, State } from '../../../store';
 import PracticeStatus from '../PracticeStatus';
 import Question from '../Question';
@@ -207,10 +207,10 @@ const Questions = (props: IQuestionsProps): JSX.Element => {
 
   // Actions
 
-  const { loadQuestions, answerQuestion } = bindActionCreators(
-    ActionCreators,
-    dispatch,
-  );
+  const {
+    loadPracticeQuestions: loadQuestions,
+    answerPracticeQuestion: answerQuestion,
+  } = bindActionCreators(ActionCreators, dispatch);
 
   // State
 

@@ -5,8 +5,6 @@ import {
   PageBox,
   HomeActionsBox,
   HomeActions,
-  SectionLabelBox,
-  SectionLabelText,
   PerformanceBox,
   AchievementsBox,
   AchievementsLabel,
@@ -27,6 +25,7 @@ import EditDailyGoal from '../../components/Home/EditDailyGoal';
 import { ActionCreators, State } from '../../store';
 import { DEFAULT_USER } from '../../store/reducers/user';
 import { Page } from '../components';
+import SectionLabel from '../../components/App/SectionLabel';
 
 interface IHomeAction {
   icon: string;
@@ -74,9 +73,9 @@ const actions: IHomeAction[] = [
     userType: 'teacher',
   },
   {
-    icon: 'fas fa-trophy',
-    label: 'Ligas',
-    link: '/leagues',
+    icon: 'fas fa-user-secret',
+    label: 'Missões',
+    link: '/missions',
     userType: 'both',
   },
   {
@@ -168,9 +167,7 @@ const Home = (): JSX.Element => {
       ) : null}
       <PageBox>
         <HomeActionsBox>
-          <SectionLabelBox>
-            <SectionLabelText>Painel principal</SectionLabelText>
-          </SectionLabelBox>
+          <SectionLabel backLink="" label="Painel principal" />
           <HomeActions>
             {actions.map((action) =>
               action.userType === 'both' || action.userType === userType ? (
@@ -185,9 +182,7 @@ const Home = (): JSX.Element => {
           </HomeActions>
         </HomeActionsBox>
         <PerformanceBox>
-          <SectionLabelBox>
-            <SectionLabelText>Desempenho</SectionLabelText>
-          </SectionLabelBox>
+          <SectionLabel backLink="" label="Desempenho" />
           <DailyPerformance />
           <AchievementsBox to="/achievements">
             <AchievementsIcon className="fas fa-star" />

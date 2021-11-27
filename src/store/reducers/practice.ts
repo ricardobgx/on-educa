@@ -25,9 +25,9 @@ const practiceReducer = (
   action: PracticeAction,
 ): any => {
   switch (action.type) {
-    case PracticeActionType.LOAD:
+    case PracticeActionType.LOAD_PRACTICE_QUESTIONS:
       return { questions: action.questions } as IPractice;
-    case PracticeActionType.ANSWER:
+    case PracticeActionType.ANSWER_PRACTICE_QUESTION:
       return { questions: action.questions } as IPractice;
     default:
       return state;

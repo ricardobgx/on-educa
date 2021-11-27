@@ -39,7 +39,7 @@ export default class Overview extends React.Component {
   };
 
   render(): JSX.Element {
-    const minHeight = window.innerHeight;
+    const minHeight = `${window.innerHeight}px`;
     const { loading } = this.state as IState;
 
     return (
@@ -52,9 +52,9 @@ export default class Overview extends React.Component {
               <Slogan>Sua plataforma de revisões online</Slogan>
               <Description>
                 A ON EDUCA é uma plataforma desenvolvida com o intuito de ajudar
-                no aprendizado de jovens do ensino médio disponibilizando
-                exercícios e materiais de apoio ao estudante além de os
-                professores terem uma visão melhor das dificuldades dos alunos
+                no aprendizado de jovens do ensino fundamental e médio
+                disponibilizando exercícios e materiais de apoio ao estudante
+                além de professores para sanar as dúvidas dos alunos
               </Description>
             </Information>
             <Functions>

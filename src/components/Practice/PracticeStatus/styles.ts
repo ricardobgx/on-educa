@@ -30,18 +30,18 @@ export const PracticeProgress = styled.div`
   width: 100%;
 `;
 export const PracticeProgressBar = styled.div`
-  height: 100%;
+  height: 19px;
   padding: 2px;
   margin-right: 20px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   width: 100%;
-  background: #dee2e6;
+  background: ${({ theme }) => theme.colors.textColor};
 `;
 export const QuestionsProgressBar = styled.div`
   height: 15px;
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.boxColor};
   transition: 0.2s linear;
 
   &:first-of-type {
