@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -153,7 +155,7 @@ const Home = (): JSX.Element => {
     if (userType === '')
       setUserType(window.localStorage.getItem('userType') || '');
     if (user === DEFAULT_USER) loadUser();
-  });
+  }, []);
 
   return (
     <Page>

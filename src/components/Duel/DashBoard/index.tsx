@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { IStudent } from '../../../interfaces/Student';
+import { IStudent } from '../../../interfaces/IStudent';
 import SectionLabel from '../../App/SectionLabel';
 import ParticipantsList from '../ParticipantsList';
 import {

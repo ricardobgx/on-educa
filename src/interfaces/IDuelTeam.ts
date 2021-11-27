@@ -1,4 +1,4 @@
-import { IDuelParticipant } from './DuelParticipant';
+import { IDuelParticipant } from './IDuelParticipant';
 
 export interface IDuelTeam {
   id: string;

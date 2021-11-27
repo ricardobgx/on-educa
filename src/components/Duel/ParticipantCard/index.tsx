@@ -1,5 +1,5 @@
 import React from 'react';
-import { IStudent } from '../../../interfaces/Student';
+import { IStudent } from '../../../interfaces/IStudent';
 import {
   ParticipantCardBox,
   ParticipantInfo,
@@ -14,9 +14,9 @@ import {
 } from './styles';
 
 const ParticipantCard = (props: IStudent): JSX.Element => {
-  const { name, profilePicture, schoolGrade, league } = props;
+  const { name, profilePicture, schoolGrade } = props;
 
-  const leagueColor = (userLeague: string): string => {
+  const leagueColor = (): string => {
     return '#43DDF2';
   };
 
@@ -30,10 +30,7 @@ const ParticipantCard = (props: IStudent): JSX.Element => {
             <ParticipantSchoolGrade>{schoolGrade}º ano</ParticipantSchoolGrade>
           </ParticipantDetailsBox>
         </ParticipantDetails>
-        <ParticipantLeague
-          className="fas fa-trophy"
-          color={leagueColor(league)}
-        />
+        <ParticipantLeague className="fas fa-trophy" color={leagueColor()} />
       </ParticipantInfo>
       <KickOutButton>
         <KickOutButtonIcon className="fas fa-times" />

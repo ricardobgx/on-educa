@@ -1,5 +1,5 @@
-import { IDuel } from '../../interfaces/Duel';
-import { IQuestion } from '../../interfaces/Question';
+import { IDuel } from '../../interfaces/IDuel';
+import { IQuestion } from '../../interfaces/IQuestion';
 import { DuelActionType } from '../action-types/duel';
 
 interface LoadDuel {

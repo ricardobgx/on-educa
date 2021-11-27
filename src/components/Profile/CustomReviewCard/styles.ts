@@ -26,7 +26,11 @@ export const UserPicture = styled.img`
   border-radius: 50%;
   margin-right: 10px;
 `;
-export const UserInfoBox = styled.div``;
+export const UserInfoBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
 export const UserName = styled(paragraph)`
   font-weight: bold;
 `;

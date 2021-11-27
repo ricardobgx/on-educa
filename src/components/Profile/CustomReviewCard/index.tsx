@@ -26,7 +26,7 @@ const CustomReviewCard = (props: ICustomReviewCardProps): JSX.Element => {
         <UserPicture src={userProfilePicture} />
         <UserInfoBox>
           <UserName>{userName}</UserName>
-          <UserSchoolGrade>{userSchoolGrade}</UserSchoolGrade>
+          <UserSchoolGrade>{userSchoolGrade}º ano</UserSchoolGrade>
         </UserInfoBox>
       </UserInfo>
       <CustomReviewName>{name}</CustomReviewName>

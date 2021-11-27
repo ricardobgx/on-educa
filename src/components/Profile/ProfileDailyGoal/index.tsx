@@ -15,6 +15,8 @@ import {
 } from './styles';
 
 const ProfileDailyGoal = (): JSX.Element => {
+  const isOwner = true;
+
   return (
     <Container>
       <DailyGoalHeader>
@@ -24,9 +26,11 @@ const ProfileDailyGoal = (): JSX.Element => {
         </DailyGoalHeaderBox>
         <DailyGoalInfo>
           <DailyGoalValueLabel>300 XP</DailyGoalValueLabel>
-          <EditDailyGoalValueButton>
-            <EditDailyGoalValueIcon className="fas fa-pen" />
-          </EditDailyGoalValueButton>
+          {isOwner && (
+            <EditDailyGoalValueButton>
+              <EditDailyGoalValueIcon className="fas fa-pen" />
+            </EditDailyGoalValueButton>
+          )}
         </DailyGoalInfo>
       </DailyGoalHeader>
       <DailyGoalProgress>

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { bigIcon, paragraph } from '../../../components';
+import { paragraph } from '../../../components';
 
 export const Container = styled.div`
   display: flex;

@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React from 'react';
-import { IDuelParticipant } from '../../../interfaces/DuelParticipant';
+import { IDuelParticipant } from '../../../interfaces/IDuelParticipant';
 import ParticipantCard from '../ParticipantResultCard';
 import { ParticipantsListBox } from './styles';
 

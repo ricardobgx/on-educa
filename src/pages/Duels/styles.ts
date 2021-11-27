@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { inputText, mediumIcon, paragraph, smallIcon } from '../../components';
-import SignTextInput from '../../components/Overview/Sign/SignTextInput';
+import { inputText, paragraph, smallIcon } from '../../components';
 
 export const PageBox = styled.div`
   display: flex;

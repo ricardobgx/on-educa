@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import bookLover from '../../../assets/ilustrations/undraw_book_lover_mkck.svg';
-import { IQuestion } from '../../../interfaces/Question';
+import { IQuestion } from '../../../interfaces/IQuestion';
 import { ActionCreators, State } from '../../../store';
 import { DEFAULT_PRACTICE } from '../../../store/reducers/practice';
 import SectionLabel from '../../App/SectionLabel';

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useRouteMatch } from 'react-router-dom';
+// import { useRouteMatch } from 'react-router-dom';
 import SectionLabel from '../../components/App/SectionLabel';
 import CustomReviews from '../../components/Profile/CustomReviews';
 import ProfileCard from '../../components/Profile/ProfileCard';
@@ -8,18 +8,17 @@ import WeekPerformance from '../../components/Profile/WeekPerformance';
 import { Page } from '../components';
 import { PageBox, UserDetails, WeeklyPerformanceSummary } from './styles';
 
-interface IProfileRouteProps {
-  id: string;
-}
+// interface IProfileRouteProps {
+//   id: string;
+// }
 
 const Profile = (): JSX.Element => {
-  const route = useRouteMatch();
-  const { id } = route.params as IProfileRouteProps;
+  // const route = useRouteMatch();
+  // const { id } = route.params as IProfileRouteProps;
 
   useEffect(() => {
-    if (id === '12345') {
-      console.log('Owner');
-    }
+    // if (id === '12345') {
+    // }
   }, []);
 
   const userTest = {

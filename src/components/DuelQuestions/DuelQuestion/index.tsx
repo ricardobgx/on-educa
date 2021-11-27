@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { IAnsweredQuestion } from '../../../interfaces/AnsweredQuestion';
-import { IQuestion } from '../../../interfaces/Question';
+import { IAnsweredQuestion } from '../../../interfaces/IAnsweredQuestion';
 import DuelQuestionAlternative from '../DuelQuestionAlternative';
 import {
   AnswerButton,

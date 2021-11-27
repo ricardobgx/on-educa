@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { IQuestion } from '../../../interfaces/Question';
+import { IQuestion } from '../../../interfaces/IQuestion';
 import { ActionCreators, State } from '../../../store';
 import PracticeStatus from '../PracticeStatus';
 import Question from '../Question';

@@ -1,4 +1,4 @@
-import { IAlternative } from './Alternative';
+import { IAlternative } from './IAlternative';
 
 export interface IQuestion {
   id: string;

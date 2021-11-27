@@ -1,5 +1,5 @@
 import React from 'react';
-import { IDuelParticipant } from '../../../interfaces/DuelParticipant';
+import { IDuelParticipant } from '../../../interfaces/IDuelParticipant';
 import {
   ParticipantCardBox,
   ParticipantInfo,
@@ -8,15 +8,13 @@ import {
   ParticipantName,
   ParticipantSchoolGrade,
   ParticipantLeague,
-  KickOutButton,
-  KickOutButtonIcon,
   ParticipantDetailsBox,
 } from './styles';
 
 const ParticipantResultCard = (props: IDuelParticipant): JSX.Element => {
-  const { name, profilePicture, schoolGrade, league } = props;
+  const { name, profilePicture, schoolGrade } = props;
 
-  const leagueColor = (userLeague: string): string => {
+  const leagueColor = (): string => {
     return '#43DDF2';
   };
 
@@ -30,10 +28,7 @@ const ParticipantResultCard = (props: IDuelParticipant): JSX.Element => {
             <ParticipantSchoolGrade>{schoolGrade}º ano</ParticipantSchoolGrade>
           </ParticipantDetailsBox>
         </ParticipantDetails>
-        <ParticipantLeague
-          className="fas fa-trophy"
-          color={leagueColor(league)}
-        />
+        <ParticipantLeague className="fas fa-trophy" color={leagueColor()} />
       </ParticipantInfo>
     </ParticipantCardBox>
   );

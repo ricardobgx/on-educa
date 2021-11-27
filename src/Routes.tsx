@@ -10,7 +10,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import NavBar from './components/App/NavBar';
-import routes from './routes';
+import routes from './static/routes';
 
 const Routes = (): JSX.Element => {
   const token = window.localStorage.getItem('token') || '';

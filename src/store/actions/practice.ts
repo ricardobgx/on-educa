@@ -1,4 +1,4 @@
-import { IQuestion } from '../../interfaces/Question';
+import { IQuestion } from '../../interfaces/IQuestion';
 import { PracticeActionType } from '../action-types/practice';
 
 export interface IPractice {

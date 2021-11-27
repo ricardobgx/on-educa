@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { IDuel } from '../../interfaces/Duel';
+import { IDuel } from '../../interfaces/IDuel';
 import { DuelActionType } from '../action-types/duel';
 import { DuelAction } from '../actions/duel';
 

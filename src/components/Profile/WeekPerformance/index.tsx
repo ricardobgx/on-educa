@@ -12,6 +12,8 @@ import {
 } from './styles';
 
 const WeekPerformance = (): JSX.Element => {
+  const isOwner = true;
+
   return (
     <Container>
       <WeekPerformanceInfo>
@@ -28,9 +30,11 @@ const WeekPerformance = (): JSX.Element => {
           <UserLeagueLabel>Mestre</UserLeagueLabel>
         </UserLeague>
       </WeekPerformanceInfo>
-      <SeeChartsButton>
-        <SeeChartsButtonLabel>Ver gráficos</SeeChartsButtonLabel>
-      </SeeChartsButton>
+      {isOwner && (
+        <SeeChartsButton>
+          <SeeChartsButtonLabel>Ver gráficos</SeeChartsButtonLabel>
+        </SeeChartsButton>
+      )}
     </Container>
   );
 };

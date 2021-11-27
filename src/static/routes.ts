@@ -1,19 +1,20 @@
-import IRoute from './interfaces/routes';
-import Achievements from './pages/Achievements';
-import Content from './pages/Content';
-import Doubts from './pages/Doubts';
-import Duel from './pages/Duel';
-import DuelCongratulations from './pages/DuelCongratulations';
-import DuelQuestions from './pages/DuelQuestions';
-import DuelResults from './pages/DuelResults';
-import Duels from './pages/Duels';
-import Home from './pages/Home';
-import NewDuel from './pages/NewDuel';
-import Overview from './pages/Overview';
-import Performance from './pages/Performance';
-import Practice from './pages/Practice';
-import Profile from './pages/Profile';
-import StartLearn from './pages/StartLearn';
+import IRoute from '../interfaces/IRoute';
+import Achievements from '../pages/Achievements';
+import Content from '../pages/Content';
+import Doubts from '../pages/Doubts';
+import Duel from '../pages/Duel';
+import DuelCongratulations from '../pages/DuelCongratulations';
+import DuelQuestions from '../pages/DuelQuestions';
+import DuelResults from '../pages/DuelResults';
+import Duels from '../pages/Duels';
+import Home from '../pages/Home';
+import Missions from '../pages/Missions';
+import NewDuel from '../pages/NewDuel';
+import Overview from '../pages/Overview';
+import Performance from '../pages/Performance';
+import Practice from '../pages/Practice';
+import Profile from '../pages/Profile';
+import StartLearn from '../pages/StartLearn';
 
 const routes: IRoute[] = [
   {
@@ -80,6 +81,12 @@ const routes: IRoute[] = [
     path: '/contents/:id',
     name: 'Content',
     component: Content,
+    exact: true,
+  },
+  {
+    path: '/missions',
+    name: 'Missions',
+    component: Missions,
     exact: true,
   },
   {

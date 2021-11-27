@@ -1,6 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
-import { IDuelParticipant } from '../../../interfaces/DuelParticipant';
+import { IDuelParticipant } from '../../../interfaces/IDuelParticipant';
 import SectionLabel from '../../App/SectionLabel';
 import ParticipantsResultList from '../ParticipantsResultList';
 import {

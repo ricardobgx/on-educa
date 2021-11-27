@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 import { Dispatch } from 'redux';
-import { IDuel } from '../../interfaces/Duel';
-import { IQuestion } from '../../interfaces/Question';
+import { IDuel } from '../../interfaces/IDuel';
+import { IQuestion } from '../../interfaces/IQuestion';
 import { DuelActionType } from '../action-types/duel';
 import { PracticeActionType } from '../action-types/practice';
 import { UserActionType } from '../action-types/user';

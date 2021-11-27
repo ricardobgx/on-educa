@@ -1,15 +1,17 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Redirect } from 'react-router-dom';
-import { IQuestion } from '../../interfaces/Question';
+import { IQuestion } from '../../interfaces/IQuestion';
 import { ActionCreators, State } from '../../store';
 import { Page } from '../components';
 import DuelQuestion from '../../components/DuelQuestions/DuelQuestion';
 import DuelStatus from '../../components/DuelQuestions/DuelStatus';
 import { DuelQuestionsBox, PageBox } from './styles';
-import { IDuel } from '../../interfaces/Duel';
-import { IAnsweredQuestion } from '../../interfaces/AnsweredQuestion';
+import { IDuel } from '../../interfaces/IDuel';
+import { IAnsweredQuestion } from '../../interfaces/IAnsweredQuestion';
 
 const questionsTest: IQuestion[] = [
   {
@@ -277,7 +279,7 @@ const DuelQuestions = (): JSX.Element => {
 
   /* ComponentMount operations */
 
-  useEffect((): any => {
+  useEffect(() => {
     loadDuel(duelTest);
     sortDuelQuestion(questionsTest);
   }, []);

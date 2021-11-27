@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { IQuestion } from '../../../interfaces/Question';
+import React from 'react';
+import { IQuestion } from '../../../interfaces/IQuestion';
 import DuelProgress from '../DuelProgress';
 import DuelTurn from '../DuelTurn';
 import { Container, DuelStatusBox } from './styles';
@@ -10,7 +10,7 @@ interface IDuelStatusProps {
 }
 
 const DuelStatus = (props: IDuelStatusProps): JSX.Element => {
-  const [quitDuel, setQuitDuel] = useState(false);
+  // const [quitDuel, setQuitDuel] = useState(false);
   const { answeredQuestionsNumber, questions } = props;
 
   return (

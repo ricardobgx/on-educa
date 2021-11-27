@@ -1,6 +1,4 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { paragraph } from '../../components';
 
 export const PageBox = styled.div`
   display: flex;
