@@ -15,8 +15,8 @@ export const UserDetails = styled.div`
   flex-direction: column;
   width: 40%;
   /* margin: 20px; */
-  min-height: calc(100vh - 100px);
-  max-height: calc(100vh - 100px);
+  min-height: calc(100vh - 95px);
+  max-height: calc(100vh - 95px);
   justify-content: space-between;
 
   @media (max-width: 1150px) {

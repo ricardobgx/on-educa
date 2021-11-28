@@ -8,7 +8,11 @@ export const AchievementBox = styled.div`
   border-radius: 10px;
   display: flex;
   align-items: center;
-  margin: 10px;
+  margin-bottom: 20px;
+
+  &:last-of-type {
+    margin: 0;
+  }
 `;
 export const AchievementLevel = styled.div`
   display: flex;

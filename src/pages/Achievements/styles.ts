@@ -2,29 +2,23 @@ import styled from 'styled-components';
 
 export const PageBox = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   height: 100%;
   margin: 20px;
-
-  @media (max-width: 1150px) {
-    flex-wrap: wrap;
-  }
 `;
-export const AllAchievements = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-`;
-export const AllAchievementsBox = styled.div`
-  display: flex;
-  flex-direction: column;
+export const AchievementsList = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};
-  min-height: calc(100vh - 225px);
-  max-height: calc(100vh - 225px);
-  overflow: auto;
-  margin: 20px;
-  padding: 10px;
   border-radius: 10px;
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  padding: 15px;
+  margin: 20px;
+`;
+export const AchievementsListBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 255px);
+  max-height: calc(100vh - 255px);
+  overflow: auto;
+  padding: 5px;
 `;

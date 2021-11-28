@@ -12,8 +12,8 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   width: 60%;
-  /* min-height: calc(100vh - 135px);
-  max-height: calc(100vh - 135px); */
+  min-height: calc(100vh - 135px);
+  max-height: calc(100vh - 135px);
 
   @media (max-width: 1150px) {
     width: 100%;
@@ -26,6 +26,7 @@ export const CustomReviewsLabel = styled(paragraph)`
 `;
 export const CustomReviewsList = styled.div`
   width: 100%;
+  height: 100%;
 `;
 export const CustomReviewsListBox = styled.div`
   min-height: calc(100vh - 210px);

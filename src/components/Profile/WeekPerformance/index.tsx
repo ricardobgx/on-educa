@@ -31,7 +31,7 @@ const WeekPerformance = (): JSX.Element => {
         </UserLeague>
       </WeekPerformanceInfo>
       {isOwner && (
-        <SeeChartsButton>
+        <SeeChartsButton to="/performance">
           <SeeChartsButtonLabel>Ver gráficos</SeeChartsButtonLabel>
         </SeeChartsButton>
       )}

@@ -2,27 +2,18 @@
 
 import React from 'react';
 import SectionLabel from '../../components/App/SectionLabel';
+import { IUserCardProps } from '../../components/App/UserCard';
 import PerformanceChart, {
   IPerformanceChartProps,
 } from '../../components/Performance/PerformanceChart';
+import RankingUserCard from '../../components/Performance/RankingUserCard';
 import { Page } from '../components';
 import {
   PageBox,
   PerformanceCharts,
-  PersonalInfo,
   Ranking,
-  RankingBox,
-  RankingPosition,
-  Student,
-  StudentBox,
-  StudentExperience,
-  StudentGrade,
-  StudentInfo,
-  StudentLeague,
-  StudentName,
-  StudentPicture,
-  Students,
-  StudentScore,
+  UsersList,
+  UsersListBox,
   WeekDayButton,
   WeekDayLabel,
   WeekDays,
@@ -65,6 +56,75 @@ const Performance = (): JSX.Element => {
     ],
   };
 
+  const users: IUserCardProps[] = [
+    {
+      email: 'teste1@gmail.com',
+      name: 'Aluno Fulano Sicrano da Silva',
+      schoolGrade: 2,
+      subjects: [],
+      isStudent: true,
+      league: 'Diamond',
+      isOnline: true,
+      profilePicture:
+        'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
+    },
+    {
+      email: 'teste1@gmail.com',
+      name: 'Aluno Fulano Sicrano da Silva',
+      schoolGrade: 2,
+      subjects: [],
+      isStudent: true,
+      league: 'Diamond',
+      isOnline: true,
+      profilePicture:
+        'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
+    },
+    {
+      email: 'teste1@gmail.com',
+      name: 'Aluno Fulano Sicrano da Silva',
+      schoolGrade: 2,
+      subjects: [],
+      isStudent: true,
+      league: 'Diamond',
+      isOnline: true,
+      profilePicture:
+        'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
+    },
+    {
+      email: 'teste1@gmail.com',
+      name: 'Aluno Fulano Sicrano da Silva',
+      schoolGrade: 2,
+      subjects: [],
+      isStudent: true,
+      league: 'Diamond',
+      isOnline: true,
+      profilePicture:
+        'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
+    },
+    {
+      email: 'teste1@gmail.com',
+      name: 'Aluno Fulano Sicrano da Silva',
+      schoolGrade: 2,
+      subjects: [],
+      isStudent: true,
+      league: 'Diamond',
+      isOnline: true,
+      profilePicture:
+        'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
+    },
+    {
+      email: 'teste1@gmail.com',
+      name: 'Aluno Fulano Sicrano da Silva',
+      schoolGrade: 2,
+      subjects: [],
+      isStudent: true,
+      league: 'Diamond',
+      isOnline: true,
+      profilePicture:
+        'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
+    },
+  ];
+
   return (
     <Page>
       <PageBox>
@@ -102,90 +162,13 @@ const Performance = (): JSX.Element => {
         </WeekPerformance>
         <Ranking>
           <SectionLabel backLink="" label="Ranking" />
-          <RankingBox>
-            <Students>
-              <Student>
-                <RankingPosition>01</RankingPosition>
-                <StudentBox to="/">
-                  <StudentInfo>
-                    <StudentPicture src="https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg" />
-                    <PersonalInfo>
-                      <StudentName>Aluno</StudentName>
-                      <StudentGrade>2º ano</StudentGrade>
-                    </PersonalInfo>
-                  </StudentInfo>
-                  <StudentScore>
-                    <StudentLeague className="fas fa-trophy" />
-                    <StudentExperience>1865 XP</StudentExperience>
-                  </StudentScore>
-                </StudentBox>
-              </Student>
-              <Student>
-                <RankingPosition>02</RankingPosition>
-                <StudentBox to="/">
-                  <StudentInfo>
-                    <StudentPicture src="https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg" />
-                    <PersonalInfo>
-                      <StudentName>Aluno</StudentName>
-                      <StudentGrade>2º ano</StudentGrade>
-                    </PersonalInfo>
-                  </StudentInfo>
-                  <StudentScore>
-                    <StudentLeague className="fas fa-trophy" />
-                    <StudentExperience>1865 XP</StudentExperience>
-                  </StudentScore>
-                </StudentBox>
-              </Student>
-              <Student>
-                <RankingPosition>03</RankingPosition>
-                <StudentBox to="/">
-                  <StudentInfo>
-                    <StudentPicture src="https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg" />
-                    <PersonalInfo>
-                      <StudentName>Aluno</StudentName>
-                      <StudentGrade>2º ano</StudentGrade>
-                    </PersonalInfo>
-                  </StudentInfo>
-                  <StudentScore>
-                    <StudentLeague className="fas fa-trophy" />
-                    <StudentExperience>1865 XP</StudentExperience>
-                  </StudentScore>
-                </StudentBox>
-              </Student>
-              <Student>
-                <RankingPosition>04</RankingPosition>
-                <StudentBox to="/">
-                  <StudentInfo>
-                    <StudentPicture src="https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg" />
-                    <PersonalInfo>
-                      <StudentName>Aluno</StudentName>
-                      <StudentGrade>2º ano</StudentGrade>
-                    </PersonalInfo>
-                  </StudentInfo>
-                  <StudentScore>
-                    <StudentLeague className="fas fa-trophy" />
-                    <StudentExperience>1865 XP</StudentExperience>
-                  </StudentScore>
-                </StudentBox>
-              </Student>
-              <Student>
-                <RankingPosition>05</RankingPosition>
-                <StudentBox to="/">
-                  <StudentInfo>
-                    <StudentPicture src="https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg" />
-                    <PersonalInfo>
-                      <StudentName>Aluno</StudentName>
-                      <StudentGrade>2º ano</StudentGrade>
-                    </PersonalInfo>
-                  </StudentInfo>
-                  <StudentScore>
-                    <StudentLeague className="fas fa-trophy" />
-                    <StudentExperience>1865 XP</StudentExperience>
-                  </StudentScore>
-                </StudentBox>
-              </Student>
-            </Students>
-          </RankingBox>
+          <UsersList>
+            <UsersListBox>
+              {users.map((user, index) => (
+                <RankingUserCard {...user} rankingPosition={index + 1} />
+              ))}
+            </UsersListBox>
+          </UsersList>
         </Ranking>
       </PageBox>
     </Page>

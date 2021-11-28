@@ -10,15 +10,18 @@ export const PageBox = styled.div`
     flex-wrap: wrap;
   }
 `;
-export const DoubtsBox = styled.div`
+export const DoubtsList = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  margin: 20px;
+  padding: 15px;
+  border-radius: 10px;
+`;
+export const DoubtsListBox = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 20px;
-  padding: 10px;
-  border-radius: 10px;
-  min-height: calc(100vh - 225px);
-  max-height: calc(100vh - 225px);
+  padding: 5px;
+  min-height: calc(100vh - 255px);
+  max-height: calc(100vh - 255px);
   overflow: auto;
 `;

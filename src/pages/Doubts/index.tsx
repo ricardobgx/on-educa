@@ -2,7 +2,7 @@ import React from 'react';
 import SectionLabel from '../../components/App/SectionLabel';
 import DoubtCard from '../../components/Doubts/DoubtCard';
 import { Page } from '../components';
-import { DoubtsBox, PageBox } from './components';
+import { DoubtsList, DoubtsListBox, PageBox } from './components';
 
 const Doubts = (): JSX.Element => {
   const doubts = [
@@ -27,17 +27,40 @@ const Doubts = (): JSX.Element => {
       content: 'Segunda Guerra Mundial',
       situation: false,
     },
+    {
+      title:
+        'Por que ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ?',
+      subject: 'História',
+      content: 'Segunda Guerra Mundial',
+      situation: false,
+    },
+    {
+      title:
+        'Por que ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ?',
+      subject: 'História',
+      content: 'Segunda Guerra Mundial',
+      situation: false,
+    },
+    {
+      title:
+        'Por que ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ?',
+      subject: 'História',
+      content: 'Segunda Guerra Mundial',
+      situation: false,
+    },
   ];
 
   return (
     <Page>
       <PageBox>
         <SectionLabel label="Dúvidas" backLink="/home" />
-        <DoubtsBox>
-          {doubts.map((doubt) => (
-            <DoubtCard key={doubt.title} data={doubt} />
-          ))}
-        </DoubtsBox>
+        <DoubtsList>
+          <DoubtsListBox>
+            {doubts.map((doubt) => (
+              <DoubtCard key={doubt.title} data={doubt} />
+            ))}
+          </DoubtsListBox>
+        </DoubtsList>
       </PageBox>
     </Page>
   );
