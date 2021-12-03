@@ -12,7 +12,9 @@ import {
   DoubtReferenceIcon,
   DoubtReferenceLabel,
   DoubtStatus,
+  DoubtStatusBox,
   DoubtStatusIcon,
+  DoubtStatusLabel,
 } from './components';
 
 interface IDoubt {
@@ -46,11 +48,16 @@ const DoubtCard = (props: IDoubtCardProps): JSX.Element => {
           </DoubtReference>
         </DoubtInfoBox>
         <DoubtStatus>
-          <DoubtStatusIcon
-            className={`fas fa-${
-              data.situation ? 'check' : 'exclamation'
-            }-circle`}
-          />
+          <DoubtStatusBox>
+            <DoubtStatusIcon
+              className={`fas fa-${
+                data.situation ? 'check' : 'exclamation'
+              }-circle`}
+            />
+            <DoubtStatusLabel>{`${
+              data.situation ? 'Resolvida' : 'Pendente'
+            }`}</DoubtStatusLabel>
+          </DoubtStatusBox>
           <DoubtComments>
             <DoubtCommentsNumber>0</DoubtCommentsNumber>
             <DoubtCommentsIcon className="fas fa-comment-alt" />
