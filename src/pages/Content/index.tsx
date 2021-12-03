@@ -168,7 +168,7 @@ const Content = (): JSX.Element => {
     <Page>
       <PageBox>
         <ContentBox>
-          <SectionLabel label="Segunda Guerra Mundial" backLink="/study" />
+          <SectionLabel label="Segunda Guerra Mundial" backLink="/subjects" />
           <ContentInfo>
             <ContentVideoBox>
               <ContentVideo
