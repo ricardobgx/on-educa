@@ -53,7 +53,7 @@ const actions: IHomeAction[] = [
   {
     icon: 'fas fa-book',
     label: 'Estudar',
-    link: '/study',
+    link: '/subjects',
     userType: 'student',
   },
   {
@@ -159,7 +159,6 @@ const Home = (): JSX.Element => {
 
   return (
     <Page>
-      <NavBar />
       {editDailyGoal ? (
         <EditDailyGoal
           dailyGoal={dailyGoal}
