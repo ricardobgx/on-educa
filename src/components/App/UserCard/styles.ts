@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { paragraph } from '../../../components';
+import { mediumIcon, paragraph } from '../../../components';
 
 export const UserCardBox = styled.div`
   display: flex;
@@ -77,12 +77,12 @@ export const UserExperience = styled(paragraph)`
   height: 25px;
   display: flex;
   align-items: flex-end;
+  white-space: nowrap;
 `;
 
 // Liga
 
-export const UserLeague = styled.i`
-  font-size: 20px;
+export const UserLeague = styled(mediumIcon)`
   color: gold;
   height: 25px;
 `;
