@@ -1,5 +1,5 @@
 import React from 'react';
-import { IUnity } from '../../../interfaces/Unity';
+import { IUnity } from '../../../interfaces/IUnity';
 import {
   UnityCardBox,
   UnityDetails,
