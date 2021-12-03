@@ -36,7 +36,6 @@ export const GoalInputBox = styled.div`
 `;
 export const GoalInput = styled.input`
   color: ${({ theme }) => theme.colors.textColor};
-  font-weight: bold;
   border: none;
   background: none;
 `;
