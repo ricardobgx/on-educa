@@ -12,7 +12,6 @@ export const DuelCardBox = styled(Link)`
   margin-bottom: 20px;
   padding: 20px;
   color: ${({ theme }) => theme.colors.textColor};
-  font-weight: bold;
 
   &:last-of-type {
     margin: 0;
@@ -20,11 +19,17 @@ export const DuelCardBox = styled(Link)`
 
   @media (max-width: 1150px) {
     flex-direction: column;
+    align-items: unset;
   }
 `;
 export const DuelDetails = styled.div`
   display: flex;
   flex-direction: column;
+  width: 33%;
+
+  @media (max-width: 900px) {
+    width: unset;
+  }
 `;
 export const OwnerInfo = styled.div`
   display: flex;
@@ -32,7 +37,7 @@ export const OwnerInfo = styled.div`
   margin-bottom: 5px;
 
   @media (max-width: 1150px) {
-    justify-content: center;
+    /* justify-content: center; */
   }
 `;
 export const OwnerPicture = styled.img`
@@ -42,25 +47,32 @@ export const OwnerPicture = styled.img`
   margin-right: 10px;
   /* border: 2px solid ${({ theme }) => theme.colors.textColor}; */
 `;
-export const OwnerName = styled(paragraph)``;
-export const DuelCode = styled(paragraph)`
-  @media (max-width: 1150px) {
-    text-align: center;
-  }
+export const OwnerName = styled(paragraph)`
+  font-weight: bold;
 `;
+export const DuelCode = styled(paragraph)``;
 export const DuelContents = styled(DuelDetails)`
   align-items: center;
 
-  @media (max-width: 1150px) {
+  @media (max-width: 900px) {
     margin: 20px 0;
+    align-items: flex-start;
   }
 `;
 export const SubjectsName = styled(paragraph)`
   margin-bottom: 5px;
   text-align: center;
+
+  @media (max-width: 1150px) {
+    text-align: left;
+  }
 `;
 export const ContentsName = styled(paragraph)`
   text-align: center;
+
+  @media (max-width: 1150px) {
+    text-align: left;
+  }
 `;
 export const DuelStatus = styled(DuelDetails)`
   align-items: flex-end;

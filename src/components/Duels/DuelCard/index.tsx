@@ -45,7 +45,7 @@ const DuelCard = (props: IDuelCardProps): JSX.Element => {
     <DuelCardBox to={`/duels/${id}`}>
       <DuelDetails>
         <OwnerInfo>
-          <OwnerPicture src={ownerPicture} />
+          {/* <OwnerPicture src={ownerPicture} /> */}
           <OwnerName>Duelo de {ownerName}</OwnerName>
         </OwnerInfo>
         <DuelCode>Código: {id}</DuelCode>
