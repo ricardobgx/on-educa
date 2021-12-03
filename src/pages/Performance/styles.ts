@@ -86,7 +86,6 @@ export const WeekDayButton = styled.button`
 
   @media (max-width: 1150px) {
     width: unset;
-    padding: 0.5rem 1rem;
     margin: 0;
     margin-right: 20px;
 
