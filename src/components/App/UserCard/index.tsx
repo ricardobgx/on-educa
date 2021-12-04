@@ -26,9 +26,9 @@ const UserCard = (props: IUserCardProps): JSX.Element => {
 
   const subjectsToString = (teacherSubjects: ISubject[]): string => {
     if (subjects.length > 1)
-      return `${teacherSubjects[0].title} e mais ${teacherSubjects.length - 1}`;
+      return `${teacherSubjects[0].name} e mais ${teacherSubjects.length - 1}`;
     if (subjects.length === 0) return 'Nenhuma disciplina';
-    return teacherSubjects[0].title;
+    return teacherSubjects[0].name;
   };
 
   return (

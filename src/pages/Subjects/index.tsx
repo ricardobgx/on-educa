@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import SectionLabel from '../../components/App/SectionLabel';
-import SubjectDetailSelect, {
-  ISubjectDetailSelectOption,
-} from '../../components/Subjects/SubjectDetailSelect';
+import SchoolGradeSelect from '../../components/Subjects/SchoolGradeSelect';
+import SubjectSelect from '../../components/Subjects/SubjectSelect';
+import TeachingTypeSelect from '../../components/Subjects/TeachingTypeSelect';
+import { ISchoolGrade } from '../../interfaces/ISchoolGrade';
+import { ISubject } from '../../interfaces/ISubject';
+import { ITeachingType } from '../../interfaces/ITeachingType';
+import OnEducaAPI from '../../services/api';
 import { Page } from '../components';
 import {
   CancelButton,
@@ -15,121 +19,88 @@ import {
   SubjectsActions,
 } from './styles';
 
-const teachOptions: ISubjectDetailSelectOption[] = [
-  {
-    id: '1',
-    title: 'Ensino Fundamental',
-  },
-  {
-    id: '2',
-    title: 'Ensino Médio',
-  },
-];
-
-const schoolGradeOptions: ISubjectDetailSelectOption[] = [
-  {
-    id: '1',
-    title: '1º ano',
-  },
-  {
-    id: '2',
-    title: '2º ano',
-  },
-  {
-    id: '3',
-    title: '3º ano',
-  },
-  {
-    id: '4',
-    title: '4º ano',
-  },
-  {
-    id: '5',
-    title: '5º ano',
-  },
-  {
-    id: '6',
-    title: '6º ano',
-  },
-  {
-    id: '7',
-    title: '7º ano',
-  },
-  {
-    id: '8',
-    title: '8º ano',
-  },
-  {
-    id: '9',
-    title: '9º ano',
-  },
-];
-
-const subjectOptions: ISubjectDetailSelectOption[] = [
-  {
-    id: '1',
-    title: 'Língua Portuguesa',
-  },
-  {
-    id: '2',
-    title: 'Matemática',
-  },
-  {
-    id: '3',
-    title: 'História',
-  },
-  {
-    id: '4',
-    title: 'Geografia',
-  },
-  {
-    id: '5',
-    title: 'Ciências',
-  },
-  {
-    id: '6',
-    title: 'Ensino Religioso',
-  },
-  {
-    id: '7',
-    title: 'Língua Inglesa',
-  },
-  {
-    id: '8',
-    title: 'Educação Física',
-  },
-  {
-    id: '9',
-    title: 'Artes',
-  },
-];
-
 const Subjects = (): JSX.Element => {
-  const [teachingType, setTeachingType] = useState('');
-  const [schoolGradeNumber, setSchoolGradeNumber] = useState('');
+  const sortTeachingTypes = (
+    teachingTypeA: ITeachingType,
+    teachingTypeB: ITeachingType,
+  ): number => {
+    if (teachingTypeA.title > teachingTypeB.title) return 1;
+    if (teachingTypeA.title < teachingTypeB.title) return -1;
+    return 0;
+  };
+
+  const sortSchoolGrades = (
+    schoolGradeA: ISchoolGrade,
+    schoolGradeB: ISchoolGrade,
+  ): number => {
+    if (schoolGradeA.index > schoolGradeB.index) return 1;
+    if (schoolGradeA.index < schoolGradeB.index) return -1;
+    return 0;
+  };
+
+  const sortSubjects = (subjectA: ISubject, subjectB: ISubject): number => {
+    if (subjectA.name > subjectB.name) return 1;
+    if (subjectA.name < subjectB.name) return -1;
+    return 0;
+  };
+
+  const [teachingTypes, setTeachingTypes] = useState([]);
+  const [teachingTypeId, setTeachingTypeId] = useState('');
+
+  const [schoolGrades, setSchoolGrades] = useState([]);
+  const [schoolGradeId, setSchoolGradeId] = useState('');
+
+  const [subjects, setSubjects] = useState([]);
   const [subjectId, setSubjectId] = useState('');
-  const [subjectIsSelected, setSubjectIsSelected] = useState(false);
+
+  const getOptions = async (): Promise<void> => {
+    await OnEducaAPI.get('/teachingtypes').then(
+      async (teachingTypesResponse) => {
+        setTeachingTypes(teachingTypesResponse.data.sort(sortTeachingTypes));
+
+        if (teachingTypeId !== '') {
+          await OnEducaAPI.get(
+            `/schoolgrades/teachingtype/${teachingTypeId}`,
+          ).then(async (schoolGradesResponse) => {
+            setSchoolGrades(schoolGradesResponse.data.sort(sortSchoolGrades));
+
+            if (schoolGradeId !== '') {
+              await OnEducaAPI.get(
+                `/subjects/schoolgrade/${schoolGradeId}`,
+              ).then((subjectsResponse) => {
+                setSubjects(subjectsResponse.data.sort(sortSubjects));
+              });
+            }
+          });
+        }
+      },
+    );
+  };
+
+  useEffect(() => {
+    getOptions();
+  }, [teachingTypeId, schoolGradeId]);
 
   return (
     <Page>
       <PageBox>
         <SectionLabel backLink="/home" label="Selecione a disciplina" />
         <SelectSubjectDetails>
-          <SubjectDetailSelect
+          <TeachingTypeSelect
             label="Selecione o ensino"
-            options={teachOptions}
-            selectedOption={teachingType}
-            setOption={setTeachingType}
+            options={teachingTypes}
+            selectedOption={teachingTypeId}
+            setOption={setTeachingTypeId}
           />
-          <SubjectDetailSelect
+          <SchoolGradeSelect
             label="Selecione a série"
-            options={schoolGradeOptions}
-            selectedOption={schoolGradeNumber}
-            setOption={setSchoolGradeNumber}
+            options={schoolGrades}
+            selectedOption={schoolGradeId}
+            setOption={setSchoolGradeId}
           />
-          <SubjectDetailSelect
+          <SubjectSelect
             label="Selecione a disciplina"
-            options={subjectOptions}
+            options={subjects}
             selectedOption={subjectId}
             setOption={setSubjectId}
           />

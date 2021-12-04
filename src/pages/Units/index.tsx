@@ -1,39 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRouteMatch } from 'react-router-dom';
 import SectionLabel from '../../components/App/SectionLabel';
 import UnitsActions from '../../components/Units/UnitsActions';
 import UnitsList from '../../components/Units/UnitsList';
-import { IUnity } from '../../interfaces/IUnity';
+import OnEducaAPI from '../../services/api';
 import { Page } from '../components';
 import { PageBox, UnitsBox } from './styles';
 
-const units: IUnity[] = [
-  {
-    id: '1',
-    title: 'Substantivos',
-  },
-  {
-    id: '2',
-    title: 'Substantivos',
-  },
-  {
-    id: '3',
-    title: 'Substantivos',
-  },
-  {
-    id: '4',
-    title: 'Substantivos',
-  },
-  {
-    id: '5',
-    title: 'Substantivos',
-  },
-  {
-    id: '6',
-    title: 'Substantivos',
-  },
-];
+interface IUnitsRouteParams {
+  id: string;
+}
 
 const Units = (): JSX.Element => {
+  const [units, setUnits] = useState([]);
+  const route = useRouteMatch();
+  const { id } = route.params as IUnitsRouteParams;
+
+  const getUnits = async (): Promise<void> => {
+    await OnEducaAPI.get(`/units/subject/${id}`).then((response) => {
+      setUnits(response.data);
+    });
+  };
+
+  useEffect(() => {
+    getUnits();
+  }, []);
+
   return (
     <Page>
       <PageBox>
