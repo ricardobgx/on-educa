@@ -60,8 +60,7 @@ const Performance = (): JSX.Element => {
     {
       email: 'teste1@gmail.com',
       name: 'Aluno Fulano Sicrano da Silva',
-      schoolGrade: 2,
-      subjects: [],
+      schoolGradeId: 'ssjvsdnskdnvsnvsvnsns',
       isStudent: true,
       league: 'Diamond',
       isOnline: true,
@@ -71,8 +70,7 @@ const Performance = (): JSX.Element => {
     {
       email: 'teste1@gmail.com',
       name: 'Aluno Fulano Sicrano da Silva',
-      schoolGrade: 2,
-      subjects: [],
+      schoolGradeId: 'ssjvsdnskdnvsnvsvnsns',
       isStudent: true,
       league: 'Diamond',
       isOnline: true,
@@ -82,8 +80,7 @@ const Performance = (): JSX.Element => {
     {
       email: 'teste1@gmail.com',
       name: 'Aluno Fulano Sicrano da Silva',
-      schoolGrade: 2,
-      subjects: [],
+      schoolGradeId: 'ssjvsdnskdnvsnvsvnsns',
       isStudent: true,
       league: 'Diamond',
       isOnline: true,
@@ -93,8 +90,7 @@ const Performance = (): JSX.Element => {
     {
       email: 'teste1@gmail.com',
       name: 'Aluno Fulano Sicrano da Silva',
-      schoolGrade: 2,
-      subjects: [],
+      schoolGradeId: 'ssjvsdnskdnvsnvsvnsns',
       isStudent: true,
       league: 'Diamond',
       isOnline: true,
@@ -104,8 +100,7 @@ const Performance = (): JSX.Element => {
     {
       email: 'teste1@gmail.com',
       name: 'Aluno Fulano Sicrano da Silva',
-      schoolGrade: 2,
-      subjects: [],
+      schoolGradeId: 'ssjvsdnskdnvsnvsvnsns',
       isStudent: true,
       league: 'Diamond',
       isOnline: true,
@@ -115,8 +110,7 @@ const Performance = (): JSX.Element => {
     {
       email: 'teste1@gmail.com',
       name: 'Aluno Fulano Sicrano da Silva',
-      schoolGrade: 2,
-      subjects: [],
+      schoolGradeId: 'ssjvsdnskdnvsnvsvnsns',
       isStudent: true,
       league: 'Diamond',
       isOnline: true,

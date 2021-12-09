@@ -4,4 +4,7 @@ export interface IUser {
   profilePicture: string;
   isOnline: boolean;
   league: string;
+  token?: string;
+  teachingTypeId?: string;
+  schoolGradeId?: string;
 }

@@ -1,4 +1,6 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { State } from '../../../store';
 import {
   UnitsActionsBox,
   SearchUnits,
@@ -18,6 +20,8 @@ import {
 } from './styles';
 
 const UnitsActions = (): JSX.Element => {
+  const { subject } = useSelector((store: State) => store);
+
   const isTeacher = true;
 
   return (
@@ -38,7 +42,7 @@ const UnitsActions = (): JSX.Element => {
       </SearchUnits>
       {isTeacher && (
         <UnitsActionsBox>
-          <NewUnityButton to="/new-unity">
+          <NewUnityButton to={`/subjects/${subject.id}/new-unity`}>
             <NewUnityButtonLabel>Nova unidade</NewUnityButtonLabel>
             <NewUnityButtonIcon className="fas fa-plus" />
           </NewUnityButton>

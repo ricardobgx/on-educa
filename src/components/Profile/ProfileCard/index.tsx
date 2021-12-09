@@ -25,8 +25,8 @@ interface IProfileCardProps {
 const ProfileCard = (props: IProfileCardProps): JSX.Element => {
   const { name, profilePicture, schoolGrade } = props;
 
-  const isOwner = true;
-  const isFriend = false;
+  const isOwner = false;
+  const isFriend = true;
 
   return (
     <Container>

@@ -73,7 +73,7 @@ const NewContent = (): JSX.Element => {
                   </NewContentReferenceSelect>
                 </NewContentReferenceBox>
                 <NewContentReferenceBox>
-                  <ReferenceLabel>Ensino</ReferenceLabel>
+                  <ReferenceLabel>Série</ReferenceLabel>
                   <NewContentReferenceSelect>
                     {referenceOptions.map((referenceOption) => (
                       <NewContentReferenceSelectOption
@@ -85,7 +85,7 @@ const NewContent = (): JSX.Element => {
                   </NewContentReferenceSelect>
                 </NewContentReferenceBox>
                 <NewContentReferenceBox>
-                  <ReferenceLabel>Ensino</ReferenceLabel>
+                  <ReferenceLabel>Disciplina</ReferenceLabel>
                   <NewContentReferenceSelect>
                     {referenceOptions.map((referenceOption) => (
                       <NewContentReferenceSelectOption
@@ -97,7 +97,7 @@ const NewContent = (): JSX.Element => {
                   </NewContentReferenceSelect>
                 </NewContentReferenceBox>
                 <NewContentReferenceBox>
-                  <ReferenceLabel>Ensino</ReferenceLabel>
+                  <ReferenceLabel>Unidade</ReferenceLabel>
                   <NewContentReferenceSelect>
                     {referenceOptions.map((referenceOption) => (
                       <NewContentReferenceSelectOption

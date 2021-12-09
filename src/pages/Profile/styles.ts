@@ -14,7 +14,6 @@ export const UserDetails = styled.div`
   display: flex;
   flex-direction: column;
   width: 40%;
-  /* margin: 20px; */
   min-height: calc(100vh - 95px);
   max-height: calc(100vh - 95px);
   justify-content: space-between;
@@ -24,6 +23,10 @@ export const UserDetails = styled.div`
     min-height: unset;
     max-height: unset;
   }
+`;
+export const MainDetails = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 export const WeeklyPerformanceSummary = styled.div`
   display: flex;

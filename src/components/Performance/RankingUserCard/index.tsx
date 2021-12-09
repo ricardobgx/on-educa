@@ -17,8 +17,7 @@ const RankingUserCard = (props: IRankingUserCardProps): JSX.Element => {
     isOnline,
     league,
     isStudent,
-    schoolGrade,
-    subjects,
+    schoolGradeId,
   } = props;
 
   const userCardProps: IUserCardProps = {
@@ -28,8 +27,7 @@ const RankingUserCard = (props: IRankingUserCardProps): JSX.Element => {
     isOnline,
     league,
     isStudent,
-    schoolGrade,
-    subjects,
+    schoolGradeId,
   };
 
   return (

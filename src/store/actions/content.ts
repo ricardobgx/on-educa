@@ -1,19 +1,9 @@
-import { UserActionType } from '../action-types/user';
+import { IContent } from '../../interfaces/IContent';
+import { ContentActionType } from '../action-types/content';
 
-export interface IUser {
-  email: string;
-  name: string;
-  profilePicture: string;
-  token: string;
+interface LoadContent {
+  type: ContentActionType.LOAD_CONTENT;
+  content: IContent;
 }
 
-interface Login {
-  type: UserActionType.LOGIN;
-  user: IUser;
-}
-
-interface Logout {
-  type: UserActionType.LOGOUT;
-}
-
-export type UserAction = Login | Logout;
+export type ContentAction = LoadContent;

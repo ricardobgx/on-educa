@@ -23,7 +23,7 @@ const teamAParticipants: IStudent[] = [
   {
     email: 'teste1@gmail.com',
     name: 'Aluno Fulano Sicrano da Silva',
-    schoolGrade: 2,
+    schoolGradeId: 'ccscd1-csdcsdcsc-cdcssdcsc',
     league: 'Diamond',
     isOnline: true,
     profilePicture:
@@ -32,7 +32,7 @@ const teamAParticipants: IStudent[] = [
   {
     email: 'teste2@gmail.com',
     name: 'Aluno Fulano Sicrano da Silva',
-    schoolGrade: 2,
+    schoolGradeId: 'ccscd1-csdcsdcsc-cdcssdcsc',
     league: 'Diamond',
     isOnline: true,
     profilePicture:
@@ -41,7 +41,7 @@ const teamAParticipants: IStudent[] = [
   {
     email: 'teste3@gmail.com',
     name: 'Aluno Fulano Sicrano da Silva',
-    schoolGrade: 2,
+    schoolGradeId: 'ccscd1-csdcsdcsc-cdcssdcsc',
     league: 'Diamond',
     isOnline: true,
     profilePicture:
@@ -50,7 +50,7 @@ const teamAParticipants: IStudent[] = [
   {
     email: 'teste4@gmail.com',
     name: 'Aluno Fulano Sicrano da Silva',
-    schoolGrade: 2,
+    schoolGradeId: 'ccscd1-csdcsdcsc-cdcssdcsc',
     league: 'Diamond',
     isOnline: true,
     profilePicture:

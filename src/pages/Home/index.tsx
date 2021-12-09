@@ -20,7 +20,6 @@ import {
 } from './components';
 
 import HomeAction from '../../components/Home/HomeAction';
-import NavBar from '../../components/App/NavBar';
 import OnEducaAPI from '../../services/api';
 import DailyPerformance from '../../components/Home/DailyPerformance';
 import EditDailyGoal from '../../components/Home/EditDailyGoal';
@@ -28,77 +27,8 @@ import { ActionCreators, State } from '../../store';
 import { DEFAULT_USER } from '../../store/reducers/user';
 import { Page } from '../components';
 import SectionLabel from '../../components/App/SectionLabel';
-
-interface IHomeAction {
-  icon: string;
-  label: string;
-  link: string;
-  userType: string;
-}
-
-interface ISubject {
-  id: string;
-  name: string;
-}
-
-interface IUser {
-  email: string;
-  name: string;
-  profilePicture: string;
-  schoolGrade: number;
-  subjects: ISubject[];
-}
-
-const actions: IHomeAction[] = [
-  {
-    icon: 'fas fa-book',
-    label: 'Estudar',
-    link: '/subjects',
-    userType: 'student',
-  },
-  {
-    icon: 'fas fa-book',
-    label: 'Ensinar',
-    link: '/teach',
-    userType: 'teacher',
-  },
-  {
-    icon: 'fas fa-gamepad',
-    label: 'Duelos',
-    link: '/duels',
-    userType: 'student',
-  },
-  {
-    icon: 'fas fa-file-alt',
-    label: 'Questões',
-    link: '/questions',
-    userType: 'teacher',
-  },
-  {
-    icon: 'fas fa-user-secret',
-    label: 'Missões',
-    link: '/missions',
-    userType: 'both',
-  },
-  {
-    icon: 'fas fa-question',
-    label: 'Dúvidas',
-    link: '/doubts',
-    userType: 'both',
-  },
-  {
-    icon: 'fas fa-comment-alt',
-    label: 'Chat',
-    link: '/chats',
-    userType: 'both',
-  },
-  {
-    icon: 'fas fa-chalkboard-teacher',
-    label: 'Sala Interativa',
-    link: '/interative-rooms',
-    userType: 'both',
-  },
-];
+import { homeActions } from '../../static/homeActions';
+import { IUser } from '../../interfaces/IUser';
 
 const Home = (): JSX.Element => {
   const [userType, setUserType] = useState('');
@@ -117,8 +47,13 @@ const Home = (): JSX.Element => {
         Authorization: `Bearer ${token}`,
       },
     }).then((response) => {
-      const { name, profilePicture, schoolGrade }: IUser = response.data;
-      const student = { email, name, profilePicture, schoolGrade } as IUser;
+      const { name, profilePicture, schoolGradeId }: IUser = response.data;
+      const student = {
+        email,
+        name,
+        profilePicture,
+        schoolGradeId,
+      } as IUser;
 
       loginUser({ ...student, token });
     });
@@ -130,8 +65,8 @@ const Home = (): JSX.Element => {
         Authorization: `Bearer ${token}`,
       },
     }).then((response) => {
-      const { name, profilePicture, subjects }: IUser = response.data;
-      const teacher = { email, name, profilePicture, subjects } as IUser;
+      const { name, profilePicture, teachingTypeId }: IUser = response.data;
+      const teacher = { email, name, profilePicture, teachingTypeId } as IUser;
 
       loginUser({ ...teacher, token });
     });
@@ -170,13 +105,14 @@ const Home = (): JSX.Element => {
         <HomeActionsBox>
           <SectionLabel backLink="" label="Painel principal" />
           <HomeActions>
-            {actions.map((action) =>
-              action.userType === 'both' || action.userType === userType ? (
+            {homeActions.map((homeAction) =>
+              homeAction.userType === 'both' ||
+              homeAction.userType === userType ? (
                 <HomeAction
-                  key={action.label}
-                  icon={action.icon}
-                  label={action.label}
-                  link={action.link}
+                  key={homeAction.label}
+                  icon={homeAction.icon}
+                  label={homeAction.label}
+                  link={homeAction.link}
                 />
               ) : null,
             )}

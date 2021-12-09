@@ -1,5 +1,8 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { IContent } from '../../../interfaces/IContent';
+import { ActionCreators, State } from '../../../store';
 import {
   ContentCardBox,
   ContentDetails,
@@ -20,15 +23,21 @@ import {
 const ContentCard = (props: IContent): JSX.Element => {
   const { id, title } = props;
 
+  const dispatch = useDispatch();
+
+  const { loadContent } = bindActionCreators(ActionCreators, dispatch);
+
+  const { schoolGrade, subject, unity } = useSelector((store: State) => store);
+
   return (
-    <ContentCardBox to={`/contents/${id}`}>
+    <ContentCardBox to={`/contents/${id}`} onClick={() => loadContent(props)}>
       <ContentDetails>
         <ContentTitle>{title}</ContentTitle>
-        <SubjectLabel>Unidade: Substantivos</SubjectLabel>
+        <SubjectLabel>Unidade: {unity.title}</SubjectLabel>
       </ContentDetails>
       <ContentSchoolGrade>
-        <SchoolGradeLabel>Série: 7º ano</SchoolGradeLabel>
-        <TeachingTypeLabel>Disciplina: Língua Portuguesa</TeachingTypeLabel>
+        <SchoolGradeLabel>Série: {schoolGrade.index}º ano</SchoolGradeLabel>
+        <TeachingTypeLabel>Disciplina: {subject.name}</TeachingTypeLabel>
       </ContentSchoolGrade>
       <ContentAdditionalDetails>
         <UpdateDate>

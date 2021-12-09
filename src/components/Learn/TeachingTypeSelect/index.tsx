@@ -1,5 +1,6 @@
 import React from 'react';
 import theme from '../../../global/styles/theme';
+import { ITeachingType } from '../../../interfaces/ITeachingType';
 import {
   TeachingTypeSelectBox,
   TeachingTypeSelectLabel,
@@ -10,20 +11,31 @@ import {
   RequiredFieldLabel,
 } from './styles';
 
-export interface ITeachingTypeSelectOption {
-  id: string;
-  title: string;
-}
-
 interface ITeachingTypeSelectProps {
   label: string;
-  options: ITeachingTypeSelectOption[];
-  selectedOption: string;
-  setOption: (id: string) => void;
+  teachingTypes: ITeachingType[];
+  teachingTypeSelectedId: string;
+  setTeachingTypeSelected: (value: ITeachingType) => void;
 }
 
 const TeachingTypeSelect = (props: ITeachingTypeSelectProps): JSX.Element => {
-  const { label, options, selectedOption, setOption } = props;
+  const {
+    label,
+    teachingTypes,
+    teachingTypeSelectedId,
+    setTeachingTypeSelected,
+  } = props;
+
+  const sortTeachingTypes = (
+    teachingTypeA: ITeachingType,
+    teachingTypeB: ITeachingType,
+  ): number => {
+    if (teachingTypeA.title > teachingTypeB.title) return 1;
+    if (teachingTypeA.title < teachingTypeB.title) return -1;
+    return 0;
+  };
+
+  const sortedTeachingTypes = teachingTypes.sort(sortTeachingTypes);
 
   return (
     <TeachingTypeSelectBox>
@@ -33,19 +45,23 @@ const TeachingTypeSelect = (props: ITeachingTypeSelectProps): JSX.Element => {
       </TeachingTypeSelectLabel>
       <TeachingTypeSelectOptionsList>
         <TeachingTypeSelectOptionsListBox>
-          {options.map((option) => (
+          {sortedTeachingTypes.map((teachingType) => (
             <TeachingTypeSelectOption
-              key={option.id}
+              key={teachingType.id}
               style={{
                 background:
-                  selectedOption === option.id ? theme.colors.textColor : '',
+                  teachingTypeSelectedId === teachingType.id
+                    ? theme.colors.textColor
+                    : '',
                 color:
-                  selectedOption === option.id ? theme.colors.boxColor : '',
+                  teachingTypeSelectedId === teachingType.id
+                    ? theme.colors.boxColor
+                    : '',
               }}
-              onClick={() => setOption(option.id)}
+              onClick={() => setTeachingTypeSelected(teachingType)}
             >
               <TeachingTypeSelectOptionLabel>
-                {option.title}
+                {teachingType.title}
               </TeachingTypeSelectOptionLabel>
             </TeachingTypeSelectOption>
           ))}

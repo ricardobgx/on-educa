@@ -12,7 +12,7 @@ import {
 } from './styles';
 
 const WeekPerformance = (): JSX.Element => {
-  const isOwner = true;
+  const isOwner = false;
 
   return (
     <Container>

@@ -79,6 +79,8 @@ const Login = (props: ISignFormProps): JSX.Element => {
 
       loadAnimation();
 
+      console.log(userParams);
+
       if (isStudent()) await loginStudent(userParams);
       else await loginTeacher(userParams);
     }

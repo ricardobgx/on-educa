@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { inputText, paragraph } from '../../components';
+import { inputSelect, inputText, paragraph } from '../../components';
 
 export const PageBox = styled.div`
   display: flex;
@@ -67,6 +67,13 @@ export const NewContentMainDetails = styled.div`
 
 export const NewContentNameAndReference = styled(FlexColumnBox)`
   width: calc(40vw - 60px);
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 900px) {
+    width: 100%;
+    margin-bottom: 40px;
+  }
 `;
 
 /* Content name */
@@ -94,6 +101,10 @@ export const NewContentReference = styled.div`
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 10px;
   padding: 20px;
+
+  @media (max-width: 900px) {
+    height: 100%;
+  }
 `;
 
 export const NewContentReferenceBox = styled.div`
@@ -106,7 +117,7 @@ export const NewContentReferenceBox = styled.div`
 
 export const ReferenceLabel = styled(DetailBoxLabel)``;
 
-export const NewContentReferenceSelect = styled.select`
+export const NewContentReferenceSelect = styled(inputSelect)`
   height: 40px;
   width: 100%;
   color: ${({ theme }) => theme.colors.boxColor};
@@ -128,6 +139,11 @@ export const NewContentVideo = styled(FlexColumnBox)`
   border-radius: 10px;
   padding: 20px;
   margin-right: 40px;
+
+  @media (max-width: 900px) {
+    width: 100%;
+    margin-right: 0;
+  }
 `;
 
 export const VideoLabel = styled(DetailBoxLabel)``;
@@ -142,6 +158,11 @@ export const NewContentVideoPreview = styled.iframe`
   height: 30vw;
   border: none;
   margin-top: 20px;
+
+  @media (max-width: 900px) {
+    width: 100%;
+    height: calc(40vw);
+  }
 `;
 
 /* Content attachments */
@@ -159,6 +180,11 @@ export const NewContentDescription = styled(FlexColumnBox)`
   border-radius: 10px;
   padding: 20px;
   margin-right: 40px;
+
+  @media (max-width: 900px) {
+    width: 100%;
+    margin: 0;
+  }
 `;
 export const NewContentDescriptionLabel = styled(DetailBoxLabel)``;
 export const NewContentDescriptionInput = styled.textarea`
@@ -172,6 +198,13 @@ export const NewContentDescriptionInput = styled.textarea`
   border-radius: 5px;
   border: none;
   padding: 10px;
+
+  @media (max-width: 900px) {
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 40vw;
+    max-height: 40vw;
+  }
 `;
 export const NewContentAttachments = styled(FlexColumnBox)`
   background: ${({ theme }) => theme.colors.boxColor};
@@ -179,6 +212,11 @@ export const NewContentAttachments = styled(FlexColumnBox)`
   border-radius: 10px;
   padding: 20px;
   width: calc(40vw - 80px);
+
+  @media (max-width: 900px) {
+    width: 100%;
+    margin-top: 40px;
+  }
 `;
 export const NewContentAttachmentsLabel = styled(DetailBoxLabel)``;
 export const NewContentAttachmentsList = styled.div`
@@ -189,6 +227,10 @@ export const NewContentAttachmentsListBox = styled(FlexColumnBox)`
   overflow: auto;
   background: lightseagreen;
   min-height: calc(20vw - 50px);
+
+  @media (max-width: 900px) {
+    min-height: calc(40vw - 50px);
+  }
 `;
 export const NewAttachmentButton = styled.button`
   color: ${({ theme }) => theme.colors.boxColor};

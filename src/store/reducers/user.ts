@@ -1,13 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { IUser } from '../../interfaces/IUser';
 import { UserActionType } from '../action-types/user';
-import { IUser, UserAction } from '../actions/user';
+import { UserAction } from '../actions/user';
 
 export const DEFAULT_USER: IUser = {
   email: '',
   name: '',
   profilePicture: '',
+  league: '',
+  isOnline: false,
   token: '',
+  teachingTypeId: '',
+  schoolGradeId: '',
 };
 
 const userReducer = (state: IUser = DEFAULT_USER, action: UserAction): any => {

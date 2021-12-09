@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React from 'react';
+import SectionLabel from '../../App/SectionLabel';
 import CustomReviewCard from '../CustomReviewCard';
 import {
   Container,
@@ -55,7 +56,8 @@ const customReviews = [
 const CustomReviews = (): JSX.Element => {
   return (
     <Container>
-      <CustomReviewsLabel>Revisões personalizadas</CustomReviewsLabel>
+      <SectionLabel backLink="" label="Revisões personalizadas" />
+      {/* <CustomReviewsLabel>Revisões personalizadas</CustomReviewsLabel> */}
       <CustomReviewsList>
         <CustomReviewsListBox>
           {customReviews.map((customReview) => (

@@ -1,11 +1,5 @@
+import { IUser } from '../../interfaces/IUser';
 import { UserActionType } from '../action-types/user';
-
-export interface IUser {
-  email: string;
-  name: string;
-  profilePicture: string;
-  token: string;
-}
 
 interface Login {
   type: UserActionType.LOGIN;

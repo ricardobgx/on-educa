@@ -1,5 +1,8 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { IUnity } from '../../../interfaces/IUnity';
+import { ActionCreators, State } from '../../../store';
 import {
   UnityCardBox,
   UnityDetails,
@@ -20,15 +23,23 @@ import {
 const UnityCard = (props: IUnity): JSX.Element => {
   const { id, title } = props;
 
+  const dispatch = useDispatch();
+
+  const { loadUnity } = bindActionCreators(ActionCreators, dispatch);
+
+  const { teachingType, schoolGrade, subject } = useSelector(
+    (store: State) => store,
+  );
+
   return (
-    <UnityCardBox to={`/units/${id}`}>
+    <UnityCardBox to={`/units/${id}`} onClick={() => loadUnity(props)}>
       <UnityDetails>
         <UnityTitle>{title}</UnityTitle>
-        <SubjectLabel>Disciplina: Língua Portuguesa</SubjectLabel>
+        <SubjectLabel>Disciplina: {subject.name}</SubjectLabel>
       </UnityDetails>
       <UnitySchoolGrade>
-        <SchoolGradeLabel>Série: 7º ano</SchoolGradeLabel>
-        <TeachingTypeLabel>Nível: Ensino Fundamental</TeachingTypeLabel>
+        <SchoolGradeLabel>Série: {schoolGrade.index}º ano</SchoolGradeLabel>
+        <TeachingTypeLabel>Nível: {teachingType.title}</TeachingTypeLabel>
       </UnitySchoolGrade>
       <UnityAdditionalDetails>
         <UpdateDate>

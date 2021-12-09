@@ -1,5 +1,7 @@
-import React from 'react';
-import { IContent, IUnity } from '../../../pages/Content';
+import React, { useEffect, useState } from 'react';
+import { IContent } from '../../../interfaces/IContent';
+import { IUnity } from '../../../interfaces/IUnity';
+import OnEducaAPI from '../../../services/api';
 import {
   AccordionLabel,
   AccordionToggleCheckBox,
@@ -12,12 +14,21 @@ import {
   HiddenContentsBox,
 } from './styles';
 
-interface IContentAccordionProps extends IUnity {
-  id: number;
-}
+const ContentAccordion = (props: IUnity): JSX.Element => {
+  const { id, title } = props;
+  const [contents, setContents] = useState<IContent[]>([]);
 
-const ContentAccordion = (props: IContentAccordionProps): JSX.Element => {
-  const { contents, id, title } = props;
+  const getContents = async (
+    setContentsState: (value: IContent[]) => void,
+  ): Promise<void> => {
+    await OnEducaAPI.get(`/contents/unity/${id}`).then((contentsResponse) => {
+      setContentsState(contentsResponse.data);
+    });
+  };
+
+  useEffect(() => {
+    getContents(setContents);
+  }, []);
 
   return (
     <ContentAccordionBox>

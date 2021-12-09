@@ -1,6 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useRouteMatch } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { ActionCreators, State } from '../../store';
 import SectionLabel from '../../components/App/SectionLabel';
 import AttachmentCard from '../../components/Content/AttachmentCard';
 import ContentAccordion from '../../components/Content/ContentAccordion';
@@ -35,144 +39,78 @@ import {
   RelatedContentsBox,
   SchoolSubjectAndGradeLabel,
 } from './styles';
+import { IContent } from '../../interfaces/IContent';
+import { IUnity } from '../../interfaces/IUnity';
+import OnEducaAPI from '../../services/api';
 
-export interface IContent {
-  title: string;
+interface IContentRouteParams {
+  id: string;
 }
-
-export interface IUnity {
-  title: string;
-  contents: IContent[];
-}
-
-const units: IUnity[] = [
-  {
-    title: 'História do Brasil',
-    contents: [
-      {
-        title: 'Descoberta',
-      },
-      {
-        title: 'Descoberta',
-      },
-      {
-        title: 'Descoberta',
-      },
-      {
-        title: 'Descoberta',
-      },
-      {
-        title: 'Descoberta',
-      },
-      {
-        title: 'Descoberta',
-      },
-    ],
-  },
-  {
-    title: 'História do Nordeste',
-    contents: [
-      {
-        title: 'Descoberta',
-      },
-      {
-        title: 'Descoberta',
-      },
-      {
-        title: 'Descoberta',
-      },
-      {
-        title: 'Descoberta',
-      },
-      {
-        title: 'Descoberta',
-      },
-      {
-        title: 'Descoberta',
-      },
-    ],
-  },
-  {
-    title: 'História da Paraíba',
-    contents: [
-      {
-        title: 'Descoberta',
-      },
-      {
-        title: 'Descoberta',
-      },
-      {
-        title: 'Descoberta',
-      },
-      {
-        title: 'Descoberta',
-      },
-      {
-        title: 'Descoberta',
-      },
-      {
-        title: 'Descoberta',
-      },
-    ],
-  },
-  {
-    title: 'Conflitos Mundiais',
-    contents: [
-      {
-        title: 'Descoberta',
-      },
-      {
-        title: 'Descoberta',
-      },
-      {
-        title: 'Descoberta',
-      },
-      {
-        title: 'Descoberta',
-      },
-      {
-        title: 'Descoberta',
-      },
-      {
-        title: 'Descoberta',
-      },
-    ],
-  },
-  {
-    title: 'História Contemporânea',
-    contents: [
-      {
-        title: 'Descoberta',
-      },
-      {
-        title: 'Descoberta',
-      },
-      {
-        title: 'Descoberta',
-      },
-      {
-        title: 'Descoberta',
-      },
-      {
-        title: 'Descoberta',
-      },
-      {
-        title: 'Descoberta',
-      },
-    ],
-  },
-];
 
 const Content = (): JSX.Element => {
+  const route = useRouteMatch();
+  const { id: contentId } = route.params as IContentRouteParams;
+
+  /* Local State */
+
+  const [units, setUnits] = useState<IUnity[]>([]);
+
+  /* Global State */
+
+  const dispatch = useDispatch();
+
+  const { loadContent } = bindActionCreators(ActionCreators, dispatch);
+
+  const {
+    content,
+    schoolGrade,
+    subject,
+    unity: selectedUnity,
+  } = useSelector((store: State) => store);
+
+  const getUnits = async (
+    setUnitsState: (value: IUnity[]) => void,
+  ): Promise<void> => {
+    await OnEducaAPI.get(`/units/subject/${subject.id}`).then((response) => {
+      setUnitsState(response.data);
+    });
+  };
+
+  const getContent = async (
+    setContentState: (value: IContent) => void,
+  ): Promise<void> => {
+    await OnEducaAPI.get(`/contents/${contentId}`).then((response) => {
+      setContentState(response.data);
+    });
+  };
+
+  useEffect(() => {
+    getUnits(setUnits);
+    getContent(loadContent);
+  }, []);
+
+  const { video } = content as IContent;
+
+  const videoLinkSplitWatch = video.split('watch?v=');
+  // const videoLinkSplitE =
+  //   videoLinkSplitWatch[1] !== undefined
+  //     ? videoLinkSplitWatch[1].split('&')
+  //     : '';
+
+  console.log(videoLinkSplitWatch[1]);
+
   return (
     <Page>
       <PageBox>
         <ContentBox>
-          <SectionLabel label="Segunda Guerra Mundial" backLink="/subjects" />
+          <SectionLabel
+            label={`${selectedUnity.title} - ${content.title}`}
+            backLink={`/units/${selectedUnity.id}`}
+          />
           <ContentInfo>
             <ContentVideoBox>
               <ContentVideo
-                src="https://www.youtube.com/embed/jfLHgN_1dLU"
+                src={`https://www.youtube.com/embed/${videoLinkSplitWatch[1]}`}
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -182,11 +120,11 @@ const Content = (): JSX.Element => {
             <RelatedContentsBox>
               <Contents>
                 <SchoolSubjectAndGradeLabel>
-                  História - 1º ano
+                  {subject.name} - {schoolGrade.index}º ano
                 </SchoolSubjectAndGradeLabel>
                 <ContentsBox>
                   {units.map((unity: IUnity, index) => (
-                    <ContentAccordion key={unity.title} {...unity} id={index} />
+                    <ContentAccordion key={unity.title} {...unity} />
                   ))}
                 </ContentsBox>
               </Contents>
@@ -204,22 +142,7 @@ const Content = (): JSX.Element => {
                   <AccordionToggleIcon className="fas fa-chevron-right" />
                 </AccordionToggleLabel>
                 <DescriptionBox>
-                  <DescriptionText>
-                    ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum
-                    ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum
-                    ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum
-                    ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum
-                    ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum
-                    ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum
-                    ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum
-                    ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum
-                    ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum
-                    ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum
-                    ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum
-                    ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum
-                    ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum
-                    ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum
-                  </DescriptionText>
+                  <DescriptionText>{content.description}</DescriptionText>
                 </DescriptionBox>
               </Description>
             </ContentDescriptionBox>

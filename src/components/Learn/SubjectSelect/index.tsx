@@ -13,13 +13,21 @@ import {
 
 interface ISubjectSelectProps {
   label: string;
-  options: ISubject[];
-  selectedOption: string;
-  setOption: (id: string) => void;
+  subjects: ISubject[];
+  subjectSelectedId: string;
+  setSubjectSelected: (value: ISubject) => void;
 }
 
 const SubjectSelect = (props: ISubjectSelectProps): JSX.Element => {
-  const { label, options, selectedOption, setOption } = props;
+  const { label, subjects, subjectSelectedId, setSubjectSelected } = props;
+
+  const sortSubjects = (subjectA: ISubject, subjectB: ISubject): number => {
+    if (subjectA.name > subjectB.name) return 1;
+    if (subjectA.name < subjectB.name) return -1;
+    return 0;
+  };
+
+  const sortedSubjects = subjects.sort(sortSubjects);
 
   return (
     <SubjectSelectBox>
@@ -29,18 +37,22 @@ const SubjectSelect = (props: ISubjectSelectProps): JSX.Element => {
       </SubjectSelectLabel>
       <SubjectSelectOptionsList>
         <SubjectSelectOptionsListBox>
-          {options.map((option) => (
+          {sortedSubjects.map((subject) => (
             <SubjectSelectOption
-              key={option.id}
+              key={subject.id}
               style={{
                 background:
-                  selectedOption === option.id ? theme.colors.textColor : '',
+                  subjectSelectedId === subject.id
+                    ? theme.colors.textColor
+                    : '',
                 color:
-                  selectedOption === option.id ? theme.colors.boxColor : '',
+                  subjectSelectedId === subject.id ? theme.colors.boxColor : '',
               }}
-              onClick={() => setOption(option.id)}
+              onClick={() => setSubjectSelected(subject)}
             >
-              <SubjectSelectOptionLabel>{option.name}</SubjectSelectOptionLabel>
+              <SubjectSelectOptionLabel>
+                {subject.name}
+              </SubjectSelectOptionLabel>
             </SubjectSelectOption>
           ))}
         </SubjectSelectOptionsListBox>

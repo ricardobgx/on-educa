@@ -9,6 +9,7 @@ import DuelQuestions from '../pages/DuelQuestions';
 import DuelResults from '../pages/DuelResults';
 import Duels from '../pages/Duels';
 import Home from '../pages/Home';
+import Learn from '../pages/Learn';
 import Missions from '../pages/Missions';
 import NewContent from '../pages/NewContent';
 import NewDuel from '../pages/NewDuel';
@@ -16,8 +17,6 @@ import Overview from '../pages/Overview';
 import Performance from '../pages/Performance';
 import Practice from '../pages/Practice';
 import Profile from '../pages/Profile';
-import StartLearn from '../pages/StartLearn';
-import Subjects from '../pages/Subjects';
 import Units from '../pages/Units';
 
 const routes: IRoute[] = [
@@ -40,9 +39,9 @@ const routes: IRoute[] = [
     exact: true,
   },
   {
-    path: '/subjects',
-    name: 'Subjects',
-    component: Subjects,
+    path: '/learn',
+    name: 'Learn',
+    component: Learn,
     exact: true,
   },
   {

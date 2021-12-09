@@ -1,24 +1,27 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { UserActionType } from '../action-types/user';
-import { IUser, UserAction } from '../actions/user';
+import { IContent } from '../../interfaces/IContent';
+import { ContentActionType } from '../action-types/content';
+import { ContentAction } from '../actions/content';
 
-export const DEFAULT_USER: IUser = {
-  email: '',
-  name: '',
-  profilePicture: '',
-  token: '',
+export const DEFAULT_CONTENT: IContent = {
+  id: '',
+  title: '',
+  description: '',
+  video: '',
+  index: 0,
 };
 
-const userReducer = (state: IUser = DEFAULT_USER, action: UserAction): any => {
+const contentReducer = (
+  state: IContent = DEFAULT_CONTENT,
+  action: ContentAction,
+): any => {
   switch (action.type) {
-    case UserActionType.LOGIN:
-      return action.user;
-    case UserActionType.LOGOUT:
-      return DEFAULT_USER;
+    case ContentActionType.LOAD_CONTENT:
+      return action.content;
     default:
       return state;
   }
 };
 
-export default userReducer;
+export default contentReducer;

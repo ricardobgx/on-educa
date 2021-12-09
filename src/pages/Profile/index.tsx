@@ -6,7 +6,12 @@ import ProfileCard from '../../components/Profile/ProfileCard';
 import ProfileDailyGoal from '../../components/Profile/ProfileDailyGoal';
 import WeekPerformance from '../../components/Profile/WeekPerformance';
 import { Page } from '../components';
-import { PageBox, UserDetails, WeeklyPerformanceSummary } from './styles';
+import {
+  MainDetails,
+  PageBox,
+  UserDetails,
+  WeeklyPerformanceSummary,
+} from './styles';
 
 // interface IProfileRouteProps {
 //   id: string;
@@ -32,13 +37,15 @@ const Profile = (): JSX.Element => {
     <Page>
       <PageBox>
         <UserDetails>
-          <ProfileCard
-            name={userTest.name}
-            profilePicture={userTest.profilePicture}
-            schoolGrade={userTest.schoolGrade}
-          />
+          <MainDetails>
+            <SectionLabel backLink="/home" label="Perfil" />
+            <ProfileCard
+              name={userTest.name}
+              profilePicture={userTest.profilePicture}
+              schoolGrade={userTest.schoolGrade}
+            />
+          </MainDetails>
           <WeeklyPerformanceSummary>
-            <SectionLabel backLink="" label="Resumo" />
             <ProfileDailyGoal />
             <WeekPerformance />
           </WeeklyPerformanceSummary>

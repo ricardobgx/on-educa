@@ -1,52 +1,6 @@
 import styled from 'styled-components';
 import { mediumIcon, paragraph } from '../../../../components';
 
-export const SignSchoolGradeBox = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 10px 0;
-  height: 50px;
-`;
-export const SignSchoolGradeLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
-`;
-export const SignSchoolGradeSelect = styled.select`
-  color: ${({ theme }) => theme.colors.boxColor};
-  background: ${({ theme }) => theme.colors.textColor};
-  border-radius: 5px;
-  padding: 0 5px;
-  cursor: pointer;
-  transition: all 0.2s linear;
-  border-right: 5px solid ${({ theme }) => theme.colors.textColor};
-  font-size: ${({ theme }) => theme.fontsSize.computer};
-
-  @media (min-width: 600px) and (max-width: 1150px) {
-    font-size: ${({ theme }) => theme.fontsSize.tablet};
-  }
-
-  @media (max-width: 600px) {
-    font-size: ${({ theme }) => theme.fontsSize.smartphone};
-  }
-
-  &:focus {
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-  }
-`;
-
-export const SignSchoolGradeOption = styled.option`
-  background: ${({ theme }) => theme.colors.boxColor};
-  color: ${({ theme }) => theme.colors.textColor};
-  transition: all 0.2s linear;
-
-  &:hover {
-    background: ${({ theme }) => theme.colors.textColor};
-    color: ${({ theme }) => theme.colors.boxColor};
-  }
-`;
-
 export const AddSubjectButton = styled.button`
   width: 100%;
   border-radius: 10px;

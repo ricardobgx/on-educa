@@ -1,5 +1,5 @@
 /* eslint-disable no-shadow */
 
 export enum ContentActionType {
-  LOAD = 'load',
+  LOAD_CONTENT = 'load_content',
 }

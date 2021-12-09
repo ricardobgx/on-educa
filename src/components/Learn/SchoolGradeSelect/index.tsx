@@ -15,7 +15,7 @@ interface ISchoolGradeSelectProps {
   label: string;
   options: ISchoolGrade[];
   selectedOption: string;
-  setOption: (id: string) => void;
+  setOption: (value: ISchoolGrade) => void;
 }
 
 const SchoolGradeSelect = (props: ISchoolGradeSelectProps): JSX.Element => {
@@ -38,7 +38,7 @@ const SchoolGradeSelect = (props: ISchoolGradeSelectProps): JSX.Element => {
                 color:
                   selectedOption === option.id ? theme.colors.boxColor : '',
               }}
-              onClick={() => setOption(option.id)}
+              onClick={() => setOption(option)}
             >
               <SchoolGradeSelectOptionLabel>
                 {option.index}º ano
