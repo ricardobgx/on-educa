@@ -1,4 +1,5 @@
 import React from 'react';
+import { isStudent } from '../../../functions/user';
 import { IUser } from '../../../interfaces/IUser';
 import {
   UserCardBox,
@@ -14,12 +15,11 @@ import {
 } from './styles';
 
 export interface IUserCardProps extends IUser {
-  isStudent: boolean;
-  schoolGradeId: string;
+  userType: string;
 }
 
 const UserCard = (props: IUserCardProps): JSX.Element => {
-  const { email, name, profilePicture, isStudent, schoolGradeId } = props;
+  const { name, profilePicture, schoolGrade, userType } = props;
 
   return (
     <UserCardBox>
@@ -27,8 +27,8 @@ const UserCard = (props: IUserCardProps): JSX.Element => {
         <UserPicture src={profilePicture} />
         <PersonalInfo>
           <UserName>{name}</UserName>
-          {isStudent ? (
-            <StudentSchoolGrade>{schoolGradeId} ano</StudentSchoolGrade>
+          {isStudent(userType) ? (
+            <StudentSchoolGrade>{schoolGrade.index}º ano</StudentSchoolGrade>
           ) : (
             <TeacherSubjects>{1}</TeacherSubjects>
           )}
