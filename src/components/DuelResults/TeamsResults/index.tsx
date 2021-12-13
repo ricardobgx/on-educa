@@ -1,5 +1,7 @@
 import React from 'react';
 import { IDuelParticipant } from '../../../interfaces/IDuelParticipant';
+import { DEFAULT_SCHOOL_GRADE } from '../../../store/reducers/schoolGrade';
+import { DEFAULT_TEACHING_TYPE } from '../../../store/reducers/teachingType';
 import SectionLabel from '../../App/SectionLabel';
 import ParticipantsResultList from '../ParticipantsResultList';
 import {
@@ -22,6 +24,7 @@ import {
 
 const teamAParticipants: IDuelParticipant[] = [
   {
+    id: 'cdcdc-dccdccs-cdcsc-xscs',
     email: 'teste1@gmail.com',
     name: 'Aluno Fulano Sicrano da Silva',
     schoolGradeId: 'csvs5445svsvs1v5sv5v5sd',
@@ -30,8 +33,11 @@ const teamAParticipants: IDuelParticipant[] = [
     profilePicture:
       'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
     answeredQuestions: [],
+    teachingType: DEFAULT_TEACHING_TYPE,
+    schoolGrade: DEFAULT_SCHOOL_GRADE,
   },
   {
+    id: 'cdcdc-dccdccs-cdcsc-xscs',
     email: 'teste2@gmail.com',
     name: 'Aluno Fulano Sicrano da Silva',
     schoolGradeId: 'csvs5445svsvs1v5sv5v5sd',
@@ -40,8 +46,11 @@ const teamAParticipants: IDuelParticipant[] = [
     profilePicture:
       'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
     answeredQuestions: [],
+    teachingType: DEFAULT_TEACHING_TYPE,
+    schoolGrade: DEFAULT_SCHOOL_GRADE,
   },
   {
+    id: 'cdcdc-dccdccs-cdcsc-xscs',
     email: 'teste3@gmail.com',
     name: 'Aluno Fulano Sicrano da Silva',
     schoolGradeId: 'csvs5445svsvs1v5sv5v5sd',
@@ -50,8 +59,11 @@ const teamAParticipants: IDuelParticipant[] = [
     profilePicture:
       'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
     answeredQuestions: [],
+    teachingType: DEFAULT_TEACHING_TYPE,
+    schoolGrade: DEFAULT_SCHOOL_GRADE,
   },
   {
+    id: 'cdcdc-dccdccs-cdcsc-xscs',
     email: 'teste4@gmail.com',
     name: 'Aluno Fulano Sicrano da Silva',
     schoolGradeId: 'csvs5445svsvs1v5sv5v5sd',
@@ -60,6 +72,8 @@ const teamAParticipants: IDuelParticipant[] = [
     profilePicture:
       'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
     answeredQuestions: [],
+    teachingType: DEFAULT_TEACHING_TYPE,
+    schoolGrade: DEFAULT_SCHOOL_GRADE,
   },
 ];
 
