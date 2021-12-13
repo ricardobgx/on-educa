@@ -3,7 +3,6 @@ import {
   DuelCardBox,
   DuelDetails,
   OwnerInfo,
-  OwnerPicture,
   OwnerName,
   DuelCode,
   SubjectsName,
@@ -21,7 +20,6 @@ import {
 interface IDuelCardProps {
   id: string;
   ownerName: string;
-  ownerPicture: string;
   subjects: string[];
   contents: string[];
   status: string;
@@ -35,7 +33,6 @@ const DuelCard = (props: IDuelCardProps): JSX.Element => {
     id,
     maxParticipants,
     ownerName,
-    ownerPicture,
     participants,
     status,
     subjects,
@@ -45,7 +42,6 @@ const DuelCard = (props: IDuelCardProps): JSX.Element => {
     <DuelCardBox to={`/duels/${id}`}>
       <DuelDetails>
         <OwnerInfo>
-          {/* <OwnerPicture src={ownerPicture} /> */}
           <OwnerName>Duelo de {ownerName}</OwnerName>
         </OwnerInfo>
         <DuelCode>Código: {id}</DuelCode>
