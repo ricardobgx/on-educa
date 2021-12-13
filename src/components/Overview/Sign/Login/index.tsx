@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import {
   SignBox,
   SignLabel,
@@ -10,22 +12,40 @@ import {
   ChangeSignUserLabel,
 } from '../components';
 import OnEducaAPI from '../../../../services/api';
-import { ISignFormProps } from '../SignForm/interfaces';
 import SignTextInput from '../SignTextInput';
+import { ActionCreators, State } from '../../../../store';
+import {
+  getUser,
+  invertUserType,
+  isStudent,
+  loginUser,
+  setUserVariables,
+} from '../../../../functions/user';
+import { ILogin } from '../../../../interfaces/ILogin';
+import { IAuthenticationResponse } from '../../../../interfaces/IAuthenticationResponse';
 
-interface IUser {
-  email: string;
-  password: string;
-}
+const Login = (): JSX.Element => {
+  /* Global State */
 
-const Login = (props: ISignFormProps): JSX.Element => {
+  const { aplication } = useSelector((store: State) => store);
+  const { userType } = aplication;
+
+  const dispatch = useDispatch();
+  const {
+    enableLoadingAnimation,
+    disableLoadingAnimation,
+    loginUser: loadUser,
+    loadToken,
+    loadUserType,
+  } = bindActionCreators(ActionCreators, dispatch);
+
+  /* Local State */
+
   const [email, setEmail] = useState('');
   const [emailWarning, setEmailWarning] = useState(false);
 
   const [password, setPassword] = useState('');
   const [passwordWarning, setPasswordWarning] = useState(false);
-
-  const { loadAnimation, isStudent, userType, changeUserType } = props;
 
   // Login
 
@@ -40,49 +60,37 @@ const Login = (props: ISignFormProps): JSX.Element => {
     return true;
   };
 
-  const loginSucess = (token: string): void => {
-    window.localStorage.setItem('token', token);
-    window.localStorage.setItem('email', email);
-    window.localStorage.setItem('userType', userType);
-    clearFields();
-    window.location.reload();
+  const loginSucess = async (
+    authResponse: IAuthenticationResponse,
+  ): Promise<void> => {
+    const { id, token } = authResponse;
+
+    loadToken(token);
+
+    setUserVariables(id, userType, token);
+
+    await getUser(OnEducaAPI, userType, id, loadUser, token);
   };
 
-  const loginStudent = async (studentParams: IUser): Promise<void> => {
-    await OnEducaAPI.post('/students/login', studentParams).then(
-      (response) => {
-        loginSucess(response.data);
-      },
-      () => {
-        loadAnimation();
-      },
-    );
+  const loginError = (): void => {
+    disableLoadingAnimation();
   };
 
-  const loginTeacher = async (teacherParams: IUser): Promise<void> => {
-    await OnEducaAPI.post('/teachers/login', teacherParams).then(
-      (response) => {
-        loginSucess(response.data);
-      },
-      () => {
-        loadAnimation();
-      },
-    );
-  };
-
-  const loginUser = async (): Promise<void> => {
+  const login = async (): Promise<void> => {
     if (fieldsIsValid()) {
       const userParams = {
         email,
         password,
-      } as IUser;
+      } as ILogin;
 
-      loadAnimation();
-
-      console.log(userParams);
-
-      if (isStudent()) await loginStudent(userParams);
-      else await loginTeacher(userParams);
+      enableLoadingAnimation();
+      await loginUser(
+        OnEducaAPI,
+        userParams,
+        userType,
+        loginSucess,
+        loginError,
+      );
     }
   };
 
@@ -116,20 +124,20 @@ const Login = (props: ISignFormProps): JSX.Element => {
       <SignActions>
         <SignButton
           onClick={() => {
-            loginUser();
+            login();
           }}
         >
           <SignButtonLabel>Entrar</SignButtonLabel>
         </SignButton>
         <ChangeSignUser
           onClick={() => {
-            changeUserType();
+            loadUserType(invertUserType(userType));
             clearFields();
           }}
         >
           <ChangeSignUserLabel>
             Sou
-            {isStudent() ? ' professor' : ' aluno'}
+            {isStudent(userType) ? ' professor' : ' aluno'}
           </ChangeSignUserLabel>
         </ChangeSignUser>
       </SignActions>
