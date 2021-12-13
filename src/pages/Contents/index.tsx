@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import SectionLabel from '../../components/App/SectionLabel';
@@ -36,7 +38,7 @@ const Contents = (): JSX.Element => {
           label={`${unity.title} - conteúdos`}
         />
         <ContentsBox>
-          <ContentsActions />
+          <ContentsActions unity={unity} />
           <ContentsList contents={contents} />
         </ContentsBox>
       </PageBox>
