@@ -20,76 +20,34 @@ import {
 } from './components';
 
 import HomeAction from '../../components/Home/HomeAction';
-import OnEducaAPI from '../../services/api';
 import DailyPerformance from '../../components/Home/DailyPerformance';
 import EditDailyGoal from '../../components/Home/EditDailyGoal';
 import { ActionCreators, State } from '../../store';
-import { DEFAULT_USER } from '../../store/reducers/user';
 import { Page } from '../components';
 import SectionLabel from '../../components/App/SectionLabel';
 import { homeActions } from '../../static/homeActions';
-import { IUser } from '../../interfaces/IUser';
 
 const Home = (): JSX.Element => {
-  const [userType, setUserType] = useState('');
+  /* Global State */
+
+  const { aplication } = useSelector((store: State) => store);
+  const { userType } = aplication;
+
+  const dispatch = useDispatch();
+
+  const { disableLoadingAnimation } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
+
+  /* Local State */
+
   const [dailyGoal, setDailyGoal] = useState(50);
   const [completedDailyGoal, setCompletedDailyGoal] = useState(10);
   const [editDailyGoal, setEditDailyGoal] = useState(false);
 
-  const dispatch = useDispatch();
-
-  const { loginUser } = bindActionCreators(ActionCreators, dispatch);
-  const user = useSelector((store: State) => store.user);
-
-  const getStudent = async (email: string, token: string): Promise<void> => {
-    await OnEducaAPI.get(`/students/${email}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }).then((response) => {
-      const { name, profilePicture, schoolGradeId }: IUser = response.data;
-      const student = {
-        email,
-        name,
-        profilePicture,
-        schoolGradeId,
-      } as IUser;
-
-      loginUser({ ...student, token });
-    });
-  };
-
-  const getTeacher = async (email: string, token: string): Promise<void> => {
-    await OnEducaAPI.get(`/teachers/${email}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }).then((response) => {
-      const { name, profilePicture, teachingTypeId }: IUser = response.data;
-      const teacher = { email, name, profilePicture, teachingTypeId } as IUser;
-
-      loginUser({ ...teacher, token });
-    });
-  };
-
-  const getUser = async (token: string, email: string): Promise<void> => {
-    if (userType === 'student') {
-      await getStudent(email, token);
-    } else if (userType === 'teacher') {
-      await getTeacher(email, token);
-    }
-  };
-
-  const loadUser = async (): Promise<void> => {
-    const email = window.localStorage.getItem('email') || '';
-    const token = window.localStorage.getItem('token') || '';
-    await getUser(token, email);
-  };
-
   useEffect(() => {
-    if (userType === '')
-      setUserType(window.localStorage.getItem('userType') || '');
-    if (user === DEFAULT_USER) loadUser();
+    disableLoadingAnimation();
   }, []);
 
   return (
