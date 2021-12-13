@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { inputText, paragraph, smallIcon } from '../../../components';
 
 export const Container = styled.div`
@@ -25,7 +24,7 @@ export const UnitsActionsBox = styled.div`
     flex-wrap: wrap;
   }
 `;
-export const NewUnityButton = styled(Link)`
+export const NewUnityButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,14 +35,15 @@ export const NewUnityButton = styled(Link)`
   border: none;
   border-radius: 5px;
   padding: 0 20px;
+  cursor: pointer;
 
-  @media (min-width: 400px) and (max-width: 700px) {
+  @media (min-width: 600px) and (max-width: 700px) {
     width: calc(50% - 10px);
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 600px) {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 `;
 export const NewUnityButtonLabel = styled(paragraph)`
@@ -90,6 +90,7 @@ export const ClearSearchUnitsInputButton = styled.button`
   border: none;
   background: ${({ theme }) => theme.colors.textColor};
   color: ${({ theme }) => theme.colors.boxColor};
+  cursor: pointer;
 `;
 export const ClearSearchUnitsInputButtonIcon = styled(smallIcon)``;
 export const SearchUnitsButton = styled.button`
@@ -99,6 +100,7 @@ export const SearchUnitsButton = styled.button`
   color: ${({ theme }) => theme.colors.boxColor};
   border: none;
   border-radius: 5px;
+  cursor: pointer;
 `;
 export const SearchUnitsButtonIcon = styled(smallIcon)``;
 export const UnitsFiltersButton = styled.button`
@@ -112,12 +114,13 @@ export const UnitsFiltersButton = styled.button`
   border: none;
   border-radius: 5px;
   padding: 0 20px;
+  cursor: pointer;
 
-  @media (min-width: 400px) and (max-width: 700px) {
+  @media (min-width: 600px) and (max-width: 700px) {
     width: calc(50% - 10px);
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 600px) {
     width: 100%;
   }
 `;
