@@ -10,15 +10,13 @@ import {
   Redirect,
 } from 'react-router-dom';
 import NavBar from './components/App/NavBar';
+
 import routes from './static/routes';
 
 const Routes = (): JSX.Element => {
-  const token = window.localStorage.getItem('token') || '';
+  const id = window.localStorage.getItem('id');
 
-  const isAuthenticated = (): boolean => {
-    if (token) return true;
-    return false;
-  };
+  const isAuthenticated = (): boolean => !!id;
 
   return (
     <BrowserRouter>
