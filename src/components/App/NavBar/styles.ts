@@ -61,7 +61,7 @@ export const UserPhoto = styled.img`
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.whiteColor};
   border: 2px solid ${({ theme }) => theme.colors.textColor};
   margin: 5px;
 
