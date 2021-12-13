@@ -1,133 +1,98 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import SectionLabel from '../../components/App/SectionLabel';
+import NewContentAttachments from '../../components/NewContent/NewContentAttachments';
+import NewContentDescription from '../../components/NewContent/NewContentDescription';
+import NewContentName from '../../components/NewContent/NewContentName';
+import NewContentReferences from '../../components/NewContent/NewContentReferences';
+import NewContentVideo from '../../components/NewContent/NewContentVideo';
+import OnEducaAPI from '../../services/api';
+import { State } from '../../store';
 import { Page } from '../components';
 import {
   PageBox,
   NewContentBox,
   NewContentMainDetails,
   NewContentNameAndReference,
-  NewContentName,
-  NameLabel,
-  NameInput,
-  NewContentReference,
-  NewContentReferenceBox,
-  ReferenceLabel,
-  NewContentReferenceSelect,
-  NewContentReferenceSelectOption,
-  NewContentVideo,
-  VideoLabel,
-  VideoInput,
-  NewContentVideoPreview,
-  RequiredField,
   NewContentAdditionalDetails,
-  NewContentDescription,
-  NewContentDescriptionLabel,
-  NewContentAttachments,
-  NewContentAttachmentsLabel,
-  NewContentAttachmentsList,
-  NewContentAttachmentsListBox,
-  NewAttachmentButton,
-  NewAttachmentButtonLabel,
-  NewContentDescriptionInput,
+  NewContentActions,
+  CancelButton,
+  CancelButtonLabel,
+  CreateContentButton,
+  CreateContentButtonLabel,
 } from './styles';
 
-const referenceOptions = [
-  {
-    id: '1',
-    title: 'Ensino Fundamental',
-  },
-];
-
 const NewContent = (): JSX.Element => {
+  const { teachingType, schoolGrade, subject, unity, user } = useSelector(
+    (store: State) => store,
+  );
+
+  /* Local State */
+
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [video, setVideo] = useState('');
+
+  const [contentWasCreated, setContentWasCreated] = useState(false);
+
+  /* Functions */
+
+  const createContent = async (): Promise<void> => {
+    await OnEducaAPI.post(
+      '/contents',
+      {
+        title,
+        description,
+        video,
+        unityId: unity.id,
+        index: 1,
+      },
+      {
+        headers: {
+          Authorization: user.token,
+        },
+      },
+    ).then(() => {
+      setContentWasCreated(true);
+    });
+  };
+
   return (
     <Page>
       <PageBox>
-        <SectionLabel backLink="/subjects" label="Novo conteúdo" />
+        <SectionLabel backLink="" label="Novo conteúdo" />
         <NewContentBox>
           <NewContentMainDetails>
-            <NewContentVideo>
-              <VideoLabel>
-                Link do vídeo<RequiredField>*</RequiredField>
-              </VideoLabel>
-              <VideoInput type="text" />
-              <NewContentVideoPreview />
-            </NewContentVideo>
+            <NewContentVideo video={video} setVideo={setVideo} />
             <NewContentNameAndReference>
-              <NewContentName>
-                <NameLabel>
-                  Nome do conteúdo<RequiredField>*</RequiredField>
-                </NameLabel>
-                <NameInput type="text" />
-              </NewContentName>
-              <NewContentReference>
-                <NewContentReferenceBox>
-                  <ReferenceLabel>Ensino</ReferenceLabel>
-                  <NewContentReferenceSelect>
-                    {referenceOptions.map((referenceOption) => (
-                      <NewContentReferenceSelectOption
-                        value={referenceOption.id}
-                      >
-                        {referenceOption.title}
-                      </NewContentReferenceSelectOption>
-                    ))}
-                  </NewContentReferenceSelect>
-                </NewContentReferenceBox>
-                <NewContentReferenceBox>
-                  <ReferenceLabel>Série</ReferenceLabel>
-                  <NewContentReferenceSelect>
-                    {referenceOptions.map((referenceOption) => (
-                      <NewContentReferenceSelectOption
-                        value={referenceOption.id}
-                      >
-                        {referenceOption.title}
-                      </NewContentReferenceSelectOption>
-                    ))}
-                  </NewContentReferenceSelect>
-                </NewContentReferenceBox>
-                <NewContentReferenceBox>
-                  <ReferenceLabel>Disciplina</ReferenceLabel>
-                  <NewContentReferenceSelect>
-                    {referenceOptions.map((referenceOption) => (
-                      <NewContentReferenceSelectOption
-                        value={referenceOption.id}
-                      >
-                        {referenceOption.title}
-                      </NewContentReferenceSelectOption>
-                    ))}
-                  </NewContentReferenceSelect>
-                </NewContentReferenceBox>
-                <NewContentReferenceBox>
-                  <ReferenceLabel>Unidade</ReferenceLabel>
-                  <NewContentReferenceSelect>
-                    {referenceOptions.map((referenceOption) => (
-                      <NewContentReferenceSelectOption
-                        value={referenceOption.id}
-                      >
-                        {referenceOption.title}
-                      </NewContentReferenceSelectOption>
-                    ))}
-                  </NewContentReferenceSelect>
-                </NewContentReferenceBox>
-              </NewContentReference>
+              <NewContentName title={title} setTitle={setTitle} />
+              <NewContentReferences
+                teachingType={teachingType}
+                schoolGrade={schoolGrade}
+                subject={subject}
+                unity={unity}
+              />
             </NewContentNameAndReference>
           </NewContentMainDetails>
           <NewContentAdditionalDetails>
-            <NewContentDescription>
-              <NewContentDescriptionLabel>
-                Descrição<RequiredField>*</RequiredField>
-              </NewContentDescriptionLabel>
-              <NewContentDescriptionInput />
-            </NewContentDescription>
-            <NewContentAttachments>
-              <NewContentAttachmentsLabel>Anexos</NewContentAttachmentsLabel>
-              <NewContentAttachmentsList>
-                <NewContentAttachmentsListBox>{}</NewContentAttachmentsListBox>
-              </NewContentAttachmentsList>
-              <NewAttachmentButton>
-                <NewAttachmentButtonLabel>Criar anexo</NewAttachmentButtonLabel>
-              </NewAttachmentButton>
-            </NewContentAttachments>
+            <NewContentDescription
+              description={description}
+              setDescription={setDescription}
+            />
+            <NewContentAttachments />
           </NewContentAdditionalDetails>
+          <NewContentActions>
+            <CancelButton to={`/units/${unity.id}`}>
+              <CancelButtonLabel>Cancelar</CancelButtonLabel>
+            </CancelButton>
+            <CreateContentButton onClick={() => createContent()}>
+              <CreateContentButtonLabel>
+                Criar conteúdo
+              </CreateContentButtonLabel>
+            </CreateContentButton>
+            {contentWasCreated && <Redirect to={`/units/${unity.id}`} />}
+          </NewContentActions>
         </NewContentBox>
       </PageBox>
     </Page>

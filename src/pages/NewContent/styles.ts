@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { inputSelect, inputText, paragraph } from '../../components';
+import { Link } from 'react-router-dom';
+import { inputText, paragraph } from '../../components';
 
 export const PageBox = styled.div`
   display: flex;
@@ -21,19 +22,19 @@ export const RequiredField = styled(paragraph)`
 
 /* Templates */
 
-const FlexColumnBox = styled.div`
+export const FlexColumnBox = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-const DetailBoxLabel = styled(paragraph)`
+export const DetailBoxLabel = styled(paragraph)`
   color: ${({ theme }) => theme.colors.textColor};
   font-weight: bold;
   margin-bottom: 10px;
   display: flex;
 `;
 
-const DetailBoxInput = styled(inputText)`
+export const DetailBoxInput = styled(inputText)`
   color: ${({ theme }) => theme.colors.textColor};
   background: ${({ theme }) => theme.colors.hoverColor};
   /* box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor}; */
@@ -76,95 +77,6 @@ export const NewContentNameAndReference = styled(FlexColumnBox)`
   }
 `;
 
-/* Content name */
-
-export const NewContentName = styled(FlexColumnBox)`
-  background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 20px;
-`;
-
-export const NameLabel = styled(DetailBoxLabel)``;
-
-export const NameInput = styled(DetailBoxInput)``;
-
-/* Content reference */
-
-export const NewContentReference = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 30vw;
-  background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
-  padding: 20px;
-
-  @media (max-width: 900px) {
-    height: 100%;
-  }
-`;
-
-export const NewContentReferenceBox = styled.div`
-  margin-bottom: 20px;
-
-  &:last-of-type {
-    margin-bottom: 0;
-  }
-`;
-
-export const ReferenceLabel = styled(DetailBoxLabel)``;
-
-export const NewContentReferenceSelect = styled(inputSelect)`
-  height: 40px;
-  width: 100%;
-  color: ${({ theme }) => theme.colors.boxColor};
-  background: ${({ theme }) => theme.colors.textColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
-  border: none;
-  padding: 0 10px;
-  border-right: 10px solid transparent;
-`;
-
-export const NewContentReferenceSelectOption = styled.option``;
-
-/* Content video */
-
-export const NewContentVideo = styled(FlexColumnBox)`
-  background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
-  padding: 20px;
-  margin-right: 40px;
-
-  @media (max-width: 900px) {
-    width: 100%;
-    margin-right: 0;
-  }
-`;
-
-export const VideoLabel = styled(DetailBoxLabel)``;
-
-export const VideoInput = styled(DetailBoxInput)``;
-
-export const NewContentVideoPreview = styled.iframe`
-  background: #000000;
-  /* box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor}; */
-  border-radius: 10px;
-  width: calc(60vw - 80px);
-  height: 30vw;
-  border: none;
-  margin-top: 20px;
-
-  @media (max-width: 900px) {
-    width: 100%;
-    height: calc(40vw);
-  }
-`;
-
 /* Content attachments */
 
 export const NewContentAdditionalDetails = styled.div`
@@ -174,71 +86,51 @@ export const NewContentAdditionalDetails = styled.div`
     flex-wrap: wrap;
   }
 `;
-export const NewContentDescription = styled(FlexColumnBox)`
-  background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
-  padding: 20px;
-  margin-right: 40px;
 
+/* Content actions */
+
+export const NewContentActions = styled.div`
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
   @media (max-width: 900px) {
-    width: 100%;
-    margin: 0;
+    flex-wrap: wrap;
   }
 `;
-export const NewContentDescriptionLabel = styled(DetailBoxLabel)``;
-export const NewContentDescriptionInput = styled.textarea`
-  min-width: calc(60vw - 80px);
-  max-width: calc(60vw - 80px);
-  min-height: 20vw;
-  max-height: 20vw;
-  color: ${({ theme }) => theme.colors.textColor};
-  background: ${({ theme }) => theme.colors.hoverColor};
-  /* box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor}; */
-  border-radius: 5px;
-  border: none;
-  padding: 10px;
-
-  @media (max-width: 900px) {
-    min-width: 100%;
-    max-width: 100%;
-    min-height: 40vw;
-    max-height: 40vw;
-  }
-`;
-export const NewContentAttachments = styled(FlexColumnBox)`
-  background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
-  padding: 20px;
-  width: calc(40vw - 80px);
-
-  @media (max-width: 900px) {
-    width: 100%;
-    margin-top: 40px;
-  }
-`;
-export const NewContentAttachmentsLabel = styled(DetailBoxLabel)``;
-export const NewContentAttachmentsList = styled.div`
-  margin-bottom: 10px;
-`;
-export const NewContentAttachmentsListBox = styled(FlexColumnBox)`
-  padding: 5px;
-  overflow: auto;
-  background: lightseagreen;
-  min-height: calc(20vw - 50px);
-
-  @media (max-width: 900px) {
-    min-height: calc(40vw - 50px);
-  }
-`;
-export const NewAttachmentButton = styled.button`
-  color: ${({ theme }) => theme.colors.boxColor};
-  background: ${({ theme }) => theme.colors.textColor};
+export const CancelButton = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 5px;
   border: none;
   height: 40px;
+  width: calc(50% - 20px);
   cursor: pointer;
+
+  @media (max-width: 900px) {
+    width: 100%;
+  }
+  background: ${({ theme }) => theme.similarColors.warningColor};
+  color: ${({ theme }) => theme.colors.whiteColor};
+
+  @media (max-width: 900px) {
+    margin-bottom: 20px;
+  }
 `;
-export const NewAttachmentButtonLabel = styled(paragraph)``;
+export const CancelButtonLabel = styled(paragraph)``;
+export const CreateContentButton = styled.button`
+  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  border-radius: 5px;
+  border: none;
+  height: 40px;
+  width: calc(50% - 20px);
+  cursor: pointer;
+
+  @media (max-width: 900px) {
+    width: 100%;
+  }
+  background: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.boxColor};
+`;
+export const CreateContentButtonLabel = styled(paragraph)``;
