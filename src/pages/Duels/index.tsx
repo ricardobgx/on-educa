@@ -113,7 +113,6 @@ const Duels = (): JSX.Element => {
                   maxParticipants={duel.maxParticipants}
                   participants={duel.participants}
                   ownerName={duel.ownerName}
-                  ownerPicture={duel.ownerPicture}
                   status={duel.status}
                   subjects={duel.subjects}
                 />
