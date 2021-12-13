@@ -1,6 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { State } from '../../../store';
+// import { useSelector } from 'react-redux';
+// import { State } from '../../../store';
 import {
   UnitsActionsBox,
   SearchUnits,
@@ -19,8 +19,18 @@ import {
   Container,
 } from './styles';
 
-const UnitsActions = (): JSX.Element => {
-  const { subject } = useSelector((store: State) => store);
+interface IUnitsActionsProps {
+  setNewUnityIsVisible: (value: boolean) => void;
+}
+
+const UnitsActions = (props: IUnitsActionsProps): JSX.Element => {
+  /* Props */
+
+  const { setNewUnityIsVisible } = props;
+
+  /* Global State */
+
+  // const { subject } = useSelector((store: State) => store);
 
   const isTeacher = true;
 
@@ -42,7 +52,7 @@ const UnitsActions = (): JSX.Element => {
       </SearchUnits>
       {isTeacher && (
         <UnitsActionsBox>
-          <NewUnityButton to={`/subjects/${subject.id}/new-unity`}>
+          <NewUnityButton onClick={() => setNewUnityIsVisible(true)}>
             <NewUnityButtonLabel>Nova unidade</NewUnityButtonLabel>
             <NewUnityButtonIcon className="fas fa-plus" />
           </NewUnityButton>
