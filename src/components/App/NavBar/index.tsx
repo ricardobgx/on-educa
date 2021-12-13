@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { clearUserVariables } from '../../../functions/user';
+import { ActionCreators, State } from '../../../store';
 
 import {
   NavBarBox,
@@ -15,11 +19,22 @@ import {
 } from './styles';
 
 const NavBar = (): JSX.Element => {
+  /* Global State */
+
+  const { user } = useSelector((store: State) => store);
+  const { id, profilePicture } = user;
+
+  const dispatch = useDispatch();
+  const { logoutUser, loadToken, loadUserType } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
+
   const logout = (): void => {
-    window.localStorage.removeItem('token');
-    window.localStorage.removeItem('email');
-    window.localStorage.removeItem('userType');
-    window.location.reload();
+    clearUserVariables();
+    logoutUser();
+    loadToken('');
+    loadUserType('student');
   };
 
   const [toggleMenuIcon, setToggleMenuIcon] = useState('bars');
@@ -42,8 +57,8 @@ const NavBar = (): JSX.Element => {
         <Title>Educa</Title>
       </Logo>
       <Actions style={{ right: menuRight }}>
-        <Action to="/profile/12345">
-          <UserPhoto src="https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg" />
+        <Action to={`/profile/${id}`}>
+          <UserPhoto src={profilePicture} />
           <IconLabel>Perfil</IconLabel>
         </Action>
         <Action to="/friends">
