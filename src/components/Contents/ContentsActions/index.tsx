@@ -1,4 +1,5 @@
 import React from 'react';
+import { IUnity } from '../../../interfaces/IUnity';
 import {
   ContentsActionsBox,
   SearchContents,
@@ -17,7 +18,15 @@ import {
   Container,
 } from './styles';
 
-const ContentsActions = (): JSX.Element => {
+interface IContentActionsProps {
+  unity: IUnity;
+}
+
+const ContentsActions = (props: IContentActionsProps): JSX.Element => {
+  /* Props */
+
+  const { unity } = props;
+
   const isTeacher = true;
 
   return (
@@ -38,7 +47,7 @@ const ContentsActions = (): JSX.Element => {
       </SearchContents>
       {isTeacher && (
         <ContentsActionsBox>
-          <NewContentButton to="/new-content">
+          <NewContentButton to={`/units/${unity.id}/new-content`}>
             <NewContentButtonLabel>Novo conteúdo</NewContentButtonLabel>
             <NewContentButtonIcon className="fas fa-plus" />
           </NewContentButton>
