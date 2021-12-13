@@ -7,6 +7,8 @@ import PerformanceChart, {
   IPerformanceChartProps,
 } from '../../components/Performance/PerformanceChart';
 import RankingUserCard from '../../components/Performance/RankingUserCard';
+import { DEFAULT_SCHOOL_GRADE } from '../../store/reducers/schoolGrade';
+import { DEFAULT_TEACHING_TYPE } from '../../store/reducers/teachingType';
 import { Page } from '../components';
 import {
   PageBox,
@@ -58,64 +60,100 @@ const Performance = (): JSX.Element => {
 
   const users: IUserCardProps[] = [
     {
+      id: 'fvsdv-vvsvdsd-svsvsdsvv-dssvds',
       email: 'teste1@gmail.com',
       name: 'Aluno Fulano Sicrano da Silva',
-      schoolGradeId: 'ssjvsdnskdnvsnvsvnsns',
-      isStudent: true,
       league: 'Diamond',
       isOnline: true,
       profilePicture:
         'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
+      schoolGrade: DEFAULT_SCHOOL_GRADE,
+      teachingType: DEFAULT_TEACHING_TYPE,
+      userType: 'student',
     },
     {
+      id: 'fvsdv-vvsvdsd-svsvsdsvv-dssvds',
       email: 'teste1@gmail.com',
       name: 'Aluno Fulano Sicrano da Silva',
-      schoolGradeId: 'ssjvsdnskdnvsnvsvnsns',
-      isStudent: true,
       league: 'Diamond',
       isOnline: true,
       profilePicture:
         'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
+      schoolGrade: DEFAULT_SCHOOL_GRADE,
+      teachingType: DEFAULT_TEACHING_TYPE,
+      userType: 'student',
     },
     {
+      id: 'fvsdv-vvsvdsd-svsvsdsvv-dssvds',
       email: 'teste1@gmail.com',
       name: 'Aluno Fulano Sicrano da Silva',
-      schoolGradeId: 'ssjvsdnskdnvsnvsvnsns',
-      isStudent: true,
       league: 'Diamond',
       isOnline: true,
       profilePicture:
         'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
+      schoolGrade: DEFAULT_SCHOOL_GRADE,
+      teachingType: DEFAULT_TEACHING_TYPE,
+      userType: 'student',
     },
     {
+      id: 'fvsdv-vvsvdsd-svsvsdsvv-dssvds',
       email: 'teste1@gmail.com',
       name: 'Aluno Fulano Sicrano da Silva',
-      schoolGradeId: 'ssjvsdnskdnvsnvsvnsns',
-      isStudent: true,
       league: 'Diamond',
       isOnline: true,
       profilePicture:
         'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
+      schoolGrade: DEFAULT_SCHOOL_GRADE,
+      teachingType: DEFAULT_TEACHING_TYPE,
+      userType: 'student',
     },
     {
+      id: 'fvsdv-vvsvdsd-svsvsdsvv-dssvds',
       email: 'teste1@gmail.com',
       name: 'Aluno Fulano Sicrano da Silva',
-      schoolGradeId: 'ssjvsdnskdnvsnvsvnsns',
-      isStudent: true,
       league: 'Diamond',
       isOnline: true,
       profilePicture:
         'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
+      schoolGrade: DEFAULT_SCHOOL_GRADE,
+      teachingType: DEFAULT_TEACHING_TYPE,
+      userType: 'student',
     },
     {
+      id: 'fvsdv-vvsvdsd-svsvsdsvv-dssvds',
       email: 'teste1@gmail.com',
       name: 'Aluno Fulano Sicrano da Silva',
-      schoolGradeId: 'ssjvsdnskdnvsnvsvnsns',
-      isStudent: true,
       league: 'Diamond',
       isOnline: true,
       profilePicture:
         'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
+      schoolGrade: DEFAULT_SCHOOL_GRADE,
+      teachingType: DEFAULT_TEACHING_TYPE,
+      userType: 'student',
+    },
+    {
+      id: 'fvsdv-vvsvdsd-svsvsdsvv-dssvds',
+      email: 'teste1@gmail.com',
+      name: 'Aluno Fulano Sicrano da Silva',
+      league: 'Diamond',
+      isOnline: true,
+      profilePicture:
+        'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
+      schoolGrade: DEFAULT_SCHOOL_GRADE,
+      teachingType: DEFAULT_TEACHING_TYPE,
+      userType: 'student',
+    },
+    {
+      id: 'fvsdv-vvsvdsd-svsvsdsvv-dssvds',
+      email: 'teste1@gmail.com',
+      name: 'Aluno Fulano Sicrano da Silva',
+      league: 'Diamond',
+      isOnline: true,
+      profilePicture:
+        'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
+      schoolGrade: DEFAULT_SCHOOL_GRADE,
+      teachingType: DEFAULT_TEACHING_TYPE,
+      userType: 'student',
     },
   ];
 
