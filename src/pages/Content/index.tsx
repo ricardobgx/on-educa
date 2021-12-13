@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -92,12 +93,6 @@ const Content = (): JSX.Element => {
   const { video } = content as IContent;
 
   const videoLinkSplitWatch = video.split('watch?v=');
-  // const videoLinkSplitE =
-  //   videoLinkSplitWatch[1] !== undefined
-  //     ? videoLinkSplitWatch[1].split('&')
-  //     : '';
-
-  console.log(videoLinkSplitWatch[1]);
 
   return (
     <Page>
@@ -123,8 +118,8 @@ const Content = (): JSX.Element => {
                   {subject.name} - {schoolGrade.index}º ano
                 </SchoolSubjectAndGradeLabel>
                 <ContentsBox>
-                  {units.map((unity: IUnity, index) => (
-                    <ContentAccordion key={unity.title} {...unity} />
+                  {units.map((unity: IUnity) => (
+                    <ContentAccordion key={unity.id} {...unity} />
                   ))}
                 </ContentsBox>
               </Contents>
