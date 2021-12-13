@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { paragraph } from '../../components';
 
 export const PageBox = styled.div`
