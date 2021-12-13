@@ -43,7 +43,7 @@ const darkTheme = {
 };
 
 const similarColors = {
-  warningColor: '#E00000',
+  warningColor: '#CB0000',
   rightQuestion: '#52b788',
   wrongQuestion: '#FF0404',
   skippedQuestion: '#126699',
