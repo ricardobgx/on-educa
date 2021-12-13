@@ -7,6 +7,7 @@ import { UnityAction } from '../actions/unity';
 export const DEFAULT_UNITY: IUnity = {
   id: '',
   title: '',
+  contents: [],
 };
 
 const unityReducer = (

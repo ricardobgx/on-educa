@@ -7,6 +7,7 @@ import { TeachingTypeAction } from '../actions/teachingType';
 export const DEFAULT_TEACHING_TYPE: ITeachingType = {
   id: '',
   title: '',
+  schoolGrades: [],
 };
 
 const teachingTypeReducer = (
