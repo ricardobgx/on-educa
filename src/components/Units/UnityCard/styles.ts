@@ -53,7 +53,6 @@ export const UnityAdditionalDetails = styled(UnityCardDetailsBox)`
   align-items: flex-end;
 
   @media (max-width: 900px) {
-    flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
   }
