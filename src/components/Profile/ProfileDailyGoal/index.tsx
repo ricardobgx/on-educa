@@ -14,8 +14,12 @@ import {
   DailyGoalProgressLabel,
 } from './styles';
 
-const ProfileDailyGoal = (): JSX.Element => {
-  const isOwner = true;
+interface IProfileDailyGoalProps {
+  isUserLogged: boolean;
+}
+
+const ProfileDailyGoal = (props: IProfileDailyGoalProps): JSX.Element => {
+  const { isUserLogged } = props;
 
   return (
     <Container>
@@ -26,7 +30,7 @@ const ProfileDailyGoal = (): JSX.Element => {
         </DailyGoalHeaderBox>
         <DailyGoalInfo>
           <DailyGoalValueLabel>300 XP</DailyGoalValueLabel>
-          {isOwner && (
+          {isUserLogged && (
             <EditDailyGoalValueButton>
               <EditDailyGoalValueIcon className="fas fa-pen" />
             </EditDailyGoalValueButton>
