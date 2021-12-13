@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { paragraph } from '../../../components';
 
 export const Container = styled.div`
@@ -31,10 +32,14 @@ export const UserInfoBox = styled.div`
   flex-direction: column;
   justify-content: space-between;
 `;
+export const UserReference = styled.div`
+  display: flex;
+`;
 export const UserName = styled(paragraph)`
   font-weight: bold;
 `;
 export const UserSchoolGrade = styled(paragraph)``;
+export const UserTeachingType = styled(paragraph)``;
 export const ProfileCardButton = styled.button`
   box-shadow: 0px 0px 0px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 5px;
@@ -42,9 +47,17 @@ export const ProfileCardButton = styled.button`
   min-height: 40px;
   margin-top: 10px;
 `;
-export const UpdateAccountButton = styled(ProfileCardButton)`
+export const UpdateAccountButton = styled(Link)`
   color: ${({ theme }) => theme.colors.boxColor};
   background: ${({ theme }) => theme.colors.textColor};
+  box-shadow: 0px 0px 0px ${({ theme }) => theme.colors.boxShadowColor};
+  border-radius: 5px;
+  border: none;
+  min-height: 40px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 export const UpdateAccountButtonLabel = styled(paragraph)``;
 export const AddFriendButton = styled(ProfileCardButton)`

@@ -1,4 +1,7 @@
 import React from 'react';
+import { isStudent } from '../../../functions/user';
+import { IUser } from '../../../interfaces/IUser';
+import { DEFAULT_TEACHING_TYPE } from '../../../store/reducers/teachingType';
 import {
   Container,
   UserInfo,
@@ -14,18 +17,29 @@ import {
   DeleteFriendButtonLabel,
   SendMessageButton,
   SendMessageButtonLabel,
+  UserTeachingType,
+  UserReference,
 } from './styles';
 
 interface IProfileCardProps {
-  name: string;
-  schoolGrade: number;
-  profilePicture: string;
+  user: IUser;
+  userType: string;
+  isUserLogged: boolean;
 }
 
 const ProfileCard = (props: IProfileCardProps): JSX.Element => {
-  const { name, profilePicture, schoolGrade } = props;
+  const { user, userType, isUserLogged } = props;
+  const {
+    name,
+    profilePicture,
+    teachingType: userTeachingType,
+    schoolGrade,
+  } = user;
 
-  const isOwner = false;
+  const teachingType = isStudent(userType)
+    ? schoolGrade.teachingType || DEFAULT_TEACHING_TYPE
+    : userTeachingType;
+
   const isFriend = true;
 
   return (
@@ -34,12 +48,17 @@ const ProfileCard = (props: IProfileCardProps): JSX.Element => {
         <UserPicture src={profilePicture} />
         <UserInfoBox>
           <UserName>{name}</UserName>
-          <UserSchoolGrade>{schoolGrade}º ano</UserSchoolGrade>
+          <UserReference>
+            {isStudent(userType) && (
+              <UserSchoolGrade>{schoolGrade.index}º ano</UserSchoolGrade>
+            )}
+            <UserTeachingType>{teachingType.title}</UserTeachingType>
+          </UserReference>
         </UserInfoBox>
       </UserInfo>
-      {isOwner ? (
+      {isUserLogged ? (
         <>
-          <UpdateAccountButton>
+          <UpdateAccountButton to="/update-profile">
             <UpdateAccountButtonLabel>Atualizar conta</UpdateAccountButtonLabel>
           </UpdateAccountButton>
         </>
