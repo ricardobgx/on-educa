@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -7,7 +9,6 @@ import SubjectSelect from '../../components/Learn/SubjectSelect';
 import TeachingTypeSelect from '../../components/Learn/TeachingTypeSelect';
 import { ISchoolGrade } from '../../interfaces/ISchoolGrade';
 import { ISubject } from '../../interfaces/ISubject';
-import { ITeachingType } from '../../interfaces/ITeachingType';
 import OnEducaAPI from '../../services/api';
 import { ActionCreators, State } from '../../store';
 import { DEFAULT_SUBJECT } from '../../store/reducers/subject';
