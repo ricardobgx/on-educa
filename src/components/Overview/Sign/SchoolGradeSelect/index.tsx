@@ -1,48 +1,31 @@
 import React from 'react';
-import { ISchoolGrade } from '../../../../interfaces/ISchoolGrade';
 import { ITeachingType } from '../../../../interfaces/ITeachingType';
-import {
-  SchoolGradeSelectBox,
-  TeachingType,
-  TeachingTypeLabel,
-  TeachingTypeSelect,
-  TeachingTypeOption,
-} from './styles';
+import { SchoolGradeSelectBox, SchoolGradeOption } from './styles';
 
 interface ISchoolGradeSelectProps {
-  userType: string;
   teachingTypes: ITeachingType[];
-  teachingTypeSelectedId: string;
-  setTeachingTypeSelectedId: (value: string) => void;
+  schoolGradeSelectedId: string;
+  setSchoolGradeSelectedId: (value: string) => void;
 }
 
 const SchoolGradeSelect = (props: ISchoolGradeSelectProps): JSX.Element => {
-  const {
-    userType,
-    teachingTypes,
-    teachingTypeSelectedId,
-    setTeachingTypeSelectedId,
-  } = props;
+  const { teachingTypes, schoolGradeSelectedId, setSchoolGradeSelectedId } =
+    props;
 
   return (
-    <SchoolGradeSelectBox>
-      <TeachingType>
-        <TeachingTypeLabel>
-          Qual nível você {userType === 'student' ? 'estuda' : 'ensina'}?
-        </TeachingTypeLabel>
-        <TeachingTypeSelect
-          value={teachingTypeSelectedId}
-          onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
-            setTeachingTypeSelectedId(event.target.value);
-          }}
-        >
-          {teachingTypes.map((teachingType) => (
-            <TeachingTypeOption value={teachingType.id}>
-              {teachingType.title}
-            </TeachingTypeOption>
-          ))}
-        </TeachingTypeSelect>
-      </TeachingType>
+    <SchoolGradeSelectBox
+      value={schoolGradeSelectedId}
+      onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
+        setSchoolGradeSelectedId(event.target.value);
+      }}
+    >
+      {teachingTypes.map((teachingType) => {
+        return teachingType.schoolGrades.map((schoolGrade) => (
+          <SchoolGradeOption key={schoolGrade.id} value={schoolGrade.id}>
+            {schoolGrade.index}º ano - {teachingType.title}
+          </SchoolGradeOption>
+        ));
+      })}
     </SchoolGradeSelectBox>
   );
 };
