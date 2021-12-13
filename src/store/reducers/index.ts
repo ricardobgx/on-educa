@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import aplicationReducer from './aplication';
 import contentReducer from './content';
 import duelReducer from './duel';
 import practiceReducer from './practice';
@@ -9,6 +10,7 @@ import unityReducer from './unity';
 import userReducer from './user';
 
 const reducers = combineReducers({
+  aplication: aplicationReducer,
   user: userReducer,
   content: contentReducer,
   practice: practiceReducer,

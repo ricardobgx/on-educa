@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
+export * from './aplication';
 export * from './user';
 export * from './content';
 export * from './practice';
