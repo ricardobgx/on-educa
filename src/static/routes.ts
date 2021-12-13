@@ -18,6 +18,7 @@ import Performance from '../pages/Performance';
 import Practice from '../pages/Practice';
 import Profile from '../pages/Profile';
 import Units from '../pages/Units';
+import UpdateProfile from '../pages/UpdateProfile';
 
 const routes: IRoute[] = [
   {
@@ -39,6 +40,12 @@ const routes: IRoute[] = [
     exact: true,
   },
   {
+    path: '/update-profile',
+    name: 'UpdateProfile',
+    component: UpdateProfile,
+    exact: true,
+  },
+  {
     path: '/learn',
     name: 'Learn',
     component: Learn,
@@ -51,7 +58,7 @@ const routes: IRoute[] = [
     exact: true,
   },
   {
-    path: '/new-content',
+    path: '/units/:id/new-content',
     name: 'NewContent',
     component: NewContent,
     exact: true,
