@@ -21,7 +21,7 @@ import {
 } from './styles';
 
 const UnityCard = (props: IUnity): JSX.Element => {
-  const { id, title } = props;
+  const { id, title, contents } = props;
 
   const dispatch = useDispatch();
 
@@ -47,7 +47,9 @@ const UnityCard = (props: IUnity): JSX.Element => {
           <UpdateDateIcon className="fas fa-clock" />
         </UpdateDate>
         <ContentsNumber>
-          <ContentsNumberLabel>11 conteúdos</ContentsNumberLabel>
+          <ContentsNumberLabel>
+            {contents.length} conteúdo(s)
+          </ContentsNumberLabel>
           <ContentsNumberIcon className="fas fa-book" />
         </ContentsNumber>
       </UnityAdditionalDetails>
