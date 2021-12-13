@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import {
   SignBox,
   SignLabel,
@@ -11,16 +13,32 @@ import {
 } from '../components';
 
 import OnEducaAPI from '../../../../services/api';
-import { ISignFormProps } from '../SignForm/interfaces';
 import SignTextInput from '../SignTextInput';
-import { IStudent } from '../../../../interfaces/IStudent';
-import { ITeacher } from '../../../../interfaces/ITeacher';
-import SchoolGradeSelect from '../SchoolGradeSelect';
-import { IUser } from '../../../../interfaces/IUser';
+import { ActionCreators, State } from '../../../../store';
+import {
+  invertUserType,
+  isStudent,
+  registerUser,
+} from '../../../../functions/user';
+import TeachingType from '../TeachingType';
+import { getTeachingTypes } from '../../../../functions/teachingType';
 import { ITeachingType } from '../../../../interfaces/ITeachingType';
+import SchoolGrade from '../SchoolGrade';
+import { IUserParams } from '../../../../dto/IUserParams';
 
-const Register = (props: ISignFormProps): JSX.Element => {
+interface IRegisterProps {
+  changeSignType: () => void;
+}
+
+const Register = (props: IRegisterProps): JSX.Element => {
   /* Global State */
+
+  const { aplication } = useSelector((store: State) => store);
+  const { userType } = aplication;
+
+  const dispatch = useDispatch();
+  const { enableLoadingAnimation, disableLoadingAnimation, loadUserType } =
+    bindActionCreators(ActionCreators, dispatch);
 
   /* Local State */
 
@@ -30,9 +48,9 @@ const Register = (props: ISignFormProps): JSX.Element => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [teachingTypes, setTeachingTypes] = useState([]);
-  // Student and Teacher
+  // Teacher
 
+  const [teachingTypes, setTeachingTypes] = useState<ITeachingType[]>([]);
   const [teachingTypeId, setTeachingTypeId] = useState('');
 
   // Student
@@ -45,11 +63,9 @@ const Register = (props: ISignFormProps): JSX.Element => {
   const [emailWarning, setEmailWarning] = useState(false);
   const [passwordWarning, setPasswordWarning] = useState(false);
 
-  // Registro
-
   /* Props */
 
-  const { isStudent, changeUserType, loadAnimation, userType } = props;
+  const { changeSignType } = props;
 
   /* Functions */
 
@@ -64,59 +80,52 @@ const Register = (props: ISignFormProps): JSX.Element => {
     return true;
   };
 
-  const registerStudent = async (studentParams: any): Promise<void> => {
-    await OnEducaAPI.post('/students/', studentParams).then(() => {
-      console.log(studentParams);
-    });
-
-    loadAnimation();
-  };
-
-  const registerTeacher = async (teacherParams: ITeacher): Promise<void> => {
-    await OnEducaAPI.post('/teachers/', teacherParams).then(() => {});
-
-    console.log(teacherParams);
-
-    loadAnimation();
-  };
-
-  const registerUser = async (): Promise<void> => {
-    console.log('cadastrando');
-    if (!fieldsIsValid()) return;
-
-    const userParams = {
-      name,
-      email,
-      password,
-      isOnline: true,
-      profilePicture: '',
-      league: '',
-    } as IUser;
-
-    loadAnimation();
-
-    console.log(userType);
-
-    if (isStudent()) await registerStudent({ ...userParams, teachingTypeId });
-    else await registerTeacher({ ...userParams, teachingTypeId });
-  };
-
-  const getTeachingTypes = async (): Promise<void> => {
-    await OnEducaAPI.get('/teachingtypes').then((response) => {
-      setTeachingTypes(response.data);
-      setTeachingTypeId(response.data[0].id);
-    });
-  };
-
-  useEffect(() => {
-    getTeachingTypes();
-  }, []);
-
   const clearFields = (): void => {
     setName('');
     setEmail('');
     setPassword('');
   };
+
+  const registerSucess = (): void => {
+    disableLoadingAnimation();
+    changeSignType();
+  };
+
+  const registerError = (): void => {
+    disableLoadingAnimation();
+  };
+
+  const register = async (): Promise<void> => {
+    if (!fieldsIsValid()) return;
+
+    const defaultUserParams = {
+      name,
+      email,
+      password,
+      isOnline: true,
+      profilePicture:
+        'https://i.pinimg.com/564x/b3/fa/4a/b3fa4a81540be0d7da526271c7395222.jpg',
+      league: 'Mestre',
+    } as IUserParams;
+
+    const userParams = isStudent(userType)
+      ? { ...defaultUserParams, schoolGradeId }
+      : { ...defaultUserParams, teachingTypeId };
+
+    enableLoadingAnimation();
+    await registerUser(
+      OnEducaAPI,
+      userType,
+      { ...userParams, teachingTypeId },
+      registerSucess,
+      registerError,
+    );
+    disableLoadingAnimation();
+  };
+
+  useEffect(() => {
+    getTeachingTypes(OnEducaAPI, setTeachingTypes);
+  }, []);
 
   return (
     <SignBox>
@@ -155,26 +164,33 @@ const Register = (props: ISignFormProps): JSX.Element => {
           setIsActive={setPasswordWarning}
           label="Informe sua senha"
         />
-        <SchoolGradeSelect
-          userType={userType}
-          teachingTypes={teachingTypes}
-          teachingTypeSelectedId={teachingTypeId}
-          setTeachingTypeSelectedId={setTeachingTypeId}
-        />
+        {isStudent(userType) ? (
+          <SchoolGrade
+            teachingTypes={teachingTypes}
+            schoolGradeSelectedId={schoolGradeId}
+            setSchoolGradeSelectedId={setSchoolGradeId}
+          />
+        ) : (
+          <TeachingType
+            teachingTypes={teachingTypes}
+            teachingTypeSelectedId={teachingTypeId}
+            setTeachingTypeSelectedId={setTeachingTypeId}
+          />
+        )}
       </SignFieldsBox>
       <SignActions>
-        <SignButton onClick={() => registerUser()}>
+        <SignButton onClick={() => register()}>
           <SignButtonLabel>Cadastrar</SignButtonLabel>
         </SignButton>
         <ChangeSignUser
           onClick={() => {
-            changeUserType();
+            loadUserType(invertUserType(userType));
             clearFields();
           }}
         >
           <ChangeSignUserLabel>
             Sou
-            {isStudent() ? ' professor' : ' aluno'}
+            {isStudent(userType) ? ' professor' : ' aluno'}
           </ChangeSignUserLabel>
         </ChangeSignUser>
       </SignActions>
