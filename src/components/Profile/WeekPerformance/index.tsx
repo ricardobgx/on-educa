@@ -11,8 +11,12 @@ import {
   SeeChartsButtonLabel,
 } from './styles';
 
-const WeekPerformance = (): JSX.Element => {
-  const isOwner = false;
+interface IWeekPerformanceProps {
+  isUserLogged: boolean;
+}
+
+const WeekPerformance = (props: IWeekPerformanceProps): JSX.Element => {
+  const { isUserLogged } = props;
 
   return (
     <Container>
@@ -30,8 +34,8 @@ const WeekPerformance = (): JSX.Element => {
           <UserLeagueLabel>Mestre</UserLeagueLabel>
         </UserLeague>
       </WeekPerformanceInfo>
-      {isOwner && (
-        <SeeChartsButton to="/performance">
+      {isUserLogged && (
+        <SeeChartsButton to="/performance/">
           <SeeChartsButtonLabel>Ver gráficos</SeeChartsButtonLabel>
         </SeeChartsButton>
       )}
