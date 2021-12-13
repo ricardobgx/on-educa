@@ -79,6 +79,7 @@ export default createGlobalStyle`
 
 export const paragraph = styled.p`
   font-size: ${({ theme }) => theme.fontsSize.computer};
+  letter-spacing: 1px;
 
   @media (min-width: 600px) and (max-width: 1150px) {
     font-size: ${({ theme }) => theme.fontsSize.tablet};
@@ -151,4 +152,20 @@ export const inputSelect = styled.select`
   @media (max-width: 600px) {
     font-size: ${({ theme }) => theme.fontsSize.smartphone};
   }
+`;
+
+// Containers
+
+export const SectionBox = styled.div`
+  border-radius: 10px;
+  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+`;
+
+// Buttons
+
+export const Button = styled.button`
+  min-height: 40px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  border: none;
 `;
