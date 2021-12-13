@@ -1,33 +1,36 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React from 'react';
-import UserCard, { IUserCardProps } from '../../App/UserCard';
+import { IUser } from '../../../interfaces/IUser';
+import UserCard from '../../App/UserCard';
 import { RankingPosition, RankingUserCardBox } from './styles';
 
-interface IRankingUserCardProps extends IUserCardProps {
+interface IRankingUserCardProps extends IUser {
   rankingPosition: number;
 }
 
 const RankingUserCard = (props: IRankingUserCardProps): JSX.Element => {
   const {
     rankingPosition,
+    id,
     email,
     name,
     profilePicture,
     isOnline,
     league,
-    isStudent,
-    schoolGradeId,
+    schoolGrade,
+    teachingType,
   } = props;
 
-  const userCardProps: IUserCardProps = {
+  const user: IUser = {
+    id,
     email,
     name,
     profilePicture,
     isOnline,
     league,
-    isStudent,
-    schoolGradeId,
+    schoolGrade,
+    teachingType,
   };
 
   return (
@@ -35,7 +38,7 @@ const RankingUserCard = (props: IRankingUserCardProps): JSX.Element => {
       <RankingPosition>
         {rankingPosition < 10 ? `0${rankingPosition}` : `${rankingPosition}`}
       </RankingPosition>
-      <UserCard {...userCardProps} />
+      <UserCard {...user} userType="student" />
     </RankingUserCardBox>
   );
 };
