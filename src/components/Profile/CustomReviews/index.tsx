@@ -3,12 +3,7 @@
 import React from 'react';
 import SectionLabel from '../../App/SectionLabel';
 import CustomReviewCard from '../CustomReviewCard';
-import {
-  Container,
-  CustomReviewsLabel,
-  CustomReviewsList,
-  CustomReviewsListBox,
-} from './styles';
+import { Container, CustomReviewsList, CustomReviewsListBox } from './styles';
 
 const customReviews = [
   {
