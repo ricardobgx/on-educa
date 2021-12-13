@@ -1,14 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React from 'react';
-import { IStudent } from '../../../interfaces/IStudent';
+import { IUser } from '../../../interfaces/IUser';
 import UserCard from '../../App/UserCard';
 import { ParticipantCardBox, KickOutButton, KickOutButtonIcon } from './styles';
 
-const ParticipantCard = (props: IStudent): JSX.Element => {
+const ParticipantCard = (props: IUser): JSX.Element => {
   return (
     <ParticipantCardBox>
-      <UserCard {...props} isStudent />
+      <UserCard {...props} userType="student" />
       <KickOutButton>
         <KickOutButtonIcon className="fas fa-times" />
       </KickOutButton>
