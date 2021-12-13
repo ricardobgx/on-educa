@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
 import { IContent } from '../../../interfaces/IContent';
 import { IUnity } from '../../../interfaces/IUnity';
