@@ -1,10 +1,19 @@
-import React, { useEffect } from 'react';
-// import { useRouteMatch } from 'react-router-dom';
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react-hooks/exhaustive-deps */
+
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useRouteMatch } from 'react-router-dom';
 import SectionLabel from '../../components/App/SectionLabel';
 import CustomReviews from '../../components/Profile/CustomReviews';
 import ProfileCard from '../../components/Profile/ProfileCard';
 import ProfileDailyGoal from '../../components/Profile/ProfileDailyGoal';
 import WeekPerformance from '../../components/Profile/WeekPerformance';
+import { findUserType, isUserLogged } from '../../functions/user';
+import { IUser } from '../../interfaces/IUser';
+import OnEducaAPI from '../../services/api';
+import { State } from '../../store';
+import { DEFAULT_USER } from '../../store/reducers/user';
 import { Page } from '../components';
 import {
   MainDetails,
@@ -13,25 +22,37 @@ import {
   WeeklyPerformanceSummary,
 } from './styles';
 
-// interface IProfileRouteProps {
-//   id: string;
-// }
+interface IProfileRouteProps {
+  id: string;
+}
 
 const Profile = (): JSX.Element => {
-  // const route = useRouteMatch();
-  // const { id } = route.params as IProfileRouteProps;
+  /* Global State */
+
+  const { user: loggedUser, aplication } = useSelector((store: State) => store);
+  const { id: loggedUserId } = loggedUser;
+  const { userType: loggedUserType, token } = aplication;
+
+  /* Local State */
+
+  const [user, setUser] = useState<IUser>(DEFAULT_USER);
+  const [userType, setUserType] = useState(loggedUserType);
+
+  /* Route params */
+
+  const route = useRouteMatch();
+  const { id } = route.params as IProfileRouteProps;
+
+  /* Functions */
+
+  const findProfileUserType = async (): Promise<void> => {
+    await findUserType(OnEducaAPI, id, setUser, setUserType, token);
+  };
 
   useEffect(() => {
-    // if (id === '12345') {
-    // }
-  }, []);
-
-  const userTest = {
-    name: 'Aluno Fulano Sicrano da Silva',
-    profilePicture:
-      'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
-    schoolGrade: 2,
-  };
+    if (!isUserLogged(loggedUserId, id)) findProfileUserType();
+    else setUser(loggedUser);
+  }, [id, loggedUser]);
 
   return (
     <Page>
@@ -40,14 +61,18 @@ const Profile = (): JSX.Element => {
           <MainDetails>
             <SectionLabel backLink="/home" label="Perfil" />
             <ProfileCard
-              name={userTest.name}
-              profilePicture={userTest.profilePicture}
-              schoolGrade={userTest.schoolGrade}
+              user={user}
+              userType={userType}
+              isUserLogged={isUserLogged(loggedUserId, user.id as string)}
             />
           </MainDetails>
           <WeeklyPerformanceSummary>
-            <ProfileDailyGoal />
-            <WeekPerformance />
+            <ProfileDailyGoal
+              isUserLogged={isUserLogged(loggedUserId, user.id as string)}
+            />
+            <WeekPerformance
+              isUserLogged={isUserLogged(loggedUserId, user.id as string)}
+            />
           </WeeklyPerformanceSummary>
         </UserDetails>
         <CustomReviews />
