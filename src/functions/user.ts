@@ -130,3 +130,41 @@ export const getUser = async (
     setUserState(response.data);
   });
 };
+
+// Find all
+
+export const getUsers = async (
+  API: AxiosInstance,
+  userType: string,
+  setUserState: (user: IUser[]) => void,
+  token: string,
+): Promise<void> => {
+  await API.get(`/${userType}s`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then((response) => {
+    setUserState(response.data);
+  });
+};
+
+// Update user
+
+export const updateUser = async (
+  API: AxiosInstance,
+  userType: string,
+  id: string,
+  userParams: any,
+  token: string,
+  updateSucess: () => void,
+  updateError: () => void,
+): Promise<void> => {
+  await API.put(`/${userType}s/${id}`, userParams, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then(
+    () => updateSucess(),
+    () => updateError(),
+  );
+};
