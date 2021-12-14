@@ -14,7 +14,8 @@ import { PageBox, ContentsBox } from './styles';
 const Contents = (): JSX.Element => {
   const [contents, setContents] = useState<IContent[]>([]);
 
-  const { unity, subject } = useSelector((store: State) => store);
+  const { unity, subject, aplication } = useSelector((store: State) => store);
+  const { userType } = aplication;
 
   const getContents = async (
     setContentsState: (value: IContent[]) => void,
@@ -38,7 +39,7 @@ const Contents = (): JSX.Element => {
           label={`${unity.title} - conteúdos`}
         />
         <ContentsBox>
-          <ContentsActions unity={unity} />
+          <ContentsActions userType={userType} unity={unity} />
           <ContentsList contents={contents} />
         </ContentsBox>
       </PageBox>
