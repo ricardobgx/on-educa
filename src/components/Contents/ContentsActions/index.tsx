@@ -1,4 +1,5 @@
 import React from 'react';
+import { isStudent } from '../../../functions/user';
 import { IUnity } from '../../../interfaces/IUnity';
 import {
   ContentsActionsBox,
@@ -20,14 +21,13 @@ import {
 
 interface IContentActionsProps {
   unity: IUnity;
+  userType: string;
 }
 
 const ContentsActions = (props: IContentActionsProps): JSX.Element => {
   /* Props */
 
-  const { unity } = props;
-
-  const isTeacher = true;
+  const { unity, userType } = props;
 
   return (
     <Container>
@@ -45,7 +45,7 @@ const ContentsActions = (props: IContentActionsProps): JSX.Element => {
           <SearchContentsButtonIcon className="fas fa-search" />
         </SearchContentsButton>
       </SearchContents>
-      {isTeacher && (
+      {!isStudent(userType) && (
         <ContentsActionsBox>
           <NewContentButton to={`/units/${unity.id}/new-content`}>
             <NewContentButtonLabel>Novo conteúdo</NewContentButtonLabel>
