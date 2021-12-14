@@ -1,6 +1,7 @@
 import React from 'react';
 import { isStudent } from '../../../functions/user';
 import { IUser } from '../../../interfaces/IUser';
+import { DEFAULT_SCHOOL_GRADE } from '../../../store/reducers/schoolGrade';
 import {
   UserCardBox,
   UserDetails,
@@ -19,7 +20,14 @@ export interface IUserCardProps extends IUser {
 }
 
 const UserCard = (props: IUserCardProps): JSX.Element => {
-  const { name, profilePicture, schoolGrade, userType } = props;
+  const {
+    name,
+    profilePicture,
+    schoolGrade: loggedUserSchoolGrade,
+    userType,
+  } = props;
+
+  const schoolGrade = loggedUserSchoolGrade || DEFAULT_SCHOOL_GRADE;
 
   return (
     <UserCardBox>
