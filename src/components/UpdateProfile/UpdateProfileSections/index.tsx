@@ -29,6 +29,7 @@ const UpdateProfileSections = (
     setEmail,
     newPassword,
     setNewPassword,
+    userType,
   } = props;
 
   const updatePersonalInformationsProps = {
@@ -40,6 +41,7 @@ const UpdateProfileSections = (
     setSelectedTeachingTypeId,
     selectedSchoolGradeId,
     setSelectedSchoolGradeId,
+    userType,
   };
 
   const updateAccountInformationsProps = {

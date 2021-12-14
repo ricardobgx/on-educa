@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { Button, paragraph } from '../../../components';
 
 export const UpdateProfileActionsBox = styled.div`
@@ -7,6 +8,7 @@ export const UpdateProfileActionsBox = styled.div`
   flex-wrap: wrap;
 `;
 const UpdateProfileActionButton = styled(Button)`
+  cursor: pointer;
   width: calc(50% - 20px);
 
   @media (max-width: 900px) {
@@ -17,9 +19,25 @@ const UpdateProfileActionButton = styled(Button)`
     }
   }
 `;
-export const CancelUpdateProfileButton = styled(UpdateProfileActionButton)`
+export const CancelUpdateProfileButton = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: ${({ theme }) => theme.colors.boxColor};
   color: ${({ theme }) => theme.colors.textColor};
+  min-height: 40px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  border: none;
+  width: calc(50% - 20px);
+
+  @media (max-width: 900px) {
+    width: 100%;
+
+    &:nth-child(2) {
+      margin-top: 20px;
+    }
+  }
 `;
 export const CancelUpdateProfileButtonLabel = styled(paragraph)``;
 export const ConfirmUpdateProfileButton = styled(UpdateProfileActionButton)`

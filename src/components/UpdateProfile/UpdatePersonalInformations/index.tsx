@@ -1,4 +1,5 @@
 import React from 'react';
+import { isStudent } from '../../../functions/user';
 import {
   UpdateProfileSection,
   UpdateProfileSectionBox,
@@ -6,6 +7,7 @@ import {
   UpdateProfileSectionLabel,
   UpdateProfileSectionsBox,
 } from '../styles';
+import UpdateProfileSchoolGrade from '../UpdateProfileSchoolGrade';
 import UpdateProfileTeachingType from '../UpdateProfileTeachingType';
 import UpdateProfileTextInputSection from '../UpdateProfileTextInputSection';
 import {
@@ -26,6 +28,7 @@ export interface IUpdatePersonalInformationsProps {
   setSelectedTeachingTypeId: (value: string) => void;
   selectedSchoolGradeId: string;
   setSelectedSchoolGradeId: (value: string) => void;
+  userType: string;
 }
 
 const UpdatePersonalInformations = (
@@ -40,6 +43,7 @@ const UpdatePersonalInformations = (
     setSelectedTeachingTypeId,
     selectedSchoolGradeId,
     setSelectedSchoolGradeId,
+    userType,
   } = props;
 
   return (
@@ -74,10 +78,17 @@ const UpdatePersonalInformations = (
           value={name}
           setValue={setName}
         />
-        <UpdateProfileTeachingType
-          selectedTeachingTypeId={selectedTeachingTypeId}
-          setSelectedTeachingTypeId={setSelectedTeachingTypeId}
-        />
+        {isStudent(userType) ? (
+          <UpdateProfileSchoolGrade
+            selectedSchoolGradeId={selectedSchoolGradeId}
+            setSelectedSchoolGradeId={setSelectedSchoolGradeId}
+          />
+        ) : (
+          <UpdateProfileTeachingType
+            selectedTeachingTypeId={selectedTeachingTypeId}
+            setSelectedTeachingTypeId={setSelectedTeachingTypeId}
+          />
+        )}
       </UpdateProfileSectionsBox>
     </UpdateProfileSection>
   );
