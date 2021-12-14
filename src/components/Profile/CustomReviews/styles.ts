@@ -11,6 +11,7 @@ export const Container = styled.div`
 
   @media (max-width: 1150px) {
     width: 100%;
+    min-height: unset;
   }
 `;
 export const CustomReviewsLabel = styled(paragraph)`
@@ -34,6 +35,6 @@ export const CustomReviewsListBox = styled.div`
 
   @media (max-width: 1150px) {
     min-height: unset;
-    max-height: 300px;
+    max-height: 350px;
   }
 `;
