@@ -18,7 +18,7 @@ const UpdateProfile = (): JSX.Element => {
 
   const { user, aplication } = useSelector((store: State) => store);
   const { id } = user;
-  const { userType } = aplication;
+  const { userType, token } = aplication;
 
   /* Local State */
 
@@ -28,6 +28,30 @@ const UpdateProfile = (): JSX.Element => {
   const [selectedSchoolGradeId, setSelectedSchoolGradeId] = useState('');
   const [email, setEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');
+
+  useEffect(() => {
+    setProfilePicture(user.profilePicture);
+    setName(user.name);
+    if (!isStudent(userType)) {
+      const teachingType = user.teachingType || DEFAULT_TEACHING_TYPE;
+      setSelectedTeachingTypeId(teachingType.id);
+    } else {
+      const schoolGrade = user.schoolGrade || DEFAULT_SCHOOL_GRADE;
+      setSelectedSchoolGradeId(schoolGrade.id);
+    }
+    setEmail(user.email);
+  }, [user]);
+
+  const updateProfileActionsProps = {
+    id,
+    email,
+    name,
+    password: newPassword,
+    profilePicture,
+    schoolGradeId: selectedSchoolGradeId,
+    userType,
+    token,
+  };
 
   const updateProfileSectionProps = {
     profilePicture,
@@ -42,20 +66,8 @@ const UpdateProfile = (): JSX.Element => {
     setEmail,
     newPassword,
     setNewPassword,
+    userType,
   };
-
-  useEffect(() => {
-    setProfilePicture(user.profilePicture);
-    setName(user.name);
-    if (isStudent(userType)) {
-      const teachingType = user.teachingType || DEFAULT_TEACHING_TYPE;
-      setSelectedTeachingTypeId(teachingType.id);
-    } else {
-      const schoolGrade = user.schoolGrade || DEFAULT_SCHOOL_GRADE;
-      setSelectedSchoolGradeId(schoolGrade.id);
-    }
-    setEmail(user.email);
-  }, [user]);
 
   return (
     <Page>
@@ -63,7 +75,7 @@ const UpdateProfile = (): JSX.Element => {
         <SectionLabel label="Atualizar conta" backLink={`/profile/${id}`} />
         <UpdateProfileBox>
           <UpdateProfileSections {...updateProfileSectionProps} />
-          <UpdateProfileActions />
+          <UpdateProfileActions {...updateProfileActionsProps} />
         </UpdateProfileBox>
       </PageBox>
     </Page>
