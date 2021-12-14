@@ -7,6 +7,7 @@ import { RankingPosition, RankingUserCardBox } from './styles';
 
 interface IRankingUserCardProps extends IUser {
   rankingPosition: number;
+  userType: string;
 }
 
 const RankingUserCard = (props: IRankingUserCardProps): JSX.Element => {
@@ -20,6 +21,7 @@ const RankingUserCard = (props: IRankingUserCardProps): JSX.Element => {
     league,
     schoolGrade,
     teachingType,
+    userType,
   } = props;
 
   const user: IUser = {
@@ -38,7 +40,7 @@ const RankingUserCard = (props: IRankingUserCardProps): JSX.Element => {
       <RankingPosition>
         {rankingPosition < 10 ? `0${rankingPosition}` : `${rankingPosition}`}
       </RankingPosition>
-      <UserCard {...user} userType="student" />
+      <UserCard {...user} userType={userType} />
     </RankingUserCardBox>
   );
 };
