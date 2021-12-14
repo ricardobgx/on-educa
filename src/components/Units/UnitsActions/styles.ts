@@ -22,6 +22,7 @@ export const UnitsActionsBox = styled.div`
   @media (max-width: 700px) {
     position: relative;
     flex-wrap: wrap;
+    margin-top: 20px;
   }
 `;
 export const NewUnityButton = styled.button`
@@ -58,7 +59,6 @@ export const SearchUnits = styled.div`
 
   @media (max-width: 700px) {
     width: 100%;
-    margin-bottom: 20px;
   }
 `;
 export const SearchUnitsInputBox = styled.div`

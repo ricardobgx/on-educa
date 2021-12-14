@@ -1,4 +1,5 @@
 import React from 'react';
+import { isStudent } from '../../../functions/user';
 // import { useSelector } from 'react-redux';
 // import { State } from '../../../store';
 import {
@@ -20,19 +21,14 @@ import {
 } from './styles';
 
 interface IUnitsActionsProps {
+  userType: string;
   setNewUnityIsVisible: (value: boolean) => void;
 }
 
 const UnitsActions = (props: IUnitsActionsProps): JSX.Element => {
   /* Props */
 
-  const { setNewUnityIsVisible } = props;
-
-  /* Global State */
-
-  // const { subject } = useSelector((store: State) => store);
-
-  const isTeacher = true;
+  const { userType, setNewUnityIsVisible } = props;
 
   return (
     <Container>
@@ -50,7 +46,7 @@ const UnitsActions = (props: IUnitsActionsProps): JSX.Element => {
           <SearchUnitsButtonIcon className="fas fa-search" />
         </SearchUnitsButton>
       </SearchUnits>
-      {isTeacher && (
+      {!isStudent(userType) && (
         <UnitsActionsBox>
           <NewUnityButton onClick={() => setNewUnityIsVisible(true)}>
             <NewUnityButtonLabel>Nova unidade</NewUnityButtonLabel>
