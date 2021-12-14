@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import SectionLabel from '../../components/App/SectionLabel';
-import SchoolGradeSelect from '../../components/Learn/SchoolGradeSelect';
-import SubjectSelect from '../../components/Learn/SubjectSelect';
-import TeachingTypeSelect from '../../components/Learn/TeachingTypeSelect';
+import SchoolGradeSelect from '../../components/Subjects/SchoolGradeSelect';
+import SubjectSelect from '../../components/Subjects/SubjectSelect';
+import TeachingTypeSelect from '../../components/Subjects/TeachingTypeSelect';
 import { ISchoolGrade } from '../../interfaces/ISchoolGrade';
 import { ISubject } from '../../interfaces/ISubject';
 import OnEducaAPI from '../../services/api';
@@ -17,13 +17,13 @@ import {
   CancelButton,
   CancelButtonLabel,
   PageBox,
-  SelectLearnDetails,
+  SelectSubjectsDetails,
   SelectUnityButton,
   SelectUnityButtonLabel,
-  LearnActions,
+  SubjectsActions,
 } from './styles';
 
-const Learn = (): JSX.Element => {
+const Subjects = (): JSX.Element => {
   const sortSchoolGrades = (
     schoolGradeA: ISchoolGrade,
     schoolGradeB: ISchoolGrade,
@@ -98,7 +98,7 @@ const Learn = (): JSX.Element => {
     <Page>
       <PageBox>
         <SectionLabel backLink="/home" label="Selecione a disciplina" />
-        <SelectLearnDetails>
+        <SelectSubjectsDetails>
           <TeachingTypeSelect
             label="Selecione o ensino"
             teachingTypes={teachingTypes}
@@ -117,8 +117,8 @@ const Learn = (): JSX.Element => {
             subjectSelectedId={subject.id}
             setSubjectSelected={loadSubject}
           />
-        </SelectLearnDetails>
-        <LearnActions>
+        </SelectSubjectsDetails>
+        <SubjectsActions>
           <CancelButton to="/home">
             <CancelButtonLabel>Cancelar</CancelButtonLabel>
           </CancelButton>
@@ -130,10 +130,10 @@ const Learn = (): JSX.Element => {
           >
             <SelectUnityButtonLabel>Continuar</SelectUnityButtonLabel>
           </SelectUnityButton>
-        </LearnActions>
+        </SubjectsActions>
       </PageBox>
     </Page>
   );
 };
 
-export default Learn;
+export default Subjects;

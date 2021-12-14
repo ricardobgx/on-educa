@@ -14,7 +14,7 @@ export const PageBox = styled.div`
   }
 `;
 
-export const SelectLearnDetails = styled.div`
+export const SelectSubjectsDetails = styled.div`
   display: flex;
   margin: 20px;
 
@@ -22,7 +22,7 @@ export const SelectLearnDetails = styled.div`
     flex-direction: column;
   }
 `;
-export const LearnActions = styled.div`
+export const SubjectsActions = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 20px;

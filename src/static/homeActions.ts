@@ -9,13 +9,13 @@ export const homeActions: IHomeAction[] = [
   {
     icon: 'fas fa-book',
     label: 'Estudar',
-    link: '/learn',
+    link: '/subjects',
     userType: 'student',
   },
   {
     icon: 'fas fa-book',
     label: 'Ensinar',
-    link: '/teach',
+    link: '/subjects',
     userType: 'teacher',
   },
   {
