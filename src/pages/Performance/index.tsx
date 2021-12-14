@@ -1,14 +1,17 @@
 /* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react-hooks/exhaustive-deps */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import SectionLabel from '../../components/App/SectionLabel';
-import { IUserCardProps } from '../../components/App/UserCard';
 import PerformanceChart, {
   IPerformanceChartProps,
 } from '../../components/Performance/PerformanceChart';
 import RankingUserCard from '../../components/Performance/RankingUserCard';
-import { DEFAULT_SCHOOL_GRADE } from '../../store/reducers/schoolGrade';
-import { DEFAULT_TEACHING_TYPE } from '../../store/reducers/teachingType';
+import { getUsers } from '../../functions/user';
+import { IUser } from '../../interfaces/IUser';
+import OnEducaAPI from '../../services/api';
+import { State } from '../../store';
 import { Page } from '../components';
 import {
   PageBox,
@@ -58,104 +61,14 @@ const Performance = (): JSX.Element => {
     ],
   };
 
-  const users: IUserCardProps[] = [
-    {
-      id: 'fvsdv-vvsvdsd-svsvsdsvv-dssvds',
-      email: 'teste1@gmail.com',
-      name: 'Aluno Fulano Sicrano da Silva',
-      league: 'Diamond',
-      isOnline: true,
-      profilePicture:
-        'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
-      schoolGrade: DEFAULT_SCHOOL_GRADE,
-      teachingType: DEFAULT_TEACHING_TYPE,
-      userType: 'student',
-    },
-    {
-      id: 'fvsdv-vvsvdsd-svsvsdsvv-dssvds',
-      email: 'teste1@gmail.com',
-      name: 'Aluno Fulano Sicrano da Silva',
-      league: 'Diamond',
-      isOnline: true,
-      profilePicture:
-        'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
-      schoolGrade: DEFAULT_SCHOOL_GRADE,
-      teachingType: DEFAULT_TEACHING_TYPE,
-      userType: 'student',
-    },
-    {
-      id: 'fvsdv-vvsvdsd-svsvsdsvv-dssvds',
-      email: 'teste1@gmail.com',
-      name: 'Aluno Fulano Sicrano da Silva',
-      league: 'Diamond',
-      isOnline: true,
-      profilePicture:
-        'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
-      schoolGrade: DEFAULT_SCHOOL_GRADE,
-      teachingType: DEFAULT_TEACHING_TYPE,
-      userType: 'student',
-    },
-    {
-      id: 'fvsdv-vvsvdsd-svsvsdsvv-dssvds',
-      email: 'teste1@gmail.com',
-      name: 'Aluno Fulano Sicrano da Silva',
-      league: 'Diamond',
-      isOnline: true,
-      profilePicture:
-        'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
-      schoolGrade: DEFAULT_SCHOOL_GRADE,
-      teachingType: DEFAULT_TEACHING_TYPE,
-      userType: 'student',
-    },
-    {
-      id: 'fvsdv-vvsvdsd-svsvsdsvv-dssvds',
-      email: 'teste1@gmail.com',
-      name: 'Aluno Fulano Sicrano da Silva',
-      league: 'Diamond',
-      isOnline: true,
-      profilePicture:
-        'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
-      schoolGrade: DEFAULT_SCHOOL_GRADE,
-      teachingType: DEFAULT_TEACHING_TYPE,
-      userType: 'student',
-    },
-    {
-      id: 'fvsdv-vvsvdsd-svsvsdsvv-dssvds',
-      email: 'teste1@gmail.com',
-      name: 'Aluno Fulano Sicrano da Silva',
-      league: 'Diamond',
-      isOnline: true,
-      profilePicture:
-        'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
-      schoolGrade: DEFAULT_SCHOOL_GRADE,
-      teachingType: DEFAULT_TEACHING_TYPE,
-      userType: 'student',
-    },
-    {
-      id: 'fvsdv-vvsvdsd-svsvsdsvv-dssvds',
-      email: 'teste1@gmail.com',
-      name: 'Aluno Fulano Sicrano da Silva',
-      league: 'Diamond',
-      isOnline: true,
-      profilePicture:
-        'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
-      schoolGrade: DEFAULT_SCHOOL_GRADE,
-      teachingType: DEFAULT_TEACHING_TYPE,
-      userType: 'student',
-    },
-    {
-      id: 'fvsdv-vvsvdsd-svsvsdsvv-dssvds',
-      email: 'teste1@gmail.com',
-      name: 'Aluno Fulano Sicrano da Silva',
-      league: 'Diamond',
-      isOnline: true,
-      profilePicture:
-        'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
-      schoolGrade: DEFAULT_SCHOOL_GRADE,
-      teachingType: DEFAULT_TEACHING_TYPE,
-      userType: 'student',
-    },
-  ];
+  const { aplication, user: loggedUser } = useSelector((store: State) => store);
+  const { userType, token } = aplication;
+
+  const [users, setUsers] = useState<IUser[]>([]);
+
+  useEffect(() => {
+    getUsers(OnEducaAPI, userType, setUsers, token);
+  }, [loggedUser]);
 
   return (
     <Page>
@@ -197,7 +110,11 @@ const Performance = (): JSX.Element => {
           <UsersList>
             <UsersListBox>
               {users.map((user, index) => (
-                <RankingUserCard {...user} rankingPosition={index + 1} />
+                <RankingUserCard
+                  {...user}
+                  userType={userType}
+                  rankingPosition={index + 1}
+                />
               ))}
             </UsersListBox>
           </UsersList>
