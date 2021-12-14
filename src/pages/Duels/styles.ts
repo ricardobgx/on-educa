@@ -37,6 +37,7 @@ export const DuelsActionsBox = styled.div`
   @media (max-width: 700px) {
     position: relative;
     flex-wrap: wrap;
+    margin-top: 20px;
   }
 `;
 export const NewDuelButton = styled(Link)`
@@ -51,11 +52,11 @@ export const NewDuelButton = styled(Link)`
   border-radius: 5px;
   padding: 0 20px;
 
-  @media (min-width: 400px) and (max-width: 700px) {
+  @media (min-width: 600px) and (max-width: 700px) {
     width: calc(50% - 10px);
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 600px) {
     width: 100%;
     margin-bottom: 20px;
   }
@@ -72,7 +73,6 @@ export const SearchDuels = styled.div`
 
   @media (max-width: 700px) {
     width: 100%;
-    margin-bottom: 20px;
   }
 `;
 export const SearchDuelsInputBox = styled.div`
@@ -127,11 +127,11 @@ export const DuelsFiltersButton = styled.button`
   border-radius: 5px;
   padding: 0 20px;
 
-  @media (min-width: 400px) and (max-width: 700px) {
+  @media (min-width: 600px) and (max-width: 700px) {
     width: calc(50% - 10px);
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 600px) {
     width: 100%;
   }
 `;
