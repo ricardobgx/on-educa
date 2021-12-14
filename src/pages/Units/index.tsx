@@ -24,7 +24,8 @@ const Units = (): JSX.Element => {
   const route = useRouteMatch();
   const { id } = route.params as IUnitsRouteParams;
 
-  const { subject } = useSelector((store: State) => store);
+  const { subject, aplication } = useSelector((store: State) => store);
+  const { userType } = aplication;
 
   const getUnits = async (
     API: AxiosInstance,
@@ -44,7 +45,10 @@ const Units = (): JSX.Element => {
       <PageBox>
         <SectionLabel backLink="/learn" label={`${subject.name} - unidades`} />
         <UnitsBox>
-          <UnitsActions setNewUnityIsVisible={setNewUnityIsVisible} />
+          <UnitsActions
+            userType={userType}
+            setNewUnityIsVisible={setNewUnityIsVisible}
+          />
           {newUnityIsVisible && (
             <NewUnity
               setNewUnityIsVisible={setNewUnityIsVisible}
