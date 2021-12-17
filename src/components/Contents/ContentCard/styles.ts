@@ -2,7 +2,19 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { paragraph, smallIcon } from '../../../components';
 
-export const ContentCardBox = styled(Link)`
+export const ContentCardBox = styled.div`
+  display: flex;
+  margin-bottom: 20px;
+
+  &:last-of-type {
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
+`;
+export const ContentCardDetails = styled(Link)`
   display: flex;
   justify-content: space-between;
   color: ${({ theme }) => theme.colors.textColor};
@@ -11,6 +23,7 @@ export const ContentCardBox = styled(Link)`
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 20px;
+  width: 100%;
 
   &:last-of-type {
     margin: 0;
@@ -23,7 +36,9 @@ export const ContentCardBox = styled(Link)`
 const ContentCardDetailsBox = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 33%;
+  height: 100%;
 
   @media (max-width: 900px) {
     width: unset;
@@ -53,7 +68,6 @@ export const ContentAdditionalDetails = styled(ContentCardDetailsBox)`
   align-items: flex-end;
 
   @media (max-width: 900px) {
-    flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
   }

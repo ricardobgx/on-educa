@@ -34,7 +34,6 @@ const NavBar = (): JSX.Element => {
     clearUserVariables();
     logoutUser();
     loadToken('');
-    loadUserType('student');
   };
 
   const [toggleMenuIcon, setToggleMenuIcon] = useState('bars');

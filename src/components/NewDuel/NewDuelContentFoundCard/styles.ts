@@ -24,6 +24,7 @@ export const AddContentButton = styled.button`
   border: none;
   color: ${({ theme }) => theme.colors.boxColor};
   margin-left: 10px;
+  cursor: pointer;
 
   @media (max-width: 700px) {
     margin: 0;

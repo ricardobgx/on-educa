@@ -1,11 +1,19 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
+import { AxiosError } from 'axios';
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 import SectionLabel from '../../components/App/SectionLabel';
 import NewDuelContents from '../../components/NewDuel/NewDuelContents';
 import NewDuelSettings from '../../components/NewDuel/NewDuelSettings';
+import { IDuelParams } from '../../dto/IDuelParams';
+import { createDuel as createDuelRequest } from '../../functions/duel';
 import { IContent } from '../../interfaces/IContent';
+import { IDuel } from '../../interfaces/IDuel';
+import OnEducaAPI from '../../services/api';
+import { ActionCreators, State } from '../../store';
 import { Page } from '../components';
 import {
   PageBox,
@@ -19,6 +27,16 @@ import {
 } from './styles';
 
 const NewDuel = (): JSX.Element => {
+  /* Global State */
+
+  const { user, aplication } = useSelector((store: State) => store);
+
+  const { id } = user;
+  const { token } = aplication;
+
+  const dispatch = useDispatch();
+  const { loadDuel } = bindActionCreators(ActionCreators, dispatch);
+
   /* Local State */
 
   const [maxParticipants, setMaxParticipants] = useState(0);
@@ -30,11 +48,7 @@ const NewDuel = (): JSX.Element => {
 
   const [selectedContents, setSelectedContents] = useState<IContent[]>([]);
 
-  const [createdDuel, setCreatedDuel] = useState(false);
-
-  const createDuel = (): void => {
-    setCreatedDuel(true);
-  };
+  const [duelIsCreated, setDuelIsCreated] = useState(false);
 
   const newDuelContentsProps = {
     newDuelSelectedContentsProps: {
@@ -60,6 +74,39 @@ const NewDuel = (): JSX.Element => {
     setTimeForQuestion,
   };
 
+  /* Functions */
+
+  const createDuelSucess = (duel: IDuel): void => {
+    loadDuel(duel);
+    setDuelIsCreated(true);
+  };
+
+  const createDuelError = (err: AxiosError): void => {
+    console.log('Ocorreu um erro');
+  };
+
+  const createDuel = async (): Promise<void> => {
+    const contentsId = selectedContents.map(
+      (selectedContent) => selectedContent.id,
+    );
+
+    const duelParams: IDuelParams = {
+      maxGroupParticipants: maxParticipants,
+      questionsPerContent,
+      timeForQuestion,
+      duelOwnerId: id,
+      contentsId,
+    };
+
+    await createDuelRequest(
+      OnEducaAPI,
+      duelParams,
+      token,
+      createDuelSucess,
+      createDuelError,
+    );
+  };
+
   return (
     <Page>
       <PageBox>
@@ -76,7 +123,7 @@ const NewDuel = (): JSX.Element => {
             <CreateNewDuelButton onClick={() => createDuel()}>
               <CreateNewDuelButtonLabel>Criar duelo</CreateNewDuelButtonLabel>
             </CreateNewDuelButton>
-            {createdDuel && <Redirect to="/duels/12345" />}
+            {duelIsCreated && <Redirect to="/duels/12345" />}
           </NewDuelActions>
         </NewDuelBox>
       </PageBox>

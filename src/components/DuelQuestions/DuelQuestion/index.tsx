@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { IAnsweredQuestion } from '../../../interfaces/IAnsweredQuestion';
+import { IDuelQuestion } from '../../../interfaces/IDuelQuestion';
 import DuelQuestionAlternative from '../DuelQuestionAlternative';
 import {
   AnswerButton,
@@ -14,17 +15,18 @@ import {
 
 interface IQuestionProps {
   answerQuestion: (
-    duelQuestions: IAnsweredQuestion[],
+    duelQuestions: IDuelQuestion[],
     duelQuestionId: string,
     selectedAlternative: string,
   ) => void;
-  questions: IAnsweredQuestion[];
-  question: IAnsweredQuestion;
+  duelQuestions: IDuelQuestion[];
+  duelQuestion: IDuelQuestion;
 }
 
 const DuelQuestion = (props: IQuestionProps): JSX.Element => {
-  const { answerQuestion, questions, question } = props;
+  const { answerQuestion, duelQuestions, duelQuestion } = props;
   const [selectedAlternative, setSelectedAlternative] = useState('');
+  const { question } = duelQuestion;
 
   const { description, alternatives } = question;
 
@@ -53,7 +55,7 @@ const DuelQuestion = (props: IQuestionProps): JSX.Element => {
         <AnswerButton
           onClick={() => {
             if (selectedAlternative !== '') {
-              answerQuestion(questions, question.id, selectedAlternative);
+              answerQuestion(duelQuestions, question.id, selectedAlternative);
               setSelectedAlternative('');
             }
           }}

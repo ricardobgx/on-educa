@@ -1,6 +1,10 @@
-import { IDuelParticipant } from './IDuelParticipant';
+import { IDuel } from './IDuel';
+import { IDuelTeamParticipation } from './IDuelTeamParticipation';
 
 export interface IDuelTeam {
   id: string;
-  participants: IDuelParticipant[];
+  name: string;
+  lastParticipantIndex: number;
+  duel: IDuel;
+  participations: IDuelTeamParticipation[];
 }

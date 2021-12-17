@@ -3,6 +3,7 @@ import { paragraph, smallIcon } from '../../../components';
 
 export const NewDuelContentCardSectionBox = styled.div`
   display: flex;
+  align-items: center;
   margin-bottom: 5px;
 `;
 export const ContentCardIcon = styled(smallIcon)`

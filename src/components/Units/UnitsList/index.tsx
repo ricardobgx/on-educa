@@ -2,21 +2,31 @@
 
 import React from 'react';
 import { IUnity } from '../../../interfaces/IUnity';
+import { ICommonUnityProps } from '../../../pages/Units';
 import UnityCard from '../UnityCard';
 import { UnitsListBox, UnitCards } from './styles';
 
-interface IUnitsListProps {
+interface IUnitsListProps extends ICommonUnityProps {
   units: IUnity[];
+  setUnity: (value: IUnity) => void;
+  setUpdateUnityIsVisible: (value: boolean) => void;
+  setDeleteUnityIsVisible: (value: boolean) => void;
 }
 
 const UnitsList = (props: IUnitsListProps): JSX.Element => {
-  const { units } = props;
+  const { units, setUnity, setUpdateUnityIsVisible, setDeleteUnityIsVisible } =
+    props;
 
   return (
     <UnitsListBox>
       <UnitCards>
         {units.map((unity) => (
-          <UnityCard {...unity} />
+          <UnityCard
+            unity={unity}
+            setUnity={setUnity}
+            setUpdateUnityIsVisible={setUpdateUnityIsVisible}
+            setDeleteUnityIsVisible={setDeleteUnityIsVisible}
+          />
         ))}
       </UnitCards>
     </UnitsListBox>

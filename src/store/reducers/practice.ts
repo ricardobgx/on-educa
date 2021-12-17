@@ -1,24 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { DEFAULT_PRACTICE } from '../../static/defaultEntitiesValues';
 import { PracticeActionType } from '../action-types/practice';
 import { IPractice, PracticeAction } from '../actions/practice';
-
-export const DEFAULT_PRACTICE: IPractice = {
-  questions: [
-    {
-      id: '',
-      description: '',
-      alternatives: [
-        {
-          id: '',
-          description: '',
-        },
-      ],
-      rightAlternativeId: '',
-      selectedAlternativeId: '',
-    },
-  ],
-};
 
 const practiceReducer = (
   state: IPractice = DEFAULT_PRACTICE,

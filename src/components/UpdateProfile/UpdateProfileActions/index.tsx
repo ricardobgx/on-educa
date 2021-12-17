@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { IUserParams } from '../../../dto/IUserParams';
-import { getUser, updateUser } from '../../../functions/user';
+import { getUser, isStudent, updateUser } from '../../../functions/user';
 import OnEducaAPI from '../../../services/api';
 import { ActionCreators } from '../../../store';
 import {
@@ -21,6 +21,7 @@ interface IUpdateProfileActionsProps {
   password: string;
   profilePicture: string;
   schoolGradeId: string;
+  teachingTypeId: string;
   userType: string;
   token: string;
 }
@@ -40,6 +41,7 @@ const UpdateProfileActions = (
     profilePicture,
     password,
     schoolGradeId,
+    teachingTypeId,
     userType,
     token,
   } = props;
@@ -52,7 +54,8 @@ const UpdateProfileActions = (
     name: name === '' ? undefined : name,
     profilePicture: profilePicture === '' ? undefined : profilePicture,
     password: password === '' ? undefined : password,
-    schoolGradeId,
+    schoolGradeId: isStudent(userType) ? schoolGradeId : undefined,
+    teachingTypeId: !isStudent(userType) ? teachingTypeId : undefined,
   } as IUserParams;
 
   const updateSucess = (): void => {

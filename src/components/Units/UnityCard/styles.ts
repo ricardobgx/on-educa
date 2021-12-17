@@ -2,14 +2,8 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { paragraph, smallIcon } from '../../../components';
 
-export const UnityCardBox = styled(Link)`
+export const UnityCardBox = styled.div`
   display: flex;
-  justify-content: space-between;
-  color: ${({ theme }) => theme.colors.textColor};
-  background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
-  padding: 20px;
   margin-bottom: 20px;
 
   &:last-of-type {
@@ -20,10 +14,27 @@ export const UnityCardBox = styled(Link)`
     flex-direction: column;
   }
 `;
+
+export const UnityCardDetails = styled(Link)`
+  display: flex;
+  justify-content: space-between;
+  color: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.boxColor};
+  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
+`;
 const UnityCardDetailsBox = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 33%;
+  height: 100%;
 
   @media (max-width: 900px) {
     width: unset;

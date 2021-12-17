@@ -40,7 +40,6 @@ export const setUserVariables = (
 
 export const clearUserVariables = (): void => {
   window.localStorage.removeItem('id');
-  window.localStorage.removeItem('userType');
   window.localStorage.removeItem('token');
 };
 

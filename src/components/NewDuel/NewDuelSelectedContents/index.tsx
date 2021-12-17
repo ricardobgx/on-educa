@@ -1,6 +1,6 @@
 import React from 'react';
 import { IContent } from '../../../interfaces/IContent';
-import { DEFAULT_UNITY } from '../../../store/reducers/unity';
+import { DEFAULT_UNITY } from '../../../static/defaultEntitiesValues';
 import NewDuelSelectedContentCard from '../NewDuelSelectedContentCard';
 import {
   NewDuelSelectedContentsBox,
@@ -31,7 +31,7 @@ const NewDuelSelectedContents = (
           <NewDuelSelectedContentCard
             key={selectedContent.id}
             content={selectedContent}
-            unity={DEFAULT_UNITY}
+            unity={selectedContent.unity}
             removeSelectedContent={removeSelectedContent}
           />
         ))}

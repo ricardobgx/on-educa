@@ -7,4 +7,5 @@ export interface IUserParams {
   profilePicture?: string;
   league?: string;
   schoolGradeId?: string;
+  teachingTypeId?: string;
 }

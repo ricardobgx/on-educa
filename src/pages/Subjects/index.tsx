@@ -10,8 +10,8 @@ import TeachingTypeSelect from '../../components/Subjects/TeachingTypeSelect';
 import { ISchoolGrade } from '../../interfaces/ISchoolGrade';
 import { ISubject } from '../../interfaces/ISubject';
 import OnEducaAPI from '../../services/api';
+import { DEFAULT_SUBJECT } from '../../static/defaultEntitiesValues';
 import { ActionCreators, State } from '../../store';
-import { DEFAULT_SUBJECT } from '../../store/reducers/subject';
 import { Page } from '../components';
 import {
   CancelButton,

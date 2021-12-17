@@ -88,7 +88,7 @@ const Content = (): JSX.Element => {
   useEffect(() => {
     getUnits(setUnits);
     getContent(loadContent);
-  }, []);
+  }, [contentId]);
 
   const { video } = content as IContent;
 

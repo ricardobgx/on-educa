@@ -8,14 +8,17 @@ import DuelCongratulations from '../pages/DuelCongratulations';
 import DuelQuestions from '../pages/DuelQuestions';
 import DuelResults from '../pages/DuelResults';
 import Duels from '../pages/Duels';
+import EditContent from '../pages/EditContent';
 import Home from '../pages/Home';
 import Missions from '../pages/Missions';
 import NewContent from '../pages/NewContent';
 import NewDuel from '../pages/NewDuel';
+import NewQuestion from '../pages/NewQuestion';
 import Overview from '../pages/Overview';
 import Performance from '../pages/Performance';
 import Practice from '../pages/Practice';
 import Profile from '../pages/Profile';
+import Questions from '../pages/Questions';
 import Subjects from '../pages/Subjects';
 import Units from '../pages/Units';
 import UpdateProfile from '../pages/UpdateProfile';
@@ -64,9 +67,27 @@ const routes: IRoute[] = [
     exact: true,
   },
   {
+    path: '/contents/:id/edit',
+    name: 'EditContent',
+    component: EditContent,
+    exact: true,
+  },
+  {
     path: '/units/:id',
     name: 'Contents',
     component: Contents,
+    exact: true,
+  },
+  {
+    path: '/questions',
+    name: 'Questions',
+    component: Questions,
+    exact: true,
+  },
+  {
+    path: '/new-question',
+    name: 'NewQuestion',
+    component: NewQuestion,
     exact: true,
   },
   {

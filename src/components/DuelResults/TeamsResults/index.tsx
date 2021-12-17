@@ -1,7 +1,9 @@
 import React from 'react';
 import { IDuelParticipant } from '../../../interfaces/IDuelParticipant';
-import { DEFAULT_SCHOOL_GRADE } from '../../../store/reducers/schoolGrade';
-import { DEFAULT_TEACHING_TYPE } from '../../../store/reducers/teachingType';
+import {
+  DEFAULT_SCHOOL_GRADE,
+  DEFAULT_TEACHING_TYPE,
+} from '../../../static/defaultEntitiesValues';
 import SectionLabel from '../../App/SectionLabel';
 import ParticipantsResultList from '../ParticipantsResultList';
 import {

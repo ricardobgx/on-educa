@@ -1,7 +1,7 @@
 import React from 'react';
 import { isStudent } from '../../../functions/user';
 import { IUser } from '../../../interfaces/IUser';
-import { DEFAULT_SCHOOL_GRADE } from '../../../store/reducers/schoolGrade';
+import { DEFAULT_SCHOOL_GRADE } from '../../../static/defaultEntitiesValues';
 import {
   UserCardBox,
   UserDetails,

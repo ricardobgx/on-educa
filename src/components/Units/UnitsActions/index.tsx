@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { isStudent } from '../../../functions/user';
+import { ICommonUnityProps } from '../../../pages/Units';
+import NewUnity from '../NewUnity';
 // import { useSelector } from 'react-redux';
 // import { State } from '../../../store';
 import {
@@ -20,18 +22,27 @@ import {
   Container,
 } from './styles';
 
-interface IUnitsActionsProps {
+interface IUnitsActionsProps extends ICommonUnityProps {
   userType: string;
-  setNewUnityIsVisible: (value: boolean) => void;
 }
 
 const UnitsActions = (props: IUnitsActionsProps): JSX.Element => {
+  /* Local State */
+
+  const [newUnityIsVisible, setNewUnityIsVisible] = useState(false);
+
   /* Props */
 
-  const { userType, setNewUnityIsVisible } = props;
+  const { userType, getUnits } = props;
 
   return (
     <Container>
+      {newUnityIsVisible && (
+        <NewUnity
+          setNewUnityIsVisible={setNewUnityIsVisible}
+          getUnits={getUnits}
+        />
+      )}
       <SearchUnits>
         <SearchUnitsInputBox>
           <SearchUnitsInput

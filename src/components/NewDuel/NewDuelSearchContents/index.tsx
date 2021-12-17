@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import { getContents } from '../../../functions/content';
 import { IContent } from '../../../interfaces/IContent';
 import OnEducaAPI from '../../../services/api';
+import { DEFAULT_UNITY } from '../../../static/defaultEntitiesValues';
 import { State } from '../../../store';
-import { DEFAULT_UNITY } from '../../../store/reducers/unity';
 import NewDuelContentFoundCard from '../NewDuelContentFoundCard';
 import {
   ContentsFound,
@@ -87,7 +87,7 @@ const NewDuelSearchContents = (
             {contentsFound.map((contentFound) => (
               <NewDuelContentFoundCard
                 content={contentFound}
-                unity={DEFAULT_UNITY}
+                unity={contentFound.unity}
                 selectedContents={selectedContents}
                 setSelectedContents={setSelectedContents}
               />

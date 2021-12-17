@@ -3,6 +3,7 @@ import aplicationReducer from './aplication';
 import contentReducer from './content';
 import duelReducer from './duel';
 import practiceReducer from './practice';
+import questionReducer from './question';
 import schoolGradeReducer from './schoolGrade';
 import subjectReducer from './subject';
 import teachingTypeReducer from './teachingType';
@@ -13,6 +14,7 @@ const reducers = combineReducers({
   aplication: aplicationReducer,
   user: userReducer,
   content: contentReducer,
+  question: questionReducer,
   practice: practiceReducer,
   duel: duelReducer,
   teachingType: teachingTypeReducer,

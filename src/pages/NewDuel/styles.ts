@@ -44,8 +44,8 @@ export const CancelNewDuelButton = styled(Link)`
   min-height: 40px;
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 5px;
-  color: ${({ theme }) => theme.colors.whiteColor};
-  background: ${({ theme }) => theme.similarColors.warningColor};
+  color: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.boxColor};
   width: calc(50% - 20px);
 
   @media (max-width: 1150px) {

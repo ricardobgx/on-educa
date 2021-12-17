@@ -2,14 +2,14 @@ import React from 'react';
 import theme from '../../../global/styles/theme';
 import { ITeachingType } from '../../../interfaces/ITeachingType';
 import {
-  TeachingTypeSelectBox,
-  TeachingTypeSelectLabel,
-  TeachingTypeSelectOptionsList,
-  TeachingTypeSelectOptionsListBox,
-  TeachingTypeSelectOption,
-  TeachingTypeSelectOptionLabel,
   RequiredFieldLabel,
-} from './styles';
+  SubjectSectionSelectBox,
+  SubjectSectionSelectLabel,
+  SubjectSectionSelectOption,
+  SubjectSectionSelectOptionLabel,
+  SubjectSectionSelectOptionsList,
+  SubjectSectionSelectOptionsListBox,
+} from '../styles';
 
 interface ITeachingTypeSelectProps {
   label: string;
@@ -38,15 +38,15 @@ const TeachingTypeSelect = (props: ITeachingTypeSelectProps): JSX.Element => {
   const sortedTeachingTypes = teachingTypes.sort(sortTeachingTypes);
 
   return (
-    <TeachingTypeSelectBox>
-      <TeachingTypeSelectLabel>
+    <SubjectSectionSelectBox>
+      <SubjectSectionSelectLabel>
         {label}
         <RequiredFieldLabel>*</RequiredFieldLabel>
-      </TeachingTypeSelectLabel>
-      <TeachingTypeSelectOptionsList>
-        <TeachingTypeSelectOptionsListBox>
+      </SubjectSectionSelectLabel>
+      <SubjectSectionSelectOptionsList>
+        <SubjectSectionSelectOptionsListBox>
           {sortedTeachingTypes.map((teachingType) => (
-            <TeachingTypeSelectOption
+            <SubjectSectionSelectOption
               key={teachingType.id}
               style={{
                 background:
@@ -60,14 +60,14 @@ const TeachingTypeSelect = (props: ITeachingTypeSelectProps): JSX.Element => {
               }}
               onClick={() => setTeachingTypeSelected(teachingType)}
             >
-              <TeachingTypeSelectOptionLabel>
+              <SubjectSectionSelectOptionLabel>
                 {teachingType.title}
-              </TeachingTypeSelectOptionLabel>
-            </TeachingTypeSelectOption>
+              </SubjectSectionSelectOptionLabel>
+            </SubjectSectionSelectOption>
           ))}
-        </TeachingTypeSelectOptionsListBox>
-      </TeachingTypeSelectOptionsList>
-    </TeachingTypeSelectBox>
+        </SubjectSectionSelectOptionsListBox>
+      </SubjectSectionSelectOptionsList>
+    </SubjectSectionSelectBox>
   );
 };
 

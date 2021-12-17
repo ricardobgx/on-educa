@@ -1,7 +1,7 @@
 import React from 'react';
 import { isStudent } from '../../../functions/user';
 import { IUser } from '../../../interfaces/IUser';
-import { DEFAULT_TEACHING_TYPE } from '../../../store/reducers/teachingType';
+import { DEFAULT_TEACHING_TYPE } from '../../../static/defaultEntitiesValues';
 import {
   Container,
   UserInfo,

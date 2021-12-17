@@ -12,215 +12,40 @@ import DuelStatus from '../../components/DuelQuestions/DuelStatus';
 import { DuelQuestionsBox, PageBox } from './styles';
 import { IDuel } from '../../interfaces/IDuel';
 import { IAnsweredQuestion } from '../../interfaces/IAnsweredQuestion';
+import {
+  DEFAULT_DUEL,
+  DEFAULT_DUEL_QUESTION,
+  DEFAULT_DUEL_TEAM_PARTICIPATION,
+} from '../../static/defaultEntitiesValues';
+import { IDuelQuestion } from '../../interfaces/IDuelQuestion';
 
-const questionsTest: IQuestion[] = [
-  {
-    id: '1',
-    description:
-      '(Enem/2017) Após a Declaração Universal dos Direitos Humanos pela ONU, em 1948, a Unesco publicou estudos de cientistas de todo o mundo que desqualificaram as doutrinas racistas e demonstraram a unidade do gênero humano. Desde então, a maioria dos próprios cientistas europeus passou a reconhecer o caráter discriminatório da pretensa superioridade racial do homem branco e a condenar as aberrações cometidas em seu nome.\n\nSILVEIRA, R. Os selvagens e a massa: papel do racismo científico na montagem da hegemonia ocidental. Afro-Ásia, n. 23, 1999 (adaptado).\n\nA posição assumida pela Unesco, a partir de 1948, foi motivada por acontecimentos então recentes, dentre os quais se destacava o(a)',
-    alternatives: [
-      {
-        id: '1',
-        description:
-          'a) ataque feito pelos japoneses à base militar americana de Pearl Harbor.',
-      },
-      {
-        id: '2',
-        description:
-          'b) desencadeamento da Guerra Fria e de novas rivalidades entre nações.',
-      },
-      {
-        id: '3',
-        description:
-          'c) morte de milhões de soldados nos combates da Segunda Guerra Mundial.',
-      },
-      {
-        id: '4',
-        description:
-          'd) execução de judeus e eslavos presos em guetos e campos de concentração nazistas.',
-      },
-      {
-        id: '5',
-        description:
-          'e) lançamento de bombas atômicas em Hiroshima e Nagasaki pelas forças norte-americanas.',
-      },
-    ],
-    rightAlternativeId: '1',
-    selectedAlternativeId: '',
-  },
-  {
-    id: '2',
-    description:
-      '(Enem/2018) Após a Declaração Universal dos Direitos Humanos pela ONU, em 1948, a Unesco publicou estudos de cientistas de todo o mundo que desqualificaram as doutrinas racistas e demonstraram a unidade do gênero humano. Desde então, a maioria dos próprios cientistas europeus passou a reconhecer o caráter discriminatório da pretensa superioridade racial do homem branco e a condenar as aberrações cometidas em seu nome.\n\nSILVEIRA, R. Os selvagens e a massa: papel do racismo científico na montagem da hegemonia ocidental. Afro-Ásia, n. 23, 1999 (adaptado).\n\nA posição assumida pela Unesco, a partir de 1948, foi motivada por acontecimentos então recentes, dentre os quais se destacava o(a)',
-    alternatives: [
-      {
-        id: '1',
-        description:
-          'a) ataque feito pelos japoneses à base militar americana de Pearl Harbor.',
-      },
-      {
-        id: '2',
-        description:
-          'b) desencadeamento da Guerra Fria e de novas rivalidades entre nações.',
-      },
-      {
-        id: '3',
-        description:
-          'c) morte de milhões de soldados nos combates da Segunda Guerra Mundial.',
-      },
-      {
-        id: '4',
-        description:
-          'd) execução de judeus e eslavos presos em guetos e campos de concentração nazistas.',
-      },
-      {
-        id: '5',
-        description:
-          'e) lançamento de bombas atômicas em Hiroshima e Nagasaki pelas forças norte-americanas.',
-      },
-    ],
-    rightAlternativeId: '2',
-    selectedAlternativeId: '',
-  },
-  {
-    id: '3',
-    description:
-      '(Enem/2019) Após a Declaração Universal dos Direitos Humanos pela ONU, em 1948, a Unesco publicou estudos de cientistas de todo o mundo que desqualificaram as doutrinas racistas e demonstraram a unidade do gênero humano. Desde então, a maioria dos próprios cientistas europeus passou a reconhecer o caráter discriminatório da pretensa superioridade racial do homem branco e a condenar as aberrações cometidas em seu nome.\n\nSILVEIRA, R. Os selvagens e a massa: papel do racismo científico na montagem da hegemonia ocidental. Afro-Ásia, n. 23, 1999 (adaptado).\n\nA posição assumida pela Unesco, a partir de 1948, foi motivada por acontecimentos então recentes, dentre os quais se destacava o(a)',
-    alternatives: [
-      {
-        id: '1',
-        description:
-          'a) ataque feito pelos japoneses à base militar americana de Pearl Harbor.',
-      },
-      {
-        id: '2',
-        description:
-          'b) desencadeamento da Guerra Fria e de novas rivalidades entre nações.',
-      },
-      {
-        id: '3',
-        description:
-          'c) morte de milhões de soldados nos combates da Segunda Guerra Mundial.',
-      },
-      {
-        id: '4',
-        description:
-          'd) execução de judeus e eslavos presos em guetos e campos de concentração nazistas.',
-      },
-      {
-        id: '5',
-        description:
-          'e) lançamento de bombas atômicas em Hiroshima e Nagasaki pelas forças norte-americanas.',
-      },
-    ],
-    rightAlternativeId: '3',
-    selectedAlternativeId: '',
-  },
-  {
-    id: '4',
-    description:
-      '(Enem/2020) Após a Declaração Universal dos Direitos Humanos pela ONU, em 1948, a Unesco publicou estudos de cientistas de todo o mundo que desqualificaram as doutrinas racistas e demonstraram a unidade do gênero humano. Desde então, a maioria dos próprios cientistas europeus passou a reconhecer o caráter discriminatório da pretensa superioridade racial do homem branco e a condenar as aberrações cometidas em seu nome.\n\nSILVEIRA, R. Os selvagens e a massa: papel do racismo científico na montagem da hegemonia ocidental. Afro-Ásia, n. 23, 1999 (adaptado).\n\nA posição assumida pela Unesco, a partir de 1948, foi motivada por acontecimentos então recentes, dentre os quais se destacava o(a)',
-    alternatives: [
-      {
-        id: '1',
-        description:
-          'a) ataque feito pelos japoneses à base militar americana de Pearl Harbor.',
-      },
-      {
-        id: '2',
-        description:
-          'b) desencadeamento da Guerra Fria e de novas rivalidades entre nações.',
-      },
-      {
-        id: '3',
-        description:
-          'c) morte de milhões de soldados nos combates da Segunda Guerra Mundial.',
-      },
-      {
-        id: '4',
-        description:
-          'd) execução de judeus e eslavos presos em guetos e campos de concentração nazistas.',
-      },
-      {
-        id: '5',
-        description:
-          'e) lançamento de bombas atômicas em Hiroshima e Nagasaki pelas forças norte-americanas.',
-      },
-    ],
-    rightAlternativeId: '4',
-    selectedAlternativeId: '',
-  },
-  {
-    id: '5',
-    description:
-      '(Enem/2021) Após a Declaração Universal dos Direitos Humanos pela ONU, em 1948, a Unesco publicou estudos de cientistas de todo o mundo que desqualificaram as doutrinas racistas e demonstraram a unidade do gênero humano. Desde então, a maioria dos próprios cientistas europeus passou a reconhecer o caráter discriminatório da pretensa superioridade racial do homem branco e a condenar as aberrações cometidas em seu nome.\n\nSILVEIRA, R. Os selvagens e a massa: papel do racismo científico na montagem da hegemonia ocidental. Afro-Ásia, n. 23, 1999 (adaptado).\n\nA posição assumida pela Unesco, a partir de 1948, foi motivada por acontecimentos então recentes, dentre os quais se destacava o(a)',
-    alternatives: [
-      {
-        id: '1',
-        description:
-          'a) ataque feito pelos japoneses à base militar americana de Pearl Harbor.',
-      },
-      {
-        id: '2',
-        description:
-          'b) desencadeamento da Guerra Fria e de novas rivalidades entre nações.',
-      },
-      {
-        id: '3',
-        description:
-          'c) morte de milhões de soldados nos combates da Segunda Guerra Mundial.',
-      },
-      {
-        id: '4',
-        description:
-          'd) execução de judeus e eslavos presos em guetos e campos de concentração nazistas.',
-      },
-      {
-        id: '5',
-        description:
-          'e) lançamento de bombas atômicas em Hiroshima e Nagasaki pelas forças norte-americanas.',
-      },
-    ],
-    rightAlternativeId: '5',
-    selectedAlternativeId: '',
-  },
-];
+const questionsTest: IDuelQuestion[] = [];
 
 const duelTest: IDuel = {
+  ...DEFAULT_DUEL,
   id: '1',
-  teams: [],
   questions: questionsTest,
-};
-
-const DEFAULT_QUESTION: IAnsweredQuestion = {
-  id: '',
-  description: '',
-  alternatives: [],
-  rightAlternativeId: '',
-  selectedAlternativeId: '',
 };
 
 const DuelQuestions = (): JSX.Element => {
   /* Local State */
 
-  const [question, setQuestion] = useState(DEFAULT_QUESTION);
+  const [question, setQuestion] = useState<IDuelQuestion>(
+    DEFAULT_DUEL_QUESTION,
+  );
 
   /* Global State */
 
   // Dispatch
 
-  const dispatch = useDispatch();
+  const duel = useSelector((store: State) => store.duel);
 
-  // Actions
+  const dispatch = useDispatch();
 
   const { loadDuel, answerDuelQuestion: answerQuestion } = bindActionCreators(
     ActionCreators,
     dispatch,
   );
-
-  // State
-
-  const duel = useSelector((store: State) => store.duel);
 
   /* Number functions */
 
@@ -234,10 +59,11 @@ const DuelQuestions = (): JSX.Element => {
 
   // Sort duel question
 
-  const sortDuelQuestion = (duelQuestions: IQuestion[]): void => {
-    const noAnsweredQuestions = duelQuestions.filter(
-      (duelQuestion) => duelQuestion.selectedAlternativeId === '',
-    );
+  const sortDuelQuestion = (duelQuestions: IDuelQuestion[]): void => {
+    const noAnsweredQuestions = duelQuestions.filter((duelQuestion) => {
+      const { duelQuestionAnswer } = duelQuestion;
+      return !duelQuestionAnswer?.selectedAlternative;
+    });
 
     const randQuestionIndex = randIntFromInterval(
       0,
@@ -249,31 +75,46 @@ const DuelQuestions = (): JSX.Element => {
 
   // Number of Answered Questions
 
-  const answeredQuestionsNumber = (duelQuestions: IQuestion[]): number => {
-    return duelQuestions.filter((duelQuestion: IAnsweredQuestion) => {
-      return duelQuestion.selectedAlternativeId !== '';
+  const answeredQuestionsNumber = (duelQuestions: IDuelQuestion[]): number => {
+    return duelQuestions.filter((duelQuestion) => {
+      const { duelQuestionAnswer } = duelQuestion;
+      return !!duelQuestionAnswer?.selectedAlternative;
     }).length;
   };
 
   // Answer Question
 
   const answerDuelQuestion = (
-    duelQuestions: IQuestion[],
-    duelQuestionId: string,
+    duelQuestions: IDuelQuestion[],
+    answeredDuelQuestionId: string,
     selectedAlternativeId: string,
   ): void => {
-    const newQuestions = duelQuestions.map((duelQuestion) => {
-      const newQuestion = { ...duelQuestion };
-      if (duelQuestionId === duelQuestion.id)
-        newQuestion.selectedAlternativeId = selectedAlternativeId;
-      return newQuestion;
+    const newDuelQuestions = duelQuestions.map((duelQuestion) => {
+      const newDuelQuestion = { ...duelQuestion };
+
+      if (duelQuestion.id === answeredDuelQuestionId) {
+        const { question: questionDuelQuestion } = duelQuestion;
+        const findAlternative = questionDuelQuestion.alternatives.filter(
+          (alternative) => alternative.id === selectedAlternativeId,
+        );
+
+        if (findAlternative.length > 0)
+          newDuelQuestion.duelQuestionAnswer = {
+            id: '',
+            question: duelQuestion,
+            duelTeamParticipation: DEFAULT_DUEL_TEAM_PARTICIPATION,
+            selectedAlternative: findAlternative[0],
+          };
+      }
+
+      return newDuelQuestion;
     });
 
-    answerQuestion(newQuestions);
+    // answerQuestion(newQuestions);
 
-    if (answeredQuestionsNumber(newQuestions) < newQuestions.length)
-      sortDuelQuestion(newQuestions);
-    else setQuestion(DEFAULT_QUESTION);
+    if (answeredQuestionsNumber(newDuelQuestions) < newDuelQuestions.length)
+      sortDuelQuestion(newDuelQuestions);
+    else setQuestion(DEFAULT_DUEL_QUESTION);
     // setDuelQuestionsCompleted(true);
   };
 
@@ -281,7 +122,7 @@ const DuelQuestions = (): JSX.Element => {
 
   useEffect(() => {
     loadDuel(duelTest);
-    sortDuelQuestion(questionsTest);
+    if (questionsTest.length > 0) sortDuelQuestion(questionsTest);
   }, []);
 
   /* Global State */
@@ -299,14 +140,14 @@ const DuelQuestions = (): JSX.Element => {
             questions={questions}
           />
           <DuelQuestion
-            questions={questions}
+            duelQuestions={questions}
             answerQuestion={answerDuelQuestion}
-            question={question}
+            duelQuestion={question}
           />
         </DuelQuestionsBox>
-        {answeredQuestionsNumber(questions) === questions.length && (
+        {/* {answeredQuestionsNumber(questions) === questions.length && (
           <Redirect to="/duels/12345/congratulations" />
-        )}
+        )} */}
       </PageBox>
     </Page>
   );

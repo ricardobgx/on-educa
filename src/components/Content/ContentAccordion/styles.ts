@@ -9,6 +9,7 @@ export const ContentAccordionBox = styled.div`
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 5px;
   width: 100%;
+  height: min-content;
 
   &:last-of-type {
     margin-bottom: 0;
@@ -47,8 +48,6 @@ export const HiddenContents = styled.div`
   height: 0px;
   overflow: hidden;
   transition: all 0.4s linear;
-  display: flex;
-  flex-direction: column;
 `;
 export const HiddenContentsBox = styled.div`
   overflow: auto;
@@ -57,15 +56,16 @@ export const HiddenContentsBox = styled.div`
   margin-bottom: 5px;
   display: flex;
   flex-direction: column;
-  max-height: 100%;
+  max-height: 250px;
 `;
 export const HiddenContent = styled(Link)`
   background: ${({ theme }) => theme.colors.boxColor};
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;
+  transition: all 0.2s linear;
 
   &:last-of-type {
     margin-bottom: 0;
@@ -73,5 +73,5 @@ export const HiddenContent = styled(Link)`
 `;
 export const HiddenContentLabel = styled(paragraph)`
   color: ${({ theme }) => theme.colors.textColor};
-  /* font-weight: bold; */
+  transition: all 0.2s linear;
 `;

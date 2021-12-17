@@ -7,9 +7,11 @@ import SectionLabel from '../../components/App/SectionLabel';
 import UpdateProfileActions from '../../components/UpdateProfile/UpdateProfileActions';
 import UpdateProfileSections from '../../components/UpdateProfile/UpdateProfileSections';
 import { isStudent } from '../../functions/user';
+import {
+  DEFAULT_SCHOOL_GRADE,
+  DEFAULT_TEACHING_TYPE,
+} from '../../static/defaultEntitiesValues';
 import { State } from '../../store';
-import { DEFAULT_SCHOOL_GRADE } from '../../store/reducers/schoolGrade';
-import { DEFAULT_TEACHING_TYPE } from '../../store/reducers/teachingType';
 import { Page } from '../components';
 import { PageBox, UpdateProfileBox } from './styles';
 
@@ -49,6 +51,7 @@ const UpdateProfile = (): JSX.Element => {
     password: newPassword,
     profilePicture,
     schoolGradeId: selectedSchoolGradeId,
+    teachingTypeId: selectedTeachingTypeId,
     userType,
     token,
   };

@@ -2,7 +2,7 @@
 
 import { Dispatch } from 'redux';
 import { IDuel } from '../../interfaces/IDuel';
-import { IQuestion } from '../../interfaces/IQuestion';
+import { IDuelQuestion } from '../../interfaces/IDuelQuestion';
 import { DuelActionType } from '../action-types/duel';
 import { DuelAction } from '../actions/duel';
 
@@ -16,7 +16,7 @@ export const loadDuel = (duel: IDuel) => {
     });
   };
 };
-export const answerDuelQuestion = (questions: IQuestion[]) => {
+export const answerDuelQuestion = (questions: IDuelQuestion[]) => {
   return (dispatch: Dispatch<DuelAction>) => {
     dispatch({
       type: DuelActionType.ANSWER_DUEL_QUESTION,

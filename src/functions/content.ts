@@ -1,5 +1,21 @@
 import { AxiosInstance } from 'axios';
+import { IContentParams } from '../dto/IContentParams';
 import { IContent } from '../interfaces/IContent';
+
+export const getContent = async (
+  API: AxiosInstance,
+  id: string,
+  token: string,
+  setContentState: (value: IContent) => void,
+): Promise<void> => {
+  await API.get(`/contents/${id}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then((response) => {
+    setContentState(response.data);
+  });
+};
 
 export const getContents = async (
   API: AxiosInstance,
@@ -14,4 +30,62 @@ export const getContents = async (
   }).then((response) => {
     setContentsState(response.data);
   });
+};
+
+export const getContentsByUnity = async (
+  API: AxiosInstance,
+  unityId: string,
+  setContentsState: (value: IContent[]) => void,
+  token: string,
+): Promise<void> => {
+  await API.get(`/contents/unity/${unityId}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then((response) => {
+    setContentsState(response.data);
+  });
+};
+
+export const updateContent = async (
+  API: AxiosInstance,
+  id: string,
+  contentParams: IContentParams,
+  token: string,
+  updateSucess: () => void,
+  updateError: () => void,
+): Promise<void> => {
+  await API.put(`/contents/${id}`, contentParams, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then(
+    () => {
+      updateSucess();
+    },
+    () => {
+      updateError();
+    },
+  );
+};
+
+export const deleteContent = async (
+  API: AxiosInstance,
+  id: string,
+  token: string,
+  deleteSucess: () => void,
+  deleteError: () => void,
+): Promise<void> => {
+  await API.delete(`/contents/${id}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then(
+    () => {
+      deleteSucess();
+    },
+    () => {
+      deleteError();
+    },
+  );
 };

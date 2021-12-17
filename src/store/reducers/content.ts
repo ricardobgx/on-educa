@@ -1,16 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { IContent } from '../../interfaces/IContent';
+import { DEFAULT_CONTENT } from '../../static/defaultEntitiesValues';
 import { ContentActionType } from '../action-types/content';
 import { ContentAction } from '../actions/content';
-
-export const DEFAULT_CONTENT: IContent = {
-  id: '',
-  title: '',
-  description: '',
-  video: '',
-  index: 0,
-};
 
 const contentReducer = (
   state: IContent = DEFAULT_CONTENT,

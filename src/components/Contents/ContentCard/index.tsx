@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { IContent } from '../../../interfaces/IContent';
 import { ActionCreators, State } from '../../../store';
+import ContentCardActions from '../ContentCardActions';
 import {
   ContentCardBox,
+  ContentCardDetails,
   ContentDetails,
   ContentTitle,
   SubjectLabel,
@@ -20,8 +22,15 @@ import {
   ContentsNumberIcon,
 } from './styles';
 
-const ContentCard = (props: IContent): JSX.Element => {
-  const { id, title } = props;
+interface IContentCardProps {
+  content: IContent;
+  setContent: (value: IContent) => void;
+  setDeleteContentIsVisible: (value: boolean) => void;
+}
+
+const ContentCard = (props: IContentCardProps): JSX.Element => {
+  const { content, setContent, setDeleteContentIsVisible } = props;
+  const { id, title } = content;
 
   const dispatch = useDispatch();
 
@@ -30,25 +39,35 @@ const ContentCard = (props: IContent): JSX.Element => {
   const { schoolGrade, subject, unity } = useSelector((store: State) => store);
 
   return (
-    <ContentCardBox to={`/contents/${id}`} onClick={() => loadContent(props)}>
-      <ContentDetails>
-        <ContentTitle>{title}</ContentTitle>
-        <SubjectLabel>Unidade: {unity.title}</SubjectLabel>
-      </ContentDetails>
-      <ContentSchoolGrade>
-        <SchoolGradeLabel>Série: {schoolGrade.index}º ano</SchoolGradeLabel>
-        <TeachingTypeLabel>Disciplina: {subject.name}</TeachingTypeLabel>
-      </ContentSchoolGrade>
-      <ContentAdditionalDetails>
-        <UpdateDate>
-          <UpdateDateLabel>28/11/2021</UpdateDateLabel>
-          <UpdateDateIcon className="fas fa-clock" />
-        </UpdateDate>
-        <ContentsNumber>
-          <ContentsNumberLabel>11 questões</ContentsNumberLabel>
-          <ContentsNumberIcon className="fas fa-file-alt" />
-        </ContentsNumber>
-      </ContentAdditionalDetails>
+    <ContentCardBox>
+      <ContentCardDetails
+        to={`/contents/${id}`}
+        onClick={() => loadContent(content)}
+      >
+        <ContentDetails>
+          <ContentTitle>{title}</ContentTitle>
+          <SubjectLabel>Unidade: {unity.title}</SubjectLabel>
+        </ContentDetails>
+        <ContentSchoolGrade>
+          <SchoolGradeLabel>Série: {schoolGrade.index}º ano</SchoolGradeLabel>
+          <TeachingTypeLabel>Disciplina: {subject.name}</TeachingTypeLabel>
+        </ContentSchoolGrade>
+        <ContentAdditionalDetails>
+          <UpdateDate>
+            <UpdateDateLabel>28/11/2021</UpdateDateLabel>
+            <UpdateDateIcon className="fas fa-clock" />
+          </UpdateDate>
+          <ContentsNumber>
+            <ContentsNumberLabel>11 questões</ContentsNumberLabel>
+            <ContentsNumberIcon className="fas fa-file-alt" />
+          </ContentsNumber>
+        </ContentAdditionalDetails>
+      </ContentCardDetails>
+      <ContentCardActions
+        content={content}
+        setContent={setContent}
+        setDeleteContentIsVisible={setDeleteContentIsVisible}
+      />
     </ContentCardBox>
   );
 };

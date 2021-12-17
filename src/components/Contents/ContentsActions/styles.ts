@@ -37,13 +37,13 @@ export const NewContentButton = styled(Link)`
   border-radius: 5px;
   padding: 0 20px;
 
-  @media (min-width: 400px) and (max-width: 700px) {
+  @media (min-width: 600px) and (max-width: 700px) {
     width: calc(50% - 10px);
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 600px) {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 `;
 export const NewContentButtonLabel = styled(paragraph)`
@@ -113,11 +113,11 @@ export const ContentsFiltersButton = styled.button`
   border-radius: 5px;
   padding: 0 20px;
 
-  @media (min-width: 400px) and (max-width: 700px) {
+  @media (min-width: 600px) and (max-width: 700px) {
     width: calc(50% - 10px);
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 600px) {
     width: 100%;
   }
 `;

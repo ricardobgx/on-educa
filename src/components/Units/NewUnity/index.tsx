@@ -1,7 +1,6 @@
-import { AxiosInstance } from 'axios';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { IUnity } from '../../../interfaces/IUnity';
+import { ICommonUnityProps } from '../../../pages/Units';
 import OnEducaAPI from '../../../services/api';
 import { State } from '../../../store';
 import {
@@ -15,19 +14,14 @@ import {
   CreateUnityButtonLabel,
 } from './styles';
 
-interface INewUnityProps {
+interface INewUnityProps extends ICommonUnityProps {
   setNewUnityIsVisible: (value: boolean) => void;
-  getUnits: (
-    API: AxiosInstance,
-    setUnitsState: (value: IUnity[]) => void,
-  ) => void;
-  setUnits: (value: IUnity[]) => void;
 }
 
 const NewUnity = (props: INewUnityProps): JSX.Element => {
   /* Props */
 
-  const { setNewUnityIsVisible, getUnits, setUnits } = props;
+  const { setNewUnityIsVisible, getUnits } = props;
 
   /* Local State */
 
@@ -52,7 +46,7 @@ const NewUnity = (props: INewUnityProps): JSX.Element => {
         },
       },
     ).then(() => {
-      getUnits(OnEducaAPI, setUnits);
+      getUnits();
       setNewUnityIsVisible(false);
     });
   };

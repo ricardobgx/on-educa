@@ -10,7 +10,7 @@ const lightTheme = {
   colors: {
     backgroundColor: '#fcfcfc',
     boxColor: '#FFFFFF',
-    hoverColor: 'rgba(0, 0, 0, 0.05)',
+    hoverColor: 'rgba(0, 0, 0, 0.045)',
     textColor: '#126699',
     boxShadowColor: 'rgba(0, 0, 0, 0.2)',
     commonColor: '#52b788',

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { IStudent } from '../../../interfaces/IStudent';
-import { DEFAULT_SCHOOL_GRADE } from '../../../store/reducers/schoolGrade';
-import { DEFAULT_TEACHING_TYPE } from '../../../store/reducers/teachingType';
+import {
+  DEFAULT_SCHOOL_GRADE,
+  DEFAULT_TEACHING_TYPE,
+} from '../../../static/defaultEntitiesValues';
 import SectionLabel from '../../App/SectionLabel';
 import ParticipantsList from '../ParticipantsList';
 import {

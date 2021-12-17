@@ -23,6 +23,7 @@ export const DeleteContentButton = styled.button`
   border: none;
   color: ${({ theme }) => theme.colors.whiteColor};
   margin-left: 10px;
+  cursor: pointer;
 
   @media (max-width: 700px) {
     margin: 0;

@@ -2,14 +2,14 @@ import React from 'react';
 import theme from '../../../global/styles/theme';
 import { ISchoolGrade } from '../../../interfaces/ISchoolGrade';
 import {
-  SchoolGradeSelectBox,
-  SchoolGradeSelectLabel,
-  SchoolGradeSelectOptionsList,
-  SchoolGradeSelectOptionsListBox,
-  SchoolGradeSelectOption,
-  SchoolGradeSelectOptionLabel,
+  SubjectSectionSelectBox,
   RequiredFieldLabel,
-} from './styles';
+  SubjectSectionSelectLabel,
+  SubjectSectionSelectOption,
+  SubjectSectionSelectOptionLabel,
+  SubjectSectionSelectOptionsList,
+  SubjectSectionSelectOptionsListBox,
+} from '../styles';
 
 interface ISchoolGradeSelectProps {
   label: string;
@@ -22,15 +22,15 @@ const SchoolGradeSelect = (props: ISchoolGradeSelectProps): JSX.Element => {
   const { label, options, selectedOption, setOption } = props;
 
   return (
-    <SchoolGradeSelectBox>
-      <SchoolGradeSelectLabel>
+    <SubjectSectionSelectBox>
+      <SubjectSectionSelectLabel>
         {label}
         <RequiredFieldLabel>*</RequiredFieldLabel>
-      </SchoolGradeSelectLabel>
-      <SchoolGradeSelectOptionsList>
-        <SchoolGradeSelectOptionsListBox>
+      </SubjectSectionSelectLabel>
+      <SubjectSectionSelectOptionsList>
+        <SubjectSectionSelectOptionsListBox>
           {options.map((option) => (
-            <SchoolGradeSelectOption
+            <SubjectSectionSelectOption
               key={option.id}
               style={{
                 background:
@@ -40,14 +40,14 @@ const SchoolGradeSelect = (props: ISchoolGradeSelectProps): JSX.Element => {
               }}
               onClick={() => setOption(option)}
             >
-              <SchoolGradeSelectOptionLabel>
+              <SubjectSectionSelectOptionLabel>
                 {option.index}º ano
-              </SchoolGradeSelectOptionLabel>
-            </SchoolGradeSelectOption>
+              </SubjectSectionSelectOptionLabel>
+            </SubjectSectionSelectOption>
           ))}
-        </SchoolGradeSelectOptionsListBox>
-      </SchoolGradeSelectOptionsList>
-    </SchoolGradeSelectBox>
+        </SubjectSectionSelectOptionsListBox>
+      </SubjectSectionSelectOptionsList>
+    </SubjectSectionSelectBox>
   );
 };
 

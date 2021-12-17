@@ -1,13 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { ISubject } from '../../interfaces/ISubject';
+import { DEFAULT_SUBJECT } from '../../static/defaultEntitiesValues';
 import { SubjectActionType } from '../action-types/subject';
 import { SubjectAction } from '../actions/subject';
-
-export const DEFAULT_SUBJECT: ISubject = {
-  id: '',
-  name: '',
-};
 
 const subjectReducer = (
   state: ISubject = DEFAULT_SUBJECT,

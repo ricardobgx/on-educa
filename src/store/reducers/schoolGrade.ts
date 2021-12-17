@@ -1,13 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { ISchoolGrade } from '../../interfaces/ISchoolGrade';
+import { DEFAULT_SCHOOL_GRADE } from '../../static/defaultEntitiesValues';
 import { SchoolGradeActionType } from '../action-types/schoolGrade';
 import { SchoolGradeAction } from '../actions/schoolGrade';
-
-export const DEFAULT_SCHOOL_GRADE: ISchoolGrade = {
-  id: '',
-  index: 0,
-};
 
 const schoolGradeReducer = (
   state: ISchoolGrade = DEFAULT_SCHOOL_GRADE,

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { inputTextArea } from '../../../components';
 import {
   DetailBoxLabel,
   FlexColumnBox,
@@ -17,14 +18,13 @@ export const NewContentDescriptionBox = styled(FlexColumnBox)`
   }
 `;
 export const NewContentDescriptionLabel = styled(DetailBoxLabel)``;
-export const NewContentDescriptionInput = styled.textarea`
+export const NewContentDescriptionInput = styled(inputTextArea)`
   min-width: calc(60vw - 80px);
   max-width: calc(60vw - 80px);
   min-height: 20vw;
   max-height: 20vw;
   color: ${({ theme }) => theme.colors.textColor};
   background: ${({ theme }) => theme.colors.hoverColor};
-  /* box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor}; */
   border-radius: 5px;
   border: none;
   padding: 10px;

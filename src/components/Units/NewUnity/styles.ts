@@ -11,7 +11,7 @@ export const NewUnityBackground = styled.div`
   justify-content: center;
   align-items: center;
   background: ${({ theme }) => theme.colors.boxShadowColor};
-  z-index: 96;
+  z-index: 97;
   animation: fadeIn 0.2s linear;
 `;
 export const NewUnityBox = styled.div`
@@ -24,6 +24,10 @@ export const NewUnityBox = styled.div`
   border-radius: 10px;
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
   position: relative;
+
+  @media (max-width: 900px) {
+    width: calc(100% - 80px);
+  }
 `;
 export const CloseNewUnityButton = styled.button`
   color: ${({ theme }) => theme.colors.boxColor};
@@ -51,10 +55,10 @@ export const NewUnityLabel = styled(paragraph)`
 `;
 export const NewUnityInput = styled(inputText)`
   color: ${({ theme }) => theme.colors.textColor};
-  background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  background: ${({ theme }) => theme.colors.hoverColor};
   border-radius: 5px;
-  border: 3px solid ${({ theme }) => theme.colors.textColor};
+  border: none;
+  border-radius: 5px;
   height: 40px;
   width: 100%;
   margin: 20px 0;

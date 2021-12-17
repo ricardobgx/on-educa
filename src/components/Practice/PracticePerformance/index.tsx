@@ -5,9 +5,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import bookLover from '../../../assets/ilustrations/undraw_book_lover_mkck.svg';
-import { IQuestion } from '../../../interfaces/IQuestion';
+import { IDuelQuestion } from '../../../interfaces/IDuelQuestion';
 import { ActionCreators, State } from '../../../store';
-import { DEFAULT_PRACTICE } from '../../../store/reducers/practice';
 import SectionLabel from '../../App/SectionLabel';
 import {
   Container,
@@ -60,34 +59,43 @@ const PracticePerformance = (): JSX.Element => {
 
   // Right Questions
 
-  const rightQuestionsNumber = (practiceQuestions: IQuestion[]): number => {
-    return practiceQuestions.filter((question: IQuestion) => {
-      return question.selectedAlternativeId === question.rightAlternativeId;
+  const rightQuestionsNumber = (practiceQuestions: IDuelQuestion[]): number => {
+    return practiceQuestions.filter((duelQuestion: IDuelQuestion) => {
+      const { question, duelQuestionAnswer } = duelQuestion;
+      return (
+        question.rightAlternative.id ===
+        duelQuestionAnswer?.selectedAlternative.id
+      );
     }).length;
   };
 
   // Wrong Questions
 
-  const wrongQuestionsNumber = (practiceQuestions: IQuestion[]): number => {
-    return practiceQuestions.filter((question: IQuestion) => {
+  const wrongQuestionsNumber = (practiceQuestions: IDuelQuestion[]): number => {
+    return practiceQuestions.filter((duelQuestion: IDuelQuestion) => {
+      const { question, duelQuestionAnswer } = duelQuestion;
       return (
-        question.selectedAlternativeId !== 'skipped' &&
-        question.selectedAlternativeId !== question.rightAlternativeId
+        !!duelQuestionAnswer?.selectedAlternative &&
+        duelQuestionAnswer?.selectedAlternative.id !==
+          question.rightAlternative.id
       );
     }).length;
   };
 
   // Skipped Questions
 
-  const skippedQuestionsNumber = (practiceQuestions: IQuestion[]): number => {
-    return practiceQuestions.filter((question: IQuestion) => {
-      return question.selectedAlternativeId === 'skipped';
+  const skippedQuestionsNumber = (
+    practiceQuestions: IDuelQuestion[],
+  ): number => {
+    return practiceQuestions.filter((duelQuestion: IDuelQuestion) => {
+      const { duelQuestionAnswer } = duelQuestion;
+      return !!duelQuestionAnswer?.selectedAlternative;
     }).length;
   };
 
   // All Questions
 
-  const questionsScore = (practiceQuestions: IQuestion[]): number => {
+  const questionsScore = (practiceQuestions: IDuelQuestion[]): number => {
     return rightQuestionsNumber(practiceQuestions) * 10;
   };
 
@@ -98,7 +106,7 @@ const PracticePerformance = (): JSX.Element => {
   };
 
   useEffect((): any => {
-    return () => loadQuestions(DEFAULT_PRACTICE.questions);
+    return () => loadQuestions([]);
   }, []);
 
   return (

@@ -1,0 +1,76 @@
+import styled from 'styled-components';
+import {
+  Button,
+  inputText,
+  mediumIcon,
+  paragraph,
+  smallIcon,
+} from '../../../components';
+import {
+  DetailBoxLabel,
+  FlexColumnBox,
+} from '../../../pages/NewContent/styles';
+
+export const NewQuestionAlternativesBox = styled(FlexColumnBox)`
+  background: ${({ theme }) => theme.colors.boxColor};
+  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+`;
+export const NewQuestionAlternativesLabel = styled(DetailBoxLabel)``;
+export const NewQuestionAlternativesList = styled.div`
+  margin-bottom: 10px;
+`;
+export const NewQuestionAlternativesListBox = styled(FlexColumnBox)`
+  padding: 5px;
+  overflow: auto;
+  min-height: calc(20vw - 50px);
+  max-height: calc(20vw - 50px);
+
+  @media (max-width: 900px) {
+    min-height: calc(40vw - 50px);
+    max-height: calc(40vw - 50px);
+  }
+`;
+export const NewAttachment = styled.div`
+  display: flex;
+`;
+export const NewAttachmentInput = styled(inputText)`
+  width: 100%;
+  color: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.hoverColor};
+  border-radius: 5px;
+  border: none;
+  margin-right: 10px;
+  padding: 0 10px;
+
+  &::-webkit-input-placeholder {
+    color: ${({ theme }) => theme.colors.textColor};
+    opacity: 0.5;
+  }
+
+  &:-moz-placeholder {
+    /* Firefox 18- */
+    color: ${({ theme }) => theme.colors.textColor};
+    opacity: 0.5;
+  }
+
+  &::-moz-placeholder {
+    /* Firefox 19+ */
+    color: ${({ theme }) => theme.colors.textColor};
+    opacity: 0.5;
+  }
+
+  &:-ms-input-placeholder {
+    color: ${({ theme }) => theme.colors.textColor};
+    opacity: 0.5;
+  }
+`;
+export const NewAttachmentButton = styled(Button)`
+  color: ${({ theme }) => theme.colors.boxColor};
+  background: ${({ theme }) => theme.colors.textColor};
+  min-width: 40px;
+  cursor: pointer;
+`;
+export const NewAttachmentButtonIcon = styled(smallIcon)``;

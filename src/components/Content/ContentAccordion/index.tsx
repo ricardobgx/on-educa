@@ -1,9 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { getContentsByUnity } from '../../../functions/content';
+import theme from '../../../global/styles/theme';
 import { IContent } from '../../../interfaces/IContent';
 import { IUnity } from '../../../interfaces/IUnity';
 import OnEducaAPI from '../../../services/api';
+import { State } from '../../../store';
 import {
   AccordionLabel,
   AccordionToggleCheckBox,
@@ -17,19 +21,18 @@ import {
 } from './styles';
 
 const ContentAccordion = (props: IUnity): JSX.Element => {
+  /* Global State */
+
+  const { aplication, content: contentNow } = useSelector(
+    (store: State) => store,
+  );
+  const { token } = aplication;
+
   const { id, title } = props;
   const [contents, setContents] = useState<IContent[]>([]);
 
-  const getContents = async (
-    setContentsState: (value: IContent[]) => void,
-  ): Promise<void> => {
-    await OnEducaAPI.get(`/contents/unity/${id}`).then((contentsResponse) => {
-      setContentsState(contentsResponse.data);
-    });
-  };
-
   useEffect(() => {
-    getContents(setContents);
+    getContentsByUnity(OnEducaAPI, id, setContents, token);
   }, []);
 
   return (
@@ -40,13 +43,29 @@ const ContentAccordion = (props: IUnity): JSX.Element => {
         <AccordionToggleIcon className="fas fa-chevron-right" />
       </AccordionToggleLabel>
       <HiddenContents>
-        <HiddenContentsBox>
-          {contents.map((content: IContent) => (
-            <HiddenContent key={content.title} to="/">
-              <HiddenContentLabel>{content.title}</HiddenContentLabel>
-            </HiddenContent>
-          ))}
-        </HiddenContentsBox>
+        {contents.length > 0 && (
+          <HiddenContentsBox>
+            {contents.map((content: IContent) => (
+              <HiddenContent
+                style={{
+                  background:
+                    contentNow.id === content.id ? theme.colors.textColor : '',
+                }}
+                key={content.title}
+                to={`/contents/${content.id}`}
+              >
+                <HiddenContentLabel
+                  style={{
+                    color:
+                      contentNow.id === content.id ? theme.colors.boxColor : '',
+                  }}
+                >
+                  {content.title}
+                </HiddenContentLabel>
+              </HiddenContent>
+            ))}
+          </HiddenContentsBox>
+        )}
       </HiddenContents>
     </ContentAccordionBox>
   );

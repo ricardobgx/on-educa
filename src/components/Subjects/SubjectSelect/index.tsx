@@ -2,14 +2,14 @@ import React from 'react';
 import theme from '../../../global/styles/theme';
 import { ISubject } from '../../../interfaces/ISubject';
 import {
-  SubjectSelectBox,
-  SubjectSelectLabel,
-  SubjectSelectOptionsList,
-  SubjectSelectOptionsListBox,
-  SubjectSelectOption,
-  SubjectSelectOptionLabel,
+  SubjectSectionSelectBox,
   RequiredFieldLabel,
-} from './styles';
+  SubjectSectionSelectLabel,
+  SubjectSectionSelectOption,
+  SubjectSectionSelectOptionLabel,
+  SubjectSectionSelectOptionsList,
+  SubjectSectionSelectOptionsListBox,
+} from '../styles';
 
 interface ISubjectSelectProps {
   label: string;
@@ -30,15 +30,15 @@ const SubjectSelect = (props: ISubjectSelectProps): JSX.Element => {
   const sortedSubjects = subjects.sort(sortSubjects);
 
   return (
-    <SubjectSelectBox>
-      <SubjectSelectLabel>
+    <SubjectSectionSelectBox>
+      <SubjectSectionSelectLabel>
         {label}
         <RequiredFieldLabel>*</RequiredFieldLabel>
-      </SubjectSelectLabel>
-      <SubjectSelectOptionsList>
-        <SubjectSelectOptionsListBox>
+      </SubjectSectionSelectLabel>
+      <SubjectSectionSelectOptionsList>
+        <SubjectSectionSelectOptionsListBox>
           {sortedSubjects.map((subject) => (
-            <SubjectSelectOption
+            <SubjectSectionSelectOption
               key={subject.id}
               style={{
                 background:
@@ -50,14 +50,14 @@ const SubjectSelect = (props: ISubjectSelectProps): JSX.Element => {
               }}
               onClick={() => setSubjectSelected(subject)}
             >
-              <SubjectSelectOptionLabel>
+              <SubjectSectionSelectOptionLabel>
                 {subject.name}
-              </SubjectSelectOptionLabel>
-            </SubjectSelectOption>
+              </SubjectSectionSelectOptionLabel>
+            </SubjectSectionSelectOption>
           ))}
-        </SubjectSelectOptionsListBox>
-      </SubjectSelectOptionsList>
-    </SubjectSelectBox>
+        </SubjectSectionSelectOptionsListBox>
+      </SubjectSectionSelectOptionsList>
+    </SubjectSectionSelectBox>
   );
 };
 

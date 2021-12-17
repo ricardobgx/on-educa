@@ -12,8 +12,8 @@ import WeekPerformance from '../../components/Profile/WeekPerformance';
 import { findUserType, isUserLogged } from '../../functions/user';
 import { IUser } from '../../interfaces/IUser';
 import OnEducaAPI from '../../services/api';
+import { DEFAULT_USER } from '../../static/defaultEntitiesValues';
 import { State } from '../../store';
-import { DEFAULT_USER } from '../../store/reducers/user';
 import { Page } from '../components';
 import {
   MainDetails,

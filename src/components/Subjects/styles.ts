@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { paragraph } from '../../../components';
+import { paragraph } from '../../components';
 
-export const SubjectSelectBox = styled.div`
+export const SubjectSectionSelectBox = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 10px;
@@ -20,7 +20,7 @@ export const SubjectSelectBox = styled.div`
     }
   }
 `;
-export const SubjectSelectLabel = styled(paragraph)`
+export const SubjectSectionSelectLabel = styled(paragraph)`
   display: flex;
   margin: 5px;
   margin-bottom: 15px;
@@ -29,18 +29,22 @@ export const SubjectSelectLabel = styled(paragraph)`
 export const RequiredFieldLabel = styled(paragraph)`
   color: ${({ theme }) => theme.similarColors.warningColor};
 `;
-export const SubjectSelectOptionsList = styled.div`
+export const SubjectSectionSelectOptionsList = styled.div`
   width: 100%;
 `;
-export const SubjectSelectOptionsListBox = styled.div`
+export const SubjectSectionSelectOptionsListBox = styled.div`
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 355px);
   max-height: calc(100vh - 355px);
   padding: 5px;
   overflow: auto;
+
+  @media (max-width: 1150px) {
+    min-height: unset;
+  }
 `;
-export const SubjectSelectOption = styled.button`
+export const SubjectSectionSelectOption = styled.button`
   background: ${({ theme }) => theme.colors.boxColor};
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 10px;
@@ -58,6 +62,6 @@ export const SubjectSelectOption = styled.button`
     margin-bottom: 0;
   }
 `;
-export const SubjectSelectOptionLabel = styled(paragraph)`
+export const SubjectSectionSelectOptionLabel = styled(paragraph)`
   transition: all 0.2s linear;
 `;
