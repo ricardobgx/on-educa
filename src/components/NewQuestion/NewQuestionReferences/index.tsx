@@ -4,6 +4,7 @@ import { ISchoolGrade } from '../../../interfaces/ISchoolGrade';
 import { ISubject } from '../../../interfaces/ISubject';
 import { ITeachingType } from '../../../interfaces/ITeachingType';
 import { IUnity } from '../../../interfaces/IUnity';
+import NewSuppliesContentReference from '../../App/Supplies/NewSuppliesContentReference';
 import NewQuestionReference from '../NewQuestionReference';
 import { NewQuestionReferencesBox } from './styles';
 
@@ -26,9 +27,14 @@ const NewQuestionReferences = (
         label="Série"
         value={`${schoolGrade.index}º ano - ${teachingType.title}`}
       />
-      <NewQuestionReference label="Disciplina" value={subject.name} />
-      <NewQuestionReference label="Unidade" value={unity.title} />
-      <NewQuestionReference label="Conteúido" value={content.title} />
+      <NewSuppliesSubjectReference label="Disciplina" value={subject.name} />
+      <NewSuppliesUnityReference label="Unidade" value={unity.title} />
+      <NewSuppliesContentReference
+        label="Conteúdo"
+        contents={}
+        selectedContent={}
+        setSelectedContent={}
+      />
     </NewQuestionReferencesBox>
   );
 };

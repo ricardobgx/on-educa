@@ -3,4 +3,5 @@ export interface IQuestionParams {
   description?: string;
   difficulty?: number;
   contentId?: string;
+  alternativesDescriptions?: string[];
 }
