@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 import { paragraph } from '../../../components';
-import {
-  DetailBoxLabel,
-  FlexColumnBox,
-} from '../../../pages/NewContent/styles';
+import { FlexColumnBox } from '../../../pages/NewContent/styles';
 
 export const NewContentAttachmentsBox = styled(FlexColumnBox)`
   background: ${({ theme }) => theme.colors.boxColor};
@@ -17,7 +14,6 @@ export const NewContentAttachmentsBox = styled(FlexColumnBox)`
     margin-top: 40px;
   }
 `;
-export const NewContentAttachmentsLabel = styled(DetailBoxLabel)``;
 export const NewContentAttachmentsList = styled.div`
   margin-bottom: 10px;
 `;

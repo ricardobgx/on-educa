@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 import { inputTextArea } from '../../../components';
-import {
-  DetailBoxLabel,
-  FlexColumnBox,
-} from '../../../pages/NewContent/styles';
+import { FlexColumnBox } from '../../../pages/NewContent/styles';
 
 export const NewContentDescriptionBox = styled(FlexColumnBox)`
   background: ${({ theme }) => theme.colors.boxColor};
@@ -17,7 +14,6 @@ export const NewContentDescriptionBox = styled(FlexColumnBox)`
     margin: 0;
   }
 `;
-export const NewContentDescriptionLabel = styled(DetailBoxLabel)``;
 export const NewContentDescriptionInput = styled(inputTextArea)`
   min-width: calc(60vw - 80px);
   max-width: calc(60vw - 80px);

@@ -1,7 +1,7 @@
 import React from 'react';
+import { NewContentBoxLabel } from '../../../pages/NewContent/styles';
 import {
   NewContentAttachmentsBox,
-  NewContentAttachmentsLabel,
   NewContentAttachmentsList,
   NewContentAttachmentsListBox,
   NewAttachmentButton,
@@ -11,7 +11,7 @@ import {
 const NewContentAttachments = (): JSX.Element => {
   return (
     <NewContentAttachmentsBox>
-      <NewContentAttachmentsLabel>Anexos</NewContentAttachmentsLabel>
+      <NewContentBoxLabel>Anexos</NewContentBoxLabel>
       <NewContentAttachmentsList>
         <NewContentAttachmentsListBox>{}</NewContentAttachmentsListBox>
       </NewContentAttachmentsList>

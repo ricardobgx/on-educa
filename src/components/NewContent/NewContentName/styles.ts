@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import {
   DetailBoxInput,
-  DetailBoxLabel,
   FlexColumnBox,
 } from '../../../pages/NewContent/styles';
 
@@ -12,7 +11,5 @@ export const NewContentNameBox = styled(FlexColumnBox)`
   padding: 20px;
   margin-bottom: 20px;
 `;
-
-export const NameLabel = styled(DetailBoxLabel)``;
 
 export const NameInput = styled(DetailBoxInput)``;

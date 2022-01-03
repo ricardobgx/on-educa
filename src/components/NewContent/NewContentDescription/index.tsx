@@ -1,10 +1,9 @@
 import React from 'react';
+import { NewContentDescriptionBox, NewContentDescriptionInput } from './styles';
 import {
-  NewContentDescriptionBox,
-  NewContentDescriptionLabel,
-  NewContentDescriptionInput,
-} from './styles';
-import { RequiredField } from '../../../pages/NewContent/styles';
+  RequiredField,
+  NewContentBoxLabel,
+} from '../../../pages/NewContent/styles';
 
 interface INewContentDescriptionProps {
   description: string;
@@ -18,9 +17,9 @@ const NewContentDescription = (
 
   return (
     <NewContentDescriptionBox>
-      <NewContentDescriptionLabel>
+      <NewContentBoxLabel>
         Descrição<RequiredField>*</RequiredField>
-      </NewContentDescriptionLabel>
+      </NewContentBoxLabel>
       <NewContentDescriptionInput
         value={description}
         onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) =>

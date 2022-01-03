@@ -1,6 +1,9 @@
 import React from 'react';
-import { RequiredField } from '../../../pages/NewContent/styles';
-import { NameInput, NameLabel, NewContentNameBox } from './styles';
+import {
+  RequiredField,
+  NewContentBoxLabel,
+} from '../../../pages/NewContent/styles';
+import { NameInput, NewContentNameBox } from './styles';
 
 interface INewContentNameProps {
   title: string;
@@ -12,9 +15,9 @@ const NewContentName = (props: INewContentNameProps): JSX.Element => {
 
   return (
     <NewContentNameBox>
-      <NameLabel>
+      <NewContentBoxLabel>
         Nome do conteúdo<RequiredField>*</RequiredField>
-      </NameLabel>
+      </NewContentBoxLabel>
       <NameInput
         value={title}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
