@@ -1,8 +1,10 @@
 import React from 'react';
-import { RequiredField } from '../../../pages/NewContent/styles';
+import {
+  RequiredField,
+  NewContentBoxLabel,
+} from '../../../pages/NewContent/styles';
 import {
   NewContentVideoBox,
-  VideoLabel,
   VideoInput,
   NewContentVideoPreview,
 } from './styles';
@@ -17,13 +19,29 @@ const NewContentVideo = (props: INewContentVideoProps): JSX.Element => {
 
   const { video, setVideo } = props;
 
-  const videoLinkSplitWatch = video.split('watch?v=');
+  const getVideoCode = (url: string): string => {
+    const urlParts = url.split('?');
+
+    if (urlParts[1]) {
+      const query = urlParts[1];
+      const queryParams = query.split('&');
+
+      if (queryParams[0]) {
+        const vParam = queryParams[0];
+        const vParamValue = vParam.split('=')[1];
+
+        if (vParamValue) return vParamValue;
+      }
+    }
+
+    return '';
+  };
 
   return (
     <NewContentVideoBox>
-      <VideoLabel>
+      <NewContentBoxLabel>
         Link do vídeo<RequiredField>*</RequiredField>
-      </VideoLabel>
+      </NewContentBoxLabel>
       <VideoInput
         value={video}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +51,7 @@ const NewContentVideo = (props: INewContentVideoProps): JSX.Element => {
         spellCheck={false}
       />
       <NewContentVideoPreview
-        src={`https://www.youtube.com/embed/${videoLinkSplitWatch[1]}`}
+        src={`https://www.youtube.com/embed/${getVideoCode(video)}`}
         title="YouTube video player"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
