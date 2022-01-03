@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import {
   DetailBoxInput,
-  DetailBoxLabel,
   FlexColumnBox,
 } from '../../../pages/NewContent/styles';
 
@@ -17,8 +16,6 @@ export const NewContentVideoBox = styled(FlexColumnBox)`
     margin-right: 0;
   }
 `;
-
-export const VideoLabel = styled(DetailBoxLabel)``;
 
 export const VideoInput = styled(DetailBoxInput)``;
 

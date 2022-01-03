@@ -2,6 +2,20 @@ import { AxiosInstance } from 'axios';
 import { IUnityParams } from '../dto/IUnityParams';
 import { IUnity } from '../interfaces/IUnity';
 
+export const getUnits = async (
+  API: AxiosInstance,
+  setUnitsState: (value: IUnity[]) => void,
+  token: string,
+): Promise<void> => {
+  await API.get(`/units`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then((response) => {
+    setUnitsState(response.data);
+  });
+};
+
 export const getUnitsBySubject = async (
   API: AxiosInstance,
   subjectId: string,

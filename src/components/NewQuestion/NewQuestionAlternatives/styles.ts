@@ -1,15 +1,6 @@
 import styled from 'styled-components';
-import {
-  Button,
-  inputText,
-  mediumIcon,
-  paragraph,
-  smallIcon,
-} from '../../../components';
-import {
-  DetailBoxLabel,
-  FlexColumnBox,
-} from '../../../pages/NewContent/styles';
+import { Button, inputText, smallIcon } from '../../../components';
+import { FlexColumnBox } from '../../../pages/NewContent/styles';
 
 export const NewQuestionAlternativesBox = styled(FlexColumnBox)`
   background: ${({ theme }) => theme.colors.boxColor};
@@ -18,7 +9,6 @@ export const NewQuestionAlternativesBox = styled(FlexColumnBox)`
   padding: 20px;
   width: 100%;
 `;
-export const NewQuestionAlternativesLabel = styled(DetailBoxLabel)``;
 export const NewQuestionAlternativesList = styled.div`
   margin-bottom: 10px;
 `;

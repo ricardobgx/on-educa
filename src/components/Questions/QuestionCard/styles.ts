@@ -51,8 +51,8 @@ export const QuestionTitle = styled(paragraph)`
   font-weight: bold;
   margin-bottom: 5px;
 `;
-export const SubjectLabel = styled(paragraph)``;
-export const QuestionSchoolGrade = styled(QuestionCardDetailsBox)`
+export const ContentLabel = styled(paragraph)``;
+export const QuestionUnity = styled(QuestionCardDetailsBox)`
   align-items: center;
 
   @media (max-width: 900px) {
@@ -60,10 +60,10 @@ export const QuestionSchoolGrade = styled(QuestionCardDetailsBox)`
     align-items: flex-start;
   }
 `;
-export const SchoolGradeLabel = styled(paragraph)`
+export const SubjectLabel = styled(paragraph)`
   margin-bottom: 5px;
 `;
-export const TeachingTypeLabel = styled(paragraph)``;
+export const UnityLabel = styled(paragraph)``;
 export const QuestionAdditionalDetails = styled(QuestionCardDetailsBox)`
   align-items: flex-end;
 

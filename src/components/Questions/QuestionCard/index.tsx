@@ -1,7 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { reduceTextSize } from '../../../functions/utils';
+import { IContent } from '../../../interfaces/IContent';
 import { IQuestion } from '../../../interfaces/IQuestion';
+import { ISubject } from '../../../interfaces/ISubject';
+import { IUnity } from '../../../interfaces/IUnity';
 import { ActionCreators, State } from '../../../store';
 import QuestionCardActions from '../QuestionCardActions';
 import {
@@ -10,9 +14,6 @@ import {
   QuestionDetails,
   QuestionTitle,
   SubjectLabel,
-  QuestionSchoolGrade,
-  SchoolGradeLabel,
-  TeachingTypeLabel,
   QuestionAdditionalDetails,
   UpdateDate,
   UpdateDateLabel,
@@ -20,23 +21,34 @@ import {
   QuestionsNumber,
   QuestionsNumberLabel,
   QuestionsNumberIcon,
+  ContentLabel,
+  UnityLabel,
+  QuestionUnity,
 } from './styles';
 
 interface IQuestionCardProps {
+  subject: ISubject;
+  unity: IUnity;
+  content: IContent;
   question: IQuestion;
   setQuestion: (value: IQuestion) => void;
   setDeleteQuestionIsVisible: (value: boolean) => void;
 }
 
 const QuestionCard = (props: IQuestionCardProps): JSX.Element => {
-  const { question, setQuestion, setDeleteQuestionIsVisible } = props;
-  const { id, description } = question;
+  const {
+    subject,
+    unity,
+    content,
+    question,
+    setQuestion,
+    setDeleteQuestionIsVisible,
+  } = props;
+  const { id, description, alternatives } = question;
 
   const dispatch = useDispatch();
 
   const { loadQuestion } = bindActionCreators(ActionCreators, dispatch);
-
-  const { schoolGrade, subject, unity } = useSelector((store: State) => store);
 
   return (
     <QuestionCardBox>
@@ -45,20 +57,24 @@ const QuestionCard = (props: IQuestionCardProps): JSX.Element => {
         onClick={() => loadQuestion(question)}
       >
         <QuestionDetails>
-          <QuestionTitle>{description}</QuestionTitle>
-          <SubjectLabel>Unidade: {unity.title}</SubjectLabel>
+          <QuestionTitle>{reduceTextSize(description, 35)}</QuestionTitle>
+          <ContentLabel>
+            Conteúdo: {reduceTextSize(content.title, 25)}
+          </ContentLabel>
         </QuestionDetails>
-        <QuestionSchoolGrade>
-          <SchoolGradeLabel>Série: {schoolGrade.index}º ano</SchoolGradeLabel>
-          <TeachingTypeLabel>Disciplina: {subject.name}</TeachingTypeLabel>
-        </QuestionSchoolGrade>
+        <QuestionUnity>
+          <SubjectLabel>Disciplina: {subject.name}</SubjectLabel>
+          <UnityLabel>Unidade: {unity.title}</UnityLabel>
+        </QuestionUnity>
         <QuestionAdditionalDetails>
           <UpdateDate>
             <UpdateDateLabel>28/11/2021</UpdateDateLabel>
             <UpdateDateIcon className="fas fa-clock" />
           </UpdateDate>
           <QuestionsNumber>
-            <QuestionsNumberLabel>11 questões</QuestionsNumberLabel>
+            <QuestionsNumberLabel>
+              {alternatives.length} alternativa(s)
+            </QuestionsNumberLabel>
             <QuestionsNumberIcon className="fas fa-file-alt" />
           </QuestionsNumber>
         </QuestionAdditionalDetails>

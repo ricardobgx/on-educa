@@ -16,8 +16,14 @@ export const PageBox = styled.div`
 
 /* General components */
 
-export const RequiredField = styled(paragraph)`
+export const RequiredField = styled.span`
   color: ${({ theme }) => theme.similarColors.warningColor};
+`;
+export const NewContentBoxLabel = styled(paragraph)`
+  color: ${({ theme }) => theme.colors.textColor};
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: flex;
 `;
 
 /* Templates */
@@ -25,13 +31,6 @@ export const RequiredField = styled(paragraph)`
 export const FlexColumnBox = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-export const DetailBoxLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
-  font-weight: bold;
-  margin-bottom: 10px;
-  display: flex;
 `;
 
 export const DetailBoxInput = styled(inputText)`

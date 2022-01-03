@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import { NewQuestionBoxLabel } from '../../../pages/NewQuestion/styles';
 import NewQuestionAlternativeCard from '../NewQuestionAlternativeCard';
 import {
   NewQuestionAlternativesBox,
-  NewQuestionAlternativesLabel,
   NewQuestionAlternativesList,
   NewQuestionAlternativesListBox,
   NewAttachment,
@@ -46,7 +46,7 @@ const NewQuestionAlternatives = (
 
   return (
     <NewQuestionAlternativesBox>
-      <NewQuestionAlternativesLabel>Alternativas</NewQuestionAlternativesLabel>
+      <NewQuestionBoxLabel>Alternativas</NewQuestionBoxLabel>
       <NewQuestionAlternativesList>
         <NewQuestionAlternativesListBox>
           {alternativesDescription.map((alternativeDescription) => (

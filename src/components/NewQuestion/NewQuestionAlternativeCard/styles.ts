@@ -41,5 +41,6 @@ export const RightAlternativeButton = styled(Button)`
   background: none;
   margin-right: 10px;
   border: 2px solid ${({ theme }) => theme.similarColors.rightQuestion};
+  transition: all 0.2s linear;
 `;
 export const RightAlternativeButtonIcon = styled(smallIcon)``;

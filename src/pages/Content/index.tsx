@@ -43,6 +43,8 @@ import {
 import { IContent } from '../../interfaces/IContent';
 import { IUnity } from '../../interfaces/IUnity';
 import OnEducaAPI from '../../services/api';
+import { getUnits } from '../../functions/unity';
+import { getContent } from '../../functions/content';
 
 interface IContentRouteParams {
   id: string;
@@ -63,31 +65,18 @@ const Content = (): JSX.Element => {
   const { loadContent } = bindActionCreators(ActionCreators, dispatch);
 
   const {
+    aplication,
     content,
     schoolGrade,
     subject,
     unity: selectedUnity,
   } = useSelector((store: State) => store);
 
-  const getUnits = async (
-    setUnitsState: (value: IUnity[]) => void,
-  ): Promise<void> => {
-    await OnEducaAPI.get(`/units/subject/${subject.id}`).then((response) => {
-      setUnitsState(response.data);
-    });
-  };
-
-  const getContent = async (
-    setContentState: (value: IContent) => void,
-  ): Promise<void> => {
-    await OnEducaAPI.get(`/contents/${contentId}`).then((response) => {
-      setContentState(response.data);
-    });
-  };
+  const { token } = aplication;
 
   useEffect(() => {
-    getUnits(setUnits);
-    getContent(loadContent);
+    getUnits(OnEducaAPI, setUnits, token);
+    getContent(OnEducaAPI, contentId, token, loadContent);
   }, [contentId]);
 
   const { video } = content as IContent;

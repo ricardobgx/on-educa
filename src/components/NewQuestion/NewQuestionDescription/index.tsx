@@ -1,10 +1,10 @@
 import React from 'react';
 import {
   NewQuestionDescriptionBox,
-  NewQuestionDescriptionLabel,
   NewQuestionDescriptionInput,
 } from './styles';
 import { RequiredField } from '../../../pages/NewContent/styles';
+import { NewQuestionBoxLabel } from '../../../pages/NewQuestion/styles';
 
 interface INewQuestionDescriptionProps {
   description: string;
@@ -18,9 +18,9 @@ const NewQuestionDescription = (
 
   return (
     <NewQuestionDescriptionBox>
-      <NewQuestionDescriptionLabel>
+      <NewQuestionBoxLabel>
         Descrição<RequiredField>*</RequiredField>
-      </NewQuestionDescriptionLabel>
+      </NewQuestionBoxLabel>
       <NewQuestionDescriptionInput
         value={description}
         onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) =>

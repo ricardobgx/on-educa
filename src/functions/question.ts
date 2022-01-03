@@ -32,13 +32,13 @@ export const getQuestions = async (
   });
 };
 
-export const getQuestionsByUnity = async (
+export const getQuestionsByContent = async (
   API: AxiosInstance,
-  unityId: string,
+  contentId: string,
   setQuestionsState: (value: IQuestion[]) => void,
   token: string,
 ): Promise<void> => {
-  await API.get(`/questions/unity/${unityId}`, {
+  await API.get(`/questions/content/${contentId}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },

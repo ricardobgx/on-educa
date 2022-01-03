@@ -47,6 +47,22 @@ export const getContentsByUnity = async (
   });
 };
 
+export const createContent = async (
+  API: AxiosInstance,
+  contentParams: IContentParams,
+  token: string,
+  createSucess: () => void,
+  createError: () => void,
+): Promise<void> => {
+  await API.post('/contents', contentParams, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then(() => {
+    createSucess();
+  });
+};
+
 export const updateContent = async (
   API: AxiosInstance,
   id: string,

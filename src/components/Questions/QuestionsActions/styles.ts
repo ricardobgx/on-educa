@@ -112,6 +112,7 @@ export const QuestionsFiltersButton = styled.button`
   border: none;
   border-radius: 5px;
   padding: 0 20px;
+  cursor: pointer;
 
   @media (min-width: 600px) and (max-width: 700px) {
     width: calc(50% - 10px);

@@ -20,12 +20,13 @@ import {
 
 interface IQuestionActionsProps {
   userType: string;
+  setQuestionsFilterIsVisible: (value: boolean) => void;
 }
 
 const QuestionsActions = (props: IQuestionActionsProps): JSX.Element => {
   /* Props */
 
-  const { userType } = props;
+  const { userType, setQuestionsFilterIsVisible } = props;
 
   return (
     <Container>
@@ -49,7 +50,9 @@ const QuestionsActions = (props: IQuestionActionsProps): JSX.Element => {
             <NewQuestionButtonLabel>Nova questão</NewQuestionButtonLabel>
             <NewQuestionButtonIcon className="fas fa-plus" />
           </NewQuestionButton>
-          <QuestionsFiltersButton>
+          <QuestionsFiltersButton
+            onClick={() => setQuestionsFilterIsVisible(true)}
+          >
             <QuestionsFiltersButtonLabel>Filtrar</QuestionsFiltersButtonLabel>
             <QuestionsFiltersButtonIcon className="fas fa-sliders-h" />
           </QuestionsFiltersButton>

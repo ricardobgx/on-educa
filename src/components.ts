@@ -183,3 +183,17 @@ export const Button = styled.button`
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
   border: none;
 `;
+
+// Supplies Cards
+
+export const limitedTextSizeParagraph = styled(paragraph)`
+  @media (min-width: 900px) {
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+
+    &:after {
+      content: '...';
+    }
+  }
+`;

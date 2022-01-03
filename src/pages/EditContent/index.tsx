@@ -12,6 +12,12 @@ import {
   getContent,
   updateContent as updateContentData,
 } from '../../functions/content';
+import { stringFieldValidation } from '../../functions/updateEntity';
+import { IContent } from '../../interfaces/IContent';
+import { ISchoolGrade } from '../../interfaces/ISchoolGrade';
+import { ISubject } from '../../interfaces/ISubject';
+import { ITeachingType } from '../../interfaces/ITeachingType';
+import { IUnity } from '../../interfaces/IUnity';
 import OnEducaAPI from '../../services/api';
 import { DEFAULT_CONTENT } from '../../static/defaultEntitiesValues';
 import { State } from '../../store';
@@ -34,15 +40,31 @@ interface IEditContentRouteParams {
 }
 
 const EditContent = (): JSX.Element => {
-  const { unity, aplication, teachingType, schoolGrade, subject } = useSelector(
-    (store: State) => store,
-  );
+  const {
+    aplication,
+    teachingType: globalTeachingType,
+    schoolGrade: globalSchoolGrade,
+    subject: globalSubject,
+    unity: globalUnity,
+    content: globalContent,
+  } = useSelector((store: State) => store);
 
   const { token } = aplication;
 
   /* Local State */
 
-  const [content, setContent] = useState(DEFAULT_CONTENT);
+  // References
+
+  const [teachingType, setTeachingType] =
+    useState<ITeachingType>(globalTeachingType);
+  const [schoolGrade, setSchoolGrade] =
+    useState<ISchoolGrade>(globalSchoolGrade);
+  const [subject, setSubject] = useState<ISubject>(globalSubject);
+  const [unity, setUnity] = useState<IUnity>(globalUnity);
+  const [content, setContent] = useState<IContent>(globalContent);
+
+  // Content details
+
   const [title, setTitle] = useState(content.title);
   const [description, setDescription] = useState(content.description);
   const [video, setVideo] = useState(content.video);
@@ -66,12 +88,11 @@ const EditContent = (): JSX.Element => {
 
   const updateContent = async (): Promise<void> => {
     const contentParams: IContentParams = {
-      title: title === '' ? undefined : title,
-      description,
-      video,
+      title: stringFieldValidation(title),
+      description: stringFieldValidation(description),
+      video: stringFieldValidation(video),
+      unityId: unity.id,
     };
-
-    console.log(contentParams);
 
     updateContentData(
       OnEducaAPI,
@@ -104,9 +125,15 @@ const EditContent = (): JSX.Element => {
               <NewContentName title={title} setTitle={setTitle} />
               <NewContentReferences
                 teachingType={teachingType}
+                setTeachingType={setTeachingType}
                 schoolGrade={schoolGrade}
+                setSchoolGrade={setSchoolGrade}
                 subject={subject}
+                setSubject={setSubject}
                 unity={unity}
+                setUnity={setUnity}
+                content={content}
+                setContent={setContent}
               />
             </EditContentNameAndReference>
           </EditContentMainDetails>
