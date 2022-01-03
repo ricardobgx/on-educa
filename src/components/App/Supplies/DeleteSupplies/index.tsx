@@ -38,10 +38,10 @@ const DeleteSupplies = (props: IDeleteSuppliesProps): JSX.Element => {
         >
           <CloseDeleteSuppliesIcon className="fas fa-times" />
         </CloseDeleteSuppliesButton>
-        <DeleteSuppliesLabel>Excluir unidade</DeleteSuppliesLabel>
+        <DeleteSuppliesLabel>Excluir {suppliesType}</DeleteSuppliesLabel>
         <DeleteSuppliesWarningLabel>
-          Tem certeza que deseja excluir o {suppliesType} {suppliesLabel}? Todos
-          as questões e informações associadas à esse conteúdo serão excluidas
+          Tem certeza que deseja excluir? Todas as informações associadas à(ao){' '}
+          {suppliesType} serão removidas.
         </DeleteSuppliesWarningLabel>
         <DeleteSuppliesActions>
           <CancelDeleteSuppliesButton
