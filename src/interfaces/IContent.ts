@@ -1,3 +1,4 @@
+import { IQuestion } from './IQuestion';
 import { IUnity } from './IUnity';
 
 export interface IContent {
@@ -7,4 +8,5 @@ export interface IContent {
   video: string;
   index: number;
   unity: IUnity;
+  questions: IQuestion[];
 }

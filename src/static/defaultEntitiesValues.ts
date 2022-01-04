@@ -56,6 +56,7 @@ export const DEFAULT_CONTENT: IContent = {
   video: '',
   index: 0,
   unity: DEFAULT_UNITY,
+  questions: [],
 };
 
 export const DEFAULT_ALTERNATIVE: IAlternative = {

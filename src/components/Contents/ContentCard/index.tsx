@@ -30,7 +30,7 @@ interface IContentCardProps {
 
 const ContentCard = (props: IContentCardProps): JSX.Element => {
   const { content, setContent, setDeleteContentIsVisible } = props;
-  const { id, title } = content;
+  const { id, title, questions } = content;
 
   const dispatch = useDispatch();
 
@@ -58,7 +58,9 @@ const ContentCard = (props: IContentCardProps): JSX.Element => {
             <UpdateDateIcon className="fas fa-clock" />
           </UpdateDate>
           <ContentsNumber>
-            <ContentsNumberLabel>11 questões</ContentsNumberLabel>
+            <ContentsNumberLabel>
+              {questions.length} questões
+            </ContentsNumberLabel>
             <ContentsNumberIcon className="fas fa-file-alt" />
           </ContentsNumber>
         </ContentAdditionalDetails>

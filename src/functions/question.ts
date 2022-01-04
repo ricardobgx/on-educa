@@ -51,15 +51,15 @@ export const createQuestion = async (
   API: AxiosInstance,
   questionParams: IQuestionParams,
   token: string,
-  createSucess: () => void,
+  createSucess: (question: IQuestion) => void,
   createError: () => void,
 ): Promise<void> => {
   await API.post('/questions', questionParams, {
     headers: {
       authorization: `Bearer ${token}`,
     },
-  }).then(() => {
-    createSucess();
+  }).then((response) => {
+    createSucess(response.data);
   });
 };
 

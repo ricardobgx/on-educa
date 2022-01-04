@@ -27,6 +27,9 @@ import { IContent } from '../../interfaces/IContent';
 import { State } from '../../store';
 import { isDefaultContent } from '../../functions/entitiesValues';
 import { IAlternativeParams } from '../../dto/IAlternativeParams';
+import { IManyAlternativesParams } from '../../dto/IManyAlternativesParams';
+import { createManyAlternatives } from '../../functions/alternative';
+import { IQuestion } from '../../interfaces/IQuestion';
 
 const NewQuestion = (): JSX.Element => {
   /* Global State */
@@ -66,14 +69,13 @@ const NewQuestion = (): JSX.Element => {
 
   /* Functions */
 
-  const createQuestionSucess = (): void => {
+  const createAlternativesSucess = (): void => {
     setQuestionWasCreated(true);
   };
 
-  const createQuestionError = (): void => {
+  const createAlternativesError = (): void => {
     console.log('erro');
   };
-
   const buildAlternatives = (): IAlternativeParams[] => {
     const alternatives = alternativesDescription.map(
       (alternativeDescription, index) => {
@@ -87,12 +89,36 @@ const NewQuestion = (): JSX.Element => {
     return alternatives;
   };
 
+  const createAlternatives = async (questionId: string): Promise<void> => {
+    const alternativesParams: IManyAlternativesParams = {
+      alternativesDescriptions: buildAlternatives(),
+      questionId,
+    };
+
+    await createManyAlternatives(
+      OnEducaAPI,
+      alternativesParams,
+      token,
+      createAlternativesSucess,
+      createAlternativesError,
+    );
+
+    console.log(alternativesParams);
+  };
+
+  const createQuestionSucess = (question: IQuestion): void => {
+    createAlternatives(question.id);
+  };
+
+  const createQuestionError = (): void => {
+    console.log('erro');
+  };
+
   const createQuestion = async (): Promise<void> => {
     const questionParams: IQuestionParams = {
       description,
       difficulty,
       contentId: content.id,
-      alternativesDescription: buildAlternatives(),
     };
 
     await createQuestionData(

@@ -45,6 +45,7 @@ import { IUnity } from '../../interfaces/IUnity';
 import OnEducaAPI from '../../services/api';
 import { getUnits } from '../../functions/unity';
 import { getContent } from '../../functions/content';
+import { isStudent } from '../../functions/user';
 
 interface IContentRouteParams {
   id: string;
@@ -72,7 +73,7 @@ const Content = (): JSX.Element => {
     unity: selectedUnity,
   } = useSelector((store: State) => store);
 
-  const { token } = aplication;
+  const { token, userType } = aplication;
 
   useEffect(() => {
     getUnits(OnEducaAPI, setUnits, token);
@@ -112,9 +113,11 @@ const Content = (): JSX.Element => {
                   ))}
                 </ContentsBox>
               </Contents>
-              <PracticeButton to="/contents/12345/practice">
-                <PracticeButtonLabel>Praticar</PracticeButtonLabel>
-              </PracticeButton>
+              {isStudent(userType) && (
+                <PracticeButton to="/contents/12345/practice">
+                  <PracticeButtonLabel>Praticar</PracticeButtonLabel>
+                </PracticeButton>
+              )}
             </RelatedContentsBox>
           </ContentInfo>
           <ContentDescription>

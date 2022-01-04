@@ -44,7 +44,8 @@ export const RelatedContentsBox = styled.div`
   flex-direction: column;
   margin-left: 40px;
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 225px);
+  max-height: calc(100vh - 225px);
 
   @media (max-width: 1150px) {
     margin: 40px 0 0 0;
@@ -55,10 +56,9 @@ export const Contents = styled.div`
   flex-direction: column;
   background: ${({ theme }) => theme.colors.boxColor};
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  margin-bottom: 20px;
   border-radius: 10px;
   padding: 15px;
-  height: calc(100vh - 280px);
+  height: 100%;
 
   @media (max-width: 1150px) {
     min-height: 500px;
@@ -86,6 +86,7 @@ export const PracticeButton = styled(Link)`
   align-items: center;
   border-radius: 5px;
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  margin-top: 20px;
 `;
 export const PracticeButtonLabel = styled(paragraph)`
   color: ${({ theme }) => theme.colors.boxColor};
