@@ -57,8 +57,10 @@ const QuestionCard = (props: IQuestionCardProps): JSX.Element => {
         onClick={() => loadQuestion(question)}
       >
         <QuestionDetails>
-          <QuestionTitle>{reduceTextSize(description, 35)}</QuestionTitle>
-          <ContentLabel>
+          <QuestionTitle title={reduceTextSize(description, 150)}>
+            {reduceTextSize(description, 35)}
+          </QuestionTitle>
+          <ContentLabel title={reduceTextSize(content.title, 150)}>
             Conteúdo: {reduceTextSize(content.title, 25)}
           </ContentLabel>
         </QuestionDetails>

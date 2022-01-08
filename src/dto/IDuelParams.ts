@@ -3,6 +3,6 @@ export interface IDuelParams {
   maxGroupParticipants?: number;
   timeForQuestion?: number;
   questionsPerContent?: number;
-  duelOwnerId?: string;
+  studentId?: string;
   contentsId?: string[];
 }

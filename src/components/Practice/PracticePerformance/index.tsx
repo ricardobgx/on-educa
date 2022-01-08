@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import bookLover from '../../../assets/ilustrations/undraw_book_lover_mkck.svg';
 import { IDuelQuestion } from '../../../interfaces/IDuelQuestion';
+import { DEFAULT_ALTERNATIVE } from '../../../static/defaultEntitiesValues';
 import { ActionCreators, State } from '../../../store';
 import SectionLabel from '../../App/SectionLabel';
 import {
@@ -62,10 +63,9 @@ const PracticePerformance = (): JSX.Element => {
   const rightQuestionsNumber = (practiceQuestions: IDuelQuestion[]): number => {
     return practiceQuestions.filter((duelQuestion: IDuelQuestion) => {
       const { question, duelQuestionAnswer } = duelQuestion;
-      return (
-        question.rightAlternative.id ===
-        duelQuestionAnswer?.selectedAlternative.id
-      );
+      const rightAlternative = question.rightAlternative || DEFAULT_ALTERNATIVE;
+
+      return rightAlternative.id === duelQuestionAnswer?.selectedAlternative.id;
     }).length;
   };
 
@@ -74,10 +74,11 @@ const PracticePerformance = (): JSX.Element => {
   const wrongQuestionsNumber = (practiceQuestions: IDuelQuestion[]): number => {
     return practiceQuestions.filter((duelQuestion: IDuelQuestion) => {
       const { question, duelQuestionAnswer } = duelQuestion;
+      const rightAlternative = question.rightAlternative || DEFAULT_ALTERNATIVE;
+
       return (
         !!duelQuestionAnswer?.selectedAlternative &&
-        duelQuestionAnswer?.selectedAlternative.id !==
-          question.rightAlternative.id
+        duelQuestionAnswer?.selectedAlternative.id !== rightAlternative.id
       );
     }).length;
   };

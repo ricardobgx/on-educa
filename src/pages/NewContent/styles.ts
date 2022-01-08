@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { inputText, paragraph } from '../../components';
+import { paragraph } from '../../global/styles/components/textComponents';
+import { inputText } from '../../global/styles/components/inputComponents';
 
 export const PageBox = styled.div`
   display: flex;
@@ -16,9 +17,6 @@ export const PageBox = styled.div`
 
 /* General components */
 
-export const RequiredField = styled.span`
-  color: ${({ theme }) => theme.similarColors.warningColor};
-`;
 export const NewContentBoxLabel = styled(paragraph)`
   color: ${({ theme }) => theme.colors.textColor};
   font-weight: bold;

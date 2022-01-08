@@ -12,7 +12,7 @@ import { IContent } from '../../interfaces/IContent';
 import OnEducaAPI from '../../services/api';
 import { DEFAULT_CONTENT } from '../../static/defaultEntitiesValues';
 import { State } from '../../store';
-import { Page } from '../components';
+import { Page } from '../../global/styles/components/pageComponents';
 import { PageBox, ContentsBox } from './styles';
 
 interface IContentsRouteParams {

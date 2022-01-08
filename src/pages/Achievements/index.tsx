@@ -1,8 +1,8 @@
 import React from 'react';
-import { Page } from '../components';
 import Achievement from '../../components/Achievements/Achievement';
 import { AchievementsList, AchievementsListBox, PageBox } from './styles';
 import SectionLabel from '../../components/App/SectionLabel';
+import { Page } from '../../global/styles/components/pageComponents';
 
 const Achievements = (): JSX.Element => {
   return (

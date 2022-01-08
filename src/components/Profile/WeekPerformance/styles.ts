@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { paragraph } from '../../../components';
+import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const Container = styled.div`
   display: flex;
@@ -42,6 +42,7 @@ export const UserLeagueIcon = styled.i`
   margin-bottom: 5px;
 `;
 export const UserLeagueLabel = styled(paragraph)`
+  color: ${({ theme }) => theme.colors.textColor};
   font-weight: bold;
 `;
 export const SeeChartsButton = styled(Link)`

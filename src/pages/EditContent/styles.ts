@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Button, inputText, paragraph } from '../../components';
+import { paragraph } from '../../global/styles/components/textComponents';
+import { inputText } from '../../global/styles/components/inputComponents';
+import { Button } from '../../global/styles/components/buttonComponents';
 
 export const PageBox = styled.div`
   display: flex;
@@ -12,12 +14,6 @@ export const PageBox = styled.div`
   @media (max-width: 1150px) {
     flex-wrap: wrap;
   }
-`;
-
-/* General components */
-
-export const RequiredField = styled(paragraph)`
-  color: ${({ theme }) => theme.similarColors.warningColor};
 `;
 
 /* Templates */

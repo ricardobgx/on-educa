@@ -7,5 +7,5 @@ export interface IQuestion {
   difficulty: number;
   content?: IContent;
   alternatives: IAlternative[];
-  rightAlternative: IAlternative;
+  rightAlternative?: IAlternative;
 }

@@ -18,6 +18,7 @@ import Overview from '../pages/Overview';
 import Performance from '../pages/Performance';
 import Practice from '../pages/Practice';
 import Profile from '../pages/Profile';
+import Question from '../pages/Question';
 import Questions from '../pages/Questions';
 import Subjects from '../pages/Subjects';
 import Units from '../pages/Units';
@@ -82,6 +83,12 @@ const routes: IRoute[] = [
     path: '/questions',
     name: 'Questions',
     component: Questions,
+    exact: true,
+  },
+  {
+    path: '/questions/:id',
+    name: 'Question',
+    component: Question,
     exact: true,
   },
   {

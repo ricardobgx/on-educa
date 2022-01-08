@@ -23,7 +23,7 @@ import HomeAction from '../../components/Home/HomeAction';
 import DailyPerformance from '../../components/Home/DailyPerformance';
 import EditDailyGoal from '../../components/Home/EditDailyGoal';
 import { ActionCreators, State } from '../../store';
-import { Page } from '../components';
+import { Page } from '../../global/styles/components/pageComponents';
 import SectionLabel from '../../components/App/SectionLabel';
 import { homeActions } from '../../static/homeActions';
 

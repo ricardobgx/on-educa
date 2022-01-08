@@ -36,7 +36,7 @@ const NewDuelSettings = (props: INewDuelSettingsProps): JSX.Element => {
         selectedValue={questionsPerContent}
         valueLabel="questões"
         setSelectedValue={setQuestionsPerContent}
-        values={[2, 5, 10]}
+        values={[3, 5, 10]}
       />
       <NewDuelSetting
         label="Tempo para cada questão"

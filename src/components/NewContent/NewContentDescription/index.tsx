@@ -1,9 +1,7 @@
 import React from 'react';
 import { NewContentDescriptionBox, NewContentDescriptionInput } from './styles';
-import {
-  RequiredField,
-  NewContentBoxLabel,
-} from '../../../pages/NewContent/styles';
+import { NewContentBoxLabel } from '../../../pages/NewContent/styles';
+import { RequiredField } from '../../../global/styles/components/textComponents';
 
 interface INewContentDescriptionProps {
   description: string;

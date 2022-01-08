@@ -12,7 +12,7 @@ import {
   DEFAULT_TEACHING_TYPE,
 } from '../../static/defaultEntitiesValues';
 import { State } from '../../store';
-import { Page } from '../components';
+import { Page } from '../../global/styles/components/pageComponents';
 import { PageBox, UpdateProfileBox } from './styles';
 
 const UpdateProfile = (): JSX.Element => {

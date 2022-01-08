@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { bigIcon, paragraph } from '../../../components';
+import { bigIcon } from '../../../global/styles/components/iconComponents';
+import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const HomeActionBox = styled(Link)`
   display: flex;

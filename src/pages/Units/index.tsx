@@ -13,7 +13,7 @@ import { IUnity } from '../../interfaces/IUnity';
 import OnEducaAPI from '../../services/api';
 import { DEFAULT_UNITY } from '../../static/defaultEntitiesValues';
 import { State } from '../../store';
-import { Page } from '../components';
+import { Page } from '../../global/styles/components/pageComponents';
 import { PageBox, UnitsBox } from './styles';
 
 interface IUnitsRouteParams {

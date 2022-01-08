@@ -1,13 +1,11 @@
 import React from 'react';
+import { RequiredField } from '../../../global/styles/components/textComponents';
 import { IContent } from '../../../interfaces/IContent';
 import { ISchoolGrade } from '../../../interfaces/ISchoolGrade';
 import { ISubject } from '../../../interfaces/ISubject';
 import { ITeachingType } from '../../../interfaces/ITeachingType';
 import { IUnity } from '../../../interfaces/IUnity';
-import {
-  NewContentBoxLabel,
-  RequiredField,
-} from '../../../pages/NewContent/styles';
+import { NewContentBoxLabel } from '../../../pages/NewContent/styles';
 import SuppliesSchoolGradeReference from '../../App/Supplies/SuppliesReferences/SuppliesSchoolGradeReference';
 import SuppliesSubjectReference from '../../App/Supplies/SuppliesReferences/SuppliesSubjectReference';
 import SuppliesTeachingTypeReference from '../../App/Supplies/SuppliesReferences/SuppliesTeachingTypeReference';

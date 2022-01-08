@@ -1,7 +1,7 @@
 import React from 'react';
 import SectionLabel from '../../components/App/SectionLabel';
 import DoubtCard from '../../components/Doubts/DoubtCard';
-import { Page } from '../components';
+import { Page } from '../../global/styles/components/pageComponents';
 import { DoubtsList, DoubtsListBox, PageBox } from './components';
 
 const Doubts = (): JSX.Element => {

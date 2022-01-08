@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { inputTextArea } from '../../../components';
+import { inputTextArea } from '../../../global/styles/components/inputComponents';
 import { FlexColumnBox } from '../../../pages/NewContent/styles';
 
 export const NewQuestionDescriptionBox = styled(FlexColumnBox)`

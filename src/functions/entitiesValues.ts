@@ -1,15 +1,19 @@
+import { IAlternative } from '../interfaces/IAlternative';
 import { IContent } from '../interfaces/IContent';
 import { ISchoolGrade } from '../interfaces/ISchoolGrade';
 import { ISubject } from '../interfaces/ISubject';
 import { ITeachingType } from '../interfaces/ITeachingType';
 import { IUnity } from '../interfaces/IUnity';
 import {
+  DEFAULT_ALTERNATIVE,
   DEFAULT_CONTENT,
+  DEFAULT_PRACTICE,
   DEFAULT_SCHOOL_GRADE,
   DEFAULT_SUBJECT,
   DEFAULT_TEACHING_TYPE,
   DEFAULT_UNITY,
 } from '../static/defaultEntitiesValues';
+import { IPractice } from '../store/actions/practice';
 
 export const isDefaultTeachingType = (teachingType: ITeachingType): boolean =>
   teachingType === DEFAULT_TEACHING_TYPE;
@@ -25,3 +29,9 @@ export const isDefaultUnity = (unity: IUnity): boolean =>
 
 export const isDefaultContent = (content: IContent): boolean =>
   content === DEFAULT_CONTENT;
+
+export const isDefaultAlternative = (alternative: IAlternative): boolean =>
+  alternative === DEFAULT_ALTERNATIVE;
+
+export const isDefaultPractice = (pratice: IPractice): boolean =>
+  pratice === DEFAULT_PRACTICE;

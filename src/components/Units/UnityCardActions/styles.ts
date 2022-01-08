@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { Button, smallIcon } from '../../../components';
+import { Button } from '../../../global/styles/components/buttonComponents';
+import { smallIcon } from '../../../global/styles/components/iconComponents';
 
 export const UnityCardActionsBox = styled.div`
   display: flex;

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { inputText, paragraph } from '../../components';
+import { paragraph } from '../../global/styles/components/textComponents';
+import { inputText } from '../../global/styles/components/inputComponents';
 
 export const PageBox = styled.div`
   display: flex;
@@ -12,12 +13,6 @@ export const PageBox = styled.div`
   @media (max-width: 1150px) {
     flex-wrap: wrap;
   }
-`;
-
-/* General components */
-
-export const RequiredField = styled.span`
-  color: ${({ theme }) => theme.similarColors.warningColor};
 `;
 
 export const NewQuestionBoxLabel = styled(paragraph)`
@@ -58,12 +53,19 @@ export const NewQuestionMainDetails = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 40px;
-  height: 30vw;
+  height: 540px;
 
   @media (max-width: 900px) {
     flex-wrap: wrap-reverse;
     height: unset;
   }
+`;
+
+export const NewQuestionReferencesAndDifficulty = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 40px;
 `;
 
 /* Name and reference of Question */
@@ -88,51 +90,3 @@ export const NewQuestionAdditionalDetails = styled.div`
     flex-wrap: wrap;
   }
 `;
-
-/* Question actions */
-
-export const NewQuestionActions = styled.div`
-  margin-top: 40px;
-  display: flex;
-  justify-content: space-between;
-  @media (max-width: 900px) {
-    flex-wrap: wrap;
-  }
-`;
-export const CancelButton = styled(Link)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: ${({ theme }) => theme.colors.boxColor};
-  color: ${({ theme }) => theme.colors.textColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
-  border: none;
-  height: 40px;
-  width: calc(50% - 20px);
-  cursor: pointer;
-
-  @media (max-width: 900px) {
-    width: 100%;
-  }
-
-  @media (max-width: 900px) {
-    margin-bottom: 20px;
-  }
-`;
-export const CancelButtonLabel = styled(paragraph)``;
-export const CreateQuestionButton = styled.button`
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
-  border: none;
-  height: 40px;
-  width: calc(50% - 20px);
-  cursor: pointer;
-
-  @media (max-width: 900px) {
-    width: 100%;
-  }
-  background: ${({ theme }) => theme.colors.textColor};
-  color: ${({ theme }) => theme.colors.boxColor};
-`;
-export const CreateQuestionButtonLabel = styled(paragraph)``;

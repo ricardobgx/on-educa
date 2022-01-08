@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { inputSelect, paragraph } from '../../../../components';
+import { inputSelect } from '../../../../global/styles/components/inputComponents';
+import { paragraph } from '../../../../global/styles/components/textComponents';
 
 export const SuppliesReferenceBox = styled.div`
   margin-bottom: 20px;

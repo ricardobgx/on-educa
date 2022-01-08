@@ -2,7 +2,7 @@
 
 import React from 'react';
 import DashBoard from '../../components/Duel/DashBoard';
-import { Page } from '../components';
+import { Page } from '../../global/styles/components/pageComponents';
 import { PageBox } from './styles';
 
 const Duel = (): JSX.Element => {

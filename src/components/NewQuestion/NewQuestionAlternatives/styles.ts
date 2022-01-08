@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-import { Button, inputText, smallIcon } from '../../../components';
+import { Button } from '../../../global/styles/components/buttonComponents';
+import { smallIcon } from '../../../global/styles/components/iconComponents';
+import { inputText } from '../../../global/styles/components/inputComponents';
 import { FlexColumnBox } from '../../../pages/NewContent/styles';
 
 export const NewQuestionAlternativesBox = styled(FlexColumnBox)`

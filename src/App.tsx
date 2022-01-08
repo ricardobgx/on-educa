@@ -4,7 +4,7 @@ import { AxiosInstance } from 'axios';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import GlobalStyle from './components';
+import GlobalStyle from './styles';
 import LoadAnimation from './components/App/LoadAnimation';
 import {
   clearUserVariables,

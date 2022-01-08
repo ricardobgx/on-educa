@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { paragraph } from '../../../components';
+import { paragraph } from '../../../global/styles/components/textComponents';
 import { FlexColumnBox } from '../../../pages/NewContent/styles';
 
 export const NewContentAttachmentsBox = styled(FlexColumnBox)`

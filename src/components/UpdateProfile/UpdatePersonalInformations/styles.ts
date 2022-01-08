@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { Button, paragraph } from '../../../components';
+import { Button } from '../../../global/styles/components/buttonComponents';
+import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const ProfilePictureBox = styled.div`
   margin-top: 10px;

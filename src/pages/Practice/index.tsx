@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PracticePerformance from '../../components/Practice/PracticePerformance';
-import Questions from '../../components/Practice/Questions';
-import { Page } from '../components';
+import PracticeQuestions from '../../components/Practice/PracticeQuestions';
+import { Page } from '../../global/styles/components/pageComponents';
 import { PageBox } from './styles';
 
 const Practice = (): JSX.Element => {
@@ -11,7 +11,7 @@ const Practice = (): JSX.Element => {
     <Page>
       <PageBox>
         {!practiceCompleted ? (
-          <Questions setPracticeCompleted={setPracticeCompleted} />
+          <PracticeQuestions setPracticeCompleted={setPracticeCompleted} />
         ) : (
           <PracticePerformance />
         )}

@@ -1,11 +1,12 @@
 import React from 'react';
-import {
-  RequiredField,
-  NewContentBoxLabel,
-} from '../../../pages/NewContent/styles';
+import { getYTVideoCode } from '../../../functions/utils';
+import { RequiredField } from '../../../global/styles/components/textComponents';
+import { NewContentBoxLabel } from '../../../pages/NewContent/styles';
+import { YTWatchUrl } from '../../../static/defaultValues';
+import SuppliesVideo from '../../App/Supplies/SuppliesVideo';
 import {
   NewContentVideoBox,
-  VideoInput,
+  NewContentVideoInput,
   NewContentVideoPreview,
 } from './styles';
 
@@ -19,44 +20,24 @@ const NewContentVideo = (props: INewContentVideoProps): JSX.Element => {
 
   const { video, setVideo } = props;
 
-  const getVideoCode = (url: string): string => {
-    const urlParts = url.split('?');
-
-    if (urlParts[1]) {
-      const query = urlParts[1];
-      const queryParams = query.split('&');
-
-      if (queryParams[0]) {
-        const vParam = queryParams[0];
-        const vParamValue = vParam.split('=')[1];
-
-        if (vParamValue) return vParamValue;
-      }
-    }
-
-    return '';
-  };
-
   return (
     <NewContentVideoBox>
       <NewContentBoxLabel>
         Link do vídeo<RequiredField>*</RequiredField>
       </NewContentBoxLabel>
-      <VideoInput
+
+      <NewContentVideoInput
         value={video}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-          setVideo(event.target.value);
-        }}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          setVideo(`${YTWatchUrl}${getYTVideoCode(event.target.value)}`)
+        }
         type="text"
         spellCheck={false}
       />
-      <NewContentVideoPreview
-        src={`https://www.youtube.com/embed/${getVideoCode(video)}`}
-        title="YouTube video player"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      />
+
+      <NewContentVideoPreview>
+        <SuppliesVideo video={video} />
+      </NewContentVideoPreview>
     </NewContentVideoBox>
   );
 };

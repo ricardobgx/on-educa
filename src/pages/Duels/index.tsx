@@ -1,7 +1,7 @@
 import React from 'react';
 import SectionLabel from '../../components/App/SectionLabel';
 import DuelCard from '../../components/Duels/DuelCard';
-import { Page } from '../components';
+import { Page } from '../../global/styles/components/pageComponents';
 import {
   PageBox,
   DuelsBox,

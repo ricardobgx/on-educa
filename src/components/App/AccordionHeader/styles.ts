@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { paragraph } from '../../../components';
+import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const AccordionHeaderBox = styled.div`
   display: flex;

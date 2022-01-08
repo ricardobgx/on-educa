@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-import { inputText, paragraph, smallIcon } from '../../../components';
+import { smallIcon } from '../../../global/styles/components/iconComponents';
+import { inputText } from '../../../global/styles/components/inputComponents';
+import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const NewUnityBackground = styled.div`
   width: 100vw;

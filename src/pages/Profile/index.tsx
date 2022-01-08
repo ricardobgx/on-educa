@@ -14,7 +14,7 @@ import { IUser } from '../../interfaces/IUser';
 import OnEducaAPI from '../../services/api';
 import { DEFAULT_USER } from '../../static/defaultEntitiesValues';
 import { State } from '../../store';
-import { Page } from '../components';
+import { Page } from '../../global/styles/components/pageComponents';
 import {
   MainDetails,
   PageBox,

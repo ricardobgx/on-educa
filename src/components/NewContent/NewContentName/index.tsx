@@ -1,8 +1,6 @@
 import React from 'react';
-import {
-  RequiredField,
-  NewContentBoxLabel,
-} from '../../../pages/NewContent/styles';
+import { RequiredField } from '../../../global/styles/components/textComponents';
+import { NewContentBoxLabel } from '../../../pages/NewContent/styles';
 import { NameInput, NewContentNameBox } from './styles';
 
 interface INewContentNameProps {

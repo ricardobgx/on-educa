@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { bigIcon } from '../../../components';
+import { bigIcon } from '../../../global/styles/components/iconComponents';
 
 export const LoadAnimationBox = styled.div`
   width: 100vw;

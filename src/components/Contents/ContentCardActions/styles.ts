@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Button, smallIcon } from '../../../components';
+import { smallIcon } from '../../../global/styles/components/iconComponents';
+import { Button } from '../../../global/styles/components/buttonComponents';
 
 export const ContentCardActionsBox = styled.div`
   display: flex;

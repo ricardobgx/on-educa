@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { inputText, smallIcon } from '../../../components';
+import { smallIcon } from '../../../global/styles/components/iconComponents';
+import { inputText } from '../../../global/styles/components/inputComponents';
 
 export const NewDuelSearchContentsBox = styled.div`
   width: 100%;

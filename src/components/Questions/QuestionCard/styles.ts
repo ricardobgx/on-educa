@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { paragraph, smallIcon } from '../../../components';
+import { paragraph } from '../../../global/styles/components/textComponents';
+import { smallIcon } from '../../../global/styles/components/iconComponents';
 
 export const QuestionCardBox = styled.div`
   display: flex;

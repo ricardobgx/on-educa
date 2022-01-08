@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { paragraph } from '../../../components';
+import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const DailyPerformanceBox = styled.div`
   margin: 20px;

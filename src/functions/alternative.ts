@@ -3,6 +3,59 @@ import { IAlternativeParams } from '../dto/IAlternativeParams';
 import { IManyAlternativesParams } from '../dto/IManyAlternativesParams';
 import { IAlternative } from '../interfaces/IAlternative';
 
+/** *********************************************
+ *
+ *
+ * Funcoes para os componentes
+ *
+ *
+ ********************************************** */
+
+/** *******************************************************
+ * Essa funcao prepara as alternativas para serem criadas.
+ ******************************************************** */
+
+export const buildAlternativesFromDescription = (
+  alternativesDescriptions: string[],
+): IAlternativeParams[] => {
+  /** ***********************************************************************
+   * Essa variavel armazena o resultado do map realizado nas descricoes das
+   * alternativas, que, a cada iteracao cria um objeto para cada alternativa
+   * contendo a descricao e o indice dela na questao.
+   ************************************************************************ */
+
+  const alternatives = alternativesDescriptions.map(
+    (alternativeDescription, index) => {
+      const alternative = {
+        description: alternativeDescription,
+        index,
+      };
+      return alternative;
+    },
+  );
+
+  // Retorno as alternativas criadas
+
+  return alternatives;
+};
+
+export const findAlternativeByDescFromArray = (
+  alternativeDescription: string,
+  alternatives: IAlternative[],
+): IAlternative | undefined => {
+  return alternatives.find(
+    (alternative) => alternative.description === alternativeDescription,
+  );
+};
+
+/** *********************************************
+ *
+ *
+ * Funcoes para o banco de dados
+ *
+ *
+ ********************************************** */
+
 export const getAlternative = async (
   API: AxiosInstance,
   id: string,
@@ -67,16 +120,21 @@ export const createManyAlternatives = async (
   API: AxiosInstance,
   alternativesParams: IManyAlternativesParams,
   token: string,
-  createSucess: () => void,
+  createSucess: (alternatives: IAlternative[]) => void,
   createError: () => void,
 ): Promise<void> => {
   await API.post('/alternatives/many', alternativesParams, {
     headers: {
       authorization: `Bearer ${token}`,
     },
-  }).then(() => {
-    createSucess();
-  });
+  }).then(
+    (response) => {
+      createSucess(response.data);
+    },
+    () => {
+      createError();
+    },
+  );
 };
 
 export const updateAlternative = async (

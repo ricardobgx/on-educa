@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { inputSelect } from '../../../components';
+import { inputSelect } from '../../../global/styles/components/inputComponents';
 
 export const NewDuelSettingBox = styled.div`
   display: flex;

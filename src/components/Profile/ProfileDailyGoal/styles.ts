@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { mediumIcon, paragraph, smallIcon } from '../../../components';
+import {
+  mediumIcon,
+  smallIcon,
+} from '../../../global/styles/components/iconComponents';
+import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const Container = styled.div`
   display: flex;

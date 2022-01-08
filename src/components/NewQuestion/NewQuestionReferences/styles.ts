@@ -10,6 +10,7 @@ export const NewQuestionReferencesBox = styled.div`
   border-radius: 10px;
   padding: 20px;
   width: calc(40vw - 60px);
+  margin-bottom: 20px;
 
   @media (max-width: 900px) {
     width: 100%;

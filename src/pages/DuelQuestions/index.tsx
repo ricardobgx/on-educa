@@ -3,15 +3,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Redirect } from 'react-router-dom';
-import { IQuestion } from '../../interfaces/IQuestion';
 import { ActionCreators, State } from '../../store';
-import { Page } from '../components';
+import { Page } from '../../global/styles/components/pageComponents';
 import DuelQuestion from '../../components/DuelQuestions/DuelQuestion';
 import DuelStatus from '../../components/DuelQuestions/DuelStatus';
 import { DuelQuestionsBox, PageBox } from './styles';
 import { IDuel } from '../../interfaces/IDuel';
-import { IAnsweredQuestion } from '../../interfaces/IAnsweredQuestion';
 import {
   DEFAULT_DUEL,
   DEFAULT_DUEL_QUESTION,

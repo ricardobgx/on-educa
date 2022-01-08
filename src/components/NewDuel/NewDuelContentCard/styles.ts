@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { SectionBox } from '../../../components';
+import { SectionBox } from '../../../global/styles/components/boxComponents';
 
 export const NewDuelContentCardBox = styled(SectionBox)`
   display: flex;

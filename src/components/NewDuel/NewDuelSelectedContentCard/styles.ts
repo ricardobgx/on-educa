@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { smallIcon } from '../../../components';
+import { smallIcon } from '../../../global/styles/components/iconComponents';
 
 export const NewDuelSelectedContentCardBox = styled.div`
   display: flex;

@@ -4,7 +4,7 @@ import React from 'react';
 import SectionLabel from '../../components/App/SectionLabel';
 import MissionCard from '../../components/Missions/MissionCard';
 import { IMission } from '../../interfaces/IMission';
-import { Page } from '../components';
+import { Page } from '../../global/styles/components/pageComponents';
 import { PageBox, MissionsList, MissionsListBox } from './styles';
 
 const missions: IMission[] = [

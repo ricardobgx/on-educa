@@ -19,7 +19,7 @@ const QuestionCardActions = (props: IQuestionCardActionsProps): JSX.Element => {
 
   return (
     <QuestionCardActionsBox>
-      <EditQuestionButton to={`/Questions/${question.id}/edit`}>
+      <EditQuestionButton to={`/questions/${question.id}/edit`}>
         <EditQuestionButtonIcon className="fas fa-pen" />
       </EditQuestionButton>
       <DeleteQuestionButton

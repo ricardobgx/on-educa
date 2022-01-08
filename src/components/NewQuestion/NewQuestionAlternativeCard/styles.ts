@@ -1,9 +1,12 @@
 import styled from 'styled-components';
-import { Button, paragraph, smallIcon } from '../../../components';
+import { Button } from '../../../global/styles/components/buttonComponents';
+import { smallIcon } from '../../../global/styles/components/iconComponents';
+import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const NewQuestionAlternativeCardBox = styled.div`
   display: flex;
   margin-bottom: 10px;
+  animation: 0.2s linear fadeIn;
 
   &:last-of-type {
     margin: 0;

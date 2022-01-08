@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-import { Button, paragraph, smallIcon } from '../../../../components';
+import { Button } from '../../../../global/styles/components/buttonComponents';
+import { smallIcon } from '../../../../global/styles/components/iconComponents';
+import { paragraph } from '../../../../global/styles/components/textComponents';
 
 export const DeleteSuppliesBackground = styled.div`
   width: 100vw;

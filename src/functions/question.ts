@@ -1,6 +1,36 @@
 import { AxiosInstance } from 'axios';
 import { IQuestionParams } from '../dto/IQuestionParams';
+import { IContent } from '../interfaces/IContent';
 import { IQuestion } from '../interfaces/IQuestion';
+import { isDefaultContent } from './entitiesValues';
+
+/** ***************************************************************************
+ *
+ * Funcoes para os componentes
+ *
+ **************************************************************************** */
+
+/** *************************************************************************
+ * Essa funcao valida a questao que esta sendo criada para que nao haja in-
+ * consistencias na base de dados. Ela verifica se o conteudo selecionado eh
+ * eh valido, se a questao contem uma descricao e se a questao contem alter-
+ * nativas.
+ ************************************************************************** */
+
+export const isValidQuestion = (
+  description: string,
+  content: IContent,
+  alternativesDescriptionsLength: number,
+): boolean =>
+  !isDefaultContent(content) &&
+  description.trim() !== '' &&
+  alternativesDescriptionsLength > 0;
+
+/** ***************************************************************************
+ *
+ * Funcoes para o banco de dados
+ *
+ **************************************************************************** */
 
 export const getQuestion = async (
   API: AxiosInstance,

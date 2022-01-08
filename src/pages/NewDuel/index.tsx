@@ -14,7 +14,7 @@ import { IContent } from '../../interfaces/IContent';
 import { IDuel } from '../../interfaces/IDuel';
 import OnEducaAPI from '../../services/api';
 import { ActionCreators, State } from '../../store';
-import { Page } from '../components';
+import { Page } from '../../global/styles/components/pageComponents';
 import {
   PageBox,
   NewDuelBox,
@@ -39,9 +39,9 @@ const NewDuel = (): JSX.Element => {
 
   /* Local State */
 
-  const [maxParticipants, setMaxParticipants] = useState(0);
-  const [questionsPerContent, setQuestionsPerContent] = useState(0);
-  const [timeForQuestion, setTimeForQuestion] = useState(0);
+  const [maxParticipants, setMaxParticipants] = useState(1);
+  const [questionsPerContent, setQuestionsPerContent] = useState(5);
+  const [timeForQuestion, setTimeForQuestion] = useState(1);
 
   const [contentsName, setContentsName] = useState('');
   const [contentsFound, setContentsFound] = useState<IContent[]>([]);
@@ -94,7 +94,7 @@ const NewDuel = (): JSX.Element => {
       maxGroupParticipants: maxParticipants,
       questionsPerContent,
       timeForQuestion,
-      duelOwnerId: id,
+      studentId: id,
       contentsId,
     };
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { paragraph } from '../../../components';
+import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const ShadowBackground = styled.div`
   position: fixed;

@@ -12,7 +12,7 @@ import { getUsers } from '../../functions/user';
 import { IUser } from '../../interfaces/IUser';
 import OnEducaAPI from '../../services/api';
 import { State } from '../../store';
-import { Page } from '../components';
+import { Page } from '../../global/styles/components/pageComponents';
 import {
   PageBox,
   PerformanceCharts,

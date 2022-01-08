@@ -17,9 +17,9 @@ export const NewContentVideoBox = styled(FlexColumnBox)`
   }
 `;
 
-export const VideoInput = styled(DetailBoxInput)``;
+export const NewContentVideoInput = styled(DetailBoxInput)``;
 
-export const NewContentVideoPreview = styled.iframe`
+export const NewContentVideoPreview = styled.div`
   background: #000000;
   /* box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor}; */
   border-radius: 10px;

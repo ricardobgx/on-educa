@@ -59,18 +59,19 @@ export const DEFAULT_CONTENT: IContent = {
   questions: [],
 };
 
-export const DEFAULT_ALTERNATIVE: IAlternative = {
-  id: '',
-  description: '',
-};
-
 export const DEFAULT_QUESTION: IQuestion = {
   id: '',
   description: '',
   difficulty: 0,
   content: DEFAULT_CONTENT,
   alternatives: [],
-  rightAlternative: DEFAULT_ALTERNATIVE,
+};
+
+export const DEFAULT_ALTERNATIVE: IAlternative = {
+  id: '',
+  description: '',
+  index: 0,
+  question: DEFAULT_QUESTION,
 };
 
 export const DEFAULT_PRACTICE: IPractice = {

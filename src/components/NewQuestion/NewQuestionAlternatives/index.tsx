@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { RequiredField } from '../../../global/styles/components/textComponents';
 import { NewQuestionBoxLabel } from '../../../pages/NewQuestion/styles';
 import NewQuestionAlternativeCard from '../NewQuestionAlternativeCard';
 import {
@@ -12,8 +13,10 @@ import {
 } from './styles';
 
 interface INewQuestionAlternativesProps {
-  alternativesDescription: string[];
-  setAlternativesDescription: (alternativesDescription: string[]) => void;
+  alternativesDescriptions: string[];
+  setAlternativesDescriptions: (alternativesDescription: string[]) => void;
+  rightAlternativeDescription: string;
+  setRightAlternativeDescription: (value: string) => void;
 }
 
 const NewQuestionAlternatives = (
@@ -22,23 +25,29 @@ const NewQuestionAlternatives = (
   /* Local State */
 
   const [newAlternative, setNewAlternative] = useState('');
-  const [rightAlternative, setRightAlternative] = useState('');
 
-  const { alternativesDescription, setAlternativesDescription } = props;
+  const {
+    alternativesDescriptions,
+    setAlternativesDescriptions,
+    rightAlternativeDescription,
+    setRightAlternativeDescription,
+  } = props;
 
   const addAlternative = (description: string): void => {
-    if (
-      !alternativesDescription.find((alt) => alt === description) &&
-      description.trim() !== ''
-    )
-      setAlternativesDescription([...alternativesDescription, description]);
+    const foundAlternative = alternativesDescriptions.find(
+      (alternativeDescription) => alternativeDescription === description,
+    );
+
+    if (!foundAlternative && description.trim() !== '') {
+      setAlternativesDescriptions([...alternativesDescriptions, description]);
+    }
 
     setNewAlternative('');
   };
 
   const deleteAlternative = (description: string): void => {
-    setAlternativesDescription(
-      alternativesDescription.filter(
+    setAlternativesDescriptions(
+      alternativesDescriptions.filter(
         (alternativeDescription) => alternativeDescription !== description,
       ),
     );
@@ -46,16 +55,18 @@ const NewQuestionAlternatives = (
 
   return (
     <NewQuestionAlternativesBox>
-      <NewQuestionBoxLabel>Alternativas</NewQuestionBoxLabel>
+      <NewQuestionBoxLabel>
+        Alternativas<RequiredField>*</RequiredField>
+      </NewQuestionBoxLabel>
       <NewQuestionAlternativesList>
         <NewQuestionAlternativesListBox>
-          {alternativesDescription.map((alternativeDescription) => (
+          {alternativesDescriptions.map((alternativeDescription) => (
             <NewQuestionAlternativeCard
               key={alternativeDescription}
               description={alternativeDescription}
               deleteAlternative={deleteAlternative}
-              rightAlternative={rightAlternative}
-              setRightAlternative={setRightAlternative}
+              rightAlternative={rightAlternativeDescription}
+              setRightAlternative={setRightAlternativeDescription}
             />
           ))}
         </NewQuestionAlternativesListBox>

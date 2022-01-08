@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { mediumIcon, paragraph } from '../../../../components';
+import { mediumIcon } from '../../../../global/styles/components/iconComponents';
+import { paragraph } from '../../../../global/styles/components/textComponents';
 
 export const AddSubjectButton = styled.button`
   width: 100%;

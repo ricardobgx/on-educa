@@ -3,8 +3,8 @@ import {
   NewQuestionDescriptionBox,
   NewQuestionDescriptionInput,
 } from './styles';
-import { RequiredField } from '../../../pages/NewContent/styles';
 import { NewQuestionBoxLabel } from '../../../pages/NewQuestion/styles';
+import { RequiredField } from '../../../global/styles/components/textComponents';
 
 interface INewQuestionDescriptionProps {
   description: string;
@@ -22,6 +22,7 @@ const NewQuestionDescription = (
         Descrição<RequiredField>*</RequiredField>
       </NewQuestionBoxLabel>
       <NewQuestionDescriptionInput
+        spellCheck={false}
         value={description}
         onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) =>
           setDescription(event.target.value)

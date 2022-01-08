@@ -1,10 +1,10 @@
 import styled from 'styled-components';
+import { SectionBox } from '../../global/styles/components/boxComponents';
 import {
   inputSelect,
   inputText,
-  paragraph,
-  SectionBox,
-} from '../../components';
+} from '../../global/styles/components/inputComponents';
+import { paragraph } from '../../global/styles/components/textComponents';
 
 export const UpdateProfileSectionLabel = styled(paragraph)`
   color: ${({ theme }) => theme.colors.textColor};

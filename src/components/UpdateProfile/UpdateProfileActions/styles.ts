@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Button, paragraph } from '../../../components';
+import { paragraph } from '../../../global/styles/components/textComponents';
+import { Button } from '../../../global/styles/components/buttonComponents';
 
 export const UpdateProfileActionsBox = styled.div`
   display: flex;

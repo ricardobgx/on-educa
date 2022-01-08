@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import DeleteSupplies from '../../components/App/Supplies/DeleteSupplies';
 import SectionLabel from '../../components/App/SectionLabel';
 import QuestionsActions from '../../components/Questions/QuestionsActions';
@@ -12,19 +13,11 @@ import {
 } from '../../functions/question';
 import { IQuestion } from '../../interfaces/IQuestion';
 import OnEducaAPI from '../../services/api';
-import {
-  DEFAULT_CONTENT,
-  DEFAULT_QUESTION,
-} from '../../static/defaultEntitiesValues';
-import { State } from '../../store';
-import { Page } from '../components';
+import { ActionCreators, State } from '../../store';
+import { Page } from '../../global/styles/components/pageComponents';
 import { PageBox, QuestionsBox } from './styles';
-import { IContent } from '../../interfaces/IContent';
 import QuestionsFilter from '../../components/Questions/QuestionsFilter';
-import { ITeachingType } from '../../interfaces/ITeachingType';
-import { ISchoolGrade } from '../../interfaces/ISchoolGrade';
-import { ISubject } from '../../interfaces/ISubject';
-import { IUnity } from '../../interfaces/IUnity';
+import { isDefaultContent } from '../../functions/entitiesValues';
 
 export interface ICommonQuestionProps {
   getQuestions: () => void;
@@ -35,27 +28,30 @@ const Questions = (): JSX.Element => {
 
   const {
     aplication,
-    teachingType: globalTeachingType,
-    schoolGrade: globalSchoolGrade,
-    subject: globalSubject,
-    unity: globalUnity,
-    content: globalContent,
+    teachingType,
+    schoolGrade,
+    subject,
+    unity,
+    content,
+    question,
   } = useSelector((store: State) => store);
 
   const { token, userType } = aplication;
+
+  const dispatch = useDispatch();
+  const {
+    loadTeachingType: setTeachingType,
+    loadSchoolGrade: setSchoolGrade,
+    loadSubject: setSubject,
+    loadUnity: setUnity,
+    loadContent: setContent,
+    loadQuestion: setQuestion,
+  } = bindActionCreators(ActionCreators, dispatch);
 
   /* Local State */
 
   // References
 
-  const [teachingType, setTeachingType] =
-    useState<ITeachingType>(globalTeachingType);
-  const [schoolGrade, setSchoolGrade] =
-    useState<ISchoolGrade>(globalSchoolGrade);
-  const [subject, setSubject] = useState<ISubject>(globalSubject);
-  const [unity, setUnity] = useState<IUnity>(globalUnity);
-  const [content, setContent] = useState<IContent>(globalContent);
-  const [question, setQuestion] = useState<IQuestion>(DEFAULT_QUESTION);
   const [questions, setQuestions] = useState<IQuestion[]>([]);
 
   const [deleteQuestionIsVisible, setDeleteQuestionIsVisible] = useState(false);
@@ -91,8 +87,11 @@ const Questions = (): JSX.Element => {
   };
 
   useEffect(() => {
-    if (content === DEFAULT_CONTENT) setQuestions([]);
-    else getQuestions();
+    if (isDefaultContent(content)) {
+      setQuestions([]);
+    } else {
+      getQuestions();
+    }
   }, [content]);
 
   return (

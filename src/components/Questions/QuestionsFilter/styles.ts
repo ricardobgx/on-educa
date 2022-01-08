@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { paragraph, smallIcon } from '../../../components';
+import { smallIcon } from '../../../global/styles/components/iconComponents';
+import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const QuestionsFilterBox = styled.div`
   display: flex;
