@@ -1,12 +1,12 @@
 import React from 'react';
-import { IDuelQuestion } from '../../../interfaces/IDuelQuestion';
+import { IDuelRoundQuestion } from '../../../interfaces/IDuelRoundQuestion';
 import DuelProgress from '../DuelProgress';
 import DuelTurn from '../DuelTurn';
 import { Container, DuelStatusBox } from './styles';
 
 interface IDuelStatusProps {
-  questions: IDuelQuestion[];
-  answeredQuestionsNumber: (duelQuestions: IDuelQuestion[]) => number;
+  questions: IDuelRoundQuestion[];
+  answeredQuestionsNumber: (duelQuestions: IDuelRoundQuestion[]) => number;
 }
 
 const DuelStatus = (props: IDuelStatusProps): JSX.Element => {

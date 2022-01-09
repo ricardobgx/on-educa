@@ -26,3 +26,48 @@ export const createDuel = async (
     },
   );
 };
+
+// Buscar todos
+
+export const getDuels = async (
+  API: AxiosInstance,
+  token: string,
+  requestSucess: (duel: IDuel[]) => void,
+  requestError: () => void,
+): Promise<void> => {
+  await API.get(`/duels`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then(
+    (response) => {
+      requestSucess(response.data);
+    },
+    () => {
+      requestError();
+    },
+  );
+};
+
+// Get by id
+
+export const getDuel = async (
+  API: AxiosInstance,
+  duelId: string,
+  token: string,
+  requestSucess: (duel: IDuel) => void,
+  requestError: () => void,
+): Promise<void> => {
+  await API.get(`/duels/${duelId}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then(
+    (response) => {
+      requestSucess(response.data);
+    },
+    () => {
+      requestError();
+    },
+  );
+};

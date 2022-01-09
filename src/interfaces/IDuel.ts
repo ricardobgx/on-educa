@@ -1,13 +1,9 @@
-import { IDuelQuestion } from './IDuelQuestion';
-import { IDuelTeam } from './IDuelTeam';
+import { IDuelRound } from './IDuelRound';
 import { IUser } from './IUser';
 
 export interface IDuel {
   id: string;
-  maxGroupParticipants: number;
-  questionsPerContent: number;
-  timeForQuestion: number;
-  owner: IUser;
-  teams: IDuelTeam[];
-  questions: IDuelQuestion[];
+  student: IUser;
+  duelRound: IDuelRound;
+  duelRounds: IDuelRound[];
 }

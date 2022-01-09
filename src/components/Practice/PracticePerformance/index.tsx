@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import bookLover from '../../../assets/ilustrations/undraw_book_lover_mkck.svg';
-import { IDuelQuestion } from '../../../interfaces/IDuelQuestion';
+import { IDuelRoundQuestion } from '../../../interfaces/IDuelRoundQuestion';
 import { DEFAULT_ALTERNATIVE } from '../../../static/defaultEntitiesValues';
 import { ActionCreators, State } from '../../../store';
 import SectionLabel from '../../App/SectionLabel';
@@ -60,25 +60,29 @@ const PracticePerformance = (): JSX.Element => {
 
   // Right Questions
 
-  const rightQuestionsNumber = (practiceQuestions: IDuelQuestion[]): number => {
-    return practiceQuestions.filter((duelQuestion: IDuelQuestion) => {
-      const { question, duelQuestionAnswer } = duelQuestion;
+  const rightQuestionsNumber = (
+    practiceQuestions: IDuelRoundQuestion[],
+  ): number => {
+    return practiceQuestions.filter((duelQuestion: IDuelRoundQuestion) => {
+      const { question, answer } = duelQuestion;
       const rightAlternative = question.rightAlternative || DEFAULT_ALTERNATIVE;
 
-      return rightAlternative.id === duelQuestionAnswer?.selectedAlternative.id;
+      return rightAlternative.id === answer?.selectedAlternative.id;
     }).length;
   };
 
   // Wrong Questions
 
-  const wrongQuestionsNumber = (practiceQuestions: IDuelQuestion[]): number => {
-    return practiceQuestions.filter((duelQuestion: IDuelQuestion) => {
-      const { question, duelQuestionAnswer } = duelQuestion;
+  const wrongQuestionsNumber = (
+    practiceQuestions: IDuelRoundQuestion[],
+  ): number => {
+    return practiceQuestions.filter((duelQuestion: IDuelRoundQuestion) => {
+      const { question, answer } = duelQuestion;
       const rightAlternative = question.rightAlternative || DEFAULT_ALTERNATIVE;
 
       return (
-        !!duelQuestionAnswer?.selectedAlternative &&
-        duelQuestionAnswer?.selectedAlternative.id !== rightAlternative.id
+        !!answer?.selectedAlternative &&
+        answer?.selectedAlternative.id !== rightAlternative.id
       );
     }).length;
   };
@@ -86,17 +90,17 @@ const PracticePerformance = (): JSX.Element => {
   // Skipped Questions
 
   const skippedQuestionsNumber = (
-    practiceQuestions: IDuelQuestion[],
+    practiceQuestions: IDuelRoundQuestion[],
   ): number => {
-    return practiceQuestions.filter((duelQuestion: IDuelQuestion) => {
-      const { duelQuestionAnswer } = duelQuestion;
-      return !!duelQuestionAnswer?.selectedAlternative;
+    return practiceQuestions.filter((duelQuestion: IDuelRoundQuestion) => {
+      const { answer } = duelQuestion;
+      return !!answer?.selectedAlternative;
     }).length;
   };
 
   // All Questions
 
-  const questionsScore = (practiceQuestions: IDuelQuestion[]): number => {
+  const questionsScore = (practiceQuestions: IDuelRoundQuestion[]): number => {
     return rightQuestionsNumber(practiceQuestions) * 10;
   };
 

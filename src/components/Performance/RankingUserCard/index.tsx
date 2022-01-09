@@ -40,7 +40,7 @@ const RankingUserCard = (props: IRankingUserCardProps): JSX.Element => {
       <RankingPosition>
         {rankingPosition < 10 ? `0${rankingPosition}` : `${rankingPosition}`}
       </RankingPosition>
-      <UserCard {...user} userType={userType} />
+      <UserCard showScore {...user} userType={userType} />
     </RankingUserCardBox>
   );
 };

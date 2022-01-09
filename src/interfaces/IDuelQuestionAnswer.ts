@@ -1,10 +1,10 @@
 import { IAlternative } from './IAlternative';
 import { IDuelTeamParticipation } from './IDuelTeamParticipation';
-import { IDuelQuestion } from './IDuelQuestion';
+import { IDuelRoundQuestion } from './IDuelRoundQuestion';
 
 export interface IDuelQuestionAnswer {
   id: string;
   duelTeamParticipation: IDuelTeamParticipation;
-  question: IDuelQuestion;
+  question: IDuelRoundQuestion;
   selectedAlternative: IAlternative;
 }

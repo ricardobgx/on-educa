@@ -2,7 +2,7 @@ import { IAlternative } from '../interfaces/IAlternative';
 import { IAplication } from '../interfaces/IAplication';
 import { IContent } from '../interfaces/IContent';
 import { IDuel } from '../interfaces/IDuel';
-import { IDuelQuestion } from '../interfaces/IDuelQuestion';
+import { IDuelRoundQuestion } from '../interfaces/IDuelRoundQuestion';
 import { IDuelQuestionAnswer } from '../interfaces/IDuelQuestionAnswer';
 import { IDuelTeam } from '../interfaces/IDuelTeam';
 import { IDuelTeamParticipation } from '../interfaces/IDuelTeamParticipation';
@@ -13,6 +13,7 @@ import { ITeachingType } from '../interfaces/ITeachingType';
 import { IUnity } from '../interfaces/IUnity';
 import { IUser } from '../interfaces/IUser';
 import { IPractice } from '../store/actions/practice';
+import { IDuelRound } from '../interfaces/IDuelRound';
 
 export const DEFAULT_APLICATION: IAplication = {
   token: '',
@@ -85,16 +86,25 @@ export const DEFAULT_SUBJECT: ISubject = {
 
 /* Duelos */
 
-// Duelo
+// Round do duelo
 
-export const DEFAULT_DUEL: IDuel = {
+export const DEFAULT_DUEL_ROUND: IDuelRound = {
   id: '',
   maxGroupParticipants: 0,
   questionsPerContent: 0,
   timeForQuestion: 0,
-  owner: DEFAULT_USER,
+  lastTeamIndex: -1,
   teams: [],
   questions: [],
+};
+
+// Duelo
+
+export const DEFAULT_DUEL: IDuel = {
+  id: '',
+  student: DEFAULT_USER,
+  duelRound: DEFAULT_DUEL_ROUND,
+  duelRounds: [],
 };
 
 // Time de duelo
@@ -102,8 +112,9 @@ export const DEFAULT_DUEL: IDuel = {
 export const DEFAULT_DUEL_TEAM: IDuelTeam = {
   id: '',
   name: '',
-  lastParticipantIndex: 0,
-  duel: DEFAULT_DUEL,
+  index: -1,
+  duelRound: DEFAULT_DUEL_ROUND,
+  lastParticipationIndex: -1,
   participations: [],
 };
 
@@ -118,9 +129,9 @@ export const DEFAULT_DUEL_TEAM_PARTICIPATION: IDuelTeamParticipation = {
 
 // Questao do duelo
 
-export const DEFAULT_DUEL_QUESTION: IDuelQuestion = {
+export const DEFAULT_DUEL_QUESTION: IDuelRoundQuestion = {
   id: '',
-  duel: DEFAULT_DUEL,
+  duelRound: DEFAULT_DUEL_ROUND,
   question: DEFAULT_QUESTION,
 };
 

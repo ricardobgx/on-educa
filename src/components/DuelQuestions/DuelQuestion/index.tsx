@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IAnsweredQuestion } from '../../../interfaces/IAnsweredQuestion';
-import { IDuelQuestion } from '../../../interfaces/IDuelQuestion';
+import { IDuelRoundQuestion } from '../../../interfaces/IDuelRoundQuestion';
 import DuelQuestionAlternative from '../DuelQuestionAlternative';
 import {
   AnswerButton,
@@ -15,12 +15,12 @@ import {
 
 interface IQuestionProps {
   answerQuestion: (
-    duelQuestions: IDuelQuestion[],
+    duelQuestions: IDuelRoundQuestion[],
     duelQuestionId: string,
     selectedAlternative: string,
   ) => void;
-  duelQuestions: IDuelQuestion[];
-  duelQuestion: IDuelQuestion;
+  duelQuestions: IDuelRoundQuestion[];
+  duelQuestion: IDuelRoundQuestion;
 }
 
 const DuelQuestion = (props: IQuestionProps): JSX.Element => {

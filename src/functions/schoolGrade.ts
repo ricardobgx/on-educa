@@ -1,12 +1,14 @@
 import { AxiosInstance } from 'axios';
 import { ISchoolGrade } from '../interfaces/ISchoolGrade';
 
+const entityPath = '/schoolGrades';
+
 export const getSchoolGrades = async (
   API: AxiosInstance,
   setSchoolGradesState: (schoolGrades: ISchoolGrade[]) => void,
   token: string,
 ): Promise<void> => {
-  await API.get('/schoolgrades', {
+  await API.get(`/${entityPath}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -21,7 +23,7 @@ export const getSchoolGradesByTeachingType = async (
   setSchoolGradesState: (schoolGrades: ISchoolGrade[]) => void,
   token: string,
 ): Promise<void> => {
-  await API.get(`/schoolgrades/teachingtype/${teachingTypeId}`, {
+  await API.get(`/${entityPath}/teachingtype/${teachingTypeId}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -37,7 +39,7 @@ export const getSchoolGrade = async (
   id: string,
   setSchoolGradeState: (schoolGrade: ISchoolGrade) => void,
 ): Promise<void> => {
-  await API.get(`/schoolgrades/${id}`).then((response) => {
+  await API.get(`/${entityPath}/${id}`).then((response) => {
     setSchoolGradeState(response.data);
   });
 };

@@ -17,6 +17,7 @@ import {
 
 export interface IUserCardProps extends IUser {
   userType: string;
+  showScore: boolean;
 }
 
 const UserCard = (props: IUserCardProps): JSX.Element => {
@@ -25,9 +26,12 @@ const UserCard = (props: IUserCardProps): JSX.Element => {
     profilePicture,
     schoolGrade: loggedUserSchoolGrade,
     userType,
+    showScore,
   } = props;
 
   const schoolGrade = loggedUserSchoolGrade || DEFAULT_SCHOOL_GRADE;
+
+  console.log(props);
 
   return (
     <UserCardBox>
@@ -42,10 +46,12 @@ const UserCard = (props: IUserCardProps): JSX.Element => {
           )}
         </PersonalInfo>
       </UserDetails>
-      <UserScore>
-        <UserLeague className="fas fa-trophy" />
-        <UserExperience>1865 XP</UserExperience>
-      </UserScore>
+      {showScore && (
+        <UserScore>
+          <UserLeague className="fas fa-trophy" />
+          <UserExperience>1865 XP</UserExperience>
+        </UserScore>
+      )}
     </UserCardBox>
   );
 };

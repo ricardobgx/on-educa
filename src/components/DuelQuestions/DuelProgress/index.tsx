@@ -1,5 +1,5 @@
 import React from 'react';
-import { IDuelQuestion } from '../../../interfaces/IDuelQuestion';
+import { IDuelRoundQuestion } from '../../../interfaces/IDuelRoundQuestion';
 import {
   Container,
   DuelProgressBar,
@@ -8,8 +8,8 @@ import {
 } from './styles';
 
 interface IDuelProgressProps {
-  answeredQuestionsNumber: (questions: IDuelQuestion[]) => number;
-  questions: IDuelQuestion[];
+  answeredQuestionsNumber: (questions: IDuelRoundQuestion[]) => number;
+  questions: IDuelRoundQuestion[];
 }
 
 const DuelProgress = (props: IDuelProgressProps): JSX.Element => {

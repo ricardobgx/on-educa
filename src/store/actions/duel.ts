@@ -1,5 +1,5 @@
 import { IDuel } from '../../interfaces/IDuel';
-import { IDuelQuestion } from '../../interfaces/IDuelQuestion';
+import { IDuelRoundQuestion } from '../../interfaces/IDuelRoundQuestion';
 import { DuelActionType } from '../action-types/duel';
 
 interface LoadDuel {
@@ -9,7 +9,7 @@ interface LoadDuel {
 
 interface AnswerDuelQuestion {
   type: DuelActionType.ANSWER_DUEL_QUESTION;
-  questions: IDuelQuestion[];
+  questions: IDuelRoundQuestion[];
 }
 
 export type DuelAction = LoadDuel | AnswerDuelQuestion;

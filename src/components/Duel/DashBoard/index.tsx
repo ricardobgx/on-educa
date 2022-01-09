@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
-import { IStudent } from '../../../interfaces/IStudent';
-import {
-  DEFAULT_SCHOOL_GRADE,
-  DEFAULT_TEACHING_TYPE,
-} from '../../../static/defaultEntitiesValues';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect, useRouteMatch } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { getDuel } from '../../../functions/duel';
+import { isDefaultDuel } from '../../../functions/entitiesValues';
+import { IDuel } from '../../../interfaces/IDuel';
+import { IDuelTeam } from '../../../interfaces/IDuelTeam';
+import OnEducaAPI from '../../../services/api';
+import { ActionCreators, State } from '../../../store';
 import SectionLabel from '../../App/SectionLabel';
 import ParticipantsList from '../ParticipantsList';
 import {
@@ -23,94 +26,73 @@ import {
   TeamLabel,
 } from './styles';
 
-const teamAParticipants: IStudent[] = [
-  {
-    id: 'cdcdcd-ccac-caccacsaa',
-    email: 'teste1@gmail.com',
-    name: 'Aluno Fulano Sicrano da Silva',
-    schoolGradeId: 'ccscd1-csdcsdcsc-cdcssdcsc',
-    league: 'Diamond',
-    isOnline: true,
-    profilePicture:
-      'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
-    teachingType: DEFAULT_TEACHING_TYPE,
-    schoolGrade: DEFAULT_SCHOOL_GRADE,
-  },
-  {
-    id: 'cdcdcd-ccac-caccacsaa',
-    email: 'teste2@gmail.com',
-    name: 'Aluno Fulano Sicrano da Silva',
-    schoolGradeId: 'ccscd1-csdcsdcsc-cdcssdcsc',
-    league: 'Diamond',
-    isOnline: true,
-    profilePicture:
-      'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
-    teachingType: DEFAULT_TEACHING_TYPE,
-    schoolGrade: DEFAULT_SCHOOL_GRADE,
-  },
-  {
-    id: 'cdcdcd-ccac-caccacsaa',
-    email: 'teste3@gmail.com',
-    name: 'Aluno Fulano Sicrano da Silva',
-    schoolGradeId: 'ccscd1-csdcsdcsc-cdcssdcsc',
-    league: 'Diamond',
-    isOnline: true,
-    profilePicture:
-      'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
-    teachingType: DEFAULT_TEACHING_TYPE,
-    schoolGrade: DEFAULT_SCHOOL_GRADE,
-  },
-  {
-    id: 'cdcdcd-ccac-caccacsaa',
-    email: 'teste4@gmail.com',
-    name: 'Aluno Fulano Sicrano da Silva',
-    schoolGradeId: 'ccscd1-csdcsdcsc-cdcssdcsc',
-    league: 'Diamond',
-    isOnline: true,
-    profilePicture:
-      'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
-    teachingType: DEFAULT_TEACHING_TYPE,
-    schoolGrade: DEFAULT_SCHOOL_GRADE,
-  },
-];
+interface IDuelRouteParams {
+  id: string;
+}
 
 const DashBoard = (): JSX.Element => {
+  /* Estado da aplicacao */
+
+  const { aplication, duel, user } = useSelector((store: State) => store);
+  const { token } = aplication;
+
+  const dispatch = useDispatch();
+  const { loadDuel } = bindActionCreators(ActionCreators, dispatch);
+
   const [startedDuel, setStartedDuel] = useState(false);
 
-  const isDuelOwner = (): boolean => {
-    return true;
+  const isDuelOwner = (loggedUserId: string, duelOwnerId: string): boolean => {
+    return loggedUserId === duelOwnerId;
   };
 
   const startDuel = (): void => {
     setStartedDuel(true);
   };
 
+  const sortTeams = (teams: IDuelTeam[]): IDuelTeam[] => {
+    return teams.sort((teamA, teamB) => (teamA.index > teamB.index ? 1 : -1));
+  };
+
+  const route = useRouteMatch();
+  const { id: duelId } = route.params as IDuelRouteParams;
+
+  useEffect(() => {
+    if (isDefaultDuel(duel)) {
+      getDuel(OnEducaAPI, duelId, token, loadDuel, () => console.log('erro'));
+    }
+  }, [duelId]);
+
+  const { duelRound, student } = duel as IDuel;
+  const { teams: unsortedTeams } = duelRound;
+  const teams = sortTeams(unsortedTeams);
+
   return (
     <DashBoardBox>
       <SectionLabel backLink="" label="Duelo de Aluno 1" />
       <DuelTeams>
-        <DuelTeam>
-          <TeamLabel>Equipe A</TeamLabel>
-          <Participants>
-            <ParticipantsBox>
-              <ParticipantsList participants={teamAParticipants} />
-            </ParticipantsBox>
-          </Participants>
-        </DuelTeam>
-        <DuelTeam>
-          <TeamLabel>Equipe B</TeamLabel>
-          <Participants>
-            <ParticipantsBox>
-              <ParticipantsList participants={teamAParticipants} />
-            </ParticipantsBox>
-          </Participants>
-        </DuelTeam>
+        {teams.map((team) => {
+          return (
+            <DuelTeam>
+              <TeamLabel>{team.name}</TeamLabel>
+              <Participants>
+                <ParticipantsBox>
+                  <ParticipantsList
+                    duelTeamId={team.id}
+                    duelOwnerId={student.id}
+                    token={token}
+                    loggedStudent={user}
+                  />
+                </ParticipantsBox>
+              </Participants>
+            </DuelTeam>
+          );
+        })}
       </DuelTeams>
       <DuelActions>
         <InviteFriendsButton>
           <InviteFriendsButtonLabel>Convidar amigos</InviteFriendsButtonLabel>
         </InviteFriendsButton>
-        {!isDuelOwner() ? (
+        {!isDuelOwner(user.id, student.id) ? (
           <QuitDuelButton to="/duels">
             <QuitDuelButtonLabel>Sair</QuitDuelButtonLabel>
           </QuitDuelButton>

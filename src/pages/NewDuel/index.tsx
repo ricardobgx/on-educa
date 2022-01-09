@@ -25,11 +25,17 @@ import {
   CreateNewDuelButton,
   CreateNewDuelButtonLabel,
 } from './styles';
+import { createDuelTeamParticipationByDuel } from '../../functions/duelTeamParts';
+import { IDuelTeamParticipationByDuelParams } from '../../dto/IDuelTeamParticipationByDuelParams';
 
 const NewDuel = (): JSX.Element => {
   /* Global State */
 
-  const { user, aplication } = useSelector((store: State) => store);
+  const {
+    user,
+    duel: globalDuel,
+    aplication,
+  } = useSelector((store: State) => store);
 
   const { id } = user;
   const { token } = aplication;
@@ -76,9 +82,29 @@ const NewDuel = (): JSX.Element => {
 
   /* Functions */
 
+  const createDuelOwnerParticipationSucess = (): void => {
+    setDuelIsCreated(true);
+  };
+
+  const createDuelOwnerParticipationError = (): void => {
+    console.log('erro');
+  };
+
+  const createDuelOwnerParticipation = async (
+    duelTeamParticipationByDuelParams: IDuelTeamParticipationByDuelParams,
+  ): Promise<void> => {
+    await createDuelTeamParticipationByDuel(
+      OnEducaAPI,
+      duelTeamParticipationByDuelParams,
+      token,
+      createDuelOwnerParticipationSucess,
+      createDuelOwnerParticipationError,
+    );
+  };
+
   const createDuelSucess = (duel: IDuel): void => {
     loadDuel(duel);
-    setDuelIsCreated(true);
+    createDuelOwnerParticipation({ duelId: duel.id, studentId: user.id });
   };
 
   const createDuelError = (err: AxiosError): void => {
@@ -123,7 +149,7 @@ const NewDuel = (): JSX.Element => {
             <CreateNewDuelButton onClick={() => createDuel()}>
               <CreateNewDuelButtonLabel>Criar duelo</CreateNewDuelButtonLabel>
             </CreateNewDuelButton>
-            {duelIsCreated && <Redirect to="/duels/12345" />}
+            {duelIsCreated && <Redirect to={`/duels/${globalDuel.id}`} />}
           </NewDuelActions>
         </NewDuelBox>
       </PageBox>

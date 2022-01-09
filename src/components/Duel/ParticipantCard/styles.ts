@@ -6,10 +6,6 @@ export const ParticipantCardBox = styled.div`
   margin-bottom: 20px;
   width: 100%;
 
-  &:last-of-type {
-    margin-bottom: 0;
-  }
-
   @media (max-width: 600px) {
     flex-direction: column;
   }
@@ -55,19 +51,51 @@ export const ParticipantLeague = styled.i`
   font-size: 35px;
   color: ${({ color }) => color};
 `;
-export const KickOutButton = styled.button`
-  color: ${({ theme }) => theme.colors.whiteColor};
-  background: ${({ theme }) => theme.similarColors.warningColor};
+export const DuelParticipantCardActions = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media (max-width: 600px) {
+    flex-direction: row;
+  }
+`;
+export const AddFriendButton = styled.button`
+  color: ${({ theme }) => theme.colors.boxColor};
+  background: ${({ theme }) => theme.colors.textColor};
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 5px;
   min-width: 40px;
-  min-height: 30px;
+  min-height: calc(50% - 5px);
   border: none;
   margin-left: 20px;
 
   @media (max-width: 600px) {
     margin: 0;
     margin-top: 10px;
+    min-height: 40px;
+    width: 100%;
+  }
+`;
+export const AddFriendButtonIcon = styled.i`
+  font-size: 1rem;
+`;
+export const KickOutButton = styled.button`
+  color: ${({ theme }) => theme.colors.whiteColor};
+  background: ${({ theme }) => theme.similarColors.warningColor};
+  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  border-radius: 5px;
+  min-width: 40px;
+  min-height: calc(50% - 5px);
+  border: none;
+  margin-left: 20px;
+
+  @media (max-width: 600px) {
+    margin: 0;
+    margin-top: 10px;
+    margin-left: 10px;
+    min-height: 40px;
+    width: 100%;
   }
 `;
 export const KickOutButtonIcon = styled.i`

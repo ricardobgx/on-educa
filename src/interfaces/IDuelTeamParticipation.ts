@@ -5,6 +5,6 @@ import { IUser } from './IUser';
 export interface IDuelTeamParticipation {
   id: string;
   duelTeam: IDuelTeam;
-  student: IUser;
+  student?: IUser;
   duelQuestionsAnswers: IDuelQuestionAnswer[];
 }

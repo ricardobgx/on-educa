@@ -14,20 +14,19 @@ import {
   DEFAULT_DUEL_QUESTION,
   DEFAULT_DUEL_TEAM_PARTICIPATION,
 } from '../../static/defaultEntitiesValues';
-import { IDuelQuestion } from '../../interfaces/IDuelQuestion';
+import { IDuelRoundQuestion } from '../../interfaces/IDuelRoundQuestion';
 
-const questionsTest: IDuelQuestion[] = [];
+const questionsTest: IDuelRoundQuestion[] = [];
 
 const duelTest: IDuel = {
   ...DEFAULT_DUEL,
   id: '1',
-  questions: questionsTest,
 };
 
 const DuelQuestions = (): JSX.Element => {
   /* Local State */
 
-  const [question, setQuestion] = useState<IDuelQuestion>(
+  const [question, setQuestion] = useState<IDuelRoundQuestion>(
     DEFAULT_DUEL_QUESTION,
   );
 
@@ -39,10 +38,8 @@ const DuelQuestions = (): JSX.Element => {
 
   const dispatch = useDispatch();
 
-  const { loadDuel, answerDuelQuestion: answerQuestion } = bindActionCreators(
-    ActionCreators,
-    dispatch,
-  );
+  const { loadDuel, answerDuelRoundQuestion: answerQuestion } =
+    bindActionCreators(ActionCreators, dispatch);
 
   /* Number functions */
 
@@ -56,10 +53,10 @@ const DuelQuestions = (): JSX.Element => {
 
   // Sort duel question
 
-  const sortDuelQuestion = (duelQuestions: IDuelQuestion[]): void => {
+  const sortDuelQuestion = (duelQuestions: IDuelRoundQuestion[]): void => {
     const noAnsweredQuestions = duelQuestions.filter((duelQuestion) => {
-      const { duelQuestionAnswer } = duelQuestion;
-      return !duelQuestionAnswer?.selectedAlternative;
+      const { answer } = duelQuestion;
+      return !answer?.selectedAlternative;
     });
 
     const randQuestionIndex = randIntFromInterval(
@@ -72,17 +69,19 @@ const DuelQuestions = (): JSX.Element => {
 
   // Number of Answered Questions
 
-  const answeredQuestionsNumber = (duelQuestions: IDuelQuestion[]): number => {
+  const answeredQuestionsNumber = (
+    duelQuestions: IDuelRoundQuestion[],
+  ): number => {
     return duelQuestions.filter((duelQuestion) => {
-      const { duelQuestionAnswer } = duelQuestion;
-      return !!duelQuestionAnswer?.selectedAlternative;
+      const { answer } = duelQuestion;
+      return !!answer?.selectedAlternative;
     }).length;
   };
 
   // Answer Question
 
   const answerDuelQuestion = (
-    duelQuestions: IDuelQuestion[],
+    duelQuestions: IDuelRoundQuestion[],
     answeredDuelQuestionId: string,
     selectedAlternativeId: string,
   ): void => {
@@ -96,7 +95,7 @@ const DuelQuestions = (): JSX.Element => {
         );
 
         if (findAlternative.length > 0)
-          newDuelQuestion.duelQuestionAnswer = {
+          newDuelQuestion.answer = {
             id: '',
             question: duelQuestion,
             duelTeamParticipation: DEFAULT_DUEL_TEAM_PARTICIPATION,

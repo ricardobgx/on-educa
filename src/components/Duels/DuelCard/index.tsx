@@ -1,4 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { getDuel } from '../../../functions/duel';
+import { IDuel } from '../../../interfaces/IDuel';
+import OnEducaAPI from '../../../services/api';
+import { DEFAULT_DUEL } from '../../../static/defaultEntitiesValues';
+import { State } from '../../../store';
 import {
   DuelCardBox,
   DuelDetails,
@@ -18,25 +24,35 @@ import {
 } from './styles';
 
 interface IDuelCardProps {
-  id: string;
-  ownerName: string;
-  subjects: string[];
-  contents: string[];
-  status: string;
-  participants: number;
-  maxParticipants: number;
+  duelId: string;
 }
 
 const DuelCard = (props: IDuelCardProps): JSX.Element => {
-  const {
-    contents,
-    id,
-    maxParticipants,
-    ownerName,
-    participants,
-    status,
-    subjects,
-  } = props;
+  const { duelId } = props;
+
+  /* Estado da aplicacao */
+
+  const { aplication } = useSelector((store: State) => store);
+  const { token } = aplication;
+
+  /* Estado do componente */
+
+  const [duel, setDuel] = useState<IDuel>(DEFAULT_DUEL);
+
+  useEffect(() => {
+    getDuel(OnEducaAPI, duelId, token, setDuel, () => console.log('erro'));
+  }, []);
+
+  const { id, student, duelRound } = duel;
+  const { name: ownerName } = student;
+  const { maxGroupParticipants, timeForQuestion, questions, teams } = duelRound;
+  let numParticipants = 0;
+  teams.map((team) => {
+    numParticipants += team.participations.length;
+    return team;
+  });
+
+  const status = 'waiting';
 
   return (
     <DuelCardBox to={`/duels/${id}`}>
@@ -47,8 +63,10 @@ const DuelCard = (props: IDuelCardProps): JSX.Element => {
         <DuelCode>Código: {id}</DuelCode>
       </DuelDetails>
       <DuelContents>
-        <SubjectsName>Disciplinas: {subjects.join(', ')}...</SubjectsName>
-        <ContentsName>Conteúdos: {contents.join(', ')}...</ContentsName>
+        <SubjectsName>{questions.length} questões</SubjectsName>
+        <ContentsName>
+          Tempo para responder questão: {timeForQuestion} minuto(s)
+        </ContentsName>
       </DuelContents>
       <DuelStatus>
         <DuelStatusBox>
@@ -63,7 +81,7 @@ const DuelCard = (props: IDuelCardProps): JSX.Element => {
         </DuelStatusBox>
         <DuelParticipants>
           <DuelParticipantsLabel>
-            {participants}/{maxParticipants}
+            {numParticipants}/{maxGroupParticipants * teams.length}
           </DuelParticipantsLabel>
           <DuelParticipantsIcon className="fas fa-users" />
         </DuelParticipants>

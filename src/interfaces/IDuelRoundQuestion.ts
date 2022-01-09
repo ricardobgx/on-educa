@@ -1,10 +1,10 @@
-import { IDuel } from './IDuel';
 import { IDuelQuestionAnswer } from './IDuelQuestionAnswer';
+import { IDuelRound } from './IDuelRound';
 import { IQuestion } from './IQuestion';
 
-export interface IDuelQuestion {
+export interface IDuelRoundQuestion {
   id: string;
-  duel: IDuel;
+  duelRound: IDuelRound;
   question: IQuestion;
-  duelQuestionAnswer?: IDuelQuestionAnswer;
+  answer?: IDuelQuestionAnswer;
 }
