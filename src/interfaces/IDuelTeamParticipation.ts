@@ -4,7 +4,8 @@ import { IUser } from './IUser';
 
 export interface IDuelTeamParticipation {
   id: string;
+  index: number;
   duelTeam: IDuelTeam;
-  student?: IUser;
+  student: IUser | null;
   duelQuestionsAnswers: IDuelQuestionAnswer[];
 }
