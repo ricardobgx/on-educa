@@ -6,6 +6,7 @@ export interface IUserParams {
   isOnline?: boolean;
   profilePicture?: string;
   league?: string;
+  userType?: string;
   schoolGradeId?: string;
   teachingTypeId?: string;
 }
