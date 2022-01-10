@@ -1,6 +1,7 @@
 import { IAlternative } from '../interfaces/IAlternative';
 import { IContent } from '../interfaces/IContent';
 import { IDuel } from '../interfaces/IDuel';
+import { IDuelTeamParticipation } from '../interfaces/IDuelTeamParticipation';
 import { ISchoolGrade } from '../interfaces/ISchoolGrade';
 import { ISubject } from '../interfaces/ISubject';
 import { ITeachingType } from '../interfaces/ITeachingType';
@@ -10,6 +11,7 @@ import {
   DEFAULT_ALTERNATIVE,
   DEFAULT_CONTENT,
   DEFAULT_DUEL,
+  DEFAULT_DUEL_TEAM_PARTICIPATION,
   DEFAULT_PRACTICE,
   DEFAULT_SCHOOL_GRADE,
   DEFAULT_SUBJECT,
@@ -43,3 +45,7 @@ export const isDefaultPractice = (pratice: IPractice): boolean =>
   pratice === DEFAULT_PRACTICE;
 
 export const isDefaultDuel = (duel: IDuel): boolean => duel === DEFAULT_DUEL;
+
+export const isDefaultDuelTeamParticipation = (
+  duelTeamParticipation: IDuelTeamParticipation,
+): boolean => duelTeamParticipation === DEFAULT_DUEL_TEAM_PARTICIPATION;
