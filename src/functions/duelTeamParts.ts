@@ -1,10 +1,37 @@
 import { AxiosError, AxiosInstance } from 'axios';
-import { IDuelTeamParticipationByDuelParams } from '../dto/IDuelTeamParticipationByDuelParams';
+import { IChangeDuelTeamPositionParams } from '../dto/IChangeDuelTeamPositionParams';
 import { IDuelTeamParticipationParams } from '../dto/IDuelTeamParticipationParams';
+import { IParticipateInDuelParams } from '../dto/IParticipateInDuelParams';
 import { IDuel } from '../interfaces/IDuel';
 import { IDuelTeamParticipation } from '../interfaces/IDuelTeamParticipation';
+import { IUser } from '../interfaces/IUser';
+import {
+  DEFAULT_DUEL_TEAM_PARTICIPATION,
+  DEFAULT_USER,
+} from '../static/defaultEntitiesValues';
+import { isDefaultDuelTeamParticipation } from './entitiesValues';
 
 const entityPath = 'duelTeamParts';
+
+/* Funcoes da aplicacao */
+
+export const findStudentDuelTeamPart = (
+  duelTeamParts: IDuelTeamParticipation[],
+  student: IUser,
+): IDuelTeamParticipation => {
+  return (
+    duelTeamParts.find(
+      // Itera em cada participacao
+      (participation) => {
+        /** **************************************************************
+         * Verifica se a participacao possui um estudante, caso sim, veri-
+         * fica se eh a participacao procurada
+         *************************************************************** */
+        return participation.student && participation.student.id === student.id;
+      },
+    ) || DEFAULT_DUEL_TEAM_PARTICIPATION
+  ); // Caso nao encontre, retorna o antigo valor
+};
 
 /* API functions */
 
@@ -31,14 +58,14 @@ export const createDuelTeamParticipation = async (
   );
 };
 
-export const createDuelTeamParticipationByDuel = async (
+export const participateInDuel = async (
   API: AxiosInstance,
-  duelTeamPartParams: IDuelTeamParticipationByDuelParams,
+  participateInDuelParams: IParticipateInDuelParams,
   token: string,
   requestSucess: () => void,
   requestError: () => void,
 ): Promise<void> => {
-  await API.post(`/${entityPath}/duel`, duelTeamPartParams, {
+  await API.post(`/${entityPath}/duel`, participateInDuelParams, {
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -127,6 +154,29 @@ export const updateDuelTeamParticipation = async (
   requestError: (err: AxiosError) => void,
 ): Promise<void> => {
   await API.put(`/${entityPath}/${id}`, duelTeamPartParams, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then(
+    (response) => {
+      requestSucess();
+    },
+    (err: AxiosError) => {
+      requestError(err);
+    },
+  );
+};
+
+// Muda a posicao de um estudante em um team de duelo
+
+export const changeDuelTeamPosition = async (
+  API: AxiosInstance,
+  changeDuelTeamPositionParams: IChangeDuelTeamPositionParams,
+  token: string,
+  requestSucess: () => void,
+  requestError: (err: AxiosError) => void,
+): Promise<void> => {
+  await API.put(`/${entityPath}/changePosition`, changeDuelTeamPositionParams, {
     headers: {
       authorization: `Bearer ${token}`,
     },
