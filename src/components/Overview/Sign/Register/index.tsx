@@ -106,6 +106,7 @@ const Register = (props: IRegisterProps): JSX.Element => {
       profilePicture:
         'https://i.pinimg.com/564x/b3/fa/4a/b3fa4a81540be0d7da526271c7395222.jpg',
       league: 'Mestre',
+      userType,
     } as IUserParams;
 
     const userParams = isStudent(userType)
