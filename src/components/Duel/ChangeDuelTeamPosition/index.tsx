@@ -1,6 +1,9 @@
 import React from 'react';
-import { updateDuelTeamParticipation } from '../../../functions/duelTeamParts';
+import { useSelector } from 'react-redux';
+import { changeDuelTeamPosition } from '../../../functions/duelTeamParts';
+import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
 import OnEducaAPI from '../../../services/api';
+import { State } from '../../../store';
 import {
   ChangeDuelTeamPositionBox,
   ChangeDuelTeamPositionIcon,
@@ -10,20 +13,27 @@ import {
 interface IChangeDuelTeamPositionProps {
   duelTeamPartId: string;
   studentId: string;
-  token: string;
+  studentParticipation: IDuelTeamParticipation;
 }
 
 const ChangeDuelTeamPosition = (
   props: IChangeDuelTeamPositionProps,
 ): JSX.Element => {
-  const { duelTeamPartId, studentId, token } = props;
+  const { aplication } = useSelector((store: State) => store);
+  const { token } = aplication;
 
-  const changeDuelTeamPosition = async (): Promise<void> => {
+  const { duelTeamPartId, studentId, studentParticipation } = props;
+
+  const changePosition = async (): Promise<void> => {
+    console.log(studentParticipation.id);
     console.log(duelTeamPartId);
-    await updateDuelTeamParticipation(
+    await changeDuelTeamPosition(
       OnEducaAPI,
-      duelTeamPartId,
-      { studentId },
+      {
+        oldDuelTeamParticipationId: studentParticipation.id,
+        newDuelTeamParticipationId: duelTeamPartId,
+        studentId,
+      },
       token,
       () => console.log('atualizou'),
       () => console.log('erro'),
@@ -31,7 +41,7 @@ const ChangeDuelTeamPosition = (
   };
 
   return (
-    <ChangeDuelTeamPositionBox onClick={() => changeDuelTeamPosition()}>
+    <ChangeDuelTeamPositionBox onClick={() => changePosition()}>
       <ChangeDuelTeamPositionIcon className="fas fa-user-astronaut" />
       <ChangeDuelTeamPositionLabel>
         Conquistar este lugar
