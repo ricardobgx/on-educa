@@ -32,7 +32,7 @@ import {
 const Duels = (): JSX.Element => {
   /* Estado da aplicacao */
 
-  const { aplication } = useSelector((store: State) => store);
+  const { aplication, user } = useSelector((store: State) => store);
   const { token } = aplication;
 
   /* Estado do componente */
@@ -77,7 +77,7 @@ const Duels = (): JSX.Element => {
           <DuelsList>
             <DuelsListBox>
               {duels.map((duel) => (
-                <DuelCard key={duel.id} duelId={duel.id} />
+                <DuelCard key={duel.id} duelId={duel.id} student={user} />
               ))}
             </DuelsListBox>
           </DuelsList>
