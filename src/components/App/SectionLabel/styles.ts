@@ -18,6 +18,7 @@ export const SectionLabelBox = styled.div`
 export const SectionLabelText = styled(paragraph)`
   color: ${({ theme }) => theme.colors.textColor};
   font-weight: bold;
+  text-align: center;
 `;
 export const SectionLabelBackLink = styled(Link)`
   position: absolute;
