@@ -3,10 +3,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useRouteMatch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { getDuel } from '../../../functions/duel';
-import { isDefaultDuel } from '../../../functions/entitiesValues';
+import { getDuelTeamsByDuelRound } from '../../../functions/duelTeam';
+import {
+  findStudentDuelTeamPart,
+  getDuelTeamPartsByDuelTeam,
+} from '../../../functions/duelTeamParts';
+import {
+  isDefaultDuel,
+  isDefaultDuelTeamParticipation,
+  isDefaultUser,
+} from '../../../functions/entitiesValues';
 import { IDuel } from '../../../interfaces/IDuel';
 import { IDuelTeam } from '../../../interfaces/IDuelTeam';
+import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
+import { IUser } from '../../../interfaces/IUser';
 import OnEducaAPI from '../../../services/api';
+import { DEFAULT_DUEL_TEAM_PARTICIPATION } from '../../../static/defaultEntitiesValues';
 import { ActionCreators, State } from '../../../store';
 import SectionLabel from '../../App/SectionLabel';
 import ParticipantsList from '../ParticipantsList';
@@ -39,7 +51,12 @@ const DashBoard = (): JSX.Element => {
   const dispatch = useDispatch();
   const { loadDuel } = bindActionCreators(ActionCreators, dispatch);
 
+  /* Estado do componente */
+
+  const [duelTeams, setDuelTeams] = useState<IDuelTeam[]>([]);
   const [startedDuel, setStartedDuel] = useState(false);
+  const [studentParticipation, setStudentParticipation] =
+    useState<IDuelTeamParticipation>(DEFAULT_DUEL_TEAM_PARTICIPATION);
 
   const isDuelOwner = (loggedUserId: string, duelOwnerId: string): boolean => {
     return loggedUserId === duelOwnerId;
@@ -56,31 +73,80 @@ const DashBoard = (): JSX.Element => {
   const route = useRouteMatch();
   const { id: duelId } = route.params as IDuelRouteParams;
 
+  // const getDuelTeamsParticipations = (): Promise<void> => {
+
+  // }
+
+  const setUpStudentParticipation = (
+    teams: IDuelTeam[],
+    student: IUser,
+  ): void => {
+    let studentParticipationFound: IDuelTeamParticipation =
+      DEFAULT_DUEL_TEAM_PARTICIPATION;
+
+    teams.map((team) => {
+      if (isDefaultDuelTeamParticipation(studentParticipationFound)) {
+        studentParticipationFound = findStudentDuelTeamPart(
+          team.participations,
+          student,
+        );
+      }
+      return team;
+    });
+
+    console.log(studentParticipationFound);
+
+    setStudentParticipation(studentParticipationFound);
+
+    setDuelTeams(teams);
+  };
+
+  const getDuelTeams = async (duelFound: IDuel): Promise<void> => {
+    loadDuel(duelFound);
+    const { duelRound } = duelFound;
+    await getDuelTeamsByDuelRound(
+      OnEducaAPI,
+      duelRound.id,
+      token,
+      setDuelTeams,
+      () => console.log('erro'),
+    );
+  };
+
+  const getFullDuel = async (): Promise<void> => {
+    await getDuel(OnEducaAPI, duelId, token, getDuelTeams, () =>
+      console.log('erro'),
+    );
+  };
+
   useEffect(() => {
     if (isDefaultDuel(duel)) {
-      getDuel(OnEducaAPI, duelId, token, loadDuel, () => console.log('erro'));
+      getFullDuel();
     }
-  }, [duelId]);
+    if (!isDefaultUser(user)) {
+      setUpStudentParticipation(duelTeams, user);
+    }
+  }, [duelId, user, duelTeams]);
 
-  const { duelRound, student } = duel as IDuel;
-  const { teams: unsortedTeams } = duelRound;
-  const teams = sortTeams(unsortedTeams);
+  const { student } = duel as IDuel;
+  const teams = sortTeams(duelTeams);
 
   return (
     <DashBoardBox>
-      <SectionLabel backLink="" label="Duelo de Aluno 1" />
+      <SectionLabel backLink="" label={`Duelo de ${student.name}`} />
       <DuelTeams>
         {teams.map((team) => {
           return (
-            <DuelTeam>
+            <DuelTeam key={team.id}>
               <TeamLabel>{team.name}</TeamLabel>
               <Participants>
                 <ParticipantsBox>
                   <ParticipantsList
-                    duelTeamId={team.id}
+                    team={team}
                     duelOwnerId={student.id}
-                    token={token}
                     loggedStudent={user}
+                    studentParticipation={studentParticipation}
+                    setStudentParticipation={setStudentParticipation}
                   />
                 </ParticipantsBox>
               </Participants>
