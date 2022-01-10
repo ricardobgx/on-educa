@@ -25,8 +25,8 @@ import {
   CreateNewDuelButton,
   CreateNewDuelButtonLabel,
 } from './styles';
-import { createDuelTeamParticipationByDuel } from '../../functions/duelTeamParts';
-import { IDuelTeamParticipationByDuelParams } from '../../dto/IDuelTeamParticipationByDuelParams';
+import { participateInDuel } from '../../functions/duelTeamParts';
+import { IParticipateInDuelParams } from '../../dto/IParticipateInDuelParams';
 
 const NewDuel = (): JSX.Element => {
   /* Global State */
@@ -91,9 +91,9 @@ const NewDuel = (): JSX.Element => {
   };
 
   const createDuelOwnerParticipation = async (
-    duelTeamParticipationByDuelParams: IDuelTeamParticipationByDuelParams,
+    duelTeamParticipationByDuelParams: IParticipateInDuelParams,
   ): Promise<void> => {
-    await createDuelTeamParticipationByDuel(
+    await participateInDuel(
       OnEducaAPI,
       duelTeamParticipationByDuelParams,
       token,
