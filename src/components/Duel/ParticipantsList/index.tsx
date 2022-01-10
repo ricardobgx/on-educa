@@ -1,8 +1,15 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React, { useEffect, useState } from 'react';
-import { getDuelTeamPartsByDuelTeam } from '../../../functions/duelTeamParts';
-import { isDefaultUser } from '../../../functions/entitiesValues';
+import {
+  findStudentDuelTeamPart,
+  getDuelTeamPartsByDuelTeam,
+} from '../../../functions/duelTeamParts';
+import {
+  isDefaultDuelTeamParticipation,
+  isDefaultUser,
+} from '../../../functions/entitiesValues';
+import { IDuelTeam } from '../../../interfaces/IDuelTeam';
 import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
 import { IStudent } from '../../../interfaces/IStudent';
 import { IUser } from '../../../interfaces/IUser';
@@ -14,40 +21,47 @@ import { ParticipantsListBox } from './styles';
 
 interface IParticipantsList {
   duelOwnerId: string;
-  duelTeamId: string;
+  team: IDuelTeam;
   loggedStudent: IUser;
-  token: string;
+  studentParticipation: IDuelTeamParticipation;
+  setStudentParticipation: (value: IDuelTeamParticipation) => void;
 }
 
 const ParticipantsList = (props: IParticipantsList): JSX.Element => {
-  const { duelOwnerId, duelTeamId, loggedStudent, token } = props;
+  const {
+    duelOwnerId,
+    loggedStudent,
+    team,
+    studentParticipation,
+    setStudentParticipation,
+  } = props;
 
-  const [participations, setParticipations] = useState<
-    IDuelTeamParticipation[]
-  >([]);
+  const sortParticipations = (
+    participationA: IDuelTeamParticipation,
+    participationB: IDuelTeamParticipation,
+  ): number => {
+    return participationA.index > participationB.index ? 1 : -1;
+  };
 
-  useEffect(() => {
-    getDuelTeamPartsByDuelTeam(
-      OnEducaAPI,
-      duelTeamId,
-      token,
-      setParticipations,
-      () => console.log('erro'),
-    );
-  }, []);
+  const { participations: unsortedParticipations } = team;
+  const participations = unsortedParticipations.sort(sortParticipations);
 
   return (
     <ParticipantsListBox>
       {participations.map((participation) => {
         const student = participation.student || DEFAULT_USER;
-        console.log(participation);
         return !isDefaultUser(student) ? (
-          <ParticipantCard user={student} ownerId={duelOwnerId} />
+          <ParticipantCard
+            key={participation.id}
+            user={student}
+            ownerId={duelOwnerId}
+          />
         ) : (
           <ChangeDuelTeamPosition
+            key={participation.id}
             duelTeamPartId={participation.id}
             studentId={loggedStudent.id}
-            token={token}
+            studentParticipation={studentParticipation}
           />
         );
       })}
