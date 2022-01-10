@@ -122,6 +122,7 @@ export const DEFAULT_DUEL_TEAM: IDuelTeam = {
 
 export const DEFAULT_DUEL_TEAM_PARTICIPATION: IDuelTeamParticipation = {
   id: '',
+  index: -1,
   duelTeam: DEFAULT_DUEL_TEAM,
   student: DEFAULT_USER,
   duelQuestionsAnswers: [],
