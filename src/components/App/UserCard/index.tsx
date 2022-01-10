@@ -31,8 +31,6 @@ const UserCard = (props: IUserCardProps): JSX.Element => {
 
   const schoolGrade = loggedUserSchoolGrade || DEFAULT_SCHOOL_GRADE;
 
-  console.log(props);
-
   return (
     <UserCardBox>
       <UserDetails>
