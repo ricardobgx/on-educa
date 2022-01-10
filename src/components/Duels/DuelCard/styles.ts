@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { paragraph } from '../../../global/styles/components/textComponents';
 import { smallIcon } from '../../../global/styles/components/iconComponents';
 
-export const DuelCardBox = styled(Link)`
+export const DuelCardBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,6 +13,7 @@ export const DuelCardBox = styled(Link)`
   margin-bottom: 20px;
   padding: 20px;
   color: ${({ theme }) => theme.colors.textColor};
+  cursor: pointer;
 
   &:last-of-type {
     margin: 0;
