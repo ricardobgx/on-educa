@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { paragraph } from '../../../global/styles/components/textComponents';
+import { Button } from '../../../global/styles/components/buttonComponents';
 
 export const DashBoardBox = styled.div`
   display: flex;
@@ -90,7 +91,7 @@ export const InviteFriendsButton = styled.button`
 `;
 export const InviteFriendsButtonLabel = styled(paragraph)``;
 
-export const QuitDuelButton = styled(Link)`
+export const QuitDuelButton = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
