@@ -25,6 +25,7 @@ interface IParticipantsList {
   loggedStudent: IUser;
   studentParticipation: IDuelTeamParticipation;
   setStudentParticipation: (value: IDuelTeamParticipation) => void;
+  refreshDuel: () => void;
 }
 
 const ParticipantsList = (props: IParticipantsList): JSX.Element => {
@@ -34,6 +35,7 @@ const ParticipantsList = (props: IParticipantsList): JSX.Element => {
     team,
     studentParticipation,
     setStudentParticipation,
+    refreshDuel,
   } = props;
 
   const sortParticipations = (
@@ -53,8 +55,9 @@ const ParticipantsList = (props: IParticipantsList): JSX.Element => {
         return !isDefaultUser(student) ? (
           <ParticipantCard
             key={participation.id}
-            user={student}
             ownerId={duelOwnerId}
+            participation={participation}
+            refreshDuel={refreshDuel}
           />
         ) : (
           <ChangeDuelTeamPosition
@@ -62,6 +65,7 @@ const ParticipantsList = (props: IParticipantsList): JSX.Element => {
             duelTeamPartId={participation.id}
             studentId={loggedStudent.id}
             studentParticipation={studentParticipation}
+            refreshDuel={refreshDuel}
           />
         );
       })}
