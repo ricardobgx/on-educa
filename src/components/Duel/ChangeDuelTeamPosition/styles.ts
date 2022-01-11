@@ -3,16 +3,21 @@ import { mediumIcon } from '../../../global/styles/components/iconComponents';
 import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const ChangeDuelTeamPositionBox = styled.button`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 15px;
   border-radius: 5px;
   margin-bottom: 20px;
   background: ${({ theme }) => theme.colors.boxColor};
   color: ${({ theme }) => theme.colors.textColor};
-  border: 3px solid ${({ theme }) => theme.colors.textColor};
+  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  border: none;
   cursor: pointer;
   position: relative;
   overflow: hidden;
   z-index: 95;
+  animation: fadeIn 0.2s linear;
   transition: 0.4s linear;
 
   &:hover {
