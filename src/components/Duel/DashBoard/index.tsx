@@ -7,6 +7,7 @@ import { getDuelTeamsByDuelRound } from '../../../functions/duelTeam';
 import {
   findStudentDuelTeamPart,
   getDuelTeamPartsByDuelTeam,
+  removeParticipant,
 } from '../../../functions/duelTeamParts';
 import {
   isDefaultDuel,
@@ -18,7 +19,10 @@ import { IDuelTeam } from '../../../interfaces/IDuelTeam';
 import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
 import { IUser } from '../../../interfaces/IUser';
 import OnEducaAPI from '../../../services/api';
-import { DEFAULT_DUEL_TEAM_PARTICIPATION } from '../../../static/defaultEntitiesValues';
+import {
+  DEFAULT_DUEL,
+  DEFAULT_DUEL_TEAM_PARTICIPATION,
+} from '../../../static/defaultEntitiesValues';
 import { ActionCreators, State } from '../../../store';
 import SectionLabel from '../../App/SectionLabel';
 import ParticipantsList from '../ParticipantsList';
@@ -55,6 +59,7 @@ const DashBoard = (): JSX.Element => {
 
   const [duelTeams, setDuelTeams] = useState<IDuelTeam[]>([]);
   const [startedDuel, setStartedDuel] = useState(false);
+  const [quitDuel, setQuitDuel] = useState(false);
   const [studentParticipation, setStudentParticipation] =
     useState<IDuelTeamParticipation>(DEFAULT_DUEL_TEAM_PARTICIPATION);
 
@@ -94,8 +99,6 @@ const DashBoard = (): JSX.Element => {
       return team;
     });
 
-    console.log(studentParticipationFound);
-
     setStudentParticipation(studentParticipationFound);
 
     setDuelTeams(teams);
@@ -119,17 +122,35 @@ const DashBoard = (): JSX.Element => {
     );
   };
 
-  useEffect(() => {
+  const exitDuel = async (): Promise<void> => {
+    await removeParticipant(
+      OnEducaAPI,
+      studentParticipation.id,
+      token,
+      () => setQuitDuel(true),
+      () => console.log('erro'),
+    );
+  };
+
+  useEffect((): (() => void) => {
     if (isDefaultDuel(duel)) {
       getFullDuel();
     }
     if (!isDefaultUser(user)) {
       setUpStudentParticipation(duelTeams, user);
     }
-  }, [duelId, user, duelTeams]);
+
+    return () => {
+      loadDuel(DEFAULT_DUEL);
+    };
+  }, [user, duelTeams]);
 
   const { student } = duel as IDuel;
   const teams = sortTeams(duelTeams);
+
+  console.log('render');
+  console.log(`Logged User id: ${user.id}`);
+  console.log(`Duel owner id: ${student.id}`);
 
   return (
     <DashBoardBox>
@@ -147,6 +168,7 @@ const DashBoard = (): JSX.Element => {
                     loggedStudent={user}
                     studentParticipation={studentParticipation}
                     setStudentParticipation={setStudentParticipation}
+                    refreshDuel={getFullDuel}
                   />
                 </ParticipantsBox>
               </Participants>
@@ -159,7 +181,7 @@ const DashBoard = (): JSX.Element => {
           <InviteFriendsButtonLabel>Convidar amigos</InviteFriendsButtonLabel>
         </InviteFriendsButton>
         {!isDuelOwner(user.id, student.id) ? (
-          <QuitDuelButton to="/duels">
+          <QuitDuelButton onClick={() => exitDuel()}>
             <QuitDuelButtonLabel>Sair</QuitDuelButtonLabel>
           </QuitDuelButton>
         ) : (
@@ -167,7 +189,8 @@ const DashBoard = (): JSX.Element => {
             <StartDuelButtonLabel>Começar</StartDuelButtonLabel>
           </StartDuelButton>
         )}
-        {startedDuel && <Redirect to="/duels/12345/questions" />}
+        {quitDuel && <Redirect to="/duels" />}
+        {startedDuel && <Redirect to={`/duels/${duel.id}/questions`} />}
       </DuelActions>
     </DashBoardBox>
   );

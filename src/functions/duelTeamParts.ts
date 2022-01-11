@@ -79,6 +79,27 @@ export const participateInDuel = async (
   );
 };
 
+export const removeParticipant = async (
+  API: AxiosInstance,
+  duelTeamPartId: string,
+  token: string,
+  requestSucess: () => void,
+  requestError: () => void,
+): Promise<void> => {
+  await API.put(`/${entityPath}/removeParticipant/${duelTeamPartId}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then(
+    (response) => {
+      requestSucess();
+    },
+    (err: AxiosError) => {
+      requestError();
+    },
+  );
+};
+
 export const getDuelTeamParts = async (
   API: AxiosInstance,
   token: string,
