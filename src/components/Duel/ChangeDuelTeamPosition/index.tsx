@@ -4,9 +4,9 @@ import { changeDuelTeamPosition } from '../../../functions/duelTeamParts';
 import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
 import OnEducaAPI from '../../../services/api';
 import { State } from '../../../store';
+import { MediumMaterialIconRound } from '../../App/Icons/MaterialIcons/MaterialIconsRound';
 import {
   ChangeDuelTeamPositionBox,
-  ChangeDuelTeamPositionIcon,
   ChangeDuelTeamPositionLabel,
 } from './styles';
 
@@ -14,6 +14,7 @@ interface IChangeDuelTeamPositionProps {
   duelTeamPartId: string;
   studentId: string;
   studentParticipation: IDuelTeamParticipation;
+  refreshDuel: () => void;
 }
 
 const ChangeDuelTeamPosition = (
@@ -22,7 +23,8 @@ const ChangeDuelTeamPosition = (
   const { aplication } = useSelector((store: State) => store);
   const { token } = aplication;
 
-  const { duelTeamPartId, studentId, studentParticipation } = props;
+  const { duelTeamPartId, studentId, studentParticipation, refreshDuel } =
+    props;
 
   const changePosition = async (): Promise<void> => {
     console.log(studentParticipation.id);
@@ -35,16 +37,16 @@ const ChangeDuelTeamPosition = (
         studentId,
       },
       token,
-      () => console.log('atualizou'),
+      refreshDuel,
       () => console.log('erro'),
     );
   };
 
   return (
     <ChangeDuelTeamPositionBox onClick={() => changePosition()}>
-      <ChangeDuelTeamPositionIcon className="fas fa-user-astronaut" />
+      <MediumMaterialIconRound color="" icon="event_seat" />
       <ChangeDuelTeamPositionLabel>
-        Conquistar este lugar
+        Vir para este lugar
       </ChangeDuelTeamPositionLabel>
     </ChangeDuelTeamPositionBox>
   );
