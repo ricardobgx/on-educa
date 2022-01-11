@@ -5,6 +5,7 @@ export const ParticipantCardBox = styled.div`
   display: flex;
   margin-bottom: 20px;
   width: 100%;
+  animation: fadeIn 0.2s linear;
 
   @media (max-width: 600px) {
     flex-direction: column;
