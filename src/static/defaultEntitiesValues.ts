@@ -90,10 +90,10 @@ export const DEFAULT_SUBJECT: ISubject = {
 
 export const DEFAULT_DUEL_ROUND: IDuelRound = {
   id: '',
+  status: -1,
   maxGroupParticipants: 0,
   questionsPerContent: 0,
   timeForQuestion: 0,
-  lastTeamIndex: -1,
   teams: [],
   questions: [],
 };
@@ -102,6 +102,7 @@ export const DEFAULT_DUEL_ROUND: IDuelRound = {
 
 export const DEFAULT_DUEL: IDuel = {
   id: '',
+  code: '',
   student: DEFAULT_USER,
   duelRound: DEFAULT_DUEL_ROUND,
   duelRounds: [],
@@ -114,7 +115,6 @@ export const DEFAULT_DUEL_TEAM: IDuelTeam = {
   name: '',
   index: -1,
   duelRound: DEFAULT_DUEL_ROUND,
-  lastParticipationIndex: -1,
   participations: [],
 };
 
