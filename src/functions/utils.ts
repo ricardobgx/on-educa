@@ -1,3 +1,5 @@
+import { DeviceType } from '../types/deviceType';
+
 export const reduceTextSize = (
   value: string,
   maxStringLength: number,
@@ -23,4 +25,20 @@ export const getYTVideoCode = (url: string): string => {
   }
 
   return '';
+};
+
+export const deviceWidth = (): number => {
+  return window.innerWidth;
+};
+
+export const deviceType = (): DeviceType => {
+  const deviceWidthValue = deviceWidth();
+
+  if (deviceWidthValue < 600) {
+    return DeviceType.SMARTPHONE;
+  }
+  if (deviceWidthValue > 1150) {
+    return DeviceType.COMPUTER;
+  }
+  return DeviceType.TABLET;
 };
