@@ -21,7 +21,11 @@ import {
 } from '../static/defaultEntitiesValues';
 import { IPractice } from '../store/actions/practice';
 
+// Usuarios
+
 export const isDefaultUser = (user: IUser): boolean => user === DEFAULT_USER;
+
+// Materiais escolares
 
 export const isDefaultTeachingType = (teachingType: ITeachingType): boolean =>
   teachingType === DEFAULT_TEACHING_TYPE;
@@ -43,6 +47,8 @@ export const isDefaultAlternative = (alternative: IAlternative): boolean =>
 
 export const isDefaultPractice = (pratice: IPractice): boolean =>
   pratice === DEFAULT_PRACTICE;
+
+// Duelos
 
 export const isDefaultDuel = (duel: IDuel): boolean => duel === DEFAULT_DUEL;
 
