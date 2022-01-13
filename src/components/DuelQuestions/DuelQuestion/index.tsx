@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import { isDefaultAlternative } from '../../../functions/entitiesValues';
+import { IAlternative } from '../../../interfaces/IAlternative';
 import { IAnsweredQuestion } from '../../../interfaces/IAnsweredQuestion';
 import { IDuelRoundQuestion } from '../../../interfaces/IDuelRoundQuestion';
+import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
+import { DEFAULT_ALTERNATIVE } from '../../../static/defaultEntitiesValues';
 import DuelQuestionAlternative from '../DuelQuestionAlternative';
 import {
   AnswerButton,
@@ -15,17 +19,18 @@ import {
 
 interface IQuestionProps {
   answerQuestion: (
-    duelQuestions: IDuelRoundQuestion[],
-    duelQuestionId: string,
-    selectedAlternative: string,
+    duelTeamParticipationId: string,
+    duelRoundQuestionId: string,
+    selectedAlternativeId: string,
   ) => void;
-  duelQuestions: IDuelRoundQuestion[];
+  studentParticipation: IDuelTeamParticipation;
   duelQuestion: IDuelRoundQuestion;
 }
 
 const DuelQuestion = (props: IQuestionProps): JSX.Element => {
-  const { answerQuestion, duelQuestions, duelQuestion } = props;
-  const [selectedAlternative, setSelectedAlternative] = useState('');
+  const { answerQuestion, studentParticipation, duelQuestion } = props;
+  const [selectedAlternative, setSelectedAlternative] =
+    useState<IAlternative>(DEFAULT_ALTERNATIVE);
   const { question } = duelQuestion;
 
   const { description, alternatives } = question;
@@ -44,8 +49,7 @@ const DuelQuestion = (props: IQuestionProps): JSX.Element => {
       <DuelQuestionAlternatives>
         {alternatives.map((alternative) => (
           <DuelQuestionAlternative
-            description={alternative.description}
-            id={alternative.id}
+            alternative={alternative}
             selectedAlternative={selectedAlternative}
             setSelectedAlternative={setSelectedAlternative}
           />
@@ -54,9 +58,13 @@ const DuelQuestion = (props: IQuestionProps): JSX.Element => {
       <DuelQuestionActions>
         <AnswerButton
           onClick={() => {
-            if (selectedAlternative !== '') {
-              answerQuestion(duelQuestions, question.id, selectedAlternative);
-              setSelectedAlternative('');
+            if (isDefaultAlternative(selectedAlternative)) {
+              answerQuestion(
+                studentParticipation.id,
+                duelQuestion.id,
+                selectedAlternative.id,
+              );
+              setSelectedAlternative(DEFAULT_ALTERNATIVE);
             }
           }}
         >
