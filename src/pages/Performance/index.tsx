@@ -111,6 +111,7 @@ const Performance = (): JSX.Element => {
             <UsersListBox>
               {users.map((user, index) => (
                 <RankingUserCard
+                  key={user.id}
                   {...user}
                   userType={userType}
                   rankingPosition={index + 1}
