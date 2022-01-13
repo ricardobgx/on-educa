@@ -14,5 +14,4 @@ export const PageBox = styled.div`
 export const DuelBox = styled.div`
   display: flex;
   flex-direction: column;
-  color: ${({ theme }) => theme.colors.textColor};
 `;
