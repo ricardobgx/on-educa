@@ -72,7 +72,9 @@ export const UserScore = styled.div`
 
 // XP
 
-export const UserExperience = styled(paragraph)`
+export const UserExperience = styled.p`
+  font-size: 13px;
+  letter-spacing: 1px;
   color: ${({ theme }) => theme.colors.textColor};
   height: 25px;
   display: flex;
@@ -82,7 +84,8 @@ export const UserExperience = styled(paragraph)`
 
 // Liga
 
-export const UserLeague = styled(mediumIcon)`
+export const UserLeague = styled.i`
   color: gold;
   height: 25px;
+  font-size: 25px;
 `;

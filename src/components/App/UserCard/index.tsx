@@ -1,5 +1,5 @@
 import React from 'react';
-import { isStudent } from '../../../functions/user';
+import { displaySurname, isStudent } from '../../../functions/user';
 import { IUser } from '../../../interfaces/IUser';
 import { DEFAULT_SCHOOL_GRADE } from '../../../static/defaultEntitiesValues';
 import {
@@ -18,6 +18,9 @@ import {
 export interface IUserCardProps extends IUser {
   userType: string;
   showScore: boolean;
+  abbreviateName: boolean;
+  smartphoneNameLength: number;
+  otherDevicesNameLength?: number;
 }
 
 const UserCard = (props: IUserCardProps): JSX.Element => {
@@ -27,6 +30,9 @@ const UserCard = (props: IUserCardProps): JSX.Element => {
     schoolGrade: loggedUserSchoolGrade,
     userType,
     showScore,
+    abbreviateName,
+    smartphoneNameLength,
+    otherDevicesNameLength,
   } = props;
 
   const schoolGrade = loggedUserSchoolGrade || DEFAULT_SCHOOL_GRADE;
@@ -36,7 +42,15 @@ const UserCard = (props: IUserCardProps): JSX.Element => {
       <UserDetails>
         <UserPicture src={profilePicture} />
         <PersonalInfo>
-          <UserName>{name}</UserName>
+          <UserName>
+            {abbreviateName
+              ? displaySurname(
+                  name,
+                  smartphoneNameLength,
+                  otherDevicesNameLength,
+                )
+              : name}
+          </UserName>
           {isStudent(userType) ? (
             <StudentSchoolGrade>{schoolGrade.index}º ano</StudentSchoolGrade>
           ) : (
