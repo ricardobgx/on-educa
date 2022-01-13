@@ -46,7 +46,7 @@ const NewDuel = (): JSX.Element => {
   /* Local State */
 
   const [maxParticipants, setMaxParticipants] = useState(1);
-  const [questionsPerContent, setQuestionsPerContent] = useState(5);
+  const [questionsPerContent, setQuestionsPerContent] = useState(-1);
   const [timeForQuestion, setTimeForQuestion] = useState(1);
 
   const [contentsName, setContentsName] = useState('');
