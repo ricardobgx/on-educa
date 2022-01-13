@@ -1,27 +1,28 @@
 import React from 'react';
 import theme from '../../../global/styles/theme';
+import { IAlternative } from '../../../interfaces/IAlternative';
 import { Container, QuestionAlternativeLabel } from './styles';
 
 interface IDuelQuestionAlternativeProps {
-  description: string;
-  id: string;
-  selectedAlternative: string;
-  setSelectedAlternative: (value: string) => void;
+  alternative: IAlternative;
+  selectedAlternative: IAlternative;
+  setSelectedAlternative: (value: IAlternative) => void;
 }
 
 const DuelQuestionAlternative = (
   props: IDuelQuestionAlternativeProps,
 ): JSX.Element => {
-  const { description, id, selectedAlternative, setSelectedAlternative } =
-    props;
+  const { alternative, selectedAlternative, setSelectedAlternative } = props;
+
+  const { id, description } = alternative;
 
   return (
     <Container
       style={{
-        background: id === selectedAlternative ? theme.colors.textColor : '',
-        color: id === selectedAlternative ? theme.colors.boxColor : '',
+        background: id === selectedAlternative.id ? theme.colors.textColor : '',
+        color: id === selectedAlternative.id ? theme.colors.boxColor : '',
       }}
-      onClick={() => setSelectedAlternative(id)}
+      onClick={() => setSelectedAlternative(alternative)}
     >
       <QuestionAlternativeLabel>{description}</QuestionAlternativeLabel>
     </Container>

@@ -95,7 +95,7 @@ export const DuelStatusBox = styled.div`
   }
 `;
 export const DuelStatusLabel = styled(paragraph)`
-  margin-right: 10px;
+  margin-right: 5px;
 `;
 export const DuelStatusIcon = styled(smallIcon)`
   display: flex;
@@ -103,8 +103,8 @@ export const DuelStatusIcon = styled(smallIcon)`
   align-items: center;
   width: 25px;
   height: 25px;
-  color: ${({ theme }) => theme.colors.boxColor};
-  background: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColor};
+  /* background: ${({ theme }) => theme.colors.textColor}; */
   border-radius: 50%;
 `;
 export const DuelParticipants = styled.div`
@@ -112,7 +112,7 @@ export const DuelParticipants = styled.div`
   align-items: center;
 `;
 export const DuelParticipantsLabel = styled(paragraph)`
-  margin-right: 10px;
+  margin-right: 5px;
 `;
 export const DuelParticipantsIcon = styled(smallIcon)`
   display: flex;
