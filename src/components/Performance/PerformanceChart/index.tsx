@@ -55,7 +55,7 @@ const PerformanceChart = (props: IPerformanceChartProps): JSX.Element => {
 
         <Charts>
           {charts.map((chart) => (
-            <Chart>
+            <Chart key={chart.chartBar}>
               <ChartBarValue>{chart.chartBar}</ChartBarValue>
               <ChartBar
                 style={{
