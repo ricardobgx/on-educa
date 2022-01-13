@@ -5,6 +5,20 @@ import { IDuelTeam } from '../interfaces/IDuelTeam';
 
 const entityPath = 'duelTeams';
 
+// Funcoes da aplicacao
+
+/**
+ * @author Jose Ricardo Brasileiro Goncalves
+ * @modified 12/01/2022
+ * @param teams Recebe um array de times de duelo nao ordenados
+ * @brief Ordena os times pelo valor do atributo index
+ * @returns Retorna o array de times ordenado
+ */
+
+export const sortTeams = (teams: IDuelTeam[]): IDuelTeam[] => {
+  return teams.sort((teamA, teamB) => (teamA.index > teamB.index ? 1 : -1));
+};
+
 /* API functions */
 
 // Create duel
