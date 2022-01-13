@@ -5,7 +5,7 @@ export interface IDuelTeam {
   id: string;
   name: string;
   index: number;
-  lastParticipationIndex: number;
   duelRound: IDuelRound;
+  participation?: IDuelTeamParticipation;
   participations: IDuelTeamParticipation[];
 }
