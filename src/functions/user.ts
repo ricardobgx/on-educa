@@ -5,8 +5,68 @@ import { AxiosInstance } from 'axios';
 import { IAuthenticationResponse } from '../interfaces/IAuthenticationResponse';
 import { ILogin } from '../interfaces/ILogin';
 import { IUser } from '../interfaces/IUser';
+import { DeviceType } from '../types/deviceType';
+import { deviceType } from './utils';
 
 /* Application functions */
+
+export const displaySurname = (
+  name: string,
+  smartphoneNameLength: number,
+  otherDevicesNameLength = 35,
+): string => {
+  // Numero maximo de caracteres no nome
+  let maxNameLength = otherDevicesNameLength;
+
+  if (deviceType() === DeviceType.SMARTPHONE) {
+    maxNameLength = smartphoneNameLength;
+  }
+
+  // Variavel que armazena o nome que deve ser exibido
+  let surname = '';
+  // Variavel que armazena as juncoes de nome
+  let unionName = '';
+
+  // Divide o nome do usuario pelo espaco em branco
+  const userNameSplited = name.split(' ');
+
+  // Itera sobre os nomes cortados
+  for (let i = 0; i < userNameSplited.length; i += 1) {
+    // Verifica se ainda cabe algum nome no resultado
+    if (surname.length < maxNameLength) {
+      // Verifica se o tamanho do nome cortado refere-se a uma juncao de nomes
+      if (userNameSplited[i].length <= 3) {
+        // Verifica se a juncao do resultado com esse nome deixa espaco para a abreviacao do proximo nome
+        if (
+          maxNameLength - (surname.length + userNameSplited[i].length + 1) >=
+          2
+        ) {
+          surname += `${userNameSplited[i]} `;
+        } else {
+          // Em caso de nao caber eh armazenada a juncao
+          unionName = ` ${userNameSplited[i]}`;
+        }
+      } else if (
+        // Verifica se o nome cortado cabe no resultado sem abreviar
+        userNameSplited[i].length + surname.length <=
+        maxNameLength
+      ) {
+        surname += `${userNameSplited[i]} `;
+      } else if (
+        // Verifica se a abreviacao do nome cortado com uma juncao de nomes, caso exista, cabe no resultado
+        maxNameLength - surname.length >=
+        unionName.length + 2
+      ) {
+        surname += `${unionName + userNameSplited[i][0]}. `;
+        // Limpa a variavel que armazena a juncao de nomes
+        unionName = '';
+      }
+    }
+  }
+
+  // Retorna o nome abreviado
+  return surname;
+};
 
 // Logged user id is equal compared user id
 
