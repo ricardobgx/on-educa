@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { useRouteMatch } from 'react-router-dom';
 import { ActionCreators, State } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import DuelQuestion from '../../components/DuelQuestions/DuelQuestion';
@@ -15,6 +16,18 @@ import {
   DEFAULT_DUEL_TEAM_PARTICIPATION,
 } from '../../static/defaultEntitiesValues';
 import { IDuelRoundQuestion } from '../../interfaces/IDuelRoundQuestion';
+import { isDefaultDuel } from '../../functions/entitiesValues';
+import { getDuel } from '../../functions/duel';
+import OnEducaAPI from '../../services/api';
+import { getDuelRoundQuestionsByDuelRound } from '../../functions/duelRoundQuestion';
+import { createDuelQuestionAnswer } from '../../functions/duelQuestionAnswer';
+import { IDuelQuestionAnswer } from '../../interfaces/IDuelQuestionAnswer';
+import { IDuelTeamParticipation } from '../../interfaces/IDuelTeamParticipation';
+import { IDuelRound } from '../../interfaces/IDuelRound';
+
+interface IDuelQuestionsRouteParams {
+  id: string;
+}
 
 const questionsTest: IDuelRoundQuestion[] = [];
 
@@ -30,16 +43,23 @@ const DuelQuestions = (): JSX.Element => {
     DEFAULT_DUEL_QUESTION,
   );
 
-  /* Global State */
+  /* Estado da aplicacao */
+
+  const { aplication, duel } = useSelector((store: State) => store);
+  const { token } = aplication;
 
   // Dispatch
-
-  const duel = useSelector((store: State) => store.duel);
 
   const dispatch = useDispatch();
 
   const { loadDuel, answerDuelRoundQuestion: answerQuestion } =
     bindActionCreators(ActionCreators, dispatch);
+
+  /* Estado da pagina */
+
+  const [questions, setQuestions] = useState<IDuelRoundQuestion[]>([]);
+  const [studentParticipation, setStudentParticipation] =
+    useState<IDuelTeamParticipation>(DEFAULT_DUEL_TEAM_PARTICIPATION);
 
   /* Number functions */
 
@@ -78,65 +98,96 @@ const DuelQuestions = (): JSX.Element => {
     }).length;
   };
 
+  // Definir questao a ser respondida
+
+  const setQuestionNow = (duelRound: IDuelRound): void => {
+    const activeQuestion = duelRound.question || DEFAULT_DUEL_QUESTION;
+    setQuestion(activeQuestion);
+  };
+
+  const setNextQuestion = async (
+    duelQuestionAnswer: IDuelQuestionAnswer,
+  ): Promise<void> => {
+    await getDuelRoundQuestionsByDuelRound(
+      OnEducaAPI,
+      duel.duelRound.id,
+      token,
+      setQuestions,
+    );
+  };
+
   // Answer Question
 
-  const answerDuelQuestion = (
-    duelQuestions: IDuelRoundQuestion[],
-    answeredDuelQuestionId: string,
+  const answerDuelQuestion = async (
+    duelTeamParticipationId: string,
+    duelRoundQuestionId: string,
     selectedAlternativeId: string,
-  ): void => {
-    const newDuelQuestions = duelQuestions.map((duelQuestion) => {
-      const newDuelQuestion = { ...duelQuestion };
-
-      if (duelQuestion.id === answeredDuelQuestionId) {
-        const { question: questionDuelQuestion } = duelQuestion;
-        const findAlternative = questionDuelQuestion.alternatives.filter(
-          (alternative) => alternative.id === selectedAlternativeId,
-        );
-
-        if (findAlternative.length > 0)
-          newDuelQuestion.answer = {
-            id: '',
-            question: duelQuestion,
-            duelTeamParticipation: DEFAULT_DUEL_TEAM_PARTICIPATION,
-            selectedAlternative: findAlternative[0],
-          };
-      }
-
-      return newDuelQuestion;
-    });
+  ): Promise<void> => {
+    await createDuelQuestionAnswer(
+      OnEducaAPI,
+      {
+        duelTeamParticipationId,
+        questionId: duelRoundQuestionId,
+        selectedAlternativeId,
+      },
+      token,
+      setNextQuestion,
+    );
 
     // answerQuestion(newQuestions);
 
-    if (answeredQuestionsNumber(newDuelQuestions) < newDuelQuestions.length)
-      sortDuelQuestion(newDuelQuestions);
-    else setQuestion(DEFAULT_DUEL_QUESTION);
     // setDuelQuestionsCompleted(true);
+  };
+
+  /* Parametros da rota da pagina */
+
+  const route = useRouteMatch();
+  const { id: duelId } = route.params as IDuelQuestionsRouteParams;
+
+  /* Funcoes */
+
+  const getDuelRoundQuestions = async (duelFound: IDuel): Promise<void> => {
+    loadDuel(duelFound);
+
+    const { duelRound } = duelFound;
+
+    setQuestionNow(duelRound);
+
+    await getDuelRoundQuestionsByDuelRound(
+      OnEducaAPI,
+      duelRound.id,
+      token,
+      setQuestions,
+    );
+  };
+
+  const getDuelData = async (): Promise<void> => {
+    await getDuel(OnEducaAPI, duelId, token, getDuelRoundQuestions, () =>
+      console.log('erro'),
+    );
   };
 
   /* ComponentMount operations */
 
   useEffect(() => {
-    loadDuel(duelTest);
-    if (questionsTest.length > 0) sortDuelQuestion(questionsTest);
+    if (isDefaultDuel(duel)) {
+      getDuelData();
+    } else {
+      getDuelRoundQuestions(duel);
+    }
   }, []);
-
-  /* Global State */
-
-  // Questions
-
-  const { questions } = duel;
 
   return (
     <Page>
       <PageBox>
         <DuelQuestionsBox>
           <DuelStatus
+            duelRound={duel.duelRound}
             answeredQuestionsNumber={answeredQuestionsNumber}
             questions={questions}
           />
           <DuelQuestion
-            duelQuestions={questions}
+            studentParticipation={studentParticipation}
             answerQuestion={answerDuelQuestion}
             duelQuestion={question}
           />
