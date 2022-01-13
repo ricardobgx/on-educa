@@ -3,34 +3,45 @@ import { IChangeDuelTeamPositionParams } from '../dto/IChangeDuelTeamPositionPar
 import { IDuelTeamParticipationParams } from '../dto/IDuelTeamParticipationParams';
 import { IParticipateInDuelParams } from '../dto/IParticipateInDuelParams';
 import { IDuel } from '../interfaces/IDuel';
+import { IDuelTeam } from '../interfaces/IDuelTeam';
 import { IDuelTeamParticipation } from '../interfaces/IDuelTeamParticipation';
 import { IUser } from '../interfaces/IUser';
-import {
-  DEFAULT_DUEL_TEAM_PARTICIPATION,
-  DEFAULT_USER,
-} from '../static/defaultEntitiesValues';
+import { DEFAULT_DUEL_TEAM_PARTICIPATION } from '../static/defaultEntitiesValues';
 import { isDefaultDuelTeamParticipation } from './entitiesValues';
 
 const entityPath = 'duelTeamParts';
 
 /* Funcoes da aplicacao */
 
-export const findStudentDuelTeamPart = (
-  duelTeamParts: IDuelTeamParticipation[],
+export const findStudentDuelPartByTeams = (
+  teams: IDuelTeam[],
   student: IUser,
 ): IDuelTeamParticipation => {
-  return (
-    duelTeamParts.find(
-      // Itera em cada participacao
-      (participation) => {
-        /** **************************************************************
-         * Verifica se a participacao possui um estudante, caso sim, veri-
-         * fica se eh a participacao procurada
-         *************************************************************** */
-        return participation.student && participation.student.id === student.id;
-      },
-    ) || DEFAULT_DUEL_TEAM_PARTICIPATION
-  ); // Caso nao encontre, retorna o antigo valor
+  let studentParticipation: IDuelTeamParticipation =
+    DEFAULT_DUEL_TEAM_PARTICIPATION;
+
+  teams.map((team) => {
+    if (isDefaultDuelTeamParticipation(studentParticipation)) {
+      studentParticipation =
+        team.participations.find(
+          // Itera em cada participacao
+          (participation) => {
+            /** **************************************************************
+             * Verifica se a participacao possui um estudante, caso sim, veri-
+             * fica se eh a participacao procurada
+             *************************************************************** */
+            return (
+              participation.student && participation.student.id === student.id
+            );
+          },
+        ) || studentParticipation;
+    }
+    return team;
+  });
+
+  // Caso nao encontre, retorna o antigo valor
+
+  return studentParticipation;
 };
 
 /* API functions */
