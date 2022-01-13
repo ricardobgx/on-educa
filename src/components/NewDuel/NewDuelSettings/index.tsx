@@ -1,5 +1,6 @@
 import React from 'react';
 import NewDuelSetting from '../NewDuelSetting';
+import QuestionsPerContentSetting from '../QuestionsPerContentSetting';
 import { NewDuelSettingsBox, NewDuelSettingsLabel } from './styles';
 
 interface INewDuelSettingsProps {
@@ -31,12 +32,12 @@ const NewDuelSettings = (props: INewDuelSettingsProps): JSX.Element => {
         setSelectedValue={setMaxParticipants}
         values={[1, 2, 4]}
       />
-      <NewDuelSetting
+      <QuestionsPerContentSetting
         label="Questões por conteúdo"
         selectedValue={questionsPerContent}
         valueLabel="questões"
         setSelectedValue={setQuestionsPerContent}
-        values={[3, 5, 10]}
+        maxParticipants={maxParticipants}
       />
       <NewDuelSetting
         label="Tempo para cada questão"
