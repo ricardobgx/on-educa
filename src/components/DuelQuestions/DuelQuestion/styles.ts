@@ -16,7 +16,7 @@ export const DuelQuestionDescriptionBox = styled.div`
 export const DuelQuestionDescription = styled.div`
   color: ${({ theme }) => theme.colors.questionTextColor};
   max-height: 250px;
-  padding: 0 10px;
+  padding: 0 5px;
   overflow: auto;
 `;
 export const DuelQuestionDescriptionParagraph = styled(paragraph)`
