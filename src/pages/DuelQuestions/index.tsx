@@ -13,6 +13,7 @@ import { IDuel } from '../../interfaces/IDuel';
 import {
   DEFAULT_DUEL,
   DEFAULT_DUEL_QUESTION,
+  DEFAULT_DUEL_TEAM,
   DEFAULT_DUEL_TEAM_PARTICIPATION,
 } from '../../static/defaultEntitiesValues';
 import { IDuelRoundQuestion } from '../../interfaces/IDuelRoundQuestion';
@@ -24,6 +25,7 @@ import { createDuelQuestionAnswer } from '../../functions/duelQuestionAnswer';
 import { IDuelQuestionAnswer } from '../../interfaces/IDuelQuestionAnswer';
 import { IDuelTeamParticipation } from '../../interfaces/IDuelTeamParticipation';
 import { IDuelRound } from '../../interfaces/IDuelRound';
+import { findStudentDuelPartByTeams } from '../../functions/duelTeamParts';
 
 interface IDuelQuestionsRouteParams {
   id: string;
@@ -45,7 +47,7 @@ const DuelQuestions = (): JSX.Element => {
 
   /* Estado da aplicacao */
 
-  const { aplication, duel } = useSelector((store: State) => store);
+  const { aplication, duel, user } = useSelector((store: State) => store);
   const { token } = aplication;
 
   // Dispatch
@@ -153,6 +155,13 @@ const DuelQuestions = (): JSX.Element => {
 
     setQuestionNow(duelRound);
 
+    const studentParticipationFound = findStudentDuelPartByTeams(
+      duelRound.teams,
+      user,
+    );
+
+    setStudentParticipation(studentParticipationFound);
+
     await getDuelRoundQuestionsByDuelRound(
       OnEducaAPI,
       duelRound.id,
@@ -175,19 +184,25 @@ const DuelQuestions = (): JSX.Element => {
     } else {
       getDuelRoundQuestions(duel);
     }
-  }, []);
+  }, [user]);
+
+  const { duelRound } = duel;
+  const activeTeam = duelRound.team || DEFAULT_DUEL_TEAM;
+  const activeParticipation =
+    activeTeam.participation || DEFAULT_DUEL_TEAM_PARTICIPATION;
 
   return (
     <Page>
       <PageBox>
         <DuelQuestionsBox>
           <DuelStatus
-            duelRound={duel.duelRound}
+            duelRound={duelRound}
             answeredQuestionsNumber={answeredQuestionsNumber}
             questions={questions}
           />
           <DuelQuestion
             studentParticipation={studentParticipation}
+            activeParticipationId={activeParticipation.id}
             answerQuestion={answerDuelQuestion}
             duelQuestion={question}
           />
