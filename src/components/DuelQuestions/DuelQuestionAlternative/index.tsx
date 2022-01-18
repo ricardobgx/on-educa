@@ -19,8 +19,10 @@ const DuelQuestionAlternative = (
   return (
     <Container
       style={{
-        background: id === selectedAlternative.id ? theme.colors.textColor : '',
-        color: id === selectedAlternative.id ? theme.colors.boxColor : '',
+        borderColor:
+          id === selectedAlternative.id ? theme.colors.textColor : '',
+        color: id === selectedAlternative.id ? theme.colors.textColor : '',
+        fontWeight: id === selectedAlternative.id ? 'bold' : 'normal',
       }}
       onClick={() => setSelectedAlternative(alternative)}
     >
