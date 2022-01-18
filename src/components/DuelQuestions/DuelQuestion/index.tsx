@@ -6,6 +6,7 @@ import { IDuelRoundQuestion } from '../../../interfaces/IDuelRoundQuestion';
 import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
 import { DEFAULT_ALTERNATIVE } from '../../../static/defaultEntitiesValues';
 import DuelQuestionAlternative from '../DuelQuestionAlternative';
+import NoActionDuelQuestionAlternative from '../NoActionDuelQuestionAlternative';
 import {
   AnswerButton,
   AnswerButtonLabel,
@@ -24,11 +25,17 @@ interface IQuestionProps {
     selectedAlternativeId: string,
   ) => void;
   studentParticipation: IDuelTeamParticipation;
+  activeParticipationId: string;
   duelQuestion: IDuelRoundQuestion;
 }
 
 const DuelQuestion = (props: IQuestionProps): JSX.Element => {
-  const { answerQuestion, studentParticipation, duelQuestion } = props;
+  const {
+    answerQuestion,
+    studentParticipation,
+    activeParticipationId,
+    duelQuestion,
+  } = props;
   const [selectedAlternative, setSelectedAlternative] =
     useState<IAlternative>(DEFAULT_ALTERNATIVE);
   const { question } = duelQuestion;
@@ -47,29 +54,38 @@ const DuelQuestion = (props: IQuestionProps): JSX.Element => {
         </DuelQuestionDescription>
       </DuelQuestionDescriptionBox>
       <DuelQuestionAlternatives>
-        {alternatives.map((alternative) => (
-          <DuelQuestionAlternative
-            alternative={alternative}
-            selectedAlternative={selectedAlternative}
-            setSelectedAlternative={setSelectedAlternative}
-          />
-        ))}
+        {alternatives.map((alternative) =>
+          activeParticipationId === studentParticipation.id ? (
+            <DuelQuestionAlternative
+              alternative={alternative}
+              selectedAlternative={selectedAlternative}
+              setSelectedAlternative={setSelectedAlternative}
+            />
+          ) : (
+            <NoActionDuelQuestionAlternative
+              alternative={alternative}
+              selectedAlternative={selectedAlternative}
+            />
+          ),
+        )}
       </DuelQuestionAlternatives>
       <DuelQuestionActions>
-        <AnswerButton
-          onClick={() => {
-            if (isDefaultAlternative(selectedAlternative)) {
-              answerQuestion(
-                studentParticipation.id,
-                duelQuestion.id,
-                selectedAlternative.id,
-              );
-              setSelectedAlternative(DEFAULT_ALTERNATIVE);
-            }
-          }}
-        >
-          <AnswerButtonLabel>Responder</AnswerButtonLabel>
-        </AnswerButton>
+        {activeParticipationId === studentParticipation.id && (
+          <AnswerButton
+            onClick={() => {
+              if (isDefaultAlternative(selectedAlternative)) {
+                answerQuestion(
+                  studentParticipation.id,
+                  duelQuestion.id,
+                  selectedAlternative.id,
+                );
+                setSelectedAlternative(DEFAULT_ALTERNATIVE);
+              }
+            }}
+          >
+            <AnswerButtonLabel>Responder</AnswerButtonLabel>
+          </AnswerButton>
+        )}
       </DuelQuestionActions>
     </Container>
   );
