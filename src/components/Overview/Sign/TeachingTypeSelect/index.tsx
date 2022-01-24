@@ -1,6 +1,6 @@
 import React from 'react';
 import { ITeachingType } from '../../../../interfaces/ITeachingType';
-import { TeachingTypeSelectBox, TeachingTypeOption } from './styles';
+import { TeachSchoolOption, TeachSchoolSelect } from '../components';
 
 interface ITeachingTypeSelectProps {
   teachingTypes: ITeachingType[];
@@ -13,18 +13,18 @@ const TeachingTypeSelect = (props: ITeachingTypeSelectProps): JSX.Element => {
     props;
 
   return (
-    <TeachingTypeSelectBox
+    <TeachSchoolSelect
       value={teachingTypeSelectedId}
       onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
         setTeachingTypeSelectedId(event.target.value);
       }}
     >
       {teachingTypes.map((teachingType) => (
-        <TeachingTypeOption key={teachingType.id} value={teachingType.id}>
+        <TeachSchoolOption key={teachingType.id} value={teachingType.id}>
           {teachingType.title}
-        </TeachingTypeOption>
+        </TeachSchoolOption>
       ))}
-    </TeachingTypeSelectBox>
+    </TeachSchoolSelect>
   );
 };
 

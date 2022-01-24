@@ -13,7 +13,7 @@ export const NavBarBox = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};
   position: fixed;
   top: 0;
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   z-index: 98;
 `;
 

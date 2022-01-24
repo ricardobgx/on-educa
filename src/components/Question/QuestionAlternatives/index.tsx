@@ -12,7 +12,22 @@ interface IQuestionAlternativesListProps {
 const QuestionAlternativesList = (
   props: IQuestionAlternativesListProps,
 ): JSX.Element => {
-  const { alternatives, selectedAlternative, setSelectedAlternative } = props;
+  const {
+    alternatives: unsortedAlternatives,
+    selectedAlternative,
+    setSelectedAlternative,
+  } = props;
+  const alternatives = unsortedAlternatives.sort(
+    (alternativeA: IAlternative, alternativeB: IAlternative): number => {
+      if (alternativeA.index > alternativeB.index) {
+        return 1;
+      }
+      if (alternativeA.index < alternativeB.index) {
+        return -1;
+      }
+      return 0;
+    },
+  );
 
   return (
     <QuestionAlternativesListBox>

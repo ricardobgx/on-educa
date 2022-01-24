@@ -1,6 +1,6 @@
 import React from 'react';
 import { ITeachingType } from '../../../../interfaces/ITeachingType';
-import { SchoolGradeSelectBox, SchoolGradeOption } from './styles';
+import { TeachSchoolOption, TeachSchoolSelect } from '../components';
 
 interface ISchoolGradeSelectProps {
   teachingTypes: ITeachingType[];
@@ -13,7 +13,7 @@ const SchoolGradeSelect = (props: ISchoolGradeSelectProps): JSX.Element => {
     props;
 
   return (
-    <SchoolGradeSelectBox
+    <TeachSchoolSelect
       value={schoolGradeSelectedId}
       onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
         setSchoolGradeSelectedId(event.target.value);
@@ -21,12 +21,12 @@ const SchoolGradeSelect = (props: ISchoolGradeSelectProps): JSX.Element => {
     >
       {teachingTypes.map((teachingType) => {
         return teachingType.schoolGrades.map((schoolGrade) => (
-          <SchoolGradeOption key={schoolGrade.id} value={schoolGrade.id}>
+          <TeachSchoolOption key={schoolGrade.id} value={schoolGrade.id}>
             {schoolGrade.index}º ano - {teachingType.title}
-          </SchoolGradeOption>
+          </TeachSchoolOption>
         ));
       })}
-    </SchoolGradeSelectBox>
+    </TeachSchoolSelect>
   );
 };
 

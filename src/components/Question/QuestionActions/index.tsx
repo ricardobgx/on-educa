@@ -1,7 +1,7 @@
 import React from 'react';
 import { isDefaultAlternative } from '../../../functions/entitiesValues';
 import { IAlternative } from '../../../interfaces/IAlternative';
-import { IQuestion } from '../../../interfaces/IQuestion';
+import { IPracticeQuestion } from '../../../interfaces/IPracticeQuestion';
 import { DEFAULT_ALTERNATIVE } from '../../../static/defaultEntitiesValues';
 import {
   AnswerQuestionButton,
@@ -11,19 +11,19 @@ import {
   SkipQuestionButtonLabel,
 } from './styles';
 
-interface IQuestionActionsProps {
+interface IPracticeQuestionActionsProps {
   selectedAlternative: IAlternative;
   setSelectedAlternative: (alternative: IAlternative) => void;
-  questions: IQuestion[];
-  question: IQuestion;
+  questions: IPracticeQuestion[];
+  question: IPracticeQuestion;
   answerQuestion: (
-    questions: IQuestion[],
-    question: IQuestion,
+    questions: IPracticeQuestion[],
+    question: IPracticeQuestion,
     alternative: IAlternative,
   ) => void;
 }
 
-const QuestionActions = (props: IQuestionActionsProps): JSX.Element => {
+const QuestionActions = (props: IPracticeQuestionActionsProps): JSX.Element => {
   const {
     selectedAlternative,
     setSelectedAlternative,
@@ -35,6 +35,7 @@ const QuestionActions = (props: IQuestionActionsProps): JSX.Element => {
   return (
     <QuestionActionsBox>
       <AnswerQuestionButton
+        disabled={isDefaultAlternative(selectedAlternative)}
         onClick={() => {
           if (!isDefaultAlternative(selectedAlternative)) {
             answerQuestion(questions, question, selectedAlternative);

@@ -4,8 +4,8 @@ import { paragraph } from '../../../global/styles/components/textComponents';
 export const QuestionDescriptionBox = styled.div`
   padding: 20px 10px;
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
+  border-radius: 5px;
   margin-top: 20px;
   margin-bottom: 40px;
 `;

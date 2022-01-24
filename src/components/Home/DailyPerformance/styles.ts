@@ -5,7 +5,7 @@ import { paragraph } from '../../../global/styles/components/textComponents';
 export const DailyPerformanceBox = styled.div`
   margin: 20px;
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 10px;
   padding: 20px;
   height: calc((100vh - 265px) / 2);
@@ -53,6 +53,12 @@ export const WeekPerformanceButton = styled(Link)`
   background: ${({ theme }) => theme.colors.textColor};
   padding: 0.5rem;
   border-radius: 5px;
+  box-shadow: 0px 0px 0px ${({ theme }) => theme.colors.boxShadowColor};
+  transition: all 0.2s linear;
+
+  &:hover {
+    box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  }
 `;
 export const WeekPerformanceButtonLabel = styled(paragraph)`
   color: ${({ theme }) => theme.colors.boxColor};

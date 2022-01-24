@@ -63,7 +63,7 @@ export const PerformanceBox = styled.div`
 
 export const AchievementsBox = styled(Link)`
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 10px;
   padding: 20px;
   margin: 20px;
@@ -74,7 +74,8 @@ export const AchievementsBox = styled(Link)`
   transition: all 0.2s linear;
 
   &:hover {
-    border-color: ${({ theme }) => theme.colors.textColor};
+    /* border-color: ${({ theme }) => theme.colors.textColor}; */
+    box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
   }
 `;
 export const AchievementsIcon = styled(mediumIcon)`
@@ -88,7 +89,7 @@ export const AchievementsLabel = styled(paragraph)`
 
 export const DailyGoalBox = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 10px;
   padding: 20px;
   margin: 20px;

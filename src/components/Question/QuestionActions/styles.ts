@@ -12,9 +12,15 @@ export const AnswerQuestionButton = styled.button`
   /* font-weight: bold; */
   color: ${({ theme }) => theme.colors.boxColor};
   background: ${({ theme }) => theme.colors.textColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 5px;
   cursor: pointer;
+
+  &:disabled,
+  &[disabled] {
+    pointer-events: none;
+    opacity: 0.6;
+  }
 `;
 export const AnswerQuestionButtonLabel = styled(paragraph)``;
 export const SkipQuestionButton = styled.button`
@@ -23,7 +29,7 @@ export const SkipQuestionButton = styled.button`
   /* font-weight: bold; */
   color: ${({ theme }) => theme.colors.textColor};
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 5px;
   cursor: pointer;
 `;

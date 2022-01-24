@@ -96,7 +96,10 @@ const DuelCard = (props: IDuelCardProps): JSX.Element => {
     duelRound;
 
   return (
-    <DuelCardBox onClick={() => appendParticipant()}>
+    <DuelCardBox
+      onClick={() => appendParticipant()}
+      className="with-shadow bd-rd-5"
+    >
       <DuelDetails>
         <OwnerInfo>
           <OwnerName>Duelo de {ownerName}</OwnerName>

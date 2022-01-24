@@ -23,7 +23,7 @@ export default createGlobalStyle`
   input:-webkit-autofill {
     -webkit-text-fill-color: ${({ theme }) => theme.colors.textColor};
     -webkit-box-shadow: 0 0 0px 1000px ${({ theme }) =>
-      theme.colors.boxColor} inset;
+      theme.colors.backgroundColor} inset;
   }
 
   ::-webkit-scrollbar {
@@ -33,14 +33,14 @@ export default createGlobalStyle`
 
   /* Track */
   ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px ${({ theme }) => theme.colors.boxShadowColor};
+    box-shadow: inset 0 0 5px transparent;
     background: ${({ theme }) => theme.colors.boxColor};
     border-radius: 10px;
   }
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => theme.colors.textColor};
+    background: ${({ theme }) => theme.colors.scrollBarColor};
     border-radius: 10px;
   }
 
@@ -72,5 +72,29 @@ export default createGlobalStyle`
 
   @media (max-width: 600px) {
     font-size: ${({ theme }) => theme.fontsSize.smartphone};
+  }
+
+  /* Global components design */
+
+  .with-shadow {
+    box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
+  }
+
+  .flex-box-row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .flex-box-column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bd-rd-5 {
+    border-radius: 5px;
+  }
+
+  .bd-rd-10 {
+    border-radius: 10px;
   }
 `;

@@ -1,12 +1,12 @@
 import React from 'react';
 import { IUnity } from '../../../interfaces/IUnity';
 import {
-  UnityCardActionsBox,
-  EditUnityButton,
-  EditUnityButtonIcon,
-  DeleteUnityButton,
-  DeleteUnityButtonIcon,
-} from './styles';
+  EditSuppliesButton,
+  EditSuppliesButtonIcon,
+  DeleteSuppliesButton,
+  DeleteSuppliesButtonIcon,
+} from '../../App/Supplies/styles';
+import { UnityCardActionsBox } from './styles';
 
 interface IUnityCardActionsProps {
   unity: IUnity;
@@ -23,22 +23,22 @@ const UnityCardActions = (props: IUnityCardActionsProps): JSX.Element => {
 
   return (
     <UnityCardActionsBox>
-      <EditUnityButton
+      <EditSuppliesButton
         onClick={() => {
           setUnity(unity);
           setUpdateUnityIsVisible(true);
         }}
       >
-        <EditUnityButtonIcon className="fas fa-pen" />
-      </EditUnityButton>
-      <DeleteUnityButton
+        <EditSuppliesButtonIcon className="fas fa-pen" />
+      </EditSuppliesButton>
+      <DeleteSuppliesButton
         onClick={() => {
           setUnity(unity);
           setDeleteUnityIsVisible(true);
         }}
       >
-        <DeleteUnityButtonIcon className="fas fa-trash" />
-      </DeleteUnityButton>
+        <DeleteSuppliesButtonIcon className="fas fa-trash" />
+      </DeleteSuppliesButton>
     </UnityCardActionsBox>
   );
 };

@@ -3,8 +3,6 @@ import styled from 'styled-components';
 export const NewDuelSelectedContentsBox = styled.div`
   width: 100%;
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
   padding: 15px;
   margin-top: 20px;
 `;

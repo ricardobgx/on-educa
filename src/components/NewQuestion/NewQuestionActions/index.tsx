@@ -17,6 +17,7 @@ import { IAlternative } from '../../../interfaces/IAlternative';
 import { IContent } from '../../../interfaces/IContent';
 import { IQuestion } from '../../../interfaces/IQuestion';
 import OnEducaAPI from '../../../services/api';
+import { DEFAULT_QUESTION } from '../../../static/defaultEntitiesValues';
 import {
   CancelCreateButton,
   CancelCreateButtonLabel,
@@ -70,14 +71,14 @@ const NewQuestionActions = (props: INewQuestionActionsProps): JSX.Element => {
     if (!rightAlternativeFound) return;
 
     const questionParams: IQuestionParams = {
-      rightAlternativeId: rightAlternativeFound?.id,
+      rightAlternativeId: rightAlternativeFound.id,
     };
 
-    console.log(rightAlternativeFound.question.id);
+    const question = rightAlternativeFound.question || DEFAULT_QUESTION;
 
     await updateQuestion(
       OnEducaAPI,
-      rightAlternativeFound.question.id,
+      question.id,
       questionParams,
       token,
       updateQuestionSucess,

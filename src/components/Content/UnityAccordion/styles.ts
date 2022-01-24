@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom';
 import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const UnityAccordionBox = styled.div`
-  padding: 10px;
+  padding: 10px 15px;
   margin-bottom: 20px;
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   width: 100%;
   height: min-content;
 
@@ -24,7 +23,7 @@ export const HiddenContents = styled.div`
 export const HiddenContentsBox = styled.div`
   overflow: auto;
   padding: 5px;
-  margin-top: 10px;
+  margin-top: 5px;
   margin-bottom: 5px;
   display: flex;
   flex-direction: column;
@@ -32,9 +31,9 @@ export const HiddenContentsBox = styled.div`
 `;
 export const HiddenContent = styled(Link)`
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   padding: 10px;
   border-radius: 5px;
   transition: all 0.2s linear;

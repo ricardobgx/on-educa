@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { IPractice } from '../../interfaces/IPractice';
 import { DEFAULT_PRACTICE } from '../../static/defaultEntitiesValues';
 import { PracticeActionType } from '../action-types/practice';
-import { IPractice, PracticeAction } from '../actions/practice';
+import { PracticeAction } from '../actions/practice';
 
 const practiceReducer = (
   state: IPractice = DEFAULT_PRACTICE,
@@ -10,8 +11,6 @@ const practiceReducer = (
 ): any => {
   switch (action.type) {
     case PracticeActionType.LOAD_PRACTICE_QUESTIONS:
-      return { questions: action.questions } as IPractice;
-    case PracticeActionType.ANSWER_PRACTICE_QUESTION:
       return { questions: action.questions } as IPractice;
     default:
       return state;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { reduceTextSize } from '../../../functions/utils';
 import {
   ContentDoubtDescription,
   ContentDoubtBox,
@@ -14,6 +15,9 @@ import {
   ContentDoubtCommentsIcon,
   ContentDoubtCommentsNumber,
 } from './styles';
+
+const doubtDescription =
+  'Por que ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum';
 
 const ContentDoubt = (): JSX.Element => {
   return (
@@ -37,8 +41,7 @@ const ContentDoubt = (): JSX.Element => {
         </ContentDoubtStatus>
       </ContentDoubtHeader>
       <ContentDoubtDescription>
-        Por que ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum
-        ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum
+        {reduceTextSize(doubtDescription, 100)}
       </ContentDoubtDescription>
     </ContentDoubtBox>
   );

@@ -1,8 +1,15 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { paragraph } from '../../../global/styles/components/textComponents';
+import { paragraph } from '../../global/styles/components/textComponents';
 
-export const Container = styled.div`
+export const PageBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 20px;
+  width: calc(100% - 80px);
+`;
+export const PracticePerformanceBox = styled.div`
   display: flex;
   width: calc(100vw - 40px);
 
@@ -15,39 +22,47 @@ export const PerformancePageImage = styled.img`
   margin: 20px;
 
   @media (max-width: 1150px) {
-    width: calc(100vw - 80px);
+    display: none;
   }
 `;
 export const PerformanceDetails = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
-  height: calc(100vh - 55px - 40px);
+  height: calc(100vh - 95px);
+  max-height: calc(100vh - 95px);
 
   @media (max-width: 600px) {
     height: unset;
   }
 `;
 export const PerformanceDetailsBox = styled.div`
-  margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100% - 40px);
+  height: 100%;
+  margin-top: 20px;
+  background: ${({ theme }) => theme.colors.boxColor};
+  padding: 20px;
+`;
+export const PracticePerformanceChartBox = styled.div`
+  width: 100%;
+  height: 100%;
 `;
 export const PerformanceType = styled.div`
   display: flex;
   flex-direction: column;
-`;
-export const PerformanceTypeLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
-  font-weight: bold;
+  width: 100%;
 `;
 export const PerformanceTypeBox = styled.div`
   display: flex;
   flex-direction: column;
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  padding: 20px;
-  margin: 10px 0;
-  border-radius: 10px;
+  padding: 20px 0;
+  padding-bottom: 0;
 `;
 export const PerformanceDataBox = styled.div`
   display: flex;
@@ -58,22 +73,7 @@ export const TotalLabel = styled(paragraph)`
   font-weight: bold;
 `;
 export const NewContentLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.similarColors.rightQuestion};
-  /* font-weight: bold; */
-  margin-bottom: 20px;
-`;
-export const RightQuestionsLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.similarColors.rightQuestion};
-  /* font-weight: bold; */
-`;
-export const WrongQuestionsLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.similarColors.wrongQuestion};
-  /* font-weight: bold; */
-  margin: 20px 0;
-`;
-export const SkippedQuestionsLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.similarColors.skippedQuestion};
-  /* font-weight: bold; */
+  color: ${({ theme }) => theme.colors.textColor};
   margin-bottom: 20px;
 `;
 export const NextContentButton = styled(Link)`
@@ -84,9 +84,8 @@ export const NextContentButton = styled(Link)`
   margin: 20px;
   color: ${({ theme }) => theme.colors.boxColor};
   background: ${({ theme }) => theme.colors.textColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 5px;
+  width: calc(100% - 40px);
 `;
-export const NextContentButtonLabel = styled(paragraph)`
-  /* font-weight: bold; */
-`;
+export const NextContentButtonLabel = styled(paragraph)``;

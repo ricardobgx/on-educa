@@ -11,7 +11,7 @@ export const ChangeDuelTeamPositionBox = styled.button`
   margin-bottom: 20px;
   background: ${({ theme }) => theme.colors.boxColor};
   color: ${({ theme }) => theme.colors.textColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border: none;
   cursor: pointer;
   position: relative;

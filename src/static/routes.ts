@@ -17,6 +17,7 @@ import NewQuestion from '../pages/NewQuestion';
 import Overview from '../pages/Overview';
 import Performance from '../pages/Performance';
 import Practice from '../pages/Practice';
+import PracticePerformance from '../pages/PracticePerformance';
 import Profile from '../pages/Profile';
 import Question from '../pages/Question';
 import Questions from '../pages/Questions';
@@ -167,6 +168,12 @@ const routes: IRoute[] = [
     path: '/contents/:id/practice',
     name: 'Practice',
     component: Practice,
+    exact: true,
+  },
+  {
+    path: '/contents/:id/practice-performance',
+    name: 'PracticePerformance',
+    component: PracticePerformance,
     exact: true,
   },
 ];

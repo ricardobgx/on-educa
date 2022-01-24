@@ -10,13 +10,13 @@ import { isDefaultContent } from './entitiesValues';
  *
  **************************************************************************** */
 
-/** *************************************************************************
- * Essa funcao valida a questao que esta sendo criada para que nao haja in-
+/**
+ * @author Jose Ricardo Brasileiro Goncalves
+ * @brief Essa funcao valida a questao que esta sendo criada para que nao haja in-
  * consistencias na base de dados. Ela verifica se o conteudo selecionado eh
  * eh valido, se a questao contem uma descricao e se a questao contem alter-
  * nativas.
- ************************************************************************** */
-
+ */
 export const isValidQuestion = (
   description: string,
   content: IContent,
@@ -31,21 +31,6 @@ export const isValidQuestion = (
  * Funcoes para o banco de dados
  *
  **************************************************************************** */
-
-export const getQuestion = async (
-  API: AxiosInstance,
-  id: string,
-  token: string,
-  setQuestionState: (value: IQuestion) => void,
-): Promise<void> => {
-  await API.get(`/questions/${id}`, {
-    headers: {
-      authorization: `Bearer ${token}`,
-    },
-  }).then((response) => {
-    setQuestionState(response.data);
-  });
-};
 
 export const getQuestions = async (
   API: AxiosInstance,
@@ -62,6 +47,21 @@ export const getQuestions = async (
   });
 };
 
+export const getQuestion = async (
+  API: AxiosInstance,
+  id: string,
+  token: string,
+  setQuestionState: (value: IQuestion) => void,
+): Promise<void> => {
+  await API.get(`/questions/${id}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then((response) => {
+    setQuestionState(response.data);
+  });
+};
+
 export const getQuestionsByContent = async (
   API: AxiosInstance,
   contentId: string,
@@ -69,6 +69,21 @@ export const getQuestionsByContent = async (
   token: string,
 ): Promise<void> => {
   await API.get(`/questions/content/${contentId}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then((response) => {
+    setQuestionsState(response.data);
+  });
+};
+
+export const getPracticeQuestions = async (
+  API: AxiosInstance,
+  contentId: string,
+  setQuestionsState: (value: IQuestion[]) => void,
+  token: string,
+): Promise<void> => {
+  await API.get(`/questions/practiceQuestions/${contentId}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },

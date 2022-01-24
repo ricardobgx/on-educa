@@ -22,7 +22,10 @@ const NewDuelSelectedContentCard = (
   return (
     <NewDuelSelectedContentCardBox>
       <NewDuelContentCard content={content} unity={unity} />
-      <DeleteContentButton onClick={() => removeSelectedContent(content)}>
+      <DeleteContentButton
+        className="bd-rd-5"
+        onClick={() => removeSelectedContent(content)}
+      >
         <DeleteContentButtonIcon className="fas fa-times" />
       </DeleteContentButton>
     </NewDuelSelectedContentCardBox>

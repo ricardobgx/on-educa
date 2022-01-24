@@ -1,9 +1,17 @@
 import React from 'react';
 import { ContentPracticeButtonBox, ContentPracticeButtonLabel } from './styles';
 
-const ContentPracticeButton = (): JSX.Element => {
+interface IContentPracticeButtonProps {
+  contentId: string;
+}
+
+const ContentPracticeButton = (
+  props: IContentPracticeButtonProps,
+): JSX.Element => {
+  const { contentId } = props;
+
   return (
-    <ContentPracticeButtonBox to="/contents/12345/practice">
+    <ContentPracticeButtonBox to={`/contents/${contentId}/practice`}>
       <ContentPracticeButtonLabel>Praticar</ContentPracticeButtonLabel>
     </ContentPracticeButtonBox>
   );

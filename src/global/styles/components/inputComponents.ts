@@ -18,6 +18,7 @@ export const inputText = styled.input`
 
 export const inputSelect = styled.select`
   font-size: ${({ theme }) => theme.fontsSize.computer};
+  border: none;
 
   @media (min-width: 600px) and (max-width: 1150px) {
     font-size: ${({ theme }) => theme.fontsSize.tablet};

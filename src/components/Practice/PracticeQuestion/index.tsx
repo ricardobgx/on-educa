@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { IAlternative } from '../../../interfaces/IAlternative';
+import { IPracticeQuestion } from '../../../interfaces/IPracticeQuestion';
 import { IQuestion } from '../../../interfaces/IQuestion';
 import { DEFAULT_ALTERNATIVE } from '../../../static/defaultEntitiesValues';
 import QuestionActions from '../../Question/QuestionActions';
@@ -9,12 +10,12 @@ import { Container } from './styles';
 
 interface IQuestionProps {
   answerQuestion: (
-    practiceQuestions: IQuestion[],
-    practiceQuestion: IQuestion,
+    practiceQuestions: IPracticeQuestion[],
+    practiceQuestion: IPracticeQuestion,
     selectedAlternative: IAlternative,
   ) => void;
-  question: IQuestion;
-  questions: IQuestion[];
+  question: IPracticeQuestion;
+  questions: IPracticeQuestion[];
 }
 
 const PracticeQuestion = (props: IQuestionProps): JSX.Element => {

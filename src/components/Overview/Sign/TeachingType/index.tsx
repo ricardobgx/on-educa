@@ -15,7 +15,7 @@ const TeachingType = (props: ITeachingTypeProps): JSX.Element => {
 
   return (
     <TeachingTypeBox>
-      <TeachingTypeLabel>Qual nível você ensina?</TeachingTypeLabel>
+      <TeachingTypeLabel>Ensino o:</TeachingTypeLabel>
       <TeachingTypeSelect
         teachingTypes={teachingTypes}
         teachingTypeSelectedId={teachingTypeSelectedId}

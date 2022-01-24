@@ -1,5 +1,9 @@
 import { DeviceType } from '../types/deviceType';
 
+export const randInt = (min: number, max: number): number => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
 export const reduceTextSize = (
   value: string,
   maxStringLength: number,
@@ -29,6 +33,10 @@ export const getYTVideoCode = (url: string): string => {
 
 export const deviceWidth = (): number => {
   return window.innerWidth;
+};
+
+export const deviceHeight = (): number => {
+  return window.innerHeight;
 };
 
 export const deviceType = (): DeviceType => {

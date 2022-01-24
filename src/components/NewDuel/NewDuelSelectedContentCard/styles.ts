@@ -16,8 +16,6 @@ export const NewDuelSelectedContentCardBox = styled.div`
 `;
 export const DeleteContentButton = styled.button`
   background: ${({ theme }) => theme.similarColors.warningColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
   min-width: 40px;
   min-height: 30px;
   border: none;

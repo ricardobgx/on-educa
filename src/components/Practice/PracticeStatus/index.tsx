@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IQuestion } from '../../../interfaces/IQuestion';
+import { IPracticeQuestion } from '../../../interfaces/IPracticeQuestion';
 import ConfirmQuitPractice from '../ConfirmQuitPractice';
 import {
   Container,
@@ -13,8 +13,8 @@ import {
 } from './styles';
 
 interface IPracticeStatusProps {
-  questions: IQuestion[];
-  answeredQuestionsNumber: (practiceQuestions: IQuestion[]) => number;
+  questions: IPracticeQuestion[];
+  answeredQuestionsNumber: (practiceQuestions: IPracticeQuestion[]) => number;
 }
 
 const PracticeStatus = (props: IPracticeStatusProps): JSX.Element => {

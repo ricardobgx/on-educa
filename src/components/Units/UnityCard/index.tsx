@@ -23,6 +23,7 @@ import {
 } from './styles';
 
 interface IUnityCardProps {
+  index: number;
   unity: IUnity;
   setUnity: (value: IUnity) => void;
   setUpdateUnityIsVisible: (value: boolean) => void;
@@ -30,8 +31,13 @@ interface IUnityCardProps {
 }
 
 const UnityCard = (props: IUnityCardProps): JSX.Element => {
-  const { unity, setUnity, setUpdateUnityIsVisible, setDeleteUnityIsVisible } =
-    props;
+  const {
+    index,
+    unity,
+    setUnity,
+    setUpdateUnityIsVisible,
+    setDeleteUnityIsVisible,
+  } = props;
   const { id, title, contents } = unity;
 
   const dispatch = useDispatch();
@@ -43,7 +49,7 @@ const UnityCard = (props: IUnityCardProps): JSX.Element => {
   );
 
   return (
-    <UnityCardBox>
+    <UnityCardBox style={{ animationDelay: `${index * 0.2}s` }}>
       <UnityCardDetails to={`/units/${id}`} onClick={() => loadUnity(unity)}>
         <UnityDetails>
           <UnityTitle>{title}</UnityTitle>

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { smallIcon } from '../../../../global/styles/components/iconComponents';
 import { inputText } from '../../../../global/styles/components/inputComponents';
 
 export const Container = styled.div`
@@ -18,27 +19,30 @@ export const Container = styled.div`
 
 export const InputBox = styled.div`
   position: relative;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid ${({ theme }) => theme.colors.boxShadowColor};
+  margin: 5px 0;
+  padding: 15px 10px;
+  padding-bottom: 0px;
+  transition: all 0.2s linear;
 `;
 
 export const Input = styled(inputText)`
   width: 100%;
-  height: 50px;
-  padding: 20px 15px;
-  color: #bbbbbb;
-  background: ${({ theme }) => theme.colors.boxColor};
-  border: 2px solid ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
-  margin: 5px 0;
+  height: 40px;
+  padding: 15px;
+  color: ${({ theme }) => theme.colors.boxShadowColor};
+  border: none;
+  background: ${({ theme }) => theme.colors.backgroundColor};
   transition: all 0.4s linear;
 
   &:focus {
-    border-color: ${({ theme }) => theme.colors.textColor};
-    color: ${({ theme }) => theme.colors.textColor};
+    color: ${({ theme }) => theme.colors.questionTextColor};
     padding-top: 20px;
   }
 
   &:focus ~ label {
-    color: ${({ theme }) => theme.colors.textColor};
     font-size: 0.8rem;
     top: 15%;
     transform: translateY(0%);
@@ -56,10 +60,10 @@ export const Input = styled(inputText)`
 
 export const InputLabel = styled.label`
   position: absolute;
-  top: 50%;
-  left: 15px;
+  top: 60%;
+  left: 38px;
   transform: translateY(-50%);
-  color: #bbbbbb;
+  color: ${({ theme }) => theme.colors.boxShadowColor};
   transition: all 0.2s linear;
   cursor: text;
   font-size: ${({ theme }) => theme.fontsSize.computer};
@@ -71,4 +75,9 @@ export const InputLabel = styled.label`
   @media (max-width: 600px) {
     font-size: ${({ theme }) => theme.fontsSize.smartphone};
   }
+`;
+
+export const FieldIcon = styled(smallIcon)`
+  color: ${({ theme }) => theme.colors.boxShadowColor};
+  transition: all 0.2s linear;
 `;

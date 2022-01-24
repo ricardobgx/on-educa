@@ -3,8 +3,8 @@ import { paragraph } from '../../global/styles/components/textComponents';
 
 export const SubjectSectionSelectBox = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
+  border-radius: 5px;
   padding: 15px;
   display: flex;
   flex-direction: column;
@@ -46,8 +46,8 @@ export const SubjectSectionSelectOptionsListBox = styled.div`
 `;
 export const SubjectSectionSelectOption = styled.button`
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
+  border-radius: 5px;
   min-height: 60px;
   padding: 0 20px;
   margin-bottom: 20px;

@@ -75,6 +75,7 @@ const Content = (): JSX.Element => {
               subject={subject}
               schoolGrade={schoolGrade}
               units={units}
+              contentId={contentId}
             />
           </ContentVideoAndRelatedContents>
           <ContentDescriptionAndAttachments>

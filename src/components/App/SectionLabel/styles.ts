@@ -1,13 +1,16 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { paragraph } from '../../../global/styles/components/textComponents';
-import { mediumIcon } from '../../../global/styles/components/iconComponents';
+import {
+  mediumIcon,
+  smallIcon,
+} from '../../../global/styles/components/iconComponents';
 
 export const SectionLabelBox = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
-  min-height: 50px;
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
+  border-radius: 5px;
+  min-height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,4 +28,4 @@ export const SectionLabelBackLink = styled(Link)`
   left: 20px;
   color: ${({ theme }) => theme.colors.textColor};
 `;
-export const SectionLabelBackLinkIcon = styled(mediumIcon)``;
+export const SectionLabelBackLinkIcon = styled(smallIcon)``;

@@ -15,7 +15,7 @@ const SchoolGrade = (props: ISchoolGradeProps): JSX.Element => {
 
   return (
     <SchoolGradeBox>
-      <SchoolGradeLabel>Que série você estuda?</SchoolGradeLabel>
+      <SchoolGradeLabel>Estudo o:</SchoolGradeLabel>
       <SchoolGradeSelect
         teachingTypes={teachingTypes}
         schoolGradeSelectedId={schoolGradeSelectedId}

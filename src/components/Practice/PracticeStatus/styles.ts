@@ -4,10 +4,11 @@ import { paragraph } from '../../../global/styles/components/textComponents';
 export const Container = styled.div`
   width: 100%;
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  padding: 20px;
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
+  min-height: 50px;
+  padding: 0 20px;
   margin: 20px;
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
   align-items: center;
 `;

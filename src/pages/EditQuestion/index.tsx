@@ -81,6 +81,7 @@ const EditQuestion = (): JSX.Element => {
             setRightAlternativeDescription={setRightAlternativeDescription}
           />
           <EditQuestionActions
+            id=""
             description={description}
             difficulty={difficulty}
             alternativesDescriptions={alternativesDescriptions}

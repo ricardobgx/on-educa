@@ -42,10 +42,7 @@ const Login = (): JSX.Element => {
   /* Local State */
 
   const [email, setEmail] = useState('');
-  const [emailWarning, setEmailWarning] = useState(false);
-
   const [password, setPassword] = useState('');
-  const [passwordWarning, setPasswordWarning] = useState(false);
 
   // Login
 
@@ -105,9 +102,7 @@ const Login = (): JSX.Element => {
           placeholder="E-mail"
           value={email}
           setValue={setEmail}
-          isActive={emailWarning}
-          setIsActive={setEmailWarning}
-          label="Informe seu e-mail"
+          icon="fas fa-envelope"
         />
         <SignTextInput
           id="password-input"
@@ -116,9 +111,7 @@ const Login = (): JSX.Element => {
           placeholder="Senha"
           value={password}
           setValue={setPassword}
-          isActive={passwordWarning}
-          setIsActive={setPasswordWarning}
-          label="Informe sua senha"
+          icon="fas fa-lock"
         />
       </SignFieldsBox>
       <SignActions>

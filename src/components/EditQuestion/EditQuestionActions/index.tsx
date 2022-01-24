@@ -28,6 +28,7 @@ import {
 } from './styles';
 
 interface IEditQuestionActionsProps {
+  id: string;
   description: string;
   difficulty: number;
   alternativesDescriptions: string[];
@@ -39,6 +40,7 @@ interface IEditQuestionActionsProps {
 
 const EditQuestionActions = (props: IEditQuestionActionsProps): JSX.Element => {
   const {
+    id,
     description,
     difficulty,
     alternativesDescriptions,
@@ -73,12 +75,12 @@ const EditQuestionActions = (props: IEditQuestionActionsProps): JSX.Element => {
     if (!rightAlternativeFound) return;
 
     const questionParams: IQuestionParams = {
-      rightAlternativeId: rightAlternativeFound?.id,
+      rightAlternativeId: rightAlternativeFound.id,
     };
 
     await updateQuestion(
       OnEducaAPI,
-      rightAlternativeFound.question.id,
+      id,
       questionParams,
       token,
       updateQuestionSucess,

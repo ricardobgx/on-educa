@@ -20,7 +20,7 @@ const DuelTeam = (props: IDuelTeamProps): JSX.Element => {
   } = props;
 
   return (
-    <DuelTeamBox>
+    <DuelTeamBox className="with-shadow bd-rd-5">
       <DuelTeamLabel>{team.name}</DuelTeamLabel>
       <DuelTeamParticipants>
         <DuelTeamParticipantsList

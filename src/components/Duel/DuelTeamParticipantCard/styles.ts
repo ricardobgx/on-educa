@@ -16,8 +16,8 @@ export const DuelTeamParticipantInfo = styled.div`
   justify-content: space-between;
   align-items: center;
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
+  border-radius: 5px;
   padding: 20px;
   width: 100%;
 `;

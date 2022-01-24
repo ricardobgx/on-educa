@@ -12,13 +12,14 @@ const lightTheme = {
     boxColor: '#FFFFFF',
     hoverColor: 'rgba(0, 0, 0, 0.045)',
     textColor: '#126699',
-    boxShadowColor: 'rgba(0, 0, 0, 0.2)',
+    boxShadowColor: 'rgba(0, 0, 0, 0.4)',
     commonColor: '#52b788',
     whiteColor: '#FFFFFF',
     secondaryColor: '#00509d',
     questionTextColor: '#000000',
     duelCongratulationsBackground: '#007F5F',
     duelCongratulationsButtonColor: '#007F5F',
+    scrollBarColor: 'rgba(0, 0, 0, .2)',
   },
 };
 
@@ -32,20 +33,21 @@ const darkTheme = {
     boxColor: '#3C3C3C',
     hoverColor: 'rgba(255, 255, 255, 0.2)',
     textColor: '#E5E5E5',
-    boxShadowColor: 'rgba(0, 0, 0, 0.5)',
+    boxShadowColor: 'rgba(255, 255, 255, 0.4)',
     commonColor: '#3C3C3C',
     whiteColor: '#E5E5E5',
     secondaryColor: '#3C3C3C',
     questionTextColor: '#E5E5E5',
     duelCongratulationsBackground: '#212121',
     duelCongratulationsButtonColor: '#E5E5E5',
+    scrollBarColor: 'rgba(255, 255, 255, .2)',
   },
 };
 
 const similarColors = {
   warningColor: '#CB0000',
   rightQuestion: '#52b788',
-  wrongQuestion: '#FF0404',
+  wrongQuestion: '#f77f00',
   skippedQuestion: '#126699',
 };
 

@@ -7,3 +7,8 @@ export const PageBox = styled.div`
   margin: 20px;
   width: calc(100% - 80px);
 `;
+
+export const PracticeBox = styled.div`
+  display: flex;
+  flex-direction: column;
+`;

@@ -11,7 +11,7 @@ export const HomeActionBox = styled(Link)`
   width: calc((100vh - 265px) / 2);
   height: calc((100vh - 265px) / 2);
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   margin: 20px;
   padding: calc(((100vh - 265px) / 2) / 6);
   border-radius: 10px;
@@ -19,8 +19,9 @@ export const HomeActionBox = styled(Link)`
   transition: all 0.2s linear;
 
   &:hover {
-    border-color: ${({ theme }) => theme.colors.textColor};
-    /* box-shadow: 0px 0px 8px ${({ theme }) => theme.colors.boxShadowColor}; */
+    /* border-color: ${({ theme }) => theme.colors.textColor}; */
+    box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+    transform: translateY(-5px);
   }
 
   @media (max-width: 600px) {

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { inputSelect } from '../../../global/styles/components/inputComponents';
 import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const SignBox = styled.div`
@@ -45,13 +46,13 @@ export const SignActions = styled.div`
 
 export const SignButton = styled.button`
   width: 100%;
-  border-radius: 10px;
+  border-radius: 5px;
   border: none;
   height: 50px;
   margin: 0.25rem 0;
   background: ${({ theme }) => theme.colors.textColor};
   font-size: 1.1rem;
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   cursor: pointer;
 `;
 
@@ -61,15 +62,28 @@ export const SignButtonLabel = styled(paragraph)`
 
 export const ChangeSignUser = styled.button`
   width: 100%;
-  border-radius: 10px;
+  border-radius: 5px;
   border: none;
   height: 50px;
   margin: 0.25rem 0;
   background: ${({ theme }) => theme.colors.boxColor};
   border: 2px solid ${({ theme }) => theme.colors.textColor};
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   cursor: pointer;
 `;
 export const ChangeSignUserLabel = styled(paragraph)`
   color: ${({ theme }) => theme.colors.textColor};
 `;
+
+export const TeachSchoolSelect = styled(inputSelect)`
+  color: ${({ theme }) => theme.colors.boxColor};
+  background: ${({ theme }) => theme.colors.textColor};
+  border-radius: 5px;
+  padding: 0 10px;
+  cursor: pointer;
+  border-right: 10px solid ${({ theme }) => theme.colors.textColor};
+  height: 45px;
+  width: 100%;
+  transition: all 0.2s linear;
+`;
+export const TeachSchoolOption = styled.option``;

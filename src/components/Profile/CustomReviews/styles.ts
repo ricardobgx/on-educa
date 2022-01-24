@@ -22,8 +22,8 @@ export const CustomReviewsLabel = styled(paragraph)`
 export const CustomReviewsList = styled.div`
   width: calc(100% - 40px);
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
+  border-radius: 5px;
   padding: 15px;
   margin: 20px;
 `;

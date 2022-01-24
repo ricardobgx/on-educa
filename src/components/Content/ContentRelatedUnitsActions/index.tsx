@@ -16,12 +16,13 @@ interface IContentRelatedUnitsActionsProps {
   subject: ISubject;
   schoolGrade: ISchoolGrade;
   units: IUnity[];
+  contentId: string;
 }
 
 const ContentRelatedUnitsActions = (
   props: IContentRelatedUnitsActionsProps,
 ): JSX.Element => {
-  const { userType, subject, schoolGrade, units } = props;
+  const { userType, subject, schoolGrade, units, contentId } = props;
 
   return (
     <ContentRelatedUnitsActionsBox>
@@ -33,7 +34,7 @@ const ContentRelatedUnitsActions = (
         <ContentRelatedUnitsList units={units} />
       </ContentsRelated>
 
-      {isStudent(userType) && <ContentPracticeButton />}
+      {isStudent(userType) && <ContentPracticeButton contentId={contentId} />}
     </ContentRelatedUnitsActionsBox>
   );
 };

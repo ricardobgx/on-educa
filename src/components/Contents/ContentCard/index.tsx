@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { reduceTextSize } from '../../../functions/utils';
 import { IContent } from '../../../interfaces/IContent';
 import { ActionCreators, State } from '../../../store';
 import ContentCardActions from '../ContentCardActions';
@@ -45,7 +46,7 @@ const ContentCard = (props: IContentCardProps): JSX.Element => {
         onClick={() => loadContent(content)}
       >
         <ContentDetails>
-          <ContentTitle>{title}</ContentTitle>
+          <ContentTitle>{reduceTextSize(title, 40)}</ContentTitle>
           <SubjectLabel>Unidade: {unity.title}</SubjectLabel>
         </ContentDetails>
         <ContentSchoolGrade>

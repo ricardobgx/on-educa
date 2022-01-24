@@ -1,12 +1,12 @@
 import React from 'react';
 import { IContent } from '../../../interfaces/IContent';
 import {
-  ContentCardActionsBox,
-  EditContentButton,
-  EditContentButtonIcon,
-  DeleteContentButton,
-  DeleteContentButtonIcon,
-} from './styles';
+  EditSuppliesLink,
+  EditSuppliesButtonIcon,
+  DeleteSuppliesButton,
+  DeleteSuppliesButtonIcon,
+} from '../../App/Supplies/styles';
+import { ContentCardActionsBox } from './styles';
 
 interface IContentCardActionsProps {
   content: IContent;
@@ -19,17 +19,17 @@ const ContentCardActions = (props: IContentCardActionsProps): JSX.Element => {
 
   return (
     <ContentCardActionsBox>
-      <EditContentButton to={`/contents/${content.id}/edit`}>
-        <EditContentButtonIcon className="fas fa-pen" />
-      </EditContentButton>
-      <DeleteContentButton
+      <EditSuppliesLink to={`/contents/${content.id}/edit`}>
+        <EditSuppliesButtonIcon className="fas fa-pen" />
+      </EditSuppliesLink>
+      <DeleteSuppliesButton
         onClick={() => {
           setContent(content);
           setDeleteContentIsVisible(true);
         }}
       >
-        <DeleteContentButtonIcon className="fas fa-trash" />
-      </DeleteContentButton>
+        <DeleteSuppliesButtonIcon className="fas fa-trash" />
+      </DeleteSuppliesButton>
     </ContentCardActionsBox>
   );
 };

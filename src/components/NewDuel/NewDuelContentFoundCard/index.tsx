@@ -28,7 +28,10 @@ const NewDuelContentFoundCard = (
   return (
     <NewDuelContentFoundCardBox>
       <NewDuelContentCard {...props} />
-      <AddContentButton onClick={() => addFoundContent(content)}>
+      <AddContentButton
+        className="with-shadow bd-rd-5"
+        onClick={() => addFoundContent(content)}
+      >
         <AddContentButtonIcon className="fas fa-plus" />
       </AddContentButton>
     </NewDuelContentFoundCardBox>

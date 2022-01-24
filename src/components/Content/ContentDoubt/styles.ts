@@ -5,10 +5,10 @@ export const ContentDoubtBox = styled.div`
   display: flex;
   flex-direction: column;
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   margin-bottom: 20px;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 5px;
 
   &:last-of-type {
     margin-bottom: 0;

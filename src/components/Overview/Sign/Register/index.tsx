@@ -57,12 +57,6 @@ const Register = (props: IRegisterProps): JSX.Element => {
 
   const [schoolGradeId, setSchoolGradeId] = useState('');
 
-  // Warnings
-
-  const [nameWarning, setNameWarning] = useState(false);
-  const [emailWarning, setEmailWarning] = useState(false);
-  const [passwordWarning, setPasswordWarning] = useState(false);
-
   /* Props */
 
   const { changeSignType } = props;
@@ -139,9 +133,7 @@ const Register = (props: IRegisterProps): JSX.Element => {
           placeholder="Nome"
           value={name}
           setValue={setName}
-          isActive={nameWarning}
-          setIsActive={setNameWarning}
-          label="Informe seu nome"
+          icon="fas fa-user"
         />
         <SignTextInput
           id="email-input"
@@ -150,9 +142,7 @@ const Register = (props: IRegisterProps): JSX.Element => {
           placeholder="E-mail"
           value={email}
           setValue={setEmail}
-          isActive={emailWarning}
-          setIsActive={setEmailWarning}
-          label="Informe seu e-mail"
+          icon="fas fa-envelope"
         />
         <SignTextInput
           id="password-input"
@@ -161,9 +151,7 @@ const Register = (props: IRegisterProps): JSX.Element => {
           placeholder="Senha"
           value={password}
           setValue={setPassword}
-          isActive={passwordWarning}
-          setIsActive={setPasswordWarning}
-          label="Informe sua senha"
+          icon="fas fa-lock"
         />
         {isStudent(userType) ? (
           <SchoolGrade

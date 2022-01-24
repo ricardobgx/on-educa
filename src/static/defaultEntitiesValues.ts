@@ -12,8 +12,11 @@ import { ISubject } from '../interfaces/ISubject';
 import { ITeachingType } from '../interfaces/ITeachingType';
 import { IUnity } from '../interfaces/IUnity';
 import { IUser } from '../interfaces/IUser';
-import { IPractice } from '../store/actions/practice';
 import { IDuelRound } from '../interfaces/IDuelRound';
+import { IPracticeQuestion } from '../interfaces/IPracticeQuestion';
+import { IPractice } from '../interfaces/IPractice';
+import { IStudentWeekPerformance } from '../interfaces/IStudentWeekPerformance';
+import { IStudentWeekDayPerformance } from '../interfaces/IStudentWeekDayPerformance';
 
 export const DEFAULT_APLICATION: IAplication = {
   token: '',
@@ -31,6 +34,7 @@ export const DEFAULT_TEACHING_TYPE: ITeachingType = {
 export const DEFAULT_SCHOOL_GRADE: ISchoolGrade = {
   id: '',
   index: 0,
+  subjects: [],
 };
 
 export const DEFAULT_USER: IUser = {
@@ -42,6 +46,12 @@ export const DEFAULT_USER: IUser = {
   isOnline: false,
   teachingType: DEFAULT_TEACHING_TYPE,
   schoolGrade: DEFAULT_SCHOOL_GRADE,
+};
+
+export const DEFAULT_SUBJECT: ISubject = {
+  id: '',
+  name: '',
+  units: [],
 };
 
 export const DEFAULT_UNITY: IUnity = {
@@ -60,28 +70,50 @@ export const DEFAULT_CONTENT: IContent = {
   questions: [],
 };
 
+export const DEFAULT_ALTERNATIVE: IAlternative = {
+  id: '',
+  description: '',
+  index: 0,
+};
+
 export const DEFAULT_QUESTION: IQuestion = {
   id: '',
   description: '',
   difficulty: 0,
   content: DEFAULT_CONTENT,
   alternatives: [],
-};
-
-export const DEFAULT_ALTERNATIVE: IAlternative = {
-  id: '',
-  description: '',
-  index: 0,
-  question: DEFAULT_QUESTION,
+  rightAlternative: DEFAULT_ALTERNATIVE,
 };
 
 export const DEFAULT_PRACTICE: IPractice = {
   questions: [],
 };
 
-export const DEFAULT_SUBJECT: ISubject = {
+export const DEFAULT_PRACTICE_QUESTION: IPracticeQuestion = {
+  ...DEFAULT_QUESTION,
+  selectedAlternative: DEFAULT_ALTERNATIVE,
+};
+
+/* Desempenho */
+
+export const DEFAULT_STUDENT_WEEK_DAY_PERFORMANCE: IStudentWeekDayPerformance =
+  {
+    id: '',
+    dailyXP: 0,
+    studiedContents: 0,
+    questionsAnswered: 0,
+    rightQuestionsAnswered: 0,
+    duelsParticipated: 0,
+    duelsWon: 0,
+    date: '',
+  };
+
+export const DEFAULT_STUDENT_WEEK_PERFORMANCE: IStudentWeekPerformance = {
   id: '',
-  name: '',
+  xp: 0,
+  createdAt: '',
+  weekDay: DEFAULT_STUDENT_WEEK_DAY_PERFORMANCE,
+  weekDays: [],
 };
 
 /* Duelos */

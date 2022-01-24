@@ -8,8 +8,6 @@ export const DuelCardBox = styled.div`
   justify-content: space-between;
   align-items: center;
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
   margin-bottom: 20px;
   padding: 20px;
   color: ${({ theme }) => theme.colors.textColor};
@@ -47,7 +45,6 @@ export const OwnerPicture = styled.img`
   height: 30px;
   border-radius: 50%;
   margin-right: 10px;
-  /* border: 2px solid ${({ theme }) => theme.colors.textColor}; */
 `;
 export const OwnerName = styled(paragraph)`
   font-weight: bold;
@@ -104,7 +101,6 @@ export const DuelStatusIcon = styled(smallIcon)`
   width: 25px;
   height: 25px;
   color: ${({ theme }) => theme.colors.textColor};
-  /* background: ${({ theme }) => theme.colors.textColor}; */
   border-radius: 50%;
 `;
 export const DuelParticipants = styled.div`

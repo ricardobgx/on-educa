@@ -28,7 +28,7 @@ export const CancelUpdateProfileButton = styled(Link)`
   color: ${({ theme }) => theme.colors.textColor};
   min-height: 40px;
   border-radius: 5px;
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border: none;
   width: calc(50% - 20px);
 

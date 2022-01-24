@@ -2,22 +2,21 @@ import React from 'react';
 import { isStudent } from '../../../functions/user';
 import { IUnity } from '../../../interfaces/IUnity';
 import {
-  ContentsActionsBox,
-  SearchContents,
-  SearchContentsInputBox,
-  SearchContentsInput,
-  ClearSearchContentsInputButton,
-  ClearSearchContentsInputButtonIcon,
-  SearchContentsButton,
-  SearchContentsButtonIcon,
-  NewContentButton,
-  NewContentButtonLabel,
-  NewContentButtonIcon,
-  ContentsFiltersButton,
-  ContentsFiltersButtonLabel,
-  ContentsFiltersButtonIcon,
-  Container,
-} from './styles';
+  ClearSearchSuppliesInputButton,
+  ClearSearchSuppliesInputButtonIcon,
+  NewSuppliesButtonIcon,
+  NewSuppliesButtonLabel,
+  NewSuppliesLink,
+  SearchSupplies,
+  SearchSuppliesBox,
+  SearchSuppliesButton,
+  SearchSuppliesButtonIcon,
+  SearchSuppliesInput,
+  SortSuppliesButton,
+  SortSuppliesButtonIcon,
+  SortSuppliesButtonLabel,
+} from '../../App/Supplies/styles';
+import { ContentsActionsBox, Container } from './styles';
 
 interface IContentActionsProps {
   unity: IUnity;
@@ -31,30 +30,30 @@ const ContentsActions = (props: IContentActionsProps): JSX.Element => {
 
   return (
     <Container>
-      <SearchContents>
-        <SearchContentsInputBox>
-          <SearchContentsInput
+      <SearchSupplies>
+        <SearchSuppliesBox>
+          <SearchSuppliesInput
             type="text"
-            placeholder="Digite algo (nome da unidade)"
+            placeholder="Digite o nome do conteúdo"
           />
-          <ClearSearchContentsInputButton>
-            <ClearSearchContentsInputButtonIcon className="fas fa-times" />
-          </ClearSearchContentsInputButton>
-        </SearchContentsInputBox>
-        <SearchContentsButton>
-          <SearchContentsButtonIcon className="fas fa-search" />
-        </SearchContentsButton>
-      </SearchContents>
+          <ClearSearchSuppliesInputButton>
+            <ClearSearchSuppliesInputButtonIcon className="fas fa-times" />
+          </ClearSearchSuppliesInputButton>
+        </SearchSuppliesBox>
+        <SearchSuppliesButton>
+          <SearchSuppliesButtonIcon className="fas fa-search" />
+        </SearchSuppliesButton>
+      </SearchSupplies>
       {!isStudent(userType) && (
         <ContentsActionsBox>
-          <NewContentButton to={`/units/${unity.id}/new-content`}>
-            <NewContentButtonLabel>Novo conteúdo</NewContentButtonLabel>
-            <NewContentButtonIcon className="fas fa-plus" />
-          </NewContentButton>
-          <ContentsFiltersButton>
-            <ContentsFiltersButtonLabel>Ordenar</ContentsFiltersButtonLabel>
-            <ContentsFiltersButtonIcon className="fas fa-sort" />
-          </ContentsFiltersButton>
+          <NewSuppliesLink to={`/units/${unity.id}/new-content`}>
+            <NewSuppliesButtonLabel>Novo conteúdo</NewSuppliesButtonLabel>
+            <NewSuppliesButtonIcon className="fas fa-plus" />
+          </NewSuppliesLink>
+          <SortSuppliesButton>
+            <SortSuppliesButtonLabel>Ordenar</SortSuppliesButtonLabel>
+            <SortSuppliesButtonIcon className="fas fa-sort" />
+          </SortSuppliesButton>
         </ContentsActionsBox>
       )}
     </Container>

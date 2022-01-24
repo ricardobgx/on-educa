@@ -6,8 +6,6 @@ export const DuelTeamBox = styled.div`
   flex-direction: column;
   align-items: center;
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
   padding: 15px;
   width: calc(50% - 20px);
   min-height: calc(100vh - 285px);
@@ -28,10 +26,6 @@ export const DuelTeamLabel = styled(paragraph)`
 `;
 export const DuelTeamParticipants = styled.div`
   width: 100%;
-  /* background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px; */
-  /* padding: 15px; */
   margin-top: 10px;
   min-height: calc(100vh - 360px);
   max-height: calc(100vh - 360px);

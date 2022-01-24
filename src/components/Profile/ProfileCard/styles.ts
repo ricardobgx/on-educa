@@ -5,8 +5,8 @@ import { paragraph } from '../../../global/styles/components/textComponents';
 export const Container = styled.div`
   color: ${({ theme }) => theme.colors.textColor};
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
+  border-radius: 5px;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -41,7 +41,7 @@ export const UserName = styled(paragraph)`
 export const UserSchoolGrade = styled(paragraph)``;
 export const UserTeachingType = styled(paragraph)``;
 export const ProfileCardButton = styled.button`
-  box-shadow: 0px 0px 0px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 5px;
   border: none;
   min-height: 40px;
@@ -50,7 +50,7 @@ export const ProfileCardButton = styled.button`
 export const UpdateAccountButton = styled(Link)`
   color: ${({ theme }) => theme.colors.boxColor};
   background: ${({ theme }) => theme.colors.textColor};
-  box-shadow: 0px 0px 0px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 5px;
   border: none;
   min-height: 40px;

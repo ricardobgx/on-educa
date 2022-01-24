@@ -17,8 +17,6 @@ export const NewDuelContentFoundCardBox = styled.div`
 
 export const AddContentButton = styled.button`
   background: ${({ theme }) => theme.colors.textColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
   min-width: 40px;
   min-height: 30px;
   border: none;

@@ -2,6 +2,8 @@ import { IAlternative } from '../interfaces/IAlternative';
 import { IContent } from '../interfaces/IContent';
 import { IDuel } from '../interfaces/IDuel';
 import { IDuelTeamParticipation } from '../interfaces/IDuelTeamParticipation';
+import { IPractice } from '../interfaces/IPractice';
+import { IPracticeQuestion } from '../interfaces/IPracticeQuestion';
 import { ISchoolGrade } from '../interfaces/ISchoolGrade';
 import { ISubject } from '../interfaces/ISubject';
 import { ITeachingType } from '../interfaces/ITeachingType';
@@ -13,13 +15,13 @@ import {
   DEFAULT_DUEL,
   DEFAULT_DUEL_TEAM_PARTICIPATION,
   DEFAULT_PRACTICE,
+  DEFAULT_PRACTICE_QUESTION,
   DEFAULT_SCHOOL_GRADE,
   DEFAULT_SUBJECT,
   DEFAULT_TEACHING_TYPE,
   DEFAULT_UNITY,
   DEFAULT_USER,
 } from '../static/defaultEntitiesValues';
-import { IPractice } from '../store/actions/practice';
 
 // Usuarios
 
@@ -47,6 +49,10 @@ export const isDefaultAlternative = (alternative: IAlternative): boolean =>
 
 export const isDefaultPractice = (pratice: IPractice): boolean =>
   pratice === DEFAULT_PRACTICE;
+
+export const isDefaultPracticeQuestion = (
+  praticeQuestion: IPracticeQuestion,
+): boolean => praticeQuestion === DEFAULT_PRACTICE_QUESTION;
 
 // Duelos
 

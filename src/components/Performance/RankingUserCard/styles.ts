@@ -13,7 +13,7 @@ export const RankingPosition = styled(paragraph)`
   padding: 0px 10px;
   margin-right: 10px;
   border-radius: 5px;
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
 
   @media (max-width: 1150px) {
     min-height: unset;

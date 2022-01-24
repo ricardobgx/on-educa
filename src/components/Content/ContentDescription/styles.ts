@@ -13,9 +13,9 @@ export const ContentDescriptionData = styled.div`
   flex-direction: column;
   width: 100%;
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  padding: 15px;
-  border-radius: 10px;
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
+  padding: 10px;
+  border-radius: 5px;
 `;
 export const ContentDescriptionDataBox = styled.div`
   width: 100%;

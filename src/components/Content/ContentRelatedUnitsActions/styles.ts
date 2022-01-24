@@ -6,8 +6,8 @@ export const ContentRelatedUnitsActionsBox = styled.div`
   flex-direction: column;
   margin-left: 40px;
   width: 100%;
-  height: calc(100vh - 225px);
-  max-height: calc(100vh - 225px);
+  height: calc(100vh - 220px);
+  max-height: calc(100vh - 20px);
 
   @media (max-width: 1150px) {
     margin: 40px 0 0 0;
@@ -16,10 +16,8 @@ export const ContentRelatedUnitsActionsBox = styled.div`
 export const ContentsRelated = styled.div`
   display: flex;
   flex-direction: column;
-  background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
-  padding: 15px;
+  background: none;
+  border-radius: 5px;
   height: 100%;
 
   @media (max-width: 1150px) {
@@ -28,7 +26,14 @@ export const ContentsRelated = styled.div`
   }
 `;
 export const ContentsRelatedReferenceLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
   font-weight: bold;
-  margin: 5px;
+  padding-left: 20px;
+  color: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.boxColor};
+  min-height: 50px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
 `;

@@ -25,7 +25,7 @@ const NewDuelSelectedContents = (
   };
 
   return (
-    <NewDuelSelectedContentsBox>
+    <NewDuelSelectedContentsBox className="with-shadow bd-rd-5">
       <NewDuelSelectedContentsList>
         {selectedContents.map((selectedContent) => (
           <NewDuelSelectedContentCard

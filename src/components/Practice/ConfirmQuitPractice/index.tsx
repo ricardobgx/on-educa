@@ -19,14 +19,20 @@ const ConfirmQuitPractice = (props: IConfirmQuitPracticeProps): JSX.Element => {
 
   return (
     <ConfirmQuitPracticeBackground>
-      <ConfirmQuitPracticeBox>
+      <ConfirmQuitPracticeBox className="with-shadow bd-rd-5">
         <ConfirmQuitPracticeLabel>
           Tem certeza que deseja sair? Todos os seus pontos serão perdidos!
         </ConfirmQuitPracticeLabel>
-        <CancelButton onClick={() => setQuitPractice(false)}>
+        <CancelButton
+          className="with-shadow bd-rd-5"
+          onClick={() => setQuitPractice(false)}
+        >
           <ButtonLabel>Voltar</ButtonLabel>
         </CancelButton>
-        <QuitButton onClick={() => setBackPage(true)}>
+        <QuitButton
+          className="with-shadow bd-rd-5"
+          onClick={() => setBackPage(true)}
+        >
           <ButtonLabel>Sair</ButtonLabel>
         </QuitButton>
         {backPage ? <Redirect to="/contents/12345" /> : null}

@@ -20,8 +20,9 @@ const UnitsList = (props: IUnitsListProps): JSX.Element => {
   return (
     <UnitsListBox>
       <UnitCards>
-        {units.map((unity) => (
+        {units.map((unity, index) => (
           <UnityCard
+            index={index}
             unity={unity}
             setUnity={setUnity}
             setUpdateUnityIsVisible={setUpdateUnityIsVisible}

@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import theme from '../../../../global/styles/theme';
-import FieldWarning, { IFieldWarningProps } from '../FieldWarning';
-import { Container, InputBox, Input, InputLabel } from './components';
+import {
+  Container,
+  InputBox,
+  Input,
+  InputLabel,
+  FieldIcon,
+} from './components';
 
 interface IInputProps {
   id: string;
@@ -12,41 +17,41 @@ interface IInputProps {
   placeholder: string;
 }
 
-interface ISignFieldProps extends IInputProps, IFieldWarningProps {
-  setIsActive: (isActive: boolean) => void;
+interface ISignFieldProps extends IInputProps {
+  icon: string;
 }
 
 const SignTextInput = (props: ISignFieldProps): JSX.Element => {
-  const {
-    id,
-    spellCheck,
-    type,
-    value,
-    setValue,
-    placeholder,
-    label,
-    isActive,
-    setIsActive,
-  } = props;
+  const { id, spellCheck, type, value, setValue, placeholder, icon } = props;
+
+  const [isFocused, setIsFocused] = useState(false);
 
   return (
     <Container>
-      <InputBox>
+      <InputBox
+        style={{
+          borderColor: value || isFocused ? theme.colors.textColor : '',
+        }}
+      >
+        <FieldIcon
+          className={icon}
+          style={{
+            color: value || isFocused ? theme.colors.textColor : '',
+          }}
+        />
         <Input
           id={id}
           spellCheck={spellCheck}
           type={type}
           value={value}
           style={{
-            color: value ? theme.colors.textColor : '',
-            paddingTop: !isActive ? '30px' : '',
-            borderColor: value ? theme.colors.textColor : '',
+            color: value || isFocused ? theme.colors.questionTextColor : '',
           }}
           onBlur={() => {
-            if (!value && !isActive) setIsActive(!isActive);
+            if (isFocused) setIsFocused(!isFocused);
           }}
           onFocus={() => {
-            if (isActive) setIsActive(!isActive);
+            if (!isFocused) setIsFocused(!isFocused);
           }}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             setValue(event.target.value);
@@ -55,16 +60,14 @@ const SignTextInput = (props: ISignFieldProps): JSX.Element => {
         <InputLabel
           htmlFor={id}
           style={{
-            fontSize: value ? '14px' : '',
-            color: value ? theme.colors.textColor : '',
-            top: value ? '15%' : '',
-            transform: value ? 'translateY(0%)' : '',
+            fontSize: value || isFocused ? '14px' : '',
+            top: value || isFocused ? '15%' : '',
+            transform: value || isFocused ? 'translateY(0%)' : '',
           }}
         >
           {placeholder}
         </InputLabel>
       </InputBox>
-      <FieldWarning label={label} isActive={isActive} />
     </Container>
   );
 };

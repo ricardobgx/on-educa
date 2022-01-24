@@ -18,8 +18,10 @@ export const ContentBox = styled.div`
 export const ContentVideoAndRelatedContents = styled.div`
   margin: 20px;
   display: flex;
+  min-height: calc(100vh - 220px);
 
   @media (max-width: 1150px) {
+    min-height: unset;
     flex-wrap: wrap;
   }
 `;

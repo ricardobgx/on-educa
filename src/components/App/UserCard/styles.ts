@@ -11,7 +11,7 @@ export const UserCardBox = styled.div`
   width: 100%;
   padding: 15px;
   border-radius: 5px;
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
 
   @media (max-width: 1150px) {
     min-height: unset;

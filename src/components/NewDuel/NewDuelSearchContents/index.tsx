@@ -3,19 +3,22 @@ import { useSelector } from 'react-redux';
 import { getContents } from '../../../functions/content';
 import { IContent } from '../../../interfaces/IContent';
 import OnEducaAPI from '../../../services/api';
-import { DEFAULT_UNITY } from '../../../static/defaultEntitiesValues';
 import { State } from '../../../store';
+import {
+  ClearSearchSuppliesInputButton,
+  ClearSearchSuppliesInputButtonIcon,
+  SearchSuppliesBox,
+  SearchSuppliesButton,
+  SearchSuppliesButtonIcon,
+  SearchSuppliesInput,
+} from '../../App/Supplies/styles';
 import NewDuelContentFoundCard from '../NewDuelContentFoundCard';
 import {
   ContentsFound,
   NewDuelSearchContentsBox,
-  SearchContentsBox,
-  SearchContentsInput,
-  SearchContentsButton,
-  SearchContentsButtonIcon,
   ContentsFoundList,
-  ClearContentsButton,
-  ClearContentsButtonIcon,
+  NewDuelSearchContentsContainer,
+  SearchContentsButton,
 } from './styles';
 
 export interface INewDuelSearchContentsProps {
@@ -48,12 +51,13 @@ const NewDuelSearchContents = (
 
   return (
     <NewDuelSearchContentsBox>
-      <SearchContentsBox
+      <SearchSuppliesBox
         style={{
+          marginRight: 0,
           borderRadius: contentsFound.length > 0 ? '5px 5px 0 0' : '',
         }}
       >
-        <SearchContentsInput
+        <SearchSuppliesInput
           value={contentsName}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             setContentsName(event.target.value)
@@ -65,22 +69,22 @@ const NewDuelSearchContents = (
           type="text"
           placeholder="Pesquisar conteúdo (exemplo: Substantivos)"
         />
-        <ClearContentsButton
+        <ClearSearchSuppliesInputButton
           onClick={() => {
             setContentsFound([]);
             setContentsName('');
           }}
         >
-          <ClearContentsButtonIcon className="fas fa-times" />
-        </ClearContentsButton>
+          <ClearSearchSuppliesInputButtonIcon className="fas fa-times" />
+        </ClearSearchSuppliesInputButton>
         <SearchContentsButton
           onClick={() =>
             getContents(OnEducaAPI, setContentsFound, token, contentsName)
           }
         >
-          <SearchContentsButtonIcon className="fas fa-search" />
+          <SearchSuppliesButtonIcon className="fas fa-search" />
         </SearchContentsButton>
-      </SearchContentsBox>
+      </SearchSuppliesBox>
       {contentsFound.length > 0 && (
         <ContentsFound>
           <ContentsFoundList>

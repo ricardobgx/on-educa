@@ -1,26 +1,23 @@
 import React, { useState } from 'react';
 import { isStudent } from '../../../functions/user';
 import { ICommonUnityProps } from '../../../pages/Units';
-import NewUnity from '../NewUnity';
-// import { useSelector } from 'react-redux';
-// import { State } from '../../../store';
 import {
-  UnitsActionsBox,
-  SearchUnits,
-  SearchUnitsInputBox,
-  SearchUnitsInput,
-  ClearSearchUnitsInputButton,
-  ClearSearchUnitsInputButtonIcon,
-  SearchUnitsButton,
-  SearchUnitsButtonIcon,
-  NewUnityButton,
-  NewUnityButtonLabel,
-  NewUnityButtonIcon,
-  UnitsFiltersButton,
-  UnitsFiltersButtonLabel,
-  UnitsFiltersButtonIcon,
-  Container,
-} from './styles';
+  ClearSearchSuppliesInputButton,
+  ClearSearchSuppliesInputButtonIcon,
+  NewSuppliesButton,
+  NewSuppliesButtonIcon,
+  NewSuppliesButtonLabel,
+  SearchSupplies,
+  SearchSuppliesBox,
+  SearchSuppliesButton,
+  SearchSuppliesButtonIcon,
+  SearchSuppliesInput,
+  SortSuppliesButton,
+  SortSuppliesButtonIcon,
+  SortSuppliesButtonLabel,
+} from '../../App/Supplies/styles';
+import NewUnity from '../NewUnity';
+import { UnitsActionsBox, Container } from './styles';
 
 interface IUnitsActionsProps extends ICommonUnityProps {
   userType: string;
@@ -43,30 +40,30 @@ const UnitsActions = (props: IUnitsActionsProps): JSX.Element => {
           getUnits={getUnits}
         />
       )}
-      <SearchUnits>
-        <SearchUnitsInputBox>
-          <SearchUnitsInput
+      <SearchSupplies>
+        <SearchSuppliesBox>
+          <SearchSuppliesInput
             type="text"
-            placeholder="Digite algo (nome da unidade)"
+            placeholder="Digite o nome da unidade"
           />
-          <ClearSearchUnitsInputButton>
-            <ClearSearchUnitsInputButtonIcon className="fas fa-times" />
-          </ClearSearchUnitsInputButton>
-        </SearchUnitsInputBox>
-        <SearchUnitsButton>
-          <SearchUnitsButtonIcon className="fas fa-search" />
-        </SearchUnitsButton>
-      </SearchUnits>
+          <ClearSearchSuppliesInputButton>
+            <ClearSearchSuppliesInputButtonIcon className="fas fa-times" />
+          </ClearSearchSuppliesInputButton>
+        </SearchSuppliesBox>
+        <SearchSuppliesButton>
+          <SearchSuppliesButtonIcon className="fas fa-search" />
+        </SearchSuppliesButton>
+      </SearchSupplies>
       {!isStudent(userType) && (
         <UnitsActionsBox>
-          <NewUnityButton onClick={() => setNewUnityIsVisible(true)}>
-            <NewUnityButtonLabel>Nova unidade</NewUnityButtonLabel>
-            <NewUnityButtonIcon className="fas fa-plus" />
-          </NewUnityButton>
-          <UnitsFiltersButton>
-            <UnitsFiltersButtonLabel>Ordenar</UnitsFiltersButtonLabel>
-            <UnitsFiltersButtonIcon className="fas fa-sort" />
-          </UnitsFiltersButton>
+          <NewSuppliesButton onClick={() => setNewUnityIsVisible(true)}>
+            <NewSuppliesButtonLabel>Nova unidade</NewSuppliesButtonLabel>
+            <NewSuppliesButtonIcon className="fas fa-plus" />
+          </NewSuppliesButton>
+          <SortSuppliesButton>
+            <SortSuppliesButtonLabel>Ordenar</SortSuppliesButtonLabel>
+            <SortSuppliesButtonIcon className="fas fa-sort" />
+          </SortSuppliesButton>
         </UnitsActionsBox>
       )}
     </Container>

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ContentVideoBox = styled.div`
   min-width: 60%;
-  height: calc(100vh - 225px);
+  min-height: 100%;
 
   @media (max-width: 1150px) {
     width: 100%;
