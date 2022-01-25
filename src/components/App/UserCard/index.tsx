@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { getStudentWeekPerformanceByStudent } from '../../../functions/studentWeekPerformance';
 import { displaySurname, isStudent } from '../../../functions/user';
+import { IStudentWeekPerformance } from '../../../interfaces/IStudentWeekPerformance';
 import { IUser } from '../../../interfaces/IUser';
-import { DEFAULT_SCHOOL_GRADE } from '../../../static/defaultEntitiesValues';
+import OnEducaAPI from '../../../services/api';
+import {
+  DEFAULT_SCHOOL_GRADE,
+  DEFAULT_STUDENT_WEEK_PERFORMANCE,
+} from '../../../static/defaultEntitiesValues';
+import { State } from '../../../store';
 import {
   UserCardBox,
   UserDetails,
@@ -16,7 +24,6 @@ import {
 } from './styles';
 
 export interface IUserCardProps extends IUser {
-  userType: string;
   showScore: boolean;
   abbreviateName: boolean;
   smartphoneNameLength: number;
@@ -25,6 +32,7 @@ export interface IUserCardProps extends IUser {
 
 const UserCard = (props: IUserCardProps): JSX.Element => {
   const {
+    id,
     name,
     profilePicture,
     schoolGrade: loggedUserSchoolGrade,
@@ -36,6 +44,26 @@ const UserCard = (props: IUserCardProps): JSX.Element => {
   } = props;
 
   const schoolGrade = loggedUserSchoolGrade || DEFAULT_SCHOOL_GRADE;
+
+  const { aplication } = useSelector((store: State) => store);
+  const { token } = aplication;
+
+  const [studentWeekPerformance, setStudentWeekPerformance] =
+    useState<IStudentWeekPerformance>(DEFAULT_STUDENT_WEEK_PERFORMANCE);
+
+  useEffect(() => {
+    if (showScore) {
+      getStudentWeekPerformanceByStudent(
+        OnEducaAPI,
+        id,
+        token,
+        setStudentWeekPerformance,
+        () => console.log('erro'),
+      );
+    }
+  }, []);
+
+  const { xp } = studentWeekPerformance;
 
   return (
     <UserCardBox>
@@ -61,7 +89,7 @@ const UserCard = (props: IUserCardProps): JSX.Element => {
       {showScore && (
         <UserScore>
           <UserLeague className="fas fa-trophy" />
-          <UserExperience>1865 XP</UserExperience>
+          <UserExperience>{xp} XP</UserExperience>
         </UserScore>
       )}
     </UserCardBox>

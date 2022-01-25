@@ -18,7 +18,14 @@ import { Page } from '../../global/styles/components/pageComponents';
 import {
   MainDetails,
   PageBox,
+  PerformanceDetails,
+  PerformanceDetailsBox,
+  ProfileBanner,
+  ProfileBox,
   UserDetails,
+  UserDetailsBox,
+  UserPicture,
+  UserPictureBox,
   WeeklyPerformanceSummary,
 } from './styles';
 
@@ -57,25 +64,38 @@ const Profile = (): JSX.Element => {
   return (
     <Page>
       <PageBox>
-        <UserDetails>
-          <MainDetails>
+        <ProfileBox>
+          <UserDetails>
             <SectionLabel backLink="/home" label="Perfil" />
-            <ProfileCard
+            <UserDetailsBox className="with-shadow bd-rd-5">
+              <ProfileBanner src="https://timelinecovers.pro/facebook-cover/download/anime-your-name-starfall-facebook-cover.jpg" />
+              <MainDetails>
+                <UserPictureBox>
+                  <UserPicture src={user.profilePicture} />
+                </UserPictureBox>
+                {/* <ProfileCard
               user={user}
               userType={userType}
               isUserLogged={isUserLogged(loggedUserId, user.id as string)}
-            />
-          </MainDetails>
-          <WeeklyPerformanceSummary>
-            <ProfileDailyGoal
-              isUserLogged={isUserLogged(loggedUserId, user.id as string)}
-            />
-            <WeekPerformance
-              isUserLogged={isUserLogged(loggedUserId, user.id as string)}
-            />
-          </WeeklyPerformanceSummary>
-        </UserDetails>
-        <CustomReviews />
+            /> */}
+              </MainDetails>
+            </UserDetailsBox>
+          </UserDetails>
+          <PerformanceDetails>
+            <SectionLabel backLink="" label="Desempenho" />
+            <PerformanceDetailsBox className="with-shadow bd-rd-5">
+              <WeeklyPerformanceSummary>
+                <ProfileDailyGoal
+                  isUserLogged={isUserLogged(loggedUserId, user.id as string)}
+                />
+                <WeekPerformance
+                  isUserLogged={isUserLogged(loggedUserId, user.id as string)}
+                />
+              </WeeklyPerformanceSummary>
+            </PerformanceDetailsBox>
+          </PerformanceDetails>
+          {/* <CustomReviews /> */}
+        </ProfileBox>
       </PageBox>
     </Page>
   );

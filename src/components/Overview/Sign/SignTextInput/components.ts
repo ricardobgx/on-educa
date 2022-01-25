@@ -56,6 +56,10 @@ export const Input = styled(inputText)`
       font-size: 3.5vw;
     }
   }
+
+  &:-webkit-autofill {
+    -webkit-text-fill-color: ${({ theme }) => theme.colors.questionTextColor};
+  }
 `;
 
 export const InputLabel = styled.label`

@@ -8,11 +8,7 @@ import { paragraph } from '../../../global/styles/components/textComponents';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
   padding: 20px;
-  margin: 0px 20px;
   color: ${({ theme }) => theme.colors.textColor};
 `;
 export const DailyGoalHeader = styled.div`

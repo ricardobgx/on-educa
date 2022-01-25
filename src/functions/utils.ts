@@ -50,3 +50,10 @@ export const deviceType = (): DeviceType => {
   }
   return DeviceType.TABLET;
 };
+
+export const displayDayAndMonthDate = (date: string): string => {
+  const dateSections = date.split('/');
+  const dayAndMonth = `${dateSections[0]}/${dateSections[1]}`;
+
+  return dayAndMonth;
+};

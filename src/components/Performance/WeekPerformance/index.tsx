@@ -5,6 +5,7 @@ import {
   deviceHeight,
   deviceType,
   deviceWidth,
+  displayDayAndMonthDate,
 } from '../../../functions/utils';
 import theme from '../../../global/styles/theme';
 import { IStudentWeekPerformance } from '../../../interfaces/IStudentWeekPerformance';
@@ -72,10 +73,9 @@ const WeekPerformance = (): JSX.Element => {
 
     const contentsDataValues: ISimpleBarChartData[] = weekDays.map(
       (weekDay) => {
-        const { date: name, studiedContents: value } = weekDay;
         const dataValue: ISimpleBarChartData = {
-          name,
-          value,
+          name: displayDayAndMonthDate(weekDay.date),
+          value: weekDay.studiedContents,
         };
 
         return dataValue;
@@ -85,7 +85,7 @@ const WeekPerformance = (): JSX.Element => {
     const questionsDataValues: IBarChartWithTwoValuesData[] = weekDays.map(
       (weekDay) => {
         const dataValue: IBarChartWithTwoValuesData = {
-          name: weekDay.date,
+          name: displayDayAndMonthDate(weekDay.date),
           firstValue: weekDay.rightQuestionsAnswered,
           secondValue: weekDay.questionsAnswered,
         };
@@ -97,7 +97,7 @@ const WeekPerformance = (): JSX.Element => {
     const duelsDataValues: IBarChartWithTwoValuesData[] = weekDays.map(
       (weekDay) => {
         const dataValue: IBarChartWithTwoValuesData = {
-          name: weekDay.date,
+          name: displayDayAndMonthDate(weekDay.date),
           firstValue: weekDay.duelsParticipated,
           secondValue: weekDay.duelsWon,
         };

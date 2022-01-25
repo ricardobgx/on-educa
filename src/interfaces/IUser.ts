@@ -8,6 +8,7 @@ export interface IUser {
   profilePicture: string;
   isOnline: boolean;
   league: string;
+  userType: string;
   teachingType: ITeachingType;
   schoolGrade: ISchoolGrade;
 }

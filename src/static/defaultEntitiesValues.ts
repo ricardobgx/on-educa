@@ -44,6 +44,7 @@ export const DEFAULT_USER: IUser = {
   profilePicture: '',
   league: '',
   isOnline: false,
+  userType: 'student',
   teachingType: DEFAULT_TEACHING_TYPE,
   schoolGrade: DEFAULT_SCHOOL_GRADE,
 };

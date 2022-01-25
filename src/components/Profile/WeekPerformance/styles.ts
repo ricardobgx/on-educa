@@ -6,11 +6,8 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   color: ${({ theme }) => theme.colors.textColor};
-  background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
   padding: 20px;
-  margin: 20px;
+  margin-top: 20px;
 `;
 export const WeekPerformanceInfo = styled.div`
   display: flex;

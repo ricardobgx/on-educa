@@ -35,6 +35,7 @@ const teamAParticipants: IDuelParticipant[] = [
     profilePicture:
       'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
     answeredQuestions: [],
+    userType: 'student',
     teachingType: DEFAULT_TEACHING_TYPE,
     schoolGrade: DEFAULT_SCHOOL_GRADE,
   },
@@ -48,6 +49,7 @@ const teamAParticipants: IDuelParticipant[] = [
     profilePicture:
       'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
     answeredQuestions: [],
+    userType: 'student',
     teachingType: DEFAULT_TEACHING_TYPE,
     schoolGrade: DEFAULT_SCHOOL_GRADE,
   },
@@ -61,6 +63,7 @@ const teamAParticipants: IDuelParticipant[] = [
     profilePicture:
       'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
     answeredQuestions: [],
+    userType: 'student',
     teachingType: DEFAULT_TEACHING_TYPE,
     schoolGrade: DEFAULT_SCHOOL_GRADE,
   },
@@ -74,6 +77,7 @@ const teamAParticipants: IDuelParticipant[] = [
     profilePicture:
       'https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg',
     answeredQuestions: [],
+    userType: 'student',
     teachingType: DEFAULT_TEACHING_TYPE,
     schoolGrade: DEFAULT_SCHOOL_GRADE,
   },
