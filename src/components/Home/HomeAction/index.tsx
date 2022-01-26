@@ -6,7 +6,7 @@ const HomeAction = (props: IHomeActionProps): JSX.Element => {
   const { icon, label, link } = props;
 
   return (
-    <HomeActionBox to={link}>
+    <HomeActionBox to={link} className="with-shadow bd-rd-5">
       <HomeActionIcon className={icon} />
       <HomeActionLabel>{label}</HomeActionLabel>
     </HomeActionBox>

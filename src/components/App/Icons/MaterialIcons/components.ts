@@ -10,19 +10,19 @@ const MaterialIcon = styled.span`
 
 export const SmallMaterialIcon = styled(MaterialIcon)`
   font-size: 3vh;
-  width: 2.5vh;
-  height: 2.5vh;
+  /* width: 2.5vh;
+  height: 2.5vh; */
 
   @media (min-width: 600px) and (max-width: 1150px) {
     font-size: 2.75vw;
-    width: 2.3vw;
-    height: 2.3vw;
+    /* width: 2.3vw;
+    height: 2.3vw; */
   }
 
   @media (max-width: 600px) {
     font-size: 4.5vw;
-    width: 3.7vw;
-    height: 3.7vw;
+    /* width: 3.7vw;
+    height: 3.7vw; */
   }
 `;
 

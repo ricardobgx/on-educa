@@ -10,6 +10,7 @@ export const Container = styled.div`
   flex-direction: column;
   padding: 20px;
   color: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.boxColor};
 `;
 export const DailyGoalHeader = styled.div`
   display: flex;

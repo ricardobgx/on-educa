@@ -11,10 +11,8 @@ export const HomeActionBox = styled(Link)`
   width: calc((100vh - 265px) / 2);
   height: calc((100vh - 265px) / 2);
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   margin: 20px;
   padding: calc(((100vh - 265px) / 2) / 6);
-  border-radius: 10px;
   border: 3px solid transparent;
   transition: all 0.2s linear;
 

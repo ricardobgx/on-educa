@@ -6,8 +6,6 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
   min-height: 50px;
   padding: 0 20px;
 

@@ -18,6 +18,7 @@ const DuelQuestionAlternative = (
 
   return (
     <Container
+      className="with-shadow bd-rd-5"
       style={{
         borderColor:
           id === selectedAlternative.id ? theme.colors.textColor : '',

@@ -6,41 +6,33 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   color: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.boxColor};
   padding: 20px;
   margin-top: 20px;
 `;
+export const WeekPerformancesList = styled.div`
+  margin: 15px 0;
+  padding: 5px;
+  max-height: calc(100vh - 480px);
+  overflow: auto;
+
+  @media (max-width: 1150px) {
+    max-height: unset;
+  }
+`;
+export const WeekPerformanceInfoLabel = styled(paragraph)``;
+export const WeekPerformanceInfoValue = styled(paragraph)``;
 export const WeekPerformanceInfo = styled.div`
   display: flex;
   justify-content: space-between;
-`;
-export const WeekPerformanceInfoBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 10px 0;
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
 
-  &:first-of-type {
-    font-weight: bold;
+  &:last-of-type {
+    margin-bottom: 0;
   }
-
-  &:nth-child(2) {
-    align-items: center;
-  }
-`;
-export const WeekPerformanceDataLabel = styled(paragraph)``;
-export const UserLeague = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: ${({ theme }) => theme.similarColors.warningColor};
-`;
-export const UserLeagueIcon = styled.i`
-  font-size: 35px;
-  margin-bottom: 5px;
-`;
-export const UserLeagueLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
-  font-weight: bold;
 `;
 export const SeeChartsButton = styled(Link)`
   display: flex;

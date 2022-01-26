@@ -5,8 +5,6 @@ import { paragraph } from '../../../global/styles/components/textComponents';
 export const DailyPerformanceBox = styled.div`
   margin: 20px;
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
   padding: 20px;
   height: calc((100vh - 265px) / 2);
   display: flex;

@@ -44,7 +44,7 @@ const DuelQuestion = (props: IQuestionProps): JSX.Element => {
 
   return (
     <Container>
-      <DuelQuestionDescriptionBox>
+      <DuelQuestionDescriptionBox className="with-shadow bd-rd-5">
         <DuelQuestionDescription>
           {description.split('\n').map((questionDescriptionParagraph) => (
             <DuelQuestionDescriptionParagraph>
@@ -72,6 +72,7 @@ const DuelQuestion = (props: IQuestionProps): JSX.Element => {
       <DuelQuestionActions>
         {activeParticipationId === studentParticipation.id && (
           <AnswerButton
+            className="with-shadow bd-rd-5"
             onClick={() => {
               if (isDefaultAlternative(selectedAlternative)) {
                 answerQuestion(

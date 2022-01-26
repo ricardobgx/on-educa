@@ -12,22 +12,47 @@ import WeekPerformance from '../../components/Profile/WeekPerformance';
 import { findUserType, isUserLogged } from '../../functions/user';
 import { IUser } from '../../interfaces/IUser';
 import OnEducaAPI from '../../services/api';
-import { DEFAULT_USER } from '../../static/defaultEntitiesValues';
+import {
+  DEFAULT_STUDENT_WEEK_PERFORMANCE,
+  DEFAULT_USER,
+} from '../../static/defaultEntitiesValues';
 import { State } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import {
-  MainDetails,
+  EditProfileButton,
+  EditProfileButtonLabel,
+  AppearenceDetails,
   PageBox,
   PerformanceDetails,
   PerformanceDetailsBox,
   ProfileBanner,
   ProfileBox,
-  UserDetails,
-  UserDetailsBox,
+  ProfileDetails,
+  ProfileDetailsBox,
   UserPicture,
   UserPictureBox,
   WeeklyPerformanceSummary,
+  MainDetails,
+  UserName,
+  UserDetails,
+  SchoolGradeLabel,
+  TeachingTypeLabel,
+  SocialDetails,
+  SocialDetailsList,
+  SocialDetail,
+  SocialDetailLabel,
+  SocialDetailIcon,
+  EditPictureButton,
+  ProfileBannerImg,
+  EditBannerButton,
 } from './styles';
+import {
+  MediumMaterialIconRound,
+  SmallMaterialIconRound,
+} from '../../components/App/Icons/MaterialIcons/MaterialIconsRound';
+import { IStudentWeekPerformance } from '../../interfaces/IStudentWeekPerformance';
+import { isDefaultUser } from '../../functions/entitiesValues';
+import { getStudentWeekPerformanceByStudent } from '../../functions/studentWeekPerformance';
 
 interface IProfileRouteProps {
   id: string;
@@ -44,6 +69,9 @@ const Profile = (): JSX.Element => {
 
   const [user, setUser] = useState<IUser>(DEFAULT_USER);
   const [userType, setUserType] = useState(loggedUserType);
+  const [socialDetailSelected, setSocialDetailSelected] = useState(0);
+  const [studentWeekPerformance, setStudentWeekPerformance] =
+    useState<IStudentWeekPerformance>(DEFAULT_STUDENT_WEEK_PERFORMANCE);
 
   /* Route params */
 
@@ -59,33 +87,115 @@ const Profile = (): JSX.Element => {
   useEffect(() => {
     if (!isUserLogged(loggedUserId, id)) findProfileUserType();
     else setUser(loggedUser);
+    if (!isDefaultUser(loggedUser)) {
+      getStudentWeekPerformanceByStudent(
+        OnEducaAPI,
+        loggedUser.id,
+        token,
+        setStudentWeekPerformance,
+        () => console.log('erro'),
+      );
+    }
   }, [id, loggedUser]);
+
+  const { weekDay } = studentWeekPerformance;
+  const { dailyXP } = weekDay;
 
   return (
     <Page>
       <PageBox>
         <ProfileBox>
-          <UserDetails>
+          <ProfileDetails>
             <SectionLabel backLink="/home" label="Perfil" />
-            <UserDetailsBox className="with-shadow bd-rd-5">
-              <ProfileBanner src="https://timelinecovers.pro/facebook-cover/download/anime-your-name-starfall-facebook-cover.jpg" />
-              <MainDetails>
-                <UserPictureBox>
-                  <UserPicture src={user.profilePicture} />
-                </UserPictureBox>
-                {/* <ProfileCard
-              user={user}
-              userType={userType}
-              isUserLogged={isUserLogged(loggedUserId, user.id as string)}
-            /> */}
-              </MainDetails>
-            </UserDetailsBox>
-          </UserDetails>
+
+            <ProfileDetailsBox className="with-shadow bd-rd-5">
+              <ProfileBanner>
+                <ProfileBannerImg src="https://timelinecovers.pro/facebook-cover/download/anime-your-name-starfall-facebook-cover.jpg" />
+                <EditBannerButton>
+                  <SmallMaterialIconRound color="" icon="mode_edit" />
+                </EditBannerButton>
+              </ProfileBanner>
+              <UserDetails>
+                <AppearenceDetails>
+                  <UserPictureBox>
+                    <EditPictureButton>
+                      <SmallMaterialIconRound color="" icon="mode_edit" />
+                    </EditPictureButton>
+                    <UserPicture src={user.profilePicture} />
+                  </UserPictureBox>
+
+                  <EditProfileButton
+                    to="/update-profile"
+                    className="with-shadow bd-rd-5"
+                  >
+                    <EditProfileButtonLabel>
+                      Editar perfil
+                    </EditProfileButtonLabel>
+                    <SmallMaterialIconRound color="" icon="mode_edit" />
+                  </EditProfileButton>
+                </AppearenceDetails>
+
+                <MainDetails>
+                  <UserName>{user.name}</UserName>
+                  {user.userType === 'student' ? (
+                    <SchoolGradeLabel>
+                      {user.schoolGrade.index} º ano
+                    </SchoolGradeLabel>
+                  ) : (
+                    <TeachingTypeLabel>
+                      {user.teachingType.title}
+                    </TeachingTypeLabel>
+                  )}
+                </MainDetails>
+                <SocialDetails>
+                  <SocialDetailsList>
+                    <SocialDetail
+                      onClick={() => setSocialDetailSelected(0)}
+                      className={
+                        socialDetailSelected === 0 ? 'selected-detail' : ''
+                      }
+                    >
+                      <MediumMaterialIconRound color="" icon="people" />
+                      <SocialDetailLabel>Amigos</SocialDetailLabel>
+                    </SocialDetail>
+                    <SocialDetail
+                      onClick={() => setSocialDetailSelected(1)}
+                      className={
+                        socialDetailSelected === 1 ? 'selected-detail' : ''
+                      }
+                    >
+                      <MediumMaterialIconRound color="" icon="description" />
+                      <SocialDetailLabel>Revisões</SocialDetailLabel>
+                    </SocialDetail>
+                    <SocialDetail
+                      onClick={() => setSocialDetailSelected(2)}
+                      className={
+                        socialDetailSelected === 2 ? 'selected-detail' : ''
+                      }
+                    >
+                      <MediumMaterialIconRound color="" icon="star_half" />
+                      <SocialDetailLabel>Conquistas</SocialDetailLabel>
+                    </SocialDetail>
+                    <SocialDetail
+                      onClick={() => setSocialDetailSelected(3)}
+                      className={
+                        socialDetailSelected === 3 ? 'selected-detail' : ''
+                      }
+                    >
+                      <SocialDetailIcon className="fas fa-user-secret" />
+                      <SocialDetailLabel>Missões</SocialDetailLabel>
+                    </SocialDetail>
+                  </SocialDetailsList>
+                </SocialDetails>
+              </UserDetails>
+            </ProfileDetailsBox>
+          </ProfileDetails>
           <PerformanceDetails>
             <SectionLabel backLink="" label="Desempenho" />
-            <PerformanceDetailsBox className="with-shadow bd-rd-5">
+            <PerformanceDetailsBox>
               <WeeklyPerformanceSummary>
                 <ProfileDailyGoal
+                  dailyXP={dailyXP}
                   isUserLogged={isUserLogged(loggedUserId, user.id as string)}
                 />
                 <WeekPerformance

@@ -9,8 +9,6 @@ export const Container = styled.div`
 export const DuelQuestionDescriptionBox = styled.div`
   padding: 20px 10px;
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
   margin: 40px 0;
 `;
 export const DuelQuestionDescription = styled.div`
@@ -37,8 +35,6 @@ export const AnswerButton = styled.button`
   /* font-weight: bold; */
   color: ${({ theme }) => theme.colors.boxColor};
   background: ${({ theme }) => theme.colors.textColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
   cursor: pointer;
 `;
 export const AnswerButtonLabel = styled(paragraph)``;
@@ -48,8 +44,6 @@ export const SkipButton = styled.button`
   /* font-weight: bold; */
   color: ${({ theme }) => theme.colors.textColor};
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
   cursor: pointer;
 `;
 export const SkipButtonLabel = styled(paragraph)``;

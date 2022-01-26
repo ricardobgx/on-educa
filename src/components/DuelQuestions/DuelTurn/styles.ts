@@ -8,8 +8,6 @@ export const Container = styled.div`
   margin-right: 20px;
   min-width: max-content;
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
   min-height: 50px;
   padding: 0 20px;
 

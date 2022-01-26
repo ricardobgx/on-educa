@@ -42,7 +42,7 @@ const DailyPerformance = (): JSX.Element => {
   const { dailyXP, studiedContents, questionsAnswered } = weekDay;
 
   return (
-    <DailyPerformanceBox>
+    <DailyPerformanceBox className="with-shadow bd-rd-5">
       <DayLabel>Hoje</DayLabel>
       <PerformancesBox>
         <PerformancesTypeBox>

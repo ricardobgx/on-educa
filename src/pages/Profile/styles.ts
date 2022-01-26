@@ -1,4 +1,8 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { Button } from '../../global/styles/components/buttonComponents';
+import { paragraph } from '../../global/styles/components/textComponents';
+import { mediumIcon } from '../../global/styles/components/iconComponents';
 
 export const PageBox = styled.div`
   display: flex;
@@ -19,16 +23,16 @@ export const ProfileBox = styled.div`
     flex-direction: column;
   }
 `;
-export const UserDetails = styled.div`
+export const ProfileDetails = styled.div`
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: calc(60% - 20px);
 
   @media (max-width: 1150px) {
     width: 100%;
   }
 `;
-export const UserDetailsBox = styled.div`
+export const ProfileDetailsBox = styled.div`
   width: calc(100% - 40px);
   display: flex;
   flex-direction: column;
@@ -42,7 +46,16 @@ export const UserDetailsBox = styled.div`
     max-height: unset;
   }
 `;
-export const ProfileBanner = styled.img`
+export const UserDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+  transform: translateY(-60px);
+
+  @media (max-width: 1150px) {
+    transform: translateY(-50px);
+  }
+`;
+export const ProfileBanner = styled.div`
   height: 140px;
   width: 100%;
   border-radius: 5px 5px 0 0;
@@ -51,6 +64,16 @@ export const ProfileBanner = styled.img`
     ${({ theme }) => theme.colors.commonColor},
     ${({ theme }) => theme.colors.secondaryColor}
   );
+  position: relative;
+
+  @media (max-width: 1150px) {
+    height: 100px;
+  }
+`;
+export const ProfileBannerImg = styled.img`
+  height: 140px;
+  width: 100%;
+  border-radius: 5px 5px 0 0;
 
   @media (max-width: 1150px) {
     height: 100px;
@@ -59,13 +82,11 @@ export const ProfileBanner = styled.img`
 export const UserPictureBox = styled.div`
   width: max-content;
   height: max-content;
-  margin: 20px;
-  margin-top: 0;
   padding: 5px;
   padding-bottom: 0;
   background: ${({ theme }) => theme.colors.boxColor};
-  transform: translateY(-50%);
   border-radius: 50%;
+  position: relative;
 `;
 export const UserPicture = styled.img`
   width: 110px;
@@ -77,25 +98,140 @@ export const UserPicture = styled.img`
     height: 90px;
   }
 `;
-export const MainDetails = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
 export const PerformanceDetails = styled.div`
   display: flex;
   flex-direction: column;
   width: 40%;
+  position: fixed;
+  right: 20px;
 
   @media (max-width: 1150px) {
     width: 100%;
+    position: relative;
+    right: unset;
   }
+`;
+export const PerformanceDetailsHeader = styled.div`
+  display: flex;
+`;
+export const PerformanceDetailsHeaderLabel = styled(paragraph)`
+  margin-left: 8px;
+  font-weight: bold;
 `;
 export const PerformanceDetailsBox = styled.div`
   width: width: calc(100% - 40px);
   margin: 20px;
-  background: ${({ theme }) => theme.colors.boxColor};
 `;
 export const WeeklyPerformanceSummary = styled.div`
   display: flex;
   flex-direction: column;
+`;
+export const AppearenceDetails = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 20px;
+`;
+export const MainDetails = styled.div`
+  margin: 25px;
+`;
+export const EditProfileButton = styled(Link)`
+  padding: 0 10px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  max-height: 40px;
+  color: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.boxColor};
+`;
+export const EditProfileButtonLabel = styled(paragraph)`
+  margin-right: 10px;
+`;
+export const UserName = styled(paragraph)`
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: ${({ theme }) => theme.colors.textColor};
+`;
+export const TeachingTypeLabel = styled(paragraph)`
+  font-size: 18px;
+  color: ${({ theme }) => theme.colors.textColor};
+`;
+export const SchoolGradeLabel = styled(paragraph)`
+  font-size: 18px;
+  color: ${({ theme }) => theme.colors.textColor};
+`;
+export const SocialDetails = styled.div`
+  margin: 20px;
+`;
+export const SocialDetailsList = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+export const SocialDetail = styled(Button)`
+  background: none;
+  box-shadow: none;
+  color: ${({ theme }) => theme.colors.textColor};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  position: relative;
+  z-index: 96;
+
+  &::before {
+    content: '';
+    background: ${({ theme }) => theme.colors.textColor};
+    width: 0%;
+    height: 3px;
+    position: absolute;
+    bottom: 0;
+    right: 25%;
+    border-radius: 5px;
+    transition: all 0.2s linear;
+  }
+
+  &.selected-detail::before {
+    left: 25%;
+    right: unset;
+    width: 50%;
+  }
+
+  @media (max-width: 900px) {
+    width: 50px;
+  }
+
+  @media (min-width: 900px) {
+    & span,
+    & i {
+      display: none;
+    }
+  }
+`;
+export const SocialDetailLabel = styled(paragraph)`
+  font-weight: bold;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
+`;
+export const SocialDetailIcon = styled(mediumIcon)``;
+export const EditImageButton = styled.button`
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: ${({ theme }) => theme.colors.boxColor};
+  color: ${({ theme }) => theme.colors.textColor};
+`;
+
+export const EditBannerButton = styled(EditImageButton)`
+  right: 5px;
+  top: 5px;
+`;
+export const EditPictureButton = styled(EditImageButton)`
+  right: 0px;
+  top: 5px;
 `;

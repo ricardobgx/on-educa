@@ -16,7 +16,7 @@ const DuelProgress = (props: IDuelProgressProps): JSX.Element => {
   const { answeredQuestionsNumber, questions } = props;
 
   return (
-    <Container>
+    <Container className="with-shadow bd-rd-5">
       <DuelProgressBar>
         <QuestionsProgressBar
           style={{

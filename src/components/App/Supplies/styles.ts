@@ -82,6 +82,7 @@ export const EditSuppliesLink = styled(Link)`
   color: ${({ theme }) => theme.colors.textColor};
   margin-bottom: 10px;
   min-height: 40px;
+  max-height: 40px;
   border-radius: 5px;
   box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border: none;
