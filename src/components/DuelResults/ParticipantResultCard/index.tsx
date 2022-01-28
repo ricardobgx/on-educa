@@ -22,7 +22,7 @@ const ParticipantResultCard = (props: IDuelParticipant): JSX.Element => {
     <ParticipantCardBox>
       <ParticipantInfo>
         <ParticipantDetails>
-          <ParticipantPicture src={profilePicture} />
+          <ParticipantPicture src={profilePicture.path} />
           <ParticipantDetailsBox>
             <ParticipantName>{name}</ParticipantName>
             <ParticipantSchoolGrade>

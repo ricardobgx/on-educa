@@ -92,6 +92,7 @@ export const UserPicture = styled.img`
   width: 110px;
   height: 110px;
   border-radius: 50%;
+  background: ${({ theme }) => theme.colors.textColor};
 
   @media (max-width: 1150px) {
     width: 90px;

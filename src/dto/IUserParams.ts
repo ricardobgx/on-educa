@@ -4,7 +4,7 @@ export interface IUserParams {
   name?: string;
   password?: string;
   isOnline?: boolean;
-  profilePicture?: string;
+  profilePictureId?: string;
   league?: string;
   userType?: string;
   schoolGradeId?: string;

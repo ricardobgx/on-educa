@@ -45,7 +45,7 @@ const ProfileCard = (props: IProfileCardProps): JSX.Element => {
   return (
     <Container>
       <UserInfo>
-        <UserPicture src={profilePicture} />
+        <UserPicture src={profilePicture.path} />
         <UserInfoBox>
           <UserName>{name}</UserName>
           <UserReference>

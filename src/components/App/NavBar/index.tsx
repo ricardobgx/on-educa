@@ -57,7 +57,7 @@ const NavBar = (): JSX.Element => {
       </Logo>
       <Actions style={{ right: menuRight }}>
         <Action to={`/profile/${id}`}>
-          <UserPhoto src={profilePicture} />
+          <UserPhoto src={profilePicture.path} />
           <IconLabel>Perfil</IconLabel>
         </Action>
         <Action to="/friends">

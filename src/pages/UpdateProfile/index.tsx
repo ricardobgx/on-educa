@@ -32,7 +32,7 @@ const UpdateProfile = (): JSX.Element => {
   const [newPassword, setNewPassword] = useState('');
 
   useEffect(() => {
-    setProfilePicture(user.profilePicture);
+    setProfilePicture(user.profilePicture.path);
     setName(user.name);
     if (!isStudent(userType)) {
       const teachingType = user.teachingType || DEFAULT_TEACHING_TYPE;

@@ -68,7 +68,7 @@ const UserCard = (props: IUserCardProps): JSX.Element => {
   return (
     <UserCardBox>
       <UserDetails>
-        <UserPicture src={profilePicture} />
+        <UserPicture src={profilePicture.path} />
         <PersonalInfo>
           <UserName>
             {abbreviateName

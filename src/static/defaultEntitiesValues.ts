@@ -17,12 +17,18 @@ import { IPracticeQuestion } from '../interfaces/IPracticeQuestion';
 import { IPractice } from '../interfaces/IPractice';
 import { IStudentWeekPerformance } from '../interfaces/IStudentWeekPerformance';
 import { IStudentWeekDayPerformance } from '../interfaces/IStudentWeekDayPerformance';
+import { IImage } from '../interfaces/IImage';
 
 export const DEFAULT_APLICATION: IAplication = {
   token: '',
   theme: 'light',
   userType: 'student',
   loadingAnimation: false,
+};
+
+export const DEFAULT_IMAGE: IImage = {
+  id: '',
+  path: '',
 };
 
 export const DEFAULT_TEACHING_TYPE: ITeachingType = {
@@ -41,7 +47,7 @@ export const DEFAULT_USER: IUser = {
   id: '',
   email: '',
   name: '',
-  profilePicture: '',
+  profilePicture: DEFAULT_IMAGE,
   league: '',
   isOnline: false,
   userType: 'student',

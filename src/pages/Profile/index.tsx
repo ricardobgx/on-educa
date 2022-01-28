@@ -5,8 +5,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
 import SectionLabel from '../../components/App/SectionLabel';
-import CustomReviews from '../../components/Profile/CustomReviews';
-import ProfileCard from '../../components/Profile/ProfileCard';
 import ProfileDailyGoal from '../../components/Profile/ProfileDailyGoal';
 import WeekPerformance from '../../components/Profile/WeekPerformance';
 import { findUserType, isUserLogged } from '../../functions/user';
@@ -53,6 +51,7 @@ import {
 import { IStudentWeekPerformance } from '../../interfaces/IStudentWeekPerformance';
 import { isDefaultUser } from '../../functions/entitiesValues';
 import { getStudentWeekPerformanceByStudent } from '../../functions/studentWeekPerformance';
+import UpdateProfilePicture from '../../components/Profile/UpdateProfilePicture';
 
 interface IProfileRouteProps {
   id: string;
@@ -62,7 +61,7 @@ const Profile = (): JSX.Element => {
   /* Global State */
 
   const { user: loggedUser, aplication } = useSelector((store: State) => store);
-  const { id: loggedUserId } = loggedUser;
+  const { id: loggedUserId, profilePicture: oldProfilePicture } = loggedUser;
   const { userType: loggedUserType, token } = aplication;
 
   /* Local State */
@@ -72,6 +71,9 @@ const Profile = (): JSX.Element => {
   const [socialDetailSelected, setSocialDetailSelected] = useState(0);
   const [studentWeekPerformance, setStudentWeekPerformance] =
     useState<IStudentWeekPerformance>(DEFAULT_STUDENT_WEEK_PERFORMANCE);
+  const [profilePicture, setProfilePicture] = useState(oldProfilePicture);
+  const [isUpdatingProfilePicture, setIsUpdatingProfilePicture] =
+    useState(false);
 
   /* Route params */
 
@@ -104,6 +106,16 @@ const Profile = (): JSX.Element => {
   return (
     <Page>
       <PageBox>
+        {isUpdatingProfilePicture && (
+          <UpdateProfilePicture
+            userType={loggedUserType}
+            userId={loggedUserId}
+            token={token}
+            profilePicture={profilePicture.path}
+            setProfilePicture={setProfilePicture}
+            setIsUpdatingProfilePicture={setIsUpdatingProfilePicture}
+          />
+        )}
         <ProfileBox>
           <ProfileDetails>
             <SectionLabel backLink="/home" label="Perfil" />
@@ -111,17 +123,24 @@ const Profile = (): JSX.Element => {
             <ProfileDetailsBox className="with-shadow bd-rd-5">
               <ProfileBanner>
                 <ProfileBannerImg src="https://timelinecovers.pro/facebook-cover/download/anime-your-name-starfall-facebook-cover.jpg" />
-                <EditBannerButton>
-                  <SmallMaterialIconRound color="" icon="mode_edit" />
-                </EditBannerButton>
+
+                {loggedUser.id === user.id && (
+                  <EditBannerButton>
+                    <SmallMaterialIconRound color="" icon="mode_edit" />
+                  </EditBannerButton>
+                )}
               </ProfileBanner>
               <UserDetails>
                 <AppearenceDetails>
                   <UserPictureBox>
-                    <EditPictureButton>
-                      <SmallMaterialIconRound color="" icon="mode_edit" />
-                    </EditPictureButton>
-                    <UserPicture src={user.profilePicture} />
+                    {loggedUser.id === user.id && (
+                      <EditPictureButton
+                        onClick={() => setIsUpdatingProfilePicture(true)}
+                      >
+                        <SmallMaterialIconRound color="" icon="mode_edit" />
+                      </EditPictureButton>
+                    )}
+                    <UserPicture src={user.profilePicture.path} />
                   </UserPictureBox>
 
                   <EditProfileButton
