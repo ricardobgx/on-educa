@@ -43,7 +43,7 @@ const Home = (): JSX.Element => {
   /* Local State */
 
   const [dailyGoal, setDailyGoal] = useState(50);
-  const [completedDailyGoal, setCompletedDailyGoal] = useState(10);
+  const [completedDailyGoal, setCompletedDailyGoal] = useState(20);
   const [editDailyGoal, setEditDailyGoal] = useState(false);
 
   useEffect(() => {

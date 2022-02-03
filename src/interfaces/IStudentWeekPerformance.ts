@@ -4,7 +4,7 @@ import { IStudentWeekDayPerformance } from './IStudentWeekDayPerformance';
 export interface IStudentWeekPerformance {
   id: string;
   xp: number;
-  student?: IStudent;
+  student: IStudent;
   weekDay: IStudentWeekDayPerformance;
   weekDays: IStudentWeekDayPerformance[];
   createdAt: string;

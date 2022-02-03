@@ -11,17 +11,13 @@ export const PageBox = styled.div`
   }
 `;
 export const MissionsList = styled.div`
-  background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
   color: ${({ theme }) => theme.colors.textColor};
-  margin: 20px;
-  padding: 15px;
+  margin: 15px;
 `;
 export const MissionsListBox = styled.div`
   width: 100%;
-  min-height: calc(100vh - 255px);
-  max-height: calc(100vh - 255px);
+  min-height: calc(100vh - 210px);
+  max-height: calc(100vh - 210px);
   overflow: auto;
   padding: 5px;
 `;

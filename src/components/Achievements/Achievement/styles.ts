@@ -3,9 +3,7 @@ import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const AchievementBox = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
   padding: 20px;
-  border-radius: 10px;
   display: flex;
   align-items: center;
   margin-bottom: 20px;

@@ -7,8 +7,8 @@ export const NewDuelSelectedContentsBox = styled.div`
   margin-top: 20px;
 `;
 export const NewDuelSelectedContentsList = styled.div`
-  min-height: 150px;
-  max-height: 150px;
+  min-height: 170px;
+  max-height: 170px;
   overflow: auto;
   padding: 5px;
 

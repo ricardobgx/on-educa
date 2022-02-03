@@ -53,7 +53,9 @@ export const deviceType = (): DeviceType => {
 
 export const displayDayAndMonthDate = (date: string): string => {
   const dateSections = date.split('/');
-  const dayAndMonth = `${dateSections[0]}/${dateSections[1]}`;
+  const dayAndMonth = `${Number(dateSections[0]) < 10 ? '0' : ''}${
+    dateSections[0]
+  }/${Number(dateSections[1]) < 10 ? '0' : ''}${dateSections[1]}`;
 
   return dayAndMonth;
 };

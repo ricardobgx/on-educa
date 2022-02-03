@@ -1,18 +1,21 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React from 'react';
+import { IStudentWeekPerformance } from '../../../interfaces/IStudentWeekPerformance';
 import { IUser } from '../../../interfaces/IUser';
 import UserCard from '../../App/UserCard';
 import { RankingPosition, RankingUserCardBox } from './styles';
 
-interface IRankingUserCardProps extends IUser {
+interface IRankingUserCardProps {
+  studentWeekPerformance: IStudentWeekPerformance;
   rankingPosition: number;
-  userType: string;
 }
 
 const RankingUserCard = (props: IRankingUserCardProps): JSX.Element => {
+  const { studentWeekPerformance, rankingPosition } = props;
+  const { student } = studentWeekPerformance;
+
   const {
-    rankingPosition,
     id,
     email,
     name,
@@ -22,7 +25,7 @@ const RankingUserCard = (props: IRankingUserCardProps): JSX.Element => {
     schoolGrade,
     teachingType,
     userType,
-  } = props;
+  } = student;
 
   const user: IUser = {
     id,

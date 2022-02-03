@@ -61,7 +61,7 @@ const UnityCard = (props: IUnityCardProps): JSX.Element => {
         </UnitySchoolGrade>
         <UnityAdditionalDetails>
           <UpdateDate>
-            <UpdateDateLabel>28/11/2021</UpdateDateLabel>
+            <UpdateDateLabel>30/01/2022</UpdateDateLabel>
             <UpdateDateIcon className="fas fa-clock" />
           </UpdateDate>
           <ContentsNumber>

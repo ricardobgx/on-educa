@@ -6,8 +6,9 @@ export const QuestionAlternativeBox = styled.button`
   background: ${({ theme }) => theme.colors.boxColor};
   color: ${({ theme }) => theme.colors.questionTextColor};
   box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  padding: 10px 20px;
+  padding: 10px 17px;
   margin-bottom: 20px;
+  border: 3px solid transparent;
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.2s linear;

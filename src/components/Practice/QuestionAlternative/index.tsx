@@ -16,7 +16,7 @@ const QuestionAlternative = (props: IQuestionAlternativeProps): JSX.Element => {
   return (
     <Container
       style={{
-        background: id === selectedAlternative ? theme.colors.textColor : '',
+        borderColor: id === selectedAlternative ? theme.colors.textColor : '',
         color: id === selectedAlternative ? theme.colors.boxColor : '',
       }}
       onClick={() => setSelectedAlternative(id)}

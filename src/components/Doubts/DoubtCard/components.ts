@@ -4,8 +4,6 @@ import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const DoubtBox = styled(Link)`
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
   margin-bottom: 20px;
   padding: 20px;
   display: flex;

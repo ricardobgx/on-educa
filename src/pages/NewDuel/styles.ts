@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { Button } from '../../global/styles/components/buttonComponents';
+import { LinkButton } from '../../global/styles/components/linkComponents';
 import { paragraph } from '../../global/styles/components/textComponents';
 
 export const PageBox = styled.div`
@@ -37,13 +39,7 @@ export const NewDuelActions = styled.div`
     flex-direction: column;
   }
 `;
-export const CancelNewDuelButton = styled(Link)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 40px;
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
+export const CancelNewDuelButton = styled(LinkButton)`
   color: ${({ theme }) => theme.colors.textColor};
   background: ${({ theme }) => theme.colors.boxColor};
   width: calc(50% - 20px);
@@ -54,18 +50,11 @@ export const CancelNewDuelButton = styled(Link)`
   }
 `;
 export const CancelNewDuelButtonLabel = styled(paragraph)``;
-export const CreateNewDuelButton = styled.button`
-  display: flex;
+export const CreateNewDuelButton = styled(Button)`
   justify-content: center;
-  align-items: center;
-  min-height: 40px;
   background: ${({ theme }) => theme.colors.textColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
-  border: none;
   color: ${({ theme }) => theme.colors.boxColor};
   width: calc(50% - 20px);
-  cursor: pointer;
 
   @media (max-width: 1150px) {
     width: 100%;

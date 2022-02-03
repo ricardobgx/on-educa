@@ -32,7 +32,7 @@ const DoubtCard = (props: IDoubtCardProps): JSX.Element => {
   const { data } = props;
 
   return (
-    <DoubtBox to="/contents/12345#doubt12345">
+    <DoubtBox to="/contents/12345#doubt12345" className="with-shadow bd-rd-5">
       <DoubtInfo>
         <DoubtInfoBox>
           <DoubtDescription>{data.title}</DoubtDescription>

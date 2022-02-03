@@ -30,7 +30,7 @@ const ProfileDailyGoal = (props: IProfileDailyGoalProps): JSX.Element => {
           <DailyGoalLabel>Meta diária</DailyGoalLabel>
         </DailyGoalHeaderBox>
         <DailyGoalInfo>
-          <DailyGoalValueLabel>300 XP</DailyGoalValueLabel>
+          <DailyGoalValueLabel>50 XP</DailyGoalValueLabel>
           {isUserLogged && (
             <EditDailyGoalValueButton>
               <EditDailyGoalValueIcon className="fas fa-pen" />
@@ -39,7 +39,7 @@ const ProfileDailyGoal = (props: IProfileDailyGoalProps): JSX.Element => {
         </DailyGoalInfo>
       </DailyGoalHeader>
       <DailyGoalProgress>
-        <ProgressBar now={dailyXP} max={300} />
+        <ProgressBar now={dailyXP} max={50} />
         <DailyGoalProgressLabel>XP</DailyGoalProgressLabel>
       </DailyGoalProgress>
     </Container>

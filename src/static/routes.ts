@@ -21,6 +21,7 @@ import PracticePerformance from '../pages/PracticePerformance';
 import Profile from '../pages/Profile';
 import Question from '../pages/Question';
 import Questions from '../pages/Questions';
+import Settings from '../pages/Settings';
 import Subjects from '../pages/Subjects';
 import Units from '../pages/Units';
 import UpdateProfile from '../pages/UpdateProfile';
@@ -36,6 +37,12 @@ const routes: IRoute[] = [
     path: '/home',
     name: 'Home',
     component: Home,
+    exact: true,
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: Settings,
     exact: true,
   },
   {

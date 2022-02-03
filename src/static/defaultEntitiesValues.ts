@@ -121,6 +121,7 @@ export const DEFAULT_STUDENT_WEEK_PERFORMANCE: IStudentWeekPerformance = {
   createdAt: '',
   weekDay: DEFAULT_STUDENT_WEEK_DAY_PERFORMANCE,
   weekDays: [],
+  student: { ...DEFAULT_USER, schoolGradeId: '' },
 };
 
 /* Duelos */

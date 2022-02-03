@@ -23,7 +23,7 @@ const NewDuelSettings = (props: INewDuelSettingsProps): JSX.Element => {
   } = props;
 
   return (
-    <NewDuelSettingsBox>
+    <NewDuelSettingsBox className="with-shadow bd-rd-5">
       <NewDuelSettingsLabel>Detalhes do duelo</NewDuelSettingsLabel>
       <NewDuelSetting
         label="Participantes por equipe"

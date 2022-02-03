@@ -20,6 +20,8 @@ const SuppliesSchoolGradeReference = (
   const { label, teachingType, selectedSchoolGrade, setSelectedSchoolGrade } =
     props;
 
+  console.log(selectedSchoolGrade.id);
+
   return (
     <SuppliesReferenceBox>
       <SuppliesReferenceBoxLabel label={label} />

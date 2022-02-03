@@ -21,7 +21,7 @@ export const SuppliesReferenceSelect = styled(inputSelect)`
   min-width: 300px;
   color: ${({ theme }) => theme.colors.boxColor};
   background: ${({ theme }) => theme.colors.textColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 5px;
   border: none;
   padding: 0 10px;

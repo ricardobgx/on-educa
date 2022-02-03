@@ -6,8 +6,8 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
+  border-radius: 5px;
   padding: 20px;
   margin-bottom: 20px;
   color: ${({ theme }) => theme.colors.textColor};
@@ -19,6 +19,7 @@ export const Container = styled.div`
 `;
 export const MissionIcon = styled(bigIcon)`
   margin-right: 20px;
+  font-size: 50px;
 `;
 export const MissionInfo = styled.div`
   display: flex;

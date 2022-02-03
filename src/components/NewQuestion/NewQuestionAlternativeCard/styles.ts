@@ -16,7 +16,7 @@ export const NewQuestionAlternativeDetails = styled.div`
   width: 100%;
   color: ${({ theme }) => theme.colors.textColor};
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 5px;
   min-height: 40px;
   margin-right: 10px;

@@ -17,20 +17,25 @@ export const PracticePerformanceBox = styled.div`
     flex-wrap: wrap;
   }
 `;
-export const PerformancePageImage = styled.img`
-  width: 50%;
+export const PerformancePageImageBox = styled.div`
+  width: calc(50vw - 40px);
   margin: 20px;
+  display: flex;
+  justify-content: center;
 
   @media (max-width: 1150px) {
     display: none;
   }
+`;
+export const PerformancePageImage = styled.img`
+  height: calc(100vh -220px);
 `;
 export const PerformanceDetails = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: calc(50vw - 40px);
   height: calc(100vh - 95px);
   max-height: calc(100vh - 95px);
 

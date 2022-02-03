@@ -145,6 +145,7 @@ export const EditProfileButton = styled(Link)`
   max-height: 40px;
   color: ${({ theme }) => theme.colors.textColor};
   background: ${({ theme }) => theme.colors.boxColor};
+  cursor: pointer;
 `;
 export const EditProfileButtonLabel = styled(paragraph)`
   margin-right: 10px;
@@ -164,7 +165,7 @@ export const SchoolGradeLabel = styled(paragraph)`
   color: ${({ theme }) => theme.colors.textColor};
 `;
 export const SocialDetails = styled.div`
-  margin: 20px;
+  margin: 20px 25px;
 `;
 export const SocialDetailsList = styled.div`
   display: flex;
@@ -177,7 +178,6 @@ export const SocialDetail = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 150px;
   position: relative;
   z-index: 96;
 
@@ -188,15 +188,15 @@ export const SocialDetail = styled(Button)`
     height: 3px;
     position: absolute;
     bottom: 0;
-    right: 25%;
+    right: 0%;
     border-radius: 5px;
     transition: all 0.2s linear;
   }
 
   &.selected-detail::before {
-    left: 25%;
+    left: 0%;
     right: unset;
-    width: 50%;
+    width: 100%;
   }
 
   @media (max-width: 900px) {
@@ -226,6 +226,7 @@ export const EditImageButton = styled.button`
   border: none;
   background: ${({ theme }) => theme.colors.boxColor};
   color: ${({ theme }) => theme.colors.textColor};
+  cursor: pointer;
 `;
 
 export const EditBannerButton = styled(EditImageButton)`

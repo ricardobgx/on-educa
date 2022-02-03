@@ -55,7 +55,7 @@ const ContentCard = (props: IContentCardProps): JSX.Element => {
         </ContentSchoolGrade>
         <ContentAdditionalDetails>
           <UpdateDate>
-            <UpdateDateLabel>28/11/2021</UpdateDateLabel>
+            <UpdateDateLabel>30/01/2022</UpdateDateLabel>
             <UpdateDateIcon className="fas fa-clock" />
           </UpdateDate>
           <ContentsNumber>

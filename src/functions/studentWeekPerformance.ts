@@ -4,6 +4,26 @@ import { IStudentWeekPerformance } from '../interfaces/IStudentWeekPerformance';
 
 const entityPath = 'studentWeekPerformances';
 
+export const getStudentWeekPerformances = async (
+  API: AxiosInstance,
+  token: string,
+  requestSucess: (studentWeekPerformances: IStudentWeekPerformance[]) => void,
+  requestError: () => void,
+): Promise<void> => {
+  await API.get(`/${entityPath}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then(
+    (response) => {
+      requestSucess(response.data);
+    },
+    () => {
+      requestError();
+    },
+  );
+};
+
 export const getStudentWeekPerformanceByStudent = async (
   API: AxiosInstance,
   studentId: string,

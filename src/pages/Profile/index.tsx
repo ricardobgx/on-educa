@@ -102,6 +102,7 @@ const Profile = (): JSX.Element => {
 
   const { weekDay } = studentWeekPerformance;
   const { dailyXP } = weekDay;
+  console.log(user);
 
   return (
     <Page>
@@ -122,13 +123,13 @@ const Profile = (): JSX.Element => {
 
             <ProfileDetailsBox className="with-shadow bd-rd-5">
               <ProfileBanner>
-                <ProfileBannerImg src="https://timelinecovers.pro/facebook-cover/download/anime-your-name-starfall-facebook-cover.jpg" />
+                {/* <ProfileBannerImg src="https://timelinecovers.pro/facebook-cover/download/anime-your-name-starfall-facebook-cover.jpg" /> */}
 
-                {loggedUser.id === user.id && (
+                {/* {loggedUser.id === user.id && (
                   <EditBannerButton>
                     <SmallMaterialIconRound color="" icon="mode_edit" />
                   </EditBannerButton>
-                )}
+                )} */}
               </ProfileBanner>
               <UserDetails>
                 <AppearenceDetails>
@@ -158,7 +159,10 @@ const Profile = (): JSX.Element => {
                   <UserName>{user.name}</UserName>
                   {user.userType === 'student' ? (
                     <SchoolGradeLabel>
-                      {user.schoolGrade.index} º ano
+                      {user.schoolGrade.index} º ano{' '}
+                      {user.schoolGrade.teachingType
+                        ? `- ${user.schoolGrade.teachingType.title}`
+                        : ''}
                     </SchoolGradeLabel>
                   ) : (
                     <TeachingTypeLabel>

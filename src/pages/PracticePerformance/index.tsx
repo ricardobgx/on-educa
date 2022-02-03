@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { useRouteMatch } from 'react-router-dom';
 import bookLover from '../../assets/ilustrations/undraw_book_lover_mkck.svg';
+import pieChart from '../../assets/ilustrations/pie_chart.svg';
+import analytics from '../../assets/ilustrations/analytics.png';
 import { IPracticeQuestion } from '../../interfaces/IPracticeQuestion';
 import { ActionCreators, State } from '../../store';
 import SectionLabel from '../../components/App/SectionLabel';
@@ -17,6 +19,7 @@ import {
   PerformanceDetails,
   PerformanceDetailsBox,
   PerformancePageImage,
+  PerformancePageImageBox,
   PerformanceType,
   PerformanceTypeBox,
   PracticePerformanceBox,
@@ -190,7 +193,9 @@ const PracticePerformance = (): JSX.Element => {
     <Page>
       <PageBox>
         <PracticePerformanceBox>
-          <PerformancePageImage src={bookLover} />
+          <PerformancePageImageBox>
+            <PerformancePageImage src={analytics} />
+          </PerformancePageImageBox>
           <PerformanceDetails>
             <SectionLabel backLink="" label="Desempenho" />
             <PerformanceDetailsBox className="with-shadow bd-rd-5">

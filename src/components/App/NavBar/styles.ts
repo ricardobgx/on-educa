@@ -62,8 +62,8 @@ export const UserPhoto = styled.img`
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  background: ${({ theme }) => theme.colors.textColor};
-  border: 2px solid ${({ theme }) => theme.colors.textColor};
+  /* border: 2px solid ${({ theme }) => theme.colors.hoverColor}; */
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   margin: 5px;
 
   @media (max-width: 600px) {

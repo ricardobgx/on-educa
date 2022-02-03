@@ -7,8 +7,6 @@ export const NewDuelSettingsBox = styled.div`
   align-items: center;
   justify-content: space-between;
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 10px;
   padding: 20px;
   width: calc(50% - 20px);
   min-height: calc(100vh - 285px);

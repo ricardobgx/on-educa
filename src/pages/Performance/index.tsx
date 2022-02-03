@@ -12,15 +12,24 @@ import { State } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import { PageBox, Ranking, UsersList, UsersListBox } from './styles';
 import WeekPerformance from '../../components/Performance/WeekPerformance';
+import { getStudentWeekPerformances } from '../../functions/studentWeekPerformance';
+import { IStudentWeekPerformance } from '../../interfaces/IStudentWeekPerformance';
 
 const Performance = (): JSX.Element => {
   const { aplication, user: loggedUser } = useSelector((store: State) => store);
   const { userType, token } = aplication;
 
-  const [users, setUsers] = useState<IUser[]>([]);
+  const [studentWeekPerformances, setStudentWeekPerformances] = useState<
+    IStudentWeekPerformance[]
+  >([]);
 
   useEffect(() => {
-    getUsers(OnEducaAPI, userType, setUsers, token);
+    getStudentWeekPerformances(
+      OnEducaAPI,
+      token,
+      setStudentWeekPerformances,
+      () => console.log('erro'),
+    );
   }, [loggedUser]);
 
   return (
@@ -31,11 +40,10 @@ const Performance = (): JSX.Element => {
           <SectionLabel backLink="" label="Ranking" />
           <UsersList>
             <UsersListBox>
-              {users.map((user, index) => (
+              {studentWeekPerformances.map((studentWeekPerformance, index) => (
                 <RankingUserCard
-                  key={user.id}
-                  {...user}
-                  userType={userType}
+                  key={studentWeekPerformance.id}
+                  studentWeekPerformance={studentWeekPerformance}
                   rankingPosition={index + 1}
                 />
               ))}

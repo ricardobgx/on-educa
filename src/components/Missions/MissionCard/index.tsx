@@ -12,7 +12,7 @@ import {
 } from './styles';
 
 const MissionCard = (props: IMission): JSX.Element => {
-  const { title, reward } = props;
+  const { title, reward, repetitions } = props;
 
   return (
     <Container>
@@ -23,7 +23,7 @@ const MissionCard = (props: IMission): JSX.Element => {
           <MissionReward>{reward} XP</MissionReward>
         </MissionInfoHeader>
         <MissionProgress>
-          <ProgressBar now={1} max={2} />
+          <ProgressBar now={0} max={repetitions} />
         </MissionProgress>
       </MissionInfo>
     </Container>

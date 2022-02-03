@@ -19,7 +19,7 @@ export const CancelCreateButton = styled(Link)`
   align-items: center;
   background: ${({ theme }) => theme.colors.boxColor};
   color: ${({ theme }) => theme.colors.textColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 5px;
   border: none;
   height: 40px;

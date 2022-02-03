@@ -33,7 +33,7 @@ export const NewQuestionButton = styled(Link)`
   align-items: center;
   height: 40px;
   background: ${({ theme }) => theme.colors.textColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   color: ${({ theme }) => theme.colors.boxColor};
   border: none;
   border-radius: 5px;
@@ -68,7 +68,7 @@ export const SearchQuestionsInputBox = styled.div`
   align-items: center;
   width: 100%;
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 5px;
   padding: 0 10px;
   margin-right: 20px;
@@ -97,7 +97,7 @@ export const ClearSearchQuestionsInputButtonIcon = styled(smallIcon)``;
 export const SearchQuestionsButton = styled.button`
   min-width: 40px;
   background: ${({ theme }) => theme.colors.textColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   color: ${({ theme }) => theme.colors.boxColor};
   border: none;
   border-radius: 5px;
@@ -109,7 +109,7 @@ export const QuestionsFiltersButton = styled.button`
   align-items: center;
   min-height: 40px;
   background: ${({ theme }) => theme.colors.textColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   color: ${({ theme }) => theme.colors.boxColor};
   border: none;
   border-radius: 5px;

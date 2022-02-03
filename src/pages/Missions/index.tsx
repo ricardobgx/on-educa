@@ -10,7 +10,21 @@ import { PageBox, MissionsList, MissionsListBox } from './styles';
 const missions: IMission[] = [
   {
     id: '1',
-    title: 'Vença dois duelos',
+    title: 'Estude 2 conteúdos',
+    relatedActivity: 'duel',
+    repetitions: 2,
+    requirements: [
+      {
+        id: '1',
+        missionId: '1',
+        description: 'win',
+      },
+    ],
+    reward: 30,
+  },
+  {
+    id: '2',
+    title: 'Participe de 2 duelos',
     relatedActivity: 'duel',
     repetitions: 2,
     requirements: [
@@ -23,10 +37,10 @@ const missions: IMission[] = [
     reward: 50,
   },
   {
-    id: '1',
-    title: 'Vença dois duelos',
+    id: '3',
+    title: 'Vença 1 duelo',
     relatedActivity: 'duel',
-    repetitions: 2,
+    repetitions: 1,
     requirements: [
       {
         id: '1',
@@ -37,10 +51,10 @@ const missions: IMission[] = [
     reward: 50,
   },
   {
-    id: '1',
-    title: 'Vença dois duelos',
+    id: '4',
+    title: 'Pratique 3 conteúdos',
     relatedActivity: 'duel',
-    repetitions: 2,
+    repetitions: 3,
     requirements: [
       {
         id: '1',
@@ -48,21 +62,7 @@ const missions: IMission[] = [
         description: 'win',
       },
     ],
-    reward: 50,
-  },
-  {
-    id: '1',
-    title: 'Vença dois duelos',
-    relatedActivity: 'duel',
-    repetitions: 2,
-    requirements: [
-      {
-        id: '1',
-        missionId: '1',
-        description: 'win',
-      },
-    ],
-    reward: 50,
+    reward: 80,
   },
   {
     id: '1',

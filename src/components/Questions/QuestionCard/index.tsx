@@ -70,7 +70,7 @@ const QuestionCard = (props: IQuestionCardProps): JSX.Element => {
         </QuestionUnity>
         <QuestionAdditionalDetails>
           <UpdateDate>
-            <UpdateDateLabel>28/11/2021</UpdateDateLabel>
+            <UpdateDateLabel>30/01/2022</UpdateDateLabel>
             <UpdateDateIcon className="fas fa-clock" />
           </UpdateDate>
           <QuestionsNumber>

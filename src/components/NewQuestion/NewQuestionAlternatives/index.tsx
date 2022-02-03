@@ -54,7 +54,7 @@ const NewQuestionAlternatives = (
   };
 
   return (
-    <NewQuestionAlternativesBox>
+    <NewQuestionAlternativesBox className="with-shadow bd-rd-5">
       <NewQuestionBoxLabel>
         Alternativas<RequiredField>*</RequiredField>
       </NewQuestionBoxLabel>

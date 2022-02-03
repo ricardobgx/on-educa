@@ -68,7 +68,7 @@ const NavBar = (): JSX.Element => {
           <NavBarIcon className="fas fa-bell" />
           <IconLabel>Notificações</IconLabel>
         </Action>
-        <Action to="/config">
+        <Action to="/settings">
           <NavBarIcon className="fas fa-cog" />
           <IconLabel>Configurações</IconLabel>
         </Action>

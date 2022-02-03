@@ -17,7 +17,7 @@ const NewQuestionDescription = (
   const { description, setDescription } = props;
 
   return (
-    <NewQuestionDescriptionBox>
+    <NewQuestionDescriptionBox className="with-shadow bd-rd-5">
       <NewQuestionBoxLabel>
         Descrição<RequiredField>*</RequiredField>
       </NewQuestionBoxLabel>

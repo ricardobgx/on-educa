@@ -8,7 +8,7 @@ export const getSchoolGrades = async (
   setSchoolGradesState: (schoolGrades: ISchoolGrade[]) => void,
   token: string,
 ): Promise<void> => {
-  await API.get(`/${entityPath}`, {
+  await API.get(`${entityPath}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -23,7 +23,7 @@ export const getSchoolGradesByTeachingType = async (
   setSchoolGradesState: (schoolGrades: ISchoolGrade[]) => void,
   token: string,
 ): Promise<void> => {
-  await API.get(`/${entityPath}/teachingtype/${teachingTypeId}`, {
+  await API.get(`${entityPath}/teachingtype/${teachingTypeId}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -39,7 +39,7 @@ export const getSchoolGrade = async (
   id: string,
   setSchoolGradeState: (schoolGrade: ISchoolGrade) => void,
 ): Promise<void> => {
-  await API.get(`/${entityPath}/${id}`).then((response) => {
+  await API.get(`${entityPath}/${id}`).then((response) => {
     setSchoolGradeState(response.data);
   });
 };

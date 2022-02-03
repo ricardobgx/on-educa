@@ -90,6 +90,8 @@ const NewContent = (): JSX.Element => {
     );
   };
 
+  console.log(schoolGrade.id);
+
   return (
     <Page>
       <PageBox>
