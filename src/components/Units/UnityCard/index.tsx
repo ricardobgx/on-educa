@@ -38,7 +38,7 @@ const UnityCard = (props: IUnityCardProps): JSX.Element => {
     setUpdateUnityIsVisible,
     setDeleteUnityIsVisible,
   } = props;
-  const { id, title, contents } = unity;
+  const { id, name, contents } = unity;
 
   const dispatch = useDispatch();
 
@@ -52,12 +52,12 @@ const UnityCard = (props: IUnityCardProps): JSX.Element => {
     <UnityCardBox style={{ animationDelay: `${index * 0.2}s` }}>
       <UnityCardDetails to={`/units/${id}`} onClick={() => loadUnity(unity)}>
         <UnityDetails>
-          <UnityTitle>{title}</UnityTitle>
+          <UnityTitle>{name}</UnityTitle>
           <SubjectLabel>Disciplina: {subject.name}</SubjectLabel>
         </UnityDetails>
         <UnitySchoolGrade>
           <SchoolGradeLabel>Série: {schoolGrade.index}º ano</SchoolGradeLabel>
-          <TeachingTypeLabel>Nível: {teachingType.title}</TeachingTypeLabel>
+          <TeachingTypeLabel>Nível: {teachingType.name}</TeachingTypeLabel>
         </UnitySchoolGrade>
         <UnityAdditionalDetails>
           <UpdateDate>

@@ -58,7 +58,7 @@ export const Actions = styled.div`
   }
 `;
 
-export const UserPhoto = styled.img`
+export const PeoplePhoto = styled.img`
   width: 35px;
   height: 35px;
   border-radius: 50%;
@@ -71,7 +71,7 @@ export const UserPhoto = styled.img`
   }
 `;
 
-export const UserName = styled(paragraph)`
+export const PeopleName = styled(paragraph)`
   display: none;
 
   @media (max-width: 600px) {

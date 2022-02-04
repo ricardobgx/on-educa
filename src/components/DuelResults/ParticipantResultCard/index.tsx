@@ -12,7 +12,8 @@ import {
 } from './styles';
 
 const ParticipantResultCard = (props: IDuelParticipant): JSX.Element => {
-  const { name, profilePicture, schoolGradeId } = props;
+  const { people, schoolGrade } = props;
+  const { name, profilePicture } = people;
 
   const leagueColor = (): string => {
     return '#43DDF2';
@@ -26,7 +27,7 @@ const ParticipantResultCard = (props: IDuelParticipant): JSX.Element => {
           <ParticipantDetailsBox>
             <ParticipantName>{name}</ParticipantName>
             <ParticipantSchoolGrade>
-              {schoolGradeId}º ano
+              {schoolGrade.index}º ano
             </ParticipantSchoolGrade>
           </ParticipantDetailsBox>
         </ParticipantDetails>

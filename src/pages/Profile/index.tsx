@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-console */
 
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -7,11 +8,18 @@ import { useRouteMatch } from 'react-router-dom';
 import SectionLabel from '../../components/App/SectionLabel';
 import ProfileDailyGoal from '../../components/Profile/ProfileDailyGoal';
 import WeekPerformance from '../../components/Profile/WeekPerformance';
-import { findUserType, isUserLogged } from '../../functions/user';
-import { IUser } from '../../interfaces/IUser';
+import {
+  getPeople,
+  isPeopleLogged,
+  setUpPeopleType,
+} from '../../functions/people';
+import { IPeople } from '../../interfaces/IPeople';
 import OnEducaAPI from '../../services/api';
 import {
+  DEFAULT_IMAGE,
+  DEFAULT_STUDENT,
   DEFAULT_STUDENT_WEEK_PERFORMANCE,
+  DEFAULT_TEACHER,
   DEFAULT_USER,
 } from '../../static/defaultEntitiesValues';
 import { State } from '../../store';
@@ -27,12 +35,12 @@ import {
   ProfileBox,
   ProfileDetails,
   ProfileDetailsBox,
-  UserPicture,
-  UserPictureBox,
+  PeoplePicture,
+  PeoplePictureBox,
   WeeklyPerformanceSummary,
   MainDetails,
-  UserName,
-  UserDetails,
+  PeopleName,
+  PeopleDetails,
   SchoolGradeLabel,
   TeachingTypeLabel,
   SocialDetails,
@@ -41,17 +49,16 @@ import {
   SocialDetailLabel,
   SocialDetailIcon,
   EditPictureButton,
-  ProfileBannerImg,
-  EditBannerButton,
 } from './styles';
 import {
   MediumMaterialIconRound,
   SmallMaterialIconRound,
 } from '../../components/App/Icons/MaterialIcons/MaterialIconsRound';
 import { IStudentWeekPerformance } from '../../interfaces/IStudentWeekPerformance';
-import { isDefaultUser } from '../../functions/entitiesValues';
+import { isDefaultPeople } from '../../functions/entitiesValues';
 import { getStudentWeekPerformanceByStudent } from '../../functions/studentWeekPerformance';
 import UpdateProfilePicture from '../../components/Profile/UpdateProfilePicture';
+import { IImage } from '../../interfaces/IImage';
 
 interface IProfileRouteProps {
   id: string;
@@ -60,60 +67,81 @@ interface IProfileRouteProps {
 const Profile = (): JSX.Element => {
   /* Global State */
 
-  const { user: loggedUser, aplication } = useSelector((store: State) => store);
-  const { id: loggedUserId, profilePicture: oldProfilePicture } = loggedUser;
-  const { userType: loggedUserType, token } = aplication;
+  const {
+    people: loggedPeople,
+    student: loggedStudent,
+    teacher: loggedTeacher,
+    aplication,
+  } = useSelector((store: State) => store);
+
+  const { token } = aplication;
+
+  const [student, setStudent] = useState(DEFAULT_STUDENT);
+  const [teacher, setTeacher] = useState(DEFAULT_TEACHER);
 
   /* Local State */
 
-  const [user, setUser] = useState<IUser>(DEFAULT_USER);
-  const [userType, setUserType] = useState(loggedUserType);
+  const [people, setPeople] = useState<IPeople>(DEFAULT_USER);
+
   const [socialDetailSelected, setSocialDetailSelected] = useState(0);
+
   const [studentWeekPerformance, setStudentWeekPerformance] =
     useState<IStudentWeekPerformance>(DEFAULT_STUDENT_WEEK_PERFORMANCE);
-  const [profilePicture, setProfilePicture] = useState(oldProfilePicture);
+
+  const [profilePicture, setProfilePicture] = useState<IImage>(DEFAULT_IMAGE);
   const [isUpdatingProfilePicture, setIsUpdatingProfilePicture] =
     useState(false);
+
+  const getPeopleSucess = (peopleFound: IPeople): void => {
+    setPeople(peopleFound);
+    setUpPeopleType(
+      OnEducaAPI,
+      peopleFound.id,
+      peopleFound.isStudent,
+      token,
+      setStudent,
+      setTeacher,
+    );
+    setProfilePicture(people.profilePicture);
+  };
 
   /* Route params */
 
   const route = useRouteMatch();
   const { id } = route.params as IProfileRouteProps;
 
-  /* Functions */
-
-  const findProfileUserType = async (): Promise<void> => {
-    await findUserType(OnEducaAPI, id, setUser, setUserType, token);
-  };
-
   useEffect(() => {
-    if (!isUserLogged(loggedUserId, id)) findProfileUserType();
-    else setUser(loggedUser);
-    if (!isDefaultUser(loggedUser)) {
+    if (isDefaultPeople(people)) {
+      if (!isPeopleLogged(loggedPeople.id, id))
+        getPeople(OnEducaAPI, id, getPeopleSucess, token);
+      else {
+        setPeople(loggedPeople);
+        setStudent(loggedStudent);
+        setTeacher(loggedTeacher);
+        setProfilePicture(loggedPeople.profilePicture);
+      }
+    } else if (people.isStudent) {
       getStudentWeekPerformanceByStudent(
         OnEducaAPI,
-        loggedUser.id,
+        student.id,
         token,
         setStudentWeekPerformance,
         () => console.log('erro'),
       );
     }
-  }, [id, loggedUser]);
+  }, [id, loggedPeople, people]);
 
   const { weekDay } = studentWeekPerformance;
-  const { dailyXP } = weekDay;
-  console.log(user);
+  const { dailyXp } = weekDay;
 
   return (
     <Page>
       <PageBox>
         {isUpdatingProfilePicture && (
           <UpdateProfilePicture
-            userType={loggedUserType}
-            userId={loggedUserId}
+            peopleId={people.id}
             token={token}
             profilePicture={profilePicture.path}
-            setProfilePicture={setProfilePicture}
             setIsUpdatingProfilePicture={setIsUpdatingProfilePicture}
           />
         )}
@@ -125,24 +153,24 @@ const Profile = (): JSX.Element => {
               <ProfileBanner>
                 {/* <ProfileBannerImg src="https://timelinecovers.pro/facebook-cover/download/anime-your-name-starfall-facebook-cover.jpg" /> */}
 
-                {/* {loggedUser.id === user.id && (
+                {/* {loggedPeople.id === people.id && (
                   <EditBannerButton>
                     <SmallMaterialIconRound color="" icon="mode_edit" />
                   </EditBannerButton>
                 )} */}
               </ProfileBanner>
-              <UserDetails>
+              <PeopleDetails>
                 <AppearenceDetails>
-                  <UserPictureBox>
-                    {loggedUser.id === user.id && (
+                  <PeoplePictureBox>
+                    {loggedPeople.id === people.id && (
                       <EditPictureButton
                         onClick={() => setIsUpdatingProfilePicture(true)}
                       >
                         <SmallMaterialIconRound color="" icon="mode_edit" />
                       </EditPictureButton>
                     )}
-                    <UserPicture src={user.profilePicture.path} />
-                  </UserPictureBox>
+                    <PeoplePicture src={people.profilePicture.path} />
+                  </PeoplePictureBox>
 
                   <EditProfileButton
                     to="/update-profile"
@@ -156,17 +184,17 @@ const Profile = (): JSX.Element => {
                 </AppearenceDetails>
 
                 <MainDetails>
-                  <UserName>{user.name}</UserName>
-                  {user.userType === 'student' ? (
+                  <PeopleName>{people.name}</PeopleName>
+                  {people.isStudent ? (
                     <SchoolGradeLabel>
-                      {user.schoolGrade.index} º ano{' '}
-                      {user.schoolGrade.teachingType
-                        ? `- ${user.schoolGrade.teachingType.title}`
+                      {student.schoolGrade.index} º ano{' '}
+                      {student.schoolGrade.teachingType
+                        ? `- ${student.schoolGrade.teachingType.name}`
                         : ''}
                     </SchoolGradeLabel>
                   ) : (
                     <TeachingTypeLabel>
-                      {user.teachingType.title}
+                      {teacher.teachingType.name}
                     </TeachingTypeLabel>
                   )}
                 </MainDetails>
@@ -210,7 +238,7 @@ const Profile = (): JSX.Element => {
                     </SocialDetail>
                   </SocialDetailsList>
                 </SocialDetails>
-              </UserDetails>
+              </PeopleDetails>
             </ProfileDetailsBox>
           </ProfileDetails>
           <PerformanceDetails>
@@ -218,11 +246,17 @@ const Profile = (): JSX.Element => {
             <PerformanceDetailsBox>
               <WeeklyPerformanceSummary>
                 <ProfileDailyGoal
-                  dailyXP={dailyXP}
-                  isUserLogged={isUserLogged(loggedUserId, user.id as string)}
+                  dailyXP={dailyXp}
+                  isPeopleLogged={isPeopleLogged(
+                    loggedPeople.id,
+                    people.id as string,
+                  )}
                 />
                 <WeekPerformance
-                  isUserLogged={isUserLogged(loggedUserId, user.id as string)}
+                  isPeopleLogged={isPeopleLogged(
+                    loggedPeople.id,
+                    people.id as string,
+                  )}
                 />
               </WeeklyPerformanceSummary>
             </PerformanceDetailsBox>

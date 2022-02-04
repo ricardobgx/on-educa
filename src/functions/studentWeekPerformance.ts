@@ -2,7 +2,7 @@ import { AxiosInstance } from 'axios';
 import { IUpdateStudentWeekPerformanceValuesParams } from '../dto/IUpdateStudentWeekPerformanceValues';
 import { IStudentWeekPerformance } from '../interfaces/IStudentWeekPerformance';
 
-const entityPath = 'studentWeekPerformances';
+const entityPath = 'studentWeeklyPerformances';
 
 export const getStudentWeekPerformances = async (
   API: AxiosInstance,

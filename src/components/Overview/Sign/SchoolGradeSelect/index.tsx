@@ -22,7 +22,7 @@ const SchoolGradeSelect = (props: ISchoolGradeSelectProps): JSX.Element => {
       {teachingTypes.map((teachingType) => {
         return teachingType.schoolGrades.map((schoolGrade) => (
           <TeachSchoolOption key={schoolGrade.id} value={schoolGrade.id}>
-            {schoolGrade.index}º ano - {teachingType.title}
+            {schoolGrade.index}º ano - {teachingType.name}
           </TeachSchoolOption>
         ));
       })}

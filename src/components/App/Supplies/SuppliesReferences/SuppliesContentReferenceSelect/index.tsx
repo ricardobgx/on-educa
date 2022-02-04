@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-console */
 
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -10,10 +12,7 @@ import {
 import { IContent } from '../../../../../interfaces/IContent';
 import { IUnity } from '../../../../../interfaces/IUnity';
 import OnEducaAPI from '../../../../../services/api';
-import {
-  DEFAULT_CONTENT,
-  DEFAULT_UNITY,
-} from '../../../../../static/defaultEntitiesValues';
+import { DEFAULT_CONTENT } from '../../../../../static/defaultEntitiesValues';
 import { State } from '../../../../../store';
 import {
   SuppliesReferenceSelectOption,
@@ -85,7 +84,7 @@ const SuppliesContentReferenceSelect = (
     >
       {contents.map((content) => (
         <SuppliesReferenceSelectOption key={content.id} value={content.id}>
-          {content.title}
+          {content.name}
         </SuppliesReferenceSelectOption>
       ))}
     </SuppliesReferenceSelect>

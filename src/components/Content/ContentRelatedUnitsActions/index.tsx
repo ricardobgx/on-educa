@@ -1,5 +1,4 @@
 import React from 'react';
-import { isStudent } from '../../../functions/user';
 import { ISchoolGrade } from '../../../interfaces/ISchoolGrade';
 import { ISubject } from '../../../interfaces/ISubject';
 import { IUnity } from '../../../interfaces/IUnity';
@@ -12,7 +11,7 @@ import {
 } from './styles';
 
 interface IContentRelatedUnitsActionsProps {
-  userType: string;
+  isStudent: boolean;
   subject: ISubject;
   schoolGrade: ISchoolGrade;
   units: IUnity[];
@@ -22,7 +21,7 @@ interface IContentRelatedUnitsActionsProps {
 const ContentRelatedUnitsActions = (
   props: IContentRelatedUnitsActionsProps,
 ): JSX.Element => {
-  const { userType, subject, schoolGrade, units, contentId } = props;
+  const { isStudent, subject, schoolGrade, units, contentId } = props;
 
   return (
     <ContentRelatedUnitsActionsBox>
@@ -34,7 +33,7 @@ const ContentRelatedUnitsActions = (
         <ContentRelatedUnitsList units={units} />
       </ContentsRelated>
 
-      {isStudent(userType) && <ContentPracticeButton contentId={contentId} />}
+      {isStudent && <ContentPracticeButton contentId={contentId} />}
     </ContentRelatedUnitsActionsBox>
   );
 };

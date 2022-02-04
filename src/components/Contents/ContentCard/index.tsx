@@ -31,7 +31,7 @@ interface IContentCardProps {
 
 const ContentCard = (props: IContentCardProps): JSX.Element => {
   const { content, setContent, setDeleteContentIsVisible } = props;
-  const { id, title, questions } = content;
+  const { id, name, questions } = content;
 
   const dispatch = useDispatch();
 
@@ -46,8 +46,8 @@ const ContentCard = (props: IContentCardProps): JSX.Element => {
         onClick={() => loadContent(content)}
       >
         <ContentDetails>
-          <ContentTitle>{reduceTextSize(title, 40)}</ContentTitle>
-          <SubjectLabel>Unidade: {unity.title}</SubjectLabel>
+          <ContentTitle>{reduceTextSize(name, 40)}</ContentTitle>
+          <SubjectLabel>Unidade: {unity.name}</SubjectLabel>
         </ContentDetails>
         <ContentSchoolGrade>
           <SchoolGradeLabel>Série: {schoolGrade.index}º ano</SchoolGradeLabel>

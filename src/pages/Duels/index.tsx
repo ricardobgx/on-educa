@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-console */
+
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import SectionLabel from '../../components/App/SectionLabel';
@@ -13,7 +16,7 @@ import { PageBox, DuelsBox, DuelsList, DuelsListBox } from './styles';
 const Duels = (): JSX.Element => {
   /* Estado da aplicacao */
 
-  const { aplication, user } = useSelector((store: State) => store);
+  const { aplication, people } = useSelector((store: State) => store);
   const { token } = aplication;
 
   /* Estado do componente */
@@ -33,7 +36,7 @@ const Duels = (): JSX.Element => {
           <DuelsList>
             <DuelsListBox>
               {duels.map((duel) => (
-                <DuelCard key={duel.id} duelId={duel.id} student={user} />
+                <DuelCard key={duel.id} duelId={duel.id} student={people} />
               ))}
             </DuelsListBox>
           </DuelsList>

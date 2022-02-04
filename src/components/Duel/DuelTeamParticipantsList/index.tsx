@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React from 'react';
-import { isDefaultUser } from '../../../functions/entitiesValues';
+import { isDefaultStudent } from '../../../functions/entitiesValues';
 import { IDuelTeam } from '../../../interfaces/IDuelTeam';
 import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
 import { IDuelStudentInfoComponentsProps } from '../../../pages/Duel';
-import { DEFAULT_USER } from '../../../static/defaultEntitiesValues';
+import { DEFAULT_STUDENT } from '../../../static/defaultEntitiesValues';
 import ChangeDuelTeamPosition from '../ChangeDuelTeamPosition';
 import DuelTeamParticipantCard from '../DuelTeamParticipantCard';
 import { DuelTeamParticipantsListBox } from './styles';
@@ -18,7 +18,7 @@ interface IDuelTeamParticipantsList extends IDuelStudentInfoComponentsProps {
 const DuelTeamParticipantsList = (
   props: IDuelTeamParticipantsList,
 ): JSX.Element => {
-  const { duelOwner, loggedUser, team, studentParticipation, refreshDuel } =
+  const { duelOwner, loggedPeople, team, studentParticipation, refreshDuel } =
     props;
 
   const sortParticipations = (
@@ -34,8 +34,8 @@ const DuelTeamParticipantsList = (
   return (
     <DuelTeamParticipantsListBox>
       {participations.map((participation) => {
-        const student = participation.student || DEFAULT_USER;
-        return !isDefaultUser(student) ? (
+        const student = participation.student || DEFAULT_STUDENT;
+        return !isDefaultStudent(student) ? (
           <DuelTeamParticipantCard
             key={participation.id}
             ownerId={duelOwner.id}
@@ -46,7 +46,7 @@ const DuelTeamParticipantsList = (
           <ChangeDuelTeamPosition
             key={participation.id}
             duelTeamPartId={participation.id}
-            studentId={loggedUser.id}
+            studentId={loggedPeople.id}
             studentParticipation={studentParticipation}
             refreshDuel={refreshDuel}
           />

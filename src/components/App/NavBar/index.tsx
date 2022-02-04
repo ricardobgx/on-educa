@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { clearUserVariables } from '../../../functions/user';
+import { clearPeopleVariables } from '../../../functions/people';
 import { ActionCreators, State } from '../../../store';
 
 import {
@@ -10,7 +10,7 @@ import {
   LogoBall,
   Title,
   Actions,
-  UserPhoto,
+  PeoplePhoto,
   Action,
   NavBarIcon,
   IconLabel,
@@ -21,18 +21,18 @@ import {
 const NavBar = (): JSX.Element => {
   /* Global State */
 
-  const { user } = useSelector((store: State) => store);
-  const { id, profilePicture } = user;
+  const { people } = useSelector((store: State) => store);
+  const { id, profilePicture } = people;
 
   const dispatch = useDispatch();
-  const { logoutUser, loadToken, loadUserType } = bindActionCreators(
+  const { logoutPeople, loadToken } = bindActionCreators(
     ActionCreators,
     dispatch,
   );
 
   const logout = (): void => {
-    clearUserVariables();
-    logoutUser();
+    clearPeopleVariables();
+    logoutPeople();
     loadToken('');
   };
 
@@ -57,7 +57,7 @@ const NavBar = (): JSX.Element => {
       </Logo>
       <Actions style={{ right: menuRight }}>
         <Action to={`/profile/${id}`}>
-          <UserPhoto src={profilePicture.path} />
+          <PeoplePhoto src={profilePicture.path} />
           <IconLabel>Perfil</IconLabel>
         </Action>
         <Action to="/friends">

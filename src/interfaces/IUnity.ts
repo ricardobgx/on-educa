@@ -2,6 +2,6 @@ import { IContent } from './IContent';
 
 export interface IUnity {
   id: string;
-  title: string;
+  name: string;
   contents: IContent[];
 }

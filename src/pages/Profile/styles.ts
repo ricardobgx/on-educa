@@ -46,7 +46,7 @@ export const ProfileDetailsBox = styled.div`
     max-height: unset;
   }
 `;
-export const UserDetails = styled.div`
+export const PeopleDetails = styled.div`
   display: flex;
   flex-direction: column;
   transform: translateY(-60px);
@@ -79,7 +79,7 @@ export const ProfileBannerImg = styled.img`
     height: 100px;
   }
 `;
-export const UserPictureBox = styled.div`
+export const PeoplePictureBox = styled.div`
   width: max-content;
   height: max-content;
   padding: 5px;
@@ -88,7 +88,7 @@ export const UserPictureBox = styled.div`
   border-radius: 50%;
   position: relative;
 `;
-export const UserPicture = styled.img`
+export const PeoplePicture = styled.img`
   width: 110px;
   height: 110px;
   border-radius: 50%;
@@ -150,7 +150,7 @@ export const EditProfileButton = styled(Link)`
 export const EditProfileButtonLabel = styled(paragraph)`
   margin-right: 10px;
 `;
-export const UserName = styled(paragraph)`
+export const PeopleName = styled(paragraph)`
   margin-bottom: 10px;
   font-size: 20px;
   font-weight: bold;

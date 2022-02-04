@@ -8,11 +8,13 @@ import schoolGradeReducer from './schoolGrade';
 import subjectReducer from './subject';
 import teachingTypeReducer from './teachingType';
 import unityReducer from './unity';
-import userReducer from './user';
+import peopleReducer from './people';
+import studentReducer from './student';
+import teacherReducer from './teacher';
 
 const reducers = combineReducers({
   aplication: aplicationReducer,
-  user: userReducer,
+  people: peopleReducer,
   content: contentReducer,
   question: questionReducer,
   practice: practiceReducer,
@@ -21,6 +23,8 @@ const reducers = combineReducers({
   schoolGrade: schoolGradeReducer,
   subject: subjectReducer,
   unity: unityReducer,
+  student: studentReducer,
+  teacher: teacherReducer,
 });
 
 export default reducers;

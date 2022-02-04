@@ -1,6 +1,6 @@
 export interface IAplication {
   token: string;
-  theme: string;
-  userType: string;
+  theme: number;
+  isStudent: boolean;
   loadingAnimation: boolean;
 }

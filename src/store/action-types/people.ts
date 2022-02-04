@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 
-export enum UserActionType {
+export enum PeopleActionType {
   LOGIN = 'login',
   LOGOUT = 'logout',
 }

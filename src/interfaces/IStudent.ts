@@ -1,5 +1,8 @@
-import { IUser } from './IUser';
+import { IPeople } from './IPeople';
+import { ISchoolGrade } from './ISchoolGrade';
 
-export interface IStudent extends IUser {
-  schoolGradeId: string;
+export interface IStudent {
+  id: string;
+  people: IPeople;
+  schoolGrade: ISchoolGrade;
 }

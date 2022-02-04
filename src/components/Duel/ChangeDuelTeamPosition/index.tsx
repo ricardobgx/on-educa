@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-console */
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { changeDuelTeamPosition } from '../../../functions/duelTeamParts';
@@ -27,8 +30,6 @@ const ChangeDuelTeamPosition = (
     props;
 
   const changePosition = async (): Promise<void> => {
-    console.log(studentParticipation.id);
-    console.log(duelTeamPartId);
     await changeDuelTeamPosition(
       OnEducaAPI,
       {

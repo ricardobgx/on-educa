@@ -9,7 +9,7 @@ import {
 import { participateInDuel } from '../../../functions/duelTeamParts';
 import { IDuel } from '../../../interfaces/IDuel';
 import { IDuelTeam } from '../../../interfaces/IDuelTeam';
-import { IUser } from '../../../interfaces/IUser';
+import { IPeople } from '../../../interfaces/IPeople';
 import OnEducaAPI from '../../../services/api';
 import { DEFAULT_DUEL } from '../../../static/defaultEntitiesValues';
 import { State } from '../../../store';
@@ -33,7 +33,7 @@ import {
 
 interface IDuelCardProps {
   duelId: string;
-  student: IUser;
+  student: IPeople;
 }
 
 const DuelCard = (props: IDuelCardProps): JSX.Element => {

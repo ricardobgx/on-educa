@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-console */
 
-import { AxiosError } from 'axios';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -32,12 +33,12 @@ const NewDuel = (): JSX.Element => {
   /* Global State */
 
   const {
-    user,
+    people,
     duel: globalDuel,
     aplication,
   } = useSelector((store: State) => store);
 
-  const { id } = user;
+  const { id } = people;
   const { token } = aplication;
 
   const dispatch = useDispatch();
@@ -104,10 +105,10 @@ const NewDuel = (): JSX.Element => {
 
   const createDuelSucess = (duel: IDuel): void => {
     loadDuel(duel);
-    createDuelOwnerParticipation({ duelId: duel.id, studentId: user.id });
+    createDuelOwnerParticipation({ duelId: duel.id, studentId: people.id });
   };
 
-  const createDuelError = (err: AxiosError): void => {
+  const createDuelError = (): void => {
     console.log('Ocorreu um erro');
   };
 

@@ -5,7 +5,7 @@ import { IParticipateInDuelParams } from '../dto/IParticipateInDuelParams';
 import { IDuel } from '../interfaces/IDuel';
 import { IDuelTeam } from '../interfaces/IDuelTeam';
 import { IDuelTeamParticipation } from '../interfaces/IDuelTeamParticipation';
-import { IUser } from '../interfaces/IUser';
+import { IPeople } from '../interfaces/IPeople';
 import { DEFAULT_DUEL_TEAM_PARTICIPATION } from '../static/defaultEntitiesValues';
 import { isDefaultDuelTeamParticipation } from './entitiesValues';
 
@@ -15,7 +15,7 @@ const entityPath = 'duelTeamParts';
 
 export const findStudentDuelPartByTeams = (
   teams: IDuelTeam[],
-  student: IUser,
+  student: IPeople,
 ): IDuelTeamParticipation => {
   let studentParticipation: IDuelTeamParticipation =
     DEFAULT_DUEL_TEAM_PARTICIPATION;
@@ -81,10 +81,10 @@ export const participateInDuel = async (
       authorization: `Bearer ${token}`,
     },
   }).then(
-    (response) => {
+    () => {
       requestSucess();
     },
-    (err: AxiosError) => {
+    () => {
       requestError();
     },
   );
@@ -102,10 +102,10 @@ export const removeParticipant = async (
       authorization: `Bearer ${token}`,
     },
   }).then(
-    (response) => {
+    () => {
       requestSucess();
     },
-    (err: AxiosError) => {
+    () => {
       requestError();
     },
   );
@@ -190,7 +190,7 @@ export const updateDuelTeamParticipation = async (
       authorization: `Bearer ${token}`,
     },
   }).then(
-    (response) => {
+    () => {
       requestSucess();
     },
     (err: AxiosError) => {
@@ -213,7 +213,7 @@ export const changeDuelTeamPosition = async (
       authorization: `Bearer ${token}`,
     },
   }).then(
-    (response) => {
+    () => {
       requestSucess();
     },
     (err: AxiosError) => {

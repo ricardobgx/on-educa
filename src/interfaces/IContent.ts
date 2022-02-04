@@ -3,7 +3,7 @@ import { IUnity } from './IUnity';
 
 export interface IContent {
   id: string;
-  title: string;
+  name: string;
   description: string;
   video: string;
   index: number;

@@ -26,7 +26,7 @@ const UnityAccordion = (props: IUnity): JSX.Element => {
   );
   const { token } = aplication;
 
-  const { id, title } = props;
+  const { id, name } = props;
   const [contents, setContents] = useState<IContent[]>([]);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const UnityAccordion = (props: IUnity): JSX.Element => {
   return (
     <UnityAccordionBox>
       <SuppliesAccordionCheckBox id={`unity-${id}`} />
-      <SuppliesAccordionToggleCheckBox label={title} id={`unity-${id}`} />
+      <SuppliesAccordionToggleCheckBox label={name} id={`unity-${id}`} />
       <HiddenContents>
         {contents.length > 0 && (
           <HiddenContentsBox>
@@ -46,7 +46,7 @@ const UnityAccordion = (props: IUnity): JSX.Element => {
                   background:
                     contentNow.id === content.id ? theme.colors.textColor : '',
                 }}
-                key={content.title}
+                key={content.name}
                 to={`/contents/${content.id}`}
               >
                 <HiddenContentLabel
@@ -55,7 +55,7 @@ const UnityAccordion = (props: IUnity): JSX.Element => {
                       contentNow.id === content.id ? theme.colors.boxColor : '',
                   }}
                 >
-                  {content.title}
+                  {content.name}
                 </HiddenContentLabel>
               </HiddenContent>
             ))}

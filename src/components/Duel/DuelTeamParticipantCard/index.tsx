@@ -5,16 +5,17 @@ import { useSelector } from 'react-redux';
 import { removeParticipant } from '../../../functions/duelTeamParts';
 import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
 import OnEducaAPI from '../../../services/api';
-import { DEFAULT_USER } from '../../../static/defaultEntitiesValues';
+import {
+  DEFAULT_STUDENT,
+  DEFAULT_TEACHER,
+  DEFAULT_USER,
+} from '../../../static/defaultEntitiesValues';
 import { State } from '../../../store';
-import UserCard from '../../App/UserCard';
+import PeopleCard from '../../App/PeopleCard';
 import {
   DuelTeamParticipantCardBox,
   KickOutButton,
   KickOutButtonIcon,
-  AddFriendButton,
-  AddFriendButtonIcon,
-  DuelTeamParticipantCardActions,
 } from './styles';
 
 interface IDuelTeamParticipantCardProps {
@@ -26,12 +27,14 @@ interface IDuelTeamParticipantCardProps {
 const DuelTeamParticipantCard = (
   props: IDuelTeamParticipantCardProps,
 ): JSX.Element => {
-  const { user: loggedUser, aplication } = useSelector((store: State) => store);
+  const { people: loggedPeople, aplication } = useSelector(
+    (store: State) => store,
+  );
   const { token } = aplication;
 
   const { ownerId, participation, refreshDuel } = props;
 
-  const student = participation.student || DEFAULT_USER;
+  const student = participation.student || DEFAULT_STUDENT;
 
   const kickOutParticipant = async (
     duelTeamParticipationId: string,
@@ -47,14 +50,15 @@ const DuelTeamParticipantCard = (
 
   return (
     <DuelTeamParticipantCardBox>
-      <UserCard
+      <PeopleCard
         smartphoneNameLength={20}
         abbreviateName
         showScore={false}
-        {...student}
-        userType="student"
+        people={student.people}
+        student={student}
+        teacher={DEFAULT_TEACHER}
       />
-      {loggedUser.id === ownerId && student.id !== ownerId && (
+      {loggedPeople.id === ownerId && student.id !== ownerId && (
         <KickOutButton onClick={() => kickOutParticipant(participation.id)}>
           <KickOutButtonIcon className="fas fa-sign-out-alt" />
         </KickOutButton>

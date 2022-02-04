@@ -1,5 +1,4 @@
 import React from 'react';
-import { isStudent } from '../../../functions/user';
 import { IUnity } from '../../../interfaces/IUnity';
 import {
   ClearSearchSuppliesInputButton,
@@ -20,13 +19,13 @@ import { ContentsActionsBox, Container } from './styles';
 
 interface IContentActionsProps {
   unity: IUnity;
-  userType: string;
+  isStudent: boolean;
 }
 
 const ContentsActions = (props: IContentActionsProps): JSX.Element => {
   /* Props */
 
-  const { unity, userType } = props;
+  const { unity, isStudent } = props;
 
   return (
     <Container>
@@ -44,7 +43,7 @@ const ContentsActions = (props: IContentActionsProps): JSX.Element => {
           <SearchSuppliesButtonIcon className="fas fa-search" />
         </SearchSuppliesButton>
       </SearchSupplies>
-      {!isStudent(userType) && (
+      {!isStudent && (
         <ContentsActionsBox>
           <NewSuppliesLink to={`/units/${unity.id}/new-content`}>
             <NewSuppliesButtonLabel>Novo conteúdo</NewSuppliesButtonLabel>

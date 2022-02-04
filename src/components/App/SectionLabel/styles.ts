@@ -1,10 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { paragraph } from '../../../global/styles/components/textComponents';
-import {
-  mediumIcon,
-  smallIcon,
-} from '../../../global/styles/components/iconComponents';
+import { smallIcon } from '../../../global/styles/components/iconComponents';
 
 export const SectionLabelBox = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};

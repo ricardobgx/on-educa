@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-console */
 
 import { AxiosInstance } from 'axios';
 import React, { useEffect } from 'react';
@@ -7,56 +8,83 @@ import { bindActionCreators } from 'redux';
 import GlobalStyle from './styles';
 import LoadAnimation from './components/App/LoadAnimation';
 import {
-  clearUserVariables,
-  getUser,
+  clearPeopleVariables,
+  getPeople,
   setAplicationTheme,
-} from './functions/user';
-import { IUser } from './interfaces/IUser';
+  setUpPeopleType,
+} from './functions/people';
+import { IPeople } from './interfaces/IPeople';
 import Routes from './Routes';
 import OnEducaAPI from './services/api';
 import { ActionCreators, State } from './store';
+import { ThemeType } from './types/ThemeType';
+import { themes } from './static/themes';
+import { stringToBoolean } from './functions/utils';
 
 function App(): JSX.Element {
   /* Global State */
 
-  const { aplication } = useSelector((store: State) => store);
+  const { aplication, people } = useSelector((store: State) => store);
   const { loadingAnimation } = aplication;
 
   const dispatch = useDispatch();
-  const { loginUser, loadUserType, loadToken, loadTheme } = bindActionCreators(
-    ActionCreators,
-    dispatch,
-  );
+  const {
+    loginPeople,
+    loadIsStudent,
+    loadToken,
+    loadTheme,
+    loadStudent,
+    loadTeacher,
+  } = bindActionCreators(ActionCreators, dispatch);
 
   /* Functions */
 
   const login = async (
     API: AxiosInstance,
-    userType: string,
     id: string,
-    setUserState: (user: IUser) => void,
+    isStudent: boolean,
+    setPeopleState: (value: IPeople) => void,
     token: string,
   ): Promise<void> => {
-    await getUser(API, userType, id, setUserState, token);
+    await setUpPeopleType(
+      OnEducaAPI,
+      id,
+      isStudent,
+      token,
+      loadStudent,
+      loadTeacher,
+    );
+    await getPeople(API, id, setPeopleState, token);
   };
 
   useEffect(() => {
     const id = window.localStorage.getItem('id') || '';
     const token = window.localStorage.getItem('token') || '';
-    const userType = window.localStorage.getItem('userType') || '';
-    const theme = window.localStorage.getItem('theme') || '';
+    const localIsStudent = window.localStorage.getItem('isStudent') || 'true';
+    const localTheme = window.localStorage.getItem('theme');
 
-    if (id && token && userType) {
-      loadUserType(userType);
+    const isStudent = stringToBoolean(localIsStudent);
+    const theme = Number(localTheme);
+
+    console.log(
+      `isStudent no App: ${window.localStorage.getItem('isStudent')}`,
+    );
+
+    if (id && token) {
+      loadIsStudent(isStudent);
       loadToken(token);
-      login(OnEducaAPI, userType, id, loginUser, token);
-    } else clearUserVariables();
+      login(OnEducaAPI, id, isStudent, loginPeople, token);
+    } else clearPeopleVariables();
 
-    if (!theme) {
-      loadTheme('light');
-      setAplicationTheme('light');
-    } else loadTheme(theme);
+    if (theme && themes[theme]) {
+      loadTheme(theme);
+    } else {
+      loadTheme(ThemeType.BLUE);
+      setAplicationTheme(ThemeType.BLUE);
+    }
   }, []);
+
+  console.log(people);
 
   return (
     <>

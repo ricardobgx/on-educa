@@ -59,3 +59,5 @@ export const displayDayAndMonthDate = (date: string): string => {
 
   return dayAndMonth;
 };
+
+export const stringToBoolean = (value: string): boolean => value === 'true';

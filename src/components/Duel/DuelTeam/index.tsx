@@ -12,7 +12,7 @@ interface IDuelTeamProps extends IDuelStudentInfoComponentsProps {
 const DuelTeam = (props: IDuelTeamProps): JSX.Element => {
   const {
     duelOwner,
-    loggedUser,
+    loggedPeople,
     studentParticipation,
     setStudentParticipation,
     team,
@@ -26,7 +26,7 @@ const DuelTeam = (props: IDuelTeamProps): JSX.Element => {
         <DuelTeamParticipantsList
           team={team}
           duelOwner={duelOwner}
-          loggedUser={loggedUser}
+          loggedPeople={loggedPeople}
           studentParticipation={studentParticipation}
           setStudentParticipation={setStudentParticipation}
           refreshDuel={refreshDuel}

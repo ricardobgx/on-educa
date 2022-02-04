@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { isDefaultUser } from '../../../functions/entitiesValues';
+import { isDefaultPeople } from '../../../functions/entitiesValues';
 import { getStudentWeekPerformanceByStudent } from '../../../functions/studentWeekPerformance';
 import { IStudentWeekPerformance } from '../../../interfaces/IStudentWeekPerformance';
 import {
@@ -22,36 +22,38 @@ import {
 } from './styles';
 
 interface IWeekPerformanceProps {
-  isUserLogged: boolean;
+  isPeopleLogged: boolean;
 }
 
 const WeekPerformance = (props: IWeekPerformanceProps): JSX.Element => {
-  const { isUserLogged } = props;
+  const { isPeopleLogged } = props;
 
-  const { user: loggedUser, aplication } = useSelector((store: State) => store);
+  const { people: loggedPeople, aplication } = useSelector(
+    (store: State) => store,
+  );
   const { token } = aplication;
 
   const [studentWeekPerformance, setStudentWeekPerformance] =
     useState<IStudentWeekPerformance>(DEFAULT_STUDENT_WEEK_PERFORMANCE);
 
   useEffect(() => {
-    if (!isDefaultUser(loggedUser)) {
+    if (!isDefaultPeople(loggedPeople)) {
       getStudentWeekPerformanceByStudent(
         OnEducaAPI,
-        loggedUser.id,
+        loggedPeople.id,
         token,
         setStudentWeekPerformance,
         () => console.log('erro'),
       );
     }
-  }, [loggedUser]);
+  }, [loggedPeople]);
 
   const { weekDay } = studentWeekPerformance;
   const {
-    dailyXP,
-    studiedContents,
+    dailyXp,
+    contentsStudied,
     questionsAnswered,
-    rightQuestionsAnswered,
+    questionsAnsweredCorrectly,
     duelsParticipated,
     duelsWon,
   } = weekDay;
@@ -69,7 +71,7 @@ const WeekPerformance = (props: IWeekPerformanceProps): JSX.Element => {
           <WeekPerformanceInfoLabel>
             Conteúdos estudados
           </WeekPerformanceInfoLabel>
-          <WeekPerformanceInfoValue>{studiedContents}</WeekPerformanceInfoValue>
+          <WeekPerformanceInfoValue>{contentsStudied}</WeekPerformanceInfoValue>
         </WeekPerformanceInfo>
         <WeekPerformanceInfo>
           <WeekPerformanceInfoLabel>
@@ -82,7 +84,7 @@ const WeekPerformance = (props: IWeekPerformanceProps): JSX.Element => {
         <WeekPerformanceInfo>
           <WeekPerformanceInfoLabel>Questões certas</WeekPerformanceInfoLabel>
           <WeekPerformanceInfoValue>
-            {rightQuestionsAnswered}
+            {questionsAnsweredCorrectly}
           </WeekPerformanceInfoValue>
         </WeekPerformanceInfo>
         <WeekPerformanceInfo>
@@ -98,7 +100,7 @@ const WeekPerformance = (props: IWeekPerformanceProps): JSX.Element => {
           <WeekPerformanceInfoValue>{duelsWon}</WeekPerformanceInfoValue>
         </WeekPerformanceInfo>
       </WeekPerformancesList>
-      {isUserLogged && (
+      {isPeopleLogged && (
         <SeeChartsButton to="/performance/">
           <SeeChartsButtonLabel>Ver gráficos</SeeChartsButtonLabel>
         </SeeChartsButton>

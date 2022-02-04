@@ -15,12 +15,12 @@ import {
 } from './styles';
 
 interface IProfileDailyGoalProps {
-  isUserLogged: boolean;
+  isPeopleLogged: boolean;
   dailyXP: number;
 }
 
 const ProfileDailyGoal = (props: IProfileDailyGoalProps): JSX.Element => {
-  const { isUserLogged, dailyXP } = props;
+  const { isPeopleLogged, dailyXP } = props;
 
   return (
     <Container className="with-shadow bd-rd-5">
@@ -31,7 +31,7 @@ const ProfileDailyGoal = (props: IProfileDailyGoalProps): JSX.Element => {
         </DailyGoalHeaderBox>
         <DailyGoalInfo>
           <DailyGoalValueLabel>50 XP</DailyGoalValueLabel>
-          {isUserLogged && (
+          {isPeopleLogged && (
             <EditDailyGoalValueButton>
               <EditDailyGoalValueIcon className="fas fa-pen" />
             </EditDailyGoalValueButton>

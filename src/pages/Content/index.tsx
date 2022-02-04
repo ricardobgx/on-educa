@@ -51,27 +51,27 @@ const Content = (): JSX.Element => {
     unity: selectedUnity,
   } = useSelector((store: State) => store);
 
-  const { token, userType } = aplication;
+  const { token, isStudent } = aplication;
 
   useEffect(() => {
     getUnits(OnEducaAPI, setUnits, token);
     getContent(OnEducaAPI, contentId, token, loadContent);
   }, [contentId]);
 
-  const { video, title, description } = content as IContent;
+  const { video, name, description } = content as IContent;
 
   return (
     <Page>
       <PageBox>
         <ContentBox>
           <SectionLabel
-            label={`${selectedUnity.title} - ${title}`}
+            label={`${selectedUnity.name} - ${name}`}
             backLink={`/units/${selectedUnity.id}`}
           />
           <ContentVideoAndRelatedContents>
             <ContentVideo video={video} />
             <ContentRelatedUnitsActions
-              userType={userType}
+              isStudent={isStudent}
               subject={subject}
               schoolGrade={schoolGrade}
               units={units}

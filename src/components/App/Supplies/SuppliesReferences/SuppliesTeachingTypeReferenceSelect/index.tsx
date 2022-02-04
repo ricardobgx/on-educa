@@ -21,7 +21,7 @@ const SuppliesTeachingTypeReferenceSelect = (
 ): JSX.Element => {
   /* Local State */
 
-  const [TeachingTypes, setTeachingTypes] = useState<ITeachingType[]>([]);
+  const [teachingTypes, setTeachingTypes] = useState<ITeachingType[]>([]);
 
   /* Props */
 
@@ -61,14 +61,14 @@ const SuppliesTeachingTypeReferenceSelect = (
       value={selectedTeachingType.id}
       onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
         setSelectedTeachingType(
-          searchTeachingType(TeachingTypes, event.target.value) ||
+          searchTeachingType(teachingTypes, event.target.value) ||
             DEFAULT_TEACHING_TYPE,
         )
       }
     >
-      {TeachingTypes.map((TeachingType) => (
-        <SuppliesReferenceSelectOption value={TeachingType.id}>
-          {TeachingType.title}
+      {teachingTypes.map((teachingType) => (
+        <SuppliesReferenceSelectOption value={teachingType.id}>
+          {teachingType.name}
         </SuppliesReferenceSelectOption>
       ))}
     </SuppliesReferenceSelect>

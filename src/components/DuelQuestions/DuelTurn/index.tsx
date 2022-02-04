@@ -1,10 +1,10 @@
 import React from 'react';
-import { displaySurname } from '../../../functions/user';
+import { displaySurname } from '../../../functions/people';
 import { IDuelRound } from '../../../interfaces/IDuelRound';
 import {
   DEFAULT_DUEL_TEAM,
   DEFAULT_DUEL_TEAM_PARTICIPATION,
-  DEFAULT_USER,
+  DEFAULT_STUDENT,
 } from '../../../static/defaultEntitiesValues';
 import {
   ParticipantTurnLabel,
@@ -27,7 +27,7 @@ const DuelTurn = (props: IDuelTurnProps): JSX.Element => {
   const { participation: participationFound } = team;
   const participation = participationFound || DEFAULT_DUEL_TEAM_PARTICIPATION;
   const { student: studentFound } = participation;
-  const student = studentFound || DEFAULT_USER;
+  const student = studentFound || DEFAULT_STUDENT;
 
   return (
     <Container className="with-shadow bd-rd-5">
@@ -38,7 +38,7 @@ const DuelTurn = (props: IDuelTurnProps): JSX.Element => {
       <ParticipantTurn>
         <ParticipantTurnIcon className="fas fa-user" />
         <ParticipantTurnLabel>
-          {displaySurname(student.name, 25)}
+          {displaySurname(student.people.name, 25)}
         </ParticipantTurnLabel>
       </ParticipantTurn>
     </Container>

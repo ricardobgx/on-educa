@@ -80,7 +80,7 @@ const SuppliesUnityReferenceSelect = (
     >
       {units.map((unity) => (
         <SuppliesReferenceSelectOption key={unity.id} value={unity.id}>
-          {unity.title}
+          {unity.name}
         </SuppliesReferenceSelectOption>
       ))}
     </SuppliesReferenceSelect>

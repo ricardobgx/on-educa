@@ -23,14 +23,14 @@ export const Ranking = styled.div`
 
 // Estudantes no ranking
 
-export const UsersList = styled.div`
+export const PeoplesList = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};
   padding: 15px;
   margin: 20px;
   border-radius: 5px;
   box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
 `;
-export const UsersListBox = styled.div`
+export const PeoplesListBox = styled.div`
   display: flex;
   flex-direction: column;
   overflow: auto;

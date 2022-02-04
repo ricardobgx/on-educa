@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-console */
 
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { useRouteMatch } from 'react-router-dom';
-import bookLover from '../../assets/ilustrations/undraw_book_lover_mkck.svg';
-import pieChart from '../../assets/ilustrations/pie_chart.svg';
 import analytics from '../../assets/ilustrations/analytics.png';
 import { IPracticeQuestion } from '../../interfaces/IPracticeQuestion';
 import { ActionCreators, State } from '../../store';
@@ -58,19 +57,9 @@ const PracticePerformance = (): JSX.Element => {
 
   // State
 
-  const { practice, user, aplication } = useSelector((store: State) => store);
+  const { practice, people, aplication } = useSelector((store: State) => store);
   const { questions } = practice;
   const { token } = aplication;
-
-  /* Content functions */
-
-  const isNewContent = (): boolean => {
-    return true;
-  };
-
-  const contentScore = (): number => {
-    return isNewContent() ? 10 : 0;
-  };
 
   /* Rota */
 
@@ -127,18 +116,12 @@ const PracticePerformance = (): JSX.Element => {
     return rightQuestionsNumber(practiceQuestions) * 10;
   };
 
-  /* General functions */
-
-  const practiceScore = (): number => {
-    return contentScore() + questionsScore(questions);
-  };
-
   useEffect((): any => {
-    if (user) {
+    if (people) {
       updateStudentWeekPerformanceValues(
         OnEducaAPI,
         {
-          studentId: user.id,
+          studentId: people.id,
           questionsAnsweredNumber: questions.length,
           rightQuestionsAnsweredNumber: rightQuestionsNumber(questions),
           dailyXPNumber: rightQuestionsNumber(questions) * 10,
@@ -150,7 +133,7 @@ const PracticePerformance = (): JSX.Element => {
       );
     }
     return () => loadQuestions([]);
-  }, [user]);
+  }, [people]);
 
   const rightQuestions = rightQuestionsNumber(questions);
   const wrongQuestions = wrongQuestionsNumber(questions);

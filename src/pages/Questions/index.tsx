@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-console */
 
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -36,7 +37,7 @@ const Questions = (): JSX.Element => {
     question,
   } = useSelector((store: State) => store);
 
-  const { token, userType } = aplication;
+  const { token, isStudent } = aplication;
 
   const dispatch = useDispatch();
   const {
@@ -100,7 +101,7 @@ const Questions = (): JSX.Element => {
         <SectionLabel backLink="/home" label="Questões" />
         <QuestionsBox>
           <QuestionsActions
-            userType={userType}
+            isStudent={isStudent}
             setQuestionsFilterIsVisible={setQuestionsFilterIsVisible}
           />
           {questionsFilterIsVisible && (

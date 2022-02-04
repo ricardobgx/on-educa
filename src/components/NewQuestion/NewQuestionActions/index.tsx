@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-console */
+
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { IManyAlternativesParams } from '../../../dto/IManyAlternativesParams';
@@ -7,7 +10,6 @@ import {
   createManyAlternatives,
   findAlternativeByDescFromArray,
 } from '../../../functions/alternative';
-import { isDefaultContent } from '../../../functions/entitiesValues';
 import {
   createQuestion as createQuestionData,
   isValidQuestion,

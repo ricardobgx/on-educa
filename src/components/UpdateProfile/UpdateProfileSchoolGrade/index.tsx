@@ -41,7 +41,7 @@ const UpdateProfileSchoolGrade = (
         {teachingTypes.map((teachingType) =>
           teachingType.schoolGrades.map((schoolGrade) => (
             <UpdateProfileOption value={schoolGrade.id}>
-              {schoolGrade.index}º ano - {teachingType.title}
+              {schoolGrade.index}º ano - {teachingType.name}
             </UpdateProfileOption>
           )),
         )}

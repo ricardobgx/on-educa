@@ -30,8 +30,10 @@ import {
 } from './styles';
 
 const WeekPerformance = (): JSX.Element => {
-  const { aplication, user: loggedUser } = useSelector((store: State) => store);
-  const { userType, token } = aplication;
+  const { aplication, people: loggedPeople } = useSelector(
+    (store: State) => store,
+  );
+  const { peopleType, token } = aplication;
 
   const [chartType, setChartType] = useState('questions');
   const [studentWeekPerformance, setStudentWeekPerformance] =
@@ -74,8 +76,8 @@ const WeekPerformance = (): JSX.Element => {
     const contentsDataValues: ISimpleBarChartData[] = weekDays.map(
       (weekDay) => {
         const dataValue: ISimpleBarChartData = {
-          name: displayDayAndMonthDate(weekDay.date),
-          value: weekDay.studiedContents,
+          name: displayDayAndMonthDate(weekDay.createdAt),
+          value: weekDay.contentsStudied,
         };
 
         return dataValue;
@@ -85,8 +87,8 @@ const WeekPerformance = (): JSX.Element => {
     const questionsDataValues: IBarChartWithTwoValuesData[] = weekDays.map(
       (weekDay) => {
         const dataValue: IBarChartWithTwoValuesData = {
-          name: displayDayAndMonthDate(weekDay.date),
-          firstValue: weekDay.rightQuestionsAnswered,
+          name: displayDayAndMonthDate(weekDay.createdAt),
+          firstValue: weekDay.questionsAnsweredCorrectly,
           secondValue: weekDay.questionsAnswered,
         };
 
@@ -97,7 +99,7 @@ const WeekPerformance = (): JSX.Element => {
     const duelsDataValues: IBarChartWithTwoValuesData[] = weekDays.map(
       (weekDay) => {
         const dataValue: IBarChartWithTwoValuesData = {
-          name: displayDayAndMonthDate(weekDay.date),
+          name: displayDayAndMonthDate(weekDay.createdAt),
           firstValue: weekDay.duelsParticipated,
           secondValue: weekDay.duelsWon,
         };
@@ -115,7 +117,7 @@ const WeekPerformance = (): JSX.Element => {
   useEffect(() => {
     getStudentWeekPerformanceByStudent(
       OnEducaAPI,
-      loggedUser.id,
+      loggedPeople.id,
       token,
       setChartsData,
       () => console.log('erro'),

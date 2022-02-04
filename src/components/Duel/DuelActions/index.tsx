@@ -41,7 +41,7 @@ const DuelActions = (props: IDuelActionsProps): JSX.Element => {
     duelRoundId,
     duelRoundStatus,
     duelOwner,
-    loggedUser,
+    loggedPeople,
     studentParticipation,
   } = props;
 
@@ -76,7 +76,7 @@ const DuelActions = (props: IDuelActionsProps): JSX.Element => {
       <InviteFriendsButton className="with-shadow bd-rd-5">
         <InviteFriendsButtonLabel>Convidar amigos</InviteFriendsButtonLabel>
       </InviteFriendsButton>
-      {!isDuelOwner(loggedUser.id, duelOwner.id) ? (
+      {!isDuelOwner(loggedPeople.id, duelOwner.id) ? (
         <QuitDuelButton
           onClick={() => exitDuel()}
           className="with-shadow bd-rd-5"

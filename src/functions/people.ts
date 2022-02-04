@@ -4,8 +4,12 @@
 import { AxiosInstance } from 'axios';
 import { IAuthenticationResponse } from '../interfaces/IAuthenticationResponse';
 import { ILogin } from '../interfaces/ILogin';
-import { IUser } from '../interfaces/IUser';
+import { IPeople } from '../interfaces/IPeople';
+import { IStudent } from '../interfaces/IStudent';
+import { ITeacher } from '../interfaces/ITeacher';
 import { DeviceType } from '../types/deviceType';
+import { getStudentByPeople } from './student';
+import { getTeacherByPeople } from './teacher';
 import { deviceType } from './utils';
 
 /* Application functions */
@@ -28,36 +32,36 @@ export const displaySurname = (
   let unionName = '';
 
   // Divide o nome do usuario pelo espaco em branco
-  const userNameSplited = name.split(' ');
+  const peopleNameSplited = name.split(' ');
 
   // Itera sobre os nomes cortados
-  for (let i = 0; i < userNameSplited.length; i += 1) {
+  for (let i = 0; i < peopleNameSplited.length; i += 1) {
     // Verifica se ainda cabe algum nome no resultado
     if (surname.length < maxNameLength) {
       // Verifica se o tamanho do nome cortado refere-se a uma juncao de nomes
-      if (userNameSplited[i].length <= 3) {
+      if (peopleNameSplited[i].length <= 3) {
         // Verifica se a juncao do resultado com esse nome deixa espaco para a abreviacao do proximo nome
         if (
-          maxNameLength - (surname.length + userNameSplited[i].length + 1) >=
+          maxNameLength - (surname.length + peopleNameSplited[i].length + 1) >=
           2
         ) {
-          surname += `${userNameSplited[i]} `;
+          surname += `${peopleNameSplited[i]} `;
         } else {
           // Em caso de nao caber eh armazenada a juncao
-          unionName = ` ${userNameSplited[i]}`;
+          unionName = ` ${peopleNameSplited[i]}`;
         }
       } else if (
         // Verifica se o nome cortado cabe no resultado sem abreviar
-        userNameSplited[i].length + surname.length <=
+        peopleNameSplited[i].length + surname.length <=
         maxNameLength
       ) {
-        surname += `${userNameSplited[i]} `;
+        surname += `${peopleNameSplited[i]} `;
       } else if (
         // Verifica se a abreviacao do nome cortado com uma juncao de nomes, caso exista, cabe no resultado
         maxNameLength - surname.length >=
         unionName.length + 2
       ) {
-        surname += `${unionName + userNameSplited[i][0]}. `;
+        surname += `${unionName + peopleNameSplited[i][0]}. `;
         // Limpa a variavel que armazena a juncao de nomes
         unionName = '';
       }
@@ -68,90 +72,55 @@ export const displaySurname = (
   return surname;
 };
 
-// Logged user id is equal compared user id
+// Logged people id is equal compared people id
 
-export const isUserLogged = (
-  loggedUserId: string,
-  comparedUserId: string,
+export const isPeopleLogged = (
+  loggedPeopleId: string,
+  comparedPeopleId: string,
 ): boolean => {
-  return loggedUserId === comparedUserId;
+  return loggedPeopleId === comparedPeopleId;
 };
 
-// User is student
+// Invert people type
 
-export const isStudent = (userType: string): boolean => userType === 'student';
+export const invertPeopleType = (isStudent: boolean): boolean => !isStudent;
+// People local storage variables
 
-// Invert user type
-
-export const invertUserType = (userType: string): string =>
-  isStudent(userType) ? 'teacher' : 'student';
-
-// User local storage variables
-
-export const setUserVariables = (
+export const setPeopleVariables = (
   id: string,
-  userType: string,
+  isStudent: boolean,
   token: string,
 ): void => {
   window.localStorage.setItem('id', id);
-  window.localStorage.setItem('userType', userType);
+  window.localStorage.setItem('isStudent', isStudent.toString());
   window.localStorage.setItem('token', token);
 };
 
-export const clearUserVariables = (): void => {
+export const clearPeopleVariables = (): void => {
   window.localStorage.removeItem('id');
   window.localStorage.removeItem('token');
+  window.localStorage.removeItem('isStudent');
 };
 
 // Aplication theme variable
 
-export const setAplicationTheme = (theme: string): void => {
-  window.localStorage.setItem('theme', theme);
+export const setAplicationTheme = (theme: number): void => {
+  window.localStorage.setItem('theme', theme.toString());
 };
 
 /* API functions */
 
-// Find user type
-
-export const findUserType = async (
-  API: AxiosInstance,
-  id: string,
-  setUser: (user: IUser) => void,
-  setUserType: (userType: string) => void,
-  token: string,
-): Promise<void> => {
-  await API.get(`/students/${id}`, {
-    headers: {
-      authorization: `Bearer ${token}`,
-    },
-  }).then(
-    (studentResponse) => {
-      setUser(studentResponse.data);
-      setUserType('student');
-    },
-    async () => {
-      await API.get(`/teachers/${id}`, {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      }).then((teacherResponse) => {
-        setUser(teacherResponse.data);
-        setUserType('teacher');
-      });
-    },
-  );
-};
+const entityPath = 'peoples';
 
 // Login
 
-export const loginUser = async (
+export const loginPeople = async (
   API: AxiosInstance,
   loginParams: ILogin,
-  userType: string,
   loginSucess: (authResponse: IAuthenticationResponse) => void,
   loginError: () => void,
 ): Promise<void> => {
-  await API.post(`/${userType}s/login`, loginParams).then(
+  await API.post(`/${entityPath}/login`, loginParams).then(
     (response) => loginSucess(response.data),
     () => loginError(),
   );
@@ -159,66 +128,62 @@ export const loginUser = async (
 
 // Create
 
-export const registerUser = async (
+export const registerPeople = async (
   API: AxiosInstance,
-  userType: string,
-  userParams: any,
-  registerSucess: () => void,
+  peopleParams: any,
+  registerSucess: (people: IPeople) => void,
   registerError: () => void,
 ): Promise<void> => {
-  await API.post(`/${userType}s/`, userParams).then(
-    () => registerSucess(),
+  await API.post(`/${entityPath}/`, peopleParams).then(
+    (response) => registerSucess(response.data),
     () => registerError(),
   );
 };
 
 // Find by Email
 
-export const getUser = async (
+export const getPeople = async (
   API: AxiosInstance,
-  userType: string,
   id: string,
-  setUserState: (user: IUser) => void,
+  setPeopleState: (people: IPeople) => void,
   token: string,
 ): Promise<void> => {
-  await API.get(`/${userType}s/${id}`, {
+  await API.get(`/${entityPath}/${id}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },
   }).then((response) => {
-    setUserState(response.data);
+    setPeopleState(response.data);
   });
 };
 
 // Find all
 
-export const getUsers = async (
+export const getPeoples = async (
   API: AxiosInstance,
-  userType: string,
-  setUserState: (user: IUser[]) => void,
+  setPeopleState: (people: IPeople[]) => void,
   token: string,
 ): Promise<void> => {
-  await API.get(`/${userType}s`, {
+  await API.get(`/${entityPath}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },
   }).then((response) => {
-    setUserState(response.data);
+    setPeopleState(response.data);
   });
 };
 
-// Update user
+// Update people
 
-export const updateUser = async (
+export const updatePeople = async (
   API: AxiosInstance,
-  userType: string,
   id: string,
-  userParams: any,
+  peopleParams: any,
   token: string,
   updateSucess: () => void,
   updateError: () => void,
 ): Promise<void> => {
-  await API.put(`/${userType}s/${id}`, userParams, {
+  await API.put(`/${entityPath}/${id}`, peopleParams, {
     headers: {
       authorization: `Bearer ${token}`,
     },
@@ -226,4 +191,20 @@ export const updateUser = async (
     () => updateSucess(),
     () => updateError(),
   );
+};
+
+export const setUpPeopleType = async (
+  API: AxiosInstance,
+  peopleId: string,
+  isStudent: boolean,
+  token: string,
+  setStudent: (value: IStudent) => void,
+  setTeacher: (value: ITeacher) => void,
+): Promise<void> => {
+  console.log(isStudent);
+  if (isStudent) {
+    await getStudentByPeople(API, peopleId, setStudent, token);
+  } else {
+    await getTeacherByPeople(API, peopleId, setTeacher, token);
+  }
 };

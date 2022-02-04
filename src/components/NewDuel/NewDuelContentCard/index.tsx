@@ -14,9 +14,9 @@ const NewDuelContentCard = (props: INewDuelContentCardProps): JSX.Element => {
 
   return (
     <NewDuelContentCardBox>
-      <NewDuelContentCardSection label={content.title} bold />
+      <NewDuelContentCardSection label={content.name} bold />
       <AdditionalInfo>
-        <NewDuelContentCardSection label={unity.title} bold={false} />
+        <NewDuelContentCardSection label={unity.name} bold={false} />
       </AdditionalInfo>
     </NewDuelContentCardBox>
   );

@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-console */
+
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -56,7 +59,7 @@ const NewContent = (): JSX.Element => {
 
   // Content details
 
-  const [title, setTitle] = useState('');
+  const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [video, setVideo] = useState('');
 
@@ -74,7 +77,7 @@ const NewContent = (): JSX.Element => {
 
   const createContent = async (): Promise<void> => {
     const contentParams: IContentParams = {
-      title,
+      name,
       description,
       video,
       unityId: unity.id,
@@ -100,7 +103,7 @@ const NewContent = (): JSX.Element => {
           <NewContentMainDetails>
             <NewContentVideo video={video} setVideo={setVideo} />
             <NewContentNameAndReference>
-              <NewContentName title={title} setTitle={setTitle} />
+              <NewContentName name={name} setName={setName} />
               <NewContentReferences
                 teachingType={teachingType}
                 setTeachingType={setTeachingType}

@@ -10,12 +10,12 @@ import DuelActions from '../../components/Duel/DuelActions';
 import DuelTeams from '../../components/Duel/DuelTeams';
 import { getDuel } from '../../functions/duel';
 import { findStudentDuelPartByTeams } from '../../functions/duelTeamParts';
-import { isDefaultUser } from '../../functions/entitiesValues';
-import { displaySurname } from '../../functions/user';
+import { isDefaultPeople } from '../../functions/entitiesValues';
+import { displaySurname } from '../../functions/people';
 import { Page } from '../../global/styles/components/pageComponents';
 import { IDuel } from '../../interfaces/IDuel';
 import { IDuelTeamParticipation } from '../../interfaces/IDuelTeamParticipation';
-import { IUser } from '../../interfaces/IUser';
+import { IPeople } from '../../interfaces/IPeople';
 import OnEducaAPI from '../../services/api';
 import { DEFAULT_DUEL_TEAM_PARTICIPATION } from '../../static/defaultEntitiesValues';
 import { ActionCreators, State } from '../../store';
@@ -32,8 +32,8 @@ export interface IDuelRequestComponentsProps {
 }
 
 export interface IDuelStudentInfoComponentsProps {
-  duelOwner: IUser;
-  loggedUser: IUser;
+  duelOwner: IPeople;
+  loggedPeople: IPeople;
   studentParticipation: IDuelTeamParticipation;
   setStudentParticipation: (value: IDuelTeamParticipation) => void;
 }
@@ -43,7 +43,7 @@ const Duel = (): JSX.Element => {
 
   // Variaveis
 
-  const { aplication, duel, user } = useSelector((store: State) => store);
+  const { aplication, duel, people } = useSelector((store: State) => store);
   const { token } = aplication;
 
   // Funcoes
@@ -67,7 +67,7 @@ const Duel = (): JSX.Element => {
     const { duelRound } = duelResponse;
     const studentParticipationFound = findStudentDuelPartByTeams(
       duelRound.teams,
-      user,
+      people,
     );
     setStudentParticipation(studentParticipationFound);
     loadDuel(duelResponse);
@@ -80,10 +80,10 @@ const Duel = (): JSX.Element => {
   };
 
   useEffect(() => {
-    if (!isDefaultUser(user)) {
+    if (!isDefaultPeople(people)) {
       getDuelData();
     }
-  }, [user]);
+  }, [people]);
 
   const { student, duelRound } = duel as IDuel;
   const { teams } = duelRound;
@@ -101,7 +101,7 @@ const Duel = (): JSX.Element => {
             token={token}
             getDuelData={getDuelData}
             duelOwner={student}
-            loggedUser={user}
+            loggedPeople={people}
             teams={teams}
             studentParticipation={studentParticipation}
             setStudentParticipation={setStudentParticipation}
@@ -114,7 +114,7 @@ const Duel = (): JSX.Element => {
             duelRoundId={duelRound.id}
             duelRoundStatus={duelRound.status}
             duelOwner={student}
-            loggedUser={user}
+            loggedPeople={people}
             studentParticipation={studentParticipation}
             setStudentParticipation={setStudentParticipation}
           />

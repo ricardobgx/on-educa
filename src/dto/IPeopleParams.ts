@@ -1,4 +1,4 @@
-export interface IUserParams {
+export interface IPeopleParams {
   id?: string;
   email?: string;
   name?: string;
@@ -6,7 +6,7 @@ export interface IUserParams {
   isOnline?: boolean;
   profilePictureId?: string;
   league?: string;
-  userType?: string;
+  peopleType?: string;
   schoolGradeId?: string;
   teachingTypeId?: string;
 }

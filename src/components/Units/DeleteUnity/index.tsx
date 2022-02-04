@@ -56,7 +56,7 @@ const DeleteUnity = (props: IDeleteUnityProps): JSX.Element => {
         </CloseDeleteUnityButton>
         <DeleteUnityLabel>Excluir unidade</DeleteUnityLabel>
         <DeleteUnityWarningLabel>
-          Tem certeza que deseja excluir a unidade {unity.title}? Todos os
+          Tem certeza que deseja excluir a unidade {unity.name}? Todos os
           conteúdos e informações associadas à essa unidade serão excluidos
         </DeleteUnityWarningLabel>
         <DeleteUnityActions>

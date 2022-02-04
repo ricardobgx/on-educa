@@ -60,13 +60,13 @@ const QuestionCard = (props: IQuestionCardProps): JSX.Element => {
           <QuestionTitle title={reduceTextSize(description, 150)}>
             {reduceTextSize(description, 35)}
           </QuestionTitle>
-          <ContentLabel title={reduceTextSize(content.title, 150)}>
-            Conteúdo: {reduceTextSize(content.title, 25)}
+          <ContentLabel title={reduceTextSize(content.name, 150)}>
+            Conteúdo: {reduceTextSize(content.name, 25)}
           </ContentLabel>
         </QuestionDetails>
         <QuestionUnity>
           <SubjectLabel>Disciplina: {subject.name}</SubjectLabel>
-          <UnityLabel>Unidade: {unity.title}</UnityLabel>
+          <UnityLabel>Unidade: {unity.name}</UnityLabel>
         </QuestionUnity>
         <QuestionAdditionalDetails>
           <UpdateDate>

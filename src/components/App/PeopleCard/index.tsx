@@ -1,49 +1,53 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-console */
+
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getStudentWeekPerformanceByStudent } from '../../../functions/studentWeekPerformance';
-import { displaySurname, isStudent } from '../../../functions/user';
+import { displaySurname } from '../../../functions/people';
 import { IStudentWeekPerformance } from '../../../interfaces/IStudentWeekPerformance';
-import { IUser } from '../../../interfaces/IUser';
+import { IPeople } from '../../../interfaces/IPeople';
 import OnEducaAPI from '../../../services/api';
-import {
-  DEFAULT_SCHOOL_GRADE,
-  DEFAULT_STUDENT_WEEK_PERFORMANCE,
-} from '../../../static/defaultEntitiesValues';
+import { DEFAULT_STUDENT_WEEK_PERFORMANCE } from '../../../static/defaultEntitiesValues';
 import { State } from '../../../store';
 import {
-  UserCardBox,
-  UserDetails,
-  UserPicture,
+  PeopleCardBox,
+  PeopleDetails,
+  PeoplePicture,
   PersonalInfo,
-  UserName,
+  PeopleName,
   StudentSchoolGrade,
   TeacherSubjects,
-  UserScore,
-  UserLeague,
-  UserExperience,
+  PeopleScore,
+  PeopleLeague,
+  PeopleExperience,
 } from './styles';
+import { IStudent } from '../../../interfaces/IStudent';
+import { ITeacher } from '../../../interfaces/ITeacher';
 
-export interface IUserCardProps extends IUser {
+export interface IPeopleCardProps {
+  people: IPeople;
+  student: IStudent;
+  teacher: ITeacher;
   showScore: boolean;
   abbreviateName: boolean;
   smartphoneNameLength: number;
   otherDevicesNameLength?: number;
 }
 
-const UserCard = (props: IUserCardProps): JSX.Element => {
+const PeopleCard = (props: IPeopleCardProps): JSX.Element => {
   const {
-    id,
-    name,
-    profilePicture,
-    schoolGrade: loggedUserSchoolGrade,
-    userType,
+    people,
+    student,
+    teacher,
     showScore,
     abbreviateName,
     smartphoneNameLength,
     otherDevicesNameLength,
   } = props;
 
-  const schoolGrade = loggedUserSchoolGrade || DEFAULT_SCHOOL_GRADE;
+  const { id, name, profilePicture } = people;
+  const { schoolGrade } = student;
 
   const { aplication } = useSelector((store: State) => store);
   const { token } = aplication;
@@ -66,11 +70,11 @@ const UserCard = (props: IUserCardProps): JSX.Element => {
   const { xp } = studentWeekPerformance;
 
   return (
-    <UserCardBox>
-      <UserDetails>
-        <UserPicture src={profilePicture.path} />
+    <PeopleCardBox>
+      <PeopleDetails>
+        <PeoplePicture src={profilePicture.path} />
         <PersonalInfo>
-          <UserName>
+          <PeopleName>
             {abbreviateName
               ? displaySurname(
                   name,
@@ -78,22 +82,22 @@ const UserCard = (props: IUserCardProps): JSX.Element => {
                   otherDevicesNameLength,
                 )
               : name}
-          </UserName>
-          {isStudent(userType) ? (
+          </PeopleName>
+          {people.isStudent ? (
             <StudentSchoolGrade>{schoolGrade.index}º ano</StudentSchoolGrade>
           ) : (
             <TeacherSubjects>{1}</TeacherSubjects>
           )}
         </PersonalInfo>
-      </UserDetails>
+      </PeopleDetails>
       {showScore && (
-        <UserScore>
-          <UserLeague className="fas fa-trophy" />
-          <UserExperience>{xp} XP</UserExperience>
-        </UserScore>
+        <PeopleScore>
+          <PeopleLeague className="fas fa-trophy" />
+          <PeopleExperience>{xp} XP</PeopleExperience>
+        </PeopleScore>
       )}
-    </UserCardBox>
+    </PeopleCardBox>
   );
 };
 
-export default UserCard;
+export default PeopleCard;

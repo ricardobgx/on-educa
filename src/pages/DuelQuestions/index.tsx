@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-console */
 
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,7 +12,6 @@ import DuelStatus from '../../components/DuelQuestions/DuelStatus';
 import { DuelQuestionsBox, PageBox } from './styles';
 import { IDuel } from '../../interfaces/IDuel';
 import {
-  DEFAULT_DUEL,
   DEFAULT_DUEL_QUESTION,
   DEFAULT_DUEL_TEAM,
   DEFAULT_DUEL_TEAM_PARTICIPATION,
@@ -22,7 +22,6 @@ import { getDuel } from '../../functions/duel';
 import OnEducaAPI from '../../services/api';
 import { getDuelRoundQuestionsByDuelRound } from '../../functions/duelRoundQuestion';
 import { createDuelQuestionAnswer } from '../../functions/duelQuestionAnswer';
-import { IDuelQuestionAnswer } from '../../interfaces/IDuelQuestionAnswer';
 import { IDuelTeamParticipation } from '../../interfaces/IDuelTeamParticipation';
 import { IDuelRound } from '../../interfaces/IDuelRound';
 import { findStudentDuelPartByTeams } from '../../functions/duelTeamParts';
@@ -30,13 +29,6 @@ import { findStudentDuelPartByTeams } from '../../functions/duelTeamParts';
 interface IDuelQuestionsRouteParams {
   id: string;
 }
-
-const questionsTest: IDuelRoundQuestion[] = [];
-
-const duelTest: IDuel = {
-  ...DEFAULT_DUEL,
-  id: '1',
-};
 
 const DuelQuestions = (): JSX.Element => {
   /* Local State */
@@ -47,15 +39,14 @@ const DuelQuestions = (): JSX.Element => {
 
   /* Estado da aplicacao */
 
-  const { aplication, duel, user } = useSelector((store: State) => store);
+  const { aplication, duel, people } = useSelector((store: State) => store);
   const { token } = aplication;
 
   // Dispatch
 
   const dispatch = useDispatch();
 
-  const { loadDuel, answerDuelRoundQuestion: answerQuestion } =
-    bindActionCreators(ActionCreators, dispatch);
+  const { loadDuel } = bindActionCreators(ActionCreators, dispatch);
 
   /* Estado da pagina */
 
@@ -65,29 +56,7 @@ const DuelQuestions = (): JSX.Element => {
 
   /* Number functions */
 
-  // Random int number from interval
-
-  const randIntFromInterval = (min: number, max: number): number => {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  };
-
   /* Questions functions */
-
-  // Sort duel question
-
-  const sortDuelQuestion = (duelQuestions: IDuelRoundQuestion[]): void => {
-    const noAnsweredQuestions = duelQuestions.filter((duelQuestion) => {
-      const { answer } = duelQuestion;
-      return !answer?.selectedAlternative;
-    });
-
-    const randQuestionIndex = randIntFromInterval(
-      0,
-      noAnsweredQuestions.length - 1,
-    );
-
-    setQuestion(noAnsweredQuestions[randQuestionIndex]);
-  };
 
   // Number of Answered Questions
 
@@ -107,9 +76,7 @@ const DuelQuestions = (): JSX.Element => {
     setQuestion(activeQuestion);
   };
 
-  const setNextQuestion = async (
-    duelQuestionAnswer: IDuelQuestionAnswer,
-  ): Promise<void> => {
+  const setNextQuestion = async (): Promise<void> => {
     await getDuelRoundQuestionsByDuelRound(
       OnEducaAPI,
       duel.duelRound.id,
@@ -157,7 +124,7 @@ const DuelQuestions = (): JSX.Element => {
 
     const studentParticipationFound = findStudentDuelPartByTeams(
       duelRound.teams,
-      user,
+      people,
     );
 
     setStudentParticipation(studentParticipationFound);
@@ -184,7 +151,7 @@ const DuelQuestions = (): JSX.Element => {
     } else {
       getDuelRoundQuestions(duel);
     }
-  }, [user]);
+  }, [people]);
 
   const { duelRound } = duel;
   const activeTeam = duelRound.team || DEFAULT_DUEL_TEAM;

@@ -11,18 +11,21 @@ import { ISchoolGrade } from '../interfaces/ISchoolGrade';
 import { ISubject } from '../interfaces/ISubject';
 import { ITeachingType } from '../interfaces/ITeachingType';
 import { IUnity } from '../interfaces/IUnity';
-import { IUser } from '../interfaces/IUser';
+import { IPeople } from '../interfaces/IPeople';
 import { IDuelRound } from '../interfaces/IDuelRound';
 import { IPracticeQuestion } from '../interfaces/IPracticeQuestion';
 import { IPractice } from '../interfaces/IPractice';
 import { IStudentWeekPerformance } from '../interfaces/IStudentWeekPerformance';
 import { IStudentWeekDayPerformance } from '../interfaces/IStudentWeekDayPerformance';
 import { IImage } from '../interfaces/IImage';
+import { IStudent } from '../interfaces/IStudent';
+import { ITeacher } from '../interfaces/ITeacher';
+import { ThemeType } from '../types/ThemeType';
 
 export const DEFAULT_APLICATION: IAplication = {
   token: '',
-  theme: 'light',
-  userType: 'student',
+  theme: ThemeType.BLUE,
+  isStudent: true,
   loadingAnimation: false,
 };
 
@@ -33,7 +36,7 @@ export const DEFAULT_IMAGE: IImage = {
 
 export const DEFAULT_TEACHING_TYPE: ITeachingType = {
   id: '',
-  title: '',
+  name: '',
   schoolGrades: [],
 };
 
@@ -41,18 +44,29 @@ export const DEFAULT_SCHOOL_GRADE: ISchoolGrade = {
   id: '',
   index: 0,
   subjects: [],
+  teachingType: DEFAULT_TEACHING_TYPE,
 };
 
-export const DEFAULT_USER: IUser = {
+export const DEFAULT_USER: IPeople = {
   id: '',
   email: '',
   name: '',
   profilePicture: DEFAULT_IMAGE,
   league: '',
   isOnline: false,
-  userType: 'student',
-  teachingType: DEFAULT_TEACHING_TYPE,
+  isStudent: true,
+};
+
+export const DEFAULT_STUDENT: IStudent = {
+  id: '',
+  people: DEFAULT_USER,
   schoolGrade: DEFAULT_SCHOOL_GRADE,
+};
+
+export const DEFAULT_TEACHER: ITeacher = {
+  id: '',
+  people: DEFAULT_USER,
+  teachingType: DEFAULT_TEACHING_TYPE,
 };
 
 export const DEFAULT_SUBJECT: ISubject = {
@@ -63,13 +77,13 @@ export const DEFAULT_SUBJECT: ISubject = {
 
 export const DEFAULT_UNITY: IUnity = {
   id: '',
-  title: '',
+  name: '',
   contents: [],
 };
 
 export const DEFAULT_CONTENT: IContent = {
   id: '',
-  title: '',
+  name: '',
   description: '',
   video: '',
   index: 0,
@@ -106,13 +120,13 @@ export const DEFAULT_PRACTICE_QUESTION: IPracticeQuestion = {
 export const DEFAULT_STUDENT_WEEK_DAY_PERFORMANCE: IStudentWeekDayPerformance =
   {
     id: '',
-    dailyXP: 0,
-    studiedContents: 0,
+    dailyXp: 0,
+    contentsStudied: 0,
     questionsAnswered: 0,
-    rightQuestionsAnswered: 0,
+    questionsAnsweredCorrectly: 0,
     duelsParticipated: 0,
     duelsWon: 0,
-    date: '',
+    createdAt: '',
   };
 
 export const DEFAULT_STUDENT_WEEK_PERFORMANCE: IStudentWeekPerformance = {
@@ -121,7 +135,7 @@ export const DEFAULT_STUDENT_WEEK_PERFORMANCE: IStudentWeekPerformance = {
   createdAt: '',
   weekDay: DEFAULT_STUDENT_WEEK_DAY_PERFORMANCE,
   weekDays: [],
-  student: { ...DEFAULT_USER, schoolGradeId: '' },
+  student: DEFAULT_STUDENT,
 };
 
 /* Duelos */
@@ -164,7 +178,7 @@ export const DEFAULT_DUEL_TEAM_PARTICIPATION: IDuelTeamParticipation = {
   id: '',
   index: -1,
   duelTeam: DEFAULT_DUEL_TEAM,
-  student: DEFAULT_USER,
+  student: DEFAULT_STUDENT,
   duelQuestionsAnswers: [],
 };
 
