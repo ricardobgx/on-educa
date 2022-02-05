@@ -4,7 +4,8 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
-  margin-bottom: 20px;
+  margin: 20px;
+  margin-top: 0px;
 
   @media (max-width: 700px) {
     flex-direction: column;

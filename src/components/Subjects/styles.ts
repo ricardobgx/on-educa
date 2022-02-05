@@ -26,7 +26,7 @@ export const SubjectSectionSelectLabel = styled(paragraph)`
   margin-bottom: 15px;
   font-weight: bold;
 `;
-export const RequiredFieldLabel = styled(paragraph)`
+export const RequiredFieldLabel = styled.span`
   color: ${({ theme }) => theme.similarColors.warningColor};
 `;
 export const SubjectSectionSelectOptionsList = styled.div`

@@ -201,7 +201,6 @@ export const setUpPeopleType = async (
   setStudent: (value: IStudent) => void,
   setTeacher: (value: ITeacher) => void,
 ): Promise<void> => {
-  console.log(isStudent);
   if (isStudent) {
     await getStudentByPeople(API, peopleId, setStudent, token);
   } else {

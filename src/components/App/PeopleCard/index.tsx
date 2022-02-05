@@ -48,6 +48,7 @@ const PeopleCard = (props: IPeopleCardProps): JSX.Element => {
 
   const { id, name, profilePicture } = people;
   const { schoolGrade } = student;
+  const { teachingType } = teacher;
 
   const { aplication } = useSelector((store: State) => store);
   const { token } = aplication;
@@ -86,7 +87,7 @@ const PeopleCard = (props: IPeopleCardProps): JSX.Element => {
           {people.isStudent ? (
             <StudentSchoolGrade>{schoolGrade.index}º ano</StudentSchoolGrade>
           ) : (
-            <TeacherSubjects>{1}</TeacherSubjects>
+            <TeacherSubjects>{teachingType.name}</TeacherSubjects>
           )}
         </PersonalInfo>
       </PeopleDetails>

@@ -24,7 +24,7 @@ import { stringToBoolean } from './functions/utils';
 function App(): JSX.Element {
   /* Global State */
 
-  const { aplication, people } = useSelector((store: State) => store);
+  const { aplication } = useSelector((store: State) => store);
   const { loadingAnimation } = aplication;
 
   const dispatch = useDispatch();
@@ -66,10 +66,6 @@ function App(): JSX.Element {
     const isStudent = stringToBoolean(localIsStudent);
     const theme = Number(localTheme);
 
-    console.log(
-      `isStudent no App: ${window.localStorage.getItem('isStudent')}`,
-    );
-
     if (id && token) {
       loadIsStudent(isStudent);
       loadToken(token);
@@ -83,8 +79,6 @@ function App(): JSX.Element {
       setAplicationTheme(ThemeType.BLUE);
     }
   }, []);
-
-  console.log(people);
 
   return (
     <>

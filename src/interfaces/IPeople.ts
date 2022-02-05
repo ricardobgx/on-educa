@@ -8,4 +8,5 @@ export interface IPeople {
   isStudent: boolean;
   isOnline: boolean;
   league: string;
+  friends: IPeople[];
 }

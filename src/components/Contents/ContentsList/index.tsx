@@ -18,12 +18,12 @@ const ContentsList = (props: IContentsListProps): JSX.Element => {
   return (
     <ContentsListBox>
       <ContentCards>
-        {contents.map((content) => (
+        {contents.map((content, index) => (
           <ContentCard
+            index={index}
             content={content}
             setContent={setContent}
             setDeleteContentIsVisible={setDeleteContentIsVisible}
-            {...content}
           />
         ))}
       </ContentCards>

@@ -8,12 +8,15 @@ import {
   SignActions,
   SignButton,
   SignButtonLabel,
+  ChangeSignPeople,
+  ChangeSignPeopleLabel,
 } from '../components';
 import OnEducaAPI from '../../../../services/api';
 import SignTextInput from '../SignTextInput';
 import { ActionCreators, State } from '../../../../store';
 import {
   getPeople,
+  invertPeopleType,
   loginPeople,
   setPeopleVariables,
   setUpPeopleType,
@@ -47,6 +50,11 @@ const Login = (): JSX.Element => {
     if (email.trim() === '' || password.trim() === '' || password.length < 8)
       return false;
     return true;
+  };
+
+  const clearFields = (): void => {
+    setEmail('');
+    setPassword('');
   };
 
   const loginSucess = async (
@@ -117,6 +125,17 @@ const Login = (): JSX.Element => {
         >
           <SignButtonLabel>Entrar</SignButtonLabel>
         </SignButton>
+        <ChangeSignPeople
+          onClick={() => {
+            loadIsStudent(invertPeopleType(isStudent));
+            clearFields();
+          }}
+        >
+          <ChangeSignPeopleLabel>
+            Sou
+            {isStudent ? ' professor' : ' aluno'}
+          </ChangeSignPeopleLabel>
+        </ChangeSignPeople>
       </SignActions>
     </SignBox>
   );

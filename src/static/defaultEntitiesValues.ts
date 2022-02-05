@@ -21,6 +21,7 @@ import { IImage } from '../interfaces/IImage';
 import { IStudent } from '../interfaces/IStudent';
 import { ITeacher } from '../interfaces/ITeacher';
 import { ThemeType } from '../types/ThemeType';
+import { IChat } from '../interfaces/IChat';
 
 export const DEFAULT_APLICATION: IAplication = {
   token: '',
@@ -47,7 +48,7 @@ export const DEFAULT_SCHOOL_GRADE: ISchoolGrade = {
   teachingType: DEFAULT_TEACHING_TYPE,
 };
 
-export const DEFAULT_USER: IPeople = {
+export const DEFAULT_PEOPLE: IPeople = {
   id: '',
   email: '',
   name: '',
@@ -55,17 +56,24 @@ export const DEFAULT_USER: IPeople = {
   league: '',
   isOnline: false,
   isStudent: true,
+  friends: [],
+};
+
+export const DEFAULT_CHAT: IChat = {
+  id: '',
+  chatCreator: DEFAULT_PEOPLE,
+  chatParticipant: DEFAULT_PEOPLE,
 };
 
 export const DEFAULT_STUDENT: IStudent = {
   id: '',
-  people: DEFAULT_USER,
+  people: DEFAULT_PEOPLE,
   schoolGrade: DEFAULT_SCHOOL_GRADE,
 };
 
 export const DEFAULT_TEACHER: ITeacher = {
   id: '',
-  people: DEFAULT_USER,
+  people: DEFAULT_PEOPLE,
   teachingType: DEFAULT_TEACHING_TYPE,
 };
 
@@ -157,7 +165,7 @@ export const DEFAULT_DUEL_ROUND: IDuelRound = {
 export const DEFAULT_DUEL: IDuel = {
   id: '',
   code: '',
-  student: DEFAULT_USER,
+  student: DEFAULT_PEOPLE,
   duelRound: DEFAULT_DUEL_ROUND,
   duelRounds: [],
 };

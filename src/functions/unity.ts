@@ -31,6 +31,27 @@ export const getUnitsBySubject = async (
   });
 };
 
+export const createUnity = async (
+  API: AxiosInstance,
+  unityParams: IUnityParams,
+  token: string,
+  requestSucess: () => void,
+  requestError: () => void,
+): Promise<void> => {
+  await API.post('/units', unityParams, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then(
+    () => {
+      requestSucess();
+    },
+    () => {
+      requestError();
+    },
+  );
+};
+
 export const updateUnity = async (
   API: AxiosInstance,
   id: string,

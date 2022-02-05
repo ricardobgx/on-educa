@@ -4,7 +4,6 @@ import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const UnityAccordionBox = styled.div`
   padding: 10px 15px;
-  margin-bottom: 20px;
   background: ${({ theme }) => theme.colors.boxColor};
   box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   width: 100%;
@@ -33,7 +32,7 @@ export const HiddenContent = styled(Link)`
   background: ${({ theme }) => theme.colors.boxColor};
   box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   width: 100%;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;
   transition: all 0.2s linear;

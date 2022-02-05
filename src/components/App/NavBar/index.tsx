@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { clearPeopleVariables } from '../../../functions/people';
 import { ActionCreators, State } from '../../../store';
+import NavBarAction from './NavBarAction';
+import { NavBarActionBox, NavBarIconLabel } from './NavBarAction/styles';
 
 import {
   NavBarBox,
@@ -11,9 +13,6 @@ import {
   Title,
   Actions,
   PeoplePhoto,
-  Action,
-  NavBarIcon,
-  IconLabel,
   ToggleMenuButton,
   ToggleMenuIcon,
 } from './styles';
@@ -56,31 +55,34 @@ const NavBar = (): JSX.Element => {
         <Title>Educa</Title>
       </Logo>
       <Actions style={{ right: menuRight }}>
-        <Action to={`/profile/${id}`}>
+        <NavBarActionBox to={`/profile/${id}`} onClick={() => toggleMenu()}>
           <PeoplePhoto src={profilePicture.path} />
-          <IconLabel>Perfil</IconLabel>
-        </Action>
-        <Action to="/friends">
-          <NavBarIcon className="fas fa-users" />
-          <IconLabel>Amigos</IconLabel>
-        </Action>
-        <Action to="/notifications">
-          <NavBarIcon className="fas fa-bell" />
-          <IconLabel>Notificações</IconLabel>
-        </Action>
-        <Action to="/settings">
-          <NavBarIcon className="fas fa-cog" />
-          <IconLabel>Configurações</IconLabel>
-        </Action>
-        <Action
-          onClick={() => {
-            logout();
-          }}
-          to="/"
-        >
-          <NavBarIcon className="fas fa-sign-out-alt" />
-          <IconLabel>Sair</IconLabel>
-        </Action>
+          <NavBarIconLabel>Perfil</NavBarIconLabel>
+        </NavBarActionBox>
+        <NavBarAction
+          link="/friends"
+          icon="fas fa-users"
+          label="Amigos"
+          clickAction={toggleMenu}
+        />
+        <NavBarAction
+          link="/notifications"
+          icon="fas fa-bell"
+          label="Notificações"
+          clickAction={toggleMenu}
+        />
+        <NavBarAction
+          link="/settings"
+          icon="fas fa-cog"
+          label="Configurações"
+          clickAction={toggleMenu}
+        />
+        <NavBarAction
+          link="/"
+          icon="fas fa-sign-out-alt"
+          label="Sair"
+          clickAction={logout}
+        />
       </Actions>
       <ToggleMenuButton
         onClick={() => {

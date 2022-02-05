@@ -44,9 +44,10 @@ const UnityCard = (props: IUnityCardProps): JSX.Element => {
 
   const { loadUnity } = bindActionCreators(ActionCreators, dispatch);
 
-  const { teachingType, schoolGrade, subject } = useSelector(
+  const { aplication, teachingType, schoolGrade, subject } = useSelector(
     (store: State) => store,
   );
+  const { isStudent } = aplication;
 
   return (
     <UnityCardBox style={{ animationDelay: `${index * 0.2}s` }}>
@@ -72,12 +73,14 @@ const UnityCard = (props: IUnityCardProps): JSX.Element => {
           </ContentsNumber>
         </UnityAdditionalDetails>
       </UnityCardDetails>
-      <UnityCardActions
-        unity={unity}
-        setUnity={setUnity}
-        setUpdateUnityIsVisible={setUpdateUnityIsVisible}
-        setDeleteUnityIsVisible={setDeleteUnityIsVisible}
-      />
+      {!isStudent && (
+        <UnityCardActions
+          unity={unity}
+          setUnity={setUnity}
+          setUpdateUnityIsVisible={setUpdateUnityIsVisible}
+          setDeleteUnityIsVisible={setDeleteUnityIsVisible}
+        />
+      )}
     </UnityCardBox>
   );
 };

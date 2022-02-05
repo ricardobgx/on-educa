@@ -8,7 +8,6 @@ import OnEducaAPI from '../../../services/api';
 import {
   DEFAULT_STUDENT,
   DEFAULT_TEACHER,
-  DEFAULT_USER,
 } from '../../../static/defaultEntitiesValues';
 import { State } from '../../../store';
 import PeopleCard from '../../App/PeopleCard';

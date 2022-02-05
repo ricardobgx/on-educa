@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { createUnity } from '../../../functions/unity';
 import { ICommonUnityProps } from '../../../pages/Units';
 import OnEducaAPI from '../../../services/api';
 import { State } from '../../../store';
@@ -25,7 +26,7 @@ const NewUnity = (props: INewUnityProps): JSX.Element => {
 
   /* Local State */
 
-  const [title, setTitle] = useState('');
+  const [name, setName] = useState('');
 
   /* Global State */
 
@@ -33,22 +34,13 @@ const NewUnity = (props: INewUnityProps): JSX.Element => {
 
   const { token } = aplication;
 
-  const createUnity = async (): Promise<void> => {
-    await OnEducaAPI.post(
-      '/units',
-      {
-        title,
-        subjectId: subject.id,
-      },
-      {
-        headers: {
-          Authorization: token,
-        },
-      },
-    ).then(() => {
-      getUnits();
-      setNewUnityIsVisible(false);
-    });
+  const createUnitySucess = (): void => {
+    getUnits();
+    setNewUnityIsVisible(false);
+  };
+
+  const createUnityError = (): void => {
+    console.log('erro');
   };
 
   return (
@@ -60,12 +52,22 @@ const NewUnity = (props: INewUnityProps): JSX.Element => {
         <NewUnityLabel>Nova unidade</NewUnityLabel>
         <NewUnityInput
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setTitle(event.target.value);
+            setName(event.target.value);
           }}
           type="text"
           placeholder="Título da unidade"
         />
-        <CreateUnityButton onClick={() => createUnity()}>
+        <CreateUnityButton
+          onClick={() =>
+            createUnity(
+              OnEducaAPI,
+              { name, subjectId: subject.id },
+              token,
+              createUnitySucess,
+              createUnityError,
+            )
+          }
+        >
           <CreateUnityButtonLabel>Criar unidade</CreateUnityButtonLabel>
         </CreateUnityButton>
       </NewUnityBox>

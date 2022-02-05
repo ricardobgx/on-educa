@@ -24,23 +24,27 @@ import {
 } from './styles';
 
 interface IContentCardProps {
+  index: number;
   content: IContent;
   setContent: (value: IContent) => void;
   setDeleteContentIsVisible: (value: boolean) => void;
 }
 
 const ContentCard = (props: IContentCardProps): JSX.Element => {
-  const { content, setContent, setDeleteContentIsVisible } = props;
+  const { index, content, setContent, setDeleteContentIsVisible } = props;
   const { id, name, questions } = content;
 
   const dispatch = useDispatch();
 
   const { loadContent } = bindActionCreators(ActionCreators, dispatch);
 
-  const { schoolGrade, subject, unity } = useSelector((store: State) => store);
+  const { schoolGrade, subject, unity, aplication } = useSelector(
+    (store: State) => store,
+  );
+  const { isStudent } = aplication;
 
   return (
-    <ContentCardBox>
+    <ContentCardBox style={{ animationDelay: `${index * 0.2}s` }}>
       <ContentCardDetails
         to={`/contents/${id}`}
         onClick={() => loadContent(content)}
@@ -66,11 +70,13 @@ const ContentCard = (props: IContentCardProps): JSX.Element => {
           </ContentsNumber>
         </ContentAdditionalDetails>
       </ContentCardDetails>
-      <ContentCardActions
-        content={content}
-        setContent={setContent}
-        setDeleteContentIsVisible={setDeleteContentIsVisible}
-      />
+      {!isStudent && (
+        <ContentCardActions
+          content={content}
+          setContent={setContent}
+          setDeleteContentIsVisible={setDeleteContentIsVisible}
+        />
+      )}
     </ContentCardBox>
   );
 };

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const ContentsListBox = styled.div`
   background: none;
+  margin: 0 15px;
 `;
 export const ContentCards = styled.div`
   display: flex;

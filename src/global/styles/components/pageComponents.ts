@@ -11,3 +11,22 @@ export const Page = styled.div`
   animation: 0.2s linear fadeIn;
   animation-fill-mode: forwards;
 `;
+
+export const PageBoxRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  margin: 20px;
+
+  @media (max-width: 1150px) {
+    flex-wrap: wrap;
+  }
+`;
+
+export const PageBoxColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  margin: 20px;
+`;

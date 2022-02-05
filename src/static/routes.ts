@@ -1,5 +1,6 @@
 import IRoute from '../interfaces/IRoute';
 import Achievements from '../pages/Achievements';
+import Chats from '../pages/Chats';
 import Content from '../pages/Content';
 import Contents from '../pages/Contents';
 import Doubts from '../pages/Doubts';
@@ -9,6 +10,7 @@ import DuelQuestions from '../pages/DuelQuestions';
 import DuelResults from '../pages/DuelResults';
 import Duels from '../pages/Duels';
 import EditContent from '../pages/EditContent';
+import Friends from '../pages/Friends';
 import Home from '../pages/Home';
 import Missions from '../pages/Missions';
 import NewContent from '../pages/NewContent';
@@ -37,6 +39,12 @@ const routes: IRoute[] = [
     path: '/home',
     name: 'Home',
     component: Home,
+    exact: true,
+  },
+  {
+    path: '/friends',
+    name: 'Friends',
+    component: Friends,
     exact: true,
   },
   {
@@ -157,6 +165,12 @@ const routes: IRoute[] = [
     path: '/doubts',
     name: 'Doubts',
     component: Doubts,
+    exact: true,
+  },
+  {
+    path: '/chats',
+    name: 'Chats',
+    component: Chats,
     exact: true,
   },
   {

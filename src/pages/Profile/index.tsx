@@ -20,7 +20,7 @@ import {
   DEFAULT_STUDENT,
   DEFAULT_STUDENT_WEEK_PERFORMANCE,
   DEFAULT_TEACHER,
-  DEFAULT_USER,
+  DEFAULT_PEOPLE,
 } from '../../static/defaultEntitiesValues';
 import { State } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
@@ -81,7 +81,7 @@ const Profile = (): JSX.Element => {
 
   /* Local State */
 
-  const [people, setPeople] = useState<IPeople>(DEFAULT_USER);
+  const [people, setPeople] = useState<IPeople>(DEFAULT_PEOPLE);
 
   const [socialDetailSelected, setSocialDetailSelected] = useState(0);
 
