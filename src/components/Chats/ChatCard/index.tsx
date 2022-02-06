@@ -31,7 +31,6 @@ const ChatCard = (props: IChatCardProps): JSX.Element => {
         );
         if (toggleConversations) {
           const checkbox = toggleConversations as HTMLInputElement;
-          console.log(checkbox.checked);
           checkbox.checked = false;
         }
         setSelectedChat(chat);

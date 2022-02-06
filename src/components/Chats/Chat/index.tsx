@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import io from 'socket.io-client';
+import { randInt } from '../../../functions/utils';
 import { IChat } from '../../../interfaces/IChat';
+import { IMessage } from '../../../interfaces/IMessage';
 import { IPeople } from '../../../interfaces/IPeople';
+import ChatMessage from '../ChatMessage';
 import ChatPeoplePicture from '../ChatPeoplePicture';
 import {
   ChatBox,
@@ -20,15 +24,58 @@ import {
 interface IChatProps {
   chat: IChat;
   loggedPeople: IPeople;
+  setSelectedChat: (value: IChat) => void;
 }
 
+const socket = io(process.env.REACT_APP_API_URL || '');
+socket.on('connect', () =>
+  console.log('[IO] A new connection has been established'),
+);
+
 const Chat = (props: IChatProps): JSX.Element => {
-  const { chat, loggedPeople } = props;
-  const { chatCreator, chatParticipant } = chat;
+  const { chat, loggedPeople, setSelectedChat } = props;
+  const { id, chatCreator, chatParticipant } = chat;
+
+  const [message, setMessage] = useState('');
 
   const people =
     loggedPeople.id === chatCreator.id ? chatParticipant : chatCreator;
   const { name, profilePicture, isOnline } = people;
+
+  const messagesList = document.getElementById('messages-list');
+
+  const addMessage = (newMessage: IMessage): void => {
+    const { chatId } = newMessage;
+
+    if (chatId === id) {
+      setSelectedChat({ ...chat, messages: [...chat.messages, newMessage] });
+      if (messagesList) {
+        messagesList.scrollTop = messagesList.offsetHeight;
+      }
+    }
+  };
+
+  const sendMessage = (): void => {
+    if (message.trim()) {
+      socket.emit('chat.message', {
+        id: randInt(0, 2500).toString(),
+        chatId: chat.id,
+        content: message,
+        messageSenderId: loggedPeople.id,
+        messageReceiverId: people.id,
+      } as IMessage);
+      setMessage('');
+    }
+  };
+
+  useEffect((): any => {
+    socket.on('chat.message', addMessage);
+    return () => {
+      socket.off('chat.message', addMessage);
+    };
+  }, [chat]);
+
+  const { messages } = chat;
 
   return (
     <ChatBox>
@@ -46,12 +93,32 @@ const Chat = (props: IChatProps): JSX.Element => {
       </ChatParticipant>
       <ChatMessages>
         <ChatMessagesBox>
-          <ChatMessagesList>1</ChatMessagesList>
+          <ChatMessagesList id="messages-list">
+            {messages.map((msg) => (
+              <ChatMessage
+                key={msg.id}
+                loggedPeople={loggedPeople}
+                message={msg}
+              />
+            ))}
+          </ChatMessagesList>
         </ChatMessagesBox>
       </ChatMessages>
       <ChatMessageInput>
-        <MessageInput type="text" placeholder="Digite algo" />
-        <SendMessageButton>
+        <MessageInput
+          type="text"
+          placeholder="Digite algo"
+          value={message}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            setMessage(event.target.value);
+          }}
+          onKeyUp={(event: React.KeyboardEvent) => {
+            if (event.key === 'Enter') {
+              sendMessage();
+            }
+          }}
+        />
+        <SendMessageButton onClick={() => sendMessage()}>
           <SendMessageButtonIcon className="bi bi-send" />
         </SendMessageButton>
       </ChatMessageInput>

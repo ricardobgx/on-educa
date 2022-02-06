@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { AxiosInstance } from 'axios';
+import { IUpdatePeopleFriendParams } from '../dto/IUpdatePeopleFriendParams';
 import { IAuthenticationResponse } from '../interfaces/IAuthenticationResponse';
 import { ILogin } from '../interfaces/ILogin';
 import { IPeople } from '../interfaces/IPeople';
@@ -184,6 +185,42 @@ export const updatePeople = async (
   updateError: () => void,
 ): Promise<void> => {
   await API.put(`/${entityPath}/${id}`, peopleParams, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then(
+    () => updateSucess(),
+    () => updateError(),
+  );
+};
+
+export const addPeopleFriend = async (
+  API: AxiosInstance,
+  id: string,
+  peopleParams: IUpdatePeopleFriendParams,
+  token: string,
+  updateSucess: () => void,
+  updateError: () => void,
+): Promise<void> => {
+  await API.put(`/${entityPath}/${id}/addFriend`, peopleParams, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then(
+    () => updateSucess(),
+    () => updateError(),
+  );
+};
+
+export const removePeopleFriend = async (
+  API: AxiosInstance,
+  id: string,
+  peopleParams: IUpdatePeopleFriendParams,
+  token: string,
+  updateSucess: () => void,
+  updateError: () => void,
+): Promise<void> => {
+  await API.put(`/${entityPath}/${id}/removeFriend`, peopleParams, {
     headers: {
       authorization: `Bearer ${token}`,
     },

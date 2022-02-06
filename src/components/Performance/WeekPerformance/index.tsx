@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { isDefaultStudent } from '../../../functions/entitiesValues';
 import { getStudentWeekPerformanceByStudent } from '../../../functions/studentWeekPerformance';
 import {
   deviceHeight,
@@ -30,10 +31,13 @@ import {
 } from './styles';
 
 const WeekPerformance = (): JSX.Element => {
-  const { aplication, people: loggedPeople } = useSelector(
-    (store: State) => store,
-  );
-  const { peopleType, token } = aplication;
+  const {
+    aplication,
+    people: loggedPeople,
+    student,
+    teacher,
+  } = useSelector((store: State) => store);
+  const { token } = aplication;
 
   const [chartType, setChartType] = useState('questions');
   const [studentWeekPerformance, setStudentWeekPerformance] =
@@ -115,14 +119,17 @@ const WeekPerformance = (): JSX.Element => {
   };
 
   useEffect(() => {
-    getStudentWeekPerformanceByStudent(
-      OnEducaAPI,
-      loggedPeople.id,
-      token,
-      setChartsData,
-      () => console.log('erro'),
-    );
-  }, []);
+    if (loggedPeople.isStudent) {
+      if (!isDefaultStudent(student))
+        getStudentWeekPerformanceByStudent(
+          OnEducaAPI,
+          student.id,
+          token,
+          setChartsData,
+          () => console.log('erro'),
+        );
+    }
+  }, [student]);
 
   return (
     <WeekPerformanceBox>

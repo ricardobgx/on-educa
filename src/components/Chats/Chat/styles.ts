@@ -35,9 +35,26 @@ export const ChatPeopleName = styled(paragraph)`
 export const ChatPeopleOnlineLabel = styled(paragraph)`
   color: ${({ theme }) => theme.colors.boxShadowColor};
 `;
-export const ChatMessages = styled.div``;
-export const ChatMessagesBox = styled.div``;
-export const ChatMessagesList = styled.div``;
+export const ChatMessages = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;
+export const ChatMessagesBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;
+export const ChatMessagesList = styled.div`
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: calc(100vh - 290px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+`;
 export const ChatMessageInput = styled.div`
   display: flex;
   max-width: 100%;

@@ -1,21 +1,35 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { IStudentWeekPerformance } from '../../../interfaces/IStudentWeekPerformance';
 import { IPeople } from '../../../interfaces/IPeople';
 import PeopleCard from '../../App/PeopleCard';
 import { RankingPosition, RankingPeopleCardBox } from './styles';
-import { DEFAULT_TEACHER } from '../../../static/defaultEntitiesValues';
+import {
+  DEFAULT_PEOPLE,
+  DEFAULT_TEACHER,
+} from '../../../static/defaultEntitiesValues';
+import { getPeople } from '../../../functions/people';
+import OnEducaAPI from '../../../services/api';
+import { isDefaultPeople } from '../../../functions/entitiesValues';
 
 interface IRankingPeopleCardProps {
   studentWeekPerformance: IStudentWeekPerformance;
   rankingPosition: number;
+  token: string;
 }
 
 const RankingPeopleCard = (props: IRankingPeopleCardProps): JSX.Element => {
-  const { studentWeekPerformance, rankingPosition } = props;
+  const { studentWeekPerformance, rankingPosition, token } = props;
   const { student } = studentWeekPerformance;
-  const { people } = student;
+
+  const [people, setPeople] = useState(DEFAULT_PEOPLE);
+
+  useEffect(() => {
+    if (isDefaultPeople(people)) {
+      getPeople(OnEducaAPI, student.people.id, setPeople, token);
+    }
+  }, []);
 
   return (
     <RankingPeopleCardBox>

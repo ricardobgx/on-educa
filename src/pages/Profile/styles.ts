@@ -2,7 +2,10 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Button } from '../../global/styles/components/buttonComponents';
 import { paragraph } from '../../global/styles/components/textComponents';
-import { mediumIcon } from '../../global/styles/components/iconComponents';
+import {
+  mediumIcon,
+  smallIcon,
+} from '../../global/styles/components/iconComponents';
 
 export const PageBox = styled.div`
   display: flex;
@@ -136,6 +139,11 @@ export const AppearenceDetails = styled.div`
 export const MainDetails = styled.div`
   margin: 25px;
 `;
+
+/* Acoes no perfil */
+
+// Atualizar perfil
+
 export const EditProfileButton = styled(Link)`
   padding: 0 10px;
   margin-top: 20px;
@@ -150,6 +158,47 @@ export const EditProfileButton = styled(Link)`
 export const EditProfileButtonLabel = styled(paragraph)`
   margin-right: 10px;
 `;
+
+const FriendButton = styled(Button)`
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  background: ${({ theme }) => theme.colors.boxColor};
+`;
+const FriendButtonLabel = styled(paragraph)`
+  margin-right: 5px;
+
+  @media (max-width: 400px) {
+    display: none;
+  }
+`;
+
+// Amigo
+
+export const FriendActions = styled.div`
+  display: flex;
+`;
+export const UnfriendButton = styled(FriendButton)`
+  margin-left: 10px;
+  color: ${({ theme }) => theme.similarColors.warningColor};
+`;
+export const UnfriendButtonLabel = styled(FriendButtonLabel)`
+  margin-right: 5px;
+`;
+
+// Nao eh amigo
+
+export const NoFriendActions = styled.div``;
+export const AddFriendButton = styled(FriendButton)`
+  color: ${({ theme }) => theme.colors.textColor};
+`;
+export const AddFriendButtonLabel = styled(FriendButtonLabel)`
+  margin-right: 5px;
+`;
+export const AddFriendButtonIcon = styled(smallIcon)``;
+
+// Caracteristica da pessoa
+
 export const PeopleName = styled(paragraph)`
   margin-bottom: 10px;
   font-size: 20px;

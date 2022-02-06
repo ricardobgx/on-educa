@@ -63,6 +63,7 @@ export const DEFAULT_CHAT: IChat = {
   id: '',
   chatCreator: DEFAULT_PEOPLE,
   chatParticipant: DEFAULT_PEOPLE,
+  messages: [],
 };
 
 export const DEFAULT_STUDENT: IStudent = {

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import SectionLabel from '../../components/App/SectionLabel';
 import FriendRequestCard from '../../components/Friends/FriendRequestCard';
 import MyFriendCard from '../../components/Friends/MyFriendCard';
+import { isDefaultPeople } from '../../functions/entitiesValues';
 import { Page } from '../../global/styles/components/pageComponents';
 import { IPeople } from '../../interfaces/IPeople';
 import { State } from '../../store';
@@ -18,7 +19,9 @@ import {
 } from './styles';
 
 const Friends = (): JSX.Element => {
-  const { aplication } = useSelector((store: State) => store);
+  const { aplication, people: loggedPeople } = useSelector(
+    (store: State) => store,
+  );
   const { token } = aplication;
 
   const friendsTest: IPeople[] = [
@@ -37,8 +40,16 @@ const Friends = (): JSX.Element => {
     },
   ];
 
-  const [friends, setFriends] = useState<IPeople[]>(friendsTest);
+  const [friends, setFriends] = useState<IPeople[]>(loggedPeople.friends);
   const [friendRequests, setFriendRequests] = useState<IPeople[]>(friendsTest);
+
+  useEffect(() => {
+    if (!isDefaultPeople(loggedPeople)) {
+      setFriends(loggedPeople.friends);
+    }
+  }, []);
+
+  console.log(loggedPeople.friends);
 
   return (
     <Page>
@@ -49,7 +60,12 @@ const Friends = (): JSX.Element => {
             <MyFriendsBox>
               <MyFriendsList>
                 {friends.map((friend) => (
-                  <MyFriendCard key={friend.id} people={friend} token={token} />
+                  <MyFriendCard
+                    key={friend.id}
+                    loggedPeople={loggedPeople}
+                    people={friend}
+                    token={token}
+                  />
                 ))}
               </MyFriendsList>
             </MyFriendsBox>

@@ -13,6 +13,7 @@ import { PageBox, Ranking, PeoplesList, PeoplesListBox } from './styles';
 import WeekPerformance from '../../components/Performance/WeekPerformance';
 import { getStudentWeekPerformances } from '../../functions/studentWeekPerformance';
 import { IStudentWeekPerformance } from '../../interfaces/IStudentWeekPerformance';
+import { isDefaultPeople } from '../../functions/entitiesValues';
 
 const Performance = (): JSX.Element => {
   const { aplication, people: loggedPeople } = useSelector(
@@ -25,12 +26,14 @@ const Performance = (): JSX.Element => {
   >([]);
 
   useEffect(() => {
-    getStudentWeekPerformances(
-      OnEducaAPI,
-      token,
-      setStudentWeekPerformances,
-      () => console.log('erro'),
-    );
+    if (!isDefaultPeople(loggedPeople) && token) {
+      getStudentWeekPerformances(
+        OnEducaAPI,
+        token,
+        setStudentWeekPerformances,
+        () => console.log('erro'),
+      );
+    }
   }, [loggedPeople]);
 
   return (
@@ -46,6 +49,7 @@ const Performance = (): JSX.Element => {
                   key={studentWeekPerformance.id}
                   studentWeekPerformance={studentWeekPerformance}
                   rankingPosition={index + 1}
+                  token={token}
                 />
               ))}
             </PeoplesListBox>

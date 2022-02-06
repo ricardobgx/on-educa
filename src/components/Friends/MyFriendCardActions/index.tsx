@@ -1,5 +1,7 @@
 import React from 'react';
+import { removePeopleFriend } from '../../../functions/people';
 import { IPeople } from '../../../interfaces/IPeople';
+import OnEducaAPI from '../../../services/api';
 import {
   MyFriendCardActionsBox,
   UnfriendButton,
@@ -10,14 +12,29 @@ import {
 
 interface IMyFriendCardActionsProps {
   people: IPeople;
+  loggedPeople: IPeople;
+  token: string;
 }
 
 const MyFriendCardActions = (props: IMyFriendCardActionsProps): JSX.Element => {
-  const { people } = props;
+  const { people, loggedPeople, token } = props;
 
   return (
     <MyFriendCardActionsBox>
-      <UnfriendButton>
+      <UnfriendButton
+        onClick={() =>
+          removePeopleFriend(
+            OnEducaAPI,
+            loggedPeople.id,
+            {
+              friendId: people.id,
+            },
+            token,
+            () => console.log('amigo removido'),
+            () => console.log('erro'),
+          )
+        }
+      >
         <UnfriendButtonIcon className="fas fa-user-times" />
       </UnfriendButton>
       <SendMessageButton to="/">

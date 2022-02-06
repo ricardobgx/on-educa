@@ -9,8 +9,10 @@ import SectionLabel from '../../components/App/SectionLabel';
 import ProfileDailyGoal from '../../components/Profile/ProfileDailyGoal';
 import WeekPerformance from '../../components/Profile/WeekPerformance';
 import {
+  addPeopleFriend,
   getPeople,
   isPeopleLogged,
+  removePeopleFriend,
   setUpPeopleType,
 } from '../../functions/people';
 import { IPeople } from '../../interfaces/IPeople';
@@ -49,6 +51,13 @@ import {
   SocialDetailLabel,
   SocialDetailIcon,
   EditPictureButton,
+  UnfriendButtonLabel,
+  FriendActions,
+  NoFriendActions,
+  AddFriendButton,
+  AddFriendButtonLabel,
+  AddFriendButtonIcon,
+  UnfriendButton,
 } from './styles';
 import {
   MediumMaterialIconRound,
@@ -59,6 +68,11 @@ import { isDefaultPeople } from '../../functions/entitiesValues';
 import { getStudentWeekPerformanceByStudent } from '../../functions/studentWeekPerformance';
 import UpdateProfilePicture from '../../components/Profile/UpdateProfilePicture';
 import { IImage } from '../../interfaces/IImage';
+import {
+  SendMessageButton,
+  SendMessageButtonIcon,
+  UnfriendButtonIcon,
+} from '../../components/Friends/MyFriendCardActions/styles';
 
 interface IProfileRouteProps {
   id: string;
@@ -78,6 +92,7 @@ const Profile = (): JSX.Element => {
 
   const [student, setStudent] = useState(DEFAULT_STUDENT);
   const [teacher, setTeacher] = useState(DEFAULT_TEACHER);
+  const [isFriend, setIsFriend] = useState(false);
 
   /* Local State */
 
@@ -103,6 +118,14 @@ const Profile = (): JSX.Element => {
       setTeacher,
     );
     setProfilePicture(people.profilePicture);
+
+    const friendshipExists = loggedPeople.friends.find(
+      (friend: IPeople) => friend.id === peopleFound.id,
+    );
+
+    if (friendshipExists) {
+      setIsFriend(true);
+    }
   };
 
   /* Route params */
@@ -172,15 +195,62 @@ const Profile = (): JSX.Element => {
                     <PeoplePicture src={people.profilePicture.path} />
                   </PeoplePictureBox>
 
-                  <EditProfileButton
-                    to="/update-profile"
-                    className="with-shadow bd-rd-5"
-                  >
-                    <EditProfileButtonLabel>
-                      Editar perfil
-                    </EditProfileButtonLabel>
-                    <SmallMaterialIconRound color="" icon="mode_edit" />
-                  </EditProfileButton>
+                  {loggedPeople.id === people.id ? (
+                    <EditProfileButton
+                      to="/update-profile"
+                      className="with-shadow bd-rd-5"
+                    >
+                      <EditProfileButtonLabel>
+                        Editar perfil
+                      </EditProfileButtonLabel>
+                      <SmallMaterialIconRound color="" icon="mode_edit" />
+                    </EditProfileButton>
+                  ) : (
+                    <>
+                      {isFriend ? (
+                        <FriendActions>
+                          <SendMessageButton to="/">
+                            <SendMessageButtonIcon className="fas fa-comment-alt" />
+                          </SendMessageButton>
+                          <UnfriendButton
+                            onClick={() =>
+                              removePeopleFriend(
+                                OnEducaAPI,
+                                loggedPeople.id,
+                                { friendId: people.id },
+                                token,
+                                () => setIsFriend(false),
+                                () => console.log('erro'),
+                              )
+                            }
+                          >
+                            <UnfriendButtonLabel>Remover</UnfriendButtonLabel>
+                            <UnfriendButtonIcon className="fas fa-user-times" />
+                          </UnfriendButton>
+                        </FriendActions>
+                      ) : (
+                        <NoFriendActions>
+                          <AddFriendButton
+                            onClick={() =>
+                              addPeopleFriend(
+                                OnEducaAPI,
+                                loggedPeople.id,
+                                { friendId: people.id },
+                                token,
+                                () => setIsFriend(true),
+                                () => console.log('erro'),
+                              )
+                            }
+                          >
+                            <AddFriendButtonLabel>
+                              Adicionar
+                            </AddFriendButtonLabel>
+                            <AddFriendButtonIcon className="fas fa-user-plus" />
+                          </AddFriendButton>
+                        </NoFriendActions>
+                      )}
+                    </>
+                  )}
                 </AppearenceDetails>
 
                 <MainDetails>

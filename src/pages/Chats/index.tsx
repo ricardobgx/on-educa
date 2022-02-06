@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Chat from '../../components/Chats/Chat';
 import ChatCard from '../../components/Chats/ChatCard';
@@ -8,6 +8,7 @@ import {
   PageBoxColumn,
 } from '../../global/styles/components/pageComponents';
 import { IChat } from '../../interfaces/IChat';
+import { IMessage } from '../../interfaces/IMessage';
 import { DEFAULT_CHAT } from '../../static/defaultEntitiesValues';
 import { State } from '../../store';
 import {
@@ -32,7 +33,7 @@ const Chats = (): JSX.Element => {
 
   const testChats: IChat[] = [
     {
-      id: '',
+      id: '1',
       chatCreator: {
         id: '52a685fe-4ba7-42a6-8c8b-79a32341dc1a',
         name: 'Ricardo',
@@ -59,9 +60,10 @@ const Chats = (): JSX.Element => {
         league: 'gold',
         friends: [],
       },
+      messages: [],
     },
     {
-      id: '',
+      id: '2',
       chatCreator: {
         id: '52a685fe-4ba7-42a6-8c8b-79a32341dc1a',
         name: 'Ricardo',
@@ -88,40 +90,31 @@ const Chats = (): JSX.Element => {
         league: 'gold',
         friends: [],
       },
-    },
-    {
-      id: '',
-      chatCreator: {
-        id: '52a685fe-4ba7-42a6-8c8b-79a32341dc1a',
-        name: 'Ricardo',
-        email: 'ricardo@gmail.com',
-        isOnline: true,
-        isStudent: false,
-        profilePicture: {
-          id: 'ssfs',
-          path: 'http://192.168.10.25:8080/uploads/1644003384347-perfil2_Easy-Resize.webp',
-        },
-        league: 'gold',
-        friends: [],
-      },
-      chatParticipant: {
-        id: '4d776067-e053-458a-8a23-e4574f554e01',
-        name: 'Fabio Abrantes',
-        email: 'fabio@gmail.com',
-        isOnline: true,
-        isStudent: false,
-        profilePicture: {
-          id: 'ssfs',
-          path: 'http://192.168.10.25:8080/uploads/1644004435804-Idaly.webp',
-        },
-        league: 'gold',
-        friends: [],
-      },
+      messages: [],
     },
   ];
 
   const [selectedChat, setSelectedChat] = useState<IChat>(DEFAULT_CHAT);
   const [chats, setChats] = useState<IChat[]>(testChats);
+
+  const switchChat = (newChat: IChat): void => {
+    const newChats = chats.filter((chat) => chat.id !== selectedChat.id);
+
+    if (!isDefaultChat(selectedChat)) {
+      setChats([...newChats, { ...selectedChat }]);
+    }
+    setSelectedChat(newChat);
+  };
+
+  useEffect(() => {
+    const toggleConversations = document.getElementById(
+      'toggle-recent-conversations',
+    );
+    if (toggleConversations) {
+      const checkbox = toggleConversations as HTMLInputElement;
+      checkbox.checked = true;
+    }
+  }, []);
 
   return (
     <Page>
@@ -147,7 +140,7 @@ const Chats = (): JSX.Element => {
                   <ChatCard
                     chat={chat}
                     loggedPeople={loggedPeople}
-                    setSelectedChat={setSelectedChat}
+                    setSelectedChat={switchChat}
                   />
                 ))}
               </RecentConversationsList>
@@ -160,7 +153,11 @@ const Chats = (): JSX.Element => {
             </RecentConversationsBox>
           </RecentConversations>
           {!isDefaultChat(selectedChat) && (
-            <Chat chat={selectedChat} loggedPeople={loggedPeople} />
+            <Chat
+              chat={selectedChat}
+              loggedPeople={loggedPeople}
+              setSelectedChat={setSelectedChat}
+            />
           )}
         </ChatsBox>
       </PageBoxColumn>

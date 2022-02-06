@@ -66,8 +66,8 @@ export const RecentConversationsBox = styled.div``;
 export const RecentConversationsList = styled.div`
   overflow: auto;
   padding: 5px;
-  max-height: calc(100vh - 275px);
-  min-height: calc(100vh - 275px);
+  max-height: calc(100vh - 280px);
+  min-height: calc(100vh - 280px);
   margin-bottom: 20px;
 `;
 export const RecentConversationsActions = styled.div`
