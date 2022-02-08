@@ -20,6 +20,7 @@ const DuelTeams = (props: IDuelTeamsProps): JSX.Element => {
   const {
     duelOwner,
     loggedPeople,
+    loggedStudent,
     teams: unsortedTeams,
     studentParticipation,
     setStudentParticipation,
@@ -36,9 +37,11 @@ const DuelTeams = (props: IDuelTeamsProps): JSX.Element => {
       {teams.map((team) => {
         return (
           <DuelTeam
+            key={team.id}
             team={team}
             duelOwner={duelOwner}
             loggedPeople={loggedPeople}
+            loggedStudent={loggedStudent}
             studentParticipation={studentParticipation}
             setStudentParticipation={setStudentParticipation}
             refreshDuel={getDuelData}

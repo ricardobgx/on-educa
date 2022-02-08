@@ -10,14 +10,18 @@ import DuelActions from '../../components/Duel/DuelActions';
 import DuelTeams from '../../components/Duel/DuelTeams';
 import { getDuel } from '../../functions/duel';
 import { findStudentDuelPartByTeams } from '../../functions/duelTeamParts';
-import { isDefaultPeople } from '../../functions/entitiesValues';
-import { displaySurname } from '../../functions/people';
+import { isDefaultDuel, isDefaultPeople } from '../../functions/entitiesValues';
+import { displaySurname, getPeople } from '../../functions/people';
 import { Page } from '../../global/styles/components/pageComponents';
 import { IDuel } from '../../interfaces/IDuel';
 import { IDuelTeamParticipation } from '../../interfaces/IDuelTeamParticipation';
 import { IPeople } from '../../interfaces/IPeople';
+import { IStudent } from '../../interfaces/IStudent';
 import OnEducaAPI from '../../services/api';
-import { DEFAULT_DUEL_TEAM_PARTICIPATION } from '../../static/defaultEntitiesValues';
+import {
+  DEFAULT_DUEL_TEAM_PARTICIPATION,
+  DEFAULT_PEOPLE,
+} from '../../static/defaultEntitiesValues';
 import { ActionCreators, State } from '../../store';
 import { DuelBox, PageBox } from './styles';
 
@@ -32,8 +36,9 @@ export interface IDuelRequestComponentsProps {
 }
 
 export interface IDuelStudentInfoComponentsProps {
-  duelOwner: IPeople;
+  duelOwner: IStudent;
   loggedPeople: IPeople;
+  loggedStudent: IStudent;
   studentParticipation: IDuelTeamParticipation;
   setStudentParticipation: (value: IDuelTeamParticipation) => void;
 }
@@ -43,7 +48,12 @@ const Duel = (): JSX.Element => {
 
   // Variaveis
 
-  const { aplication, duel, people } = useSelector((store: State) => store);
+  const {
+    aplication,
+    duel,
+    people: loggedPeople,
+    student: loggedStudent,
+  } = useSelector((store: State) => store);
   const { token } = aplication;
 
   // Funcoes
@@ -55,6 +65,7 @@ const Duel = (): JSX.Element => {
 
   const [studentParticipation, setStudentParticipation] =
     useState<IDuelTeamParticipation>(DEFAULT_DUEL_TEAM_PARTICIPATION);
+  const [duelOwner, setDuelOwner] = useState(DEFAULT_PEOPLE);
 
   /* Parametros da rota da pagina */
 
@@ -67,7 +78,7 @@ const Duel = (): JSX.Element => {
     const { duelRound } = duelResponse;
     const studentParticipationFound = findStudentDuelPartByTeams(
       duelRound.teams,
-      people,
+      loggedStudent,
     );
     setStudentParticipation(studentParticipationFound);
     loadDuel(duelResponse);
@@ -80,10 +91,13 @@ const Duel = (): JSX.Element => {
   };
 
   useEffect(() => {
-    if (!isDefaultPeople(people)) {
+    if (isDefaultDuel(duel) && !isDefaultPeople(loggedPeople)) {
       getDuelData();
+    } else {
+      const { student } = duel;
+      getPeople(OnEducaAPI, student.people.id, setDuelOwner, token);
     }
-  }, [people]);
+  }, [duel, loggedPeople]);
 
   const { student, duelRound } = duel as IDuel;
   const { teams } = duelRound;
@@ -94,14 +108,15 @@ const Duel = (): JSX.Element => {
         <DuelBox>
           <SectionLabel
             backLink=""
-            label={`Duelo de ${displaySurname(student.name, 20)}`}
+            label={`Duelo de ${displaySurname(duelOwner.name, 20)}`}
           />
           <DuelTeams
             API={OnEducaAPI}
             token={token}
             getDuelData={getDuelData}
             duelOwner={student}
-            loggedPeople={people}
+            loggedPeople={loggedPeople}
+            loggedStudent={loggedStudent}
             teams={teams}
             studentParticipation={studentParticipation}
             setStudentParticipation={setStudentParticipation}
@@ -114,7 +129,8 @@ const Duel = (): JSX.Element => {
             duelRoundId={duelRound.id}
             duelRoundStatus={duelRound.status}
             duelOwner={student}
-            loggedPeople={people}
+            loggedPeople={loggedPeople}
+            loggedStudent={loggedStudent}
             studentParticipation={studentParticipation}
             setStudentParticipation={setStudentParticipation}
           />

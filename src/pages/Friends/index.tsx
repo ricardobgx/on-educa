@@ -1,21 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import SectionLabel from '../../components/App/SectionLabel';
+import {
+  ClearSearchSuppliesInputButton,
+  ClearSearchSuppliesInputButtonIcon,
+  SearchSupplies,
+  SearchSuppliesBox,
+  SearchSuppliesButton,
+  SearchSuppliesButtonIcon,
+  SearchSuppliesInput,
+} from '../../components/App/Supplies/styles';
 import FriendRequestCard from '../../components/Friends/FriendRequestCard';
-import MyFriendCard from '../../components/Friends/MyFriendCard';
-import { isDefaultPeople } from '../../functions/entitiesValues';
+import FriendCard from '../../components/Profile/FriendCard';
+import { getPeoples } from '../../functions/people';
 import { Page } from '../../global/styles/components/pageComponents';
+import { IFriendRequest } from '../../interfaces/IFriendRequest';
 import { IPeople } from '../../interfaces/IPeople';
+import OnEducaAPI from '../../services/api';
 import { State } from '../../store';
 import {
   PageBox,
   FriendsBox,
-  MyFriends,
-  MyFriendsBox,
-  MyFriendsList,
   FriendRequests,
   FriendRequestsBox,
   FriendRequestsList,
+  PeoplesFound,
+  PeoplesFoundBox,
+  PeoplesFoundList,
+  SearchPeoples,
 } from './styles';
 
 const Friends = (): JSX.Element => {
@@ -40,36 +52,46 @@ const Friends = (): JSX.Element => {
     },
   ];
 
-  const [friends, setFriends] = useState<IPeople[]>(loggedPeople.friends);
-  const [friendRequests, setFriendRequests] = useState<IPeople[]>(friendsTest);
-
-  useEffect(() => {
-    if (!isDefaultPeople(loggedPeople)) {
-      setFriends(loggedPeople.friends);
-    }
-  }, []);
-
-  console.log(loggedPeople.friends);
+  const [peoplesFound, setPeoplesFound] = useState<IPeople[]>([]);
+  const [friendRequests, setFriendRequests] = useState<IFriendRequest[]>([]);
 
   return (
     <Page>
       <PageBox>
         <FriendsBox>
-          <MyFriends>
-            <SectionLabel label="Amigos" backLink="/home" />
-            <MyFriendsBox>
-              <MyFriendsList>
-                {friends.map((friend) => (
-                  <MyFriendCard
-                    key={friend.id}
+          <PeoplesFound>
+            <SectionLabel label="Procurar pessoas" backLink="/home" />
+            <SearchPeoples>
+              <SearchSupplies>
+                <SearchSuppliesBox>
+                  <SearchSuppliesInput
+                    type="text"
+                    placeholder="Digite o nome da pessoa"
+                  />
+                  <ClearSearchSuppliesInputButton>
+                    <ClearSearchSuppliesInputButtonIcon className="fas fa-times" />
+                  </ClearSearchSuppliesInputButton>
+                </SearchSuppliesBox>
+                <SearchSuppliesButton
+                  onClick={() => getPeoples(OnEducaAPI, setPeoplesFound, token)}
+                >
+                  <SearchSuppliesButtonIcon className="fas fa-search" />
+                </SearchSuppliesButton>
+              </SearchSupplies>
+            </SearchPeoples>
+
+            <PeoplesFoundBox>
+              <PeoplesFoundList>
+                {peoplesFound.map((peopleFound) => (
+                  <FriendCard
+                    people={peopleFound}
                     loggedPeople={loggedPeople}
-                    people={friend}
                     token={token}
                   />
                 ))}
-              </MyFriendsList>
-            </MyFriendsBox>
-          </MyFriends>
+              </PeoplesFoundList>
+            </PeoplesFoundBox>
+          </PeoplesFound>
           <FriendRequests>
             <SectionLabel label="Pedidos de amizade" backLink="" />
             <FriendRequestsBox>
@@ -77,7 +99,7 @@ const Friends = (): JSX.Element => {
                 {friendRequests.map((friendRequest) => (
                   <FriendRequestCard
                     key={friendRequest.id}
-                    people={friendRequest}
+                    people={friendRequest.requester}
                     token={token}
                   />
                 ))}

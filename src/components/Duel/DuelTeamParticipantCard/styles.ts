@@ -84,12 +84,12 @@ export const AddFriendButtonIcon = styled.i`
 export const KickOutButton = styled.button`
   color: ${({ theme }) => theme.colors.whiteColor};
   background: ${({ theme }) => theme.similarColors.warningColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 5px;
   min-width: 40px;
   min-height: calc(50% - 5px);
   border: none;
-  margin-left: 20px;
+  margin-left: 10px;
   cursor: pointer;
 
   @media (max-width: 600px) {

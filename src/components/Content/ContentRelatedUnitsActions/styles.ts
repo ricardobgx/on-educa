@@ -11,6 +11,8 @@ export const ContentRelatedUnitsActionsBox = styled.div`
 
   @media (max-width: 1150px) {
     margin: 40px 0 0 0;
+    height: calc(100vh - 80px);
+    max-height: calc(100vh - 80px);
   }
 `;
 export const ContentsRelated = styled.div`
@@ -21,8 +23,8 @@ export const ContentsRelated = styled.div`
   height: 100%;
 
   @media (max-width: 1150px) {
-    min-height: 500px;
-    max-height: 500px;
+    min-height: calc(100vh - 135px);
+    max-height: calc(100vh - 135px);
   }
 `;
 export const ContentsRelatedReferenceLabel = styled(paragraph)`

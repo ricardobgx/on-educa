@@ -17,6 +17,7 @@ const DuelTeam = (props: IDuelTeamProps): JSX.Element => {
     setStudentParticipation,
     team,
     refreshDuel,
+    loggedStudent,
   } = props;
 
   return (
@@ -27,6 +28,7 @@ const DuelTeam = (props: IDuelTeamProps): JSX.Element => {
           team={team}
           duelOwner={duelOwner}
           loggedPeople={loggedPeople}
+          loggedStudent={loggedStudent}
           studentParticipation={studentParticipation}
           setStudentParticipation={setStudentParticipation}
           refreshDuel={refreshDuel}

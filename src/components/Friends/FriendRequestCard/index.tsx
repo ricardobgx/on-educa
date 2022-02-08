@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { setUpPeopleType } from '../../../functions/people';
+import { getPeople, setUpPeopleType } from '../../../functions/people';
 import { IPeople } from '../../../interfaces/IPeople';
 import OnEducaAPI from '../../../services/api';
 import {
+  DEFAULT_PEOPLE,
   DEFAULT_STUDENT,
   DEFAULT_TEACHER,
 } from '../../../static/defaultEntitiesValues';
@@ -20,22 +21,28 @@ const FriendRequestCard = (props: IFriendRequestCardProps): JSX.Element => {
 
   const [student, setStudent] = useState(DEFAULT_STUDENT);
   const [teacher, setTeacher] = useState(DEFAULT_TEACHER);
+  const [requester, setRequester] = useState(DEFAULT_PEOPLE);
 
-  useEffect(() => {
+  const getPeopleSucess = (peopleFound: IPeople): void => {
+    setRequester(peopleFound);
     setUpPeopleType(
       OnEducaAPI,
-      people.id,
-      people.isStudent,
+      peopleFound.id,
+      peopleFound.isStudent,
       token,
       setStudent,
       setTeacher,
     );
-  }, [token]);
+  };
+
+  useEffect(() => {
+    getPeople(OnEducaAPI, people.id, getPeopleSucess, token);
+  }, []);
 
   return (
     <FriendRequestCardBox>
       <PeopleCard
-        people={people}
+        people={requester}
         student={student}
         teacher={teacher}
         abbreviateName

@@ -55,6 +55,11 @@ export const ChatMessagesList = styled.div`
   overflow-x: hidden;
   scroll-behavior: smooth;
 `;
+export const ChatMessagesListBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;
 export const ChatMessageInput = styled.div`
   display: flex;
   max-width: 100%;

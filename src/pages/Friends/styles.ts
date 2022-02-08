@@ -37,6 +37,8 @@ const FriendsBoxContainer = styled.div`
   margin: 20px;
 `;
 const FriendsListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   padding: 5px;
   overflow: auto;
   height: calc(100vh - 250px);
@@ -48,9 +50,24 @@ const FriendsListContainer = styled.div`
 
 /* Componentes */
 
-export const MyFriends = styled(FriendsContainer)``;
-export const MyFriendsBox = styled(FriendsBoxContainer)``;
-export const MyFriendsList = styled(FriendsListContainer)``;
+export const PeoplesFound = styled(FriendsContainer)``;
+export const PeoplesFoundBox = styled(FriendsBoxContainer)``;
+export const PeoplesFoundList = styled(FriendsListContainer)`
+  height: calc(100vh - 310px);
+
+  @media (max-width: 900px) {
+    height: 450px;
+  }
+`;
 export const FriendRequests = styled(FriendsContainer)``;
 export const FriendRequestsBox = styled(FriendsBoxContainer)``;
 export const FriendRequestsList = styled(FriendsListContainer)``;
+export const SearchPeoples = styled.div`
+  margin: 20px;
+  margin-bottom: 0;
+  display: flex;
+
+  & > div {
+    width: 100%;
+  }
+`;

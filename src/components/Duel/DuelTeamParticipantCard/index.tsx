@@ -1,11 +1,15 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { removeParticipant } from '../../../functions/duelTeamParts';
+import { isDefaultPeople } from '../../../functions/entitiesValues';
+import { getPeople } from '../../../functions/people';
 import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
+import { IStudent } from '../../../interfaces/IStudent';
 import OnEducaAPI from '../../../services/api';
 import {
+  DEFAULT_PEOPLE,
   DEFAULT_STUDENT,
   DEFAULT_TEACHER,
 } from '../../../static/defaultEntitiesValues';
@@ -19,6 +23,7 @@ import {
 
 interface IDuelTeamParticipantCardProps {
   ownerId: string;
+  loggedStudent: IStudent;
   participation: IDuelTeamParticipation;
   refreshDuel: () => void;
 }
@@ -26,12 +31,12 @@ interface IDuelTeamParticipantCardProps {
 const DuelTeamParticipantCard = (
   props: IDuelTeamParticipantCardProps,
 ): JSX.Element => {
-  const { people: loggedPeople, aplication } = useSelector(
-    (store: State) => store,
-  );
+  const { aplication } = useSelector((store: State) => store);
   const { token } = aplication;
 
-  const { ownerId, participation, refreshDuel } = props;
+  const { ownerId, loggedStudent, participation, refreshDuel } = props;
+
+  const [people, setPeople] = useState(DEFAULT_PEOPLE);
 
   const student = participation.student || DEFAULT_STUDENT;
 
@@ -47,17 +52,23 @@ const DuelTeamParticipantCard = (
     );
   };
 
+  useEffect(() => {
+    if (isDefaultPeople(people)) {
+      getPeople(OnEducaAPI, student.people.id, setPeople, token);
+    }
+  }, []);
+
   return (
     <DuelTeamParticipantCardBox>
       <PeopleCard
         smartphoneNameLength={20}
         abbreviateName
         showScore={false}
-        people={student.people}
+        people={people}
         student={student}
         teacher={DEFAULT_TEACHER}
       />
-      {loggedPeople.id === ownerId && student.id !== ownerId && (
+      {loggedStudent.id === ownerId && student.id !== ownerId && (
         <KickOutButton onClick={() => kickOutParticipant(participation.id)}>
           <KickOutButtonIcon className="fas fa-sign-out-alt" />
         </KickOutButton>

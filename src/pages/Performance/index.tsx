@@ -19,14 +19,14 @@ const Performance = (): JSX.Element => {
   const { aplication, people: loggedPeople } = useSelector(
     (store: State) => store,
   );
-  const { token } = aplication;
+  const { token, isStudent } = aplication;
 
   const [studentWeekPerformances, setStudentWeekPerformances] = useState<
     IStudentWeekPerformance[]
   >([]);
 
   useEffect(() => {
-    if (!isDefaultPeople(loggedPeople) && token) {
+    if (!isDefaultPeople(loggedPeople) && token && isStudent) {
       getStudentWeekPerformances(
         OnEducaAPI,
         token,

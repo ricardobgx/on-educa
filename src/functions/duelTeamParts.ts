@@ -6,6 +6,7 @@ import { IDuel } from '../interfaces/IDuel';
 import { IDuelTeam } from '../interfaces/IDuelTeam';
 import { IDuelTeamParticipation } from '../interfaces/IDuelTeamParticipation';
 import { IPeople } from '../interfaces/IPeople';
+import { IStudent } from '../interfaces/IStudent';
 import { DEFAULT_DUEL_TEAM_PARTICIPATION } from '../static/defaultEntitiesValues';
 import { isDefaultDuelTeamParticipation } from './entitiesValues';
 
@@ -15,7 +16,7 @@ const entityPath = 'duelTeamParts';
 
 export const findStudentDuelPartByTeams = (
   teams: IDuelTeam[],
-  student: IPeople,
+  student: IStudent,
 ): IDuelTeamParticipation => {
   let studentParticipation: IDuelTeamParticipation =
     DEFAULT_DUEL_TEAM_PARTICIPATION;

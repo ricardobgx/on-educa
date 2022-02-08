@@ -42,6 +42,8 @@ const DuelQuestion = (props: IQuestionProps): JSX.Element => {
 
   const { description, alternatives } = question;
 
+  console.log(selectedAlternative);
+
   return (
     <Container>
       <DuelQuestionDescriptionBox className="with-shadow bd-rd-5">
@@ -74,7 +76,7 @@ const DuelQuestion = (props: IQuestionProps): JSX.Element => {
           <AnswerButton
             className="with-shadow bd-rd-5"
             onClick={() => {
-              if (isDefaultAlternative(selectedAlternative)) {
+              if (!isDefaultAlternative(selectedAlternative)) {
                 answerQuestion(
                   studentParticipation.id,
                   duelQuestion.id,

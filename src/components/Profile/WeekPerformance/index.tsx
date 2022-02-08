@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { isDefaultPeople } from '../../../functions/entitiesValues';
 import { getStudentWeekPerformanceByStudent } from '../../../functions/studentWeekPerformance';
+import { IPeople } from '../../../interfaces/IPeople';
+import { IStudent } from '../../../interfaces/IStudent';
 import { IStudentWeekPerformance } from '../../../interfaces/IStudentWeekPerformance';
 import {
   PerformanceDetailsHeader,
@@ -9,7 +10,6 @@ import {
 } from '../../../pages/Profile/styles';
 import OnEducaAPI from '../../../services/api';
 import { DEFAULT_STUDENT_WEEK_PERFORMANCE } from '../../../static/defaultEntitiesValues';
-import { State } from '../../../store';
 import { SmallMaterialIconRound } from '../../App/Icons/MaterialIcons/MaterialIconsRound';
 import {
   Container,
@@ -22,31 +22,28 @@ import {
 } from './styles';
 
 interface IWeekPerformanceProps {
-  isPeopleLogged: boolean;
+  people: IPeople;
+  student: IStudent;
+  token: string;
 }
 
 const WeekPerformance = (props: IWeekPerformanceProps): JSX.Element => {
-  const { isPeopleLogged } = props;
-
-  const { people: loggedPeople, aplication } = useSelector(
-    (store: State) => store,
-  );
-  const { token } = aplication;
+  const { people, student, token } = props;
 
   const [studentWeekPerformance, setStudentWeekPerformance] =
     useState<IStudentWeekPerformance>(DEFAULT_STUDENT_WEEK_PERFORMANCE);
 
   useEffect(() => {
-    if (!isDefaultPeople(loggedPeople)) {
+    if (!isDefaultPeople(people)) {
       getStudentWeekPerformanceByStudent(
         OnEducaAPI,
-        loggedPeople.id,
+        student.id,
         token,
         setStudentWeekPerformance,
         () => console.log('erro'),
       );
     }
-  }, [loggedPeople]);
+  }, [people]);
 
   const { weekDay } = studentWeekPerformance;
   const {
@@ -100,11 +97,9 @@ const WeekPerformance = (props: IWeekPerformanceProps): JSX.Element => {
           <WeekPerformanceInfoValue>{duelsWon}</WeekPerformanceInfoValue>
         </WeekPerformanceInfo>
       </WeekPerformancesList>
-      {isPeopleLogged && (
-        <SeeChartsButton to="/performance/">
-          <SeeChartsButtonLabel>Ver gráficos</SeeChartsButtonLabel>
-        </SeeChartsButton>
-      )}
+      <SeeChartsButton to="/performance/">
+        <SeeChartsButtonLabel>Ver gráficos</SeeChartsButtonLabel>
+      </SeeChartsButton>
     </Container>
   );
 };

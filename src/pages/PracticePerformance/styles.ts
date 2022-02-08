@@ -2,13 +2,6 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { paragraph } from '../../global/styles/components/textComponents';
 
-export const PageBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  margin: 20px;
-  width: calc(100% - 80px);
-`;
 export const PracticePerformanceBox = styled.div`
   display: flex;
   width: calc(100vw - 40px);
@@ -28,7 +21,7 @@ export const PerformancePageImageBox = styled.div`
   }
 `;
 export const PerformancePageImage = styled.img`
-  height: calc(100vh -220px);
+  height: 100%;
 `;
 export const PerformanceDetails = styled.div`
   display: flex;
@@ -39,8 +32,9 @@ export const PerformanceDetails = styled.div`
   height: calc(100vh - 95px);
   max-height: calc(100vh - 95px);
 
-  @media (max-width: 600px) {
+  @media (max-width: 1150px) {
     height: unset;
+    width: 100%;
   }
 `;
 export const PerformanceDetailsBox = styled.div`

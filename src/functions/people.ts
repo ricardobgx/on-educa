@@ -244,3 +244,6 @@ export const setUpPeopleType = async (
     await getTeacherByPeople(API, peopleId, setTeacher, token);
   }
 };
+
+export const isPeopleFriend = (peoples: IPeople[], peopleId: string): boolean =>
+  !!peoples.find((people) => people.id === peopleId);

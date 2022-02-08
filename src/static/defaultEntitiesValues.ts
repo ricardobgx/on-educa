@@ -166,7 +166,7 @@ export const DEFAULT_DUEL_ROUND: IDuelRound = {
 export const DEFAULT_DUEL: IDuel = {
   id: '',
   code: '',
-  student: DEFAULT_PEOPLE,
+  student: DEFAULT_STUDENT,
   duelRound: DEFAULT_DUEL_ROUND,
   duelRounds: [],
 };

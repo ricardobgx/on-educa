@@ -13,7 +13,6 @@ import SectionLabel from '../../components/App/SectionLabel';
 import {
   NextContentButton,
   NextContentButtonLabel,
-  PageBox,
   PerformanceDataBox,
   PerformanceDetails,
   PerformanceDetailsBox,
@@ -25,7 +24,10 @@ import {
   PracticePerformanceChartBox,
   TotalLabel,
 } from './styles';
-import { Page } from '../../global/styles/components/pageComponents';
+import {
+  Page,
+  PageBoxColumn,
+} from '../../global/styles/components/pageComponents';
 import { isDefaultAlternative } from '../../functions/entitiesValues';
 import PracticePerformanceData from '../../components/PracticePerformance/PracticePerformanceData';
 import SimplePieChart, {
@@ -57,7 +59,9 @@ const PracticePerformance = (): JSX.Element => {
 
   // State
 
-  const { practice, people, aplication } = useSelector((store: State) => store);
+  const { practice, people, aplication, student } = useSelector(
+    (store: State) => store,
+  );
   const { questions } = practice;
   const { token } = aplication;
 
@@ -121,7 +125,7 @@ const PracticePerformance = (): JSX.Element => {
       updateStudentWeekPerformanceValues(
         OnEducaAPI,
         {
-          studentId: people.id,
+          studentId: student.id,
           questionsAnsweredNumber: questions.length,
           rightQuestionsAnsweredNumber: rightQuestionsNumber(questions),
           dailyXPNumber: rightQuestionsNumber(questions) * 10,
@@ -174,7 +178,7 @@ const PracticePerformance = (): JSX.Element => {
 
   return (
     <Page>
-      <PageBox>
+      <PageBoxColumn>
         <PracticePerformanceBox>
           <PerformancePageImageBox>
             <PerformancePageImage src={analytics} />
@@ -227,7 +231,7 @@ const PracticePerformance = (): JSX.Element => {
             </NextContentButton>
           </PerformanceDetails>
         </PracticePerformanceBox>
-      </PageBox>
+      </PageBoxColumn>
     </Page>
   );
 };

@@ -18,8 +18,14 @@ interface IDuelTeamParticipantsList extends IDuelStudentInfoComponentsProps {
 const DuelTeamParticipantsList = (
   props: IDuelTeamParticipantsList,
 ): JSX.Element => {
-  const { duelOwner, loggedPeople, team, studentParticipation, refreshDuel } =
-    props;
+  const {
+    duelOwner,
+    loggedPeople,
+    loggedStudent,
+    team,
+    studentParticipation,
+    refreshDuel,
+  } = props;
 
   const sortParticipations = (
     participationA: IDuelTeamParticipation,
@@ -39,6 +45,7 @@ const DuelTeamParticipantsList = (
           <DuelTeamParticipantCard
             key={participation.id}
             ownerId={duelOwner.id}
+            loggedStudent={loggedStudent}
             participation={participation}
             refreshDuel={refreshDuel}
           />
@@ -46,7 +53,7 @@ const DuelTeamParticipantsList = (
           <ChangeDuelTeamPosition
             key={participation.id}
             duelTeamPartId={participation.id}
-            studentId={loggedPeople.id}
+            studentId={loggedStudent.id}
             studentParticipation={studentParticipation}
             refreshDuel={refreshDuel}
           />

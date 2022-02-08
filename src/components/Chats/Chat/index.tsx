@@ -19,6 +19,7 @@ import {
   SendMessageButton,
   SendMessageButtonIcon,
   ChatPeopleNameAndOnlineLabel,
+  ChatMessagesListBox,
 } from './styles';
 
 interface IChatProps {
@@ -36,22 +37,20 @@ const Chat = (props: IChatProps): JSX.Element => {
   const { chat, loggedPeople, setSelectedChat } = props;
   const { id, chatCreator, chatParticipant } = chat;
 
+  const [lastElementTop, setLastElementTop] = useState(0);
+
   const [message, setMessage] = useState('');
+  const messagesList = document.getElementById('messages-list');
 
   const people =
     loggedPeople.id === chatCreator.id ? chatParticipant : chatCreator;
   const { name, profilePicture, isOnline } = people;
-
-  const messagesList = document.getElementById('messages-list');
 
   const addMessage = (newMessage: IMessage): void => {
     const { chatId } = newMessage;
 
     if (chatId === id) {
       setSelectedChat({ ...chat, messages: [...chat.messages, newMessage] });
-      if (messagesList) {
-        messagesList.scrollTop = messagesList.offsetHeight;
-      }
     }
   };
 
@@ -69,11 +68,14 @@ const Chat = (props: IChatProps): JSX.Element => {
   };
 
   useEffect((): any => {
+    if (messagesList) {
+      messagesList.scrollTop = lastElementTop;
+    }
     socket.on('chat.message', addMessage);
     return () => {
       socket.off('chat.message', addMessage);
     };
-  }, [chat]);
+  }, [chat, lastElementTop]);
 
   const { messages } = chat;
 
@@ -94,13 +96,18 @@ const Chat = (props: IChatProps): JSX.Element => {
       <ChatMessages>
         <ChatMessagesBox>
           <ChatMessagesList id="messages-list">
-            {messages.map((msg) => (
+            {/* <ChatMessagesListBox id="messages-list-box"> */}
+            {messages.map((msg, index) => (
               <ChatMessage
                 key={msg.id}
                 loggedPeople={loggedPeople}
                 message={msg}
+                messagesLength={messages.length}
+                index={index}
+                setLastElementTop={setLastElementTop}
               />
             ))}
+            {/* </ChatMessagesListBox> */}
           </ChatMessagesList>
         </ChatMessagesBox>
       </ChatMessages>

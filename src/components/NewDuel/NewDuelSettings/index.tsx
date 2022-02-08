@@ -10,6 +10,8 @@ interface INewDuelSettingsProps {
   setQuestionsPerContent: (value: number) => void;
   timeForQuestion: number;
   setTimeForQuestion: (value: number) => void;
+  maxParticipantsValues: number[];
+  timeForQuestionValues: number[];
 }
 
 const NewDuelSettings = (props: INewDuelSettingsProps): JSX.Element => {
@@ -20,6 +22,8 @@ const NewDuelSettings = (props: INewDuelSettingsProps): JSX.Element => {
     setQuestionsPerContent,
     timeForQuestion,
     setTimeForQuestion,
+    maxParticipantsValues,
+    timeForQuestionValues,
   } = props;
 
   return (
@@ -30,7 +34,7 @@ const NewDuelSettings = (props: INewDuelSettingsProps): JSX.Element => {
         selectedValue={maxParticipants}
         valueLabel="pessoa(s)"
         setSelectedValue={setMaxParticipants}
-        values={[1, 2, 4]}
+        values={maxParticipantsValues}
       />
       <QuestionsPerContentSetting
         label="Questões por conteúdo"
@@ -44,7 +48,7 @@ const NewDuelSettings = (props: INewDuelSettingsProps): JSX.Element => {
         selectedValue={timeForQuestion}
         valueLabel="minuto(s)"
         setSelectedValue={setTimeForQuestion}
-        values={[1, 3, 5]}
+        values={timeForQuestionValues}
       />
     </NewDuelSettingsBox>
   );

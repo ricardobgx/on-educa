@@ -7,11 +7,17 @@ import {
   duelRoundStatusLabel,
 } from '../../../functions/duelRound';
 import { participateInDuel } from '../../../functions/duelTeamParts';
+import { isDefaultDuel } from '../../../functions/entitiesValues';
+import { getPeople } from '../../../functions/people';
 import { IDuel } from '../../../interfaces/IDuel';
 import { IDuelTeam } from '../../../interfaces/IDuelTeam';
 import { IPeople } from '../../../interfaces/IPeople';
+import { IStudent } from '../../../interfaces/IStudent';
 import OnEducaAPI from '../../../services/api';
-import { DEFAULT_DUEL } from '../../../static/defaultEntitiesValues';
+import {
+  DEFAULT_DUEL,
+  DEFAULT_PEOPLE,
+} from '../../../static/defaultEntitiesValues';
 import { State } from '../../../store';
 import {
   DuelCardBox,
@@ -33,20 +39,18 @@ import {
 
 interface IDuelCardProps {
   duelId: string;
-  student: IPeople;
+  student: IStudent;
+  token: string;
 }
 
 const DuelCard = (props: IDuelCardProps): JSX.Element => {
-  const { duelId, student: loggedStudent } = props;
-
-  /* Estado da aplicacao */
-
-  const { aplication } = useSelector((store: State) => store);
-  const { token } = aplication;
+  const { duelId, student: loggedStudent, token } = props;
 
   /* Estado do componente */
 
+  const [people, setPeople] = useState(DEFAULT_PEOPLE);
   const [duel, setDuel] = useState<IDuel>(DEFAULT_DUEL);
+
   const [numParticipants, setNumParticipants] = useState(0);
   const [participateInDuelComplete, setParticipateInDuelComplete] =
     useState<boolean>(false);
@@ -87,11 +91,18 @@ const DuelCard = (props: IDuelCardProps): JSX.Element => {
   };
 
   useEffect(() => {
-    getDuel(OnEducaAPI, duelId, token, getDuelData, () => console.log('erro'));
-  }, []);
+    if (isDefaultDuel(duel)) {
+      getDuel(OnEducaAPI, duelId, token, getDuelData, () =>
+        console.log('erro'),
+      );
+    } else {
+      const { student } = duel;
+      getPeople(OnEducaAPI, student.people.id, setPeople, token);
+    }
+  }, [duel]);
 
-  const { id, code, student, duelRound } = duel;
-  const { name: ownerName } = student;
+  const { id, code, duelRound } = duel;
+  const { name: ownerName } = people;
   const { status, maxGroupParticipants, timeForQuestion, questionsPerContent } =
     duelRound;
 

@@ -12,12 +12,13 @@ import DuelStatus from '../../components/DuelQuestions/DuelStatus';
 import { DuelQuestionsBox, PageBox } from './styles';
 import { IDuel } from '../../interfaces/IDuel';
 import {
+  DEFAULT_ALTERNATIVE,
   DEFAULT_DUEL_QUESTION,
   DEFAULT_DUEL_TEAM,
   DEFAULT_DUEL_TEAM_PARTICIPATION,
 } from '../../static/defaultEntitiesValues';
 import { IDuelRoundQuestion } from '../../interfaces/IDuelRoundQuestion';
-import { isDefaultDuel } from '../../functions/entitiesValues';
+import { isDefaultDuel, isDefaultPeople } from '../../functions/entitiesValues';
 import { getDuel } from '../../functions/duel';
 import OnEducaAPI from '../../services/api';
 import { getDuelRoundQuestionsByDuelRound } from '../../functions/duelRoundQuestion';
@@ -25,6 +26,7 @@ import { createDuelQuestionAnswer } from '../../functions/duelQuestionAnswer';
 import { IDuelTeamParticipation } from '../../interfaces/IDuelTeamParticipation';
 import { IDuelRound } from '../../interfaces/IDuelRound';
 import { findStudentDuelPartByTeams } from '../../functions/duelTeamParts';
+import { randInt } from '../../functions/utils';
 
 interface IDuelQuestionsRouteParams {
   id: string;
@@ -39,7 +41,12 @@ const DuelQuestions = (): JSX.Element => {
 
   /* Estado da aplicacao */
 
-  const { aplication, duel, people } = useSelector((store: State) => store);
+  const {
+    aplication,
+    duel,
+    people,
+    student: loggedStudent,
+  } = useSelector((store: State) => store);
   const { token } = aplication;
 
   // Dispatch
@@ -71,18 +78,13 @@ const DuelQuestions = (): JSX.Element => {
 
   // Definir questao a ser respondida
 
-  const setQuestionNow = (duelRound: IDuelRound): void => {
-    const activeQuestion = duelRound.question || DEFAULT_DUEL_QUESTION;
+  const setQuestionNow = (duelRoundQuestions: IDuelRoundQuestion[]): void => {
+    setQuestions(duelRoundQuestions);
+    const activeQuestion =
+      duelRoundQuestions[randInt(0, duelRoundQuestions.length - 1)] ||
+      DEFAULT_DUEL_QUESTION;
     setQuestion(activeQuestion);
-  };
-
-  const setNextQuestion = async (): Promise<void> => {
-    await getDuelRoundQuestionsByDuelRound(
-      OnEducaAPI,
-      duel.duelRound.id,
-      token,
-      setQuestions,
-    );
+    console.log(activeQuestion);
   };
 
   // Answer Question
@@ -92,16 +94,40 @@ const DuelQuestions = (): JSX.Element => {
     duelRoundQuestionId: string,
     selectedAlternativeId: string,
   ): Promise<void> => {
-    await createDuelQuestionAnswer(
-      OnEducaAPI,
-      {
-        duelTeamParticipationId,
-        questionId: duelRoundQuestionId,
-        selectedAlternativeId,
-      },
-      token,
-      setNextQuestion,
+    // await createDuelQuestionAnswer(
+    //   OnEducaAPI,
+    //   {
+    //     duelTeamParticipationId,
+    //     questionId: duelRoundQuestionId,
+    //     selectedAlternativeId,
+    //   },
+    //   token,
+    //   setNextQuestion,
+    // );
+
+    const answeredQuestion =
+      questions.find((oldQuestion) => oldQuestion.id === duelRoundQuestionId) ||
+      DEFAULT_DUEL_QUESTION;
+    const selectedAlternative =
+      answeredQuestion.question.alternatives.find(
+        (oldQuestion) => oldQuestion.id === duelRoundQuestionId,
+      ) || DEFAULT_ALTERNATIVE;
+    const newQuestions = questions.filter(
+      (oldQuestion) => oldQuestion.id !== duelRoundQuestionId,
     );
+
+    setQuestionNow([
+      ...newQuestions,
+      {
+        ...answeredQuestion,
+        answer: {
+          id: 'caknkcka',
+          question: answeredQuestion,
+          duelTeamParticipation: studentParticipation,
+          selectedAlternative,
+        },
+      },
+    ]);
 
     // answerQuestion(newQuestions);
 
@@ -120,11 +146,9 @@ const DuelQuestions = (): JSX.Element => {
 
     const { duelRound } = duelFound;
 
-    setQuestionNow(duelRound);
-
     const studentParticipationFound = findStudentDuelPartByTeams(
       duelRound.teams,
-      people,
+      loggedStudent,
     );
 
     setStudentParticipation(studentParticipationFound);
@@ -133,7 +157,7 @@ const DuelQuestions = (): JSX.Element => {
       OnEducaAPI,
       duelRound.id,
       token,
-      setQuestions,
+      setQuestionNow,
     );
   };
 
@@ -146,17 +170,18 @@ const DuelQuestions = (): JSX.Element => {
   /* ComponentMount operations */
 
   useEffect(() => {
-    if (isDefaultDuel(duel)) {
+    if (isDefaultDuel(duel) && !isDefaultPeople(people)) {
       getDuelData();
-    } else {
-      getDuelRoundQuestions(duel);
     }
-  }, [people]);
+  }, [people, duel]);
 
   const { duelRound } = duel;
   const activeTeam = duelRound.team || DEFAULT_DUEL_TEAM;
   const activeParticipation =
     activeTeam.participation || DEFAULT_DUEL_TEAM_PARTICIPATION;
+
+  console.log('renderizou');
+  console.log(question);
 
   return (
     <Page>

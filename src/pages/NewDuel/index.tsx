@@ -34,11 +34,12 @@ const NewDuel = (): JSX.Element => {
 
   const {
     people,
+    student,
     duel: globalDuel,
     aplication,
   } = useSelector((store: State) => store);
 
-  const { id } = people;
+  const { id } = student;
   const { token } = aplication;
 
   const dispatch = useDispatch();
@@ -46,9 +47,18 @@ const NewDuel = (): JSX.Element => {
 
   /* Local State */
 
-  const [maxParticipants, setMaxParticipants] = useState(1);
-  const [questionsPerContent, setQuestionsPerContent] = useState(-1);
-  const [timeForQuestion, setTimeForQuestion] = useState(1);
+  const maxParticipantsValues = [1, 2, 4];
+  const timeForQuestionValues = [1, 3, 5];
+
+  const [maxParticipants, setMaxParticipants] = useState(
+    maxParticipantsValues[0],
+  );
+  const [questionsPerContent, setQuestionsPerContent] = useState(
+    maxParticipantsValues[0] * 2,
+  );
+  const [timeForQuestion, setTimeForQuestion] = useState(
+    timeForQuestionValues[0],
+  );
 
   const [contentsName, setContentsName] = useState('');
   const [contentsFound, setContentsFound] = useState<IContent[]>([]);
@@ -79,6 +89,8 @@ const NewDuel = (): JSX.Element => {
     setQuestionsPerContent,
     timeForQuestion,
     setTimeForQuestion,
+    maxParticipantsValues,
+    timeForQuestionValues,
   };
 
   /* Functions */
@@ -104,8 +116,9 @@ const NewDuel = (): JSX.Element => {
   };
 
   const createDuelSucess = (duel: IDuel): void => {
+    console.log('duelo criado');
     loadDuel(duel);
-    createDuelOwnerParticipation({ duelId: duel.id, studentId: people.id });
+    createDuelOwnerParticipation({ duelId: duel.id, studentId: id });
   };
 
   const createDuelError = (): void => {

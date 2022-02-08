@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-console */
+/* eslint-disable no-shadow */
 
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -9,10 +10,8 @@ import SectionLabel from '../../components/App/SectionLabel';
 import ProfileDailyGoal from '../../components/Profile/ProfileDailyGoal';
 import WeekPerformance from '../../components/Profile/WeekPerformance';
 import {
-  addPeopleFriend,
   getPeople,
   isPeopleLogged,
-  removePeopleFriend,
   setUpPeopleType,
 } from '../../functions/people';
 import { IPeople } from '../../interfaces/IPeople';
@@ -27,8 +26,6 @@ import {
 import { State } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import {
-  EditProfileButton,
-  EditProfileButtonLabel,
   AppearenceDetails,
   PageBox,
   PerformanceDetails,
@@ -45,37 +42,29 @@ import {
   PeopleDetails,
   SchoolGradeLabel,
   TeachingTypeLabel,
-  SocialDetails,
-  SocialDetailsList,
-  SocialDetail,
-  SocialDetailLabel,
-  SocialDetailIcon,
+  SelectSocialDetails,
   EditPictureButton,
-  UnfriendButtonLabel,
-  FriendActions,
-  NoFriendActions,
-  AddFriendButton,
-  AddFriendButtonLabel,
-  AddFriendButtonIcon,
-  UnfriendButton,
+  SocialDetails,
 } from './styles';
-import {
-  MediumMaterialIconRound,
-  SmallMaterialIconRound,
-} from '../../components/App/Icons/MaterialIcons/MaterialIconsRound';
+import { SmallMaterialIconRound } from '../../components/App/Icons/MaterialIcons/MaterialIconsRound';
 import { IStudentWeekPerformance } from '../../interfaces/IStudentWeekPerformance';
 import { isDefaultPeople } from '../../functions/entitiesValues';
 import { getStudentWeekPerformanceByStudent } from '../../functions/studentWeekPerformance';
 import UpdateProfilePicture from '../../components/Profile/UpdateProfilePicture';
 import { IImage } from '../../interfaces/IImage';
-import {
-  SendMessageButton,
-  SendMessageButtonIcon,
-  UnfriendButtonIcon,
-} from '../../components/Friends/MyFriendCardActions/styles';
+import SelectSocialDetailsList from '../../components/Profile/SelectSocialDetailsList';
+import ProfileActions from '../../components/Profile/ProfileActions';
+import SocialDetail from '../../components/Profile/SocialDetail';
 
 interface IProfileRouteProps {
   id: string;
+}
+
+export enum SocialDetailType {
+  FRIENDS,
+  REVIEWS,
+  ACHIEVEMENTS,
+  MISSIONS,
 }
 
 const Profile = (): JSX.Element => {
@@ -92,7 +81,6 @@ const Profile = (): JSX.Element => {
 
   const [student, setStudent] = useState(DEFAULT_STUDENT);
   const [teacher, setTeacher] = useState(DEFAULT_TEACHER);
-  const [isFriend, setIsFriend] = useState(false);
 
   /* Local State */
 
@@ -118,14 +106,6 @@ const Profile = (): JSX.Element => {
       setTeacher,
     );
     setProfilePicture(people.profilePicture);
-
-    const friendshipExists = loggedPeople.friends.find(
-      (friend: IPeople) => friend.id === peopleFound.id,
-    );
-
-    if (friendshipExists) {
-      setIsFriend(true);
-    }
   };
 
   /* Route params */
@@ -134,7 +114,7 @@ const Profile = (): JSX.Element => {
   const { id } = route.params as IProfileRouteProps;
 
   useEffect(() => {
-    if (isDefaultPeople(people)) {
+    if (isDefaultPeople(people) || people.id !== id) {
       if (!isPeopleLogged(loggedPeople.id, id))
         getPeople(OnEducaAPI, id, getPeopleSucess, token);
       else {
@@ -144,6 +124,7 @@ const Profile = (): JSX.Element => {
         setProfilePicture(loggedPeople.profilePicture);
       }
     } else if (people.isStudent) {
+      console.log(`Buscando desempenho do estudante ${student.id}`);
       getStudentWeekPerformanceByStudent(
         OnEducaAPI,
         student.id,
@@ -185,7 +166,7 @@ const Profile = (): JSX.Element => {
               <PeopleDetails>
                 <AppearenceDetails>
                   <PeoplePictureBox>
-                    {loggedPeople.id === people.id && (
+                    {isPeopleLogged(loggedPeople.id, people.id as string) && (
                       <EditPictureButton
                         onClick={() => setIsUpdatingProfilePicture(true)}
                       >
@@ -195,62 +176,11 @@ const Profile = (): JSX.Element => {
                     <PeoplePicture src={people.profilePicture.path} />
                   </PeoplePictureBox>
 
-                  {loggedPeople.id === people.id ? (
-                    <EditProfileButton
-                      to="/update-profile"
-                      className="with-shadow bd-rd-5"
-                    >
-                      <EditProfileButtonLabel>
-                        Editar perfil
-                      </EditProfileButtonLabel>
-                      <SmallMaterialIconRound color="" icon="mode_edit" />
-                    </EditProfileButton>
-                  ) : (
-                    <>
-                      {isFriend ? (
-                        <FriendActions>
-                          <SendMessageButton to="/">
-                            <SendMessageButtonIcon className="fas fa-comment-alt" />
-                          </SendMessageButton>
-                          <UnfriendButton
-                            onClick={() =>
-                              removePeopleFriend(
-                                OnEducaAPI,
-                                loggedPeople.id,
-                                { friendId: people.id },
-                                token,
-                                () => setIsFriend(false),
-                                () => console.log('erro'),
-                              )
-                            }
-                          >
-                            <UnfriendButtonLabel>Remover</UnfriendButtonLabel>
-                            <UnfriendButtonIcon className="fas fa-user-times" />
-                          </UnfriendButton>
-                        </FriendActions>
-                      ) : (
-                        <NoFriendActions>
-                          <AddFriendButton
-                            onClick={() =>
-                              addPeopleFriend(
-                                OnEducaAPI,
-                                loggedPeople.id,
-                                { friendId: people.id },
-                                token,
-                                () => setIsFriend(true),
-                                () => console.log('erro'),
-                              )
-                            }
-                          >
-                            <AddFriendButtonLabel>
-                              Adicionar
-                            </AddFriendButtonLabel>
-                            <AddFriendButtonIcon className="fas fa-user-plus" />
-                          </AddFriendButton>
-                        </NoFriendActions>
-                      )}
-                    </>
-                  )}
+                  <ProfileActions
+                    people={people}
+                    loggedPeople={loggedPeople}
+                    token={token}
+                  />
                 </AppearenceDetails>
 
                 <MainDetails>
@@ -268,47 +198,21 @@ const Profile = (): JSX.Element => {
                     </TeachingTypeLabel>
                   )}
                 </MainDetails>
-                <SocialDetails>
-                  <SocialDetailsList>
-                    <SocialDetail
-                      onClick={() => setSocialDetailSelected(0)}
-                      className={
-                        socialDetailSelected === 0 ? 'selected-detail' : ''
-                      }
-                    >
-                      <MediumMaterialIconRound color="" icon="people" />
-                      <SocialDetailLabel>Amigos</SocialDetailLabel>
-                    </SocialDetail>
-                    <SocialDetail
-                      onClick={() => setSocialDetailSelected(1)}
-                      className={
-                        socialDetailSelected === 1 ? 'selected-detail' : ''
-                      }
-                    >
-                      <MediumMaterialIconRound color="" icon="description" />
-                      <SocialDetailLabel>Revisões</SocialDetailLabel>
-                    </SocialDetail>
-                    <SocialDetail
-                      onClick={() => setSocialDetailSelected(2)}
-                      className={
-                        socialDetailSelected === 2 ? 'selected-detail' : ''
-                      }
-                    >
-                      <MediumMaterialIconRound color="" icon="star_half" />
-                      <SocialDetailLabel>Conquistas</SocialDetailLabel>
-                    </SocialDetail>
-                    <SocialDetail
-                      onClick={() => setSocialDetailSelected(3)}
-                      className={
-                        socialDetailSelected === 3 ? 'selected-detail' : ''
-                      }
-                    >
-                      <SocialDetailIcon className="fas fa-user-secret" />
-                      <SocialDetailLabel>Missões</SocialDetailLabel>
-                    </SocialDetail>
-                  </SocialDetailsList>
-                </SocialDetails>
               </PeopleDetails>
+              <SocialDetails>
+                <SelectSocialDetails>
+                  <SelectSocialDetailsList
+                    socialDetailSelected={socialDetailSelected}
+                    setSocialDetailSelected={setSocialDetailSelected}
+                  />
+                </SelectSocialDetails>
+                <SocialDetail
+                  socialDetailSelected={socialDetailSelected}
+                  people={people}
+                  loggedPeople={loggedPeople}
+                  token={token}
+                />
+              </SocialDetails>
             </ProfileDetailsBox>
           </ProfileDetails>
           <PerformanceDetails>
@@ -323,15 +227,13 @@ const Profile = (): JSX.Element => {
                   )}
                 />
                 <WeekPerformance
-                  isPeopleLogged={isPeopleLogged(
-                    loggedPeople.id,
-                    people.id as string,
-                  )}
+                  people={people}
+                  student={student}
+                  token={token}
                 />
               </WeeklyPerformanceSummary>
             </PerformanceDetailsBox>
           </PerformanceDetails>
-          {/* <CustomReviews /> */}
         </ProfileBox>
       </PageBox>
     </Page>

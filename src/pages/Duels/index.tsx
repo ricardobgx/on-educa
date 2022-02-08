@@ -16,7 +16,7 @@ import { PageBox, DuelsBox, DuelsList, DuelsListBox } from './styles';
 const Duels = (): JSX.Element => {
   /* Estado da aplicacao */
 
-  const { aplication, people } = useSelector((store: State) => store);
+  const { aplication, student } = useSelector((store: State) => store);
   const { token } = aplication;
 
   /* Estado do componente */
@@ -36,7 +36,12 @@ const Duels = (): JSX.Element => {
           <DuelsList>
             <DuelsListBox>
               {duels.map((duel) => (
-                <DuelCard key={duel.id} duelId={duel.id} student={people} />
+                <DuelCard
+                  key={duel.id}
+                  duelId={duel.id}
+                  student={student}
+                  token={token}
+                />
               ))}
             </DuelsListBox>
           </DuelsList>

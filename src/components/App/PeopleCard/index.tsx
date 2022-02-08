@@ -46,8 +46,8 @@ const PeopleCard = (props: IPeopleCardProps): JSX.Element => {
     otherDevicesNameLength,
   } = props;
 
-  const { id, name, profilePicture } = people;
-  const { schoolGrade } = student;
+  const { id, name, profilePicture, isStudent } = people;
+  const { schoolGrade, id: studentId } = student;
   const { teachingType } = teacher;
 
   const { aplication } = useSelector((store: State) => store);
@@ -57,10 +57,10 @@ const PeopleCard = (props: IPeopleCardProps): JSX.Element => {
     useState<IStudentWeekPerformance>(DEFAULT_STUDENT_WEEK_PERFORMANCE);
 
   useEffect(() => {
-    if (showScore) {
+    if (showScore && isStudent) {
       getStudentWeekPerformanceByStudent(
         OnEducaAPI,
-        id,
+        studentId,
         token,
         setStudentWeekPerformance,
         () => console.log('erro'),

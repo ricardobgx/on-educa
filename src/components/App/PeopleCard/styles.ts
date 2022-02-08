@@ -7,6 +7,7 @@ export const PeopleCardBox = styled.div`
   align-items: center;
   background: ${({ theme }) => theme.colors.boxColor};
   min-height: 85px;
+  height: 100%;
   width: 100%;
   padding: 15px;
   border-radius: 5px;

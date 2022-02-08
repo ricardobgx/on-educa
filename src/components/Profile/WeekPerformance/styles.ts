@@ -9,11 +9,13 @@ export const Container = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};
   padding: 20px;
   margin-top: 20px;
+  max-height: calc(100vh - 340px);
 `;
 export const WeekPerformancesList = styled.div`
   margin: 15px 0;
   padding: 5px;
-  max-height: calc(100vh - 480px);
+  min-height: calc(100vh - 480px);
+  max-height: 100%;
   overflow: auto;
 
   @media (max-width: 1150px) {

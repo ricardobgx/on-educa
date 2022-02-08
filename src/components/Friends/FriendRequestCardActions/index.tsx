@@ -19,7 +19,7 @@ const FriendRequesCardActions = (
 
   return (
     <FriendRequesCardActionsBox>
-      <AcceptRequest to="/">
+      <AcceptRequest>
         <AcceptRequestIcon className="fas fa-check" />
       </AcceptRequest>
       <RejectRequest>
