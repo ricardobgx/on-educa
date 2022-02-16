@@ -16,7 +16,7 @@ const ChatMessage = (props: IChatMessageProps): JSX.Element => {
     props;
   const { content } = message;
 
-  const isMine = loggedPeople.id === message.messageSenderId;
+  const isMine = loggedPeople.id === message.sender.id;
 
   useEffect(() => {
     if (index === messagesLength - 1) {

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { isDefaultPeople } from '../../../functions/entitiesValues';
-import { getStudentWeekPerformanceByStudent } from '../../../functions/studentWeekPerformance';
+import { getStudentWeeklyPerformanceByStudent } from '../../../functions/studentWeeklyPerformance';
 import { IPeople } from '../../../interfaces/IPeople';
 import { IStudent } from '../../../interfaces/IStudent';
-import { IStudentWeekPerformance } from '../../../interfaces/IStudentWeekPerformance';
+import { IStudentWeeklyPerformance } from '../../../interfaces/IStudentWeeklyPerformance';
 import {
   PerformanceDetailsHeader,
   PerformanceDetailsHeaderLabel,
 } from '../../../pages/Profile/styles';
 import OnEducaAPI from '../../../services/api';
-import { DEFAULT_STUDENT_WEEK_PERFORMANCE } from '../../../static/defaultEntitiesValues';
+import { DEFAULT_STUDENT_WEEKLY_PERFORMANCE } from '../../../static/defaultEntitiesValues';
 import { SmallMaterialIconRound } from '../../App/Icons/MaterialIcons/MaterialIconsRound';
 import {
   Container,
@@ -25,29 +25,30 @@ interface IWeekPerformanceProps {
   people: IPeople;
   student: IStudent;
   token: string;
+  isPeopleLogged: boolean;
 }
 
 const WeekPerformance = (props: IWeekPerformanceProps): JSX.Element => {
-  const { people, student, token } = props;
+  const { people, student, token, isPeopleLogged } = props;
 
-  const [studentWeekPerformance, setStudentWeekPerformance] =
-    useState<IStudentWeekPerformance>(DEFAULT_STUDENT_WEEK_PERFORMANCE);
+  const [studentWeeklyPerformance, setStudentWeeklyPerformance] =
+    useState<IStudentWeeklyPerformance>(DEFAULT_STUDENT_WEEKLY_PERFORMANCE);
 
   useEffect(() => {
     if (!isDefaultPeople(people)) {
-      getStudentWeekPerformanceByStudent(
+      getStudentWeeklyPerformanceByStudent(
         OnEducaAPI,
         student.id,
         token,
-        setStudentWeekPerformance,
+        setStudentWeeklyPerformance,
         () => console.log('erro'),
       );
     }
-  }, [people]);
+  }, [student]);
 
-  const { weekDay } = studentWeekPerformance;
+  const { weekDay } = studentWeeklyPerformance;
+
   const {
-    dailyXp,
     contentsStudied,
     questionsAnswered,
     questionsAnsweredCorrectly,
@@ -60,7 +61,7 @@ const WeekPerformance = (props: IWeekPerformanceProps): JSX.Element => {
       <PerformanceDetailsHeader>
         <SmallMaterialIconRound color="" icon="insights" />
         <PerformanceDetailsHeaderLabel>
-          Desempenho hoje
+          Desempenho semanal
         </PerformanceDetailsHeaderLabel>
       </PerformanceDetailsHeader>
       <WeekPerformancesList>
@@ -97,9 +98,33 @@ const WeekPerformance = (props: IWeekPerformanceProps): JSX.Element => {
           <WeekPerformanceInfoValue>{duelsWon}</WeekPerformanceInfoValue>
         </WeekPerformanceInfo>
       </WeekPerformancesList>
-      <SeeChartsButton to="/performance/">
-        <SeeChartsButtonLabel>Ver gráficos</SeeChartsButtonLabel>
-      </SeeChartsButton>
+      {isPeopleLogged && (
+        <SeeChartsButton to="/performance/">
+          <SeeChartsButtonLabel>Ver gráficos</SeeChartsButtonLabel>
+        </SeeChartsButton>
+      )}
+      {/* <WeeklyPerformanceChart>
+        <SimpleLineChart
+          colors={[
+            '#ee9b00',
+            '#48cae4',
+            '#0466c8',
+            '#a100f2',
+            '#f72585',
+            '#ff0',
+          ]}
+          height={250}
+          width={470}
+          labels={[
+            'Conteúdos estudados',
+            'Questões respondidas',
+            'Questões corretas',
+            'Duelos participados',
+            'Duelos vencidos',
+          ]}
+          data={prepareWeekDays(weekDays)}
+        />
+      </WeeklyPerformanceChart> */}
     </Container>
   );
 };

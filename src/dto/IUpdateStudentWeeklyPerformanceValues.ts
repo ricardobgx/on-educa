@@ -1,4 +1,4 @@
-export interface IUpdateStudentWeekPerformanceValuesParams {
+export interface IUpdateStudentWeeklyPerformanceValuesParams {
   studentId: string;
   dailyXPNumber?: number;
   studiedContentsNumber?: number;

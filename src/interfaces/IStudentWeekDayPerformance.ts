@@ -1,5 +1,5 @@
 import { IPeopleWeekDayPerformance } from './IPeopleWeekDayPerformance';
-import { IStudentWeekPerformance } from './IStudentWeekPerformance';
+import { IStudentWeeklyPerformance } from './IStudentWeeklyPerformance';
 
 export interface IStudentWeekDayPerformance extends IPeopleWeekDayPerformance {
   contentsStudied: number;
@@ -7,5 +7,5 @@ export interface IStudentWeekDayPerformance extends IPeopleWeekDayPerformance {
   questionsAnsweredCorrectly: number;
   duelsParticipated: number;
   duelsWon: number;
-  weekPerformance?: IStudentWeekPerformance;
+  weekPerformance?: IStudentWeeklyPerformance;
 }

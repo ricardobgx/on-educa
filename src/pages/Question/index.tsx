@@ -49,7 +49,7 @@ const Question = (): JSX.Element => {
       <PageBox>
         <Container>
           <SectionLabel
-            label={reduceTextSize(description, 45)}
+            label={reduceTextSize(description, 45, 20)}
             backLink="/questions"
           />
           <QuestionDetails>

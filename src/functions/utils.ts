@@ -4,15 +4,6 @@ export const randInt = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-export const reduceTextSize = (
-  value: string,
-  maxStringLength: number,
-): string => {
-  if (value.length > maxStringLength)
-    return `${value.substring(0, maxStringLength - 1)}...`;
-  return value;
-};
-
 export const getYTVideoCode = (url: string): string => {
   const urlParts = url.split('?');
 
@@ -51,13 +42,36 @@ export const deviceType = (): DeviceType => {
   return DeviceType.TABLET;
 };
 
+export const reduceTextSize = (
+  value: string,
+  desktopMaxLength: number,
+  mobileMaxLength: number,
+): string => {
+  const maxStringLength =
+    deviceType() === DeviceType.COMPUTER ? desktopMaxLength : mobileMaxLength;
+
+  if (value.length > maxStringLength)
+    return `${value.substring(0, maxStringLength - 1)}...`;
+  return value;
+};
+
 export const displayDayAndMonthDate = (date: string): string => {
   const dateSections = date.split('/');
-  const dayAndMonth = `${Number(dateSections[0]) < 10 ? '0' : ''}${
-    dateSections[0]
-  }/${Number(dateSections[1]) < 10 ? '0' : ''}${dateSections[1]}`;
+  const dayAndMonth = `${dateSections[0]}/${dateSections[1]}`;
 
   return dayAndMonth;
 };
 
 export const stringToBoolean = (value: string): boolean => value === 'true';
+
+export const getFullDate = (date?: Date): string => {
+  const now = date ? new Date(date) : new Date();
+
+  const day = now.getUTCDate();
+  const month = now.getUTCMonth() + 1;
+  const year = now.getUTCFullYear();
+
+  return `${day < 10 ? '0' : ''}${day}/${
+    month < 10 ? '0' : ''
+  }${month}/${year}`;
+};

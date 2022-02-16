@@ -30,23 +30,10 @@ export const SelectSocialDetailBox = styled(Button)`
     right: unset;
     width: 100%;
   }
-
-  @media (max-width: 900px) {
-    width: 50px;
-  }
-
-  @media (min-width: 900px) {
-    & span,
-    & i {
-      display: none;
-    }
-  }
 `;
 export const SelectSocialDetailLabel = styled(paragraph)`
   font-weight: bold;
-
-  @media (max-width: 900px) {
-    display: none;
-  }
 `;
-export const SelectSocialDetailIcon = styled(mediumIcon)``;
+export const SelectSocialDetailIcon = styled(mediumIcon)`
+  margin-right: 5px;
+`;

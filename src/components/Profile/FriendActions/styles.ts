@@ -30,6 +30,7 @@ export const UnfriendButton = styled(FriendButton)`
   margin-left: 10px;
   color: ${({ theme }) => theme.colors.textColor};
 `;
+export const UnfriendButtonIcon = styled(smallIcon)``;
 export const UnfriendButtonLabel = styled(FriendButtonLabel)`
   margin-right: 5px;
 `;

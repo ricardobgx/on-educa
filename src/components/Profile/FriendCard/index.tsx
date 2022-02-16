@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { getChatsByPeople, getOrCreateChat } from '../../../functions/chat';
 import {
   getPeople,
   isPeopleFriend,
   isPeopleLogged,
   setUpPeopleType,
 } from '../../../functions/people';
+import { IChat } from '../../../interfaces/IChat';
 import { IPeople } from '../../../interfaces/IPeople';
 import OnEducaAPI from '../../../services/api';
 import {
@@ -12,18 +17,30 @@ import {
   DEFAULT_STUDENT,
   DEFAULT_TEACHER,
 } from '../../../static/defaultEntitiesValues';
+import { ActionCreators } from '../../../store';
 import PeopleCard from '../../App/PeopleCard';
-import FriendCardActions from '../FriendCardActions';
-import { FriendCardBox, FriendPeople } from './styles';
+import {
+  FriendCardBox,
+  FriendPeople,
+  SendMessageButton,
+  SendMessageButtonIcon,
+} from './styles';
 
 interface IFriendCardProps {
   people: IPeople;
   loggedPeople: IPeople;
   token: string;
+  index: number;
 }
 
 const FriendCard = (props: IFriendCardProps): JSX.Element => {
-  const { loggedPeople, people, token } = props;
+  const { loggedPeople, people, token, index } = props;
+
+  const location = useHistory();
+
+  const dispatch = useDispatch();
+
+  const { loadChat } = bindActionCreators(ActionCreators, dispatch);
 
   const [friend, setFriend] = useState(DEFAULT_PEOPLE);
   const [student, setStudent] = useState(DEFAULT_STUDENT);
@@ -43,17 +60,28 @@ const FriendCard = (props: IFriendCardProps): JSX.Element => {
     setFriend(peopleFound);
   };
 
+  const redirectToChats = (chat: IChat): void => {
+    loadChat(chat);
+    location.push('/chats');
+  };
+
+  const getOrCreateChatData = (): void => {
+    getOrCreateChat(
+      OnEducaAPI,
+      { chatCreatorId: loggedPeople.id, chatParticipantId: friend.id },
+      token,
+      redirectToChats,
+    );
+  };
+
   useEffect(() => {
     getPeople(OnEducaAPI, people.id, getPeopleSucess, token);
     if (!isPeopleLogged(loggedPeople.id, people.id))
       setIsFriend(isPeopleFriend(loggedPeople.friends, people.id));
-  }, [token]);
-
-  console.log(loggedPeople);
-  console.log(friend);
+  }, [token, people, loggedPeople]);
 
   return (
-    <FriendCardBox>
+    <FriendCardBox style={{ animationDelay: `${index * 0.2}s` }}>
       <FriendPeople to={`/profile/${people.id}`}>
         <PeopleCard
           people={friend}
@@ -64,14 +92,10 @@ const FriendCard = (props: IFriendCardProps): JSX.Element => {
           smartphoneNameLength={25}
         />
       </FriendPeople>
-      {!isPeopleLogged(loggedPeople.id, friend.id) && (
-        <FriendCardActions
-          people={friend}
-          loggedPeople={loggedPeople}
-          token={token}
-          isFriend={isFriend}
-          setIsFriend={setIsFriend}
-        />
+      {isFriend && (
+        <SendMessageButton onClick={() => getOrCreateChatData()}>
+          <SendMessageButtonIcon className="fas fa-comment-alt" />
+        </SendMessageButton>
       )}
     </FriendCardBox>
   );

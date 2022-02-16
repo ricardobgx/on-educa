@@ -1,13 +1,13 @@
 import { AxiosInstance } from 'axios';
-import { IUpdateStudentWeekPerformanceValuesParams } from '../dto/IUpdateStudentWeekPerformanceValues';
-import { IStudentWeekPerformance } from '../interfaces/IStudentWeekPerformance';
+import { IUpdateStudentWeeklyPerformanceValuesParams } from '../dto/IUpdateStudentWeeklyPerformanceValues';
+import { IStudentWeeklyPerformance } from '../interfaces/IStudentWeeklyPerformance';
 
 const entityPath = 'studentWeeklyPerformances';
 
-export const getStudentWeekPerformances = async (
+export const getStudentWeeklyPerformances = async (
   API: AxiosInstance,
   token: string,
-  requestSucess: (studentWeekPerformances: IStudentWeekPerformance[]) => void,
+  requestSucess: (studentWeekPerformances: IStudentWeeklyPerformance[]) => void,
   requestError: () => void,
 ): Promise<void> => {
   await API.get(`/${entityPath}`, {
@@ -24,11 +24,11 @@ export const getStudentWeekPerformances = async (
   );
 };
 
-export const getStudentWeekPerformanceByStudent = async (
+export const getStudentWeeklyPerformanceByStudent = async (
   API: AxiosInstance,
   studentId: string,
   token: string,
-  requestSucess: (studentWeekPerformance: IStudentWeekPerformance) => void,
+  requestSucess: (studentWeekPerformance: IStudentWeeklyPerformance) => void,
   requestError: () => void,
 ): Promise<void> => {
   await API.get(`/${entityPath}/student/${studentId}`, {
@@ -45,17 +45,17 @@ export const getStudentWeekPerformanceByStudent = async (
   );
 };
 
-export const updateStudentWeekPerformanceValues = async (
+export const updateStudentWeeklyPerformanceValues = async (
   API: AxiosInstance,
-  updateStudentWeekPerformanceValuesParams: IUpdateStudentWeekPerformanceValuesParams,
+  updateStudentWeeklyPerformanceValuesParams: IUpdateStudentWeeklyPerformanceValuesParams,
   token: string,
   requestSucess: () => void,
   requestError: () => void,
 ): Promise<void> => {
   await API.put(
-    `/${entityPath}/student/${updateStudentWeekPerformanceValuesParams.studentId}`,
+    `/${entityPath}/student/${updateStudentWeeklyPerformanceValuesParams.studentId}`,
     {
-      ...updateStudentWeekPerformanceValuesParams,
+      ...updateStudentWeeklyPerformanceValuesParams,
     },
     {
       headers: {

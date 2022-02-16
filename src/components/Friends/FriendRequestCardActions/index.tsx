@@ -1,5 +1,11 @@
 import React from 'react';
+import {
+  acceptFriendRequest,
+  deleteFriendRequest,
+} from '../../../functions/friendRequest';
+import { IFriendRequest } from '../../../interfaces/IFriendRequest';
 import { IPeople } from '../../../interfaces/IPeople';
+import OnEducaAPI from '../../../services/api';
 import {
   FriendRequesCardActionsBox,
   RejectRequest,
@@ -9,20 +15,44 @@ import {
 } from './styles';
 
 interface IFriendRequesCardActionsProps {
-  people: IPeople;
+  friendRequest: IFriendRequest;
+  getPeopleFriendRequests: () => void;
+  token: string;
 }
 
 const FriendRequesCardActions = (
   props: IFriendRequesCardActionsProps,
 ): JSX.Element => {
-  const { people } = props;
+  const { friendRequest, getPeopleFriendRequests, token } = props;
+
+  const handleFriendRequestSucess = (): void => {
+    getPeopleFriendRequests();
+  };
 
   return (
     <FriendRequesCardActionsBox>
-      <AcceptRequest>
+      <AcceptRequest
+        onClick={() =>
+          acceptFriendRequest(
+            OnEducaAPI,
+            friendRequest.id,
+            token,
+            handleFriendRequestSucess,
+          )
+        }
+      >
         <AcceptRequestIcon className="fas fa-check" />
       </AcceptRequest>
-      <RejectRequest>
+      <RejectRequest
+        onClick={() =>
+          deleteFriendRequest(
+            OnEducaAPI,
+            friendRequest.id,
+            token,
+            handleFriendRequestSucess,
+          )
+        }
+      >
         <RejectRequestIcon className="fas fa-times" />
       </RejectRequest>
     </FriendRequesCardActionsBox>

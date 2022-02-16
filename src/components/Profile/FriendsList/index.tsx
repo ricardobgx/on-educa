@@ -14,12 +14,13 @@ const FriendsList = (props: IFriendsListProps): JSX.Element => {
 
   return (
     <FriendsListBox>
-      {friends.map((friend) => (
+      {friends.map((friend, index) => (
         <FriendCard
           key={friend.id}
           loggedPeople={loggedPeople}
           people={friend}
           token={token}
+          index={index}
         />
       ))}
     </FriendsListBox>

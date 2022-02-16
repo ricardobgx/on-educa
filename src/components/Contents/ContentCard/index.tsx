@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { reduceTextSize } from '../../../functions/utils';
+import { getFullDate, reduceTextSize } from '../../../functions/utils';
 import { IContent } from '../../../interfaces/IContent';
 import { ActionCreators, State } from '../../../store';
 import ContentCardActions from '../ContentCardActions';
@@ -32,7 +32,7 @@ interface IContentCardProps {
 
 const ContentCard = (props: IContentCardProps): JSX.Element => {
   const { index, content, setContent, setDeleteContentIsVisible } = props;
-  const { id, name, questions } = content;
+  const { id, name, questions, updatedAt } = content;
 
   const dispatch = useDispatch();
 
@@ -50,7 +50,7 @@ const ContentCard = (props: IContentCardProps): JSX.Element => {
         onClick={() => loadContent(content)}
       >
         <ContentDetails>
-          <ContentTitle>{reduceTextSize(name, 40)}</ContentTitle>
+          <ContentTitle>{reduceTextSize(name, 40, 50)}</ContentTitle>
           <SubjectLabel>Unidade: {unity.name}</SubjectLabel>
         </ContentDetails>
         <ContentSchoolGrade>
@@ -59,7 +59,7 @@ const ContentCard = (props: IContentCardProps): JSX.Element => {
         </ContentSchoolGrade>
         <ContentAdditionalDetails>
           <UpdateDate>
-            <UpdateDateLabel>30/01/2022</UpdateDateLabel>
+            <UpdateDateLabel>{getFullDate(updatedAt)}</UpdateDateLabel>
             <UpdateDateIcon className="fas fa-clock" />
           </UpdateDate>
           <ContentsNumber>

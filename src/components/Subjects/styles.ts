@@ -39,9 +39,10 @@ export const SubjectSectionSelectOptionsListBox = styled.div`
   max-height: calc(100vh - 355px);
   padding: 5px;
   overflow: auto;
+  align-items: center;
 
   @media (max-width: 1150px) {
-    min-height: unset;
+    min-height: 150px;
   }
 `;
 export const SubjectSectionSelectOption = styled.button`
@@ -57,6 +58,7 @@ export const SubjectSectionSelectOption = styled.button`
   align-items: center;
   transition: all 0.2s linear;
   cursor: pointer;
+  width: 100%;
 
   &:last-of-type {
     margin-bottom: 0;

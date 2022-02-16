@@ -41,7 +41,7 @@ const ContentDoubt = (): JSX.Element => {
         </ContentDoubtStatus>
       </ContentDoubtHeader>
       <ContentDoubtDescription>
-        {reduceTextSize(doubtDescription, 100)}
+        {reduceTextSize(doubtDescription, 100, 50)}
       </ContentDoubtDescription>
     </ContentDoubtBox>
   );

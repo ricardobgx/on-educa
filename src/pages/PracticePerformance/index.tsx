@@ -36,7 +36,7 @@ import SimplePieChart, {
 import theme from '../../global/styles/theme';
 import { deviceHeight, deviceType, deviceWidth } from '../../functions/utils';
 import { DeviceType } from '../../types/deviceType';
-import { updateStudentWeekPerformanceValues } from '../../functions/studentWeekPerformance';
+import { updateStudentWeeklyPerformanceValues } from '../../functions/studentWeeklyPerformance';
 import OnEducaAPI from '../../services/api';
 
 interface IPracticePerformanceRouteParams {
@@ -122,7 +122,7 @@ const PracticePerformance = (): JSX.Element => {
 
   useEffect((): any => {
     if (people) {
-      updateStudentWeekPerformanceValues(
+      updateStudentWeeklyPerformanceValues(
         OnEducaAPI,
         {
           studentId: student.id,
@@ -149,7 +149,7 @@ const PracticePerformance = (): JSX.Element => {
       value: rightQuestions,
     },
     {
-      name: 'Questões erradas',
+      name: 'Questões incorretas',
       value: wrongQuestions,
     },
     {
@@ -194,8 +194,8 @@ const PracticePerformance = (): JSX.Element => {
                   color="#000000"
                   colors={[
                     theme.similarColors.rightQuestion,
+                    theme.similarColors.skippedQuestion,
                     theme.similarColors.wrongQuestion,
-                    theme.colors.textColor,
                   ]}
                 />
               </PracticePerformanceChartBox>
@@ -211,13 +211,13 @@ const PracticePerformance = (): JSX.Element => {
                     dataLabel="Questões incorretas"
                     dataValue={wrongQuestions}
                     XPValue={0}
-                    color={theme.similarColors.wrongQuestion}
+                    color={theme.similarColors.skippedQuestion}
                   />
                   <PracticePerformanceData
                     dataLabel="Questões puladas"
                     dataValue={skippedQuestions}
                     XPValue={0}
-                    color={theme.colors.textColor}
+                    color={theme.similarColors.wrongQuestion}
                   />
                   <PerformanceDataBox>
                     <TotalLabel>Total XP</TotalLabel>

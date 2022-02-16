@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { isDefaultPeople } from '../../../functions/entitiesValues';
-import { getStudentWeekPerformanceByStudent } from '../../../functions/studentWeekPerformance';
-import { IStudentWeekPerformance } from '../../../interfaces/IStudentWeekPerformance';
+import { getStudentWeeklyPerformanceByStudent } from '../../../functions/studentWeeklyPerformance';
+import { IStudentWeeklyPerformance } from '../../../interfaces/IStudentWeeklyPerformance';
 import OnEducaAPI from '../../../services/api';
-import { DEFAULT_STUDENT_WEEK_PERFORMANCE } from '../../../static/defaultEntitiesValues';
+import { DEFAULT_STUDENT_WEEKLY_PERFORMANCE } from '../../../static/defaultEntitiesValues';
 import { State } from '../../../store';
 import {
   DailyPerformanceBox,
@@ -25,22 +25,22 @@ const DailyPerformance = (): JSX.Element => {
   );
   const { token } = aplication;
 
-  const [studentWeekPerformance, setStudentWeekPerformance] =
-    useState<IStudentWeekPerformance>(DEFAULT_STUDENT_WEEK_PERFORMANCE);
+  const [studentWeeklyPerformance, setStudentWeeklyPerformance] =
+    useState<IStudentWeeklyPerformance>(DEFAULT_STUDENT_WEEKLY_PERFORMANCE);
 
   useEffect(() => {
     if (!isDefaultPeople(people)) {
-      getStudentWeekPerformanceByStudent(
+      getStudentWeeklyPerformanceByStudent(
         OnEducaAPI,
         student.id,
         token,
-        setStudentWeekPerformance,
+        setStudentWeeklyPerformance,
         () => console.log('erro'),
       );
     }
   }, [people]);
 
-  const { xp, weekDay } = studentWeekPerformance;
+  const { xp, weekDay } = studentWeeklyPerformance;
   const { dailyXp, contentsStudied, questionsAnswered } = weekDay;
 
   return (

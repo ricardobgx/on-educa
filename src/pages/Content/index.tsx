@@ -24,6 +24,7 @@ import ContentVideo from '../../components/Content/ContentVideo';
 import ContentRelatedUnitsActions from '../../components/Content/ContentRelatedUnitsActions';
 import ContentDescription from '../../components/Content/ContentDescription';
 import ContentAttachments from '../../components/Content/ContentAttachments';
+import { reduceTextSize } from '../../functions/utils';
 
 interface IContentRouteParams {
   id: string;
@@ -65,7 +66,7 @@ const Content = (): JSX.Element => {
       <PageBox>
         <ContentBox>
           <SectionLabel
-            label={`${selectedUnity.name} - ${name}`}
+            label={reduceTextSize(`${selectedUnity.name} - ${name}`, 80, 23)}
             backLink={`/units/${selectedUnity.id}`}
           />
           <ContentVideoAndRelatedContents>

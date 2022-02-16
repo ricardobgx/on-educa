@@ -8,4 +8,6 @@ export interface IQuestion {
   content?: IContent;
   alternatives: IAlternative[];
   rightAlternative: IAlternative;
+  createdAt: Date;
+  updatedAt: Date;
 }

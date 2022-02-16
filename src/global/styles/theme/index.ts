@@ -19,8 +19,8 @@ const fontsSize = {
 const similarColors = {
   warningColor: '#CB0000',
   rightQuestion: '#52b788',
-  wrongQuestion: '#f77f00',
-  skippedQuestion: '#126699',
+  wrongQuestion: '#f72585',
+  skippedQuestion: '#a100f2',
 };
 
 // Text Color 0077b6

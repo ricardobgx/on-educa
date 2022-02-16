@@ -1,7 +1,10 @@
+import { IChat } from './IChat';
+import { IPeople } from './IPeople';
+
 export interface IMessage {
   id: string;
-  chatId: string;
+  chat: IChat;
   content: string;
-  messageSenderId: string;
-  messageReceiverId: string;
+  sender: IPeople;
+  createdAt: Date;
 }

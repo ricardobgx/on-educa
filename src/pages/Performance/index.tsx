@@ -11,8 +11,8 @@ import { State } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import { PageBox, Ranking, PeoplesList, PeoplesListBox } from './styles';
 import WeekPerformance from '../../components/Performance/WeekPerformance';
-import { getStudentWeekPerformances } from '../../functions/studentWeekPerformance';
-import { IStudentWeekPerformance } from '../../interfaces/IStudentWeekPerformance';
+import { getStudentWeeklyPerformances } from '../../functions/studentWeeklyPerformance';
+import { IStudentWeeklyPerformance } from '../../interfaces/IStudentWeeklyPerformance';
 import { isDefaultPeople } from '../../functions/entitiesValues';
 
 const Performance = (): JSX.Element => {
@@ -21,16 +21,16 @@ const Performance = (): JSX.Element => {
   );
   const { token, isStudent } = aplication;
 
-  const [studentWeekPerformances, setStudentWeekPerformances] = useState<
-    IStudentWeekPerformance[]
+  const [studentWeeklyPerformances, setStudentWeeklyPerformances] = useState<
+    IStudentWeeklyPerformance[]
   >([]);
 
   useEffect(() => {
     if (!isDefaultPeople(loggedPeople) && token && isStudent) {
-      getStudentWeekPerformances(
+      getStudentWeeklyPerformances(
         OnEducaAPI,
         token,
-        setStudentWeekPerformances,
+        setStudentWeeklyPerformances,
         () => console.log('erro'),
       );
     }
@@ -44,14 +44,16 @@ const Performance = (): JSX.Element => {
           <SectionLabel backLink="" label="Ranking" />
           <PeoplesList>
             <PeoplesListBox>
-              {studentWeekPerformances.map((studentWeekPerformance, index) => (
-                <RankingPeopleCard
-                  key={studentWeekPerformance.id}
-                  studentWeekPerformance={studentWeekPerformance}
-                  rankingPosition={index + 1}
-                  token={token}
-                />
-              ))}
+              {studentWeeklyPerformances.map(
+                (studentWeeklyPerformance, index) => (
+                  <RankingPeopleCard
+                    key={studentWeeklyPerformance.id}
+                    studentWeeklyPerformance={studentWeeklyPerformance}
+                    rankingPosition={index + 1}
+                    token={token}
+                  />
+                ),
+              )}
             </PeoplesListBox>
           </PeoplesList>
         </Ranking>

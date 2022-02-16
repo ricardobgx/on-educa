@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
+import { createMessage } from '../../../functions/message';
+import { getPeople } from '../../../functions/people';
 import { randInt } from '../../../functions/utils';
 import { IChat } from '../../../interfaces/IChat';
 import { IMessage } from '../../../interfaces/IMessage';
 import { IPeople } from '../../../interfaces/IPeople';
+import OnEducaAPI from '../../../services/api';
+import { DEFAULT_PEOPLE } from '../../../static/defaultEntitiesValues';
 import ChatMessage from '../ChatMessage';
 import ChatPeoplePicture from '../ChatPeoplePicture';
 import {
@@ -26,6 +30,7 @@ interface IChatProps {
   chat: IChat;
   loggedPeople: IPeople;
   setSelectedChat: (value: IChat) => void;
+  token: string;
 }
 
 const socket = io(process.env.REACT_APP_API_URL || '');
@@ -34,7 +39,7 @@ socket.on('connect', () =>
 );
 
 const Chat = (props: IChatProps): JSX.Element => {
-  const { chat, loggedPeople, setSelectedChat } = props;
+  const { chat, loggedPeople, setSelectedChat, token } = props;
   const { id, chatCreator, chatParticipant } = chat;
 
   const [lastElementTop, setLastElementTop] = useState(0);
@@ -42,32 +47,51 @@ const Chat = (props: IChatProps): JSX.Element => {
   const [message, setMessage] = useState('');
   const messagesList = document.getElementById('messages-list');
 
-  const people =
-    loggedPeople.id === chatCreator.id ? chatParticipant : chatCreator;
+  const [people, setPeople] = useState<IPeople>(DEFAULT_PEOPLE);
+
   const { name, profilePicture, isOnline } = people;
 
   const addMessage = (newMessage: IMessage): void => {
-    const { chatId } = newMessage;
+    const { chat: messageChat } = newMessage;
 
-    if (chatId === id) {
-      setSelectedChat({ ...chat, messages: [...chat.messages, newMessage] });
+    if (messageChat.id === id) {
+      setSelectedChat({
+        ...chat,
+        messages: [...chat.messages, newMessage],
+      });
     }
+  };
+
+  const emitMessage = (msg: IMessage): void => {
+    socket.emit('chat.message', msg);
   };
 
   const sendMessage = (): void => {
     if (message.trim()) {
-      socket.emit('chat.message', {
-        id: randInt(0, 2500).toString(),
-        chatId: chat.id,
-        content: message,
-        messageSenderId: loggedPeople.id,
-        messageReceiverId: people.id,
-      } as IMessage);
+      createMessage(
+        OnEducaAPI,
+        {
+          id: randInt(0, 2500).toString(),
+          chatId: chat.id,
+          content: message,
+          senderId: loggedPeople.id,
+        },
+        token,
+        emitMessage,
+      );
       setMessage('');
     }
   };
 
   useEffect((): any => {
+    if (token) {
+      const peopleId =
+        loggedPeople.id === chatCreator.id
+          ? chatParticipant.id
+          : chatCreator.id;
+      getPeople(OnEducaAPI, peopleId, setPeople, token);
+    }
+
     if (messagesList) {
       messagesList.scrollTop = lastElementTop;
     }
@@ -75,7 +99,7 @@ const Chat = (props: IChatProps): JSX.Element => {
     return () => {
       socket.off('chat.message', addMessage);
     };
-  }, [chat, lastElementTop]);
+  }, [chat, lastElementTop, token]);
 
   const { messages } = chat;
 

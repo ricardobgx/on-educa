@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React, { useEffect, useState } from 'react';
-import { IStudentWeekPerformance } from '../../../interfaces/IStudentWeekPerformance';
+import { IStudentWeeklyPerformance } from '../../../interfaces/IStudentWeeklyPerformance';
 import { IPeople } from '../../../interfaces/IPeople';
 import PeopleCard from '../../App/PeopleCard';
 import { RankingPosition, RankingPeopleCardBox } from './styles';
@@ -14,16 +14,16 @@ import OnEducaAPI from '../../../services/api';
 import { isDefaultPeople } from '../../../functions/entitiesValues';
 
 interface IRankingPeopleCardProps {
-  studentWeekPerformance: IStudentWeekPerformance;
+  studentWeeklyPerformance: IStudentWeeklyPerformance;
   rankingPosition: number;
   token: string;
 }
 
 const RankingPeopleCard = (props: IRankingPeopleCardProps): JSX.Element => {
-  const { studentWeekPerformance, rankingPosition, token } = props;
-  const { student } = studentWeekPerformance;
+  const { studentWeeklyPerformance, rankingPosition, token } = props;
+  const { student } = studentWeeklyPerformance;
 
-  const [people, setPeople] = useState(DEFAULT_PEOPLE);
+  const [people, setPeople] = useState<IPeople>(DEFAULT_PEOPLE);
 
   useEffect(() => {
     if (isDefaultPeople(people)) {

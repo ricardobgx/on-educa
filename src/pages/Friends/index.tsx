@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import SectionLabel from '../../components/App/SectionLabel';
 import {
@@ -12,6 +12,8 @@ import {
 } from '../../components/App/Supplies/styles';
 import FriendRequestCard from '../../components/Friends/FriendRequestCard';
 import FriendCard from '../../components/Profile/FriendCard';
+import { isDefaultPeople } from '../../functions/entitiesValues';
+import { getFriendRequestsByPeople } from '../../functions/friendRequest';
 import { getPeoples } from '../../functions/people';
 import { Page } from '../../global/styles/components/pageComponents';
 import { IFriendRequest } from '../../interfaces/IFriendRequest';
@@ -36,24 +38,21 @@ const Friends = (): JSX.Element => {
   );
   const { token } = aplication;
 
-  const friendsTest: IPeople[] = [
-    {
-      id: '4d776067-e053-458a-8a23-e4574f554e01',
-      name: 'Fabio Abrantes',
-      email: 'fabio@gmail.com',
-      isOnline: true,
-      isStudent: false,
-      profilePicture: {
-        id: 'ssfs',
-        path: 'http://192.168.10.25:8080/uploads/1644003384347-perfil2_Easy-Resize.webp',
-      },
-      league: 'gold',
-      friends: [],
-    },
-  ];
-
   const [peoplesFound, setPeoplesFound] = useState<IPeople[]>([]);
   const [friendRequests, setFriendRequests] = useState<IFriendRequest[]>([]);
+
+  const getPeopleFriendRequests = (): void => {
+    getFriendRequestsByPeople(
+      OnEducaAPI,
+      loggedPeople.id,
+      token,
+      setFriendRequests,
+    );
+  };
+
+  useEffect(() => {
+    if (!isDefaultPeople(loggedPeople) && token) getPeopleFriendRequests();
+  }, [loggedPeople, token]);
 
   return (
     <Page>
@@ -82,11 +81,12 @@ const Friends = (): JSX.Element => {
 
             <PeoplesFoundBox>
               <PeoplesFoundList>
-                {peoplesFound.map((peopleFound) => (
+                {peoplesFound.map((peopleFound, index) => (
                   <FriendCard
                     people={peopleFound}
                     loggedPeople={loggedPeople}
                     token={token}
+                    index={index}
                   />
                 ))}
               </PeoplesFoundList>
@@ -99,8 +99,9 @@ const Friends = (): JSX.Element => {
                 {friendRequests.map((friendRequest) => (
                   <FriendRequestCard
                     key={friendRequest.id}
-                    people={friendRequest.requester}
+                    friendRequest={friendRequest}
                     token={token}
+                    getPeopleFriendRequests={getPeopleFriendRequests}
                   />
                 ))}
               </FriendRequestsList>

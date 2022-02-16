@@ -11,12 +11,15 @@ import {
 
 interface IProfileActionsProps {
   people: IPeople;
+  getPeopleData: () => void;
   loggedPeople: IPeople;
+  getLoggedPeopleData: () => void;
   token: string;
 }
 
 const ProfileActions = (props: IProfileActionsProps): JSX.Element => {
-  const { people, loggedPeople, token } = props;
+  const { people, getPeopleData, loggedPeople, getLoggedPeopleData, token } =
+    props;
 
   return (
     <ProfileActionsBox>
@@ -27,8 +30,10 @@ const ProfileActions = (props: IProfileActionsProps): JSX.Element => {
         </EditProfileButton>
       ) : (
         <FriendActions
-          loggedPeople={loggedPeople}
           people={people}
+          getPeopleData={getPeopleData}
+          loggedPeople={loggedPeople}
+          getLoggedPeopleData={getLoggedPeopleData}
           token={token}
         />
       )}

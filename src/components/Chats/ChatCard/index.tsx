@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getPeople } from '../../../functions/people';
 import { IChat } from '../../../interfaces/IChat';
 import { IPeople } from '../../../interfaces/IPeople';
+import OnEducaAPI from '../../../services/api';
+import { DEFAULT_PEOPLE } from '../../../static/defaultEntitiesValues';
 import ChatPeoplePicture from '../ChatPeoplePicture';
 import {
   ChatCardBox,
@@ -13,14 +16,23 @@ interface IChatCardProps {
   chat: IChat;
   loggedPeople: IPeople;
   setSelectedChat: (value: IChat) => void;
+  token: string;
 }
 
 const ChatCard = (props: IChatCardProps): JSX.Element => {
-  const { chat, loggedPeople, setSelectedChat } = props;
-  const { chatCreator, chatParticipant } = chat;
+  const { chat, loggedPeople, setSelectedChat, token } = props;
+  const { chatCreator, chatParticipant, messages } = chat;
+  const [people, setPeople] = useState(DEFAULT_PEOPLE);
 
-  const people =
-    loggedPeople.id === chatCreator.id ? chatParticipant : chatCreator;
+  const peopleId =
+    loggedPeople.id === chatCreator.id ? chatParticipant.id : chatCreator.id;
+
+  useEffect(() => {
+    if (token) {
+      getPeople(OnEducaAPI, peopleId, setPeople, token);
+    }
+  }, [token]);
+
   const { name, isOnline, profilePicture } = people;
 
   return (
@@ -42,7 +54,11 @@ const ChatCard = (props: IChatCardProps): JSX.Element => {
       />
       <NameAndLastMessage>
         <PeopleName>{name}</PeopleName>
-        <LastMessagePreview>Oiii</LastMessagePreview>
+        <LastMessagePreview>
+          {messages.length > 0
+            ? messages[messages.length - 1].content
+            : 'Diga oi a ela/ele'}
+        </LastMessagePreview>
       </NameAndLastMessage>
     </ChatCardBox>
   );

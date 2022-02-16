@@ -12,7 +12,7 @@ export const Container = styled.div`
   max-height: calc(100vh - 340px);
 `;
 export const WeekPerformancesList = styled.div`
-  margin: 15px 0;
+  margin-top: 15px;
   padding: 5px;
   min-height: calc(100vh - 480px);
   max-height: 100%;
@@ -46,6 +46,12 @@ export const SeeChartsButton = styled(Link)`
   border-radius: 5px;
   border: none;
   min-height: 40px;
-  margin-top: 10px;
+  margin-top: 15px;
+  animation: 0.2s bottomSlideFadeIn linear;
 `;
 export const SeeChartsButtonLabel = styled(paragraph)``;
+export const WeeklyPerformanceChart = styled.div`
+  margin: 20px 0;
+  overflow-x: auto;
+  max-width: 100%;
+`;

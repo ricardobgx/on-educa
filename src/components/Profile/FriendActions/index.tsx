@@ -19,12 +19,8 @@ import {
   AcceptFriendRequestButton,
   AcceptFriendRequestButtonLabel,
   AcceptFriendRequestButtonIcon,
-} from './styles';
-import {
-  SendMessageButton,
-  SendMessageButtonIcon,
   UnfriendButtonIcon,
-} from '../FriendCardActions/styles';
+} from './styles';
 import OnEducaAPI from '../../../services/api';
 import { removePeopleFriend } from '../../../functions/people';
 import {
@@ -37,15 +33,19 @@ import { IPeople } from '../../../interfaces/IPeople';
 import { IFriendRequest } from '../../../interfaces/IFriendRequest';
 import { isDefaultPeople } from '../../../functions/entitiesValues';
 import { DEFAULT_PEOPLE } from '../../../static/defaultEntitiesValues';
+import { SendMessageButton, SendMessageButtonIcon } from '../FriendCard/styles';
 
 interface IFriendActionsProps {
   people: IPeople;
+  getPeopleData: () => void;
   loggedPeople: IPeople;
+  getLoggedPeopleData: () => void;
   token: string;
 }
 
 const FriendActions = (props: IFriendActionsProps): JSX.Element => {
-  const { people, loggedPeople, token } = props;
+  const { people, getPeopleData, loggedPeople, getLoggedPeopleData, token } =
+    props;
 
   const [isFriend, setIsFriend] = useState(false);
   const [meRequestedFriend, setMeRequestedFriend] = useState(false);
@@ -65,9 +65,6 @@ const FriendActions = (props: IFriendActionsProps): JSX.Element => {
   const getPeopleFriendRequestsSucess = (
     friendRequests: IFriendRequest[],
   ): void => {
-    console.log('procurando no ativo');
-    console.log(friendRequests);
-
     const friendRequestExists = friendRequests.find(
       (friendRequest: IFriendRequest) =>
         friendRequest.requester.id === loggedPeople.id,
@@ -82,9 +79,6 @@ const FriendActions = (props: IFriendActionsProps): JSX.Element => {
   const getLoggedPeopleFriendRequestsSucess = (
     friendRequests: IFriendRequest[],
   ): void => {
-    console.log('procurando no logado');
-    console.log(friendRequests);
-
     const friendRequestExists = friendRequests.find(
       (friendRequest: IFriendRequest) =>
         friendRequest.requester.id === people.id,
@@ -108,11 +102,13 @@ const FriendActions = (props: IFriendActionsProps): JSX.Element => {
   };
 
   const deleteFriendRequestSucess = (): void => {
-    setFriendRequestedMe(false);
+    setMeRequestedFriend(false);
   };
 
   useEffect(() => {
-    if (!isDefaultPeople(people) && !isDefaultPeople(loggedPeople)) {
+    if (!isDefaultPeople(people) && !isDefaultPeople(loggedPeople) && token) {
+      setIsFriend(false);
+
       const friendshipExists = loggedPeople.friends.find(
         (friend: IPeople) => friend.id === people.id,
       );
@@ -133,7 +129,7 @@ const FriendActions = (props: IFriendActionsProps): JSX.Element => {
     <FriendActionsBox>
       {isFriend ? (
         <MyFriendActions>
-          <SendMessageButton to="/">
+          <SendMessageButton>
             <SendMessageButtonIcon className="fas fa-comment-alt" />
           </SendMessageButton>
           <UnfriendButton
@@ -144,9 +140,8 @@ const FriendActions = (props: IFriendActionsProps): JSX.Element => {
                 { friendId: people.id },
                 token,
                 () => {
-                  setIsFriend(false);
-                  setFriendRequestedMe(false);
-                  setMeRequestedFriend(false);
+                  getPeopleData();
+                  getLoggedPeopleData();
                 },
                 () => console.log('erro'),
               )

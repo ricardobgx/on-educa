@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { isDefaultStudent } from '../../../functions/entitiesValues';
-import { getStudentWeekPerformanceByStudent } from '../../../functions/studentWeekPerformance';
+import { getStudentWeeklyPerformanceByStudent } from '../../../functions/studentWeeklyPerformance';
 import {
   deviceHeight,
   deviceType,
   deviceWidth,
   displayDayAndMonthDate,
+  getFullDate,
 } from '../../../functions/utils';
 import theme from '../../../global/styles/theme';
-import { IStudentWeekPerformance } from '../../../interfaces/IStudentWeekPerformance';
+import { IStudentWeeklyPerformance } from '../../../interfaces/IStudentWeeklyPerformance';
 import OnEducaAPI from '../../../services/api';
-import { DEFAULT_STUDENT_WEEK_PERFORMANCE } from '../../../static/defaultEntitiesValues';
+import { DEFAULT_STUDENT_WEEKLY_PERFORMANCE } from '../../../static/defaultEntitiesValues';
 import { State } from '../../../store';
 import { DeviceType } from '../../../types/deviceType';
 import BarChartWithTwoValues, {
@@ -40,8 +41,8 @@ const WeekPerformance = (): JSX.Element => {
   const { token } = aplication;
 
   const [chartType, setChartType] = useState('questions');
-  const [studentWeekPerformance, setStudentWeekPerformance] =
-    useState<IStudentWeekPerformance>(DEFAULT_STUDENT_WEEK_PERFORMANCE);
+  const [studentWeeklyPerformance, setStudentWeeklyPerformance] =
+    useState<IStudentWeeklyPerformance>(DEFAULT_STUDENT_WEEKLY_PERFORMANCE);
 
   const [questionsData, setQuestionsData] = useState<
     IBarChartWithTwoValuesData[]
@@ -73,14 +74,14 @@ const WeekPerformance = (): JSX.Element => {
   };
 
   const setChartsData = (
-    studentWeekPerformanceData: IStudentWeekPerformance,
+    studentWeeklyPerformanceData: IStudentWeeklyPerformance,
   ): void => {
-    const { weekDays } = studentWeekPerformanceData;
+    const { weekDays } = studentWeeklyPerformanceData;
 
     const contentsDataValues: ISimpleBarChartData[] = weekDays.map(
       (weekDay) => {
         const dataValue: ISimpleBarChartData = {
-          name: displayDayAndMonthDate(weekDay.createdAt),
+          name: displayDayAndMonthDate(getFullDate(weekDay.createdAt)),
           value: weekDay.contentsStudied,
         };
 
@@ -91,7 +92,7 @@ const WeekPerformance = (): JSX.Element => {
     const questionsDataValues: IBarChartWithTwoValuesData[] = weekDays.map(
       (weekDay) => {
         const dataValue: IBarChartWithTwoValuesData = {
-          name: displayDayAndMonthDate(weekDay.createdAt),
+          name: displayDayAndMonthDate(getFullDate(weekDay.createdAt)),
           firstValue: weekDay.questionsAnsweredCorrectly,
           secondValue: weekDay.questionsAnswered,
         };
@@ -103,7 +104,7 @@ const WeekPerformance = (): JSX.Element => {
     const duelsDataValues: IBarChartWithTwoValuesData[] = weekDays.map(
       (weekDay) => {
         const dataValue: IBarChartWithTwoValuesData = {
-          name: displayDayAndMonthDate(weekDay.createdAt),
+          name: displayDayAndMonthDate(getFullDate(weekDay.createdAt)),
           firstValue: weekDay.duelsParticipated,
           secondValue: weekDay.duelsWon,
         };
@@ -115,13 +116,13 @@ const WeekPerformance = (): JSX.Element => {
     setContentsData(contentsDataValues);
     setQuestionsData(questionsDataValues);
     setDuelsData(duelsDataValues);
-    setStudentWeekPerformance(studentWeekPerformanceData);
+    setStudentWeeklyPerformance(studentWeeklyPerformanceData);
   };
 
   useEffect(() => {
     if (loggedPeople.isStudent) {
       if (!isDefaultStudent(student))
-        getStudentWeekPerformanceByStudent(
+        getStudentWeeklyPerformanceByStudent(
           OnEducaAPI,
           student.id,
           token,

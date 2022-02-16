@@ -73,6 +73,7 @@ export const MessageInput = styled(inputText)`
   width: 100%;
   margin-right: 10px;
   color: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.boxColor};
 `;
 export const SendMessageButton = styled(Button)`
   color: ${({ theme }) => theme.colors.textColor};

@@ -12,3 +12,5 @@ export * from './subject';
 export * from './unity';
 export * from './student';
 export * from './teacher';
+export * from './studentWeeklyPerformance';
+export * from './chat';

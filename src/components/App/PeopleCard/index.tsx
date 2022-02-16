@@ -3,12 +3,12 @@
 
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { getStudentWeekPerformanceByStudent } from '../../../functions/studentWeekPerformance';
+import { getStudentWeeklyPerformanceByStudent } from '../../../functions/studentWeeklyPerformance';
 import { displaySurname } from '../../../functions/people';
-import { IStudentWeekPerformance } from '../../../interfaces/IStudentWeekPerformance';
+import { IStudentWeeklyPerformance } from '../../../interfaces/IStudentWeeklyPerformance';
 import { IPeople } from '../../../interfaces/IPeople';
 import OnEducaAPI from '../../../services/api';
-import { DEFAULT_STUDENT_WEEK_PERFORMANCE } from '../../../static/defaultEntitiesValues';
+import { DEFAULT_STUDENT_WEEKLY_PERFORMANCE } from '../../../static/defaultEntitiesValues';
 import { State } from '../../../store';
 import {
   PeopleCardBox,
@@ -53,22 +53,22 @@ const PeopleCard = (props: IPeopleCardProps): JSX.Element => {
   const { aplication } = useSelector((store: State) => store);
   const { token } = aplication;
 
-  const [studentWeekPerformance, setStudentWeekPerformance] =
-    useState<IStudentWeekPerformance>(DEFAULT_STUDENT_WEEK_PERFORMANCE);
+  const [studentWeeklyPerformance, setStudentWeeklyPerformance] =
+    useState<IStudentWeeklyPerformance>(DEFAULT_STUDENT_WEEKLY_PERFORMANCE);
 
   useEffect(() => {
     if (showScore && isStudent) {
-      getStudentWeekPerformanceByStudent(
+      getStudentWeeklyPerformanceByStudent(
         OnEducaAPI,
         studentId,
         token,
-        setStudentWeekPerformance,
+        setStudentWeeklyPerformance,
         () => console.log('erro'),
       );
     }
   }, []);
 
-  const { xp } = studentWeekPerformance;
+  const { xp } = studentWeeklyPerformance;
 
   return (
     <PeopleCardBox>

@@ -4,8 +4,9 @@
 /* eslint-disable no-shadow */
 
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 import SectionLabel from '../../components/App/SectionLabel';
 import ProfileDailyGoal from '../../components/Profile/ProfileDailyGoal';
 import WeekPerformance from '../../components/Profile/WeekPerformance';
@@ -19,11 +20,11 @@ import OnEducaAPI from '../../services/api';
 import {
   DEFAULT_IMAGE,
   DEFAULT_STUDENT,
-  DEFAULT_STUDENT_WEEK_PERFORMANCE,
+  DEFAULT_STUDENT_WEEKLY_PERFORMANCE,
   DEFAULT_TEACHER,
   DEFAULT_PEOPLE,
 } from '../../static/defaultEntitiesValues';
-import { State } from '../../store';
+import { ActionCreators, State } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import {
   AppearenceDetails,
@@ -47,9 +48,9 @@ import {
   SocialDetails,
 } from './styles';
 import { SmallMaterialIconRound } from '../../components/App/Icons/MaterialIcons/MaterialIconsRound';
-import { IStudentWeekPerformance } from '../../interfaces/IStudentWeekPerformance';
+import { IStudentWeeklyPerformance } from '../../interfaces/IStudentWeeklyPerformance';
 import { isDefaultPeople } from '../../functions/entitiesValues';
-import { getStudentWeekPerformanceByStudent } from '../../functions/studentWeekPerformance';
+import { getStudentWeeklyPerformanceByStudent } from '../../functions/studentWeeklyPerformance';
 import UpdateProfilePicture from '../../components/Profile/UpdateProfilePicture';
 import { IImage } from '../../interfaces/IImage';
 import SelectSocialDetailsList from '../../components/Profile/SelectSocialDetailsList';
@@ -79,6 +80,14 @@ const Profile = (): JSX.Element => {
 
   const { token } = aplication;
 
+  const dispatch = useDispatch();
+
+  const {
+    loginPeople: loadPeople,
+    loadStudent,
+    loadTeacher,
+  } = bindActionCreators(ActionCreators, dispatch);
+
   const [student, setStudent] = useState(DEFAULT_STUDENT);
   const [teacher, setTeacher] = useState(DEFAULT_TEACHER);
 
@@ -88,12 +97,17 @@ const Profile = (): JSX.Element => {
 
   const [socialDetailSelected, setSocialDetailSelected] = useState(0);
 
-  const [studentWeekPerformance, setStudentWeekPerformance] =
-    useState<IStudentWeekPerformance>(DEFAULT_STUDENT_WEEK_PERFORMANCE);
+  const [studentWeeklyPerformance, setStudentWeeklyPerformance] =
+    useState<IStudentWeeklyPerformance>(DEFAULT_STUDENT_WEEKLY_PERFORMANCE);
 
   const [profilePicture, setProfilePicture] = useState<IImage>(DEFAULT_IMAGE);
   const [isUpdatingProfilePicture, setIsUpdatingProfilePicture] =
     useState(false);
+
+  /* Route params */
+
+  const route = useRouteMatch();
+  const { id } = route.params as IProfileRouteProps;
 
   const getPeopleSucess = (peopleFound: IPeople): void => {
     setPeople(peopleFound);
@@ -105,37 +119,51 @@ const Profile = (): JSX.Element => {
       setStudent,
       setTeacher,
     );
-    setProfilePicture(people.profilePicture);
+    setProfilePicture(peopleFound.profilePicture);
   };
 
-  /* Route params */
+  const getLoggedPeopleSucess = (peopleFound: IPeople): void => {
+    loadPeople(peopleFound);
+    setUpPeopleType(
+      OnEducaAPI,
+      peopleFound.id,
+      peopleFound.isStudent,
+      token,
+      loadStudent,
+      loadTeacher,
+    );
+    setProfilePicture(peopleFound.profilePicture);
+  };
 
-  const route = useRouteMatch();
-  const { id } = route.params as IProfileRouteProps;
+  const getPeopleData = (): void => {
+    getPeople(OnEducaAPI, id, getPeopleSucess, token);
+  };
 
-  useEffect(() => {
-    if (isDefaultPeople(people) || people.id !== id) {
-      if (!isPeopleLogged(loggedPeople.id, id))
-        getPeople(OnEducaAPI, id, getPeopleSucess, token);
-      else {
-        setPeople(loggedPeople);
-        setStudent(loggedStudent);
-        setTeacher(loggedTeacher);
-        setProfilePicture(loggedPeople.profilePicture);
-      }
-    } else if (people.isStudent) {
-      console.log(`Buscando desempenho do estudante ${student.id}`);
-      getStudentWeekPerformanceByStudent(
+  const getLoggedPeopleData = (): void => {
+    getPeople(OnEducaAPI, loggedPeople.id, getLoggedPeopleSucess, token);
+  };
+
+  const getPeopleWeeklyPerformance = (): void => {
+    if (people.isStudent) {
+      getStudentWeeklyPerformanceByStudent(
         OnEducaAPI,
         student.id,
         token,
-        setStudentWeekPerformance,
+        setStudentWeeklyPerformance,
         () => console.log('erro'),
       );
     }
-  }, [id, loggedPeople, people]);
+  };
 
-  const { weekDay } = studentWeekPerformance;
+  useEffect(() => {
+    if ((isDefaultPeople(people) || people.id !== id) && token) {
+      getPeopleData();
+    } else if (people.isStudent) {
+      getPeopleWeeklyPerformance();
+    }
+  }, [id, people, token, student]);
+
+  const { weekDay } = studentWeeklyPerformance;
   const { dailyXp } = weekDay;
 
   return (
@@ -154,15 +182,7 @@ const Profile = (): JSX.Element => {
             <SectionLabel backLink="/home" label="Perfil" />
 
             <ProfileDetailsBox className="with-shadow bd-rd-5">
-              <ProfileBanner>
-                {/* <ProfileBannerImg src="https://timelinecovers.pro/facebook-cover/download/anime-your-name-starfall-facebook-cover.jpg" /> */}
-
-                {/* {loggedPeople.id === people.id && (
-                  <EditBannerButton>
-                    <SmallMaterialIconRound color="" icon="mode_edit" />
-                  </EditBannerButton>
-                )} */}
-              </ProfileBanner>
+              <ProfileBanner />
               <PeopleDetails>
                 <AppearenceDetails>
                   <PeoplePictureBox>
@@ -178,7 +198,9 @@ const Profile = (): JSX.Element => {
 
                   <ProfileActions
                     people={people}
+                    getPeopleData={getPeopleData}
                     loggedPeople={loggedPeople}
+                    getLoggedPeopleData={getLoggedPeopleData}
                     token={token}
                   />
                 </AppearenceDetails>
@@ -202,6 +224,7 @@ const Profile = (): JSX.Element => {
               <SocialDetails>
                 <SelectSocialDetails>
                   <SelectSocialDetailsList
+                    people={people}
                     socialDetailSelected={socialDetailSelected}
                     setSocialDetailSelected={setSocialDetailSelected}
                   />
@@ -230,6 +253,7 @@ const Profile = (): JSX.Element => {
                   people={people}
                   student={student}
                   token={token}
+                  isPeopleLogged={isPeopleLogged(people.id, loggedPeople.id)}
                 />
               </WeeklyPerformanceSummary>
             </PerformanceDetailsBox>

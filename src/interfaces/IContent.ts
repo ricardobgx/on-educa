@@ -9,4 +9,6 @@ export interface IContent {
   index: number;
   unity: IUnity;
   questions: IQuestion[];
+  createdAt: Date;
+  updatedAt: Date;
 }

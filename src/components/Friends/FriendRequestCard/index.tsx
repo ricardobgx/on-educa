@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getPeople, setUpPeopleType } from '../../../functions/people';
+import { IFriendRequest } from '../../../interfaces/IFriendRequest';
 import { IPeople } from '../../../interfaces/IPeople';
 import OnEducaAPI from '../../../services/api';
 import {
@@ -12,19 +13,21 @@ import FriendRequestCardActions from '../FriendRequestCardActions';
 import { FriendRequestCardBox } from './styles';
 
 interface IFriendRequestCardProps {
-  people: IPeople;
+  friendRequest: IFriendRequest;
+  getPeopleFriendRequests: () => void;
   token: string;
 }
 
 const FriendRequestCard = (props: IFriendRequestCardProps): JSX.Element => {
-  const { people, token } = props;
+  const { friendRequest, getPeopleFriendRequests, token } = props;
+  const { requester } = friendRequest;
 
+  const [people, setPeople] = useState(DEFAULT_PEOPLE);
   const [student, setStudent] = useState(DEFAULT_STUDENT);
   const [teacher, setTeacher] = useState(DEFAULT_TEACHER);
-  const [requester, setRequester] = useState(DEFAULT_PEOPLE);
 
   const getPeopleSucess = (peopleFound: IPeople): void => {
-    setRequester(peopleFound);
+    setPeople(peopleFound);
     setUpPeopleType(
       OnEducaAPI,
       peopleFound.id,
@@ -36,20 +39,24 @@ const FriendRequestCard = (props: IFriendRequestCardProps): JSX.Element => {
   };
 
   useEffect(() => {
-    getPeople(OnEducaAPI, people.id, getPeopleSucess, token);
+    getPeople(OnEducaAPI, requester.id, getPeopleSucess, token);
   }, []);
 
   return (
     <FriendRequestCardBox>
       <PeopleCard
-        people={requester}
+        people={people}
         student={student}
         teacher={teacher}
         abbreviateName
         showScore={false}
         smartphoneNameLength={25}
       />
-      <FriendRequestCardActions people={people} />
+      <FriendRequestCardActions
+        friendRequest={friendRequest}
+        getPeopleFriendRequests={getPeopleFriendRequests}
+        token={token}
+      />
     </FriendRequestCardBox>
   );
 };

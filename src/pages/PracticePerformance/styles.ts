@@ -33,7 +33,6 @@ export const PerformanceDetails = styled.div`
   max-height: calc(100vh - 95px);
 
   @media (max-width: 1150px) {
-    height: unset;
     width: 100%;
   }
 `;

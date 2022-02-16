@@ -6,4 +6,5 @@ export interface IChat {
   chatCreator: IPeople;
   chatParticipant: IPeople;
   messages: IMessage[];
+  createdAt: Date;
 }

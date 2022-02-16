@@ -22,9 +22,11 @@ export const NameAndLastMessage = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 5px 0;
+  padding: 3px 0;
 `;
 export const PeopleName = styled(paragraph)`
   font-weight: bold;
 `;
-export const LastMessagePreview = styled(paragraph)``;
+export const LastMessagePreview = styled(paragraph)`
+  color: ${({ theme }) => theme.colors.boxShadowColor};
+`;

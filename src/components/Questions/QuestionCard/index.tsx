@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { reduceTextSize } from '../../../functions/utils';
+import { getFullDate, reduceTextSize } from '../../../functions/utils';
 import { IContent } from '../../../interfaces/IContent';
 import { IQuestion } from '../../../interfaces/IQuestion';
 import { ISubject } from '../../../interfaces/ISubject';
@@ -44,7 +44,7 @@ const QuestionCard = (props: IQuestionCardProps): JSX.Element => {
     setQuestion,
     setDeleteQuestionIsVisible,
   } = props;
-  const { id, description, alternatives } = question;
+  const { id, description, alternatives, updatedAt } = question;
 
   const dispatch = useDispatch();
 
@@ -57,11 +57,11 @@ const QuestionCard = (props: IQuestionCardProps): JSX.Element => {
         onClick={() => loadQuestion(question)}
       >
         <QuestionDetails>
-          <QuestionTitle title={reduceTextSize(description, 150)}>
-            {reduceTextSize(description, 35)}
+          <QuestionTitle title={reduceTextSize(description, 150, 100)}>
+            {reduceTextSize(description, 35, 20)}
           </QuestionTitle>
-          <ContentLabel title={reduceTextSize(content.name, 150)}>
-            Conteúdo: {reduceTextSize(content.name, 25)}
+          <ContentLabel title={reduceTextSize(content.name, 150, 100)}>
+            Conteúdo: {reduceTextSize(content.name, 25, 25)}
           </ContentLabel>
         </QuestionDetails>
         <QuestionUnity>
@@ -70,7 +70,7 @@ const QuestionCard = (props: IQuestionCardProps): JSX.Element => {
         </QuestionUnity>
         <QuestionAdditionalDetails>
           <UpdateDate>
-            <UpdateDateLabel>30/01/2022</UpdateDateLabel>
+            <UpdateDateLabel>{getFullDate(updatedAt)}</UpdateDateLabel>
             <UpdateDateIcon className="fas fa-clock" />
           </UpdateDate>
           <QuestionsNumber>

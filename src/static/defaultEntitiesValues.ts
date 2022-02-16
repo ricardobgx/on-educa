@@ -15,7 +15,7 @@ import { IPeople } from '../interfaces/IPeople';
 import { IDuelRound } from '../interfaces/IDuelRound';
 import { IPracticeQuestion } from '../interfaces/IPracticeQuestion';
 import { IPractice } from '../interfaces/IPractice';
-import { IStudentWeekPerformance } from '../interfaces/IStudentWeekPerformance';
+import { IStudentWeeklyPerformance } from '../interfaces/IStudentWeeklyPerformance';
 import { IStudentWeekDayPerformance } from '../interfaces/IStudentWeekDayPerformance';
 import { IImage } from '../interfaces/IImage';
 import { IStudent } from '../interfaces/IStudent';
@@ -56,6 +56,7 @@ export const DEFAULT_PEOPLE: IPeople = {
   league: '',
   isOnline: false,
   isStudent: true,
+  dailyGoal: 0,
   friends: [],
 };
 
@@ -64,6 +65,7 @@ export const DEFAULT_CHAT: IChat = {
   chatCreator: DEFAULT_PEOPLE,
   chatParticipant: DEFAULT_PEOPLE,
   messages: [],
+  createdAt: new Date(),
 };
 
 export const DEFAULT_STUDENT: IStudent = {
@@ -98,6 +100,8 @@ export const DEFAULT_CONTENT: IContent = {
   index: 0,
   unity: DEFAULT_UNITY,
   questions: [],
+  createdAt: new Date(),
+  updatedAt: new Date(),
 };
 
 export const DEFAULT_ALTERNATIVE: IAlternative = {
@@ -113,6 +117,8 @@ export const DEFAULT_QUESTION: IQuestion = {
   content: DEFAULT_CONTENT,
   alternatives: [],
   rightAlternative: DEFAULT_ALTERNATIVE,
+  createdAt: new Date(),
+  updatedAt: new Date(),
 };
 
 export const DEFAULT_PRACTICE: IPractice = {
@@ -135,10 +141,10 @@ export const DEFAULT_STUDENT_WEEK_DAY_PERFORMANCE: IStudentWeekDayPerformance =
     questionsAnsweredCorrectly: 0,
     duelsParticipated: 0,
     duelsWon: 0,
-    createdAt: '',
+    createdAt: new Date(),
   };
 
-export const DEFAULT_STUDENT_WEEK_PERFORMANCE: IStudentWeekPerformance = {
+export const DEFAULT_STUDENT_WEEKLY_PERFORMANCE: IStudentWeeklyPerformance = {
   id: '',
   xp: 0,
   createdAt: '',
