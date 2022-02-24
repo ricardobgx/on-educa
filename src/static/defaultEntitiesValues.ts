@@ -22,6 +22,8 @@ import { IStudent } from '../interfaces/IStudent';
 import { ITeacher } from '../interfaces/ITeacher';
 import { ThemeType } from '../types/ThemeType';
 import { IChat } from '../interfaces/IChat';
+import { ITeacherWeeklyPerformance } from '../interfaces/ITeacherWeeklyPerformance';
+import { ITeacherWeekDayPerformance } from '../interfaces/ITeacherWeekDayPerformance';
 
 export const DEFAULT_APLICATION: IAplication = {
   token: '',
@@ -151,6 +153,25 @@ export const DEFAULT_STUDENT_WEEKLY_PERFORMANCE: IStudentWeeklyPerformance = {
   weekDay: DEFAULT_STUDENT_WEEK_DAY_PERFORMANCE,
   weekDays: [],
   student: DEFAULT_STUDENT,
+};
+
+export const DEFAULT_TEACHER_WEEK_DAY_PERFORMANCE: ITeacherWeekDayPerformance =
+  {
+    id: '',
+    dailyXp: 0,
+    contentsCreated: 0,
+    questionsCreated: 0,
+    doubtsSolved: 0,
+    interativeRoomsCreated: 0,
+    createdAt: new Date(),
+  };
+
+export const DEFAULT_TEACHER_WEEKLY_PERFORMANCE: ITeacherWeeklyPerformance = {
+  id: '',
+  xp: 0,
+  weekDay: DEFAULT_TEACHER_WEEK_DAY_PERFORMANCE,
+  weekDays: [],
+  teacher: DEFAULT_TEACHER,
 };
 
 /* Duelos */

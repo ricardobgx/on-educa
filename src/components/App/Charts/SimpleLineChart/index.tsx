@@ -24,16 +24,17 @@ const SimpleLineChart = (props: ISimpleLineChartProps): JSX.Element => {
   const { data, width, height, colors, labels } = props;
 
   useEffect(() => {
-    const chartLabels = document.getElementsByClassName(
-      'recharts-legend-item-text',
+    const chartLabelsList = document.getElementsByClassName(
+      'recharts-default-legend',
     );
 
-    if (chartLabels) {
+    if (chartLabelsList[0]) {
+      const chartLabels = chartLabelsList[0].getElementsByTagName('span');
       for (let i = 0; i < chartLabels.length; i += 1) {
         chartLabels[i].innerHTML = labels[i];
       }
     }
-  }, []);
+  }, [labels]);
 
   return (
     <SimpleLineChartBox>

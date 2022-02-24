@@ -1,25 +1,25 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React, { useEffect, useState } from 'react';
-import { IStudentWeeklyPerformance } from '../../../interfaces/IStudentWeeklyPerformance';
-import { IPeople } from '../../../interfaces/IPeople';
-import PeopleCard from '../../App/PeopleCard';
-import { RankingPosition, RankingPeopleCardBox } from './styles';
+import { IStudentWeeklyPerformance } from '../../../../interfaces/IStudentWeeklyPerformance';
+import { IPeople } from '../../../../interfaces/IPeople';
+import PeopleCard from '../../../App/PeopleCard';
+import { RankingPosition, RankingCardBox } from '../styles';
 import {
   DEFAULT_PEOPLE,
   DEFAULT_TEACHER,
-} from '../../../static/defaultEntitiesValues';
-import { getPeople } from '../../../functions/people';
-import OnEducaAPI from '../../../services/api';
-import { isDefaultPeople } from '../../../functions/entitiesValues';
+} from '../../../../static/defaultEntitiesValues';
+import { getPeople } from '../../../../functions/people';
+import OnEducaAPI from '../../../../services/api';
+import { isDefaultPeople } from '../../../../functions/entitiesValues';
 
-interface IRankingPeopleCardProps {
+interface IStudentRankingCardProps {
   studentWeeklyPerformance: IStudentWeeklyPerformance;
   rankingPosition: number;
   token: string;
 }
 
-const RankingPeopleCard = (props: IRankingPeopleCardProps): JSX.Element => {
+const StudentRankingCard = (props: IStudentRankingCardProps): JSX.Element => {
   const { studentWeeklyPerformance, rankingPosition, token } = props;
   const { student } = studentWeeklyPerformance;
 
@@ -32,7 +32,7 @@ const RankingPeopleCard = (props: IRankingPeopleCardProps): JSX.Element => {
   }, []);
 
   return (
-    <RankingPeopleCardBox>
+    <RankingCardBox>
       <RankingPosition>
         {rankingPosition < 10 ? `0${rankingPosition}` : `${rankingPosition}`}
       </RankingPosition>
@@ -44,8 +44,8 @@ const RankingPeopleCard = (props: IRankingPeopleCardProps): JSX.Element => {
         student={student}
         teacher={DEFAULT_TEACHER}
       />
-    </RankingPeopleCardBox>
+    </RankingCardBox>
   );
 };
 
-export default RankingPeopleCard;
+export default StudentRankingCard;

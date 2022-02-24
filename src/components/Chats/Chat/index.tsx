@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import io from 'socket.io-client';
+import { socket } from '../../../App';
 import { createMessage } from '../../../functions/message';
 import { getPeople } from '../../../functions/people';
 import { randInt } from '../../../functions/utils';
@@ -32,11 +32,6 @@ interface IChatProps {
   setSelectedChat: (value: IChat) => void;
   token: string;
 }
-
-const socket = io(process.env.REACT_APP_API_URL || '');
-socket.on('connect', () =>
-  console.log('[IO] A new connection has been established'),
-);
 
 const Chat = (props: IChatProps): JSX.Element => {
   const { chat, loggedPeople, setSelectedChat, token } = props;

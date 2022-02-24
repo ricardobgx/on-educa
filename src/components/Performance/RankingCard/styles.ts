@@ -24,7 +24,7 @@ export const RankingPosition = styled(paragraph)`
 
 // Estudante e sua posição
 
-export const RankingPeopleCardBox = styled.div`
+export const RankingCardBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;

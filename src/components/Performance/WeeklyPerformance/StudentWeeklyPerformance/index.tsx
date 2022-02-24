@@ -1,42 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { isDefaultStudent } from '../../../functions/entitiesValues';
-import { getStudentWeeklyPerformanceByStudent } from '../../../functions/studentWeeklyPerformance';
+import { isDefaultStudent } from '../../../../functions/entitiesValues';
+import { getStudentWeeklyPerformanceByStudent } from '../../../../functions/studentWeeklyPerformance';
 import {
-  deviceHeight,
-  deviceType,
-  deviceWidth,
   displayDayAndMonthDate,
   getFullDate,
-} from '../../../functions/utils';
-import theme from '../../../global/styles/theme';
-import { IStudentWeeklyPerformance } from '../../../interfaces/IStudentWeeklyPerformance';
-import OnEducaAPI from '../../../services/api';
-import { DEFAULT_STUDENT_WEEKLY_PERFORMANCE } from '../../../static/defaultEntitiesValues';
-import { State } from '../../../store';
-import { DeviceType } from '../../../types/deviceType';
+} from '../../../../functions/utils';
+import theme from '../../../../global/styles/theme';
+import { IStudentWeeklyPerformance } from '../../../../interfaces/IStudentWeeklyPerformance';
+import OnEducaAPI from '../../../../services/api';
+import { DEFAULT_STUDENT_WEEKLY_PERFORMANCE } from '../../../../static/defaultEntitiesValues';
+import { State } from '../../../../store';
 import BarChartWithTwoValues, {
   IBarChartWithTwoValuesData,
-} from '../../App/Charts/BarChartWithTwoValues';
+} from '../../../App/Charts/BarChartWithTwoValues';
 import SimpleBarChart, {
   ISimpleBarChartData,
-} from '../../App/Charts/SimpleBarChart';
-import SectionLabel from '../../App/SectionLabel';
+} from '../../../App/Charts/SimpleBarChart';
+import SectionLabel from '../../../App/SectionLabel';
+import ChartTypes from '../../ChartTypes';
+import { calcChartHeight, calcChartWidth } from '../functions';
 import {
-  WeekPerformanceBox,
-  ChartTypeButton,
-  ChartTypeLabel,
-  ChartTypes,
+  WeeklyPerformanceBox,
   PerformanceChart,
   PerformanceChartBox,
-} from './styles';
+} from '../styles';
 
-const WeekPerformance = (): JSX.Element => {
+const StudentWeeklyPerformance = (): JSX.Element => {
   const {
     aplication,
     people: loggedPeople,
     student,
-    teacher,
   } = useSelector((store: State) => store);
   const { token } = aplication;
 
@@ -49,29 +43,6 @@ const WeekPerformance = (): JSX.Element => {
   >([]);
   const [duelsData, setDuelsData] = useState<IBarChartWithTwoValuesData[]>([]);
   const [contentsData, setContentsData] = useState<ISimpleBarChartData[]>([]);
-
-  // Dimensoes do dispositivo
-
-  const screenWidth = deviceWidth();
-  const screenHeight = deviceHeight();
-  const deviceTypeData = deviceType();
-
-  const calcChartWidth = (): number => {
-    if (deviceTypeData !== DeviceType.COMPUTER) {
-      if (screenWidth > 450) {
-        return screenWidth - 120;
-      }
-      return 450;
-    }
-    return screenWidth / 2;
-  };
-
-  const calcChartHeight = (): number => {
-    if (deviceTypeData !== DeviceType.COMPUTER) {
-      return 300;
-    }
-    return screenHeight - 330;
-  };
 
   const setChartsData = (
     studentWeeklyPerformanceData: IStudentWeeklyPerformance,
@@ -132,8 +103,23 @@ const WeekPerformance = (): JSX.Element => {
     }
   }, [student]);
 
+  const chartTypes = [
+    {
+      label: 'Conteúdos',
+      chartType: 'contents',
+    },
+    {
+      label: 'Questões',
+      chartType: 'questions',
+    },
+    {
+      label: 'Duelos',
+      chartType: 'duels',
+    },
+  ];
+
   return (
-    <WeekPerformanceBox>
+    <WeeklyPerformanceBox>
       <SectionLabel label="Desempenho" backLink="/home" />
       <PerformanceChart>
         <PerformanceChartBox>
@@ -169,40 +155,14 @@ const WeekPerformance = (): JSX.Element => {
             />
           )}
         </PerformanceChartBox>
-        <ChartTypes>
-          <ChartTypeButton
-            onClick={() => setChartType('questions')}
-            style={{
-              background:
-                chartType === 'questions' ? theme.colors.textColor : '',
-              color: chartType === 'questions' ? theme.colors.boxColor : '',
-            }}
-          >
-            <ChartTypeLabel>Questões</ChartTypeLabel>
-          </ChartTypeButton>
-          <ChartTypeButton
-            onClick={() => setChartType('contents')}
-            style={{
-              background:
-                chartType === 'contents' ? theme.colors.textColor : '',
-              color: chartType === 'contents' ? theme.colors.boxColor : '',
-            }}
-          >
-            <ChartTypeLabel>Conteúdos</ChartTypeLabel>
-          </ChartTypeButton>
-          <ChartTypeButton
-            onClick={() => setChartType('duels')}
-            style={{
-              background: chartType === 'duels' ? theme.colors.textColor : '',
-              color: chartType === 'duels' ? theme.colors.boxColor : '',
-            }}
-          >
-            <ChartTypeLabel>Duelos</ChartTypeLabel>
-          </ChartTypeButton>
-        </ChartTypes>
+        <ChartTypes
+          chartTypes={chartTypes}
+          selectedChartType={chartType}
+          setSelectedChartType={setChartType}
+        />
       </PerformanceChart>
-    </WeekPerformanceBox>
+    </WeeklyPerformanceBox>
   );
 };
 
-export default WeekPerformance;
+export default StudentWeeklyPerformance;

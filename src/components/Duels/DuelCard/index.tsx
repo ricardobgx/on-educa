@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { socket } from '../../../App';
 import { getDuel } from '../../../functions/duel';
 import {
   duelRoundStatusIcon,
@@ -11,6 +12,7 @@ import { isDefaultDuel } from '../../../functions/entitiesValues';
 import { getPeople } from '../../../functions/people';
 import { IDuel } from '../../../interfaces/IDuel';
 import { IDuelTeam } from '../../../interfaces/IDuelTeam';
+import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
 import { IPeople } from '../../../interfaces/IPeople';
 import { IStudent } from '../../../interfaces/IStudent';
 import OnEducaAPI from '../../../services/api';
@@ -85,7 +87,15 @@ const DuelCard = (props: IDuelCardProps): JSX.Element => {
         studentId: loggedStudent.id,
       },
       token,
-      () => setParticipateInDuelComplete(true),
+      (duelTeamParticipation: IDuelTeamParticipation) => {
+        setParticipateInDuelComplete(true);
+        socket.emit(`duel.new-participation`, {
+          duelId,
+          data: {
+            ...duelTeamParticipation,
+          } as IDuelTeamParticipation,
+        });
+      },
       () => console.log('erro'),
     );
   };

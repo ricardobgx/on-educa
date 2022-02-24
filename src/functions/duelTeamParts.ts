@@ -74,7 +74,7 @@ export const participateInDuel = async (
   API: AxiosInstance,
   participateInDuelParams: IParticipateInDuelParams,
   token: string,
-  requestSucess: () => void,
+  requestSucess: (duelTeamParticipation: IDuelTeamParticipation) => void,
   requestError: () => void,
 ): Promise<void> => {
   await API.post(`/${entityPath}/duel`, participateInDuelParams, {
@@ -82,8 +82,8 @@ export const participateInDuel = async (
       authorization: `Bearer ${token}`,
     },
   }).then(
-    () => {
-      requestSucess();
+    (response) => {
+      requestSucess(response.data);
     },
     () => {
       requestError();

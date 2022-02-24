@@ -3,8 +3,10 @@
 
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { socket } from '../../../App';
 import { changeDuelTeamPosition } from '../../../functions/duelTeamParts';
 import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
+import { IStudent } from '../../../interfaces/IStudent';
 import OnEducaAPI from '../../../services/api';
 import { State } from '../../../store';
 import { MediumMaterialIconRound } from '../../App/Icons/MaterialIcons/MaterialIconsRound';
@@ -14,10 +16,11 @@ import {
 } from './styles';
 
 interface IChangeDuelTeamPositionProps {
-  duelTeamPartId: string;
-  studentId: string;
+  duelId: string;
+  duelOwner: IStudent;
+  loggedStudent: IStudent;
   studentParticipation: IDuelTeamParticipation;
-  refreshDuel: () => void;
+  participation: IDuelTeamParticipation;
 }
 
 const ChangeDuelTeamPosition = (
@@ -26,19 +29,32 @@ const ChangeDuelTeamPosition = (
   const { aplication } = useSelector((store: State) => store);
   const { token } = aplication;
 
-  const { duelTeamPartId, studentId, studentParticipation, refreshDuel } =
-    props;
+  const {
+    participation,
+    loggedStudent,
+    studentParticipation,
+    duelId,
+    duelOwner,
+  } = props;
 
   const changePosition = async (): Promise<void> => {
     await changeDuelTeamPosition(
       OnEducaAPI,
       {
         oldDuelTeamParticipationId: studentParticipation.id,
-        newDuelTeamParticipationId: duelTeamPartId,
-        studentId,
+        newDuelTeamParticipationId: participation.id,
+        studentId: loggedStudent.id,
       },
       token,
-      refreshDuel,
+      () => {
+        socket.emit(`duel.update-participation`, {
+          duelId,
+          data: {
+            ...participation,
+            student: loggedStudent,
+          } as IDuelTeamParticipation,
+        });
+      },
       () => console.log('erro'),
     );
   };

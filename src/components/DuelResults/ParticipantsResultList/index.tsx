@@ -1,21 +1,31 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React from 'react';
-import { IDuelParticipant } from '../../../interfaces/IDuelParticipant';
+import { useSelector } from 'react-redux';
+import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
+import { State } from '../../../store';
 import ParticipantCard from '../ParticipantResultCard';
 import { ParticipantsListBox } from './styles';
 
 interface IParticipantsList {
-  participants: IDuelParticipant[];
+  participations: IDuelTeamParticipation[];
 }
 
 const ParticipantsResultList = (props: IParticipantsList): JSX.Element => {
-  const { participants } = props;
+  const { participations: allParticipations } = props;
+  const { aplication } = useSelector((store: State) => store);
+
+  const participations = allParticipations.filter(
+    (participation) => !!participation.student,
+  );
 
   return (
     <ParticipantsListBox>
-      {participants.map((participant) => (
-        <ParticipantCard {...participant} />
+      {participations.map((participation) => (
+        <ParticipantCard
+          participation={participation}
+          token={aplication.token}
+        />
       ))}
     </ParticipantsListBox>
   );

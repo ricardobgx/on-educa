@@ -4,13 +4,13 @@
 
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import SectionLabel from '../../components/App/SectionLabel';
 import NewDuelContents from '../../components/NewDuel/NewDuelContents';
 import NewDuelSettings from '../../components/NewDuel/NewDuelSettings';
 import { IDuelParams } from '../../dto/IDuelParams';
-import { createDuel as createDuelRequest } from '../../functions/duel';
+import { createDuel as createDuelRequest, getDuel } from '../../functions/duel';
 import { IContent } from '../../interfaces/IContent';
 import { IDuel } from '../../interfaces/IDuel';
 import OnEducaAPI from '../../services/api';
@@ -26,18 +26,13 @@ import {
   CreateNewDuelButton,
   CreateNewDuelButtonLabel,
 } from './styles';
-import { participateInDuel } from '../../functions/duelTeamParts';
-import { IParticipateInDuelParams } from '../../dto/IParticipateInDuelParams';
 
 const NewDuel = (): JSX.Element => {
+  const pageHistory = useHistory();
+
   /* Global State */
 
-  const {
-    people,
-    student,
-    duel: globalDuel,
-    aplication,
-  } = useSelector((store: State) => store);
+  const { student, aplication } = useSelector((store: State) => store);
 
   const { id } = student;
   const { token } = aplication;
@@ -64,8 +59,6 @@ const NewDuel = (): JSX.Element => {
   const [contentsFound, setContentsFound] = useState<IContent[]>([]);
 
   const [selectedContents, setSelectedContents] = useState<IContent[]>([]);
-
-  const [duelIsCreated, setDuelIsCreated] = useState(false);
 
   const newDuelContentsProps = {
     newDuelSelectedContentsProps: {
@@ -95,30 +88,8 @@ const NewDuel = (): JSX.Element => {
 
   /* Functions */
 
-  const createDuelOwnerParticipationSucess = (): void => {
-    setDuelIsCreated(true);
-  };
-
-  const createDuelOwnerParticipationError = (): void => {
-    console.log('erro');
-  };
-
-  const createDuelOwnerParticipation = async (
-    duelTeamParticipationByDuelParams: IParticipateInDuelParams,
-  ): Promise<void> => {
-    await participateInDuel(
-      OnEducaAPI,
-      duelTeamParticipationByDuelParams,
-      token,
-      createDuelOwnerParticipationSucess,
-      createDuelOwnerParticipationError,
-    );
-  };
-
   const createDuelSucess = (duel: IDuel): void => {
-    console.log('duelo criado');
-    loadDuel(duel);
-    createDuelOwnerParticipation({ duelId: duel.id, studentId: id });
+    pageHistory.push(`/duels/${duel.id}`);
   };
 
   const createDuelError = (): void => {
@@ -163,7 +134,6 @@ const NewDuel = (): JSX.Element => {
             <CreateNewDuelButton onClick={() => createDuel()}>
               <CreateNewDuelButtonLabel>Criar duelo</CreateNewDuelButtonLabel>
             </CreateNewDuelButton>
-            {duelIsCreated && <Redirect to={`/duels/${globalDuel.id}`} />}
           </NewDuelActions>
         </NewDuelBox>
       </PageBox>

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { socket } from '../../../App';
 import { removeParticipant } from '../../../functions/duelTeamParts';
 import { isDefaultPeople } from '../../../functions/entitiesValues';
 import { getPeople } from '../../../functions/people';
@@ -21,20 +22,27 @@ import {
   KickOutButtonIcon,
 } from './styles';
 
-interface IDuelTeamParticipantCardProps {
-  ownerId: string;
+interface IDuelTeamParticipantCard {
+  duelId: string;
+  duelOwner: IStudent;
   loggedStudent: IStudent;
+  studentParticipation: IDuelTeamParticipation;
   participation: IDuelTeamParticipation;
-  refreshDuel: () => void;
 }
 
 const DuelTeamParticipantCard = (
-  props: IDuelTeamParticipantCardProps,
+  props: IDuelTeamParticipantCard,
 ): JSX.Element => {
   const { aplication } = useSelector((store: State) => store);
   const { token } = aplication;
 
-  const { ownerId, loggedStudent, participation, refreshDuel } = props;
+  const {
+    duelOwner,
+    loggedStudent,
+    studentParticipation,
+    duelId,
+    participation,
+  } = props;
 
   const [people, setPeople] = useState(DEFAULT_PEOPLE);
 
@@ -47,16 +55,23 @@ const DuelTeamParticipantCard = (
       OnEducaAPI,
       duelTeamParticipationId,
       token,
-      refreshDuel,
+      () => {
+        socket.emit(`duel.remove-participation`, {
+          duelId,
+          data: {
+            ...participation,
+          } as IDuelTeamParticipation,
+        });
+      },
       () => console.log('erro'),
     );
   };
 
   useEffect(() => {
-    if (isDefaultPeople(people)) {
+    if (isDefaultPeople(people) && token) {
       getPeople(OnEducaAPI, student.people.id, setPeople, token);
     }
-  }, []);
+  }, [token, people]);
 
   return (
     <DuelTeamParticipantCardBox>
@@ -68,7 +83,7 @@ const DuelTeamParticipantCard = (
         student={student}
         teacher={DEFAULT_TEACHER}
       />
-      {loggedStudent.id === ownerId && student.id !== ownerId && (
+      {loggedStudent.id === duelOwner.id && student.id !== duelOwner.id && (
         <KickOutButton onClick={() => kickOutParticipant(participation.id)}>
           <KickOutButtonIcon className="fas fa-sign-out-alt" />
         </KickOutButton>

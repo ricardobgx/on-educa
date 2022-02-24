@@ -9,7 +9,7 @@ import { useRouteMatch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import SectionLabel from '../../components/App/SectionLabel';
 import ProfileDailyGoal from '../../components/Profile/ProfileDailyGoal';
-import WeekPerformance from '../../components/Profile/WeekPerformance';
+import StudentWeeklyPerformance from '../../components/Profile/WeeklyPerformance/StudentWeeklyPerformance';
 import {
   getPeople,
   isPeopleLogged,
@@ -56,6 +56,7 @@ import { IImage } from '../../interfaces/IImage';
 import SelectSocialDetailsList from '../../components/Profile/SelectSocialDetailsList';
 import ProfileActions from '../../components/Profile/ProfileActions';
 import SocialDetail from '../../components/Profile/SocialDetail';
+import TeacherWeeklyPerformance from '../../components/Profile/WeeklyPerformance/TeacherWeeklyPerformance';
 
 interface IProfileRouteProps {
   id: string;
@@ -165,6 +166,7 @@ const Profile = (): JSX.Element => {
 
   const { weekDay } = studentWeeklyPerformance;
   const { dailyXp } = weekDay;
+  const { isStudent } = people;
 
   return (
     <Page>
@@ -249,12 +251,21 @@ const Profile = (): JSX.Element => {
                     people.id as string,
                   )}
                 />
-                <WeekPerformance
-                  people={people}
-                  student={student}
-                  token={token}
-                  isPeopleLogged={isPeopleLogged(people.id, loggedPeople.id)}
-                />
+                {isStudent ? (
+                  <StudentWeeklyPerformance
+                    people={people}
+                    student={student}
+                    token={token}
+                    isPeopleLogged={isPeopleLogged(people.id, loggedPeople.id)}
+                  />
+                ) : (
+                  <TeacherWeeklyPerformance
+                    people={people}
+                    teacher={teacher}
+                    token={token}
+                    isPeopleLogged={isPeopleLogged(people.id, loggedPeople.id)}
+                  />
+                )}
               </WeeklyPerformanceSummary>
             </PerformanceDetailsBox>
           </PerformanceDetails>

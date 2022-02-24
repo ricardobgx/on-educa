@@ -1,32 +1,26 @@
 import React from 'react';
 import { IDuelParticipant } from '../../../interfaces/IDuelParticipant';
-import {
-  DEFAULT_SCHOOL_GRADE,
-  DEFAULT_TEACHING_TYPE,
-} from '../../../static/defaultEntitiesValues';
+import { IDuelTeam } from '../../../interfaces/IDuelTeam';
 import SectionLabel from '../../App/SectionLabel';
-import ParticipantsResultList from '../ParticipantsResultList';
+import DuelTeamsList from '../DuelTeamsList';
 import {
   BackToDuelButton,
   BackToDuelButtonLabel,
   DeleteDuelButton,
   DeleteDuelButtonLabel,
   DuelActions,
-  DuelTeam,
-  DuelTeams,
-  Participants,
-  ParticipantsBox,
   QuitDuelButton,
   QuitDuelButtonLabel,
-  TeamLabel,
   TeamsResultsBox,
-  TotalBox,
-  TotalLabel,
 } from './styles';
 
-const teamAParticipants: IDuelParticipant[] = [];
+interface ITeamResultsProps {
+  teams: IDuelTeam[];
+}
 
-const TeamsResults = (): JSX.Element => {
+const TeamsResults = (props: ITeamResultsProps): JSX.Element => {
+  const { teams } = props;
+
   const isDuelOwner = (): boolean => {
     return false;
   };
@@ -34,32 +28,7 @@ const TeamsResults = (): JSX.Element => {
   return (
     <TeamsResultsBox>
       <SectionLabel backLink="" label="Desempenho das equipes" />
-      <DuelTeams>
-        <DuelTeam>
-          <TeamLabel>Equipe A</TeamLabel>
-          <Participants>
-            <ParticipantsBox>
-              <ParticipantsResultList participants={teamAParticipants} />
-            </ParticipantsBox>
-          </Participants>
-          <TotalBox>
-            <TotalLabel>Total XP</TotalLabel>
-            <TotalLabel>+ 120 XP</TotalLabel>
-          </TotalBox>
-        </DuelTeam>
-        <DuelTeam>
-          <TeamLabel>Equipe B</TeamLabel>
-          <Participants>
-            <ParticipantsBox>
-              <ParticipantsResultList participants={teamAParticipants} />
-            </ParticipantsBox>
-          </Participants>
-          <TotalBox>
-            <TotalLabel>Total XP</TotalLabel>
-            <TotalLabel>+ 120 XP</TotalLabel>
-          </TotalBox>
-        </DuelTeam>
-      </DuelTeams>
+      <DuelTeamsList teams={teams} />
       <DuelActions>
         <BackToDuelButton to="/duels/12345">
           <BackToDuelButtonLabel>Voltar para o duelo</BackToDuelButtonLabel>

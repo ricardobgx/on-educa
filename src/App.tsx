@@ -2,9 +2,10 @@
 /* eslint-disable no-console */
 
 import { AxiosInstance } from 'axios';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import io from 'socket.io-client';
 import GlobalStyle from './styles';
 import LoadAnimation from './components/App/LoadAnimation';
 import {
@@ -20,11 +21,17 @@ import { ActionCreators, State } from './store';
 import { ThemeType } from './types/ThemeType';
 import { themes } from './static/themes';
 import { stringToBoolean } from './functions/utils';
+import { isDefaultDuel } from './functions/entitiesValues';
 
-function App(): JSX.Element {
+export const socket = io(process.env.REACT_APP_API_URL || '');
+socket.on('connect', () =>
+  console.log('[IO] A new connection has been established'),
+);
+
+const App = (): JSX.Element => {
   /* Global State */
 
-  const { aplication } = useSelector((store: State) => store);
+  const { aplication, duel } = useSelector((store: State) => store);
   const { loadingAnimation } = aplication;
 
   const dispatch = useDispatch();
@@ -36,6 +43,8 @@ function App(): JSX.Element {
     loadStudent,
     loadTeacher,
   } = bindActionCreators(ActionCreators, dispatch);
+
+  const [localVariablesLoaded, setLocalVariablesLoaded] = useState(false);
 
   /* Functions */
 
@@ -57,26 +66,39 @@ function App(): JSX.Element {
     await getPeople(API, id, setPeopleState, token);
   };
 
-  useEffect(() => {
+  const loadLocalVariables = (): void => {
+    // Pegando variaveis
     const id = window.localStorage.getItem('id') || '';
     const token = window.localStorage.getItem('token') || '';
     const localIsStudent = window.localStorage.getItem('isStudent') || 'true';
     const localTheme = window.localStorage.getItem('theme');
 
+    // Tratando variaveis
     const isStudent = stringToBoolean(localIsStudent);
     const theme = Number(localTheme);
 
+    // Logando usuário
     if (id && token) {
       loadIsStudent(isStudent);
       loadToken(token);
       login(OnEducaAPI, id, isStudent, loginPeople, token);
     } else clearPeopleVariables();
 
+    // Carregando tema
     if (theme && themes[theme]) {
       loadTheme(theme);
     } else {
       loadTheme(ThemeType.BLUE);
       setAplicationTheme(ThemeType.BLUE);
+    }
+
+    // Sinalizando carregamento completo
+    setLocalVariablesLoaded(true);
+  };
+
+  useEffect(() => {
+    if (!localVariablesLoaded) {
+      loadLocalVariables();
     }
   }, []);
 
@@ -87,6 +109,6 @@ function App(): JSX.Element {
       <Routes />
     </>
   );
-}
+};
 
 export default App;

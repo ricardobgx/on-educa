@@ -4,7 +4,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { useRouteMatch } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import { ActionCreators, State } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import DuelQuestion from '../../components/DuelQuestions/DuelQuestion';
@@ -27,12 +27,17 @@ import { IDuelTeamParticipation } from '../../interfaces/IDuelTeamParticipation'
 import { IDuelRound } from '../../interfaces/IDuelRound';
 import { findStudentDuelPartByTeams } from '../../functions/duelTeamParts';
 import { randInt } from '../../functions/utils';
+import { answerDuelRoundQuestion } from '../../functions/duelRound';
+import { DuelRoundStatus } from '../../types/duelRoundStatus';
+import { socket } from '../../App';
 
 interface IDuelQuestionsRouteParams {
   id: string;
 }
 
 const DuelQuestions = (): JSX.Element => {
+  const pageHistory = useHistory();
+
   /* Local State */
 
   const [question, setQuestion] = useState<IDuelRoundQuestion>(
@@ -72,66 +77,8 @@ const DuelQuestions = (): JSX.Element => {
   ): number => {
     return duelQuestions.filter((duelQuestion) => {
       const { answer } = duelQuestion;
-      return !!answer?.selectedAlternative;
+      return !!answer;
     }).length;
-  };
-
-  // Definir questao a ser respondida
-
-  const setQuestionNow = (duelRoundQuestions: IDuelRoundQuestion[]): void => {
-    setQuestions(duelRoundQuestions);
-    const activeQuestion =
-      duelRoundQuestions[randInt(0, duelRoundQuestions.length - 1)] ||
-      DEFAULT_DUEL_QUESTION;
-    setQuestion(activeQuestion);
-    console.log(activeQuestion);
-  };
-
-  // Answer Question
-
-  const answerDuelQuestion = async (
-    duelTeamParticipationId: string,
-    duelRoundQuestionId: string,
-    selectedAlternativeId: string,
-  ): Promise<void> => {
-    // await createDuelQuestionAnswer(
-    //   OnEducaAPI,
-    //   {
-    //     duelTeamParticipationId,
-    //     questionId: duelRoundQuestionId,
-    //     selectedAlternativeId,
-    //   },
-    //   token,
-    //   setNextQuestion,
-    // );
-
-    const answeredQuestion =
-      questions.find((oldQuestion) => oldQuestion.id === duelRoundQuestionId) ||
-      DEFAULT_DUEL_QUESTION;
-    const selectedAlternative =
-      answeredQuestion.question.alternatives.find(
-        (oldQuestion) => oldQuestion.id === duelRoundQuestionId,
-      ) || DEFAULT_ALTERNATIVE;
-    const newQuestions = questions.filter(
-      (oldQuestion) => oldQuestion.id !== duelRoundQuestionId,
-    );
-
-    setQuestionNow([
-      ...newQuestions,
-      {
-        ...answeredQuestion,
-        answer: {
-          id: 'caknkcka',
-          question: answeredQuestion,
-          duelTeamParticipation: studentParticipation,
-          selectedAlternative,
-        },
-      },
-    ]);
-
-    // answerQuestion(newQuestions);
-
-    // setDuelQuestionsCompleted(true);
   };
 
   /* Parametros da rota da pagina */
@@ -151,13 +98,15 @@ const DuelQuestions = (): JSX.Element => {
       loggedStudent,
     );
 
+    setQuestion(duelRound.question || DEFAULT_DUEL_QUESTION);
+
     setStudentParticipation(studentParticipationFound);
 
     await getDuelRoundQuestionsByDuelRound(
       OnEducaAPI,
       duelRound.id,
       token,
-      setQuestionNow,
+      setQuestions,
     );
   };
 
@@ -167,21 +116,56 @@ const DuelQuestions = (): JSX.Element => {
     );
   };
 
+  // Answer Question
+
+  const answerDuelQuestion = async (
+    duelTeamParticipationId: string,
+    duelRoundQuestionId: string,
+    selectedAlternativeId: string,
+  ): Promise<void> => {
+    const duelRoundId = duel.duelRound.id;
+
+    await answerDuelRoundQuestion(
+      OnEducaAPI,
+      duelRoundId,
+      {
+        duelRoundId,
+        duelRoundQuestionId,
+        duelTeamParticipationId,
+        selectedAlternativeId,
+      },
+      token,
+      () => {
+        socket.emit('duel.question-answered', {
+          duelId,
+        });
+      },
+    );
+  };
+
   /* ComponentMount operations */
 
   useEffect(() => {
-    if (isDefaultDuel(duel) && !isDefaultPeople(people)) {
+    if (
+      (isDefaultDuel(duel) || questions.length === 0) &&
+      !isDefaultPeople(people)
+    ) {
       getDuelData();
+    } else if (duel.duelRound.status === DuelRoundStatus.FINISHED) {
+      pageHistory.push(`/duels/${duelId}/congratulations`);
     }
+
+    socket.on(`duel.question-answered:${duelId}`, getDuelData);
+
+    return () => {
+      socket.off(`duel.question-answered:${duelId}`, getDuelData);
+    };
   }, [people, duel]);
 
   const { duelRound } = duel;
   const activeTeam = duelRound.team || DEFAULT_DUEL_TEAM;
   const activeParticipation =
     activeTeam.participation || DEFAULT_DUEL_TEAM_PARTICIPATION;
-
-  console.log('renderizou');
-  console.log(question);
 
   return (
     <Page>

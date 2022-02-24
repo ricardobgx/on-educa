@@ -33,7 +33,13 @@ export const displaySurname = (
   let unionName = '';
 
   // Divide o nome do usuario pelo espaco em branco
-  const peopleNameSplited = name.split(' ');
+  let peopleNameSplited;
+
+  try {
+    peopleNameSplited = name.split(' ');
+  } catch (err) {
+    return surname;
+  }
 
   // Itera sobre os nomes cortados
   for (let i = 0; i < peopleNameSplited.length; i += 1) {

@@ -11,7 +11,7 @@ export const Container = styled.div`
   margin-top: 20px;
   max-height: calc(100vh - 340px);
 `;
-export const WeekPerformancesList = styled.div`
+export const WeeklyPerformancesList = styled.div`
   margin-top: 15px;
   padding: 5px;
   min-height: calc(100vh - 480px);
@@ -22,9 +22,9 @@ export const WeekPerformancesList = styled.div`
     max-height: unset;
   }
 `;
-export const WeekPerformanceInfoLabel = styled(paragraph)``;
-export const WeekPerformanceInfoValue = styled(paragraph)``;
-export const WeekPerformanceInfo = styled.div`
+export const WeeklyPerformanceInfoLabel = styled(paragraph)``;
+export const WeeklyPerformanceInfoValue = styled(paragraph)``;
+export const WeeklyPerformanceInfo = styled.div`
   display: flex;
   justify-content: space-between;
   box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
@@ -50,7 +50,7 @@ export const SeeChartsButton = styled(Link)`
   animation: 0.2s bottomSlideFadeIn linear;
 `;
 export const SeeChartsButtonLabel = styled(paragraph)``;
-export const WeeklyPerformanceChart = styled.div`
+export const WeeklylyPerformanceChart = styled.div`
   margin: 20px 0;
   overflow-x: auto;
   max-width: 100%;

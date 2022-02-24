@@ -10,6 +10,10 @@ export const ChatMessageBox = styled.div`
   position: relative;
   margin-bottom: 10px;
 
+  @media (max-width: 900px) {
+    max-width: 70%;
+  }
+
   &:last-of-type {
     margin-bottom: 0;
   }

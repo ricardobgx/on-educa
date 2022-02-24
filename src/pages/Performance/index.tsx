@@ -2,60 +2,36 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-console */
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import SectionLabel from '../../components/App/SectionLabel';
-import RankingPeopleCard from '../../components/Performance/RankingPeopleCard';
-import OnEducaAPI from '../../services/api';
 import { State } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
-import { PageBox, Ranking, PeoplesList, PeoplesListBox } from './styles';
-import WeekPerformance from '../../components/Performance/WeekPerformance';
-import { getStudentWeeklyPerformances } from '../../functions/studentWeeklyPerformance';
-import { IStudentWeeklyPerformance } from '../../interfaces/IStudentWeeklyPerformance';
-import { isDefaultPeople } from '../../functions/entitiesValues';
+import { PageBox, Ranking } from './styles';
+import StudentWeeklyPerformance from '../../components/Performance/WeeklyPerformance/StudentWeeklyPerformance';
+import TeacherWeeklyPerformance from '../../components/Performance/WeeklyPerformance/TeacherWeeklyPerformance';
+import StudentRankingCardsList from '../../components/Performance/RankingCardsList/StudentRankingCardsList';
+import TeacherRankingCardsList from '../../components/Performance/RankingCardsList/TeacherRankingCardsList';
 
 const Performance = (): JSX.Element => {
-  const { aplication, people: loggedPeople } = useSelector(
-    (store: State) => store,
-  );
+  const { aplication } = useSelector((store: State) => store);
   const { token, isStudent } = aplication;
-
-  const [studentWeeklyPerformances, setStudentWeeklyPerformances] = useState<
-    IStudentWeeklyPerformance[]
-  >([]);
-
-  useEffect(() => {
-    if (!isDefaultPeople(loggedPeople) && token && isStudent) {
-      getStudentWeeklyPerformances(
-        OnEducaAPI,
-        token,
-        setStudentWeeklyPerformances,
-        () => console.log('erro'),
-      );
-    }
-  }, [loggedPeople]);
 
   return (
     <Page>
       <PageBox>
-        <WeekPerformance />
+        {isStudent ? (
+          <StudentWeeklyPerformance />
+        ) : (
+          <TeacherWeeklyPerformance />
+        )}
         <Ranking>
           <SectionLabel backLink="" label="Ranking" />
-          <PeoplesList>
-            <PeoplesListBox>
-              {studentWeeklyPerformances.map(
-                (studentWeeklyPerformance, index) => (
-                  <RankingPeopleCard
-                    key={studentWeeklyPerformance.id}
-                    studentWeeklyPerformance={studentWeeklyPerformance}
-                    rankingPosition={index + 1}
-                    token={token}
-                  />
-                ),
-              )}
-            </PeoplesListBox>
-          </PeoplesList>
+          {isStudent ? (
+            <StudentRankingCardsList token={token} />
+          ) : (
+            <TeacherRankingCardsList token={token} />
+          )}
         </Ranking>
       </PageBox>
     </Page>
