@@ -23,6 +23,7 @@ import {
   DEFAULT_STUDENT_WEEKLY_PERFORMANCE,
   DEFAULT_TEACHER,
   DEFAULT_PEOPLE,
+  DEFAULT_TEACHER_WEEKLY_PERFORMANCE,
 } from '../../static/defaultEntitiesValues';
 import { ActionCreators, State } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
@@ -57,6 +58,8 @@ import SelectSocialDetailsList from '../../components/Profile/SelectSocialDetail
 import ProfileActions from '../../components/Profile/ProfileActions';
 import SocialDetail from '../../components/Profile/SocialDetail';
 import TeacherWeeklyPerformance from '../../components/Profile/WeeklyPerformance/TeacherWeeklyPerformance';
+import { getTeacherWeeklyPerformanceByTeacher } from '../../functions/teacherWeeklyPerformance';
+import { ITeacherWeeklyPerformance } from '../../interfaces/ITeacherWeeklyPerformance';
 
 interface IProfileRouteProps {
   id: string;
@@ -79,7 +82,7 @@ const Profile = (): JSX.Element => {
     aplication,
   } = useSelector((store: State) => store);
 
-  const { token } = aplication;
+  const { token, loadingAnimation } = aplication;
 
   const dispatch = useDispatch();
 
@@ -87,6 +90,8 @@ const Profile = (): JSX.Element => {
     loginPeople: loadPeople,
     loadStudent,
     loadTeacher,
+    enableLoadingAnimation,
+    disableLoadingAnimation,
   } = bindActionCreators(ActionCreators, dispatch);
 
   const [student, setStudent] = useState(DEFAULT_STUDENT);
@@ -100,6 +105,8 @@ const Profile = (): JSX.Element => {
 
   const [studentWeeklyPerformance, setStudentWeeklyPerformance] =
     useState<IStudentWeeklyPerformance>(DEFAULT_STUDENT_WEEKLY_PERFORMANCE);
+  const [teacherWeeklyPerformance, setTeacherWeeklyPerformance] =
+    useState<ITeacherWeeklyPerformance>(DEFAULT_TEACHER_WEEKLY_PERFORMANCE);
 
   const [profilePicture, setProfilePicture] = useState<IImage>(DEFAULT_IMAGE);
   const [isUpdatingProfilePicture, setIsUpdatingProfilePicture] =
@@ -144,29 +151,59 @@ const Profile = (): JSX.Element => {
     getPeople(OnEducaAPI, loggedPeople.id, getLoggedPeopleSucess, token);
   };
 
+  const studentWeeklyPerformanceLoaded = (
+    studentWeeklyPerformanceFound: IStudentWeeklyPerformance,
+  ): void => {
+    setStudentWeeklyPerformance(studentWeeklyPerformanceFound);
+    disableLoadingAnimation();
+  };
+
+  const teacherWeeklyPerformanceLoaded = (
+    teacherWeeklyPerformanceFound: ITeacherWeeklyPerformance,
+  ): void => {
+    setTeacherWeeklyPerformance(teacherWeeklyPerformanceFound);
+    disableLoadingAnimation();
+  };
+
   const getPeopleWeeklyPerformance = (): void => {
     if (people.isStudent) {
       getStudentWeeklyPerformanceByStudent(
         OnEducaAPI,
         student.id,
         token,
-        setStudentWeeklyPerformance,
+        studentWeeklyPerformanceLoaded,
+        () => console.log('erro'),
+      );
+    } else {
+      getTeacherWeeklyPerformanceByTeacher(
+        OnEducaAPI,
+        teacher.id,
+        token,
+        teacherWeeklyPerformanceLoaded,
         () => console.log('erro'),
       );
     }
   };
 
   useEffect(() => {
+    if (!loadingAnimation) {
+      enableLoadingAnimation();
+    }
     if ((isDefaultPeople(people) || people.id !== id) && token) {
       getPeopleData();
-    } else if (people.isStudent) {
+    } else {
       getPeopleWeeklyPerformance();
     }
-  }, [id, people, token, student]);
+  }, [id, people, token, student, teacher]);
 
-  const { weekDay } = studentWeeklyPerformance;
-  const { dailyXp } = weekDay;
   const { isStudent } = people;
+
+  const { weekDay } = isStudent
+    ? studentWeeklyPerformance
+    : teacherWeeklyPerformance;
+  const { dailyXp } = weekDay;
+
+  console.log(teacher);
 
   return (
     <Page>

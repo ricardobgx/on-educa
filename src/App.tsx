@@ -31,7 +31,7 @@ socket.on('connect', () =>
 const App = (): JSX.Element => {
   /* Global State */
 
-  const { aplication, duel } = useSelector((store: State) => store);
+  const { aplication } = useSelector((store: State) => store);
   const { loadingAnimation } = aplication;
 
   const dispatch = useDispatch();

@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Chat from '../../components/Chats/Chat';
 import ChatCard from '../../components/Chats/ChatCard';
-import { getChats, getChatsByPeople } from '../../functions/chat';
+import { getChatsByPeople } from '../../functions/chat';
 import { isDefaultChat, isDefaultPeople } from '../../functions/entitiesValues';
 import {
   Page,
   PageBoxColumn,
 } from '../../global/styles/components/pageComponents';
 import { IChat } from '../../interfaces/IChat';
-import { IMessage } from '../../interfaces/IMessage';
 import OnEducaAPI from '../../services/api';
 import { DEFAULT_CHAT } from '../../static/defaultEntitiesValues';
-import { State } from '../../store';
+import { ActionCreators, State } from '../../store';
 import {
   ChatsBox,
   RecentConversations,
@@ -33,7 +33,11 @@ const Chats = (): JSX.Element => {
   const { aplication, people: loggedPeople } = useSelector(
     (store: State) => store,
   );
-  const { token } = aplication;
+  const { token, loadingAnimation } = aplication;
+
+  const dispatch = useDispatch();
+  const { enableLoadingAnimation, disableLoadingAnimation } =
+    bindActionCreators(ActionCreators, dispatch);
 
   const [selectedChat, setSelectedChat] = useState<IChat>(DEFAULT_CHAT);
   const [chats, setChats] = useState<IChat[]>([]);
@@ -47,10 +51,18 @@ const Chats = (): JSX.Element => {
     setSelectedChat(newChat);
   };
 
+  const chatsLoaded = (chatsFound: IChat[]): void => {
+    setChats(chatsFound);
+    disableLoadingAnimation();
+  };
+
   useEffect(() => {
+    if (!loadingAnimation) {
+      enableLoadingAnimation();
+    }
+
     if (!isDefaultPeople(loggedPeople) && token) {
-      console.log('pegando chats');
-      getChatsByPeople(OnEducaAPI, loggedPeople.id, token, setChats);
+      getChatsByPeople(OnEducaAPI, loggedPeople.id, token, chatsLoaded);
     }
 
     const toggleConversations = document.getElementById(

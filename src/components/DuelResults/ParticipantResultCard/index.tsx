@@ -19,6 +19,10 @@ import {
   QuestionAnsweredLabel,
   QuestionAnsweredData,
   ParticipantDuelPerformance,
+  QuestionsAnswered,
+  ParticipantXP,
+  ParticipantXPLabel,
+  ParticipantXPData,
 } from './styles';
 
 interface IParticipantResultCardProps {
@@ -105,18 +109,22 @@ const ParticipantResultCard = (
         otherDevicesNameLength={50}
       />
       <ParticipantDuelPerformance>
-        <QuestionAnswered>
-          <QuestionAnsweredLabel>Questões corretas</QuestionAnsweredLabel>
-          <QuestionAnsweredData>+{questionCorrectlyScore}</QuestionAnsweredData>
-        </QuestionAnswered>
-        <QuestionAnswered>
-          <QuestionAnsweredLabel>Questões erradas</QuestionAnsweredLabel>
-          <QuestionAnsweredData>-{questionWrongScore}</QuestionAnsweredData>
-        </QuestionAnswered>
-        <QuestionAnswered>
-          <QuestionAnsweredLabel>Total</QuestionAnsweredLabel>
-          <QuestionAnsweredData>{questionCorrectlyScore}</QuestionAnsweredData>
-        </QuestionAnswered>
+        <QuestionsAnswered>
+          <QuestionAnswered>
+            <QuestionAnsweredLabel>Questões corretas</QuestionAnsweredLabel>
+            <QuestionAnsweredData>
+              +{questionCorrectlyScore}
+            </QuestionAnsweredData>
+          </QuestionAnswered>
+          <QuestionAnswered>
+            <QuestionAnsweredLabel>Questões erradas</QuestionAnsweredLabel>
+            <QuestionAnsweredData>-{questionWrongScore}</QuestionAnsweredData>
+          </QuestionAnswered>
+        </QuestionsAnswered>
+        <ParticipantXP>
+          <ParticipantXPLabel>Total</ParticipantXPLabel>
+          <ParticipantXPData>{questionCorrectlyScore}</ParticipantXPData>
+        </ParticipantXP>
       </ParticipantDuelPerformance>
     </ParticipantCardBox>
   );

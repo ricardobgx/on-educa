@@ -8,7 +8,10 @@ import { displaySurname } from '../../../functions/people';
 import { IStudentWeeklyPerformance } from '../../../interfaces/IStudentWeeklyPerformance';
 import { IPeople } from '../../../interfaces/IPeople';
 import OnEducaAPI from '../../../services/api';
-import { DEFAULT_STUDENT_WEEKLY_PERFORMANCE } from '../../../static/defaultEntitiesValues';
+import {
+  DEFAULT_STUDENT_WEEKLY_PERFORMANCE,
+  DEFAULT_TEACHER_WEEKLY_PERFORMANCE,
+} from '../../../static/defaultEntitiesValues';
 import { State } from '../../../store';
 import {
   PeopleCardBox,
@@ -24,6 +27,8 @@ import {
 } from './styles';
 import { IStudent } from '../../../interfaces/IStudent';
 import { ITeacher } from '../../../interfaces/ITeacher';
+import { getTeacherWeeklyPerformanceByTeacher } from '../../../functions/teacherWeeklyPerformance';
+import { ITeacherWeeklyPerformance } from '../../../interfaces/ITeacherWeeklyPerformance';
 
 export interface IPeopleCardProps {
   people: IPeople;
@@ -48,27 +53,41 @@ const PeopleCard = (props: IPeopleCardProps): JSX.Element => {
 
   const { id, name, profilePicture, isStudent } = people;
   const { schoolGrade, id: studentId } = student;
-  const { teachingType } = teacher;
+  const { teachingType, id: teacherId } = teacher;
 
   const { aplication } = useSelector((store: State) => store);
   const { token } = aplication;
 
   const [studentWeeklyPerformance, setStudentWeeklyPerformance] =
     useState<IStudentWeeklyPerformance>(DEFAULT_STUDENT_WEEKLY_PERFORMANCE);
+  const [teacherWeeklyPerformance, setTeacherWeeklyPerformance] =
+    useState<ITeacherWeeklyPerformance>(DEFAULT_TEACHER_WEEKLY_PERFORMANCE);
 
   useEffect(() => {
-    if (showScore && isStudent) {
-      getStudentWeeklyPerformanceByStudent(
-        OnEducaAPI,
-        studentId,
-        token,
-        setStudentWeeklyPerformance,
-        () => console.log('erro'),
-      );
+    if (showScore) {
+      if (isStudent) {
+        getStudentWeeklyPerformanceByStudent(
+          OnEducaAPI,
+          studentId,
+          token,
+          setStudentWeeklyPerformance,
+          () => console.log('erro'),
+        );
+      } else {
+        getTeacherWeeklyPerformanceByTeacher(
+          OnEducaAPI,
+          teacherId,
+          token,
+          setTeacherWeeklyPerformance,
+          () => console.log('erro'),
+        );
+      }
     }
-  }, []);
+  }, [token, people]);
 
-  const { xp } = studentWeeklyPerformance;
+  const { xp } = isStudent
+    ? studentWeeklyPerformance
+    : teacherWeeklyPerformance;
 
   return (
     <PeopleCardBox>

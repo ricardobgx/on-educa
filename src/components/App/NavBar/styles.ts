@@ -14,7 +14,7 @@ export const NavBarBox = styled.div`
   position: fixed;
   top: 0;
   box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  z-index: 98;
+  z-index: 95;
 `;
 
 export const Logo = styled(Link)`

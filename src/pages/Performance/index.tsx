@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import SectionLabel from '../../components/App/SectionLabel';
 import { State } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
-import { PageBox, Ranking } from './styles';
+import { PageBox, Ranking, RankingBox } from './styles';
 import StudentWeeklyPerformance from '../../components/Performance/WeeklyPerformance/StudentWeeklyPerformance';
 import TeacherWeeklyPerformance from '../../components/Performance/WeeklyPerformance/TeacherWeeklyPerformance';
 import StudentRankingCardsList from '../../components/Performance/RankingCardsList/StudentRankingCardsList';
@@ -27,11 +27,13 @@ const Performance = (): JSX.Element => {
         )}
         <Ranking>
           <SectionLabel backLink="" label="Ranking" />
-          {isStudent ? (
-            <StudentRankingCardsList token={token} />
-          ) : (
-            <TeacherRankingCardsList token={token} />
-          )}
+          <RankingBox>
+            {isStudent ? (
+              <StudentRankingCardsList token={token} />
+            ) : (
+              <TeacherRankingCardsList token={token} />
+            )}
+          </RankingBox>
         </Ranking>
       </PageBox>
     </Page>

@@ -53,7 +53,7 @@ export const DEFAULT_SCHOOL_GRADE: ISchoolGrade = {
 export const DEFAULT_PEOPLE: IPeople = {
   id: '',
   email: '',
-  name: '',
+  name: 'Default User',
   profilePicture: DEFAULT_IMAGE,
   league: '',
   isOnline: false,

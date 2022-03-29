@@ -23,11 +23,11 @@ export const BackToDuelButton = styled(Link)`
   justify-content: center;
   align-items: center;
   min-height: 40px;
-  background: ${({ theme }) => theme.colors.textColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  background: ${({ theme }) => theme.colors.boxColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 5px;
   border: none;
-  color: ${({ theme }) => theme.colors.boxColor};
+  color: ${({ theme }) => theme.colors.textColor};
   width: calc(50% - 20px);
   cursor: pointer;
 
@@ -43,10 +43,10 @@ export const QuitDuelButton = styled(Link)`
   justify-content: center;
   align-items: center;
   min-height: 40px;
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 5px;
-  color: ${({ theme }) => theme.colors.whiteColor};
-  background: ${({ theme }) => theme.similarColors.warningColor};
+  color: ${({ theme }) => theme.colors.boxColor};
+  background: ${({ theme }) => theme.colors.textColor};
   width: calc(50% - 20px);
 
   @media (max-width: 1150px) {

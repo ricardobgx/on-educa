@@ -4,6 +4,7 @@ import { useRouteMatch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import TeamsResults from '../../components/DuelResults/TeamsResults';
 import { getDuel } from '../../functions/duel';
+import { sortTeams } from '../../functions/duelTeam';
 import { isDefaultDuel } from '../../functions/entitiesValues';
 import { Page } from '../../global/styles/components/pageComponents';
 import OnEducaAPI from '../../services/api';
@@ -33,7 +34,8 @@ const DuelResults = (): JSX.Element => {
   }, [token]);
 
   const { duelRound } = duel;
-  const { teams } = duelRound;
+  const { teams: unsortedTeams } = duelRound;
+  const teams = sortTeams(unsortedTeams);
 
   return (
     <Page>

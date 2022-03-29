@@ -32,6 +32,7 @@ import {
   CreateContentButton,
   CreateContentButtonLabel,
 } from './styles';
+import { updateTeacherWeeklyPerformanceValues } from '../../functions/teacherWeeklyPerformance';
 
 const NewContent = (): JSX.Element => {
   const {
@@ -41,6 +42,7 @@ const NewContent = (): JSX.Element => {
     subject: globalSubject,
     unity: globalUnity,
     content: globalContent,
+    teacher,
   } = useSelector((store: State) => store);
 
   const { token } = aplication;
@@ -68,7 +70,15 @@ const NewContent = (): JSX.Element => {
   /* Functions */
 
   const createContentSucess = (): void => {
-    setContentWasCreated(true);
+    updateTeacherWeeklyPerformanceValues(
+      OnEducaAPI,
+      { teacherId: teacher.id, contentsCreatedNumber: 1, dailyXPNumber: 50 },
+      token,
+      () => {
+        setContentWasCreated(true);
+      },
+      () => console.log('erro'),
+    );
   };
 
   const createContentError = (): void => {

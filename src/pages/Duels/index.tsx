@@ -13,24 +13,46 @@ import { IDuel } from '../../interfaces/IDuel';
 import OnEducaAPI from '../../services/api';
 import { DEFAULT_DUEL } from '../../static/defaultEntitiesValues';
 import { ActionCreators, State } from '../../store';
+import { DuelRoundStatus } from '../../types/duelRoundStatus';
 import { PageBox, DuelsBox, DuelsList, DuelsListBox } from './styles';
 
 const Duels = (): JSX.Element => {
   /* Estado da aplicacao */
 
   const { aplication, student } = useSelector((store: State) => store);
-  const { token } = aplication;
+  const { token, loadingAnimation } = aplication;
 
   const dispatch = useDispatch();
-  const { loadDuel } = bindActionCreators(ActionCreators, dispatch);
+  const { loadDuel, enableLoadingAnimation, disableLoadingAnimation } =
+    bindActionCreators(ActionCreators, dispatch);
 
   /* Estado do componente */
 
   const [duels, setDuels] = useState<IDuel[]>([]);
 
+  /* Funcoes */
+
+  const filterDuels = (duelsFound: IDuel[]): IDuel[] => {
+    const duelsFiltered = duelsFound.filter((duelFound) => {
+      const { duelRound } = duelFound;
+
+      return duelRound.status === DuelRoundStatus.WAITING;
+    });
+
+    return duelsFiltered;
+  };
+
+  const duelsLoaded = (duelsFound: IDuel[]): void => {
+    setDuels(filterDuels(duelsFound));
+    disableLoadingAnimation();
+  };
+
   useEffect(() => {
+    if (!loadingAnimation) {
+      enableLoadingAnimation();
+    }
     loadDuel(DEFAULT_DUEL);
-    getDuels(OnEducaAPI, token, setDuels, () => console.log('erro'));
+    getDuels(OnEducaAPI, token, duelsLoaded, () => console.log('erro'));
   }, []);
 
   return (
@@ -41,12 +63,13 @@ const Duels = (): JSX.Element => {
           <DuelsActions />
           <DuelsList>
             <DuelsListBox>
-              {duels.map((duel) => (
+              {duels.map((duel, index) => (
                 <DuelCard
                   key={duel.id}
-                  duelId={duel.id}
+                  duel={duel}
                   student={student}
                   token={token}
+                  index={index}
                 />
               ))}
             </DuelsListBox>

@@ -13,7 +13,7 @@ export const LoadAnimationBox = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 95;
+  z-index: 99;
 `;
 
 export const LoadIcon = styled(bigIcon)`

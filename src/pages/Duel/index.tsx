@@ -3,11 +3,14 @@
 import { AxiosInstance } from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useRouteMatch } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { socket } from '../../App';
 import SectionLabel from '../../components/App/SectionLabel';
 import DuelActions from '../../components/Duel/DuelActions';
+import DuelActionsBar from '../../components/Duel/DuelActionsBar';
+import DuelChat from '../../components/Duel/DuelChat';
+import DuelDetails from '../../components/Duel/DuelDetails';
 import DuelTeams from '../../components/Duel/DuelTeams';
 import { getDuel } from '../../functions/duel';
 import { findStudentDuelPartByTeams } from '../../functions/duelTeamParts';
@@ -63,6 +66,8 @@ const Duel = (): JSX.Element => {
   } = useSelector((store: State) => store);
   const { token } = aplication;
 
+  const pageHistory = useHistory();
+
   // Funcoes
 
   const dispatch = useDispatch();
@@ -73,6 +78,9 @@ const Duel = (): JSX.Element => {
   const [studentParticipation, setStudentParticipation] =
     useState<IDuelTeamParticipation>(DEFAULT_DUEL_TEAM_PARTICIPATION);
   const [duelOwner, setDuelOwner] = useState(DEFAULT_PEOPLE);
+
+  const [showDuelDetails, setShowDuelDetails] = useState(false);
+  const [showChat, setShowChat] = useState(false);
 
   /* Parametros da rota da pagina */
 
@@ -104,6 +112,11 @@ const Duel = (): JSX.Element => {
     } as IDuel);
   };
 
+  const duelDeleted = (): void => {
+    loadDuel(DEFAULT_DUEL);
+    pageHistory.push('/duels');
+  };
+
   useEffect(() => {
     if (token) {
       if (isDefaultDuel(duel) && !isDefaultPeople(loggedPeople)) {
@@ -115,9 +128,11 @@ const Duel = (): JSX.Element => {
     }
 
     socket.on(`duel.start:${duelId}`, startDuel);
+    socket.on(`duel.delete:${duelId}`, duelDeleted);
 
     return () => {
       socket.off(`duel.start:${duelId}`, startDuel);
+      socket.off(`duel.delete:${duelId}`, duelDeleted);
     };
   }, [duel, loggedPeople, token]);
 
@@ -128,9 +143,25 @@ const Duel = (): JSX.Element => {
     <Page>
       <PageBox>
         <DuelBox>
-          <SectionLabel
+          {showDuelDetails && (
+            <DuelDetails duel={duel} setShowDuelDetails={setShowDuelDetails} />
+          )}
+          {showChat && (
+            <DuelChat
+              duelId={duelId}
+              setShowChat={setShowChat}
+              loggedPeople={loggedPeople}
+            />
+          )}
+          {/* <SectionLabel
             backLink=""
             label={`Duelo de ${displaySurname(duelOwner.name, 20)}`}
+          /> */}
+          <DuelActionsBar
+            duel={duel}
+            token={token}
+            setShowDuelDetails={setShowDuelDetails}
+            setShowChat={setShowChat}
           />
           <DuelTeams
             duelId={duel.id}

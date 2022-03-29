@@ -76,8 +76,8 @@ const StudentWeeklyPerformance = (): JSX.Element => {
       (weekDay) => {
         const dataValue: IBarChartWithTwoValuesData = {
           name: displayDayAndMonthDate(getFullDate(weekDay.createdAt)),
-          firstValue: weekDay.duelsParticipated,
-          secondValue: weekDay.duelsWon,
+          firstValue: weekDay.duelsWon,
+          secondValue: weekDay.duelsParticipated,
         };
 
         return dataValue;
