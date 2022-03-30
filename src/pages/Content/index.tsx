@@ -50,6 +50,8 @@ const Content = (): JSX.Element => {
     schoolGrade,
     subject,
     unity: selectedUnity,
+    student,
+    teacher,
   } = useSelector((store: State) => store);
 
   const { token, isStudent } = aplication;
@@ -84,7 +86,12 @@ const Content = (): JSX.Element => {
             <ContentAttachments />
           </ContentDescriptionAndAttachments>
           <SectionLabel label="Dúvidas" backLink="" />
-          <ContentDoubts />
+          <ContentDoubts
+            contentId={contentId}
+            student={student}
+            teacher={teacher}
+            token={token}
+          />
         </ContentBox>
       </PageBox>
     </Page>

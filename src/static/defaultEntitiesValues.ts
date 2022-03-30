@@ -24,6 +24,8 @@ import { ThemeType } from '../types/ThemeType';
 import { IChat } from '../interfaces/IChat';
 import { ITeacherWeeklyPerformance } from '../interfaces/ITeacherWeeklyPerformance';
 import { ITeacherWeekDayPerformance } from '../interfaces/ITeacherWeekDayPerformance';
+import { IDoubt } from '../interfaces/IDoubt';
+import { DoubtStatus } from '../types/doubtStatus';
 
 export const DEFAULT_APLICATION: IAplication = {
   token: '',
@@ -104,6 +106,16 @@ export const DEFAULT_CONTENT: IContent = {
   questions: [],
   createdAt: new Date(),
   updatedAt: new Date(),
+  doubts: [],
+};
+
+export const DEFAULT_DOUBT: IDoubt = {
+  id: '',
+  description: '',
+  status: DoubtStatus.PENDING,
+  content: DEFAULT_CONTENT,
+  student: DEFAULT_STUDENT,
+  createdAt: new Date(),
 };
 
 export const DEFAULT_ALTERNATIVE: IAlternative = {

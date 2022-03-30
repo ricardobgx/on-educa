@@ -1,3 +1,4 @@
+import { IDoubt } from './IDoubt';
 import { IQuestion } from './IQuestion';
 import { IUnity } from './IUnity';
 
@@ -11,4 +12,5 @@ export interface IContent {
   questions: IQuestion[];
   createdAt: Date;
   updatedAt: Date;
+  doubts: IDoubt[];
 }

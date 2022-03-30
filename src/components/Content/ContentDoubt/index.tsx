@@ -1,5 +1,7 @@
 import React from 'react';
 import { reduceTextSize } from '../../../functions/utils';
+import { IDoubt } from '../../../interfaces/IDoubt';
+import { DoubtStatus } from '../../../types/doubtStatus';
 import {
   ContentDoubtDescription,
   ContentDoubtBox,
@@ -16,23 +18,26 @@ import {
   ContentDoubtCommentsNumber,
 } from './styles';
 
-const doubtDescription =
-  'Por que ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum';
+const ContentDoubt = (props: IDoubt): JSX.Element => {
+  const { description, status, student } = props;
+  const { people, schoolGrade } = student;
+  const { name, profilePicture } = people;
 
-const ContentDoubt = (): JSX.Element => {
   return (
     <ContentDoubtBox>
       <ContentDoubtHeader>
         <ContentDoubtOwner>
-          <OwnerPicture src="https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg" />
+          <OwnerPicture src={profilePicture.path} />
           <OwnerInfo>
-            <OwnerName>Aluno 1</OwnerName>
-            <OwnerSchoolGrade>1º ano</OwnerSchoolGrade>
+            <OwnerName>{name}</OwnerName>
+            <OwnerSchoolGrade>{schoolGrade.index}º ano</OwnerSchoolGrade>
           </OwnerInfo>
         </ContentDoubtOwner>
         <ContentDoubtStatus>
           <ContentDoubtStatusIcon
-            className={`fas fa-${true ? 'check' : 'exclamation'}-circle`}
+            className={`fas fa-${
+              status === DoubtStatus.SOLVED ? 'check' : 'exclamation'
+            }-circle`}
           />
           <ContentDoubtComments>
             <ContentDoubtCommentsNumber>0</ContentDoubtCommentsNumber>
@@ -41,7 +46,7 @@ const ContentDoubt = (): JSX.Element => {
         </ContentDoubtStatus>
       </ContentDoubtHeader>
       <ContentDoubtDescription>
-        {reduceTextSize(doubtDescription, 100, 50)}
+        {reduceTextSize(description, 100, 50)}
       </ContentDoubtDescription>
     </ContentDoubtBox>
   );
