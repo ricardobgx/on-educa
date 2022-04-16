@@ -8,6 +8,7 @@ export const NavBarActionBox = styled(Link)`
   display: flex;
   align-items: center;
   color: ${({ theme }) => theme.colors.textColor};
+  position: relative;
 
   @media (max-width: 600px) {
     padding: 10px 0;

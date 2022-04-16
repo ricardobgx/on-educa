@@ -2,6 +2,19 @@ import { AxiosInstance } from 'axios';
 import { IFriendRequestParams } from '../dto/friendRequest/IFriendRequestParams';
 import { IFriendRequest } from '../interfaces/IFriendRequest';
 
+/* Utils */
+
+export const removeFriendRequest = (
+  friendRequest: IFriendRequest,
+  friendRequests: IFriendRequest[],
+): IFriendRequest[] => {
+  return friendRequests.filter(
+    (friendRequestAux) => friendRequest.id !== friendRequestAux.id,
+  );
+};
+
+/* API */
+
 const entityPath = 'friendRequests';
 
 export const createFriendRequest = async (

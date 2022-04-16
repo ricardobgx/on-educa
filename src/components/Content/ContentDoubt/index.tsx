@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getDoubtCommentsByDoubt } from '../../../functions/doubtComment';
 import { reduceTextSize } from '../../../functions/utils';
 import { IDoubt } from '../../../interfaces/IDoubt';
+import { IDoubtComment } from '../../../interfaces/IDoubtComment';
+import OnEducaAPI from '../../../services/api';
 import { DoubtStatus } from '../../../types/doubtStatus';
 import {
   ContentDoubtDescription,
@@ -18,13 +21,36 @@ import {
   ContentDoubtCommentsNumber,
 } from './styles';
 
-const ContentDoubt = (props: IDoubt): JSX.Element => {
-  const { description, status, student } = props;
+interface IContentDoubtProps {
+  doubt: IDoubt;
+  token: string;
+}
+
+const ContentDoubt = (props: IContentDoubtProps): JSX.Element => {
+  const { doubt, token } = props;
+  const { id, description, status, student } = doubt;
   const { people, schoolGrade } = student;
   const { name, profilePicture } = people;
+  const [comments, setComments] = useState<IDoubtComment[]>([]);
+
+  const getDoubtCommentsAction = async (): Promise<void> => {
+    const doubtCommentsData = await getDoubtCommentsByDoubt(
+      OnEducaAPI,
+      id,
+      token,
+    );
+
+    setComments(doubtCommentsData);
+  };
+
+  useEffect(() => {
+    if (token) {
+      getDoubtCommentsAction();
+    }
+  }, [token]);
 
   return (
-    <ContentDoubtBox>
+    <ContentDoubtBox to={`/doubts/${id}`}>
       <ContentDoubtHeader>
         <ContentDoubtOwner>
           <OwnerPicture src={profilePicture.path} />
@@ -40,7 +66,9 @@ const ContentDoubt = (props: IDoubt): JSX.Element => {
             }-circle`}
           />
           <ContentDoubtComments>
-            <ContentDoubtCommentsNumber>0</ContentDoubtCommentsNumber>
+            <ContentDoubtCommentsNumber>
+              {comments.length}
+            </ContentDoubtCommentsNumber>
             <ContentDoubtCommentsIcon className="fas fa-comment-alt" />
           </ContentDoubtComments>
         </ContentDoubtStatus>

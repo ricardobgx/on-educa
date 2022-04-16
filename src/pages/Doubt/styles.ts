@@ -1,13 +1,12 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { paragraph } from '../../../global/styles/components/textComponents';
+import { paragraph } from '../../global/styles/components/textComponents';
 
-export const ContentDoubtBox = styled(Link)`
+export const DoubtBox = styled.div`
   display: flex;
   flex-direction: column;
   background: ${({ theme }) => theme.colors.boxColor};
   box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  margin-bottom: 20px;
+  margin: 20px;
   padding: 20px;
   border-radius: 5px;
 
@@ -15,12 +14,12 @@ export const ContentDoubtBox = styled(Link)`
     margin-bottom: 0;
   }
 `;
-export const ContentDoubtHeader = styled.div`
+export const DoubtHeader = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
 `;
-export const ContentDoubtOwner = styled.div`
+export const DoubtOwner = styled.div`
   display: flex;
 `;
 export const OwnerPicture = styled.img`
@@ -44,34 +43,36 @@ export const OwnerSchoolGrade = styled(paragraph)`
   display: flex;
   align-items: flex-end;
 `;
-export const ContentDoubtInfo = styled.div``;
-export const ContentDoubtDescription = styled(paragraph)`
+export const DoubtInfo = styled.div`
+  padding-bottom: 40px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.textColor};
+`;
+export const DoubtDescription = styled(paragraph)`
   color: ${({ theme }) => theme.colors.textColor};
   /* font-weight: bold; */
   text-align: justify;
 `;
-export const ContentDoubtStatus = styled.div`
+export const DoubtStatus = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
 `;
-export const ContentDoubtComments = styled.div`
+export const DoubtActionsContainer = styled.div`
+  position: relative;
+`;
+export const DoubtActionsButton = styled.div`
   display: flex;
-  align-items: center;
-  margin-top: 10px;
-`;
-export const ContentDoubtCommentsNumber = styled(paragraph)`
-  margin-right: 10px;
   color: ${({ theme }) => theme.colors.textColor};
-  font-weight: bold;
+  cursor: pointer;
+
+  & span {
+    font-size: 22px;
+  }
 `;
-export const ContentDoubtCommentsIcon = styled.i`
-  font-size: 20px;
-  color: ${({ theme }) => theme.colors.textColor};
-`;
-export const ContentDoubtStatusIcon = styled.i`
+export const DoubtStatusIcon = styled.i`
   color: ${({ theme }) => theme.colors.textColor};
   font-size: 20px;
   margin-left: 10px;
+  margin-top: 10px;
 `;

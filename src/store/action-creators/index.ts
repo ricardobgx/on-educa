@@ -14,3 +14,4 @@ export * from './student';
 export * from './teacher';
 export * from './studentWeeklyPerformance';
 export * from './chat';
+export * from './friendRequests';

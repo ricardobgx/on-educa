@@ -4,7 +4,11 @@ import { bindActionCreators } from 'redux';
 import { clearPeopleVariables } from '../../../functions/people';
 import { ActionCreators, State } from '../../../store';
 import NavBarAction from './NavBarAction';
-import { NavBarActionBox, NavBarIconLabel } from './NavBarAction/styles';
+import {
+  NavBarActionBox,
+  NavBarIcon,
+  NavBarIconLabel,
+} from './NavBarAction/styles';
 
 import {
   NavBarBox,
@@ -20,7 +24,7 @@ import {
 const NavBar = (): JSX.Element => {
   /* Global State */
 
-  const { people } = useSelector((store: State) => store);
+  const { people, friendRequests } = useSelector((store: State) => store);
   const { id, profilePicture } = people;
 
   const dispatch = useDispatch();
@@ -64,24 +68,32 @@ const NavBar = (): JSX.Element => {
           icon="fas fa-users"
           label="Amigos"
           clickAction={toggleMenu}
+          alertIcon={friendRequests.length > 0}
+          alertsNumber={friendRequests.length}
         />
         <NavBarAction
           link="/notifications"
           icon="fas fa-bell"
           label="Notificações"
           clickAction={toggleMenu}
+          alertIcon={false}
+          alertsNumber={5}
         />
         <NavBarAction
           link="/settings"
           icon="fas fa-cog"
           label="Configurações"
           clickAction={toggleMenu}
+          alertIcon={false}
+          alertsNumber={1}
         />
         <NavBarAction
           link="/"
           icon="fas fa-sign-out-alt"
           label="Sair"
           clickAction={logout}
+          alertIcon={false}
+          alertsNumber={1}
         />
       </Actions>
       <ToggleMenuButton

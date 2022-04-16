@@ -1,23 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { getDoubts, getDoubtsByContent } from '../../../functions/doubt';
+import { useSelector } from 'react-redux';
+import { getDoubtsByContent } from '../../../functions/doubt';
 import { IDoubt } from '../../../interfaces/IDoubt';
 import { IStudent } from '../../../interfaces/IStudent';
-import { ITeacher } from '../../../interfaces/ITeacher';
 import OnEducaAPI from '../../../services/api';
+import { State } from '../../../store';
 import ContentDoubt from '../ContentDoubt';
+import NewDoubt from '../NewDoubt';
 import { DoubtsBox, DoubtsList } from './styles';
 
 interface IContentDoubtsProps {
   contentId: string;
   student: IStudent;
-  teacher: ITeacher;
   token: string;
 }
 
 const ContentDoubts = (props: IContentDoubtsProps): JSX.Element => {
-  const { contentId, student, teacher, token } = props;
+  const { contentId, student, token } = props;
+  const { people } = useSelector((store: State) => store);
+  const { isStudent } = people;
 
   const [doubts, setDoubts] = useState<IDoubt[]>([]);
+
+  const newDoubtAdded = (newDoubt: IDoubt): void => {
+    setDoubts([...doubts, newDoubt]);
+  };
 
   useEffect(() => {
     if (token) {
@@ -29,9 +36,17 @@ const ContentDoubts = (props: IContentDoubtsProps): JSX.Element => {
     <DoubtsBox>
       <DoubtsList>
         {doubts.map((doubt) => (
-          <ContentDoubt {...doubt} />
+          <ContentDoubt doubt={doubt} token={token} />
         ))}
       </DoubtsList>
+      {isStudent && (
+        <NewDoubt
+          studentId={student.id}
+          contentId={contentId}
+          token={token}
+          newDoubtAdded={newDoubtAdded}
+        />
+      )}
     </DoubtsBox>
   );
 };

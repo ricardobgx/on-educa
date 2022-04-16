@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import SectionLabel from '../../components/App/SectionLabel';
 import {
   ClearSearchSuppliesInputButton,
@@ -19,7 +20,7 @@ import { Page } from '../../global/styles/components/pageComponents';
 import { IFriendRequest } from '../../interfaces/IFriendRequest';
 import { IPeople } from '../../interfaces/IPeople';
 import OnEducaAPI from '../../services/api';
-import { State } from '../../store';
+import { ActionCreators, State } from '../../store';
 import {
   PageBox,
   FriendsBox,
@@ -33,20 +34,24 @@ import {
 } from './styles';
 
 const Friends = (): JSX.Element => {
-  const { aplication, people: loggedPeople } = useSelector(
-    (store: State) => store,
-  );
+  const {
+    aplication,
+    people: loggedPeople,
+    friendRequests,
+  } = useSelector((store: State) => store);
   const { token } = aplication;
 
+  const dispatch = useDispatch();
+  const { loadFriendRequests } = bindActionCreators(ActionCreators, dispatch);
+
   const [peoplesFound, setPeoplesFound] = useState<IPeople[]>([]);
-  const [friendRequests, setFriendRequests] = useState<IFriendRequest[]>([]);
 
   const getPeopleFriendRequests = (): void => {
     getFriendRequestsByPeople(
       OnEducaAPI,
       loggedPeople.id,
       token,
-      setFriendRequests,
+      loadFriendRequests,
     );
   };
 
@@ -96,7 +101,7 @@ const Friends = (): JSX.Element => {
             <SectionLabel label="Pedidos de amizade" backLink="" />
             <FriendRequestsBox>
               <FriendRequestsList>
-                {friendRequests.map((friendRequest) => (
+                {friendRequests.map((friendRequest: IFriendRequest) => (
                   <FriendRequestCard
                     key={friendRequest.id}
                     friendRequest={friendRequest}

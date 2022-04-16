@@ -89,7 +89,6 @@ const Content = (): JSX.Element => {
           <ContentDoubts
             contentId={contentId}
             student={student}
-            teacher={teacher}
             token={token}
           />
         </ContentBox>

@@ -110,3 +110,22 @@ export const ToggleMenuIcon = styled(mediumIcon)`
 export const ToggleMenuCheck = styled.input`
   display: none;
 `;
+
+export const NavBarActionAlert = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  color: ${({ theme }) => theme.colors.boxColor};
+  background: ${({ theme }) => theme.colors.textColor};
+  animation: fadeIn 0.2s linear;
+`;
+export const NavBarActionAlertNumber = styled(paragraph)`
+  font-size: 9px;
+  font-weight: bold;
+`;

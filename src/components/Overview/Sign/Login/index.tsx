@@ -23,6 +23,7 @@ import {
 } from '../../../../functions/people';
 import { ILogin } from '../../../../interfaces/ILogin';
 import { IAuthenticationResponse } from '../../../../interfaces/IAuthenticationResponse';
+import { getFriendRequestsByPeople } from '../../../../functions/friendRequest';
 
 const Login = (): JSX.Element => {
   /* Global State */
@@ -39,6 +40,7 @@ const Login = (): JSX.Element => {
     loadIsStudent,
     loadStudent,
     loadTeacher,
+    loadFriendRequests,
   } = bindActionCreators(ActionCreators, dispatch);
 
   /* Local State */
@@ -76,6 +78,7 @@ const Login = (): JSX.Element => {
     );
 
     await getPeople(OnEducaAPI, id, loadPeople, token);
+    await getFriendRequestsByPeople(OnEducaAPI, id, token, loadFriendRequests);
   };
 
   const loginError = (): void => {

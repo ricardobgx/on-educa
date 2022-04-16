@@ -50,7 +50,7 @@ export const createDoubt = async (
   API: AxiosInstance,
   doubtParams: IDoubtParams,
   token: string,
-  requestSucess: () => void,
+  requestSucess: (value: IDoubt) => void,
   requestError: () => void,
 ): Promise<void> => {
   await API.post('/doubts', doubtParams, {
@@ -58,8 +58,8 @@ export const createDoubt = async (
       authorization: `Bearer ${token}`,
     },
   }).then(
-    () => {
-      requestSucess();
+    (response) => {
+      requestSucess(response.data);
     },
     () => {
       requestError();

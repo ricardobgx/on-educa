@@ -3,6 +3,7 @@ import Achievements from '../pages/Achievements';
 import Chats from '../pages/Chats';
 import Content from '../pages/Content';
 import Contents from '../pages/Contents';
+import Doubt from '../pages/Doubt';
 import Doubts from '../pages/Doubts';
 import Duel from '../pages/Duel';
 import DuelCongratulations from '../pages/DuelCongratulations';
@@ -10,6 +11,7 @@ import DuelQuestions from '../pages/DuelQuestions';
 import DuelResults from '../pages/DuelResults';
 import Duels from '../pages/Duels';
 import EditContent from '../pages/EditContent';
+import EditQuestion from '../pages/EditQuestion';
 import Friends from '../pages/Friends';
 import Home from '../pages/Home';
 import Missions from '../pages/Missions';
@@ -114,6 +116,12 @@ const routes: IRoute[] = [
     exact: true,
   },
   {
+    path: '/questions/:id/edit',
+    name: 'EditQuestion',
+    component: EditQuestion,
+    exact: true,
+  },
+  {
     path: '/duels',
     name: 'Duels',
     component: Duels,
@@ -165,6 +173,12 @@ const routes: IRoute[] = [
     path: '/doubts',
     name: 'Doubts',
     component: Doubts,
+    exact: true,
+  },
+  {
+    path: '/doubts/:id',
+    name: 'Doubt',
+    component: Doubt,
     exact: true,
   },
   {

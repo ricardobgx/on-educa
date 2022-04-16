@@ -22,6 +22,7 @@ import { ThemeType } from './types/ThemeType';
 import { themes } from './static/themes';
 import { stringToBoolean } from './functions/utils';
 import { isDefaultDuel } from './functions/entitiesValues';
+import { getFriendRequestsByPeople } from './functions/friendRequest';
 
 export const socket = io(process.env.REACT_APP_API_URL || '');
 socket.on('connect', () =>
@@ -42,6 +43,7 @@ const App = (): JSX.Element => {
     loadTheme,
     loadStudent,
     loadTeacher,
+    loadFriendRequests,
   } = bindActionCreators(ActionCreators, dispatch);
 
   const [localVariablesLoaded, setLocalVariablesLoaded] = useState(false);
@@ -64,6 +66,7 @@ const App = (): JSX.Element => {
       loadTeacher,
     );
     await getPeople(API, id, setPeopleState, token);
+    await getFriendRequestsByPeople(OnEducaAPI, id, token, loadFriendRequests);
   };
 
   const loadLocalVariables = (): void => {

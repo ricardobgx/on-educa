@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   SectionLabelBackLink,
   SectionLabelBackLinkIcon,
@@ -14,10 +15,12 @@ interface ISectionLabelProps {
 const SectionLabel = (props: ISectionLabelProps): JSX.Element => {
   const { label, backLink } = props;
 
+  const pageHistory = useHistory();
+
   return (
     <SectionLabelBox>
       {backLink !== '' ? (
-        <SectionLabelBackLink to={backLink}>
+        <SectionLabelBackLink onClick={() => pageHistory.push(backLink)}>
           <SectionLabelBackLinkIcon className="fas fa-arrow-left" />
         </SectionLabelBackLink>
       ) : null}

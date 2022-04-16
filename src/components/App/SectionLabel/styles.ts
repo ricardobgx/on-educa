@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { paragraph } from '../../../global/styles/components/textComponents';
 import { smallIcon } from '../../../global/styles/components/iconComponents';
+import { Button } from '../../../global/styles/components/buttonComponents';
 
 export const SectionLabelBox = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};
@@ -20,9 +20,11 @@ export const SectionLabelText = styled(paragraph)`
   font-weight: bold;
   text-align: center;
 `;
-export const SectionLabelBackLink = styled(Link)`
+export const SectionLabelBackLink = styled(Button)`
   position: absolute;
   left: 20px;
   color: ${({ theme }) => theme.colors.textColor};
+  background: none;
+  box-shadow: none;
 `;
 export const SectionLabelBackLinkIcon = styled(smallIcon)``;

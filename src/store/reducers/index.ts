@@ -35,6 +35,10 @@ import duelReducer from './duel';
 
 import chatReducer from './chat';
 
+// Solicitacoes de amizade
+
+import friendRequestsReducer from './friendRequests';
+
 const reducers = combineReducers({
   aplication: aplicationReducer,
   people: peopleReducer,
@@ -50,6 +54,7 @@ const reducers = combineReducers({
   practice: practiceReducer,
   duel: duelReducer,
   chat: chatReducer,
+  friendRequests: friendRequestsReducer,
 });
 
 export default reducers;
