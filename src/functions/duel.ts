@@ -89,3 +89,26 @@ export const getDuel = async (
     },
   );
 };
+
+// Delete by id
+
+export const deleteDuel = async (
+  API: AxiosInstance,
+  duelId: string,
+  token: string,
+  requestSucess: () => void,
+  requestError: () => void,
+): Promise<void> => {
+  await API.delete(`/duels/${duelId}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then(
+    () => {
+      requestSucess();
+    },
+    () => {
+      requestError();
+    },
+  );
+};

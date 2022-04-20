@@ -28,7 +28,7 @@ const UpdateUnity = (props: IUpdateUnityProps): JSX.Element => {
 
   /* Local State */
 
-  const [title, setTitle] = useState(unity.title);
+  const [name, setName] = useState(unity.name);
 
   /* Global State */
 
@@ -49,7 +49,7 @@ const UpdateUnity = (props: IUpdateUnityProps): JSX.Element => {
     updateUnityData(
       OnEducaAPI,
       unity.id,
-      { title },
+      { name },
       token,
       updateSucess,
       updateError,
@@ -65,9 +65,9 @@ const UpdateUnity = (props: IUpdateUnityProps): JSX.Element => {
         <UpdateUnityLabel>Atualizar unidade</UpdateUnityLabel>
         <UpdateUnityInput
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setTitle(event.target.value);
+            setName(event.target.value);
           }}
-          value={title}
+          value={name}
           type="text"
           placeholder="Título da unidade"
         />

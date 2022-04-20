@@ -60,7 +60,7 @@ export const SignButtonLabel = styled(paragraph)`
   color: ${({ theme }) => theme.colors.boxColor};
 `;
 
-export const ChangeSignUser = styled.button`
+export const ChangeSignPeople = styled.button`
   width: 100%;
   border-radius: 5px;
   border: none;
@@ -71,7 +71,7 @@ export const ChangeSignUser = styled.button`
   box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   cursor: pointer;
 `;
-export const ChangeSignUserLabel = styled(paragraph)`
+export const ChangeSignPeopleLabel = styled(paragraph)`
   color: ${({ theme }) => theme.colors.textColor};
 `;
 

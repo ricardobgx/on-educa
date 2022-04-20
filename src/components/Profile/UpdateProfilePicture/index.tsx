@@ -1,15 +1,9 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { createImage } from '../../../functions/image';
-import { updateUser } from '../../../functions/user';
+import { updatePeople } from '../../../functions/people';
 import { IImage } from '../../../interfaces/IImage';
 import OnEducaAPI from '../../../services/api';
-import { ActionCreators, State } from '../../../store';
-import {
-  MediumMaterialIconRound,
-  SmallMaterialIconRound,
-} from '../../App/Icons/MaterialIcons/MaterialIconsRound';
+import { SmallMaterialIconRound } from '../../App/Icons/MaterialIcons/MaterialIconsRound';
 import {
   UpdateProfilePictureBox,
   ProfilePicture,
@@ -26,28 +20,17 @@ import {
 } from './styles';
 
 interface IUpdateProfilePictureProps {
-  userType: string;
-  userId: string;
+  peopleId: string;
   token: string;
   profilePicture: string;
-  setProfilePicture: (value: string) => void;
   setIsUpdatingProfilePicture: (value: boolean) => void;
 }
 
 const UpdateProfilePicture = (
   props: IUpdateProfilePictureProps,
 ): JSX.Element => {
-  const {
-    userType,
-    userId,
-    token,
-    profilePicture,
-    setProfilePicture,
-    setIsUpdatingProfilePicture,
-  } = props;
-
-  const dispatch = useDispatch();
-  const { loginUser } = bindActionCreators(ActionCreators, dispatch);
+  const { peopleId, token, profilePicture, setIsUpdatingProfilePicture } =
+    props;
 
   const [file, setFile] = useState<any>();
   const [newProfilePicture, setNewProfilePicture] = useState(profilePicture);
@@ -67,10 +50,9 @@ const UpdateProfilePicture = (
   };
 
   const updateProfilePicture = (imageUploaded: IImage): void => {
-    updateUser(
+    updatePeople(
       OnEducaAPI,
-      userType,
-      userId,
+      peopleId,
       { profilePictureId: imageUploaded.id },
       token,
       () => {

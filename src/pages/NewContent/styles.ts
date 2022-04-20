@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { paragraph } from '../../global/styles/components/textComponents';
 import { inputText } from '../../global/styles/components/inputComponents';
+import { LinkButton } from '../../global/styles/components/linkComponents';
+import { Button } from '../../global/styles/components/buttonComponents';
 
 export const PageBox = styled.div`
   display: flex;
@@ -94,35 +95,22 @@ export const NewContentActions = styled.div`
     flex-wrap: wrap;
   }
 `;
-export const CancelButton = styled(Link)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
-  border: none;
-  height: 40px;
+export const CancelButton = styled(LinkButton)`
   width: calc(50% - 20px);
-  cursor: pointer;
 
   @media (max-width: 900px) {
     width: 100%;
   }
-  background: ${({ theme }) => theme.similarColors.warningColor};
-  color: ${({ theme }) => theme.colors.whiteColor};
+  background: ${({ theme }) => theme.colors.boxColor};
+  color: ${({ theme }) => theme.colors.textColor};
 
   @media (max-width: 900px) {
     margin-bottom: 20px;
   }
 `;
 export const CancelButtonLabel = styled(paragraph)``;
-export const CreateContentButton = styled.button`
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
-  border: none;
-  height: 40px;
+export const CreateContentButton = styled(Button)`
   width: calc(50% - 20px);
-  cursor: pointer;
 
   @media (max-width: 900px) {
     width: 100%;

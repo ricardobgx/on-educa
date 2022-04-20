@@ -1,15 +1,16 @@
 /* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-console */
 
-import { AxiosError } from 'axios';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import SectionLabel from '../../components/App/SectionLabel';
 import NewDuelContents from '../../components/NewDuel/NewDuelContents';
 import NewDuelSettings from '../../components/NewDuel/NewDuelSettings';
 import { IDuelParams } from '../../dto/IDuelParams';
-import { createDuel as createDuelRequest } from '../../functions/duel';
+import { createDuel as createDuelRequest, getDuel } from '../../functions/duel';
 import { IContent } from '../../interfaces/IContent';
 import { IDuel } from '../../interfaces/IDuel';
 import OnEducaAPI from '../../services/api';
@@ -25,19 +26,15 @@ import {
   CreateNewDuelButton,
   CreateNewDuelButtonLabel,
 } from './styles';
-import { participateInDuel } from '../../functions/duelTeamParts';
-import { IParticipateInDuelParams } from '../../dto/IParticipateInDuelParams';
 
 const NewDuel = (): JSX.Element => {
+  const pageHistory = useHistory();
+
   /* Global State */
 
-  const {
-    user,
-    duel: globalDuel,
-    aplication,
-  } = useSelector((store: State) => store);
+  const { student, aplication } = useSelector((store: State) => store);
 
-  const { id } = user;
+  const { id } = student;
   const { token } = aplication;
 
   const dispatch = useDispatch();
@@ -45,16 +42,23 @@ const NewDuel = (): JSX.Element => {
 
   /* Local State */
 
-  const [maxParticipants, setMaxParticipants] = useState(1);
-  const [questionsPerContent, setQuestionsPerContent] = useState(-1);
-  const [timeForQuestion, setTimeForQuestion] = useState(1);
+  const maxParticipantsValues = [1, 2, 4];
+  const timeForQuestionValues = [1, 3, 5];
+
+  const [maxParticipants, setMaxParticipants] = useState(
+    maxParticipantsValues[0],
+  );
+  const [questionsPerContent, setQuestionsPerContent] = useState(
+    maxParticipantsValues[0] * 2,
+  );
+  const [timeForQuestion, setTimeForQuestion] = useState(
+    timeForQuestionValues[0],
+  );
 
   const [contentsName, setContentsName] = useState('');
   const [contentsFound, setContentsFound] = useState<IContent[]>([]);
 
   const [selectedContents, setSelectedContents] = useState<IContent[]>([]);
-
-  const [duelIsCreated, setDuelIsCreated] = useState(false);
 
   const newDuelContentsProps = {
     newDuelSelectedContentsProps: {
@@ -78,36 +82,17 @@ const NewDuel = (): JSX.Element => {
     setQuestionsPerContent,
     timeForQuestion,
     setTimeForQuestion,
+    maxParticipantsValues,
+    timeForQuestionValues,
   };
 
   /* Functions */
 
-  const createDuelOwnerParticipationSucess = (): void => {
-    setDuelIsCreated(true);
-  };
-
-  const createDuelOwnerParticipationError = (): void => {
-    console.log('erro');
-  };
-
-  const createDuelOwnerParticipation = async (
-    duelTeamParticipationByDuelParams: IParticipateInDuelParams,
-  ): Promise<void> => {
-    await participateInDuel(
-      OnEducaAPI,
-      duelTeamParticipationByDuelParams,
-      token,
-      createDuelOwnerParticipationSucess,
-      createDuelOwnerParticipationError,
-    );
-  };
-
   const createDuelSucess = (duel: IDuel): void => {
-    loadDuel(duel);
-    createDuelOwnerParticipation({ duelId: duel.id, studentId: user.id });
+    pageHistory.push(`/duels/${duel.id}`);
   };
 
-  const createDuelError = (err: AxiosError): void => {
+  const createDuelError = (): void => {
     console.log('Ocorreu um erro');
   };
 
@@ -149,7 +134,6 @@ const NewDuel = (): JSX.Element => {
             <CreateNewDuelButton onClick={() => createDuel()}>
               <CreateNewDuelButtonLabel>Criar duelo</CreateNewDuelButtonLabel>
             </CreateNewDuelButton>
-            {duelIsCreated && <Redirect to={`/duels/${globalDuel.id}`} />}
           </NewDuelActions>
         </NewDuelBox>
       </PageBox>

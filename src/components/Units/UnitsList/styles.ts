@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const UnitsListBox = styled.div`
   background: none;
+  margin: 0 15px;
 `;
 export const UnitCards = styled.div`
   display: flex;

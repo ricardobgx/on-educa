@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NewDuelSettingsLabel } from '../NewDuelSettings/styles';
 import {
   QuestionsPerContentSettingBox,
@@ -25,6 +25,10 @@ const QuestionsPerContentSetting = (
     maxParticipants,
   } = props;
 
+  const [questionsPerContentValues, setQuestionsPerContentValues] = useState<
+    number[]
+  >([]);
+
   const generateQuestionsPerContentValues = (
     numParticipants: number,
   ): number[] => {
@@ -37,7 +41,13 @@ const QuestionsPerContentSetting = (
     return values;
   };
 
-  const values = generateQuestionsPerContentValues(maxParticipants);
+  useEffect(() => {
+    const newQuestionsPerContentValues =
+      generateQuestionsPerContentValues(maxParticipants);
+
+    setQuestionsPerContentValues(newQuestionsPerContentValues);
+    setSelectedValue(newQuestionsPerContentValues[0]);
+  }, [maxParticipants]);
 
   return (
     <QuestionsPerContentSettingBox>
@@ -48,7 +58,7 @@ const QuestionsPerContentSetting = (
           setSelectedValue(Number(event.target.value))
         }
       >
-        {values.map((value) => (
+        {questionsPerContentValues.map((value) => (
           <QuestionsPerContentSettingOption value={value}>
             {value} {valueLabel}
           </QuestionsPerContentSettingOption>

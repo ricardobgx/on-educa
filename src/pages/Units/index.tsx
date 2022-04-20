@@ -35,7 +35,7 @@ const Units = (): JSX.Element => {
   const { id: subjectId } = route.params as IUnitsRouteParams;
 
   const { subject, aplication } = useSelector((store: State) => store);
-  const { userType, token } = aplication;
+  const { isStudent, token } = aplication;
 
   const getUnits = async (): Promise<void> => {
     await getUnitsBySubject(OnEducaAPI, subjectId, setUnits, token);
@@ -53,7 +53,7 @@ const Units = (): JSX.Element => {
           label={`${subject.name} - unidades`}
         />
         <UnitsBox>
-          <UnitsActions userType={userType} getUnits={getUnits} />
+          <UnitsActions isStudent={isStudent} getUnits={getUnits} />
           {updateUnityIsVisible && (
             <UpdateUnity
               unity={unity}

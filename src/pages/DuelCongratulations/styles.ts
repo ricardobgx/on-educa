@@ -43,7 +43,7 @@ export const SeeResultsButton = styled(Link)`
   min-height: 40px;
   background: ${({ theme }) => theme.colors.boxColor};
   border-radius: 5px;
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   width: 50%;
   display: flex;
   align-items: center;

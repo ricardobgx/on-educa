@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 export * from './aplication';
-export * from './user';
+export * from './people';
 export * from './content';
 export * from './question';
 export * from './practice';
@@ -10,3 +10,8 @@ export * from './teachingType';
 export * from './schoolGrade';
 export * from './subject';
 export * from './unity';
+export * from './student';
+export * from './teacher';
+export * from './studentWeeklyPerformance';
+export * from './chat';
+export * from './friendRequests';

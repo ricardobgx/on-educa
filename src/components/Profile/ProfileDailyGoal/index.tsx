@@ -6,21 +6,17 @@ import {
   DailyGoalHeaderBox,
   DailyGoalIcon,
   DailyGoalLabel,
-  DailyGoalInfo,
-  DailyGoalValueLabel,
-  EditDailyGoalValueButton,
-  EditDailyGoalValueIcon,
   DailyGoalProgress,
   DailyGoalProgressLabel,
 } from './styles';
 
 interface IProfileDailyGoalProps {
-  isUserLogged: boolean;
+  isPeopleLogged: boolean;
   dailyXP: number;
 }
 
 const ProfileDailyGoal = (props: IProfileDailyGoalProps): JSX.Element => {
-  const { isUserLogged, dailyXP } = props;
+  const { isPeopleLogged, dailyXP } = props;
 
   return (
     <Container className="with-shadow bd-rd-5">
@@ -29,14 +25,6 @@ const ProfileDailyGoal = (props: IProfileDailyGoalProps): JSX.Element => {
           <DailyGoalIcon className="fas fa-bullseye" />
           <DailyGoalLabel>Meta diária</DailyGoalLabel>
         </DailyGoalHeaderBox>
-        <DailyGoalInfo>
-          <DailyGoalValueLabel>50 XP</DailyGoalValueLabel>
-          {isUserLogged && (
-            <EditDailyGoalValueButton>
-              <EditDailyGoalValueIcon className="fas fa-pen" />
-            </EditDailyGoalValueButton>
-          )}
-        </DailyGoalInfo>
       </DailyGoalHeader>
       <DailyGoalProgress>
         <ProgressBar now={dailyXP} max={50} />

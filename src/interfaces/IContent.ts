@@ -1,12 +1,16 @@
+import { IDoubt } from './IDoubt';
 import { IQuestion } from './IQuestion';
 import { IUnity } from './IUnity';
 
 export interface IContent {
   id: string;
-  title: string;
+  name: string;
   description: string;
   video: string;
   index: number;
   unity: IUnity;
   questions: IQuestion[];
+  createdAt: Date;
+  updatedAt: Date;
+  doubts: IDoubt[];
 }

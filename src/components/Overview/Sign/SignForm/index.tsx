@@ -12,28 +12,24 @@ export interface ISignProps {
 const Sign = (props: ISignProps): JSX.Element => {
   /* Local State */
 
-  const [signType, setSignType] = useState('register');
+  const [isRegister, setIsRegister] = useState(true);
+  const [isStudent, setIsStudent] = useState(true);
 
   /* Props */
 
-  const { minHeight } = props;
-
-  /* Functions */
-
-  const isRegister = (): boolean => signType === 'register';
-
   const changeSignType = (): void => {
-    if (isRegister()) setSignType('login');
-    else setSignType('register');
+    setIsRegister(!isRegister);
   };
+
+  const { minHeight } = props;
 
   return (
     <SignBox style={{ minHeight }}>
-      {isRegister() ? <Register changeSignType={changeSignType} /> : <Login />}
+      {isRegister ? <Register changeSignType={changeSignType} /> : <Login />}
       <SignTypeLabel>
-        {isRegister() ? 'Já tem uma conta? ' : 'Ainda não tem uma conta? '}
+        {isRegister ? 'Já tem uma conta? ' : 'Ainda não tem uma conta? '}
         <SignTypeButton onClick={() => changeSignType()}>
-          {isRegister() ? 'Faça login' : 'Cadastre-se'}
+          {isRegister ? 'Faça login' : 'Cadastre-se'}
         </SignTypeButton>
       </SignTypeLabel>
     </SignBox>

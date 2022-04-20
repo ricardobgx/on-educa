@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-console */
+
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { IManyAlternativesParams } from '../../../dto/IManyAlternativesParams';
@@ -7,12 +10,12 @@ import {
   createManyAlternatives,
   findAlternativeByDescFromArray,
 } from '../../../functions/alternative';
-import { isDefaultContent } from '../../../functions/entitiesValues';
 import {
   createQuestion as createQuestionData,
   isValidQuestion,
   updateQuestion,
 } from '../../../functions/question';
+import { updateTeacherWeeklyPerformanceValues } from '../../../functions/teacherWeeklyPerformance';
 import { IAlternative } from '../../../interfaces/IAlternative';
 import { IContent } from '../../../interfaces/IContent';
 import { IQuestion } from '../../../interfaces/IQuestion';
@@ -35,6 +38,7 @@ interface INewQuestionActionsProps {
   questionWasCreated: boolean;
   setQuestionWasCreated: (value: boolean) => void;
   token: string;
+  teacherId: string;
 }
 
 const NewQuestionActions = (props: INewQuestionActionsProps): JSX.Element => {
@@ -47,10 +51,19 @@ const NewQuestionActions = (props: INewQuestionActionsProps): JSX.Element => {
     questionWasCreated,
     setQuestionWasCreated,
     token,
+    teacherId,
   } = props;
 
   const updateQuestionSucess = (): void => {
-    setQuestionWasCreated(true);
+    updateTeacherWeeklyPerformanceValues(
+      OnEducaAPI,
+      { teacherId, questionsCreatedNumber: 1, dailyXPNumber: 25 },
+      token,
+      () => {
+        setQuestionWasCreated(true);
+      },
+      () => console.log('erro'),
+    );
   };
 
   const updateQuestionError = (): void => {

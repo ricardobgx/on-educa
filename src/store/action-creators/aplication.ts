@@ -15,7 +15,7 @@ export const loadToken = (token: string) => {
   };
 };
 
-export const loadTheme = (theme: string) => {
+export const loadTheme = (theme: number) => {
   return (dispatch: Dispatch<AplicationAction>) => {
     dispatch({
       type: AplicationActionType.LOAD_THEME,
@@ -24,11 +24,11 @@ export const loadTheme = (theme: string) => {
   };
 };
 
-export const loadUserType = (userType: string) => {
+export const loadIsStudent = (isStudent: boolean) => {
   return (dispatch: Dispatch<AplicationAction>) => {
     dispatch({
-      type: AplicationActionType.LOAD_USER_TYPE,
-      userType,
+      type: AplicationActionType.LOAD_IS_STUDENT,
+      isStudent,
     });
   };
 };

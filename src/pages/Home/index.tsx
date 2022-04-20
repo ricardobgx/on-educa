@@ -31,7 +31,7 @@ const Home = (): JSX.Element => {
   /* Global State */
 
   const { aplication } = useSelector((store: State) => store);
-  const { userType } = aplication;
+  const { isStudent } = aplication;
 
   const dispatch = useDispatch();
 
@@ -49,6 +49,8 @@ const Home = (): JSX.Element => {
   useEffect(() => {
     disableLoadingAnimation();
   }, []);
+
+  const userType = isStudent ? 'student' : 'teacher';
 
   return (
     <Page>

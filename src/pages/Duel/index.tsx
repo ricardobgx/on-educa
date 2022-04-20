@@ -3,22 +3,35 @@
 import { AxiosInstance } from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useRouteMatch } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
+import { socket } from '../../App';
 import SectionLabel from '../../components/App/SectionLabel';
 import DuelActions from '../../components/Duel/DuelActions';
+import DuelActionsBar from '../../components/Duel/DuelActionsBar';
+import DuelChat from '../../components/Duel/DuelChat';
+import DuelDetails from '../../components/Duel/DuelDetails';
 import DuelTeams from '../../components/Duel/DuelTeams';
 import { getDuel } from '../../functions/duel';
 import { findStudentDuelPartByTeams } from '../../functions/duelTeamParts';
-import { isDefaultUser } from '../../functions/entitiesValues';
-import { displaySurname } from '../../functions/user';
+import { isDefaultDuel, isDefaultPeople } from '../../functions/entitiesValues';
+import { displaySurname, getPeople } from '../../functions/people';
 import { Page } from '../../global/styles/components/pageComponents';
 import { IDuel } from '../../interfaces/IDuel';
+import { IDuelRound } from '../../interfaces/IDuelRound';
+import { IDuelTeam } from '../../interfaces/IDuelTeam';
 import { IDuelTeamParticipation } from '../../interfaces/IDuelTeamParticipation';
-import { IUser } from '../../interfaces/IUser';
+import { IPeople } from '../../interfaces/IPeople';
+import { IStudent } from '../../interfaces/IStudent';
 import OnEducaAPI from '../../services/api';
-import { DEFAULT_DUEL_TEAM_PARTICIPATION } from '../../static/defaultEntitiesValues';
+import {
+  DEFAULT_DUEL,
+  DEFAULT_DUEL_TEAM_PARTICIPATION,
+  DEFAULT_PEOPLE,
+  DEFAULT_STUDENT,
+} from '../../static/defaultEntitiesValues';
 import { ActionCreators, State } from '../../store';
+import { DuelRoundStatus } from '../../types/duelRoundStatus';
 import { DuelBox, PageBox } from './styles';
 
 interface IDuelRouteParams {
@@ -32,8 +45,10 @@ export interface IDuelRequestComponentsProps {
 }
 
 export interface IDuelStudentInfoComponentsProps {
-  duelOwner: IUser;
-  loggedUser: IUser;
+  duelId: string;
+  duelOwner: IStudent;
+  loggedPeople: IPeople;
+  loggedStudent: IStudent;
   studentParticipation: IDuelTeamParticipation;
   setStudentParticipation: (value: IDuelTeamParticipation) => void;
 }
@@ -43,8 +58,15 @@ const Duel = (): JSX.Element => {
 
   // Variaveis
 
-  const { aplication, duel, user } = useSelector((store: State) => store);
+  const {
+    aplication,
+    duel,
+    people: loggedPeople,
+    student: loggedStudent,
+  } = useSelector((store: State) => store);
   const { token } = aplication;
+
+  const pageHistory = useHistory();
 
   // Funcoes
 
@@ -55,6 +77,10 @@ const Duel = (): JSX.Element => {
 
   const [studentParticipation, setStudentParticipation] =
     useState<IDuelTeamParticipation>(DEFAULT_DUEL_TEAM_PARTICIPATION);
+  const [duelOwner, setDuelOwner] = useState(DEFAULT_PEOPLE);
+
+  const [showDuelDetails, setShowDuelDetails] = useState(false);
+  const [showChat, setShowChat] = useState(false);
 
   /* Parametros da rota da pagina */
 
@@ -67,7 +93,7 @@ const Duel = (): JSX.Element => {
     const { duelRound } = duelResponse;
     const studentParticipationFound = findStudentDuelPartByTeams(
       duelRound.teams,
-      user,
+      loggedStudent,
     );
     setStudentParticipation(studentParticipationFound);
     loadDuel(duelResponse);
@@ -79,11 +105,36 @@ const Duel = (): JSX.Element => {
     );
   };
 
+  const startDuel = (): void => {
+    loadDuel({
+      ...duel,
+      duelRound: { ...duel.duelRound, status: DuelRoundStatus.STARTED },
+    } as IDuel);
+  };
+
+  const duelDeleted = (): void => {
+    loadDuel(DEFAULT_DUEL);
+    pageHistory.push('/duels');
+  };
+
   useEffect(() => {
-    if (!isDefaultUser(user)) {
-      getDuelData();
+    if (token) {
+      if (isDefaultDuel(duel) && !isDefaultPeople(loggedPeople)) {
+        getDuelData();
+      } else {
+        const { student } = duel;
+        getPeople(OnEducaAPI, student.people.id, setDuelOwner, token);
+      }
     }
-  }, [user]);
+
+    socket.on(`duel.start:${duelId}`, startDuel);
+    socket.on(`duel.delete:${duelId}`, duelDeleted);
+
+    return () => {
+      socket.off(`duel.start:${duelId}`, startDuel);
+      socket.off(`duel.delete:${duelId}`, duelDeleted);
+    };
+  }, [duel, loggedPeople, token]);
 
   const { student, duelRound } = duel as IDuel;
   const { teams } = duelRound;
@@ -92,17 +143,31 @@ const Duel = (): JSX.Element => {
     <Page>
       <PageBox>
         <DuelBox>
-          <SectionLabel
+          {showDuelDetails && (
+            <DuelDetails duel={duel} setShowDuelDetails={setShowDuelDetails} />
+          )}
+          {showChat && (
+            <DuelChat
+              duelId={duelId}
+              setShowChat={setShowChat}
+              loggedPeople={loggedPeople}
+            />
+          )}
+          {/* <SectionLabel
             backLink=""
-            label={`Duelo de ${displaySurname(student.name, 20)}`}
+            label={`Duelo de ${displaySurname(duelOwner.name, 20)}`}
+          /> */}
+          <DuelActionsBar
+            duel={duel}
+            token={token}
+            setShowDuelDetails={setShowDuelDetails}
+            setShowChat={setShowChat}
           />
           <DuelTeams
-            API={OnEducaAPI}
-            token={token}
-            getDuelData={getDuelData}
+            duelId={duel.id}
             duelOwner={student}
-            loggedUser={user}
             teams={teams}
+            loggedStudent={loggedStudent}
             studentParticipation={studentParticipation}
             setStudentParticipation={setStudentParticipation}
           />
@@ -114,7 +179,8 @@ const Duel = (): JSX.Element => {
             duelRoundId={duelRound.id}
             duelRoundStatus={duelRound.status}
             duelOwner={student}
-            loggedUser={user}
+            loggedPeople={loggedPeople}
+            loggedStudent={loggedStudent}
             studentParticipation={studentParticipation}
             setStudentParticipation={setStudentParticipation}
           />

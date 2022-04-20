@@ -1,7 +1,8 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { paragraph } from '../../../global/styles/components/textComponents';
 
-export const ContentDoubtBox = styled.div`
+export const ContentDoubtBox = styled(Link)`
   display: flex;
   flex-direction: column;
   background: ${({ theme }) => theme.colors.boxColor};

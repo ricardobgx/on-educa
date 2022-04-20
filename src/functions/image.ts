@@ -1,5 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-console */
+
 import { AxiosInstance } from 'axios';
-import { IImageParams } from '../dto/IImageParams';
 import { IImage } from '../interfaces/IImage';
 
 export const createImage = async (
@@ -8,11 +10,15 @@ export const createImage = async (
   setImageState: (value: IImage) => void,
   token: string,
 ): Promise<void> => {
-  await API.post(`/images`, imageParams).then(
+  await API.post(`/images`, imageParams, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then(
     (response) => {
       setImageState(response.data);
     },
-    (err) => {
+    () => {
       console.log('erro');
     },
   );

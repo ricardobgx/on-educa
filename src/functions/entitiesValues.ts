@@ -8,7 +8,7 @@ import { ISchoolGrade } from '../interfaces/ISchoolGrade';
 import { ISubject } from '../interfaces/ISubject';
 import { ITeachingType } from '../interfaces/ITeachingType';
 import { IUnity } from '../interfaces/IUnity';
-import { IUser } from '../interfaces/IUser';
+import { IPeople } from '../interfaces/IPeople';
 import {
   DEFAULT_ALTERNATIVE,
   DEFAULT_CONTENT,
@@ -17,15 +17,28 @@ import {
   DEFAULT_PRACTICE,
   DEFAULT_PRACTICE_QUESTION,
   DEFAULT_SCHOOL_GRADE,
+  DEFAULT_STUDENT,
   DEFAULT_SUBJECT,
+  DEFAULT_TEACHER,
   DEFAULT_TEACHING_TYPE,
   DEFAULT_UNITY,
-  DEFAULT_USER,
+  DEFAULT_PEOPLE,
+  DEFAULT_CHAT,
 } from '../static/defaultEntitiesValues';
+import { ITeacher } from '../interfaces/ITeacher';
+import { IStudent } from '../interfaces/IStudent';
+import { IChat } from '../interfaces/IChat';
 
 // Usuarios
 
-export const isDefaultUser = (user: IUser): boolean => user === DEFAULT_USER;
+export const isDefaultPeople = (people: IPeople): boolean =>
+  people === DEFAULT_PEOPLE;
+
+export const isDefaultStudent = (student: IStudent): boolean =>
+  student === DEFAULT_STUDENT;
+
+export const isDefaultTeacher = (teacher: ITeacher): boolean =>
+  teacher === DEFAULT_TEACHER;
 
 // Materiais escolares
 
@@ -61,3 +74,7 @@ export const isDefaultDuel = (duel: IDuel): boolean => duel === DEFAULT_DUEL;
 export const isDefaultDuelTeamParticipation = (
   duelTeamParticipation: IDuelTeamParticipation,
 ): boolean => duelTeamParticipation === DEFAULT_DUEL_TEAM_PARTICIPATION;
+
+/* Chats */
+
+export const isDefaultChat = (chat: IChat): boolean => chat === DEFAULT_CHAT;

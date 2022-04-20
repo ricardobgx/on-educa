@@ -1,4 +1,4 @@
 export interface IUnityParams {
-  title?: string;
+  name?: string;
   subjectId?: string;
 }

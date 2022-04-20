@@ -1,10 +1,10 @@
 import { IDuelRound } from './IDuelRound';
-import { IUser } from './IUser';
+import { IStudent } from './IStudent';
 
 export interface IDuel {
   id: string;
   code: string;
-  student: IUser;
+  student: IStudent;
   duelRound: IDuelRound;
   duelRounds: IDuelRound[];
 }

@@ -7,36 +7,40 @@ import {
   SignFieldsBox,
   SignActions,
   SignButton,
-  ChangeSignUser,
   SignButtonLabel,
-  ChangeSignUserLabel,
+  ChangeSignPeople,
+  ChangeSignPeopleLabel,
 } from '../components';
 import OnEducaAPI from '../../../../services/api';
 import SignTextInput from '../SignTextInput';
 import { ActionCreators, State } from '../../../../store';
 import {
-  getUser,
-  invertUserType,
-  isStudent,
-  loginUser,
-  setUserVariables,
-} from '../../../../functions/user';
+  getPeople,
+  invertPeopleType,
+  loginPeople,
+  setPeopleVariables,
+  setUpPeopleType,
+} from '../../../../functions/people';
 import { ILogin } from '../../../../interfaces/ILogin';
 import { IAuthenticationResponse } from '../../../../interfaces/IAuthenticationResponse';
+import { getFriendRequestsByPeople } from '../../../../functions/friendRequest';
 
 const Login = (): JSX.Element => {
   /* Global State */
 
   const { aplication } = useSelector((store: State) => store);
-  const { userType } = aplication;
+  const { isStudent } = aplication;
 
   const dispatch = useDispatch();
   const {
     enableLoadingAnimation,
     disableLoadingAnimation,
-    loginUser: loadUser,
+    loginPeople: loadPeople,
     loadToken,
-    loadUserType,
+    loadIsStudent,
+    loadStudent,
+    loadTeacher,
+    loadFriendRequests,
   } = bindActionCreators(ActionCreators, dispatch);
 
   /* Local State */
@@ -44,17 +48,15 @@ const Login = (): JSX.Element => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // Login
-
-  const clearFields = (): void => {
-    setEmail('');
-    setPassword('');
-  };
-
   const fieldsIsValid = (): boolean => {
     if (email.trim() === '' || password.trim() === '' || password.length < 8)
       return false;
     return true;
+  };
+
+  const clearFields = (): void => {
+    setEmail('');
+    setPassword('');
   };
 
   const loginSucess = async (
@@ -63,10 +65,20 @@ const Login = (): JSX.Element => {
     const { id, token } = authResponse;
 
     loadToken(token);
+    loadIsStudent(isStudent);
 
-    setUserVariables(id, userType, token);
+    setPeopleVariables(id, isStudent, token);
+    await setUpPeopleType(
+      OnEducaAPI,
+      id,
+      isStudent,
+      token,
+      loadStudent,
+      loadTeacher,
+    );
 
-    await getUser(OnEducaAPI, userType, id, loadUser, token);
+    await getPeople(OnEducaAPI, id, loadPeople, token);
+    await getFriendRequestsByPeople(OnEducaAPI, id, token, loadFriendRequests);
   };
 
   const loginError = (): void => {
@@ -75,19 +87,13 @@ const Login = (): JSX.Element => {
 
   const login = async (): Promise<void> => {
     if (fieldsIsValid()) {
-      const userParams = {
+      const peopleParams = {
         email,
         password,
       } as ILogin;
 
       enableLoadingAnimation();
-      await loginUser(
-        OnEducaAPI,
-        userParams,
-        userType,
-        loginSucess,
-        loginError,
-      );
+      await loginPeople(OnEducaAPI, peopleParams, loginSucess, loginError);
     }
   };
 
@@ -122,17 +128,17 @@ const Login = (): JSX.Element => {
         >
           <SignButtonLabel>Entrar</SignButtonLabel>
         </SignButton>
-        <ChangeSignUser
+        <ChangeSignPeople
           onClick={() => {
-            loadUserType(invertUserType(userType));
+            loadIsStudent(invertPeopleType(isStudent));
             clearFields();
           }}
         >
-          <ChangeSignUserLabel>
+          <ChangeSignPeopleLabel>
             Sou
-            {isStudent(userType) ? ' professor' : ' aluno'}
-          </ChangeSignUserLabel>
-        </ChangeSignUser>
+            {isStudent ? ' professor' : ' aluno'}
+          </ChangeSignPeopleLabel>
+        </ChangeSignPeople>
       </SignActions>
     </SignBox>
   );

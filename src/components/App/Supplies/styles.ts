@@ -220,3 +220,14 @@ export const SearchSuppliesButton = styled(Button)`
 // Icone do botao de pesquisa
 
 export const SearchSuppliesButtonIcon = styled(smallIcon)``;
+
+/* Textos */
+
+export const NoSelectedSupplies = styled(paragraph)`
+  color: ${({ theme }) => theme.colors.textColor};
+  margin-top: 30%;
+
+  @media (max-width: 1150px) {
+    margin-top: 15%;
+  }
+`;

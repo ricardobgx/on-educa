@@ -1,37 +1,52 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { socket } from '../../../App';
 import { removeParticipant } from '../../../functions/duelTeamParts';
+import { isDefaultPeople } from '../../../functions/entitiesValues';
+import { getPeople } from '../../../functions/people';
 import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
+import { IStudent } from '../../../interfaces/IStudent';
 import OnEducaAPI from '../../../services/api';
-import { DEFAULT_USER } from '../../../static/defaultEntitiesValues';
+import {
+  DEFAULT_PEOPLE,
+  DEFAULT_STUDENT,
+  DEFAULT_TEACHER,
+} from '../../../static/defaultEntitiesValues';
 import { State } from '../../../store';
-import UserCard from '../../App/UserCard';
+import PeopleCard from '../../App/PeopleCard';
 import {
   DuelTeamParticipantCardBox,
   KickOutButton,
   KickOutButtonIcon,
-  AddFriendButton,
-  AddFriendButtonIcon,
-  DuelTeamParticipantCardActions,
 } from './styles';
 
-interface IDuelTeamParticipantCardProps {
-  ownerId: string;
+interface IDuelTeamParticipantCard {
+  duelId: string;
+  duelOwner: IStudent;
+  loggedStudent: IStudent;
+  studentParticipation: IDuelTeamParticipation;
   participation: IDuelTeamParticipation;
-  refreshDuel: () => void;
 }
 
 const DuelTeamParticipantCard = (
-  props: IDuelTeamParticipantCardProps,
+  props: IDuelTeamParticipantCard,
 ): JSX.Element => {
-  const { user: loggedUser, aplication } = useSelector((store: State) => store);
+  const { aplication } = useSelector((store: State) => store);
   const { token } = aplication;
 
-  const { ownerId, participation, refreshDuel } = props;
+  const {
+    duelOwner,
+    loggedStudent,
+    studentParticipation,
+    duelId,
+    participation,
+  } = props;
 
-  const student = participation.student || DEFAULT_USER;
+  const [people, setPeople] = useState(DEFAULT_PEOPLE);
+
+  const student = participation.student || DEFAULT_STUDENT;
 
   const kickOutParticipant = async (
     duelTeamParticipationId: string,
@@ -40,21 +55,35 @@ const DuelTeamParticipantCard = (
       OnEducaAPI,
       duelTeamParticipationId,
       token,
-      refreshDuel,
+      () => {
+        socket.emit(`duel.remove-participation`, {
+          duelId,
+          data: {
+            ...participation,
+          } as IDuelTeamParticipation,
+        });
+      },
       () => console.log('erro'),
     );
   };
 
+  useEffect(() => {
+    if (isDefaultPeople(people) && token) {
+      getPeople(OnEducaAPI, student.people.id, setPeople, token);
+    }
+  }, [token, people]);
+
   return (
     <DuelTeamParticipantCardBox>
-      <UserCard
+      <PeopleCard
         smartphoneNameLength={20}
         abbreviateName
         showScore={false}
-        {...student}
-        userType="student"
+        people={people}
+        student={student}
+        teacher={DEFAULT_TEACHER}
       />
-      {loggedUser.id === ownerId && student.id !== ownerId && (
+      {loggedStudent.id === duelOwner.id && student.id !== duelOwner.id && (
         <KickOutButton onClick={() => kickOutParticipant(participation.id)}>
           <KickOutButtonIcon className="fas fa-sign-out-alt" />
         </KickOutButton>

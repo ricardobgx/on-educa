@@ -1,24 +1,27 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React from 'react';
-import { isDefaultUser } from '../../../functions/entitiesValues';
+import { isDefaultStudent } from '../../../functions/entitiesValues';
 import { IDuelTeam } from '../../../interfaces/IDuelTeam';
 import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
-import { IDuelStudentInfoComponentsProps } from '../../../pages/Duel';
-import { DEFAULT_USER } from '../../../static/defaultEntitiesValues';
+import { IStudent } from '../../../interfaces/IStudent';
+import { DEFAULT_STUDENT } from '../../../static/defaultEntitiesValues';
 import ChangeDuelTeamPosition from '../ChangeDuelTeamPosition';
 import DuelTeamParticipantCard from '../DuelTeamParticipantCard';
 import { DuelTeamParticipantsListBox } from './styles';
 
-interface IDuelTeamParticipantsList extends IDuelStudentInfoComponentsProps {
+interface IDuelTeamParticipantsListProps {
+  duelId: string;
+  duelOwner: IStudent;
   team: IDuelTeam;
-  refreshDuel: () => void;
+  loggedStudent: IStudent;
+  studentParticipation: IDuelTeamParticipation;
 }
 
 const DuelTeamParticipantsList = (
-  props: IDuelTeamParticipantsList,
+  props: IDuelTeamParticipantsListProps,
 ): JSX.Element => {
-  const { duelOwner, loggedUser, team, studentParticipation, refreshDuel } =
+  const { duelOwner, loggedStudent, team, studentParticipation, duelId } =
     props;
 
   const sortParticipations = (
@@ -34,21 +37,24 @@ const DuelTeamParticipantsList = (
   return (
     <DuelTeamParticipantsListBox>
       {participations.map((participation) => {
-        const student = participation.student || DEFAULT_USER;
-        return !isDefaultUser(student) ? (
+        const student = participation.student || DEFAULT_STUDENT;
+        return !isDefaultStudent(student) ? (
           <DuelTeamParticipantCard
             key={participation.id}
-            ownerId={duelOwner.id}
+            duelId={duelId}
+            duelOwner={duelOwner}
+            loggedStudent={loggedStudent}
             participation={participation}
-            refreshDuel={refreshDuel}
+            studentParticipation={studentParticipation}
           />
         ) : (
           <ChangeDuelTeamPosition
             key={participation.id}
-            duelTeamPartId={participation.id}
-            studentId={loggedUser.id}
+            duelId={duelId}
+            duelOwner={duelOwner}
+            loggedStudent={loggedStudent}
+            participation={participation}
             studentParticipation={studentParticipation}
-            refreshDuel={refreshDuel}
           />
         );
       })}

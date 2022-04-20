@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-console */
+
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect, useRouteMatch } from 'react-router-dom';
@@ -65,7 +68,7 @@ const EditContent = (): JSX.Element => {
 
   // Content details
 
-  const [title, setTitle] = useState(content.title);
+  const [name, setName] = useState(content.name);
   const [description, setDescription] = useState(content.description);
   const [video, setVideo] = useState(content.video);
 
@@ -88,7 +91,7 @@ const EditContent = (): JSX.Element => {
 
   const updateContent = async (): Promise<void> => {
     const contentParams: IContentParams = {
-      title: stringFieldValidation(title),
+      name: stringFieldValidation(name),
       description: stringFieldValidation(description),
       video: stringFieldValidation(video),
       unityId: unity.id,
@@ -108,7 +111,7 @@ const EditContent = (): JSX.Element => {
     if (content === DEFAULT_CONTENT)
       getContent(OnEducaAPI, id, token, setContent);
     else {
-      setTitle(content.title);
+      setName(content.name);
       setDescription(content.description);
       setVideo(content.video);
     }
@@ -122,7 +125,7 @@ const EditContent = (): JSX.Element => {
           <EditContentMainDetails>
             <NewContentVideo video={video} setVideo={setVideo} />
             <EditContentNameAndReference>
-              <NewContentName title={title} setTitle={setTitle} />
+              <NewContentName name={name} setName={setName} />
               <NewContentReferences
                 teachingType={teachingType}
                 setTeachingType={setTeachingType}

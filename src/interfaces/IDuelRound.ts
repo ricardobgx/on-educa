@@ -11,6 +11,7 @@ export interface IDuelRound {
   duel?: IDuel;
   team?: IDuelTeam;
   teams: IDuelTeam[];
+  winnerTeam?: IDuelTeam;
   question?: IDuelRoundQuestion;
   questions: IDuelRoundQuestion[];
 }

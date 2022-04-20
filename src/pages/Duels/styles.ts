@@ -1,8 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { paragraph } from '../../global/styles/components/textComponents';
-import { smallIcon } from '../../global/styles/components/iconComponents';
-import { inputText } from '../../global/styles/components/inputComponents';
 
 export const PageBox = styled.div`
   display: flex;

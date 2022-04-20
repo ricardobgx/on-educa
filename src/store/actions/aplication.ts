@@ -7,12 +7,12 @@ interface LoadToken {
 
 interface LoadTheme {
   type: AplicationActionType.LOAD_THEME;
-  theme: string;
+  theme: number;
 }
 
-interface LoadUserType {
-  type: AplicationActionType.LOAD_USER_TYPE;
-  userType: string;
+interface LoadPeopleType {
+  type: AplicationActionType.LOAD_IS_STUDENT;
+  isStudent: boolean;
 }
 
 interface EnableLoadingAnimation {
@@ -26,6 +26,6 @@ interface DisableLoadingAnimation {
 export type AplicationAction =
   | LoadToken
   | LoadTheme
-  | LoadUserType
+  | LoadPeopleType
   | EnableLoadingAnimation
   | DisableLoadingAnimation;

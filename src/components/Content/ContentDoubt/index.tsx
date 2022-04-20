@@ -1,5 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getDoubtCommentsByDoubt } from '../../../functions/doubtComment';
 import { reduceTextSize } from '../../../functions/utils';
+import { IDoubt } from '../../../interfaces/IDoubt';
+import { IDoubtComment } from '../../../interfaces/IDoubtComment';
+import OnEducaAPI from '../../../services/api';
+import { DoubtStatus } from '../../../types/doubtStatus';
 import {
   ContentDoubtDescription,
   ContentDoubtBox,
@@ -16,32 +21,60 @@ import {
   ContentDoubtCommentsNumber,
 } from './styles';
 
-const doubtDescription =
-  'Por que ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum ipsum lorum';
+interface IContentDoubtProps {
+  doubt: IDoubt;
+  token: string;
+}
 
-const ContentDoubt = (): JSX.Element => {
+const ContentDoubt = (props: IContentDoubtProps): JSX.Element => {
+  const { doubt, token } = props;
+  const { id, description, status, student } = doubt;
+  const { people, schoolGrade } = student;
+  const { name, profilePicture } = people;
+  const [comments, setComments] = useState<IDoubtComment[]>([]);
+
+  const getDoubtCommentsAction = async (): Promise<void> => {
+    const doubtCommentsData = await getDoubtCommentsByDoubt(
+      OnEducaAPI,
+      id,
+      token,
+    );
+
+    setComments(doubtCommentsData);
+  };
+
+  useEffect(() => {
+    if (token) {
+      getDoubtCommentsAction();
+    }
+  }, [token]);
+
   return (
-    <ContentDoubtBox>
+    <ContentDoubtBox to={`/doubts/${id}`}>
       <ContentDoubtHeader>
         <ContentDoubtOwner>
-          <OwnerPicture src="https://i.pinimg.com/474x/a2/92/de/a292de2720b31e18ceb366e5ca343fd0.jpg" />
+          <OwnerPicture src={profilePicture.path} />
           <OwnerInfo>
-            <OwnerName>Aluno 1</OwnerName>
-            <OwnerSchoolGrade>1º ano</OwnerSchoolGrade>
+            <OwnerName>{name}</OwnerName>
+            <OwnerSchoolGrade>{schoolGrade.index}º ano</OwnerSchoolGrade>
           </OwnerInfo>
         </ContentDoubtOwner>
         <ContentDoubtStatus>
           <ContentDoubtStatusIcon
-            className={`fas fa-${true ? 'check' : 'exclamation'}-circle`}
+            className={`fas fa-${
+              status === DoubtStatus.SOLVED ? 'check' : 'exclamation'
+            }-circle`}
           />
           <ContentDoubtComments>
-            <ContentDoubtCommentsNumber>0</ContentDoubtCommentsNumber>
+            <ContentDoubtCommentsNumber>
+              {comments.length}
+            </ContentDoubtCommentsNumber>
             <ContentDoubtCommentsIcon className="fas fa-comment-alt" />
           </ContentDoubtComments>
         </ContentDoubtStatus>
       </ContentDoubtHeader>
       <ContentDoubtDescription>
-        {reduceTextSize(doubtDescription, 100)}
+        {reduceTextSize(description, 100, 50)}
       </ContentDoubtDescription>
     </ContentDoubtBox>
   );

@@ -1,13 +1,11 @@
-import { IStudentWeekPerformance } from './IStudentWeekPerformance';
+import { IPeopleWeekDayPerformance } from './IPeopleWeekDayPerformance';
+import { IStudentWeeklyPerformance } from './IStudentWeeklyPerformance';
 
-export interface IStudentWeekDayPerformance {
-  id: string;
-  dailyXP: number;
-  studiedContents: number;
+export interface IStudentWeekDayPerformance extends IPeopleWeekDayPerformance {
+  contentsStudied: number;
   questionsAnswered: number;
-  rightQuestionsAnswered: number;
+  questionsAnsweredCorrectly: number;
   duelsParticipated: number;
   duelsWon: number;
-  weekPerformance?: IStudentWeekPerformance;
-  date: string;
+  weekPerformance?: IStudentWeeklyPerformance;
 }

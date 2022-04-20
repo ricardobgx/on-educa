@@ -36,7 +36,7 @@ const SimplePieChart = (props: ISimplePieChartProps): JSX.Element => {
           isAnimationActive={false}
           data={data}
           cx={width * 0.6}
-          cy={height * 0.4}
+          cy={height * 0.45}
           innerRadius={(height * 0.28) / 2}
           outerRadius={height * 0.28}
           fill={color}

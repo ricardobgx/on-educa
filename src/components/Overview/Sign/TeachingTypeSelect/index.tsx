@@ -21,7 +21,7 @@ const TeachingTypeSelect = (props: ITeachingTypeSelectProps): JSX.Element => {
     >
       {teachingTypes.map((teachingType) => (
         <TeachSchoolOption key={teachingType.id} value={teachingType.id}>
-          {teachingType.title}
+          {teachingType.name}
         </TeachSchoolOption>
       ))}
     </TeachSchoolSelect>

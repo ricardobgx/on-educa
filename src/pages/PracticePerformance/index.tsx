@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-console */
 
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { useRouteMatch } from 'react-router-dom';
-import bookLover from '../../assets/ilustrations/undraw_book_lover_mkck.svg';
-import pieChart from '../../assets/ilustrations/pie_chart.svg';
 import analytics from '../../assets/ilustrations/analytics.png';
 import { IPracticeQuestion } from '../../interfaces/IPracticeQuestion';
 import { ActionCreators, State } from '../../store';
@@ -14,7 +13,6 @@ import SectionLabel from '../../components/App/SectionLabel';
 import {
   NextContentButton,
   NextContentButtonLabel,
-  PageBox,
   PerformanceDataBox,
   PerformanceDetails,
   PerformanceDetailsBox,
@@ -26,7 +24,10 @@ import {
   PracticePerformanceChartBox,
   TotalLabel,
 } from './styles';
-import { Page } from '../../global/styles/components/pageComponents';
+import {
+  Page,
+  PageBoxColumn,
+} from '../../global/styles/components/pageComponents';
 import { isDefaultAlternative } from '../../functions/entitiesValues';
 import PracticePerformanceData from '../../components/PracticePerformance/PracticePerformanceData';
 import SimplePieChart, {
@@ -35,7 +36,7 @@ import SimplePieChart, {
 import theme from '../../global/styles/theme';
 import { deviceHeight, deviceType, deviceWidth } from '../../functions/utils';
 import { DeviceType } from '../../types/deviceType';
-import { updateStudentWeekPerformanceValues } from '../../functions/studentWeekPerformance';
+import { updateStudentWeeklyPerformanceValues } from '../../functions/studentWeeklyPerformance';
 import OnEducaAPI from '../../services/api';
 
 interface IPracticePerformanceRouteParams {
@@ -58,19 +59,11 @@ const PracticePerformance = (): JSX.Element => {
 
   // State
 
-  const { practice, user, aplication } = useSelector((store: State) => store);
+  const { practice, people, aplication, student } = useSelector(
+    (store: State) => store,
+  );
   const { questions } = practice;
   const { token } = aplication;
-
-  /* Content functions */
-
-  const isNewContent = (): boolean => {
-    return true;
-  };
-
-  const contentScore = (): number => {
-    return isNewContent() ? 10 : 0;
-  };
 
   /* Rota */
 
@@ -127,18 +120,12 @@ const PracticePerformance = (): JSX.Element => {
     return rightQuestionsNumber(practiceQuestions) * 10;
   };
 
-  /* General functions */
-
-  const practiceScore = (): number => {
-    return contentScore() + questionsScore(questions);
-  };
-
   useEffect((): any => {
-    if (user) {
-      updateStudentWeekPerformanceValues(
+    if (people) {
+      updateStudentWeeklyPerformanceValues(
         OnEducaAPI,
         {
-          studentId: user.id,
+          studentId: student.id,
           questionsAnsweredNumber: questions.length,
           rightQuestionsAnsweredNumber: rightQuestionsNumber(questions),
           dailyXPNumber: rightQuestionsNumber(questions) * 10,
@@ -150,7 +137,7 @@ const PracticePerformance = (): JSX.Element => {
       );
     }
     return () => loadQuestions([]);
-  }, [user]);
+  }, [people]);
 
   const rightQuestions = rightQuestionsNumber(questions);
   const wrongQuestions = wrongQuestionsNumber(questions);
@@ -162,7 +149,7 @@ const PracticePerformance = (): JSX.Element => {
       value: rightQuestions,
     },
     {
-      name: 'Questões erradas',
+      name: 'Questões incorretas',
       value: wrongQuestions,
     },
     {
@@ -191,7 +178,7 @@ const PracticePerformance = (): JSX.Element => {
 
   return (
     <Page>
-      <PageBox>
+      <PageBoxColumn>
         <PracticePerformanceBox>
           <PerformancePageImageBox>
             <PerformancePageImage src={analytics} />
@@ -207,8 +194,8 @@ const PracticePerformance = (): JSX.Element => {
                   color="#000000"
                   colors={[
                     theme.similarColors.rightQuestion,
+                    theme.similarColors.skippedQuestion,
                     theme.similarColors.wrongQuestion,
-                    theme.colors.textColor,
                   ]}
                 />
               </PracticePerformanceChartBox>
@@ -224,13 +211,13 @@ const PracticePerformance = (): JSX.Element => {
                     dataLabel="Questões incorretas"
                     dataValue={wrongQuestions}
                     XPValue={0}
-                    color={theme.similarColors.wrongQuestion}
+                    color={theme.similarColors.skippedQuestion}
                   />
                   <PracticePerformanceData
                     dataLabel="Questões puladas"
                     dataValue={skippedQuestions}
                     XPValue={0}
-                    color={theme.colors.textColor}
+                    color={theme.similarColors.wrongQuestion}
                   />
                   <PerformanceDataBox>
                     <TotalLabel>Total XP</TotalLabel>
@@ -244,7 +231,7 @@ const PracticePerformance = (): JSX.Element => {
             </NextContentButton>
           </PerformanceDetails>
         </PracticePerformanceBox>
-      </PageBox>
+      </PageBoxColumn>
     </Page>
   );
 };

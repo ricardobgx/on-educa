@@ -1,11 +1,11 @@
 import { IDuelQuestionAnswer } from './IDuelQuestionAnswer';
 import { IDuelTeam } from './IDuelTeam';
-import { IUser } from './IUser';
+import { IStudent } from './IStudent';
 
 export interface IDuelTeamParticipation {
   id: string;
   index: number;
   duelTeam: IDuelTeam;
-  student: IUser | null;
+  student: IStudent | null;
   duelQuestionsAnswers: IDuelQuestionAnswer[];
 }

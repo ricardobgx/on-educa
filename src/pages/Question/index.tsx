@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
@@ -47,7 +49,7 @@ const Question = (): JSX.Element => {
       <PageBox>
         <Container>
           <SectionLabel
-            label={reduceTextSize(description, 45)}
+            label={reduceTextSize(description, 45, 20)}
             backLink="/questions"
           />
           <QuestionDetails>

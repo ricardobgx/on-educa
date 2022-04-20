@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button } from '../../global/styles/components/buttonComponents';
 import { LinkButton } from '../../global/styles/components/linkComponents';

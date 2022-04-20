@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { isStudent } from '../../../functions/user';
 import { ICommonUnityProps } from '../../../pages/Units';
 import {
   ClearSearchSuppliesInputButton,
@@ -20,7 +19,7 @@ import NewUnity from '../NewUnity';
 import { UnitsActionsBox, Container } from './styles';
 
 interface IUnitsActionsProps extends ICommonUnityProps {
-  userType: string;
+  isStudent: boolean;
 }
 
 const UnitsActions = (props: IUnitsActionsProps): JSX.Element => {
@@ -30,7 +29,7 @@ const UnitsActions = (props: IUnitsActionsProps): JSX.Element => {
 
   /* Props */
 
-  const { userType, getUnits } = props;
+  const { isStudent, getUnits } = props;
 
   return (
     <Container>
@@ -54,7 +53,7 @@ const UnitsActions = (props: IUnitsActionsProps): JSX.Element => {
           <SearchSuppliesButtonIcon className="fas fa-search" />
         </SearchSuppliesButton>
       </SearchSupplies>
-      {!isStudent(userType) && (
+      {!isStudent && (
         <UnitsActionsBox>
           <NewSuppliesButton onClick={() => setNewUnityIsVisible(true)}>
             <NewSuppliesButtonLabel>Nova unidade</NewSuppliesButtonLabel>

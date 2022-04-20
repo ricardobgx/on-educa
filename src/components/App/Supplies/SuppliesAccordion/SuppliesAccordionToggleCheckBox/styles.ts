@@ -1,8 +1,5 @@
 import styled from 'styled-components';
-import {
-  mediumIcon,
-  smallIcon,
-} from '../../../../../global/styles/components/iconComponents';
+import { smallIcon } from '../../../../../global/styles/components/iconComponents';
 import { paragraph } from '../../../../../global/styles/components/textComponents';
 
 export const SuppliesAccordionToggleCheckBoxLabel = styled.label`

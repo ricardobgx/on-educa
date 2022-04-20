@@ -15,22 +15,42 @@ export const Ranking = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  min-height: calc(100vh - 95px);
+  max-height: calc(100vh - 95px);
 
   @media (max-width: 1150px) {
     width: 100%;
+    min-height: 500px;
+    max-height: 500px;
+  }
+`;
+export const RankingBox = styled.div`
+  padding: 15px;
+  margin: 20px;
+  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
+  border-radius: 5px;
+  background: ${({ theme }) => theme.colors.boxColor};
+  height: 100%;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    padding: 5px;
+    height: 100%;
   }
 `;
 
 // Estudantes no ranking
 
-export const UsersList = styled.div`
+export const PeoplesList = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};
   padding: 15px;
   margin: 20px;
   border-radius: 5px;
   box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
 `;
-export const UsersListBox = styled.div`
+export const PeoplesListBox = styled.div`
   display: flex;
   flex-direction: column;
   overflow: auto;

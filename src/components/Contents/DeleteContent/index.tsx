@@ -58,7 +58,7 @@ const DeleteContent = (props: IDeleteContentProps): JSX.Element => {
         </CloseDeleteContentButton>
         <DeleteContentLabel>Excluir unidade</DeleteContentLabel>
         <DeleteContentWarningLabel>
-          Tem certeza que deseja excluir o conteúdo {content.title}? Todos as
+          Tem certeza que deseja excluir o conteúdo {content.name}? Todos as
           questões e informações associadas à esse conteúdo serão excluidas
         </DeleteContentWarningLabel>
         <DeleteContentActions>

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import { IUserParams } from '../../../dto/IUserParams';
-import { getUser, isStudent, updateUser } from '../../../functions/user';
+import { IPeopleParams } from '../../../dto/IPeopleParams';
+import { getPeople, updatePeople } from '../../../functions/people';
+import { updateStudent } from '../../../functions/student';
+import { updateTeacher } from '../../../functions/teacher';
 import OnEducaAPI from '../../../services/api';
-import { ActionCreators } from '../../../store';
+import { ActionCreators, State } from '../../../store';
 import {
   UpdateProfileActionsBox,
   CancelUpdateProfileButton,
@@ -22,7 +24,7 @@ interface IUpdateProfileActionsProps {
   profilePicture: string;
   schoolGradeId: string;
   teachingTypeId: string;
-  userType: string;
+  isStudent: boolean;
   token: string;
 }
 
@@ -32,7 +34,8 @@ const UpdateProfileActions = (
   /* Global State */
 
   const dispatch = useDispatch();
-  const { loginUser } = bindActionCreators(ActionCreators, dispatch);
+  const { loginPeople } = bindActionCreators(ActionCreators, dispatch);
+  const { student, teacher } = useSelector((store: State) => store);
 
   const {
     id,
@@ -42,29 +45,51 @@ const UpdateProfileActions = (
     password,
     schoolGradeId,
     teachingTypeId,
-    userType,
+    isStudent,
     token,
   } = props;
 
   const [updateCompleted, setUpdateCompleted] = useState(false);
 
-  const userParams = {
+  const peopleParams = {
     id,
     email: email === '' ? undefined : email,
     name: name === '' ? undefined : name,
     profilePicture: profilePicture === '' ? undefined : profilePicture,
     password: password === '' ? undefined : password,
-    schoolGradeId: isStudent(userType) ? schoolGradeId : undefined,
-    teachingTypeId: !isStudent(userType) ? teachingTypeId : undefined,
-  } as IUserParams;
+    schoolGradeId: isStudent ? schoolGradeId : undefined,
+    teachingTypeId: !isStudent ? teachingTypeId : undefined,
+  } as IPeopleParams;
 
   const updateSucess = (): void => {
-    getUser(OnEducaAPI, userType, id, loginUser, token);
+    getPeople(OnEducaAPI, id, loginPeople, token);
     setUpdateCompleted(true);
   };
 
   const updateError = (): void => {
     console.log('erro');
+  };
+
+  const updatePeopleSucess = async (): Promise<void> => {
+    if (isStudent) {
+      await updateStudent(
+        OnEducaAPI,
+        student.id,
+        { schoolGradeId },
+        token,
+        updateSucess,
+        updateError,
+      );
+    } else {
+      await updateTeacher(
+        OnEducaAPI,
+        teacher.id,
+        { teachingTypeId },
+        token,
+        updateSucess,
+        updateError,
+      );
+    }
   };
 
   return (
@@ -76,13 +101,12 @@ const UpdateProfileActions = (
       </CancelUpdateProfileButton>
       <ConfirmUpdateProfileButton
         onClick={() =>
-          updateUser(
+          updatePeople(
             OnEducaAPI,
-            userType,
             id,
-            userParams,
+            peopleParams,
             token,
-            updateSucess,
+            updatePeopleSucess,
             updateError,
           )
         }

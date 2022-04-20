@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 import SectionLabel from '../../components/App/SectionLabel';
 import UpdateProfileActions from '../../components/UpdateProfile/UpdateProfileActions';
 import UpdateProfileSections from '../../components/UpdateProfile/UpdateProfileSections';
-import { isStudent } from '../../functions/user';
 import {
   DEFAULT_SCHOOL_GRADE,
   DEFAULT_TEACHING_TYPE,
@@ -18,9 +17,9 @@ import { PageBox, UpdateProfileBox } from './styles';
 const UpdateProfile = (): JSX.Element => {
   /* Global State */
 
-  const { user, aplication } = useSelector((store: State) => store);
-  const { id } = user;
-  const { userType, token } = aplication;
+  const { people, aplication } = useSelector((store: State) => store);
+  const { id } = people;
+  const { isStudent, token } = aplication;
 
   /* Local State */
 
@@ -32,17 +31,17 @@ const UpdateProfile = (): JSX.Element => {
   const [newPassword, setNewPassword] = useState('');
 
   useEffect(() => {
-    setProfilePicture(user.profilePicture.path);
-    setName(user.name);
-    if (!isStudent(userType)) {
-      const teachingType = user.teachingType || DEFAULT_TEACHING_TYPE;
+    setProfilePicture(people.profilePicture.path);
+    setName(people.name);
+    if (!isStudent) {
+      const teachingType = people.teachingType || DEFAULT_TEACHING_TYPE;
       setSelectedTeachingTypeId(teachingType.id);
     } else {
-      const schoolGrade = user.schoolGrade || DEFAULT_SCHOOL_GRADE;
+      const schoolGrade = people.schoolGrade || DEFAULT_SCHOOL_GRADE;
       setSelectedSchoolGradeId(schoolGrade.id);
     }
-    setEmail(user.email);
-  }, [user]);
+    setEmail(people.email);
+  }, [people]);
 
   const updateProfileActionsProps = {
     id,
@@ -52,7 +51,7 @@ const UpdateProfile = (): JSX.Element => {
     profilePicture,
     schoolGradeId: selectedSchoolGradeId,
     teachingTypeId: selectedTeachingTypeId,
-    userType,
+    isStudent,
     token,
   };
 
@@ -69,7 +68,7 @@ const UpdateProfile = (): JSX.Element => {
     setEmail,
     newPassword,
     setNewPassword,
-    userType,
+    isStudent,
   };
 
   return (

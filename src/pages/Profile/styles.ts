@@ -1,8 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { Button } from '../../global/styles/components/buttonComponents';
 import { paragraph } from '../../global/styles/components/textComponents';
-import { mediumIcon } from '../../global/styles/components/iconComponents';
 
 export const PageBox = styled.div`
   display: flex;
@@ -38,25 +35,25 @@ export const ProfileDetailsBox = styled.div`
   flex-direction: column;
   margin: 20px;
   background: ${({ theme }) => theme.colors.boxColor};
-  min-height: calc(100vh - 95px);
-  max-height: calc(100vh - 95px);
+  min-height: calc(100vh - 220px);
+  position: relative;
 
   @media (max-width: 1150px) {
     min-height: unset;
     max-height: unset;
   }
 `;
-export const UserDetails = styled.div`
+export const PeopleDetails = styled.div`
   display: flex;
   flex-direction: column;
-  transform: translateY(-60px);
+  margin-top: 80px;
 
   @media (max-width: 1150px) {
-    transform: translateY(-50px);
+    margin-top: 50px;
   }
 `;
 export const ProfileBanner = styled.div`
-  height: 140px;
+  min-height: 140px;
   width: 100%;
   border-radius: 5px 5px 0 0;
   background: linear-gradient(
@@ -64,10 +61,10 @@ export const ProfileBanner = styled.div`
     ${({ theme }) => theme.colors.commonColor},
     ${({ theme }) => theme.colors.secondaryColor}
   );
-  position: relative;
+  position: absolute;
 
   @media (max-width: 1150px) {
-    height: 100px;
+    min-height: 100px;
   }
 `;
 export const ProfileBannerImg = styled.img`
@@ -79,7 +76,7 @@ export const ProfileBannerImg = styled.img`
     height: 100px;
   }
 `;
-export const UserPictureBox = styled.div`
+export const PeoplePictureBox = styled.div`
   width: max-content;
   height: max-content;
   padding: 5px;
@@ -88,7 +85,7 @@ export const UserPictureBox = styled.div`
   border-radius: 50%;
   position: relative;
 `;
-export const UserPicture = styled.img`
+export const PeoplePicture = styled.img`
   width: 110px;
   height: 110px;
   border-radius: 50%;
@@ -136,88 +133,26 @@ export const AppearenceDetails = styled.div`
 export const MainDetails = styled.div`
   margin: 25px;
 `;
-export const EditProfileButton = styled(Link)`
-  padding: 0 10px;
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  min-height: 40px;
-  max-height: 40px;
-  color: ${({ theme }) => theme.colors.textColor};
-  background: ${({ theme }) => theme.colors.boxColor};
-  cursor: pointer;
-`;
-export const EditProfileButtonLabel = styled(paragraph)`
-  margin-right: 10px;
-`;
-export const UserName = styled(paragraph)`
+
+// Caracteristica da pessoa
+
+export const PeopleName = styled(paragraph)`
   margin-bottom: 10px;
-  font-size: 20px;
   font-weight: bold;
   color: ${({ theme }) => theme.colors.textColor};
 `;
 export const TeachingTypeLabel = styled(paragraph)`
-  font-size: 18px;
   color: ${({ theme }) => theme.colors.textColor};
 `;
 export const SchoolGradeLabel = styled(paragraph)`
-  font-size: 18px;
   color: ${({ theme }) => theme.colors.textColor};
+`;
+export const SelectSocialDetails = styled.div`
+  margin: 20px 5px;
 `;
 export const SocialDetails = styled.div`
-  margin: 20px 25px;
+  padding: 0 15px;
 `;
-export const SocialDetailsList = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-export const SocialDetail = styled(Button)`
-  background: none;
-  box-shadow: none;
-  color: ${({ theme }) => theme.colors.textColor};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 96;
-
-  &::before {
-    content: '';
-    background: ${({ theme }) => theme.colors.textColor};
-    width: 0%;
-    height: 3px;
-    position: absolute;
-    bottom: 0;
-    right: 0%;
-    border-radius: 5px;
-    transition: all 0.2s linear;
-  }
-
-  &.selected-detail::before {
-    left: 0%;
-    right: unset;
-    width: 100%;
-  }
-
-  @media (max-width: 900px) {
-    width: 50px;
-  }
-
-  @media (min-width: 900px) {
-    & span,
-    & i {
-      display: none;
-    }
-  }
-`;
-export const SocialDetailLabel = styled(paragraph)`
-  font-weight: bold;
-
-  @media (max-width: 900px) {
-    display: none;
-  }
-`;
-export const SocialDetailIcon = styled(mediumIcon)``;
 export const EditImageButton = styled.button`
   position: absolute;
   width: 30px;

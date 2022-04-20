@@ -1,6 +1,7 @@
 import React from 'react';
 import theme from '../../../global/styles/theme';
 import { ISubject } from '../../../interfaces/ISubject';
+import { NoSelectedSupplies } from '../../App/Supplies/styles';
 import {
   SubjectSectionSelectBox,
   RequiredFieldLabel,
@@ -37,6 +38,9 @@ const SubjectSelect = (props: ISubjectSelectProps): JSX.Element => {
       </SubjectSectionSelectLabel>
       <SubjectSectionSelectOptionsList>
         <SubjectSectionSelectOptionsListBox>
+          {sortedSubjects.length === 0 && (
+            <NoSelectedSupplies>Nenhuma série selecionada</NoSelectedSupplies>
+          )}
           {sortedSubjects.map((subject) => (
             <SubjectSectionSelectOption
               key={subject.id}

@@ -4,12 +4,12 @@ import { NewContentBoxLabel } from '../../../pages/NewContent/styles';
 import { NameInput, NewContentNameBox } from './styles';
 
 interface INewContentNameProps {
-  title: string;
-  setTitle: (title: string) => void;
+  name: string;
+  setName: (name: string) => void;
 }
 
 const NewContentName = (props: INewContentNameProps): JSX.Element => {
-  const { title, setTitle } = props;
+  const { name, setName } = props;
 
   return (
     <NewContentNameBox>
@@ -17,9 +17,9 @@ const NewContentName = (props: INewContentNameProps): JSX.Element => {
         Nome do conteúdo<RequiredField>*</RequiredField>
       </NewContentBoxLabel>
       <NameInput
-        value={title}
+        value={name}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-          setTitle(event.target.value)
+          setName(event.target.value)
         }
         type="text"
       />

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { paragraph } from '../../../global/styles/components/textComponents';
 import { smallIcon } from '../../../global/styles/components/iconComponents';
 
@@ -12,6 +11,8 @@ export const DuelCardBox = styled.div`
   padding: 20px;
   color: ${({ theme }) => theme.colors.textColor};
   cursor: pointer;
+  opacity: 0;
+  animation: fadeIn 0.2s linear forwards;
 
   &:last-of-type {
     margin: 0;

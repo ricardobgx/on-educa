@@ -30,8 +30,8 @@ const TeachingTypeSelect = (props: ITeachingTypeSelectProps): JSX.Element => {
     teachingTypeA: ITeachingType,
     teachingTypeB: ITeachingType,
   ): number => {
-    if (teachingTypeA.title > teachingTypeB.title) return 1;
-    if (teachingTypeA.title < teachingTypeB.title) return -1;
+    if (teachingTypeA.name > teachingTypeB.name) return 1;
+    if (teachingTypeA.name < teachingTypeB.name) return -1;
     return 0;
   };
 
@@ -61,7 +61,7 @@ const TeachingTypeSelect = (props: ITeachingTypeSelectProps): JSX.Element => {
               onClick={() => setTeachingTypeSelected(teachingType)}
             >
               <SubjectSectionSelectOptionLabel>
-                {teachingType.title}
+                {teachingType.name}
               </SubjectSectionSelectOptionLabel>
             </SubjectSectionSelectOption>
           ))}

@@ -1,5 +1,4 @@
 import React from 'react';
-import { isStudent } from '../../../functions/user';
 import {
   UpdateProfileSection,
   UpdateProfileSectionBox,
@@ -28,7 +27,7 @@ export interface IUpdatePersonalInformationsProps {
   setSelectedTeachingTypeId: (value: string) => void;
   selectedSchoolGradeId: string;
   setSelectedSchoolGradeId: (value: string) => void;
-  userType: string;
+  isStudent: boolean;
 }
 
 const UpdatePersonalInformations = (
@@ -43,7 +42,7 @@ const UpdatePersonalInformations = (
     setSelectedTeachingTypeId,
     selectedSchoolGradeId,
     setSelectedSchoolGradeId,
-    userType,
+    isStudent,
   } = props;
 
   return (
@@ -78,7 +77,7 @@ const UpdatePersonalInformations = (
           value={name}
           setValue={setName}
         />
-        {isStudent(userType) ? (
+        {isStudent ? (
           <UpdateProfileSchoolGrade
             selectedSchoolGradeId={selectedSchoolGradeId}
             setSelectedSchoolGradeId={setSelectedSchoolGradeId}

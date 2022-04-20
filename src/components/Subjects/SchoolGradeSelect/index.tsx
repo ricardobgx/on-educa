@@ -1,6 +1,7 @@
 import React from 'react';
 import theme from '../../../global/styles/theme';
 import { ISchoolGrade } from '../../../interfaces/ISchoolGrade';
+import { NoSelectedSupplies } from '../../App/Supplies/styles';
 import {
   SubjectSectionSelectBox,
   RequiredFieldLabel,
@@ -29,6 +30,9 @@ const SchoolGradeSelect = (props: ISchoolGradeSelectProps): JSX.Element => {
       </SubjectSectionSelectLabel>
       <SubjectSectionSelectOptionsList>
         <SubjectSectionSelectOptionsListBox>
+          {options.length === 0 && (
+            <NoSelectedSupplies>Nenhum ensino selecionado</NoSelectedSupplies>
+          )}
           {options.map((option) => (
             <SubjectSectionSelectOption
               key={option.id}

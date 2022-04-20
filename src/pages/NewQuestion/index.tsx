@@ -30,6 +30,7 @@ const NewQuestion = (): JSX.Element => {
     subject: globalSubject,
     unity: globalUnity,
     content: globalContent,
+    teacher,
   } = useSelector((store: State) => store);
 
   const { token } = aplication;
@@ -104,6 +105,7 @@ const NewQuestion = (): JSX.Element => {
             questionWasCreated={questionWasCreated}
             setQuestionWasCreated={setQuestionWasCreated}
             token={token}
+            teacherId={teacher.id}
           />
         </NewQuestionBox>
       </PageBox>

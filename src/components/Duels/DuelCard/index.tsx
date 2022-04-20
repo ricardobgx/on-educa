@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { getDuel } from '../../../functions/duel';
+import { socket } from '../../../App';
 import {
   duelRoundStatusIcon,
   duelRoundStatusLabel,
 } from '../../../functions/duelRound';
 import { participateInDuel } from '../../../functions/duelTeamParts';
+import { isDefaultDuel } from '../../../functions/entitiesValues';
+import { getPeople } from '../../../functions/people';
 import { IDuel } from '../../../interfaces/IDuel';
 import { IDuelTeam } from '../../../interfaces/IDuelTeam';
-import { IUser } from '../../../interfaces/IUser';
+import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
+import { IStudent } from '../../../interfaces/IStudent';
 import OnEducaAPI from '../../../services/api';
-import { DEFAULT_DUEL } from '../../../static/defaultEntitiesValues';
-import { State } from '../../../store';
+import { DEFAULT_PEOPLE } from '../../../static/defaultEntitiesValues';
 import {
   DuelCardBox,
   DuelDetails,
@@ -32,21 +33,19 @@ import {
 } from './styles';
 
 interface IDuelCardProps {
-  duelId: string;
-  student: IUser;
+  duel: IDuel;
+  student: IStudent;
+  token: string;
+  index: number;
 }
 
 const DuelCard = (props: IDuelCardProps): JSX.Element => {
-  const { duelId, student: loggedStudent } = props;
-
-  /* Estado da aplicacao */
-
-  const { aplication } = useSelector((store: State) => store);
-  const { token } = aplication;
+  const { duel, student: loggedStudent, token, index } = props;
 
   /* Estado do componente */
 
-  const [duel, setDuel] = useState<IDuel>(DEFAULT_DUEL);
+  const [people, setPeople] = useState(DEFAULT_PEOPLE);
+
   const [numParticipants, setNumParticipants] = useState(0);
   const [participateInDuelComplete, setParticipateInDuelComplete] =
     useState<boolean>(false);
@@ -67,31 +66,37 @@ const DuelCard = (props: IDuelCardProps): JSX.Element => {
     return numParticipantsCounter;
   };
 
-  const getDuelData = async (duelFound: IDuel): Promise<void> => {
-    const { duelRound } = duelFound;
-    setNumParticipants(participatesInDuelCounter(duelRound.teams));
-    setDuel(duelFound);
-  };
-
   const appendParticipant = async (): Promise<void> => {
     await participateInDuel(
       OnEducaAPI,
       {
-        duelId,
+        duelId: duel.id,
         studentId: loggedStudent.id,
       },
       token,
-      () => setParticipateInDuelComplete(true),
+      (duelTeamParticipation: IDuelTeamParticipation) => {
+        setParticipateInDuelComplete(true);
+        socket.emit(`duel.new-participation`, {
+          duelId: duel.id,
+          data: {
+            ...duelTeamParticipation,
+          } as IDuelTeamParticipation,
+        });
+      },
       () => console.log('erro'),
     );
   };
 
   useEffect(() => {
-    getDuel(OnEducaAPI, duelId, token, getDuelData, () => console.log('erro'));
-  }, []);
+    if (!isDefaultDuel(duel)) {
+      const { student, duelRound } = duel;
+      setNumParticipants(participatesInDuelCounter(duelRound.teams));
+      getPeople(OnEducaAPI, student.people.id, setPeople, token);
+    }
+  }, [duel]);
 
-  const { id, code, student, duelRound } = duel;
-  const { name: ownerName } = student;
+  const { id, code, duelRound } = duel;
+  const { name: ownerName } = people;
   const { status, maxGroupParticipants, timeForQuestion, questionsPerContent } =
     duelRound;
 
@@ -99,6 +104,7 @@ const DuelCard = (props: IDuelCardProps): JSX.Element => {
     <DuelCardBox
       onClick={() => appendParticipant()}
       className="with-shadow bd-rd-5"
+      style={{ animationDelay: `${index * 0.2}s` }}
     >
       <DuelDetails>
         <OwnerInfo>

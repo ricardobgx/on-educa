@@ -1,4 +1,5 @@
 import { AxiosInstance } from 'axios';
+import { IAnswerDuelRoundQuestionParams } from '../dto/duelRound/IAnswerDuelRoundQuestionParams';
 import { IDuelRoundParams } from '../dto/IDuelRoundParams';
 import { DuelRoundStatus } from '../types/duelRoundStatus';
 
@@ -71,6 +72,26 @@ export const startDuelRound = async (
       authorization: `Bearer ${token}`,
     },
   }).then(() => {
+    updateSucess();
+  });
+};
+
+export const answerDuelRoundQuestion = async (
+  API: AxiosInstance,
+  duelRoundId: string,
+  answerDuelRoundQuestionParams: IAnswerDuelRoundQuestionParams,
+  token: string,
+  updateSucess: () => void,
+): Promise<void> => {
+  await API.put(
+    `/${entityPath}/answerQuestion/${duelRoundId}`,
+    answerDuelRoundQuestionParams,
+    {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    },
+  ).then(() => {
     updateSucess();
   });
 };

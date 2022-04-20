@@ -76,7 +76,7 @@ const SuppliesTeachSchoolReferenceSelect = (
           key={schoolGrade.id}
           value={schoolGrade.id}
         >
-          {schoolGrade.index} º ano - {schoolGrade?.teachingType?.title}
+          {schoolGrade.index} º ano - {schoolGrade.teachingType.name}
         </SuppliesReferenceSelectOption>
       ))}
     </SuppliesReferenceSelect>

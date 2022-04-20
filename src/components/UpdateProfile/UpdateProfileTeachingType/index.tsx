@@ -40,7 +40,7 @@ const UpdateProfileTeachingType = (
       >
         {teachingTypes.map((teachingType) => (
           <UpdateProfileOption value={teachingType.id}>
-            {teachingType.title}
+            {teachingType.name}
           </UpdateProfileOption>
         ))}
       </UpdateProfileSelect>

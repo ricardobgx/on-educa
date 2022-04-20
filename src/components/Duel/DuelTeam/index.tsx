@@ -1,23 +1,21 @@
 import React from 'react';
 import { IDuelTeam } from '../../../interfaces/IDuelTeam';
-import { IDuelStudentInfoComponentsProps } from '../../../pages/Duel';
+import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
+import { IStudent } from '../../../interfaces/IStudent';
 import DuelTeamParticipantsList from '../DuelTeamParticipantsList';
 import { DuelTeamBox, DuelTeamLabel, DuelTeamParticipants } from './styles';
 
-interface IDuelTeamProps extends IDuelStudentInfoComponentsProps {
+interface IDuelTeamProps {
+  duelId: string;
+  duelOwner: IStudent;
   team: IDuelTeam;
-  refreshDuel: () => void;
+  loggedStudent: IStudent;
+  studentParticipation: IDuelTeamParticipation;
 }
 
 const DuelTeam = (props: IDuelTeamProps): JSX.Element => {
-  const {
-    duelOwner,
-    loggedUser,
-    studentParticipation,
-    setStudentParticipation,
-    team,
-    refreshDuel,
-  } = props;
+  const { duelOwner, studentParticipation, team, loggedStudent, duelId } =
+    props;
 
   return (
     <DuelTeamBox className="with-shadow bd-rd-5">
@@ -25,11 +23,10 @@ const DuelTeam = (props: IDuelTeamProps): JSX.Element => {
       <DuelTeamParticipants>
         <DuelTeamParticipantsList
           team={team}
+          duelId={duelId}
           duelOwner={duelOwner}
-          loggedUser={loggedUser}
+          loggedStudent={loggedStudent}
           studentParticipation={studentParticipation}
-          setStudentParticipation={setStudentParticipation}
-          refreshDuel={refreshDuel}
         />
       </DuelTeamParticipants>
     </DuelTeamBox>

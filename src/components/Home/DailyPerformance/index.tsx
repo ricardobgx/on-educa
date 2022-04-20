@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { isDefaultUser } from '../../../functions/entitiesValues';
-import { getStudentWeekPerformanceByStudent } from '../../../functions/studentWeekPerformance';
-import { IStudentWeekPerformance } from '../../../interfaces/IStudentWeekPerformance';
+import { isDefaultPeople } from '../../../functions/entitiesValues';
+import { getStudentWeeklyPerformanceByStudent } from '../../../functions/studentWeeklyPerformance';
+import { IStudentWeeklyPerformance } from '../../../interfaces/IStudentWeeklyPerformance';
 import OnEducaAPI from '../../../services/api';
-import { DEFAULT_STUDENT_WEEK_PERFORMANCE } from '../../../static/defaultEntitiesValues';
+import { DEFAULT_STUDENT_WEEKLY_PERFORMANCE } from '../../../static/defaultEntitiesValues';
 import { State } from '../../../store';
 import {
   DailyPerformanceBox,
@@ -20,26 +20,28 @@ import {
 } from './styles';
 
 const DailyPerformance = (): JSX.Element => {
-  const { user, aplication } = useSelector((store: State) => store);
+  const { people, student, teacher, aplication } = useSelector(
+    (store: State) => store,
+  );
   const { token } = aplication;
 
-  const [studentWeekPerformance, setStudentWeekPerformance] =
-    useState<IStudentWeekPerformance>(DEFAULT_STUDENT_WEEK_PERFORMANCE);
+  const [studentWeeklyPerformance, setStudentWeeklyPerformance] =
+    useState<IStudentWeeklyPerformance>(DEFAULT_STUDENT_WEEKLY_PERFORMANCE);
 
   useEffect(() => {
-    if (!isDefaultUser(user)) {
-      getStudentWeekPerformanceByStudent(
+    if (!isDefaultPeople(people)) {
+      getStudentWeeklyPerformanceByStudent(
         OnEducaAPI,
-        user.id,
+        student.id,
         token,
-        setStudentWeekPerformance,
+        setStudentWeeklyPerformance,
         () => console.log('erro'),
       );
     }
-  }, [user]);
+  }, [people]);
 
-  const { xp, weekDay } = studentWeekPerformance;
-  const { dailyXP, studiedContents, questionsAnswered } = weekDay;
+  const { xp, weekDay } = studentWeeklyPerformance;
+  const { dailyXp, contentsStudied, questionsAnswered } = weekDay;
 
   return (
     <DailyPerformanceBox className="with-shadow bd-rd-5">
@@ -48,7 +50,7 @@ const DailyPerformance = (): JSX.Element => {
         <PerformancesTypeBox>
           <PerformanceTypeBox>
             <PerformanceLabel>XP hoje</PerformanceLabel>
-            <PerformanceDataLabel>{dailyXP}</PerformanceDataLabel>
+            <PerformanceDataLabel>{dailyXp}</PerformanceDataLabel>
           </PerformanceTypeBox>
           <PerformanceTypeBox>
             <PerformanceLabel>XP semanal</PerformanceLabel>
@@ -59,7 +61,7 @@ const DailyPerformance = (): JSX.Element => {
         <PerformancesTypeBox>
           <PerformanceTypeBox>
             <PerformanceLabel>Conteúdos</PerformanceLabel>
-            <PerformanceDataLabel>{studiedContents}</PerformanceDataLabel>
+            <PerformanceDataLabel>{contentsStudied}</PerformanceDataLabel>
           </PerformanceTypeBox>
           <PerformanceTypeBox>
             <PerformanceLabel>Questões</PerformanceLabel>

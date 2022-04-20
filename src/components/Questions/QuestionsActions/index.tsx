@@ -1,5 +1,4 @@
 import React from 'react';
-import { isStudent } from '../../../functions/user';
 import {
   QuestionsActionsBox,
   SearchQuestions,
@@ -19,14 +18,14 @@ import {
 } from './styles';
 
 interface IQuestionActionsProps {
-  userType: string;
+  isStudent: boolean;
   setQuestionsFilterIsVisible: (value: boolean) => void;
 }
 
 const QuestionsActions = (props: IQuestionActionsProps): JSX.Element => {
   /* Props */
 
-  const { userType, setQuestionsFilterIsVisible } = props;
+  const { isStudent, setQuestionsFilterIsVisible } = props;
 
   return (
     <Container>
@@ -44,7 +43,7 @@ const QuestionsActions = (props: IQuestionActionsProps): JSX.Element => {
           <SearchQuestionsButtonIcon className="fas fa-search" />
         </SearchQuestionsButton>
       </SearchQuestions>
-      {!isStudent(userType) && (
+      {!isStudent && (
         <QuestionsActionsBox>
           <NewQuestionButton to="/new-question">
             <NewQuestionButtonLabel>Nova questão</NewQuestionButtonLabel>

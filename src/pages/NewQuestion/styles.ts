@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { paragraph } from '../../global/styles/components/textComponents';
 import { inputText } from '../../global/styles/components/inputComponents';
 

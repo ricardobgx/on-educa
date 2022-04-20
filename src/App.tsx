@@ -1,61 +1,108 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-console */
 
 import { AxiosInstance } from 'axios';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import io from 'socket.io-client';
 import GlobalStyle from './styles';
 import LoadAnimation from './components/App/LoadAnimation';
 import {
-  clearUserVariables,
-  getUser,
+  clearPeopleVariables,
+  getPeople,
   setAplicationTheme,
-} from './functions/user';
-import { IUser } from './interfaces/IUser';
+  setUpPeopleType,
+} from './functions/people';
+import { IPeople } from './interfaces/IPeople';
 import Routes from './Routes';
 import OnEducaAPI from './services/api';
 import { ActionCreators, State } from './store';
+import { ThemeType } from './types/ThemeType';
+import { themes } from './static/themes';
+import { stringToBoolean } from './functions/utils';
+import { isDefaultDuel } from './functions/entitiesValues';
+import { getFriendRequestsByPeople } from './functions/friendRequest';
 
-function App(): JSX.Element {
+export const socket = io(process.env.REACT_APP_API_URL || '');
+socket.on('connect', () =>
+  console.log('[IO] A new connection has been established'),
+);
+
+const App = (): JSX.Element => {
   /* Global State */
 
   const { aplication } = useSelector((store: State) => store);
   const { loadingAnimation } = aplication;
 
   const dispatch = useDispatch();
-  const { loginUser, loadUserType, loadToken, loadTheme } = bindActionCreators(
-    ActionCreators,
-    dispatch,
-  );
+  const {
+    loginPeople,
+    loadIsStudent,
+    loadToken,
+    loadTheme,
+    loadStudent,
+    loadTeacher,
+    loadFriendRequests,
+  } = bindActionCreators(ActionCreators, dispatch);
+
+  const [localVariablesLoaded, setLocalVariablesLoaded] = useState(false);
 
   /* Functions */
 
   const login = async (
     API: AxiosInstance,
-    userType: string,
     id: string,
-    setUserState: (user: IUser) => void,
+    isStudent: boolean,
+    setPeopleState: (value: IPeople) => void,
     token: string,
   ): Promise<void> => {
-    await getUser(API, userType, id, setUserState, token);
+    await setUpPeopleType(
+      OnEducaAPI,
+      id,
+      isStudent,
+      token,
+      loadStudent,
+      loadTeacher,
+    );
+    await getPeople(API, id, setPeopleState, token);
+    await getFriendRequestsByPeople(OnEducaAPI, id, token, loadFriendRequests);
+  };
+
+  const loadLocalVariables = (): void => {
+    // Pegando variaveis
+    const id = window.localStorage.getItem('id') || '';
+    const token = window.localStorage.getItem('token') || '';
+    const localIsStudent = window.localStorage.getItem('isStudent') || 'true';
+    const localTheme = window.localStorage.getItem('theme');
+
+    // Tratando variaveis
+    const isStudent = stringToBoolean(localIsStudent);
+    const theme = Number(localTheme);
+
+    // Logando usuário
+    if (id && token) {
+      loadIsStudent(isStudent);
+      loadToken(token);
+      login(OnEducaAPI, id, isStudent, loginPeople, token);
+    } else clearPeopleVariables();
+
+    // Carregando tema
+    if (theme && themes[theme]) {
+      loadTheme(theme);
+    } else {
+      loadTheme(ThemeType.BLUE);
+      setAplicationTheme(ThemeType.BLUE);
+    }
+
+    // Sinalizando carregamento completo
+    setLocalVariablesLoaded(true);
   };
 
   useEffect(() => {
-    const id = window.localStorage.getItem('id') || '';
-    const token = window.localStorage.getItem('token') || '';
-    const userType = window.localStorage.getItem('userType') || '';
-    const theme = window.localStorage.getItem('theme') || '';
-
-    if (id && token && userType) {
-      loadUserType(userType);
-      loadToken(token);
-      login(OnEducaAPI, userType, id, loginUser, token);
-    } else clearUserVariables();
-
-    if (!theme) {
-      loadTheme('light');
-      setAplicationTheme('light');
-    } else loadTheme(theme);
+    if (!localVariablesLoaded) {
+      loadLocalVariables();
+    }
   }, []);
 
   return (
@@ -65,6 +112,6 @@ function App(): JSX.Element {
       <Routes />
     </>
   );
-}
+};
 
 export default App;

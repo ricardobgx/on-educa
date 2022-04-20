@@ -6,13 +6,13 @@ import { IQuestionParams } from '../../../dto/IQuestionParams';
 import {
   buildAlternativesFromDescription,
   createManyAlternatives,
+  deleteAlternative,
   findAlternativeByDescFromArray,
 } from '../../../functions/alternative';
 import { isDefaultContent } from '../../../functions/entitiesValues';
 import {
-  createQuestion as createQuestionData,
+  updateQuestion as updateQuestionData,
   isValidQuestion,
-  updateQuestion,
 } from '../../../functions/question';
 import { IAlternative } from '../../../interfaces/IAlternative';
 import { IContent } from '../../../interfaces/IContent';
@@ -32,10 +32,11 @@ interface IEditQuestionActionsProps {
   description: string;
   difficulty: number;
   alternativesDescriptions: string[];
+  oldAlternatives: IAlternative[];
   rightAlternativeDescription: string;
   content: IContent;
-  questionWasCreated: boolean;
-  setQuestionWasCreated: (value: boolean) => void;
+  questionWasUpdated: boolean;
+  setQuestionWasUpdated: (value: boolean) => void;
 }
 
 const EditQuestionActions = (props: IEditQuestionActionsProps): JSX.Element => {
@@ -44,10 +45,11 @@ const EditQuestionActions = (props: IEditQuestionActionsProps): JSX.Element => {
     description,
     difficulty,
     alternativesDescriptions,
+    oldAlternatives,
     rightAlternativeDescription,
     content,
-    questionWasCreated,
-    setQuestionWasCreated,
+    questionWasUpdated,
+    setQuestionWasUpdated,
   } = props;
 
   const { aplication } = useSelector((store: State) => store);
@@ -56,11 +58,27 @@ const EditQuestionActions = (props: IEditQuestionActionsProps): JSX.Element => {
 
   /* Functions */
 
-  const updateQuestionSucess = (): void => {
-    setQuestionWasCreated(true);
+  const deleteOldAlternatives = async (): Promise<void> => {
+    await Promise.all(
+      oldAlternatives.map(async (oldAlternative) => {
+        await deleteAlternative(
+          OnEducaAPI,
+          oldAlternative.id,
+          token,
+          () => console.log(''),
+          () => console.log('error'),
+        );
+      }),
+    ).then(() => {
+      setQuestionWasUpdated(true);
+    });
   };
 
-  const updateQuestionError = (): void => {
+  const updateRightAlternativeQuestionSucess = (): void => {
+    deleteOldAlternatives();
+  };
+
+  const updateRightAlternativeQuestionError = (): void => {
     console.log('Erro');
   };
 
@@ -78,13 +96,13 @@ const EditQuestionActions = (props: IEditQuestionActionsProps): JSX.Element => {
       rightAlternativeId: rightAlternativeFound.id,
     };
 
-    await updateQuestion(
+    await updateQuestionData(
       OnEducaAPI,
       id,
       questionParams,
       token,
-      updateQuestionSucess,
-      updateQuestionError,
+      updateRightAlternativeQuestionSucess,
+      updateRightAlternativeQuestionError,
     );
   };
 
@@ -124,8 +142,8 @@ const EditQuestionActions = (props: IEditQuestionActionsProps): JSX.Element => {
    * na base de dados.
    ************************************************************************** */
 
-  const createQuestionSucess = (createdQuestion: IQuestion): void => {
-    createAlternatives(createdQuestion.id);
+  const updateQuestionSucess = (): void => {
+    createAlternatives(id);
   };
 
   /** **********************************************************************
@@ -133,7 +151,7 @@ const EditQuestionActions = (props: IEditQuestionActionsProps): JSX.Element => {
    * chamada quando nao foi possivel criar a questao na base de dados.
    *********************************************************************** */
 
-  const createQuestionError = (): void => {
+  const updateQuestionError = (): void => {
     console.log('erro');
   };
 
@@ -143,7 +161,7 @@ const EditQuestionActions = (props: IEditQuestionActionsProps): JSX.Element => {
    * questao.
    ************************************************************************** */
 
-  const createQuestion = async (): Promise<void> => {
+  const updateQuestion = async (): Promise<void> => {
     /** ***********************************************************************
      * Nessa variavel sao armazenados os parametros necessarios para criar uma
      * questao.
@@ -155,12 +173,13 @@ const EditQuestionActions = (props: IEditQuestionActionsProps): JSX.Element => {
       contentId: content.id,
     };
 
-    await createQuestionData(
+    await updateQuestionData(
       OnEducaAPI,
+      id,
       questionParams,
       token,
-      createQuestionSucess,
-      createQuestionError,
+      updateQuestionSucess,
+      updateQuestionError,
     );
   };
 
@@ -179,11 +198,11 @@ const EditQuestionActions = (props: IEditQuestionActionsProps): JSX.Element => {
             ? 'auto'
             : 'none',
         }}
-        onClick={() => createQuestion()}
+        onClick={() => updateQuestion()}
       >
-        <UpdateQuestionButtonLabel>Criar questão</UpdateQuestionButtonLabel>
+        <UpdateQuestionButtonLabel>Atualizar questão</UpdateQuestionButtonLabel>
       </UpdateQuestionButton>
-      {questionWasCreated && <Redirect to="/questions" />}
+      {questionWasUpdated && <Redirect to="/questions" />}
     </EditQuestionActionsBox>
   );
 };

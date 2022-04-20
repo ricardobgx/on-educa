@@ -14,7 +14,7 @@ export const NavBarBox = styled.div`
   position: fixed;
   top: 0;
   box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  z-index: 98;
+  z-index: 95;
 `;
 
 export const Logo = styled(Link)`
@@ -58,7 +58,7 @@ export const Actions = styled.div`
   }
 `;
 
-export const UserPhoto = styled.img`
+export const PeoplePhoto = styled.img`
   width: 35px;
   height: 35px;
   border-radius: 50%;
@@ -71,46 +71,8 @@ export const UserPhoto = styled.img`
   }
 `;
 
-export const UserName = styled(paragraph)`
+export const PeopleName = styled(paragraph)`
   display: none;
-
-  @media (max-width: 600px) {
-    display: unset;
-  }
-`;
-
-export const Action = styled(Link)`
-  margin: 0 10px;
-  display: flex;
-  align-items: center;
-  color: ${({ theme }) => theme.colors.textColor};
-
-  @media (max-width: 600px) {
-    padding: 10px 0;
-    width: 100%;
-    height: 50px;
-    margin: 5px 0;
-    border-radius: 5px;
-
-    &:hover {
-      background: ${({ theme }) => theme.colors.hoverColor};
-    }
-  }
-`;
-
-export const NavBarIcon = styled(mediumIcon)`
-  color: ${({ theme }) => theme.colors.textColor};
-  text-align: center;
-
-  @media (max-width: 600px) {
-    width: 35px;
-    margin: 0 10px;
-  }
-`;
-
-export const IconLabel = styled(paragraph)`
-  display: none;
-  color: ${({ theme }) => theme.colors.textColor};
 
   @media (max-width: 600px) {
     display: unset;
@@ -147,4 +109,23 @@ export const ToggleMenuIcon = styled(mediumIcon)`
 
 export const ToggleMenuCheck = styled.input`
   display: none;
+`;
+
+export const NavBarActionAlert = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  color: ${({ theme }) => theme.colors.boxColor};
+  background: ${({ theme }) => theme.colors.textColor};
+  animation: fadeIn 0.2s linear;
+`;
+export const NavBarActionAlertNumber = styled(paragraph)`
+  font-size: 9px;
+  font-weight: bold;
 `;

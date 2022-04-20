@@ -8,7 +8,8 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
-  margin-bottom: 20px;
+  margin: 20px;
+  margin-top: 0px;
 
   @media (max-width: 700px) {
     flex-direction: column;
@@ -25,6 +26,7 @@ export const ContentsActionsBox = styled.div`
   @media (max-width: 700px) {
     position: relative;
     flex-wrap: wrap;
+    margin-top: 20px;
   }
 `;
 export const NewContentButton = styled(Link)`

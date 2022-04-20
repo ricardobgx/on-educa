@@ -5,6 +5,11 @@ export const PageBox = styled.div`
   flex-direction: column;
   height: 100%;
   margin: 20px;
+  & .circular-bar {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+  }
 
   @media (max-width: 1150px) {
     flex-wrap: wrap;

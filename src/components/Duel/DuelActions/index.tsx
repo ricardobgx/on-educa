@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Redirect, useHistory } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { socket } from '../../../App';
 import { isDuelOwner } from '../../../functions/duel';
 import {
   duelRoundIsStarted,
   startDuelRound,
-  updateDuelRound,
 } from '../../../functions/duelRound';
 import { removeParticipant } from '../../../functions/duelTeamParts';
 import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
@@ -12,6 +14,8 @@ import {
   IDuelRequestComponentsProps,
   IDuelStudentInfoComponentsProps,
 } from '../../../pages/Duel';
+import { DEFAULT_DUEL } from '../../../static/defaultEntitiesValues';
+import { ActionCreators } from '../../../store';
 import {
   DuelActionsBox,
   InviteFriendsButton,
@@ -32,6 +36,7 @@ interface IDuelActionsProps
 }
 
 const DuelActions = (props: IDuelActionsProps): JSX.Element => {
+  const location = useHistory();
   /* Propriedades do componente */
 
   const {
@@ -41,9 +46,15 @@ const DuelActions = (props: IDuelActionsProps): JSX.Element => {
     duelRoundId,
     duelRoundStatus,
     duelOwner,
-    loggedUser,
+    loggedPeople,
+    loggedStudent,
     studentParticipation,
   } = props;
+
+  /* Estado da aplicacao */
+
+  const dispatch = useDispatch();
+  const { loadDuel } = bindActionCreators(ActionCreators, dispatch);
 
   /* Estado do componente */
 
@@ -57,7 +68,9 @@ const DuelActions = (props: IDuelActionsProps): JSX.Element => {
 
   const startDuel = async (): Promise<void> => {
     await startDuelRound(API, duelRoundId, token, () => {
-      setStartedDuel(true);
+      socket.emit(`duel.start`, {
+        duelId,
+      });
     });
   };
 
@@ -66,7 +79,15 @@ const DuelActions = (props: IDuelActionsProps): JSX.Element => {
       API,
       studentParticipation.id,
       token,
-      () => setQuitDuel(true),
+      () => {
+        socket.emit(`duel.exit-participation`, {
+          duelId,
+          data: {
+            ...studentParticipation,
+          } as IDuelTeamParticipation,
+        });
+        location.push('/duels');
+      },
       () => console.log('erro'),
     );
   };
@@ -76,7 +97,7 @@ const DuelActions = (props: IDuelActionsProps): JSX.Element => {
       <InviteFriendsButton className="with-shadow bd-rd-5">
         <InviteFriendsButtonLabel>Convidar amigos</InviteFriendsButtonLabel>
       </InviteFriendsButton>
-      {!isDuelOwner(loggedUser.id, duelOwner.id) ? (
+      {!isDuelOwner(loggedStudent.id, duelOwner.id) ? (
         <QuitDuelButton
           onClick={() => exitDuel()}
           className="with-shadow bd-rd-5"
@@ -92,7 +113,9 @@ const DuelActions = (props: IDuelActionsProps): JSX.Element => {
         </StartDuelButton>
       )}
       {quitDuel && <Redirect to="/duels" />}
-      {startedDuel && <Redirect to={`/duels/${duelId}/questions`} />}
+      {duelRoundIsStarted(duelRoundStatus) && (
+        <Redirect to={`/duels/${duelId}/questions`} />
+      )}
     </DuelActionsBox>
   );
 };

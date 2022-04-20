@@ -27,7 +27,7 @@ const Contents = (): JSX.Element => {
   /* Global State */
 
   const { unity, subject, aplication } = useSelector((store: State) => store);
-  const { userType, token } = aplication;
+  const { isStudent, token } = aplication;
 
   /* Local State */
 
@@ -56,10 +56,10 @@ const Contents = (): JSX.Element => {
       <PageBox>
         <SectionLabel
           backLink={`/subjects/${subject.id}`}
-          label={`${unity.title} - conteúdos`}
+          label={`${unity.name} - conteúdos`}
         />
         <ContentsBox>
-          <ContentsActions userType={userType} unity={unity} />
+          <ContentsActions isStudent={isStudent} unity={unity} />
           {deleteContentIsVisible && (
             <DeleteContent
               content={content}

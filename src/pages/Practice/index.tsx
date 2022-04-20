@@ -7,10 +7,6 @@ import { Redirect, useRouteMatch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import PracticeQuestion from '../../components/Practice/PracticeQuestion';
 import PracticeStatus from '../../components/Practice/PracticeStatus';
-import {
-  isDefaultAlternative,
-  isDefaultPractice,
-} from '../../functions/entitiesValues';
 import { getPracticeQuestions } from '../../functions/question';
 import { randInt } from '../../functions/utils';
 import { Page } from '../../global/styles/components/pageComponents';
@@ -18,10 +14,7 @@ import { IAlternative } from '../../interfaces/IAlternative';
 import { IPracticeQuestion } from '../../interfaces/IPracticeQuestion';
 import { IQuestion } from '../../interfaces/IQuestion';
 import OnEducaAPI from '../../services/api';
-import {
-  DEFAULT_ALTERNATIVE,
-  DEFAULT_PRACTICE_QUESTION,
-} from '../../static/defaultEntitiesValues';
+import { DEFAULT_PRACTICE_QUESTION } from '../../static/defaultEntitiesValues';
 import { ActionCreators, State } from '../../store';
 import { PageBox, PracticeBox } from './styles';
 

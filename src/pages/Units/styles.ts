@@ -15,5 +15,5 @@ export const PageBox = styled.div`
 export const UnitsBox = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 20px;
+  margin: 20px 0;
 `;

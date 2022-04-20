@@ -7,42 +7,39 @@ import {
   SignFieldsBox,
   SignActions,
   SignButton,
-  ChangeSignUser,
+  ChangeSignPeople,
   SignButtonLabel,
-  ChangeSignUserLabel,
+  ChangeSignPeopleLabel,
 } from '../components';
 
 import OnEducaAPI from '../../../../services/api';
 import SignTextInput from '../SignTextInput';
 import { ActionCreators, State } from '../../../../store';
-import {
-  invertUserType,
-  isStudent,
-  registerUser,
-} from '../../../../functions/user';
+import { invertPeopleType, registerPeople } from '../../../../functions/people';
 import TeachingType from '../TeachingType';
 import { getTeachingTypes } from '../../../../functions/teachingType';
 import { ITeachingType } from '../../../../interfaces/ITeachingType';
 import SchoolGrade from '../SchoolGrade';
-import { IUserParams } from '../../../../dto/IUserParams';
+import { IPeopleParams } from '../../../../dto/IPeopleParams';
+import { registerStudent } from '../../../../functions/student';
+import { registerTeacher } from '../../../../functions/teacher';
+import { IPeople } from '../../../../interfaces/IPeople';
 
 interface IRegisterProps {
   changeSignType: () => void;
 }
 
 const Register = (props: IRegisterProps): JSX.Element => {
-  /* Global State */
-
   const { aplication } = useSelector((store: State) => store);
-  const { userType } = aplication;
+  const { isStudent } = aplication;
 
   const dispatch = useDispatch();
-  const { enableLoadingAnimation, disableLoadingAnimation, loadUserType } =
+  const { enableLoadingAnimation, disableLoadingAnimation, loadIsStudent } =
     bindActionCreators(ActionCreators, dispatch);
 
   /* Local State */
 
-  // User
+  // People
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -89,37 +86,63 @@ const Register = (props: IRegisterProps): JSX.Element => {
     disableLoadingAnimation();
   };
 
+  const registerPeopleSucess = async (
+    peopleCreated: IPeople,
+  ): Promise<void> => {
+    if (isStudent) {
+      await registerStudent(
+        OnEducaAPI,
+        { peopleId: peopleCreated.id, schoolGradeId },
+        registerSucess,
+        registerError,
+      );
+    } else {
+      await registerTeacher(
+        OnEducaAPI,
+        { peopleId: peopleCreated.id, teachingTypeId },
+        registerSucess,
+        registerError,
+      );
+    }
+  };
+
   const register = async (): Promise<void> => {
     if (!fieldsIsValid()) return;
 
-    const defaultUserParams = {
+    const peopleParams = {
       name,
       email,
       password,
+      isStudent,
       isOnline: true,
-      profilePicture:
-        'https://i.pinimg.com/564x/b3/fa/4a/b3fa4a81540be0d7da526271c7395222.jpg',
+      profilePictureId: '',
       league: 'Mestre',
-      userType,
-    } as IUserParams;
-
-    const userParams = isStudent(userType)
-      ? { ...defaultUserParams, schoolGradeId }
-      : { ...defaultUserParams, teachingTypeId };
+    } as IPeopleParams;
 
     enableLoadingAnimation();
-    await registerUser(
+    await registerPeople(
       OnEducaAPI,
-      userType,
-      { ...userParams, teachingTypeId },
-      registerSucess,
+      { ...peopleParams },
+      registerPeopleSucess,
       registerError,
     );
     disableLoadingAnimation();
   };
 
+  const setUpTeachingTypes = (teachingTypesFound: ITeachingType[]): void => {
+    setTeachingTypes(teachingTypesFound);
+    if (teachingTypesFound[0]) {
+      setTeachingTypeId(teachingTypesFound[0].id);
+      const { schoolGrades } = teachingTypesFound[0];
+
+      if (schoolGrades[5]) {
+        setSchoolGradeId(schoolGrades[0].id || '');
+      }
+    }
+  };
+
   useEffect(() => {
-    getTeachingTypes(OnEducaAPI, setTeachingTypes);
+    getTeachingTypes(OnEducaAPI, setUpTeachingTypes);
   }, []);
 
   return (
@@ -153,7 +176,7 @@ const Register = (props: IRegisterProps): JSX.Element => {
           setValue={setPassword}
           icon="fas fa-lock"
         />
-        {isStudent(userType) ? (
+        {isStudent ? (
           <SchoolGrade
             teachingTypes={teachingTypes}
             schoolGradeSelectedId={schoolGradeId}
@@ -171,17 +194,17 @@ const Register = (props: IRegisterProps): JSX.Element => {
         <SignButton onClick={() => register()}>
           <SignButtonLabel>Cadastrar</SignButtonLabel>
         </SignButton>
-        <ChangeSignUser
+        <ChangeSignPeople
           onClick={() => {
-            loadUserType(invertUserType(userType));
+            loadIsStudent(invertPeopleType(isStudent));
             clearFields();
           }}
         >
-          <ChangeSignUserLabel>
+          <ChangeSignPeopleLabel>
             Sou
-            {isStudent(userType) ? ' professor' : ' aluno'}
-          </ChangeSignUserLabel>
-        </ChangeSignUser>
+            {isStudent ? ' professor' : ' aluno'}
+          </ChangeSignPeopleLabel>
+        </ChangeSignPeople>
       </SignActions>
     </SignBox>
   );

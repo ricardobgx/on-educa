@@ -24,6 +24,7 @@ import ContentVideo from '../../components/Content/ContentVideo';
 import ContentRelatedUnitsActions from '../../components/Content/ContentRelatedUnitsActions';
 import ContentDescription from '../../components/Content/ContentDescription';
 import ContentAttachments from '../../components/Content/ContentAttachments';
+import { reduceTextSize } from '../../functions/utils';
 
 interface IContentRouteParams {
   id: string;
@@ -49,29 +50,31 @@ const Content = (): JSX.Element => {
     schoolGrade,
     subject,
     unity: selectedUnity,
+    student,
+    teacher,
   } = useSelector((store: State) => store);
 
-  const { token, userType } = aplication;
+  const { token, isStudent } = aplication;
 
   useEffect(() => {
     getUnits(OnEducaAPI, setUnits, token);
     getContent(OnEducaAPI, contentId, token, loadContent);
   }, [contentId]);
 
-  const { video, title, description } = content as IContent;
+  const { video, name, description } = content as IContent;
 
   return (
     <Page>
       <PageBox>
         <ContentBox>
           <SectionLabel
-            label={`${selectedUnity.title} - ${title}`}
+            label={reduceTextSize(`${selectedUnity.name} - ${name}`, 80, 23)}
             backLink={`/units/${selectedUnity.id}`}
           />
           <ContentVideoAndRelatedContents>
             <ContentVideo video={video} />
             <ContentRelatedUnitsActions
-              userType={userType}
+              isStudent={isStudent}
               subject={subject}
               schoolGrade={schoolGrade}
               units={units}
@@ -83,7 +86,11 @@ const Content = (): JSX.Element => {
             <ContentAttachments />
           </ContentDescriptionAndAttachments>
           <SectionLabel label="Dúvidas" backLink="" />
-          <ContentDoubts />
+          <ContentDoubts
+            contentId={contentId}
+            student={student}
+            token={token}
+          />
         </ContentBox>
       </PageBox>
     </Page>

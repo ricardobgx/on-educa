@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { reduceTextSize } from '../../../functions/utils';
+import { getFullDate, reduceTextSize } from '../../../functions/utils';
 import { IContent } from '../../../interfaces/IContent';
 import { ActionCreators, State } from '../../../store';
 import ContentCardActions from '../ContentCardActions';
@@ -24,30 +24,34 @@ import {
 } from './styles';
 
 interface IContentCardProps {
+  index: number;
   content: IContent;
   setContent: (value: IContent) => void;
   setDeleteContentIsVisible: (value: boolean) => void;
 }
 
 const ContentCard = (props: IContentCardProps): JSX.Element => {
-  const { content, setContent, setDeleteContentIsVisible } = props;
-  const { id, title, questions } = content;
+  const { index, content, setContent, setDeleteContentIsVisible } = props;
+  const { id, name, questions, updatedAt } = content;
 
   const dispatch = useDispatch();
 
   const { loadContent } = bindActionCreators(ActionCreators, dispatch);
 
-  const { schoolGrade, subject, unity } = useSelector((store: State) => store);
+  const { schoolGrade, subject, unity, aplication } = useSelector(
+    (store: State) => store,
+  );
+  const { isStudent } = aplication;
 
   return (
-    <ContentCardBox>
+    <ContentCardBox style={{ animationDelay: `${index * 0.2}s` }}>
       <ContentCardDetails
         to={`/contents/${id}`}
         onClick={() => loadContent(content)}
       >
         <ContentDetails>
-          <ContentTitle>{reduceTextSize(title, 40)}</ContentTitle>
-          <SubjectLabel>Unidade: {unity.title}</SubjectLabel>
+          <ContentTitle>{reduceTextSize(name, 40, 50)}</ContentTitle>
+          <SubjectLabel>Unidade: {unity.name}</SubjectLabel>
         </ContentDetails>
         <ContentSchoolGrade>
           <SchoolGradeLabel>Série: {schoolGrade.index}º ano</SchoolGradeLabel>
@@ -55,7 +59,7 @@ const ContentCard = (props: IContentCardProps): JSX.Element => {
         </ContentSchoolGrade>
         <ContentAdditionalDetails>
           <UpdateDate>
-            <UpdateDateLabel>30/01/2022</UpdateDateLabel>
+            <UpdateDateLabel>{getFullDate(updatedAt)}</UpdateDateLabel>
             <UpdateDateIcon className="fas fa-clock" />
           </UpdateDate>
           <ContentsNumber>
@@ -66,11 +70,13 @@ const ContentCard = (props: IContentCardProps): JSX.Element => {
           </ContentsNumber>
         </ContentAdditionalDetails>
       </ContentCardDetails>
-      <ContentCardActions
-        content={content}
-        setContent={setContent}
-        setDeleteContentIsVisible={setDeleteContentIsVisible}
-      />
+      {!isStudent && (
+        <ContentCardActions
+          content={content}
+          setContent={setContent}
+          setDeleteContentIsVisible={setDeleteContentIsVisible}
+        />
+      )}
     </ContentCardBox>
   );
 };
