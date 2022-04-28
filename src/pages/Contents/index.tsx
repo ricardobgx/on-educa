@@ -8,10 +8,9 @@ import ContentsActions from '../../components/Contents/ContentsActions';
 import ContentsList from '../../components/Contents/ContentsList';
 import DeleteContent from '../../components/Contents/DeleteContent';
 import { getContentsByUnity } from '../../functions/content';
-import { IContent } from '../../interfaces/IContent';
 import OnEducaAPI from '../../services/api';
 import { DEFAULT_CONTENT } from '../../static/defaultEntitiesValues';
-import { State } from '../../store';
+import { RootState } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import { PageBox, ContentsBox } from './styles';
 
@@ -24,12 +23,14 @@ export interface ICommonContentProps {
 }
 
 const Contents = (): JSX.Element => {
-  /* Global State */
+  /* GlobalRootState */
 
-  const { unity, subject, aplication } = useSelector((store: State) => store);
+  const { unity, subject, aplication } = useSelector(
+    (store: RootState) => store,
+  );
   const { isStudent, token } = aplication;
 
-  /* Local State */
+  /* LocalRootState */
 
   const [content, setContent] = useState(DEFAULT_CONTENT);
   const [contents, setContents] = useState<IContent[]>([]);

@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { IPractice } from '../../interfaces/IPractice';
 import { DEFAULT_PRACTICE } from '../../static/defaultEntitiesValues';
 import { PracticeActionType } from '../action-types/practice';
 import { PracticeAction } from '../actions/practice';

@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React from 'react';
-import { IContent } from '../../../interfaces/IContent';
 import { ICommonContentProps } from '../../../pages/Contents';
 import ContentCard from '../ContentCard';
 import { ContentsListBox, ContentCards } from './styles';

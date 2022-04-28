@@ -64,6 +64,7 @@ export const PeoplePhoto = styled.img`
   border-radius: 50%;
   /* border: 2px solid ${({ theme }) => theme.colors.hoverColor}; */
   box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
+  background: ${({ theme }) => theme.colors.textColor};
   margin: 5px;
 
   @media (max-width: 600px) {

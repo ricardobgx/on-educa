@@ -28,10 +28,10 @@ const Routes = (): JSX.Element => {
             path={route.path}
             exact={route.exact}
             render={(props: RouteComponentProps<any>) => {
-              if (isAuthenticated() && route.path === '/')
-                return <Redirect to="/home" />;
-              if (!isAuthenticated() && route.path !== '/')
+              if (isAuthenticated() && !route.private)
                 return <Redirect to="/" />;
+              if (!isAuthenticated() && route.private)
+                return <Redirect to="/sign" />;
               return <route.component {...props} {...route.props} />;
             }}
           />

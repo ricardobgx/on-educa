@@ -29,8 +29,6 @@ import {
   deleteFriendRequest,
   getFriendRequestsByPeople,
 } from '../../../functions/friendRequest';
-import { IPeople } from '../../../interfaces/IPeople';
-import { IFriendRequest } from '../../../interfaces/IFriendRequest';
 import { isDefaultPeople } from '../../../functions/entitiesValues';
 import { DEFAULT_PEOPLE } from '../../../static/defaultEntitiesValues';
 import { SendMessageButton, SendMessageButtonIcon } from '../FriendCard/styles';

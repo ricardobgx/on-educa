@@ -5,10 +5,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { socket } from '../../../App';
 import { changeDuelTeamPosition } from '../../../functions/duelTeamParts';
-import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
-import { IStudent } from '../../../interfaces/IStudent';
 import OnEducaAPI from '../../../services/api';
-import { State } from '../../../store';
+import { RootState } from '../../../store';
 import { MediumMaterialIconRound } from '../../App/Icons/MaterialIcons/MaterialIconsRound';
 import {
   ChangeDuelTeamPositionBox,
@@ -26,7 +24,7 @@ interface IChangeDuelTeamPositionProps {
 const ChangeDuelTeamPosition = (
   props: IChangeDuelTeamPositionProps,
 ): JSX.Element => {
-  const { aplication } = useSelector((store: State) => store);
+  const { aplication } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
   const {

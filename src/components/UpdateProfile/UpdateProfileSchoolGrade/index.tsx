@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { getTeachingTypes } from '../../../functions/teachingType';
-import { ITeachingType } from '../../../interfaces/ITeachingType';
 import OnEducaAPI from '../../../services/api';
 import {
   UpdateProfileOption,

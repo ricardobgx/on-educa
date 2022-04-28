@@ -1,6 +1,5 @@
 import { AxiosInstance } from 'axios';
 import { IChatParams } from '../dto/chat/IChatParams';
-import { IChat } from '../interfaces/IChat';
 
 const entityPath = 'chats';
 

@@ -7,10 +7,9 @@ import {
   getFullDate,
 } from '../../../../functions/utils';
 import theme from '../../../../global/styles/theme';
-import { ITeacherWeeklyPerformance } from '../../../../interfaces/ITeacherWeeklyPerformance';
 import OnEducaAPI from '../../../../services/api';
 import { DEFAULT_TEACHER_WEEKLY_PERFORMANCE } from '../../../../static/defaultEntitiesValues';
-import { State } from '../../../../store';
+import { RootState } from '../../../../store';
 import SimpleBarChart, {
   ISimpleBarChartData,
 } from '../../../App/Charts/SimpleBarChart';
@@ -28,7 +27,7 @@ const TeacherWeeklyPerformance = (): JSX.Element => {
     aplication,
     people: loggedPeople,
     teacher,
-  } = useSelector((store: State) => store);
+  } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
   const [chartType, setChartType] = useState('contents');

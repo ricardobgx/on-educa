@@ -2,26 +2,30 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { isDefaultPeople } from '../../../functions/entitiesValues';
 import { getStudentWeeklyPerformanceByStudent } from '../../../functions/studentWeeklyPerformance';
-import { IStudentWeeklyPerformance } from '../../../interfaces/IStudentWeeklyPerformance';
 import OnEducaAPI from '../../../services/api';
 import { DEFAULT_STUDENT_WEEKLY_PERFORMANCE } from '../../../static/defaultEntitiesValues';
-import { State } from '../../../store';
+import { RootState } from '../../../store';
+import { SmallMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 import {
   DailyPerformanceBox,
   DayLabel,
   PerformanceDataLabel,
   PerformanceLabel,
+  PerformanceLabelBox,
   PerformancesBox,
   PerformancesDivisor,
   PerformancesTypeBox,
   PerformanceTypeBox,
+  PerformanceTypeHeader,
   WeekPerformanceButton,
   WeekPerformanceButtonLabel,
+  XPInnerProgressBar,
+  XPProgressBar,
 } from './styles';
 
 const DailyPerformance = (): JSX.Element => {
   const { people, student, teacher, aplication } = useSelector(
-    (store: State) => store,
+    (store: RootState) => store,
   );
   const { token } = aplication;
 
@@ -41,35 +45,68 @@ const DailyPerformance = (): JSX.Element => {
   }, [people]);
 
   const { xp, weekDay } = studentWeeklyPerformance;
-  const { dailyXp, contentsStudied, questionsAnswered } = weekDay;
+  const { dailyXp, contentsStudied, questionsAnswered, duelsParticipated } =
+    weekDay;
 
   return (
-    <DailyPerformanceBox className="with-shadow bd-rd-5">
-      <DayLabel>Hoje</DayLabel>
+    <DailyPerformanceBox className="with-shadow bd-rd-20">
       <PerformancesBox>
         <PerformancesTypeBox>
           <PerformanceTypeBox>
-            <PerformanceLabel>XP hoje</PerformanceLabel>
-            <PerformanceDataLabel>{dailyXp}</PerformanceDataLabel>
+            <PerformanceTypeHeader>
+              <PerformanceLabel>XP hoje</PerformanceLabel>
+              <PerformanceDataLabel>{dailyXp}</PerformanceDataLabel>
+            </PerformanceTypeHeader>
+            <XPProgressBar>
+              <XPInnerProgressBar
+                style={{ width: `${(dailyXp / xp) * 100}%` }}
+              />
+            </XPProgressBar>
           </PerformanceTypeBox>
           <PerformanceTypeBox>
-            <PerformanceLabel>XP semanal</PerformanceLabel>
-            <PerformanceDataLabel>{xp}</PerformanceDataLabel>
+            <PerformanceTypeHeader>
+              <PerformanceLabel>XP semanal</PerformanceLabel>
+              <PerformanceDataLabel>{xp}</PerformanceDataLabel>
+            </PerformanceTypeHeader>
+            <XPProgressBar>
+              <XPInnerProgressBar style={{ width: '100%' }} />
+            </XPProgressBar>
           </PerformanceTypeBox>
         </PerformancesTypeBox>
-        <PerformancesDivisor />
         <PerformancesTypeBox>
           <PerformanceTypeBox>
-            <PerformanceLabel>Conteúdos</PerformanceLabel>
-            <PerformanceDataLabel>{contentsStudied}</PerformanceDataLabel>
+            <PerformanceTypeHeader>
+              <PerformanceLabelBox>
+                <SmallMaterialIconOutlined icon="book" color="" />
+                <PerformanceLabel>Conteúdos</PerformanceLabel>
+              </PerformanceLabelBox>
+              <PerformanceDataLabel>{contentsStudied}</PerformanceDataLabel>
+            </PerformanceTypeHeader>
           </PerformanceTypeBox>
           <PerformanceTypeBox>
-            <PerformanceLabel>Questões</PerformanceLabel>
-            <PerformanceDataLabel>{questionsAnswered}</PerformanceDataLabel>
+            <PerformanceTypeHeader>
+              <PerformanceLabelBox>
+                <SmallMaterialIconOutlined icon="article" color="" />
+                <PerformanceLabel>Questões</PerformanceLabel>
+              </PerformanceLabelBox>
+              <PerformanceDataLabel>{questionsAnswered}</PerformanceDataLabel>
+            </PerformanceTypeHeader>
+          </PerformanceTypeBox>
+          <PerformanceTypeBox>
+            <PerformanceTypeHeader>
+              <PerformanceLabelBox>
+                <SmallMaterialIconOutlined icon="gamepad" color="" />
+                <PerformanceLabel>Duelos</PerformanceLabel>
+              </PerformanceLabelBox>
+              <PerformanceDataLabel>{duelsParticipated}</PerformanceDataLabel>
+            </PerformanceTypeHeader>
           </PerformanceTypeBox>
         </PerformancesTypeBox>
       </PerformancesBox>
-      <WeekPerformanceButton to="/performance">
+      <WeekPerformanceButton
+        to="/performance"
+        className="bd-rd-20 block-shadow-button main-action"
+      >
         <WeekPerformanceButtonLabel>
           Desempenho semanal
         </WeekPerformanceButtonLabel>

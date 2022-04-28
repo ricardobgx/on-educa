@@ -1,6 +1,5 @@
 import { AxiosInstance } from 'axios';
 import { IDoubtParams } from '../dto/IDoubtParams';
-import { IDoubt } from '../interfaces/IDoubt';
 
 export const getDoubts = async (
   API: AxiosInstance,

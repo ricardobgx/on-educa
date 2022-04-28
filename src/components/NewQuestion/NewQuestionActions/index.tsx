@@ -16,9 +16,6 @@ import {
   updateQuestion,
 } from '../../../functions/question';
 import { updateTeacherWeeklyPerformanceValues } from '../../../functions/teacherWeeklyPerformance';
-import { IAlternative } from '../../../interfaces/IAlternative';
-import { IContent } from '../../../interfaces/IContent';
-import { IQuestion } from '../../../interfaces/IQuestion';
 import OnEducaAPI from '../../../services/api';
 import { DEFAULT_QUESTION } from '../../../static/defaultEntitiesValues';
 import {

@@ -16,14 +16,9 @@ import {
   updateContent as updateContentData,
 } from '../../functions/content';
 import { stringFieldValidation } from '../../functions/updateEntity';
-import { IContent } from '../../interfaces/IContent';
-import { ISchoolGrade } from '../../interfaces/ISchoolGrade';
-import { ISubject } from '../../interfaces/ISubject';
-import { ITeachingType } from '../../interfaces/ITeachingType';
-import { IUnity } from '../../interfaces/IUnity';
 import OnEducaAPI from '../../services/api';
 import { DEFAULT_CONTENT } from '../../static/defaultEntitiesValues';
-import { State } from '../../store';
+import { RootState } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import {
   PageBox,
@@ -50,11 +45,11 @@ const EditContent = (): JSX.Element => {
     subject: globalSubject,
     unity: globalUnity,
     content: globalContent,
-  } = useSelector((store: State) => store);
+  } = useSelector((store: RootState) => store);
 
   const { token } = aplication;
 
-  /* Local State */
+  /* LocalRootState */
 
   // References
 

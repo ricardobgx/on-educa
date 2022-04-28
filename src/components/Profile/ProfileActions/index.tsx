@@ -1,6 +1,5 @@
 import React from 'react';
 import { isPeopleLogged } from '../../../functions/people';
-import { IPeople } from '../../../interfaces/IPeople';
 import { SmallMaterialIconRound } from '../../App/Icons/MaterialIcons/MaterialIconsRound';
 import FriendActions from '../FriendActions';
 import {

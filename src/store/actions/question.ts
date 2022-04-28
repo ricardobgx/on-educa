@@ -1,4 +1,3 @@
-import { IQuestion } from '../../interfaces/IQuestion';
 import { QuestionActionType } from '../action-types/question';
 
 interface LoadQuestion {

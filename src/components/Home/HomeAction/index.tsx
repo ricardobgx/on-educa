@@ -1,4 +1,5 @@
 import React from 'react';
+import theme from '../../../global/styles/theme';
 import { HomeActionBox, HomeActionIcon, HomeActionLabel } from './components';
 import { IHomeActionProps } from './interfaces';
 
@@ -6,8 +7,10 @@ const HomeAction = (props: IHomeActionProps): JSX.Element => {
   const { icon, label, link } = props;
 
   return (
-    <HomeActionBox to={link} className="with-shadow bd-rd-5">
-      <HomeActionIcon className={icon} />
+    <HomeActionBox to={link} className="with-shadow bd-rd-20">
+      <HomeActionIcon className="material-icons-outlined">
+        {icon}
+      </HomeActionIcon>
       <HomeActionLabel>{label}</HomeActionLabel>
     </HomeActionBox>
   );

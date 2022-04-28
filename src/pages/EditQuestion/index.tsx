@@ -3,18 +3,12 @@ import { useSelector } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
 import SectionLabel from '../../components/App/SectionLabel';
 import { Page } from '../../global/styles/components/pageComponents';
-import { PageBox, EditQuestionBox, EditQuestionMainDetails } from './styles';
+import { PageBox, EditQuestionBox } from './styles';
 import NewQuestionAlternatives from '../../components/NewQuestion/NewQuestionAlternatives';
 import NewQuestionDescription from '../../components/NewQuestion/NewQuestionDescription';
 import NewQuestionReferences from '../../components/NewQuestion/NewQuestionReferences';
-import { ITeachingType } from '../../interfaces/ITeachingType';
-import { ISubject } from '../../interfaces/ISubject';
-import { ISchoolGrade } from '../../interfaces/ISchoolGrade';
-import { IUnity } from '../../interfaces/IUnity';
-import { IContent } from '../../interfaces/IContent';
-import { State } from '../../store';
+import { RootState } from '../../store';
 import EditQuestionActions from '../../components/EditQuestion/EditQuestionActions';
-import { IQuestion } from '../../interfaces/IQuestion';
 import { DEFAULT_QUESTION } from '../../static/defaultEntitiesValues';
 import NewQuestionDifficulty from '../../components/NewQuestion/NewQuestionDifficulty';
 import {
@@ -29,7 +23,7 @@ interface IEditQuestionRouteParams {
 }
 
 const EditQuestion = (): JSX.Element => {
-  /* Global State */
+  /* GlobalRootState */
 
   const {
     teachingType: globalTeachingType,
@@ -38,7 +32,7 @@ const EditQuestion = (): JSX.Element => {
     unity: globalUnity,
     content: globalContent,
     aplication,
-  } = useSelector((store: State) => store);
+  } = useSelector((store: RootState) => store);
 
   const { token } = aplication;
 

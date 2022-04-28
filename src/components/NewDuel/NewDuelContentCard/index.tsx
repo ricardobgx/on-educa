@@ -1,6 +1,4 @@
 import React from 'react';
-import { IContent } from '../../../interfaces/IContent';
-import { IUnity } from '../../../interfaces/IUnity';
 import NewDuelContentCardSection from '../NewDuelContentCardSection';
 import { AdditionalInfo, NewDuelContentCardBox } from './styles';
 

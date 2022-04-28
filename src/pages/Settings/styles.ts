@@ -40,7 +40,12 @@ export const ThemeSettings = styled(SettingBox)``;
 export const ThemesList = styled.div`
   display: flex;
 `;
-export const SelectThemeButton = styled.button`
+
+interface SelectThemeButtonProps {
+  colors: string[];
+}
+
+export const SelectThemeButton = styled.button<SelectThemeButtonProps>`
   width: 35px;
   height: 35px;
   background: ${({ color }) => color};
@@ -49,7 +54,33 @@ export const SelectThemeButton = styled.button`
   border: 3px solid ${({ theme }) => theme.colors.whiteColor};
   margin-right: 10px;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 96;
+
+  ::before {
+    content: '';
+    width: 50%;
+    height: 100%;
+    background: ${({ colors }) => colors[0] || ''};
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  ::after {
+    content: '';
+    width: 50%;
+    height: 100%;
+    background: ${({ colors }) => colors[1] || ''};
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: -1;
+  }
 `;
 export const SelectedThemeButtonIcon = styled(smallIcon)`
   color: ${({ theme }) => theme.colors.whiteColor};
+  z-index: 95;
 `;

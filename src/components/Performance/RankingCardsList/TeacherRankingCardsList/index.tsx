@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { getTeacherWeeklyPerformances } from '../../../../functions/teacherWeeklyPerformance';
-import { ITeacherWeeklyPerformance } from '../../../../interfaces/ITeacherWeeklyPerformance';
 import OnEducaAPI from '../../../../services/api';
 import TeacherRankingCard from '../../RankingCard/TeacherRankingCard';
 import { RankingCardsListBox } from '../styles';

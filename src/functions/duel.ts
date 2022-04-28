@@ -1,6 +1,5 @@
 import { AxiosError, AxiosInstance } from 'axios';
 import { IDuelParams } from '../dto/IDuelParams';
-import { IDuel } from '../interfaces/IDuel';
 
 // Funcoes da aplicacao
 

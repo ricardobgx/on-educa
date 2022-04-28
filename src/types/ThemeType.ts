@@ -7,4 +7,7 @@ export enum ThemeType {
   GREEN,
   RED,
   DARK,
+  DARK_PURPLE,
+  DARK_GREEN,
+  DARK_PINK,
 }

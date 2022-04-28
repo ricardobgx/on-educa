@@ -14,14 +14,12 @@ import {
   setAplicationTheme,
   setUpPeopleType,
 } from './functions/people';
-import { IPeople } from './interfaces/IPeople';
 import Routes from './Routes';
 import OnEducaAPI from './services/api';
-import { ActionCreators, State } from './store';
+import { ActionCreators, RootState } from './store';
 import { ThemeType } from './types/ThemeType';
 import { themes } from './static/themes';
 import { stringToBoolean } from './functions/utils';
-import { isDefaultDuel } from './functions/entitiesValues';
 import { getFriendRequestsByPeople } from './functions/friendRequest';
 
 export const socket = io(process.env.REACT_APP_API_URL || '');
@@ -30,9 +28,9 @@ socket.on('connect', () =>
 );
 
 const App = (): JSX.Element => {
-  /* Global State */
+  /* GlobalRootState */
 
-  const { aplication } = useSelector((store: State) => store);
+  const { aplication } = useSelector((store: RootState) => store);
   const { loadingAnimation } = aplication;
 
   const dispatch = useDispatch();
@@ -54,7 +52,6 @@ const App = (): JSX.Element => {
     API: AxiosInstance,
     id: string,
     isStudent: boolean,
-    setPeopleState: (value: IPeople) => void,
     token: string,
   ): Promise<void> => {
     await setUpPeopleType(
@@ -65,8 +62,18 @@ const App = (): JSX.Element => {
       loadStudent,
       loadTeacher,
     );
-    await getPeople(API, id, setPeopleState, token);
-    await getFriendRequestsByPeople(OnEducaAPI, id, token, loadFriendRequests);
+    const people = await getPeople(API, id, token);
+    if (!people) return;
+
+    loginPeople(people);
+    const friendRequests = await getFriendRequestsByPeople(
+      OnEducaAPI,
+      id,
+      token,
+      (fr: IFriendRequest[]) => console.log('hi'),
+    );
+
+    loadFriendRequests(friendRequests);
   };
 
   const loadLocalVariables = (): void => {
@@ -74,7 +81,7 @@ const App = (): JSX.Element => {
     const id = window.localStorage.getItem('id') || '';
     const token = window.localStorage.getItem('token') || '';
     const localIsStudent = window.localStorage.getItem('isStudent') || 'true';
-    const localTheme = window.localStorage.getItem('theme');
+    const localTheme = window.localStorage.getItem('theme') || -1;
 
     // Tratando variaveis
     const isStudent = stringToBoolean(localIsStudent);
@@ -84,11 +91,11 @@ const App = (): JSX.Element => {
     if (id && token) {
       loadIsStudent(isStudent);
       loadToken(token);
-      login(OnEducaAPI, id, isStudent, loginPeople, token);
+      login(OnEducaAPI, id, isStudent, token);
     } else clearPeopleVariables();
 
     // Carregando tema
-    if (theme && themes[theme]) {
+    if (theme !== -1) {
       loadTheme(theme);
     } else {
       loadTheme(ThemeType.BLUE);

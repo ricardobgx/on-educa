@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { IUnity } from '../../interfaces/IUnity';
 import { DEFAULT_UNITY } from '../../static/defaultEntitiesValues';
 import { UnityActionType } from '../action-types/unity';
 import { UnityAction } from '../actions/unity';

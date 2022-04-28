@@ -1,4 +1,5 @@
 import React from 'react';
+import { TDoubtStatus } from '../../../types/TDoubtStatus';
 import {
   DoubtBox,
   DoubtComments,
@@ -17,13 +18,6 @@ import {
   DoubtStatusLabel,
 } from './components';
 
-interface IDoubt {
-  title: string;
-  subject: string;
-  content: string;
-  situation: boolean;
-}
-
 interface IDoubtCardProps {
   data: IDoubt;
 }
@@ -35,11 +29,11 @@ const DoubtCard = (props: IDoubtCardProps): JSX.Element => {
     <DoubtBox to="/contents/12345#doubt12345" className="with-shadow bd-rd-5">
       <DoubtInfo>
         <DoubtInfoBox>
-          <DoubtDescription>{data.title}</DoubtDescription>
+          <DoubtDescription>{data.content}</DoubtDescription>
           <DoubtReference>
             <DoubtReferenceBox>
               <DoubtReferenceIcon className="fas fa-book" />
-              <DoubtReferenceLabel>{data.subject}</DoubtReferenceLabel>
+              <DoubtReferenceLabel>{data.content.name}</DoubtReferenceLabel>
             </DoubtReferenceBox>
             <DoubtReferenceBox>
               <DoubtReferenceIcon className="fas fa-book" />
@@ -51,11 +45,11 @@ const DoubtCard = (props: IDoubtCardProps): JSX.Element => {
           <DoubtStatusBox>
             <DoubtStatusIcon
               className={`fas fa-${
-                data.situation ? 'check' : 'exclamation'
+                data.status === TDoubtStatus.SOLVED ? 'check' : 'exclamation'
               }-circle`}
             />
             <DoubtStatusLabel>{`${
-              data.situation ? 'Resolvida' : 'Pendente'
+              data.status === TDoubtStatus.SOLVED ? 'Resolvida' : 'Pendente'
             }`}</DoubtStatusLabel>
           </DoubtStatusBox>
           <DoubtComments>

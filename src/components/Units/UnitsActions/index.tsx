@@ -40,7 +40,7 @@ const UnitsActions = (props: IUnitsActionsProps): JSX.Element => {
         />
       )}
       <SearchSupplies>
-        <SearchSuppliesBox>
+        <SearchSuppliesBox className="bd-rd-20">
           <SearchSuppliesInput
             type="text"
             placeholder="Digite o nome da unidade"
@@ -49,7 +49,7 @@ const UnitsActions = (props: IUnitsActionsProps): JSX.Element => {
             <ClearSearchSuppliesInputButtonIcon className="fas fa-times" />
           </ClearSearchSuppliesInputButton>
         </SearchSuppliesBox>
-        <SearchSuppliesButton>
+        <SearchSuppliesButton className="block-shadow-button main-action bd-rd-20">
           <SearchSuppliesButtonIcon className="fas fa-search" />
         </SearchSuppliesButton>
       </SearchSupplies>

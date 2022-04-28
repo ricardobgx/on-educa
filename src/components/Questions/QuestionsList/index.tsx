@@ -1,10 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React from 'react';
-import { IContent } from '../../../interfaces/IContent';
-import { IQuestion } from '../../../interfaces/IQuestion';
-import { ISubject } from '../../../interfaces/ISubject';
-import { IUnity } from '../../../interfaces/IUnity';
 import { ICommonQuestionProps } from '../../../pages/Questions';
 import QuestionCard from '../QuestionCard';
 import { QuestionsListBox, QuestionCards } from './styles';

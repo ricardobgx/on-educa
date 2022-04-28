@@ -11,7 +11,10 @@ const ContentPracticeButton = (
   const { contentId } = props;
 
   return (
-    <ContentPracticeButtonBox to={`/contents/${contentId}/practice`}>
+    <ContentPracticeButtonBox
+      className="block-shadow-button main-action bd-rd-20"
+      to={`/contents/${contentId}/practice`}
+    >
       <ContentPracticeButtonLabel>Praticar</ContentPracticeButtonLabel>
     </ContentPracticeButtonBox>
   );

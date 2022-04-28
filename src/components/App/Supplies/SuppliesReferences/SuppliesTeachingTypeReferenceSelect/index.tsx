@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import { isDefaultTeachingType } from '../../../../../functions/entitiesValues';
 import { getTeachingTypes } from '../../../../../functions/teachingType';
-import { ITeachingType } from '../../../../../interfaces/ITeachingType';
 import OnEducaAPI from '../../../../../services/api';
 import { DEFAULT_TEACHING_TYPE } from '../../../../../static/defaultEntitiesValues';
 import {

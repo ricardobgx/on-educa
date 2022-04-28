@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { createImage } from '../../../functions/image';
 import { updatePeople } from '../../../functions/people';
-import { IImage } from '../../../interfaces/IImage';
 import OnEducaAPI from '../../../services/api';
 import { SmallMaterialIconRound } from '../../App/Icons/MaterialIcons/MaterialIconsRound';
 import {

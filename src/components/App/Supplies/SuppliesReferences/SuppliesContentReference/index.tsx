@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import React from 'react';
-import { IContent } from '../../../../../interfaces/IContent';
-import { IUnity } from '../../../../../interfaces/IUnity';
 import { SuppliesReferenceBox } from '../styles';
 import SuppliesContentReferenceSelect from '../SuppliesContentReferenceSelect';
 import SuppliesReferenceBoxLabel from '../SuppliesReferenceBoxLabel';

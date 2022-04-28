@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { ITeachingType } from '../../interfaces/ITeachingType';
 import { DEFAULT_TEACHING_TYPE } from '../../static/defaultEntitiesValues';
 import { TeachingTypeActionType } from '../action-types/teachingType';
 import { TeachingTypeAction } from '../actions/teachingType';

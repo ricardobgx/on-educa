@@ -1,5 +1,4 @@
 import React from 'react';
-import { IPeople } from '../../../interfaces/IPeople';
 import { SocialDetailType } from '../../../pages/Profile';
 import FriendsList from '../FriendsList';
 import { SocialDetailBox } from './styles';

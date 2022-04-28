@@ -1,6 +1,5 @@
 import React from 'react';
 import theme from '../../../global/styles/theme';
-import { IAlternative } from '../../../interfaces/IAlternative';
 import { QuestionAlternativeBox, QuestionAlternativeLabel } from './styles';
 
 interface IQuestionAlternativeProps {
@@ -16,12 +15,9 @@ const QuestionAlternative = (props: IQuestionAlternativeProps): JSX.Element => {
 
   return (
     <QuestionAlternativeBox
-      style={{
-        borderColor:
-          id === selectedAlternative.id ? theme.colors.textColor : '',
-        color: id === selectedAlternative.id ? theme.colors.textColor : '',
-        fontWeight: id === selectedAlternative.id ? 'bold' : 'normal',
-      }}
+      className={`block-shadow-button bd-rd-5 ${
+        id === selectedAlternative.id ? 'selected' : ''
+      }`}
       onClick={() => setSelectedAlternative(alternative)}
     >
       <QuestionAlternativeLabel>{description}</QuestionAlternativeLabel>

@@ -32,16 +32,18 @@ const Settings = (): JSX.Element => {
           <ThemeSettings>
             <SettingsBoxLabel>Selecione o tema</SettingsBoxLabel>
             <ThemesList>
-              {themes.map((theme) => (
-                <SelectThemeButton
-                  color={theme.previewColor}
-                  onClick={() => setTheme(theme.themeType)}
-                >
-                  {selectedThemeNumber === theme.themeType && (
-                    <SelectedThemeButtonIcon className="fas fa-check" />
-                  )}
-                </SelectThemeButton>
-              ))}
+              {themes.map((theme) => {
+                return (
+                  <SelectThemeButton
+                    colors={theme.previewColors}
+                    onClick={() => setTheme(theme.themeType)}
+                  >
+                    {selectedThemeNumber === theme.themeType && (
+                      <SelectedThemeButtonIcon className="fas fa-check" />
+                    )}
+                  </SelectThemeButton>
+                );
+              })}
             </ThemesList>
           </ThemeSettings>
         </SettingsBox>

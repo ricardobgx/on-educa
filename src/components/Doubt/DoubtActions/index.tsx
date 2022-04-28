@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { deleteDoubt, updateDoubt } from '../../../functions/doubt';
 import OnEducaAPI from '../../../services/api';
-import { DoubtStatus } from '../../../types/doubtStatus';
+import { TDoubtStatus } from '../../../types/TDoubtStatus';
 import {
   DoubtActionsBox,
   UpdateDoubtStatusButton,
@@ -30,7 +30,7 @@ const DoubtActions = (props: IDoubtActionsProps): JSX.Element => {
     await updateDoubt(
       OnEducaAPI,
       doubtId,
-      { status: DoubtStatus.SOLVED },
+      { status: TDoubtStatus.SOLVED },
       token,
       () => getDoubtAction(),
       () => console.log('erro'),
@@ -41,7 +41,7 @@ const DoubtActions = (props: IDoubtActionsProps): JSX.Element => {
     await updateDoubt(
       OnEducaAPI,
       doubtId,
-      { status: DoubtStatus.PENDING },
+      { status: TDoubtStatus.PENDING },
       token,
       () => getDoubtAction(),
       () => console.log('erro'),
@@ -60,7 +60,7 @@ const DoubtActions = (props: IDoubtActionsProps): JSX.Element => {
 
   return (
     <DoubtActionsBox>
-      {doubtStatus === DoubtStatus.PENDING ? (
+      {doubtStatus === TDoubtStatus.PENDING ? (
         <UpdateDoubtStatusButton onClick={() => setDoubtAsSolved()}>
           <UpdateDoubtStatusButtonIcon className="fas fa-check" />
           <UpdateDoubtStatusButtonLabel>Resolvida</UpdateDoubtStatusButtonLabel>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { IUnity } from '../../../interfaces/IUnity';
 import {
   ClearSearchSuppliesInputButton,
   ClearSearchSuppliesInputButtonIcon,
@@ -30,7 +29,7 @@ const ContentsActions = (props: IContentActionsProps): JSX.Element => {
   return (
     <Container>
       <SearchSupplies>
-        <SearchSuppliesBox>
+        <SearchSuppliesBox className="bd-rd-20">
           <SearchSuppliesInput
             type="text"
             placeholder="Digite o nome do conteúdo"
@@ -39,7 +38,7 @@ const ContentsActions = (props: IContentActionsProps): JSX.Element => {
             <ClearSearchSuppliesInputButtonIcon className="fas fa-times" />
           </ClearSearchSuppliesInputButton>
         </SearchSuppliesBox>
-        <SearchSuppliesButton>
+        <SearchSuppliesButton className="block-shadow-button main-action bd-rd-20">
           <SearchSuppliesButtonIcon className="fas fa-search" />
         </SearchSuppliesButton>
       </SearchSupplies>

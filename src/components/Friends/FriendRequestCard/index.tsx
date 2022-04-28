@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { getPeople, setUpPeopleType } from '../../../functions/people';
-import { IFriendRequest } from '../../../interfaces/IFriendRequest';
-import { IPeople } from '../../../interfaces/IPeople';
 import OnEducaAPI from '../../../services/api';
 import {
   DEFAULT_PEOPLE,
@@ -39,7 +37,7 @@ const FriendRequestCard = (props: IFriendRequestCardProps): JSX.Element => {
   };
 
   useEffect(() => {
-    getPeople(OnEducaAPI, requester.id, getPeopleSucess, token);
+    // getPeople(OnEducaAPI, requester.id, getPeopleSucess, token);
   }, []);
 
   return (

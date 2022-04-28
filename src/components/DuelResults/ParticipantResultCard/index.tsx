@@ -4,8 +4,6 @@ import {
   isDefaultStudent,
 } from '../../../functions/entitiesValues';
 import { getPeople } from '../../../functions/people';
-import { IDuelQuestionAnswer } from '../../../interfaces/IDuelQuestionAnswer';
-import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
 import OnEducaAPI from '../../../services/api';
 import {
   DEFAULT_PEOPLE,
@@ -84,9 +82,15 @@ const ParticipantResultCard = (
     return score;
   };
 
+  const getParticipantPeople = async (): Promise<void> => {
+    const peopleFound = await getPeople(OnEducaAPI, studentPeople.id, token);
+
+    if (peopleFound) setPeople(peopleFound);
+  };
+
   useEffect(() => {
     if (!isDefaultStudent(student) && isDefaultPeople(people) && token) {
-      getPeople(OnEducaAPI, studentPeople.id, setPeople, token);
+      getParticipantPeople();
     }
   }, [token]);
 

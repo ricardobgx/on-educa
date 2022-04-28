@@ -1,9 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { getContents } from '../../../functions/content';
-import { IContent } from '../../../interfaces/IContent';
 import OnEducaAPI from '../../../services/api';
-import { State } from '../../../store';
+import { RootState } from '../../../store';
 import {
   ClearSearchSuppliesInputButton,
   ClearSearchSuppliesInputButtonIcon,
@@ -33,9 +32,9 @@ export interface INewDuelSearchContentsProps {
 const NewDuelSearchContents = (
   props: INewDuelSearchContentsProps,
 ): JSX.Element => {
-  /* Global State */
+  /* GlobalRootState */
 
-  const { aplication } = useSelector((store: State) => store);
+  const { aplication } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
   /* Props */

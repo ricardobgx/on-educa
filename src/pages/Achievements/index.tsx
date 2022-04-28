@@ -8,7 +8,7 @@ const Achievements = (): JSX.Element => {
   return (
     <Page>
       <PageBox>
-        <SectionLabel label="Conquistas" backLink="/home" />
+        <SectionLabel label="Conquistas" backLink="/" />
         <AchievementsList>
           <AchievementsListBox>
             <Achievement />

@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { IStudent } from '../../interfaces/IStudent';
 import { DEFAULT_STUDENT } from '../../static/defaultEntitiesValues';
 import { StudentActionType } from '../action-types/student';
 import { StudentAction } from '../actions/student';

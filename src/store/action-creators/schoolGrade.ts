@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 import { Dispatch } from 'redux';
-import { ISchoolGrade } from '../../interfaces/ISchoolGrade';
 import { SchoolGradeActionType } from '../action-types/schoolGrade';
 import { SchoolGradeAction } from '../actions/schoolGrade';
 

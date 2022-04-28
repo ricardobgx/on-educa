@@ -2,11 +2,6 @@ import { AxiosError, AxiosInstance } from 'axios';
 import { IChangeDuelTeamPositionParams } from '../dto/IChangeDuelTeamPositionParams';
 import { IDuelTeamParticipationParams } from '../dto/IDuelTeamParticipationParams';
 import { IParticipateInDuelParams } from '../dto/IParticipateInDuelParams';
-import { IDuel } from '../interfaces/IDuel';
-import { IDuelTeam } from '../interfaces/IDuelTeam';
-import { IDuelTeamParticipation } from '../interfaces/IDuelTeamParticipation';
-import { IPeople } from '../interfaces/IPeople';
-import { IStudent } from '../interfaces/IStudent';
 import { DEFAULT_DUEL_TEAM_PARTICIPATION } from '../static/defaultEntitiesValues';
 import { isDefaultDuelTeamParticipation } from './entitiesValues';
 

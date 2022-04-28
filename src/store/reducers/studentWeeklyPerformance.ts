@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { IStudentWeeklyPerformance } from '../../interfaces/IStudentWeeklyPerformance';
 import { DEFAULT_STUDENT_WEEKLY_PERFORMANCE } from '../../static/defaultEntitiesValues';
 import { StudentWeeklyPerformanceActionType } from '../action-types/studentWeeklyPerformance';
 import { StudentWeeklyPerformanceAction } from '../actions/studentWeeklyPerformance';

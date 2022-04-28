@@ -1,6 +1,5 @@
 import React from 'react';
 import theme from '../../../global/styles/theme';
-import { ISchoolGrade } from '../../../interfaces/ISchoolGrade';
 import { NoSelectedSupplies } from '../../App/Supplies/styles';
 import {
   SubjectSectionSelectBox,
@@ -36,12 +35,9 @@ const SchoolGradeSelect = (props: ISchoolGradeSelectProps): JSX.Element => {
           {options.map((option) => (
             <SubjectSectionSelectOption
               key={option.id}
-              style={{
-                background:
-                  selectedOption === option.id ? theme.colors.textColor : '',
-                color:
-                  selectedOption === option.id ? theme.colors.boxColor : '',
-              }}
+              className={`block-shadow-button bd-rd-20 ${
+                option.id === selectedOption ? 'selected' : ''
+              }`}
               onClick={() => setOption(option)}
             >
               <SubjectSectionSelectOptionLabel>

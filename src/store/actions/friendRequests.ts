@@ -1,4 +1,3 @@
-import { IFriendRequest } from '../../interfaces/IFriendRequest';
 import { FriendRequestsActionType } from '../action-types/friendRequests';
 
 interface LoadFriendRequests {

@@ -7,8 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { useRouteMatch } from 'react-router-dom';
 import analytics from '../../assets/ilustrations/analytics.png';
-import { IPracticeQuestion } from '../../interfaces/IPracticeQuestion';
-import { ActionCreators, State } from '../../store';
+import { ActionCreators, RootState } from '../../store';
 import SectionLabel from '../../components/App/SectionLabel';
 import {
   NextContentButton,
@@ -44,7 +43,7 @@ interface IPracticePerformanceRouteParams {
 }
 
 const PracticePerformance = (): JSX.Element => {
-  /* Global State */
+  /* GlobalRootState */
 
   // Dispatch
 
@@ -57,10 +56,10 @@ const PracticePerformance = (): JSX.Element => {
     dispatch,
   );
 
-  // State
+  // RootState
 
   const { practice, people, aplication, student } = useSelector(
-    (store: State) => store,
+    (store: RootState) => store,
   );
   const { questions } = practice;
   const { token } = aplication;

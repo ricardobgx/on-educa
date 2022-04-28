@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 import { Dispatch } from 'redux';
-import { ISubject } from '../../interfaces/ISubject';
 import { SubjectActionType } from '../action-types/subject';
 import { SubjectAction } from '../actions/subject';
 

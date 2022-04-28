@@ -4,10 +4,9 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { isDefaultSchoolGrade } from '../../../../../functions/entitiesValues';
 import { getSchoolGrades } from '../../../../../functions/schoolGrade';
-import { ISchoolGrade } from '../../../../../interfaces/ISchoolGrade';
 import OnEducaAPI from '../../../../../services/api';
 import { DEFAULT_SCHOOL_GRADE } from '../../../../../static/defaultEntitiesValues';
-import { State } from '../../../../../store';
+import { RootState } from '../../../../../store';
 import {
   SuppliesReferenceSelectOption,
   SuppliesReferenceSelect,
@@ -21,12 +20,12 @@ interface ISuppliesTeachSchoolReferenceSelectProps {
 const SuppliesTeachSchoolReferenceSelect = (
   props: ISuppliesTeachSchoolReferenceSelectProps,
 ): JSX.Element => {
-  /* Global State */
+  /* GlobalRootState */
 
-  const { aplication } = useSelector((store: State) => store);
+  const { aplication } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
-  /* Local State */
+  /* LocalRootState */
 
   const [schoolGrades, setSchoolGrades] = useState<ISchoolGrade[]>([]);
 

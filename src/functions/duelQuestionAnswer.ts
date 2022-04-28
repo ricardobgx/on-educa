@@ -1,7 +1,5 @@
 import { AxiosInstance } from 'axios';
 import { IDuelQuestionAnswerParams } from '../dto/IDuelQuestionAnswerParams';
-import { IDuelQuestionAnswer } from '../interfaces/IDuelQuestionAnswer';
-import { DEFAULT_DUEL_QUESTION_ANSWER } from '../static/defaultEntitiesValues';
 
 const entityPath = 'duelQuestionAnswers';
 

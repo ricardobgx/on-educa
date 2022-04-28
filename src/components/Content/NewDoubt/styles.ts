@@ -16,15 +16,15 @@ export const NewDoubtInput = styled.textarea`
   max-height: 250px;
   padding: 10px 10px;
   margin-right: 10px;
-  border-radius: 5px;
   border: none;
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  background: ${({ theme }) => theme.colors.boxColor};
+  background: #f3f3f3;
   color: ${({ theme }) => theme.colors.textColor};
+
+  ::-webkit-input-placeholder {
+    color: #949494;
+  }
 `;
 export const NewDoubtButton = styled(Button)`
   min-width: 40px;
-  background: ${({ theme }) => theme.colors.textColor};
-  color: ${({ theme }) => theme.colors.boxColor};
 `;
 export const NewDoubtButtonIcon = styled.i``;

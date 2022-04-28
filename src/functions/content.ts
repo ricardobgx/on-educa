@@ -1,6 +1,5 @@
 import { AxiosInstance } from 'axios';
 import { IContentParams } from '../dto/IContentParams';
-import { IContent } from '../interfaces/IContent';
 
 export const getContent = async (
   API: AxiosInstance,

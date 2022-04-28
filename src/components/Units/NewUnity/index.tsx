@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { createUnity } from '../../../functions/unity';
 import { ICommonUnityProps } from '../../../pages/Units';
 import OnEducaAPI from '../../../services/api';
-import { State } from '../../../store';
+import { RootState } from '../../../store';
 import {
   NewUnityBackground,
   NewUnityBox,
@@ -24,13 +24,13 @@ const NewUnity = (props: INewUnityProps): JSX.Element => {
 
   const { setNewUnityIsVisible, getUnits } = props;
 
-  /* Local State */
+  /* LocalRootState */
 
   const [name, setName] = useState('');
 
-  /* Global State */
+  /* GlobalRootState */
 
-  const { subject, aplication } = useSelector((store: State) => store);
+  const { subject, aplication } = useSelector((store: RootState) => store);
 
   const { token } = aplication;
 

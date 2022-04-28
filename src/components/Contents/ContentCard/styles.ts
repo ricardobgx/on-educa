@@ -23,8 +23,6 @@ export const ContentCardDetails = styled(Link)`
   justify-content: space-between;
   color: ${({ theme }) => theme.colors.textColor};
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
   padding: 20px;
   margin-bottom: 20px;
   width: 100%;

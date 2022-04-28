@@ -6,7 +6,7 @@ export const ContentRelatedUnitsActionsBox = styled.div`
   flex-direction: column;
   margin-left: 40px;
   width: 100%;
-  height: calc(100vh - 220px);
+  height: calc(100vh - 222px);
   max-height: calc(100vh - 20px);
 
   @media (max-width: 1150px) {

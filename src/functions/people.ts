@@ -3,11 +3,6 @@
 
 import { AxiosInstance } from 'axios';
 import { IUpdatePeopleFriendParams } from '../dto/IUpdatePeopleFriendParams';
-import { IAuthenticationResponse } from '../interfaces/IAuthenticationResponse';
-import { ILogin } from '../interfaces/ILogin';
-import { IPeople } from '../interfaces/IPeople';
-import { IStudent } from '../interfaces/IStudent';
-import { ITeacher } from '../interfaces/ITeacher';
 import { DeviceType } from '../types/deviceType';
 import { getStudentByPeople } from './student';
 import { getTeacherByPeople } from './teacher';
@@ -124,13 +119,10 @@ const entityPath = 'peoples';
 export const loginPeople = async (
   API: AxiosInstance,
   loginParams: ILogin,
-  loginSucess: (authResponse: IAuthenticationResponse) => void,
-  loginError: () => void,
-): Promise<void> => {
-  await API.post(`/${entityPath}/login`, loginParams).then(
-    (response) => loginSucess(response.data),
-    () => loginError(),
-  );
+): Promise<IAuthenticationResponse> => {
+  const { data } = await API.post(`/${entityPath}/login`, loginParams);
+
+  return data;
 };
 
 // Create
@@ -152,16 +144,15 @@ export const registerPeople = async (
 export const getPeople = async (
   API: AxiosInstance,
   id: string,
-  setPeopleState: (people: IPeople) => void,
   token: string,
-): Promise<void> => {
-  await API.get(`/${entityPath}/${id}`, {
+): Promise<IPeople | undefined> => {
+  const { data } = await API.get(`/${entityPath}/${id}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },
-  }).then((response) => {
-    setPeopleState(response.data);
   });
+
+  return data;
 };
 
 // Find all

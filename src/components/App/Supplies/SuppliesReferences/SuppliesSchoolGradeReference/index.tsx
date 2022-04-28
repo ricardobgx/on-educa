@@ -1,6 +1,4 @@
 import React from 'react';
-import { ISchoolGrade } from '../../../../../interfaces/ISchoolGrade';
-import { ITeachingType } from '../../../../../interfaces/ITeachingType';
 import { SuppliesReferenceBox } from '../styles';
 import SuppliesReferenceBoxLabel from '../SuppliesReferenceBoxLabel';
 import SuppliesSchoolGradeReferenceSelect from '../SuppliesSchoolGradeReferenceSelect';

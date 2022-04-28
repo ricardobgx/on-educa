@@ -1,6 +1,5 @@
 import React from 'react';
 import { displaySurname } from '../../../functions/people';
-import { IDuelRound } from '../../../interfaces/IDuelRound';
 import {
   DEFAULT_DUEL_TEAM,
   DEFAULT_DUEL_TEAM_PARTICIPATION,

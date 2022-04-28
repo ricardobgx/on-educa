@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import React from 'react';
-import { ISchoolGrade } from '../../../../../interfaces/ISchoolGrade';
 import { SuppliesReferenceBox } from '../styles';
 import SuppliesReferenceBoxLabel from '../SuppliesReferenceBoxLabel';
 import SuppliesTeachSchoolReferenceSelect from '../SuppliesTeachSchoolReferenceSelect';

@@ -1,8 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React, { useEffect, useState } from 'react';
-import { ITeacherWeeklyPerformance } from '../../../../interfaces/ITeacherWeeklyPerformance';
-import { IPeople } from '../../../../interfaces/IPeople';
 import PeopleCard from '../../../App/PeopleCard';
 import { RankingPosition, RankingCardBox } from '../styles';
 import {
@@ -12,6 +10,7 @@ import {
 import { getPeople } from '../../../../functions/people';
 import OnEducaAPI from '../../../../services/api';
 import { isDefaultPeople } from '../../../../functions/entitiesValues';
+import { TeacherSubjects } from '../../../App/PeopleCard/styles';
 
 interface ITeacherRankingCardProps {
   teacherWeeklyPerformance: ITeacherWeeklyPerformance;
@@ -25,9 +24,15 @@ const TeacherRankingCard = (props: ITeacherRankingCardProps): JSX.Element => {
 
   const [people, setPeople] = useState<IPeople>(DEFAULT_PEOPLE);
 
+  const getPeopleAction = async (): Promise<void> => {
+    const peopleFound = await getPeople(OnEducaAPI, teacher.people.id, token);
+
+    if (peopleFound) setPeople(peopleFound);
+  };
+
   useEffect(() => {
     if (isDefaultPeople(people)) {
-      getPeople(OnEducaAPI, teacher.people.id, setPeople, token);
+      getPeopleAction();
     }
   }, []);
 

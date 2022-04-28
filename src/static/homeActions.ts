@@ -7,19 +7,19 @@ interface IHomeAction {
 
 export const homeActions: IHomeAction[] = [
   {
-    icon: 'fas fa-book',
+    icon: 'book',
     label: 'Estudar',
     link: '/subjects',
     userType: 'student',
   },
   {
-    icon: 'fas fa-book',
+    icon: 'book',
     label: 'Ensinar',
     link: '/subjects',
     userType: 'teacher',
   },
   {
-    icon: 'fas fa-gamepad',
+    icon: 'gamepad',
     label: 'Duelos',
     link: '/duels',
     userType: 'student',
@@ -31,25 +31,25 @@ export const homeActions: IHomeAction[] = [
     userType: 'teacher',
   },
   {
-    icon: 'fas fa-user-secret',
+    icon: 'task_alt',
     label: 'Missões',
     link: '/missions',
     userType: 'both',
   },
   {
-    icon: 'fas fa-question',
+    icon: 'help_outline',
     label: 'Dúvidas',
     link: '/doubts',
     userType: 'both',
   },
   {
-    icon: 'fas fa-comment-alt',
+    icon: 'forum',
     label: 'Chat',
     link: '/chats',
     userType: 'both',
   },
   {
-    icon: 'fas fa-chalkboard-teacher',
+    icon: 'local_library',
     label: 'Sala Interativa',
     link: '/interative-rooms',
     userType: 'both',

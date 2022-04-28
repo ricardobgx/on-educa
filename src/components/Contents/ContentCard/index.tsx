@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getFullDate, reduceTextSize } from '../../../functions/utils';
-import { IContent } from '../../../interfaces/IContent';
-import { ActionCreators, State } from '../../../store';
+import { ActionCreators } from '../../../store';
+import { RootState } from '../../../store/store';
 import ContentCardActions from '../ContentCardActions';
 import {
   ContentCardBox,
@@ -39,13 +39,14 @@ const ContentCard = (props: IContentCardProps): JSX.Element => {
   const { loadContent } = bindActionCreators(ActionCreators, dispatch);
 
   const { schoolGrade, subject, unity, aplication } = useSelector(
-    (store: State) => store,
+    (store: RootState) => store,
   );
   const { isStudent } = aplication;
 
   return (
     <ContentCardBox style={{ animationDelay: `${index * 0.2}s` }}>
       <ContentCardDetails
+        className="with-shadow bd-rd-20"
         to={`/contents/${id}`}
         onClick={() => loadContent(content)}
       >

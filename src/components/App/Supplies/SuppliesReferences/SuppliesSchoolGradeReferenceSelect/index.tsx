@@ -7,11 +7,9 @@ import {
   isDefaultTeachingType,
 } from '../../../../../functions/entitiesValues';
 import { getSchoolGradesByTeachingType } from '../../../../../functions/schoolGrade';
-import { ISchoolGrade } from '../../../../../interfaces/ISchoolGrade';
-import { ITeachingType } from '../../../../../interfaces/ITeachingType';
 import OnEducaAPI from '../../../../../services/api';
 import { DEFAULT_SCHOOL_GRADE } from '../../../../../static/defaultEntitiesValues';
-import { State } from '../../../../../store';
+import { RootState } from '../../../../../store';
 import {
   SuppliesReferenceSelectOption,
   SuppliesReferenceSelect,
@@ -26,12 +24,12 @@ interface ISuppliesSchoolGradeReferenceSelectProps {
 const SuppliesSchoolGradeReferenceSelect = (
   props: ISuppliesSchoolGradeReferenceSelectProps,
 ): JSX.Element => {
-  /* Global State */
+  /* GlobalRootState */
 
-  const { aplication } = useSelector((store: State) => store);
+  const { aplication } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
-  /* Local State */
+  /* LocalRootState */
 
   const [schoolGrades, setSchoolGrades] = useState<ISchoolGrade[]>([]);
 
@@ -68,7 +66,6 @@ const SuppliesSchoolGradeReferenceSelect = (
         OnEducaAPI,
         teachingType.id,
         setDefaultSchoolGrade,
-        token,
       );
     else {
       setSelectedSchoolGrade(DEFAULT_SCHOOL_GRADE);

@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react';
-import { IMessage } from '../../../interfaces/IMessage';
-import { IPeople } from '../../../interfaces/IPeople';
 import { ChatMessageBox, ChatMessageContent } from './styles';
 
 interface IChatMessageProps {
@@ -30,7 +28,7 @@ const ChatMessage = (props: IChatMessageProps): JSX.Element => {
   return (
     <ChatMessageBox
       id={`chat-message-${index}`}
-      className={`${isMine ? 'mine' : 'other'}-message`}
+      className={`${isMine ? 'mine' : 'other'}-message bd-rd-20 with-shadow`}
     >
       <ChatMessageContent>{content}</ChatMessageContent>
     </ChatMessageBox>

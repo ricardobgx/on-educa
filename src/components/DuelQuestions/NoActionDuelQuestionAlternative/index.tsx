@@ -1,6 +1,5 @@
 import React from 'react';
 import theme from '../../../global/styles/theme';
-import { IAlternative } from '../../../interfaces/IAlternative';
 import { Container, QuestionAlternativeLabel } from './styles';
 
 interface INoActionDuelQuestionAlternativeProps {

@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import React from 'react';
-import { ITeachingType } from '../../../../../interfaces/ITeachingType';
 import { SuppliesReferenceBox } from '../styles';
 import SuppliesReferenceBoxLabel from '../SuppliesReferenceBoxLabel';
 import SuppliesTeachingTypeReferenceSelect from '../SuppliesTeachingTypeReferenceSelect';

@@ -4,10 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getContentsByUnity } from '../../../functions/content';
 import theme from '../../../global/styles/theme';
-import { IContent } from '../../../interfaces/IContent';
-import { IUnity } from '../../../interfaces/IUnity';
 import OnEducaAPI from '../../../services/api';
-import { State } from '../../../store';
+import { RootState } from '../../../store';
 import SuppliesAccordionCheckBox from '../../App/Supplies/SuppliesAccordion/SuppliesAccordionCheckBox';
 import SuppliesAccordionToggleCheckBox from '../../App/Supplies/SuppliesAccordion/SuppliesAccordionToggleCheckBox';
 import {
@@ -19,10 +17,10 @@ import {
 } from './styles';
 
 const UnityAccordion = (props: IUnity): JSX.Element => {
-  /* Global State */
+  /* GlobalRootState */
 
   const { aplication, content: contentNow } = useSelector(
-    (store: State) => store,
+    (store: RootState) => store,
   );
   const { token } = aplication;
 

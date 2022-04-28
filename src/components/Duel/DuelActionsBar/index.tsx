@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { socket } from '../../../App';
 import { deleteDuel as deleteDuelData } from '../../../functions/duel';
 import { isDefaultDuel } from '../../../functions/entitiesValues';
-import { IDuel } from '../../../interfaces/IDuel';
-import { IDuelTeam } from '../../../interfaces/IDuelTeam';
 import OnEducaAPI from '../../../services/api';
 import {
   DuelActionsBarBox,

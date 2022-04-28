@@ -1,7 +1,5 @@
 import { AxiosError, AxiosInstance } from 'axios';
 import { IDuelTeamParams } from '../dto/IDuelTeamParams';
-import { IDuel } from '../interfaces/IDuel';
-import { IDuelTeam } from '../interfaces/IDuelTeam';
 
 const entityPath = 'duelTeams';
 

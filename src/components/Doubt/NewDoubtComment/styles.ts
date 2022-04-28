@@ -11,20 +11,18 @@ export const NewDoubtCommentInput = styled(inputText)`
   width: 100%;
   margin-right: 10px;
   border-radius: 5px;
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  background: ${({ theme }) => theme.colors.boxColor};
+  background: rgba(0, 0, 0, 0.04);
   border: none;
   padding: 10px;
   color: ${({ theme }) => theme.colors.textColor};
+
+  ::-webkit-input-placeholder {
+    color: #949494;
+  }
 `;
 export const NewDoubtCommentButton = styled(Button)`
   min-width: 40px;
-  background: ${({ theme }) => theme.colors.boxColor};
-  color: ${({ theme }) => theme.colors.textColor};
-
-  &:hover {
-    background: ${({ theme }) => theme.colors.textColor};
-    color: ${({ theme }) => theme.colors.boxColor};
-  }
+  background: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.boxColor};
 `;
 export const NewDoubtCommentButtonIcon = styled(smallIcon)``;

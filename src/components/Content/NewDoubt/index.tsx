@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { createDoubt } from '../../../functions/doubt';
-import { IDoubt } from '../../../interfaces/IDoubt';
 import OnEducaAPI from '../../../services/api';
 import {
   NewDoubtBox,
@@ -44,8 +43,12 @@ const NewDoubt = (props: INewDoubtProps): JSX.Element => {
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         placeholder="Escreva sua dúvida"
+        className="bd-rd-20"
       />
-      <NewDoubtButton onClick={() => createDoubtAction()}>
+      <NewDoubtButton
+        className="block-shadow-button main-action bd-rd-20"
+        onClick={() => createDoubtAction()}
+      >
         <NewDoubtButtonIcon className="bi bi-send" />
       </NewDoubtButton>
     </NewDoubtBox>

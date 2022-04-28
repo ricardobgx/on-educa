@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 import { Dispatch } from 'redux';
-import { IPracticeQuestion } from '../../interfaces/IPracticeQuestion';
 import { PracticeActionType } from '../action-types/practice';
 import { PracticeAction } from '../actions/practice';
 

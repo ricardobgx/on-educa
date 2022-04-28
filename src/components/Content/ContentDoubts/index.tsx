@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getDoubtsByContent } from '../../../functions/doubt';
-import { IDoubt } from '../../../interfaces/IDoubt';
-import { IStudent } from '../../../interfaces/IStudent';
 import OnEducaAPI from '../../../services/api';
-import { State } from '../../../store';
+import { RootState } from '../../../store';
 import ContentDoubt from '../ContentDoubt';
 import NewDoubt from '../NewDoubt';
 import { DoubtsBox, DoubtsList } from './styles';
@@ -17,7 +15,7 @@ interface IContentDoubtsProps {
 
 const ContentDoubts = (props: IContentDoubtsProps): JSX.Element => {
   const { contentId, student, token } = props;
-  const { people } = useSelector((store: State) => store);
+  const { people } = useSelector((store: RootState) => store);
   const { isStudent } = people;
 
   const [doubts, setDoubts] = useState<IDoubt[]>([]);

@@ -4,9 +4,8 @@ import { useRouteMatch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import winners from '../../assets/ilustrations/undraw_winners.png';
 import { getDuel } from '../../functions/duel';
-import { isDefaultDuel } from '../../functions/entitiesValues';
 import OnEducaAPI from '../../services/api';
-import { ActionCreators, State } from '../../store';
+import { ActionCreators, RootState } from '../../store';
 import {
   SeeResultsButtonLabel,
   CongratulationsLabel,
@@ -27,7 +26,7 @@ const DuelCongratulations = (): JSX.Element => {
   const dispatch = useDispatch();
   const { loadDuel } = bindActionCreators(ActionCreators, dispatch);
 
-  const { duel, aplication } = useSelector((store: State) => store);
+  const { duel, aplication } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
   useEffect(() => {

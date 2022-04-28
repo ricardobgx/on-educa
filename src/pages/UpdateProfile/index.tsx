@@ -10,18 +10,18 @@ import {
   DEFAULT_SCHOOL_GRADE,
   DEFAULT_TEACHING_TYPE,
 } from '../../static/defaultEntitiesValues';
-import { State } from '../../store';
+import { RootState } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import { PageBox, UpdateProfileBox } from './styles';
 
 const UpdateProfile = (): JSX.Element => {
-  /* Global State */
+  /* GlobalRootState */
 
-  const { people, aplication } = useSelector((store: State) => store);
+  const { people, aplication } = useSelector((store: RootState) => store);
   const { id } = people;
   const { isStudent, token } = aplication;
 
-  /* Local State */
+  /* LocalRootState */
 
   const [profilePicture, setProfilePicture] = useState('');
   const [name, setName] = useState('');

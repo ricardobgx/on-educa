@@ -12,9 +12,8 @@ import {
   deleteQuestion as deleteQuestionData,
   getQuestionsByContent,
 } from '../../functions/question';
-import { IQuestion } from '../../interfaces/IQuestion';
 import OnEducaAPI from '../../services/api';
-import { ActionCreators, State } from '../../store';
+import { ActionCreators, RootState } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import { PageBox, QuestionsBox } from './styles';
 import QuestionsFilter from '../../components/Questions/QuestionsFilter';
@@ -25,7 +24,7 @@ export interface ICommonQuestionProps {
 }
 
 const Questions = (): JSX.Element => {
-  /* Global State */
+  /* GlobalRootState */
 
   const {
     aplication,
@@ -35,7 +34,7 @@ const Questions = (): JSX.Element => {
     unity,
     content,
     question,
-  } = useSelector((store: State) => store);
+  } = useSelector((store: RootState) => store);
 
   const { token, isStudent } = aplication;
 
@@ -49,7 +48,7 @@ const Questions = (): JSX.Element => {
     loadQuestion: setQuestion,
   } = bindActionCreators(ActionCreators, dispatch);
 
-  /* Local State */
+  /* LocalRootState */
 
   // References
 

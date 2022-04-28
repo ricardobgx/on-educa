@@ -1,6 +1,5 @@
 import { AxiosInstance } from 'axios';
 import { IStudentParams } from '../dto/IStudentParams';
-import { IStudent } from '../interfaces/IStudent';
 
 const entityPath = 'students';
 

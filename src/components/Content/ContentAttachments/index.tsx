@@ -11,7 +11,7 @@ import {
 const ContentAttachments = (): JSX.Element => {
   return (
     <ContentAttachmentsBox>
-      <ContentAttachmentsData>
+      <ContentAttachmentsData className="with-shadow bd-rd-20">
         <SuppliesAccordionCheckBox id="attachments" />
         <SuppliesAccordionToggleCheckBox label="Anexos" id="attachments" />
         <ContentAttachmentsDataBox>

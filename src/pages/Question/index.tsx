@@ -9,10 +9,9 @@ import QuestionAlternativesList from '../../components/Question/QuestionAlternat
 import QuestionDescription from '../../components/Question/QuestionDescription';
 import { getQuestion } from '../../functions/question';
 import { reduceTextSize } from '../../functions/utils';
-import { IAlternative } from '../../interfaces/IAlternative';
 import OnEducaAPI from '../../services/api';
 import { DEFAULT_ALTERNATIVE } from '../../static/defaultEntitiesValues';
-import { ActionCreators, State } from '../../store';
+import { ActionCreators, RootState } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import { Container, PageBox, QuestionDetails } from './styles';
 
@@ -22,7 +21,7 @@ interface IQuestionRouteParams {
 
 const Question = (): JSX.Element => {
   /* Estado Global */
-  const { question, aplication } = useSelector((store: State) => store);
+  const { question, aplication } = useSelector((store: RootState) => store);
 
   const { token } = aplication;
 

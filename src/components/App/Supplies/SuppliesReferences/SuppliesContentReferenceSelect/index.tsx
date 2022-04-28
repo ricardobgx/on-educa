@@ -9,11 +9,9 @@ import {
   isDefaultContent,
   isDefaultUnity,
 } from '../../../../../functions/entitiesValues';
-import { IContent } from '../../../../../interfaces/IContent';
-import { IUnity } from '../../../../../interfaces/IUnity';
 import OnEducaAPI from '../../../../../services/api';
 import { DEFAULT_CONTENT } from '../../../../../static/defaultEntitiesValues';
-import { State } from '../../../../../store';
+import { RootState } from '../../../../../store/store';
 import {
   SuppliesReferenceSelectOption,
   SuppliesReferenceSelect,
@@ -28,12 +26,12 @@ interface ISuppliesContentReferenceSelectProps {
 const SuppliesContentReferenceSelect = (
   props: ISuppliesContentReferenceSelectProps,
 ): JSX.Element => {
-  /* Global State */
+  /* GlobalRootState */
 
-  const { aplication } = useSelector((store: State) => store);
+  const { aplication } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
-  /* Local State */
+  /* LocalRootState */
 
   const [contents, setContents] = useState<IContent[]>([]);
 

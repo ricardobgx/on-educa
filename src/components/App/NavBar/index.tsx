@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { clearPeopleVariables } from '../../../functions/people';
-import { ActionCreators, State } from '../../../store';
+import { ActionCreators, RootState } from '../../../store';
 import NavBarAction from './NavBarAction';
 import {
   NavBarActionBox,
@@ -22,9 +22,9 @@ import {
 } from './styles';
 
 const NavBar = (): JSX.Element => {
-  /* Global State */
+  /* GlobalRootState */
 
-  const { people, friendRequests } = useSelector((store: State) => store);
+  const { people, friendRequests } = useSelector((store: RootState) => store);
   const { id, profilePicture } = people;
 
   const dispatch = useDispatch();
@@ -53,7 +53,7 @@ const NavBar = (): JSX.Element => {
   };
 
   return (
-    <NavBarBox>
+    <NavBarBox className="with-shadow">
       <Logo to="/">
         <LogoBall />
         <Title>Educa</Title>

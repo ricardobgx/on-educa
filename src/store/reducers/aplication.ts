@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { IAplication } from '../../interfaces/IAplication';
 import { DEFAULT_APLICATION } from '../../static/defaultEntitiesValues';
 import { AplicationActionType } from '../action-types/aplication';
 import { AplicationAction } from '../actions/aplication';

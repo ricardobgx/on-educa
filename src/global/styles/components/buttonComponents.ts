@@ -9,3 +9,15 @@ export const Button = styled.button`
   border: none;
   cursor: pointer;
 `;
+
+export const BlockShadowButton = styled.button`
+  border: none;
+
+  & p {
+    transform: translateY(-2px);
+  }
+
+  :hover p {
+    transform: translateY(0px);
+  }
+`;

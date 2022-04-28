@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { IPeople } from '../../interfaces/IPeople';
 import { DEFAULT_PEOPLE } from '../../static/defaultEntitiesValues';
 import { PeopleActionType } from '../action-types/people';
 import { PeopleAction } from '../actions/people';

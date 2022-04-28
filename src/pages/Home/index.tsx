@@ -22,15 +22,15 @@ import {
 import HomeAction from '../../components/Home/HomeAction';
 import DailyPerformance from '../../components/Home/DailyPerformance';
 import EditDailyGoal from '../../components/Home/EditDailyGoal';
-import { ActionCreators, State } from '../../store';
+import { ActionCreators, RootState } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import SectionLabel from '../../components/App/SectionLabel';
 import { homeActions } from '../../static/homeActions';
 
 const Home = (): JSX.Element => {
-  /* Global State */
+  /* GlobalRootState */
 
-  const { aplication } = useSelector((store: State) => store);
+  const { aplication } = useSelector((store: RootState) => store);
   const { isStudent } = aplication;
 
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ const Home = (): JSX.Element => {
     dispatch,
   );
 
-  /* Local State */
+  /* LocalRootState */
 
   const [dailyGoal, setDailyGoal] = useState(50);
   const [completedDailyGoal, setCompletedDailyGoal] = useState(20);
@@ -81,11 +81,11 @@ const Home = (): JSX.Element => {
         <PerformanceBox>
           <SectionLabel backLink="" label="Desempenho" />
           <DailyPerformance />
-          <AchievementsBox to="/achievements" className="with-shadow bd-rd-5">
+          <AchievementsBox to="/achievements" className="with-shadow bd-rd-20">
             <AchievementsIcon className="fas fa-star" />
             <AchievementsLabel>Conquistas</AchievementsLabel>
           </AchievementsBox>
-          <DailyGoalBox className="with-shadow bd-rd-5">
+          <DailyGoalBox className="with-shadow bd-rd-20">
             <DailyGoalDataBox>
               <DailyGoalIcon className="fas fa-bullseye" />
               <DailyGoalLabel>Meta diária</DailyGoalLabel>

@@ -1,5 +1,4 @@
 import { AxiosInstance } from 'axios';
-import { ITeachingType } from '../interfaces/ITeachingType';
 
 const entityPath = 'teachingTypes';
 
@@ -8,10 +7,10 @@ const entityPath = 'teachingTypes';
 export const getTeachingTypes = async (
   API: AxiosInstance,
   setTeachingTypesState: (teachingTypes: ITeachingType[]) => void,
-): Promise<void> => {
-  await API.get(`/${entityPath}`).then((response) => {
-    setTeachingTypesState(response.data);
-  });
+): Promise<ITeachingType[]> => {
+  const { data } = await API.get(`/${entityPath}`);
+
+  return data;
 };
 
 // SHOW

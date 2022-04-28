@@ -7,10 +7,9 @@ import {
   getFullDate,
 } from '../../../../functions/utils';
 import theme from '../../../../global/styles/theme';
-import { IStudentWeeklyPerformance } from '../../../../interfaces/IStudentWeeklyPerformance';
 import OnEducaAPI from '../../../../services/api';
 import { DEFAULT_STUDENT_WEEKLY_PERFORMANCE } from '../../../../static/defaultEntitiesValues';
-import { State } from '../../../../store';
+import { RootState } from '../../../../store';
 import BarChartWithTwoValues, {
   IBarChartWithTwoValuesData,
 } from '../../../App/Charts/BarChartWithTwoValues';
@@ -31,7 +30,7 @@ const StudentWeeklyPerformance = (): JSX.Element => {
     aplication,
     people: loggedPeople,
     student,
-  } = useSelector((store: State) => store);
+  } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
   const [chartType, setChartType] = useState('questions');

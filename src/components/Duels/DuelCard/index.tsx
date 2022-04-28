@@ -8,10 +8,6 @@ import {
 import { participateInDuel } from '../../../functions/duelTeamParts';
 import { isDefaultDuel } from '../../../functions/entitiesValues';
 import { getPeople } from '../../../functions/people';
-import { IDuel } from '../../../interfaces/IDuel';
-import { IDuelTeam } from '../../../interfaces/IDuelTeam';
-import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
-import { IStudent } from '../../../interfaces/IStudent';
 import OnEducaAPI from '../../../services/api';
 import { DEFAULT_PEOPLE } from '../../../static/defaultEntitiesValues';
 import {
@@ -91,7 +87,7 @@ const DuelCard = (props: IDuelCardProps): JSX.Element => {
     if (!isDefaultDuel(duel)) {
       const { student, duelRound } = duel;
       setNumParticipants(participatesInDuelCounter(duelRound.teams));
-      getPeople(OnEducaAPI, student.people.id, setPeople, token);
+      // getPeople(OnEducaAPI, student.people.id, setPeople, token);
     }
   }, [duel]);
 

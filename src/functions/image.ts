@@ -2,7 +2,6 @@
 /* eslint-disable no-console */
 
 import { AxiosInstance } from 'axios';
-import { IImage } from '../interfaces/IImage';
 
 export const createImage = async (
   API: AxiosInstance,

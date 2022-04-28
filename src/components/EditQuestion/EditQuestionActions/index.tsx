@@ -9,16 +9,12 @@ import {
   deleteAlternative,
   findAlternativeByDescFromArray,
 } from '../../../functions/alternative';
-import { isDefaultContent } from '../../../functions/entitiesValues';
 import {
   updateQuestion as updateQuestionData,
   isValidQuestion,
 } from '../../../functions/question';
-import { IAlternative } from '../../../interfaces/IAlternative';
-import { IContent } from '../../../interfaces/IContent';
-import { IQuestion } from '../../../interfaces/IQuestion';
 import OnEducaAPI from '../../../services/api';
-import { State } from '../../../store';
+import { RootState } from '../../../store';
 import {
   CancelEditButton,
   CancelEditButtonLabel,
@@ -52,7 +48,7 @@ const EditQuestionActions = (props: IEditQuestionActionsProps): JSX.Element => {
     setQuestionWasUpdated,
   } = props;
 
-  const { aplication } = useSelector((store: State) => store);
+  const { aplication } = useSelector((store: RootState) => store);
 
   const { token } = aplication;
 

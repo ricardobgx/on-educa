@@ -9,12 +9,10 @@ import {
   startDuelRound,
 } from '../../../functions/duelRound';
 import { removeParticipant } from '../../../functions/duelTeamParts';
-import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
 import {
   IDuelRequestComponentsProps,
   IDuelStudentInfoComponentsProps,
 } from '../../../pages/Duel';
-import { DEFAULT_DUEL } from '../../../static/defaultEntitiesValues';
 import { ActionCreators } from '../../../store';
 import {
   DuelActionsBox,
@@ -94,20 +92,20 @@ const DuelActions = (props: IDuelActionsProps): JSX.Element => {
 
   return (
     <DuelActionsBox>
-      <InviteFriendsButton className="with-shadow bd-rd-5">
+      <InviteFriendsButton className="block-shadow-button secondary-action bd-rd-5">
         <InviteFriendsButtonLabel>Convidar amigos</InviteFriendsButtonLabel>
       </InviteFriendsButton>
       {!isDuelOwner(loggedStudent.id, duelOwner.id) ? (
         <QuitDuelButton
           onClick={() => exitDuel()}
-          className="with-shadow bd-rd-5"
+          className="block-shadow-button danger-action bd-rd-5"
         >
           <QuitDuelButtonLabel>Sair</QuitDuelButtonLabel>
         </QuitDuelButton>
       ) : (
         <StartDuelButton
           onClick={() => startDuel()}
-          className="with-shadow bd-rd-5"
+          className="block-shadow-button main-action bd-rd-5"
         >
           <StartDuelButtonLabel>Começar</StartDuelButtonLabel>
         </StartDuelButton>

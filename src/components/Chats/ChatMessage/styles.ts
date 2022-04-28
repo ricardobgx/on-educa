@@ -5,8 +5,6 @@ export const ChatMessageBox = styled.div`
   width: max-content;
   max-width: 40%;
   padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   position: relative;
   margin-bottom: 10px;
 

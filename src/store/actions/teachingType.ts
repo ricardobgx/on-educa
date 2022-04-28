@@ -1,4 +1,3 @@
-import { ITeachingType } from '../../interfaces/ITeachingType';
 import { TeachingTypeActionType } from '../action-types/teachingType';
 
 interface LoadTeachingType {

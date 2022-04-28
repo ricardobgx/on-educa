@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 import { Dispatch } from 'redux';
-import { ITeacher } from '../../interfaces/ITeacher';
 import { TeacherActionType } from '../action-types/teacher';
 import { TeacherAction } from '../actions/teacher';
 

@@ -11,7 +11,7 @@ const theme =
   themes[0];
 
 const fontsSize = {
-  computer: '2.5vh',
+  computer: '2.3vh',
   tablet: '2.5vw',
   smartphone: '4vw',
 };

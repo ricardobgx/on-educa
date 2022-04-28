@@ -1,14 +1,3 @@
-import { IAlternative } from '../interfaces/IAlternative';
-import { IContent } from '../interfaces/IContent';
-import { IDuel } from '../interfaces/IDuel';
-import { IDuelTeamParticipation } from '../interfaces/IDuelTeamParticipation';
-import { IPractice } from '../interfaces/IPractice';
-import { IPracticeQuestion } from '../interfaces/IPracticeQuestion';
-import { ISchoolGrade } from '../interfaces/ISchoolGrade';
-import { ISubject } from '../interfaces/ISubject';
-import { ITeachingType } from '../interfaces/ITeachingType';
-import { IUnity } from '../interfaces/IUnity';
-import { IPeople } from '../interfaces/IPeople';
 import {
   DEFAULT_ALTERNATIVE,
   DEFAULT_CONTENT,
@@ -25,9 +14,6 @@ import {
   DEFAULT_PEOPLE,
   DEFAULT_CHAT,
 } from '../static/defaultEntitiesValues';
-import { ITeacher } from '../interfaces/ITeacher';
-import { IStudent } from '../interfaces/IStudent';
-import { IChat } from '../interfaces/IChat';
 
 // Usuarios
 

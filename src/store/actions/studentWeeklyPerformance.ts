@@ -1,4 +1,3 @@
-import { IStudentWeeklyPerformance } from '../../interfaces/IStudentWeeklyPerformance';
 import { StudentWeeklyPerformanceActionType } from '../action-types/studentWeeklyPerformance';
 
 interface LoadStudentWeeklyPerformance {

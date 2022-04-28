@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { updateUnity as updateUnityData } from '../../../functions/unity';
-import { IUnity } from '../../../interfaces/IUnity';
 import { ICommonUnityProps } from '../../../pages/Units';
 import OnEducaAPI from '../../../services/api';
-import { State } from '../../../store';
+import { RootState } from '../../../store';
 import {
   UpdateUnityBackground,
   UpdateUnityBox,
@@ -26,13 +25,13 @@ const UpdateUnity = (props: IUpdateUnityProps): JSX.Element => {
 
   const { unity, setUpdateUnityIsVisible, getUnits } = props;
 
-  /* Local State */
+  /* LocalRootState */
 
   const [name, setName] = useState(unity.name);
 
-  /* Global State */
+  /* GlobalRootState */
 
-  const { aplication } = useSelector((store: State) => store);
+  const { aplication } = useSelector((store: RootState) => store);
 
   const { token } = aplication;
 

@@ -9,10 +9,9 @@ import {
   Page,
   PageBoxColumn,
 } from '../../global/styles/components/pageComponents';
-import { IChat } from '../../interfaces/IChat';
 import OnEducaAPI from '../../services/api';
 import { DEFAULT_CHAT } from '../../static/defaultEntitiesValues';
-import { ActionCreators, State } from '../../store';
+import { ActionCreators, RootState } from '../../store';
 import {
   ChatsBox,
   RecentConversations,
@@ -31,7 +30,7 @@ import {
 
 const Chats = (): JSX.Element => {
   const { aplication, people: loggedPeople } = useSelector(
-    (store: State) => store,
+    (store: RootState) => store,
   );
   const { token, loadingAnimation } = aplication;
 
@@ -88,7 +87,7 @@ const Chats = (): JSX.Element => {
             </ToggleRecentConversationsLabel>
             <RecentConversationsBox>
               <RecentConversationsActions>
-                <BackButton to="/home">
+                <BackButton to="/">
                   <BackButtonIcon className="fas fa-arrow-left" />
                 </BackButton>
                 <RecentConversationsLabel>Conversas</RecentConversationsLabel>
@@ -99,12 +98,13 @@ const Chats = (): JSX.Element => {
                     key={chat.id}
                     chat={chat}
                     loggedPeople={loggedPeople}
+                    selectedChat={selectedChat}
                     setSelectedChat={switchChat}
                     token={token}
                   />
                 ))}
               </RecentConversationsList>
-              <TalkWithTeacherButton>
+              <TalkWithTeacherButton className="block-shadow-button main-action bd-rd-20">
                 <TalkWithTeacherButtonLabel>
                   Fale com um professor
                 </TalkWithTeacherButtonLabel>

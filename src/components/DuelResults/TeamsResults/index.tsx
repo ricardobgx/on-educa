@@ -1,6 +1,4 @@
 import React from 'react';
-import { IDuelParticipant } from '../../../interfaces/IDuelParticipant';
-import { IDuelTeam } from '../../../interfaces/IDuelTeam';
 import SectionLabel from '../../App/SectionLabel';
 import DuelTeamsList from '../DuelTeamsList';
 import {

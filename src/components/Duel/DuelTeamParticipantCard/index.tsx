@@ -6,15 +6,13 @@ import { socket } from '../../../App';
 import { removeParticipant } from '../../../functions/duelTeamParts';
 import { isDefaultPeople } from '../../../functions/entitiesValues';
 import { getPeople } from '../../../functions/people';
-import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
-import { IStudent } from '../../../interfaces/IStudent';
 import OnEducaAPI from '../../../services/api';
 import {
   DEFAULT_PEOPLE,
   DEFAULT_STUDENT,
   DEFAULT_TEACHER,
 } from '../../../static/defaultEntitiesValues';
-import { State } from '../../../store';
+import { RootState } from '../../../store';
 import PeopleCard from '../../App/PeopleCard';
 import {
   DuelTeamParticipantCardBox,
@@ -33,7 +31,7 @@ interface IDuelTeamParticipantCard {
 const DuelTeamParticipantCard = (
   props: IDuelTeamParticipantCard,
 ): JSX.Element => {
-  const { aplication } = useSelector((store: State) => store);
+  const { aplication } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
   const {
@@ -67,9 +65,19 @@ const DuelTeamParticipantCard = (
     );
   };
 
+  const getParticipationPeople = async (): Promise<void> => {
+    const participationPeople = await getPeople(
+      OnEducaAPI,
+      student.people.id,
+      token,
+    );
+
+    if (participationPeople) setPeople(participationPeople);
+  };
+
   useEffect(() => {
     if (isDefaultPeople(people) && token) {
-      getPeople(OnEducaAPI, student.people.id, setPeople, token);
+      getParticipationPeople();
     }
   }, [token, people]);
 

@@ -1,10 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { deleteContent as deleteContentData } from '../../../functions/content';
-import { IContent } from '../../../interfaces/IContent';
 import { ICommonContentProps } from '../../../pages/Contents';
 import OnEducaAPI from '../../../services/api';
-import { State } from '../../../store';
+import { RootState } from '../../../store';
 import {
   DeleteContentBackground,
   DeleteContentBox,
@@ -29,9 +28,9 @@ const DeleteContent = (props: IDeleteContentProps): JSX.Element => {
 
   const { content, setDeleteContentIsVisible, getContents } = props;
 
-  /* Global State */
+  /* GlobalRootState */
 
-  const { aplication } = useSelector((store: State) => store);
+  const { aplication } = useSelector((store: RootState) => store);
 
   const { token } = aplication;
 

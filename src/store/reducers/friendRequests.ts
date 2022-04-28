@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { IFriendRequest } from '../../interfaces/IFriendRequest';
 import { FriendRequestsActionType } from '../action-types/friendRequests';
 import { FriendRequestsAction } from '../actions/friendRequests';
 

@@ -2,9 +2,6 @@
 
 import React from 'react';
 import { isDefaultStudent } from '../../../functions/entitiesValues';
-import { IDuelTeam } from '../../../interfaces/IDuelTeam';
-import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
-import { IStudent } from '../../../interfaces/IStudent';
 import { DEFAULT_STUDENT } from '../../../static/defaultEntitiesValues';
 import ChangeDuelTeamPosition from '../ChangeDuelTeamPosition';
 import DuelTeamParticipantCard from '../DuelTeamParticipantCard';

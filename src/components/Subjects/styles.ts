@@ -3,8 +3,8 @@ import { paragraph } from '../../global/styles/components/textComponents';
 
 export const SubjectSectionSelectBox = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
+  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+  border-radius: 20px;
   padding: 15px;
   display: flex;
   flex-direction: column;
@@ -46,19 +46,48 @@ export const SubjectSectionSelectOptionsListBox = styled.div`
   }
 `;
 export const SubjectSectionSelectOption = styled.button`
-  background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
+  color: ${({ theme }) => theme.colors.secondaryButtonTextColor};
+  background: ${({ theme }) => theme.colors.secondaryButtonBgColor};
+
+  box-shadow: 0px 2px 0px 3px
+    ${({ theme }) => theme.colors.secondaryButtonShadowColor};
+
+  border: none;
   border-radius: 5px;
+
+  width: 100%;
   min-height: 60px;
   padding: 0 20px;
   margin-bottom: 20px;
-  border: none;
-  color: ${({ theme }) => theme.colors.textColor};
+
   display: flex;
   align-items: center;
+
   transition: all 0.2s linear;
+
   cursor: pointer;
-  width: 100%;
+
+  &.selected {
+    color: ${({ theme }) => theme.colors.mainButtonTextColor};
+    background: ${({ theme }) => theme.colors.mainButtonBgColor};
+
+    box-shadow: 0px 0px 0px 1px
+      ${({ theme }) => theme.colors.mainButtonShadowColor};
+
+    p {
+      transform: translateY(0px);
+    }
+
+    :hover {
+      box-shadow: 0px 0px 0px 1px
+        ${({ theme }) => theme.colors.mainButtonShadowColor};
+    }
+  }
+
+  :hover {
+    box-shadow: 0px 0px 0px 1px
+      ${({ theme }) => theme.colors.secondaryButtonShadowColor};
+  }
 
   &:last-of-type {
     margin-bottom: 0;

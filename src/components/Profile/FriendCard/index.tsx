@@ -2,15 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import { getChatsByPeople, getOrCreateChat } from '../../../functions/chat';
+import { getOrCreateChat } from '../../../functions/chat';
 import {
   getPeople,
   isPeopleFriend,
   isPeopleLogged,
   setUpPeopleType,
 } from '../../../functions/people';
-import { IChat } from '../../../interfaces/IChat';
-import { IPeople } from '../../../interfaces/IPeople';
 import OnEducaAPI from '../../../services/api';
 import {
   DEFAULT_PEOPLE,
@@ -74,8 +72,13 @@ const FriendCard = (props: IFriendCardProps): JSX.Element => {
     );
   };
 
+  const getFriendPeople = async (): Promise<void> => {
+    const peopleFound = await getPeople(OnEducaAPI, people.id, token);
+    if (peopleFound) getPeopleSucess(peopleFound);
+  };
+
   useEffect(() => {
-    getPeople(OnEducaAPI, people.id, getPeopleSucess, token);
+    getFriendPeople();
     if (!isPeopleLogged(loggedPeople.id, people.id))
       setIsFriend(isPeopleFriend(loggedPeople.friends, people.id));
   }, [token, people, loggedPeople]);

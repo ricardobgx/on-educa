@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { ITeacher } from '../../interfaces/ITeacher';
 import { DEFAULT_TEACHER } from '../../static/defaultEntitiesValues';
 import { TeacherActionType } from '../action-types/teacher';
 import { TeacherAction } from '../actions/teacher';

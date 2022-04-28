@@ -12,6 +12,7 @@ const SuppliesVideo = (props: ISuppliesVideoProps): JSX.Element => {
 
   return (
     <SuppliesVideoPlayer
+      className="bd-rd-20"
       src={`${YTEmbedUrl}${getYTVideoCode(video)}`}
       title="YouTube video player"
       frameBorder="0"

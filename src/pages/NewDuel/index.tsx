@@ -10,11 +10,9 @@ import SectionLabel from '../../components/App/SectionLabel';
 import NewDuelContents from '../../components/NewDuel/NewDuelContents';
 import NewDuelSettings from '../../components/NewDuel/NewDuelSettings';
 import { IDuelParams } from '../../dto/IDuelParams';
-import { createDuel as createDuelRequest, getDuel } from '../../functions/duel';
-import { IContent } from '../../interfaces/IContent';
-import { IDuel } from '../../interfaces/IDuel';
+import { createDuel as createDuelRequest } from '../../functions/duel';
 import OnEducaAPI from '../../services/api';
-import { ActionCreators, State } from '../../store';
+import { ActionCreators, RootState } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import {
   PageBox,
@@ -30,9 +28,9 @@ import {
 const NewDuel = (): JSX.Element => {
   const pageHistory = useHistory();
 
-  /* Global State */
+  /* GlobalRootState */
 
-  const { student, aplication } = useSelector((store: State) => store);
+  const { student, aplication } = useSelector((store: RootState) => store);
 
   const { id } = student;
   const { token } = aplication;
@@ -40,7 +38,7 @@ const NewDuel = (): JSX.Element => {
   const dispatch = useDispatch();
   const { loadDuel } = bindActionCreators(ActionCreators, dispatch);
 
-  /* Local State */
+  /* LocalRootState */
 
   const maxParticipantsValues = [1, 2, 4];
   const timeForQuestionValues = [1, 3, 5];
@@ -128,10 +126,16 @@ const NewDuel = (): JSX.Element => {
             <NewDuelSettings {...newDuelSettingsProps} />
           </NewDuelDetails>
           <NewDuelActions>
-            <CancelNewDuelButton to="/duels">
+            <CancelNewDuelButton
+              className="block-shadow-button secondary-action"
+              to="/duels"
+            >
               <CancelNewDuelButtonLabel>Cancelar</CancelNewDuelButtonLabel>
             </CancelNewDuelButton>
-            <CreateNewDuelButton onClick={() => createDuel()}>
+            <CreateNewDuelButton
+              className="block-shadow-button main-action"
+              onClick={() => createDuel()}
+            >
               <CreateNewDuelButtonLabel>Criar duelo</CreateNewDuelButtonLabel>
             </CreateNewDuelButton>
           </NewDuelActions>

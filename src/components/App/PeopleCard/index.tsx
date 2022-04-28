@@ -5,14 +5,12 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getStudentWeeklyPerformanceByStudent } from '../../../functions/studentWeeklyPerformance';
 import { displaySurname } from '../../../functions/people';
-import { IStudentWeeklyPerformance } from '../../../interfaces/IStudentWeeklyPerformance';
-import { IPeople } from '../../../interfaces/IPeople';
 import OnEducaAPI from '../../../services/api';
 import {
   DEFAULT_STUDENT_WEEKLY_PERFORMANCE,
   DEFAULT_TEACHER_WEEKLY_PERFORMANCE,
 } from '../../../static/defaultEntitiesValues';
-import { State } from '../../../store';
+import { RootState } from '../../../store';
 import {
   PeopleCardBox,
   PeopleDetails,
@@ -25,10 +23,7 @@ import {
   PeopleLeague,
   PeopleExperience,
 } from './styles';
-import { IStudent } from '../../../interfaces/IStudent';
-import { ITeacher } from '../../../interfaces/ITeacher';
 import { getTeacherWeeklyPerformanceByTeacher } from '../../../functions/teacherWeeklyPerformance';
-import { ITeacherWeeklyPerformance } from '../../../interfaces/ITeacherWeeklyPerformance';
 
 export interface IPeopleCardProps {
   people: IPeople;
@@ -55,7 +50,7 @@ const PeopleCard = (props: IPeopleCardProps): JSX.Element => {
   const { schoolGrade, id: studentId } = student;
   const { teachingType, id: teacherId } = teacher;
 
-  const { aplication } = useSelector((store: State) => store);
+  const { aplication } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
   const [studentWeeklyPerformance, setStudentWeeklyPerformance] =

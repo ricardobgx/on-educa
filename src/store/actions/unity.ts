@@ -1,4 +1,3 @@
-import { IUnity } from '../../interfaces/IUnity';
 import { UnityActionType } from '../action-types/unity';
 
 interface LoadUnity {

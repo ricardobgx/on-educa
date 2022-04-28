@@ -1,5 +1,4 @@
 import React from 'react';
-import { IQuestion } from '../../../interfaces/IQuestion';
 import {
   QuestionCardActionsBox,
   EditQuestionButton,

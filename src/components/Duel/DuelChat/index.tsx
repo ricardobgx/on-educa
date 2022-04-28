@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { socket } from '../../../App';
-import { IDuelChatMessage } from '../../../interfaces/IDuelChatMessage';
-import { IPeople } from '../../../interfaces/IPeople';
-import { DEFAULT_PEOPLE } from '../../../static/defaultEntitiesValues';
 import DuelChatActions from '../DuelChatActions';
 import DuelChatMessages from '../DuelChatMessages';
 import {

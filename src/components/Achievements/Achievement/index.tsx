@@ -15,7 +15,7 @@ import {
 
 const Achievement = (): JSX.Element => {
   return (
-    <AchievementBox className="with-shadow bd-rd-5">
+    <AchievementBox className="with-shadow bd-rd-20">
       <AchievementLevel>
         <AchievementLevelIcon className="fas fa-star" />
         <AchievementLevelLabel>Prata</AchievementLevelLabel>

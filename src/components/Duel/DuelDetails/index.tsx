@@ -1,6 +1,5 @@
 import React from 'react';
 import theme from '../../../global/styles/theme';
-import { IDuel } from '../../../interfaces/IDuel';
 import { SmallMaterialIconRound } from '../../App/Icons/MaterialIcons/MaterialIconsRound';
 import {
   DuelDetailsBox,

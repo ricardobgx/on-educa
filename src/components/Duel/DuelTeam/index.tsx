@@ -1,7 +1,4 @@
 import React from 'react';
-import { IDuelTeam } from '../../../interfaces/IDuelTeam';
-import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
-import { IStudent } from '../../../interfaces/IStudent';
 import DuelTeamParticipantsList from '../DuelTeamParticipantsList';
 import { DuelTeamBox, DuelTeamLabel, DuelTeamParticipants } from './styles';
 

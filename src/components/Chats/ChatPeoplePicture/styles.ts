@@ -7,8 +7,8 @@ export const ChatPeoplePictureBox = styled.div`
   height: max-content;
 `;
 export const ChatPeoplePictureImg = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 37px;
+  height: 37px;
   border-radius: 50%;
 `;
 export const ChatPeopleIsOnline = styled.div`

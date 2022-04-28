@@ -9,10 +9,9 @@ import UnitsActions from '../../components/Units/UnitsActions';
 import UnitsList from '../../components/Units/UnitsList';
 import UpdateUnity from '../../components/Units/UpdateUnity';
 import { getUnitsBySubject } from '../../functions/unity';
-import { IUnity } from '../../interfaces/IUnity';
 import OnEducaAPI from '../../services/api';
 import { DEFAULT_UNITY } from '../../static/defaultEntitiesValues';
-import { State } from '../../store';
+import { RootState } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import { PageBox, UnitsBox } from './styles';
 
@@ -34,7 +33,7 @@ const Units = (): JSX.Element => {
   const route = useRouteMatch();
   const { id: subjectId } = route.params as IUnitsRouteParams;
 
-  const { subject, aplication } = useSelector((store: State) => store);
+  const { subject, aplication } = useSelector((store: RootState) => store);
   const { isStudent, token } = aplication;
 
   const getUnits = async (): Promise<void> => {

@@ -17,10 +17,8 @@ import { isDefaultPeople } from '../../functions/entitiesValues';
 import { getFriendRequestsByPeople } from '../../functions/friendRequest';
 import { getPeoples } from '../../functions/people';
 import { Page } from '../../global/styles/components/pageComponents';
-import { IFriendRequest } from '../../interfaces/IFriendRequest';
-import { IPeople } from '../../interfaces/IPeople';
 import OnEducaAPI from '../../services/api';
-import { ActionCreators, State } from '../../store';
+import { ActionCreators, RootState } from '../../store';
 import {
   PageBox,
   FriendsBox,
@@ -38,7 +36,7 @@ const Friends = (): JSX.Element => {
     aplication,
     people: loggedPeople,
     friendRequests,
-  } = useSelector((store: State) => store);
+  } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
   const dispatch = useDispatch();

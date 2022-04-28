@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { isDefaultPeople } from '../../../../functions/entitiesValues';
 import { getStudentWeeklyPerformanceByStudent } from '../../../../functions/studentWeeklyPerformance';
-import { IPeople } from '../../../../interfaces/IPeople';
-import { IStudent } from '../../../../interfaces/IStudent';
-import { IStudentWeeklyPerformance } from '../../../../interfaces/IStudentWeeklyPerformance';
 import {
   PerformanceDetailsHeader,
   PerformanceDetailsHeaderLabel,

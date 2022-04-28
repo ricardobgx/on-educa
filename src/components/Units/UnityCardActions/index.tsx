@@ -1,5 +1,4 @@
 import React from 'react';
-import { IUnity } from '../../../interfaces/IUnity';
 import {
   EditSuppliesButton,
   EditSuppliesButtonIcon,

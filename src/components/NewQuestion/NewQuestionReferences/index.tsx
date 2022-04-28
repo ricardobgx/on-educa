@@ -1,10 +1,5 @@
 import React from 'react';
 import { RequiredField } from '../../../global/styles/components/textComponents';
-import { IContent } from '../../../interfaces/IContent';
-import { ISchoolGrade } from '../../../interfaces/ISchoolGrade';
-import { ISubject } from '../../../interfaces/ISubject';
-import { ITeachingType } from '../../../interfaces/ITeachingType';
-import { IUnity } from '../../../interfaces/IUnity';
 import { NewQuestionBoxLabel } from '../../../pages/NewQuestion/styles';
 import SuppliesContentReference from '../../App/Supplies/SuppliesReferences/SuppliesContentReference';
 import SuppliesSubjectReference from '../../App/Supplies/SuppliesReferences/SuppliesSubjectReference';

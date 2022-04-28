@@ -24,6 +24,7 @@ export const PeoplePicture = styled.img`
   width: 50px;
   height: 50px;
   border-radius: 25px;
+  background: ${({ theme }) => theme.colors.textColor};
 `;
 
 // Informações do estudante
