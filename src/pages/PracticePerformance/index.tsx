@@ -225,7 +225,10 @@ const PracticePerformance = (): JSX.Element => {
                 </PerformanceTypeBox>
               </PerformanceType>
             </PerformanceDetailsBox>
-            <NextContentButton to={`/contents/${contentId}`}>
+            <NextContentButton
+              className="block-shadow-button main-action bd-rd-20"
+              to={`/contents/${contentId}`}
+            >
               <NextContentButtonLabel>Próximo conteúdo</NextContentButtonLabel>
             </NextContentButton>
           </PerformanceDetails>

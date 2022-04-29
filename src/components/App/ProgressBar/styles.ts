@@ -7,7 +7,7 @@ export const Container = styled.div`
   width: 100%;
 `;
 export const Bar = styled.div`
-  height: 19px;
+  height: 13px;
   padding: 2px;
   margin-right: 20px;
   border-radius: 10px;
@@ -17,7 +17,7 @@ export const Bar = styled.div`
   background: ${({ theme }) => theme.colors.textColor};
 `;
 export const InnerBar = styled.div`
-  height: 15px;
+  height: 13px;
   background: ${({ theme }) => theme.colors.boxColor};
   transition: 0.2s linear;
 

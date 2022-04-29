@@ -58,7 +58,10 @@ const ChangeDuelTeamPosition = (
   };
 
   return (
-    <ChangeDuelTeamPositionBox onClick={() => changePosition()}>
+    <ChangeDuelTeamPositionBox
+      className="block-shadow-button secondary-action bd-rd-20"
+      onClick={() => changePosition()}
+    >
       <MediumMaterialIconRound color="" icon="event_seat" />
       <ChangeDuelTeamPositionLabel>
         Vir para este lugar

@@ -27,11 +27,22 @@ export const NameAndLastMessage = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  width: 100%;
   padding: 5px 0;
+`;
+export const NameAndLastMessageTime = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
 `;
 export const PeopleName = styled(paragraph)`
   font-weight: bold;
 `;
 export const LastMessagePreview = styled(paragraph)`
+  font-size: 14px;
+`;
+export const LastMessageTime = styled.p`
   font-size: 14px;
 `;

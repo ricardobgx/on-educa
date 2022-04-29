@@ -82,7 +82,7 @@ const DuelTeamParticipantCard = (
   }, [token, people]);
 
   return (
-    <DuelTeamParticipantCardBox>
+    <DuelTeamParticipantCardBox className="with-shadow bd-rd-20">
       <PeopleCard
         smartphoneNameLength={20}
         abbreviateName

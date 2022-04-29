@@ -91,11 +91,12 @@ const DuelActionsBar = (props: IDuelActionsBarProps): JSX.Element => {
 
   return (
     <DuelActionsBarBox>
-      <OwnerInfo>
+      <OwnerInfo className="with-shadow bd-rd-30">
         <OwnerName>Duelo de {people.name}</OwnerName>
       </OwnerInfo>
       <Actions>
         <SeeDetailsButton
+          className="block-shadow-button secondary-action bd-rd-30"
           onClick={() => {
             setShowDuelDetails(true);
           }}
@@ -103,18 +104,24 @@ const DuelActionsBar = (props: IDuelActionsBarProps): JSX.Element => {
           <SeeDetailsButtonLabel>Detalhes</SeeDetailsButtonLabel>
           <SeeDetailsButtonIcon className="fas fa-info" />
         </SeeDetailsButton>
-        <ChatButton onClick={() => setShowChat(true)}>
+        <ChatButton
+          className="block-shadow-button secondary-action bd-rd-30"
+          onClick={() => setShowChat(true)}
+        >
           <ChatButtonLabel>Chat</ChatButtonLabel>
           <ChatButtonIcon className="fas fa-comment-alt" />
         </ChatButton>
-        <Participations>
+        <Participations className="with-shadow bd-rd-30">
           <ParticipationsLabel>Participantes</ParticipationsLabel>
           <ParticipationsNumberLabel>
             {numParticipants}/{duelRound.maxGroupParticipants * 2}
           </ParticipationsNumberLabel>
           <ParticipationsIcon className="fas fa-users" />
         </Participations>
-        <CloseDuelButton onClick={() => deleteDuel()}>
+        <CloseDuelButton
+          className="block-shadow-button main-action bd-rd-30"
+          onClick={() => deleteDuel()}
+        >
           <CloseDuelButtonLabel>Excluir</CloseDuelButtonLabel>
           <CloseDuelButtonIcon className="fas fa-trash" />
         </CloseDuelButton>

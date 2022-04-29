@@ -119,8 +119,8 @@ const StudentWeeklyPerformance = (): JSX.Element => {
 
   return (
     <WeeklyPerformanceBox>
-      <SectionLabel label="Desempenho" backLink="/home" />
-      <PerformanceChart>
+      <SectionLabel label="Desempenho" backLink="/" />
+      <PerformanceChart className="with-shadow bd-rd-30">
         <PerformanceChartBox>
           {chartType === 'questions' && (
             <BarChartWithTwoValues

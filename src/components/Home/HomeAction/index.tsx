@@ -7,7 +7,7 @@ const HomeAction = (props: IHomeActionProps): JSX.Element => {
   const { icon, label, link } = props;
 
   return (
-    <HomeActionBox to={link} className="with-shadow bd-rd-20">
+    <HomeActionBox to={link} className="with-shadow bd-rd-30">
       <HomeActionIcon className="material-icons-outlined">
         {icon}
       </HomeActionIcon>

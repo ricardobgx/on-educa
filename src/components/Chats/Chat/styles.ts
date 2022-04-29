@@ -68,7 +68,7 @@ export const ChatMessageInput = styled.div`
 `;
 export const MessageInput = styled(inputText)`
   border: none;
-  padding: 0px 10px;
+  padding: 0px 15px;
   width: 100%;
   margin-right: 10px;
   color: ${({ theme }) => theme.colors.textColor};
@@ -76,5 +76,9 @@ export const MessageInput = styled(inputText)`
 `;
 export const SendMessageButton = styled(Button)`
   min-width: 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 export const SendMessageButtonIcon = styled(mediumIcon)``;

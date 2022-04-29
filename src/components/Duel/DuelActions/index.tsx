@@ -92,20 +92,20 @@ const DuelActions = (props: IDuelActionsProps): JSX.Element => {
 
   return (
     <DuelActionsBox>
-      <InviteFriendsButton className="block-shadow-button secondary-action bd-rd-5">
+      <InviteFriendsButton className="block-shadow-button secondary-action bd-rd-20">
         <InviteFriendsButtonLabel>Convidar amigos</InviteFriendsButtonLabel>
       </InviteFriendsButton>
       {!isDuelOwner(loggedStudent.id, duelOwner.id) ? (
         <QuitDuelButton
           onClick={() => exitDuel()}
-          className="block-shadow-button danger-action bd-rd-5"
+          className="block-shadow-button danger-action bd-rd-20"
         >
           <QuitDuelButtonLabel>Sair</QuitDuelButtonLabel>
         </QuitDuelButton>
       ) : (
         <StartDuelButton
           onClick={() => startDuel()}
-          className="block-shadow-button main-action bd-rd-5"
+          className="block-shadow-button main-action bd-rd-20"
         >
           <StartDuelButtonLabel>Começar</StartDuelButtonLabel>
         </StartDuelButton>

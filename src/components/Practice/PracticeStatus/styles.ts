@@ -42,7 +42,7 @@ export const PracticeProgressBar = styled.div`
 `;
 export const QuestionsProgressBar = styled.div`
   height: 13px;
-  background: ${({ theme }) => theme.colors.boxColor};
+  background: ${({ theme }) => theme.colors.mainButtonBgColor};
   transition: 0.2s linear;
 
   &:first-of-type {

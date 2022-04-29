@@ -27,7 +27,7 @@ const Settings = (): JSX.Element => {
   return (
     <Page>
       <PageBox>
-        <SectionLabel label="Configurações" backLink="/home" />
+        <SectionLabel label="Configurações" backLink="/" />
         <SettingsBox>
           <ThemeSettings>
             <SettingsBoxLabel>Selecione o tema</SettingsBoxLabel>

@@ -13,7 +13,7 @@ export const HomeActionBox = styled(Link)`
   width: calc((100vh - 265px) / 2);
   height: calc((100vh - 265px) / 2);
   margin: 20px;
-  padding: calc(((100vh - 265px) / 2) / 7);
+  padding: calc(((100vh - 265px) / 2) / 5);
 
   background: ${({ theme }) => theme.colors.boxColor};
 
@@ -47,15 +47,11 @@ export const HomeActionIcon = styled.span`
 
   color: ${({ theme }) => theme.colors.textColor};
 
-  margin-top: 0.5rem;
-
   @media (max-width: 600px) {
-    margin-top: calc((100vw - 120px) / 24);
     font-size: calc((100vw - 120px) / 6);
   }
 
   @media (min-width: 600px) and (max-width: 1150px) {
-    margin-top: calc((100vw - 120px) / 45);
     font-size: calc((100vw - 180px) / 9);
   }
 `;

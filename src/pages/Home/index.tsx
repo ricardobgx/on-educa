@@ -81,11 +81,11 @@ const Home = (): JSX.Element => {
         <PerformanceBox>
           <SectionLabel backLink="" label="Desempenho" />
           <DailyPerformance />
-          <AchievementsBox to="/achievements" className="with-shadow bd-rd-20">
+          <AchievementsBox to="/achievements" className="with-shadow bd-rd-30">
             <AchievementsIcon className="fas fa-star" />
             <AchievementsLabel>Conquistas</AchievementsLabel>
           </AchievementsBox>
-          <DailyGoalBox className="with-shadow bd-rd-20">
+          <DailyGoalBox className="with-shadow bd-rd-30">
             <DailyGoalDataBox>
               <DailyGoalIcon className="fas fa-bullseye" />
               <DailyGoalLabel>Meta diária</DailyGoalLabel>

@@ -27,7 +27,7 @@ const Performance = (): JSX.Element => {
         )}
         <Ranking>
           <SectionLabel backLink="" label="Ranking" />
-          <RankingBox>
+          <RankingBox className="with-shadow bd-rd-30">
             {isStudent ? (
               <StudentRankingCardsList token={token} />
             ) : (

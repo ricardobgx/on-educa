@@ -49,7 +49,7 @@ const DailyPerformance = (): JSX.Element => {
     weekDay;
 
   return (
-    <DailyPerformanceBox className="with-shadow bd-rd-20">
+    <DailyPerformanceBox className="with-shadow bd-rd-30">
       <PerformancesBox>
         <PerformancesTypeBox>
           <PerformanceTypeBox>

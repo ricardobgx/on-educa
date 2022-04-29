@@ -31,7 +31,7 @@ const DuelDetails = (props: IDuelDetailsProps): JSX.Element => {
 
   return (
     <DuelDetailsBackground>
-      <DuelDetailsBox>
+      <DuelDetailsBox className="with-shadow bd-rd-30">
         <CloseDetailsButton
           onClick={() => {
             setShowDuelDetails(false);
@@ -41,7 +41,7 @@ const DuelDetails = (props: IDuelDetailsProps): JSX.Element => {
         </CloseDetailsButton>
         <DuelDetailsLabel>Detalhes</DuelDetailsLabel>
         <Settings>
-          <SettingsBox>
+          <SettingsBox className="bd-rd-30">
             <SettingsBoxLabel>
               <SmallMaterialIconRound
                 icon="pin"
@@ -51,21 +51,21 @@ const DuelDetails = (props: IDuelDetailsProps): JSX.Element => {
             </SettingsBoxLabel>
             <SettingsBoxNumber>{code}</SettingsBoxNumber>
           </SettingsBox>
-          <SettingsBox>
+          <SettingsBox className="bd-rd-30">
             <SettingsBoxLabel>
               <SettingsBoxIcon className="fas fa-users" />
               Participantes por equipe
             </SettingsBoxLabel>
             <SettingsBoxNumber>{maxGroupParticipants}</SettingsBoxNumber>
           </SettingsBox>
-          <SettingsBox>
+          <SettingsBox className="bd-rd-30">
             <SettingsBoxLabel>
               <SettingsBoxIcon className="fas fa-file-alt" />
               Questões por conteúdo
             </SettingsBoxLabel>
             <SettingsBoxNumber>{questionsPerContent}</SettingsBoxNumber>
           </SettingsBox>
-          <SettingsBox>
+          <SettingsBox className="bd-rd-30">
             <SettingsBoxLabel>
               <SettingsBoxIcon className="fas fa-clock" />
               Tempo para questão
@@ -73,7 +73,7 @@ const DuelDetails = (props: IDuelDetailsProps): JSX.Element => {
             <SettingsBoxNumber>{timeForQuestion}</SettingsBoxNumber>
           </SettingsBox>
         </Settings>
-        <EditDuelDetailsButton>
+        <EditDuelDetailsButton className="block-shadow-button main-action bd-rd-30">
           <EditDuelDetailsButtonLabel>Editar</EditDuelDetailsButtonLabel>
           <EditDuelDetailsButtonIcon className="fas fa-pen" />
         </EditDuelDetailsButton>

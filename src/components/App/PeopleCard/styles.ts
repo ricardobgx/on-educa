@@ -5,13 +5,10 @@ export const PeopleCardBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: ${({ theme }) => theme.colors.boxColor};
   min-height: 85px;
   height: 100%;
   width: 100%;
   padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
 
   @media (max-width: 1150px) {
     min-height: unset;
@@ -38,6 +35,7 @@ export const PersonalInfo = styled.div`
   justify-content: space-between;
   margin-left: 0.75rem;
   height: 50px;
+  padding: 4px 0;
 `;
 
 // Nome

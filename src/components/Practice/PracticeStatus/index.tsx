@@ -21,7 +21,7 @@ const PracticeStatus = (props: IPracticeStatusProps): JSX.Element => {
   const { answeredQuestionsNumber, questions } = props;
 
   return (
-    <Container>
+    <Container className="with-shadow bd-rd-30">
       {quitPractice ? (
         <ConfirmQuitPractice setQuitPractice={setQuitPractice} />
       ) : null}

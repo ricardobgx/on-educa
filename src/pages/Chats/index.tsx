@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Chat from '../../components/Chats/Chat';
 import ChatCard from '../../components/Chats/ChatCard';
+import NoChatSelected from '../../components/Chats/NoChatSelected';
 import { getChatsByPeople } from '../../functions/chat';
 import { isDefaultChat, isDefaultPeople } from '../../functions/entitiesValues';
 import {
@@ -81,7 +82,9 @@ const Chats = (): JSX.Element => {
             type="checkbox"
             id="toggle-recent-conversations"
           />
-          <RecentConversations>
+          <RecentConversations
+            className={`${!isDefaultChat(selectedChat) ? 'chat-selected' : ''}`}
+          >
             <ToggleRecentConversationsLabel htmlFor="toggle-recent-conversations">
               <ToggleRecentConversationsLabelIcon className="fas fa-chevron-right" />
             </ToggleRecentConversationsLabel>
@@ -112,7 +115,9 @@ const Chats = (): JSX.Element => {
               {/* <TalkWithTeacher>1</TalkWithTeacher> */}
             </RecentConversationsBox>
           </RecentConversations>
-          {!isDefaultChat(selectedChat) && (
+          {isDefaultChat(selectedChat) ? (
+            <NoChatSelected />
+          ) : (
             <Chat
               chat={selectedChat}
               loggedPeople={loggedPeople}

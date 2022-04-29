@@ -51,6 +51,7 @@ const NewDuelSearchContents = (
   return (
     <NewDuelSearchContentsBox>
       <SearchSuppliesBox
+        className="bd-rd-20"
         style={{
           marginRight: 0,
           borderRadius: contentsFound.length > 0 ? '5px 5px 0 0' : '',

@@ -46,8 +46,8 @@ export const MediumMaterialIcon = styled(MaterialIcon)`
 
 export const BigMaterialIcon = styled(MaterialIcon)`
   font-size: 8vh;
-  width: 6.7vh;
-  height: 6.7vh;
+  width: 7.1vh;
+  height: 7.1vh;
 
   @media (min-width: 600px) and (max-width: 1150px) {
     font-size: 7vw;

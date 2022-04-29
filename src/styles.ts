@@ -187,19 +187,25 @@ export default createGlobalStyle`
     border-radius: 20px;
   }
 
+  .bd-rd-30 {
+    border-radius: 30px;
+  }
+
   .block-shadow-button {
     border: none;
     transition: all 0.2s linear;
 
     & p,
-    & i {
+    & i,
+    & span {
       transform: translateY(-1px);
       transition: all 0.2s linear;
     }
 
     &:hover {
       p,
-      i {
+      i,
+      span {
         transform: translateY(0px);
       }
     }

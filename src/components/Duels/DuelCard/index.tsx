@@ -99,7 +99,7 @@ const DuelCard = (props: IDuelCardProps): JSX.Element => {
   return (
     <DuelCardBox
       onClick={() => appendParticipant()}
-      className="with-shadow bd-rd-5"
+      className="block-shadow-button secondary-action bd-rd-20"
       style={{ animationDelay: `${index * 0.2}s` }}
     >
       <DuelDetails>

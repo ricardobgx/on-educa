@@ -26,7 +26,6 @@ export const DuelDetailsBox = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -75,8 +74,7 @@ export const SettingsBox = styled.div`
   display: flex;
   justify-content: space-between;
   border: 2px solid ${({ theme }) => theme.colors.textColor};
-  padding: 10px;
-  border-radius: 5px;
+  padding: 10px 15px;
   margin: 10px 0;
 `;
 export const SettingsBoxIcon = styled(smallIcon)`

@@ -5,6 +5,7 @@ import { getPeople } from '../../../functions/people';
 import { randInt } from '../../../functions/utils';
 import OnEducaAPI from '../../../services/api';
 import { DEFAULT_PEOPLE } from '../../../static/defaultEntitiesValues';
+import { MediumMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 import ChatMessage from '../ChatMessage';
 import ChatPeoplePicture from '../ChatPeoplePicture';
 import {
@@ -150,7 +151,7 @@ const Chat = (props: IChatProps): JSX.Element => {
           className="block-shadow-button main-action bd-rd-20"
           onClick={() => sendMessage()}
         >
-          <SendMessageButtonIcon className="bi bi-send" />
+          <MediumMaterialIconOutlined icon="send" color="" />
         </SendMessageButton>
       </ChatMessageInput>
     </ChatBox>

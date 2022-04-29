@@ -204,7 +204,7 @@ export const SearchSuppliesBox = styled.div`
   align-items: center;
   width: 100%;
   background: #f3f3f3;
-  padding: 0 10px;
+  padding: 0 15px;
   margin-right: 20px;
 `;
 

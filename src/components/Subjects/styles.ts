@@ -4,7 +4,7 @@ import { paragraph } from '../../global/styles/components/textComponents';
 export const SubjectSectionSelectBox = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 20px;
+  border-radius: 30px;
   padding: 15px;
   display: flex;
   flex-direction: column;

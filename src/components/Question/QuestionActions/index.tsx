@@ -33,7 +33,7 @@ const QuestionActions = (props: IPracticeQuestionActionsProps): JSX.Element => {
   return (
     <QuestionActionsBox>
       <AnswerQuestionButton
-        className="block-shadow-button main-action bd-rd-5"
+        className="block-shadow-button main-action bd-rd-20"
         disabled={isDefaultAlternative(selectedAlternative)}
         onClick={() => {
           if (!isDefaultAlternative(selectedAlternative)) {
@@ -45,7 +45,7 @@ const QuestionActions = (props: IPracticeQuestionActionsProps): JSX.Element => {
         <AnswerQuestionButtonLabel>Responder</AnswerQuestionButtonLabel>
       </AnswerQuestionButton>
       <SkipQuestionButton
-        className="block-shadow-button secondary-action bd-rd-5"
+        className="block-shadow-button secondary-action bd-rd-20"
         onClick={() => {
           answerQuestion(questions, question, DEFAULT_ALTERNATIVE);
           setSelectedAlternative(DEFAULT_ALTERNATIVE);

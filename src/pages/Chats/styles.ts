@@ -49,10 +49,12 @@ export const ToggleRecentConversationsLabel = styled.label`
 export const ToggleRecentConversationsLabelIcon = styled(mediumIcon)``;
 export const RecentConversations = styled.div`
   padding: 5px;
-  width: calc(25%);
-  width: 310px;
+  width: 25%;
   background: ${({ theme }) => theme.colors.boxColor};
-  border-right: 2px solid ${({ theme }) => theme.colors.hoverColor};
+
+  &.chat-selected {
+    border-right: 2px solid ${({ theme }) => theme.colors.hoverColor};
+  }
 
   @media (max-width: 1150px) {
     position: absolute;

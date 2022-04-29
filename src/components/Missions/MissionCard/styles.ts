@@ -6,7 +6,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   background: ${({ theme }) => theme.colors.boxColor};
-  padding: 20px;
+  padding: 15px;
   margin-bottom: 20px;
   color: ${({ theme }) => theme.colors.textColor};
   width: 100%;
@@ -14,10 +14,14 @@ export const Container = styled.div`
   &:last-of-type {
     margin-bottom: 0;
   }
+
+  & span {
+    margin-right: 15px;
+  }
 `;
 export const MissionIcon = styled(bigIcon)`
   margin-right: 20px;
-  font-size: 50px;
+  font-size: 40px;
 `;
 export const MissionInfo = styled.div`
   display: flex;
@@ -27,7 +31,7 @@ export const MissionInfo = styled.div`
 export const MissionInfoHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 `;
 export const MissionTitle = styled(paragraph)`
   font-weight: bold;
