@@ -203,7 +203,7 @@ export const SearchSuppliesBox = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  background: #f3f3f3;
+  background: ${({ theme }) => theme.colors.inputTextBgColor};
   padding: 0 15px;
   margin-right: 20px;
 `;

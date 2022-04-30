@@ -2,7 +2,7 @@ import { themes } from '../../../static/themes';
 import { ThemeType } from '../../../types/ThemeType';
 
 const localThemeType =
-  window.localStorage.getItem('theme') || ThemeType.BLUE.toString();
+  window.localStorage.getItem('theme') || ThemeType.LIGHT_BLUE.toString();
 
 const themeType = Number(localThemeType);
 

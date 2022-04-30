@@ -82,14 +82,17 @@ const SignInForm: React.FC<ISignFormProps> = (props) => {
           setValue={setPassword}
         />
       </SignFormFields>
-      <SignFormButton className="btn-login" onClick={() => login()}>
+      <SignFormButton
+        className="btn-login block-shadow-button main-action bd-rd-30"
+        onClick={() => login()}
+      >
         <SignFormButtonLabel>Entrar</SignFormButtonLabel>
       </SignFormButton>
       <SignFormButton
         onClick={() => switchSignForm()}
-        className="btn-switch switcher"
+        className="btn-switch switcher block-shadow-button secondary-action bd-rd-30"
       >
-        Cadastrar
+        <SignFormButtonLabel>Cadastrar</SignFormButtonLabel>
       </SignFormButton>
     </SignForm>
   );

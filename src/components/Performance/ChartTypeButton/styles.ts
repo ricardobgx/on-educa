@@ -5,13 +5,9 @@ import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const ChartTypeButtonBox = styled.button`
   cursor: pointer;
-  color: #949494;
-  background: ${({ theme }) => theme.colors.boxColor};
   border: none;
-  box-shadow: 0px 2px 0px 3px ${({ theme }) => theme.colors.boxShadowColor};
   min-width: 150px;
   height: 40px;
-  border-radius: 5px;
   margin: 10px;
   margin-left: 0;
   transition: all 0.2s linear;
@@ -20,15 +16,11 @@ export const ChartTypeButtonBox = styled.button`
     margin-right: 0;
   }
 
-  :hover {
-    box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.colors.boxShadowColor};
-  }
-
   &.selected {
-    color: ${({ theme }) => theme.colors.boxColor};
-    background: ${({ theme }) => theme.colors.textColor};
+    color: ${({ theme }) => theme.colors.mainButtonTextColor} !important;
+    background: ${({ theme }) => theme.colors.mainButtonBgColor} !important;
     box-shadow: 0px 0px 0px 1px
-      ${({ theme }) => theme.colors.mainButtonShadowColor};
+      ${({ theme }) => theme.colors.mainButtonShadowColor} !important;
 
     :hover {
       box-shadow: 0px 0px 0px 1px

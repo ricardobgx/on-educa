@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
 export const ShowAndHidePasswordButton = styled.button`
-  position: absolute;
+  position: relative;
+  margin-right: 15px;
 
-  right: 10px;
-
-  color: #949494;
+  color: ${({ theme }) => theme.colors.textColor};
   background: none;
 
   cursor: pointer;

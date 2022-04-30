@@ -5,11 +5,6 @@ interface LoadToken {
   token: string;
 }
 
-interface LoadTheme {
-  type: AplicationActionType.LOAD_THEME;
-  theme: number;
-}
-
 interface LoadPeopleType {
   type: AplicationActionType.LOAD_IS_STUDENT;
   isStudent: boolean;
@@ -25,7 +20,6 @@ interface DisableLoadingAnimation {
 
 export type AplicationAction =
   | LoadToken
-  | LoadTheme
   | LoadPeopleType
   | EnableLoadingAnimation
   | DisableLoadingAnimation;

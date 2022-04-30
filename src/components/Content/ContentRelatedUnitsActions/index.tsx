@@ -23,7 +23,7 @@ const ContentRelatedUnitsActions = (
   return (
     <ContentRelatedUnitsActionsBox>
       <ContentsRelated>
-        <ContentsRelatedReferenceLabel className="with-shadow bd-rd-20">
+        <ContentsRelatedReferenceLabel className="with-shadow bd-rd-30">
           {subject.name} - {schoolGrade.index}º ano
         </ContentsRelatedReferenceLabel>
 

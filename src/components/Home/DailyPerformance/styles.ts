@@ -77,7 +77,7 @@ export const PerformanceDataLabel = styled(paragraph)`
   /* font-weight: bold; */
 `;
 export const XPProgressBar = styled.div`
-  background: #e8e8e8;
+  background: ${({ theme }) => theme.colors.progressBarColor};
 
   width: 100%;
   height: 11px;

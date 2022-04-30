@@ -3,6 +3,8 @@ import { combineReducers } from 'redux';
 // Aplicacao
 
 import aplicationReducer from './aplication';
+import themeReducer from './theme';
+import floatNotificationReducer from './floatNotification';
 
 // Usuarios
 
@@ -41,6 +43,8 @@ import friendRequestsReducer from './friendRequests';
 
 const reducers = combineReducers({
   aplication: aplicationReducer,
+  theme: themeReducer,
+  floatNotification: floatNotificationReducer,
   people: peopleReducer,
   student: studentReducer,
   teacher: teacherReducer,

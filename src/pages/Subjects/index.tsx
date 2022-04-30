@@ -95,7 +95,7 @@ const Subjects = (): JSX.Element => {
   return (
     <Page>
       <PageBox>
-        <SectionLabel backLink="/home" label="Selecione a disciplina" />
+        <SectionLabel backLink="/" label="Selecione a disciplina" />
         <SelectSubjectsDetails>
           <TeachingTypeSelect
             label="Selecione o ensino"

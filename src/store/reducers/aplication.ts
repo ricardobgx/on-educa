@@ -11,8 +11,6 @@ const aplicationReducer = (
   switch (action.type) {
     case AplicationActionType.LOAD_TOKEN:
       return { ...state, token: action.token };
-    case AplicationActionType.LOAD_THEME:
-      return { ...state, theme: action.theme };
     case AplicationActionType.LOAD_IS_STUDENT:
       return { ...state, isStudent: action.isStudent };
     case AplicationActionType.ENABLE_LOADING_ANIMATION:

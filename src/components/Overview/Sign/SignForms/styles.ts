@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { BlockShadowButton } from '../../../../global/styles/components/buttonComponents';
+import { inputText } from '../../../../global/styles/components/inputComponents';
 
 export const SignFormsBox = styled.div`
   &.forms {
@@ -184,11 +185,7 @@ export const SignFormField = styled.div`
     display: block;
 
     width: 100%;
-    padding: 10px;
-
-    font-size: 16px;
-
-    color: #3b4465;
+    padding: 10px 15px;
 
     border: none;
     border-radius: 10px;
@@ -198,12 +195,13 @@ export const SignFormFieldLabel = styled.label``;
 export const SignFormFieldInputBox = styled.div`
   display: flex;
   align-items: center;
-  background: #e8e8e8;
-  border-radius: 10px;
+  background: ${({ theme }) => theme.colors.inputTextBgColor};
+  border-radius: 30px;
 
   position: relative;
 `;
-export const SignFormFieldInput = styled.input`
+export const SignFormFieldInput = styled(inputText)`
+  color: ${({ theme }) => theme.colors.textColor};
   background: none;
 `;
 export const SignFormButton = styled(BlockShadowButton)`

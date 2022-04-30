@@ -1,11 +1,31 @@
 import { ThemeType } from '../types/ThemeType';
 import { TDoubtStatus } from '../types/TDoubtStatus';
+import { themes } from './themes';
 
 export const DEFAULT_APLICATION: IAplication = {
   token: '',
-  theme: ThemeType.BLUE,
+  theme: ThemeType.LIGHT_BLUE,
   isStudent: true,
   loadingAnimation: false,
+};
+
+export const DEFAULT_THEME: ITheme = themes[0];
+
+export const DEFAULT_THEME_FONTS_SIZE: IThemeFontsSize = {
+  computer: '15px',
+  tablet: '2.2vw',
+  smartphone: '3.3vw',
+};
+export const DEFAULT_THEME_SIMILAR_COLORS: IThemeSimilarColors = {
+  warningColor: '#CB0000',
+  rightQuestion: '#52b788',
+  wrongQuestion: '#f72585',
+  skippedQuestion: '#a100f2',
+};
+
+export const DEFAULT_FLOAT_NOTIFICATION: IFloatNotification = {
+  content: '',
+  isActive: false,
 };
 
 export const DEFAULT_IMAGE: IImage = {

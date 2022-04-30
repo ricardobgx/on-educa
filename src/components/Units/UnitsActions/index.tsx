@@ -55,11 +55,14 @@ const UnitsActions = (props: IUnitsActionsProps): JSX.Element => {
       </SearchSupplies>
       {!isStudent && (
         <UnitsActionsBox>
-          <NewSuppliesButton onClick={() => setNewUnityIsVisible(true)}>
+          <NewSuppliesButton
+            className="block-shadow-button main-action bd-rd-20"
+            onClick={() => setNewUnityIsVisible(true)}
+          >
             <NewSuppliesButtonLabel>Nova unidade</NewSuppliesButtonLabel>
             <NewSuppliesButtonIcon className="fas fa-plus" />
           </NewSuppliesButton>
-          <SortSuppliesButton>
+          <SortSuppliesButton className="block-shadow-button main-action bd-rd-20">
             <SortSuppliesButtonLabel>Ordenar</SortSuppliesButtonLabel>
             <SortSuppliesButtonIcon className="fas fa-sort" />
           </SortSuppliesButton>

@@ -9,6 +9,7 @@ export default createGlobalStyle`
     box-sizing: border-box;
     font-family: 'Sen', sans-serif;
     font-size: ${({ theme }) => theme.fontsSize.computer};
+    transition: background .2s linear, color .2s linear;
   }
 
   body {
@@ -233,6 +234,20 @@ export default createGlobalStyle`
       :hover {
         box-shadow: 0px 0px 0px 1px
         ${({ theme }) => theme.colors.secondaryButtonShadowColor};
+      }
+
+      &.selected {
+        background: ${({ theme }) => theme.colors.mainButtonBgColor};
+        color: ${({ theme }) => theme.colors.mainButtonTextColor};
+
+        box-shadow: 0px 0px 0px 1px
+          ${({ theme }) => theme.colors.mainButtonShadowColor};
+        
+        p,
+        i,
+        span {
+          transform: translateY(0px);
+        }
       }
     }
 

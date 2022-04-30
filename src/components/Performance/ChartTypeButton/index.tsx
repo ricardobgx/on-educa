@@ -15,7 +15,7 @@ const ChartTypeButton = (props: IChartTypeButtonProps): JSX.Element => {
   return (
     <ChartTypeButtonBox
       onClick={() => setSelectedChartType(chartType)}
-      className={`block-shadow-button bd-rd-20 ${
+      className={`block-shadow-button secondary-action bd-rd-20 ${
         selectedChartType === chartType ? 'selected' : ''
       }`}
     >

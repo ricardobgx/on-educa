@@ -29,6 +29,7 @@ const SignFormPasswordField: React.FC<ISignFormFieldProps> = (props) => {
           type={`${passwordHidden ? 'password' : 'text'}`}
           value={value}
           onChange={(e) => setValue(e.target.value)}
+          spellCheck={false}
         />
         <ShowAndHidePasswordButton
           className={`${passwordHidden ? 'password-hidden' : ''}`}

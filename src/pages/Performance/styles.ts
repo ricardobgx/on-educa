@@ -25,11 +25,7 @@ export const Ranking = styled.div`
   }
 `;
 export const RankingBox = styled.div`
-  padding: 15px;
   margin: 20px;
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
-  background: ${({ theme }) => theme.colors.boxColor};
   height: 100%;
 
   & > div {

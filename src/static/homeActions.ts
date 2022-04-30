@@ -25,7 +25,7 @@ export const homeActions: IHomeAction[] = [
     userType: 'student',
   },
   {
-    icon: 'fas fa-file-alt',
+    icon: 'description',
     label: 'Questões',
     link: '/questions',
     userType: 'teacher',

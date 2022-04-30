@@ -6,14 +6,12 @@ import { paragraph } from '../../../global/styles/components/textComponents';
 export const RankingPosition = styled(paragraph)`
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   font-weight: bold;
   color: ${({ theme }) => theme.colors.textColor};
-  background: ${({ theme }) => theme.colors.boxColor};
   min-height: 85px;
-  padding: 0px 10px;
-  margin-right: 10px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
+  max-width: 40px;
+  margin-left: 15px;
 
   @media (max-width: 1150px) {
     min-height: unset;
@@ -30,6 +28,7 @@ export const RankingCardBox = styled.div`
   align-items: center;
   min-height: 85px;
   margin-bottom: 20px;
+  background: ${({ theme }) => theme.colors.boxColor};
 
   &:last-of-type {
     margin: 0;

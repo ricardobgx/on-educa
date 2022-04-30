@@ -24,8 +24,6 @@ export const SettingsBox = styled.div`
 const SettingBox = styled.div`
   width: 100%;
   padding: 20px;
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
   background: ${({ theme }) => theme.colors.boxColor};
 `;
 export const SettingsBoxLabel = styled(paragraph)`
@@ -48,21 +46,28 @@ interface SelectThemeButtonProps {
 export const SelectThemeButton = styled.button<SelectThemeButtonProps>`
   width: 35px;
   height: 35px;
-  background: ${({ color }) => color};
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 50%;
-  border: 3px solid ${({ theme }) => theme.colors.whiteColor};
+  padding: 3px;
+  border: none;
   margin-right: 10px;
   cursor: pointer;
   position: relative;
-  overflow: hidden;
+  background: none;
+  box-shadow: 0px 0px 5px ${({ theme }) => theme.colors.boxShadowColor};
   z-index: 96;
+
+  &.selected {
+    border-color: ${({ theme }) => theme.colors.textColor};
+  }
 
   ::before {
     content: '';
-    width: 50%;
-    height: 100%;
-    background: ${({ colors }) => colors[0] || ''};
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    border-radius: 50%;
+    border: 3px solid ${({ theme }) => theme.colors.boxColor};
+    box-shadow: 0px 0px 5px ${({ theme }) => theme.colors.boxShadowColor};
+    background: ${({ colors }) => colors[0]};
     position: absolute;
     top: 0;
     left: 0;
@@ -71,16 +76,37 @@ export const SelectThemeButton = styled.button<SelectThemeButtonProps>`
 
   ::after {
     content: '';
-    width: 50%;
-    height: 100%;
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    border-radius: 50%;
     background: ${({ colors }) => colors[1] || ''};
     position: absolute;
-    top: 0;
-    left: 50%;
+    top: 3px;
+    left: 3px;
+    clip: rect(0px, 15px, 30px, 0px);
     z-index: -1;
   }
 `;
 export const SelectedThemeButtonIcon = styled(smallIcon)`
-  color: ${({ theme }) => theme.colors.whiteColor};
-  z-index: 95;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  position: absolute;
+  top: -10%;
+  right: -10%;
+
+  color: #1b1b1b;
+  background: ${({ theme }) => theme.colors.whiteColor};
+
+  font-size: 8px;
+
+  height: 15px;
+  width: 15px;
+
+  z-index: 1000;
+
+  box-shadow: 0px 0px 6px ${({ theme }) => theme.colors.boxShadowColor};
 `;

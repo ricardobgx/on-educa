@@ -6,7 +6,6 @@ import {
   displayDayAndMonthDate,
   getFullDate,
 } from '../../../../functions/utils';
-import theme from '../../../../global/styles/theme';
 import OnEducaAPI from '../../../../services/api';
 import { DEFAULT_STUDENT_WEEKLY_PERFORMANCE } from '../../../../static/defaultEntitiesValues';
 import { RootState } from '../../../../store';
@@ -25,11 +24,12 @@ import {
   PerformanceChartBox,
 } from '../styles';
 
-const StudentWeeklyPerformance = (): JSX.Element => {
+const StudentWeeklyPerformance: React.FC = () => {
   const {
     aplication,
     people: loggedPeople,
     student,
+    theme,
   } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
@@ -130,7 +130,7 @@ const StudentWeeklyPerformance = (): JSX.Element => {
               width={calcChartWidth()}
               height={calcChartHeight()}
               primaryColor={theme.similarColors.rightQuestion}
-              secondaryColor={theme.colors.textColor}
+              secondaryColor={theme.colors.mainButtonBgColor}
             />
           )}
           {chartType === 'duels' && (
@@ -141,7 +141,7 @@ const StudentWeeklyPerformance = (): JSX.Element => {
               width={calcChartWidth()}
               height={calcChartHeight()}
               primaryColor={theme.similarColors.rightQuestion}
-              secondaryColor={theme.colors.textColor}
+              secondaryColor={theme.colors.mainButtonBgColor}
             />
           )}
           {chartType === 'contents' && (
@@ -150,7 +150,7 @@ const StudentWeeklyPerformance = (): JSX.Element => {
               valueLabel="Conteúdos estudados"
               width={calcChartWidth()}
               height={calcChartHeight()}
-              color={theme.similarColors.rightQuestion}
+              color={theme.colors.mainButtonBgColor}
             />
           )}
         </PerformanceChartBox>

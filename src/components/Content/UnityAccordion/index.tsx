@@ -40,10 +40,9 @@ const UnityAccordion = (props: IUnity): JSX.Element => {
           <HiddenContentsBox>
             {contents.map((content: IContent) => (
               <HiddenContent
-                style={{
-                  background:
-                    contentNow.id === content.id ? theme.colors.textColor : '',
-                }}
+                className={`block-shadow-button secondary-action bd-rd-20 ${
+                  contentNow.id === content.id && 'selected'
+                }`}
                 key={content.name}
                 to={`/contents/${content.id}`}
               >

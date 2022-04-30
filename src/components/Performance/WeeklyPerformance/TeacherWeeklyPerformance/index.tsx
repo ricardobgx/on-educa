@@ -140,7 +140,7 @@ const TeacherWeeklyPerformance = (): JSX.Element => {
               valueLabel="Conteúdos criados"
               width={calcChartWidth()}
               height={calcChartHeight()}
-              color={theme.similarColors.rightQuestion}
+              color={theme.colors.mainButtonBgColor}
             />
           )}
           {chartType === 'questions' && (
@@ -149,7 +149,7 @@ const TeacherWeeklyPerformance = (): JSX.Element => {
               valueLabel="Questões criadas"
               width={calcChartWidth()}
               height={calcChartHeight()}
-              color={theme.similarColors.rightQuestion}
+              color={theme.colors.mainButtonBgColor}
             />
           )}
           {chartType === 'doubts' && (
@@ -158,7 +158,7 @@ const TeacherWeeklyPerformance = (): JSX.Element => {
               valueLabel="Dúvidas resolvidas"
               width={calcChartWidth()}
               height={calcChartHeight()}
-              color={theme.similarColors.rightQuestion}
+              color={theme.colors.mainButtonBgColor}
             />
           )}
           {chartType === 'interativeRooms' && (
@@ -167,7 +167,7 @@ const TeacherWeeklyPerformance = (): JSX.Element => {
               valueLabel="Salas criadas"
               width={calcChartWidth()}
               height={calcChartHeight()}
-              color={theme.similarColors.rightQuestion}
+              color={theme.colors.mainButtonBgColor}
             />
           )}
         </PerformanceChartBox>

@@ -18,6 +18,7 @@ const SignFormEmailField: React.FC<ISignFormFieldProps> = (props) => {
           type="email"
           value={value}
           onChange={(e) => setValue(e.target.value)}
+          spellCheck={false}
         />
       </SignFormFieldInputBox>
     </SignFormField>

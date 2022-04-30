@@ -44,11 +44,14 @@ const ContentsActions = (props: IContentActionsProps): JSX.Element => {
       </SearchSupplies>
       {!isStudent && (
         <ContentsActionsBox>
-          <NewSuppliesLink to={`/units/${unity.id}/new-content`}>
+          <NewSuppliesLink
+            className="block-shadow-button main-action bd-rd-20"
+            to={`/units/${unity.id}/new-content`}
+          >
             <NewSuppliesButtonLabel>Novo conteúdo</NewSuppliesButtonLabel>
             <NewSuppliesButtonIcon className="fas fa-plus" />
           </NewSuppliesLink>
-          <SortSuppliesButton>
+          <SortSuppliesButton className="block-shadow-button main-action bd-rd-20">
             <SortSuppliesButtonLabel>Ordenar</SortSuppliesButtonLabel>
             <SortSuppliesButtonIcon className="fas fa-sort" />
           </SortSuppliesButton>

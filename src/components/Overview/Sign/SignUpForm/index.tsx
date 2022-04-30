@@ -42,14 +42,14 @@ const SignUpForm: React.FC<ISignFormProps> = (props) => {
           setValue={setPassword}
         />
       </SignFormFields>
-      <SignFormButton className="btn-login">
+      <SignFormButton className="btn-login block-shadow-button main-action bd-rd-30">
         <SignFormButtonLabel>Cadastrar</SignFormButtonLabel>
       </SignFormButton>
       <SignFormButton
         onClick={() => switchSignForm()}
-        className="btn-switch switcher"
+        className="btn-switch switcher block-shadow-button secondary-action bd-rd-30"
       >
-        Entrar
+        <SignFormButtonLabel> Entrar</SignFormButtonLabel>
       </SignFormButton>
     </SignForm>
   );
