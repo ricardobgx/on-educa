@@ -1,11 +1,9 @@
 import React from 'react';
-import { IPeople } from '../../../interfaces/IPeople';
 import { SocialDetailType } from '../../../pages/Profile';
 import SelectSocialDetail from '../Buttons/SelectSocialDetail';
 import { SelectSocialDetailsListBox } from './styles';
 
 interface ISelectSocialDetailsListProps {
-  people: IPeople;
   socialDetailSelected: number;
   setSocialDetailSelected: (value: number) => void;
 }
@@ -13,7 +11,7 @@ interface ISelectSocialDetailsListProps {
 const SelectSocialDetailsList = (
   props: ISelectSocialDetailsListProps,
 ): JSX.Element => {
-  const { people, socialDetailSelected, setSocialDetailSelected } = props;
+  const { socialDetailSelected, setSocialDetailSelected } = props;
 
   return (
     <SelectSocialDetailsListBox>

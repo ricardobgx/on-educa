@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getUnitsBySubject } from '../../../../../functions/unity';
-import { IUnity } from '../../../../../interfaces/IUnity';
-import { ISubject } from '../../../../../interfaces/ISubject';
 import OnEducaAPI from '../../../../../services/api';
-import { State } from '../../../../../store';
+import { RootState } from '../../../../../store';
 import {
   SuppliesReferenceSelectOption,
   SuppliesReferenceSelect,
@@ -26,12 +25,12 @@ interface ISuppliesUnityReferenceSelectProps {
 const SuppliesUnityReferenceSelect = (
   props: ISuppliesUnityReferenceSelectProps,
 ): JSX.Element => {
-  /* Global State */
+  /* GlobalRootState */
 
-  const { aplication } = useSelector((store: State) => store);
+  const { aplication } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
-  /* Local State */
+  /* LocalRootState */
 
   const [units, setUnits] = useState<IUnity[]>([]);
 
@@ -77,6 +76,7 @@ const SuppliesUnityReferenceSelect = (
           searchUnity(units, event.target.value) || DEFAULT_UNITY,
         )
       }
+      className="bd-rd-20"
     >
       {units.map((unity) => (
         <SuppliesReferenceSelectOption key={unity.id} value={unity.id}>

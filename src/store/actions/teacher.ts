@@ -1,4 +1,3 @@
-import { ITeacher } from '../../interfaces/ITeacher';
 import { TeacherActionType } from '../action-types/teacher';
 
 interface LoadTeacher {

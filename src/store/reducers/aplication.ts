@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { IAplication } from '../../interfaces/IAplication';
 import { DEFAULT_APLICATION } from '../../static/defaultEntitiesValues';
 import { AplicationActionType } from '../action-types/aplication';
 import { AplicationAction } from '../actions/aplication';
@@ -12,8 +11,6 @@ const aplicationReducer = (
   switch (action.type) {
     case AplicationActionType.LOAD_TOKEN:
       return { ...state, token: action.token };
-    case AplicationActionType.LOAD_THEME:
-      return { ...state, theme: action.theme };
     case AplicationActionType.LOAD_IS_STUDENT:
       return { ...state, isStudent: action.isStudent };
     case AplicationActionType.ENABLE_LOADING_ANIMATION:

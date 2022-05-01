@@ -1,5 +1,4 @@
 import { AxiosInstance } from 'axios';
-import { ISubject } from '../interfaces/ISubject';
 
 export const getSubjects = async (
   API: AxiosInstance,

@@ -1,6 +1,4 @@
 import React from 'react';
-import theme from '../../../global/styles/theme';
-import { ISubject } from '../../../interfaces/ISubject';
 import { NoSelectedSupplies } from '../../App/Supplies/styles';
 import {
   SubjectSectionSelectBox,
@@ -44,14 +42,9 @@ const SubjectSelect = (props: ISubjectSelectProps): JSX.Element => {
           {sortedSubjects.map((subject) => (
             <SubjectSectionSelectOption
               key={subject.id}
-              style={{
-                background:
-                  subjectSelectedId === subject.id
-                    ? theme.colors.textColor
-                    : '',
-                color:
-                  subjectSelectedId === subject.id ? theme.colors.boxColor : '',
-              }}
+              className={`block-shadow-button bd-rd-20 ${
+                subject.id === subjectSelectedId ? 'selected' : ''
+              }`}
               onClick={() => setSubjectSelected(subject)}
             >
               <SubjectSectionSelectOptionLabel>

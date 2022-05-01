@@ -1,5 +1,4 @@
 import React from 'react';
-import { IPeople } from '../../../interfaces/IPeople';
 import FriendCard from '../FriendCard';
 import { FriendsListBox } from './styles';
 

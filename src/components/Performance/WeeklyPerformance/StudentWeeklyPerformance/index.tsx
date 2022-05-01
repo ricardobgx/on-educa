@@ -1,16 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { isDefaultStudent } from '../../../../functions/entitiesValues';
 import { getStudentWeeklyPerformanceByStudent } from '../../../../functions/studentWeeklyPerformance';
 import {
   displayDayAndMonthDate,
   getFullDate,
 } from '../../../../functions/utils';
-import theme from '../../../../global/styles/theme';
-import { IStudentWeeklyPerformance } from '../../../../interfaces/IStudentWeeklyPerformance';
 import OnEducaAPI from '../../../../services/api';
-import { DEFAULT_STUDENT_WEEKLY_PERFORMANCE } from '../../../../static/defaultEntitiesValues';
-import { State } from '../../../../store';
+import { ActionCreators, RootState } from '../../../../store';
 import BarChartWithTwoValues, {
   IBarChartWithTwoValuesData,
 } from '../../../App/Charts/BarChartWithTwoValues';
@@ -26,17 +26,22 @@ import {
   PerformanceChartBox,
 } from '../styles';
 
-const StudentWeeklyPerformance = (): JSX.Element => {
+const StudentWeeklyPerformance: React.FC = () => {
   const {
     aplication,
     people: loggedPeople,
     student,
-  } = useSelector((store: State) => store);
+    theme,
+  } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
+  const dispatch = useDispatch();
+  const { showFloatNotification } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
+
   const [chartType, setChartType] = useState('questions');
-  const [studentWeeklyPerformance, setStudentWeeklyPerformance] =
-    useState<IStudentWeeklyPerformance>(DEFAULT_STUDENT_WEEKLY_PERFORMANCE);
 
   const [questionsData, setQuestionsData] = useState<
     IBarChartWithTwoValuesData[]
@@ -87,7 +92,6 @@ const StudentWeeklyPerformance = (): JSX.Element => {
     setContentsData(contentsDataValues);
     setQuestionsData(questionsDataValues);
     setDuelsData(duelsDataValues);
-    setStudentWeeklyPerformance(studentWeeklyPerformanceData);
   };
 
   useEffect(() => {
@@ -98,7 +102,7 @@ const StudentWeeklyPerformance = (): JSX.Element => {
           student.id,
           token,
           setChartsData,
-          () => console.log('erro'),
+          () => showFloatNotification('Ocorreu um erro'),
         );
     }
   }, [student]);
@@ -120,8 +124,8 @@ const StudentWeeklyPerformance = (): JSX.Element => {
 
   return (
     <WeeklyPerformanceBox>
-      <SectionLabel label="Desempenho" backLink="/home" />
-      <PerformanceChart>
+      <SectionLabel label="Desempenho" backLink="/" />
+      <PerformanceChart className="with-shadow bd-rd-30">
         <PerformanceChartBox>
           {chartType === 'questions' && (
             <BarChartWithTwoValues
@@ -131,7 +135,7 @@ const StudentWeeklyPerformance = (): JSX.Element => {
               width={calcChartWidth()}
               height={calcChartHeight()}
               primaryColor={theme.similarColors.rightQuestion}
-              secondaryColor={theme.colors.textColor}
+              secondaryColor={theme.colors.mainButtonBgColor}
             />
           )}
           {chartType === 'duels' && (
@@ -142,7 +146,7 @@ const StudentWeeklyPerformance = (): JSX.Element => {
               width={calcChartWidth()}
               height={calcChartHeight()}
               primaryColor={theme.similarColors.rightQuestion}
-              secondaryColor={theme.colors.textColor}
+              secondaryColor={theme.colors.mainButtonBgColor}
             />
           )}
           {chartType === 'contents' && (
@@ -151,7 +155,7 @@ const StudentWeeklyPerformance = (): JSX.Element => {
               valueLabel="Conteúdos estudados"
               width={calcChartWidth()}
               height={calcChartHeight()}
-              color={theme.similarColors.rightQuestion}
+              color={theme.colors.mainButtonBgColor}
             />
           )}
         </PerformanceChartBox>

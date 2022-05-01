@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { ISubject } from '../../interfaces/ISubject';
 import { DEFAULT_SUBJECT } from '../../static/defaultEntitiesValues';
 import { SubjectActionType } from '../action-types/subject';
 import { SubjectAction } from '../actions/subject';

@@ -1,9 +1,8 @@
 import React from 'react';
-import { IMission } from '../../../interfaces/IMission';
+import { BigMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 import ProgressBar from '../../App/ProgressBar';
 import {
   Container,
-  MissionIcon,
   MissionInfo,
   MissionInfoHeader,
   MissionTitle,
@@ -15,8 +14,8 @@ const MissionCard = (props: IMission): JSX.Element => {
   const { title, reward, repetitions } = props;
 
   return (
-    <Container>
-      <MissionIcon className="fas fa-user-secret" />
+    <Container className="with-shadow bd-rd-30">
+      <BigMaterialIconOutlined icon="task_alt" color="" />
       <MissionInfo>
         <MissionInfoHeader>
           <MissionTitle>{title}</MissionTitle>

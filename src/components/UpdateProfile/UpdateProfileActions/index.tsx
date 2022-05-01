@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { IPeopleParams } from '../../../dto/IPeopleParams';
-import { getPeople, updatePeople } from '../../../functions/people';
+import { updatePeople } from '../../../functions/people';
 import { updateStudent } from '../../../functions/student';
 import { updateTeacher } from '../../../functions/teacher';
 import OnEducaAPI from '../../../services/api';
-import { ActionCreators, State } from '../../../store';
+import { ActionCreators, RootState } from '../../../store';
 import {
   UpdateProfileActionsBox,
   CancelUpdateProfileButton,
@@ -31,11 +31,14 @@ interface IUpdateProfileActionsProps {
 const UpdateProfileActions = (
   props: IUpdateProfileActionsProps,
 ): JSX.Element => {
-  /* Global State */
+  /* GlobalRootState */
 
   const dispatch = useDispatch();
-  const { loginPeople } = bindActionCreators(ActionCreators, dispatch);
-  const { student, teacher } = useSelector((store: State) => store);
+  const { showFloatNotification } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
+  const { student, teacher } = useSelector((store: RootState) => store);
 
   const {
     id,
@@ -62,12 +65,12 @@ const UpdateProfileActions = (
   } as IPeopleParams;
 
   const updateSucess = (): void => {
-    getPeople(OnEducaAPI, id, loginPeople, token);
+    // getPeople(OnEducaAPI, id, loginPeople, token);
     setUpdateCompleted(true);
   };
 
   const updateError = (): void => {
-    console.log('erro');
+    showFloatNotification('erro');
   };
 
   const updatePeopleSucess = async (): Promise<void> => {

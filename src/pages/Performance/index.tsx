@@ -5,7 +5,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import SectionLabel from '../../components/App/SectionLabel';
-import { State } from '../../store';
+import { RootState } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import { PageBox, Ranking, RankingBox } from './styles';
 import StudentWeeklyPerformance from '../../components/Performance/WeeklyPerformance/StudentWeeklyPerformance';
@@ -14,7 +14,7 @@ import StudentRankingCardsList from '../../components/Performance/RankingCardsLi
 import TeacherRankingCardsList from '../../components/Performance/RankingCardsList/TeacherRankingCardsList';
 
 const Performance = (): JSX.Element => {
-  const { aplication } = useSelector((store: State) => store);
+  const { aplication } = useSelector((store: RootState) => store);
   const { token, isStudent } = aplication;
 
   return (

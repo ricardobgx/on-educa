@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { displayDayAndMonthDate, getFullDate } from '../../../functions/utils';
-import { IDoubtComment } from '../../../interfaces/IDoubtComment';
+import React from 'react';
+import { getFullDate } from '../../../functions/utils';
 import {
   DoubtCommentBox,
   DoubtCommentContent,

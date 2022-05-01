@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 import { Dispatch } from 'redux';
-import { IContent } from '../../interfaces/IContent';
 import { ContentActionType } from '../action-types/content';
 import { ContentAction } from '../actions/content';
 

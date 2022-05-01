@@ -5,18 +5,31 @@ import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const ChartTypeButtonBox = styled.button`
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.textColor};
-  background: ${({ theme }) => theme.colors.boxColor};
   border: none;
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   min-width: 150px;
   height: 40px;
-  border-radius: 5px;
   margin: 10px;
   margin-left: 0;
+  transition: all 0.2s linear;
 
   &:last-of-type {
     margin-right: 0;
+  }
+
+  &.selected {
+    color: ${({ theme }) => theme.colors.mainButtonTextColor} !important;
+    background: ${({ theme }) => theme.colors.mainButtonBgColor} !important;
+    box-shadow: 0px 0px 0px 1px
+      ${({ theme }) => theme.colors.mainButtonShadowColor} !important;
+
+    :hover {
+      box-shadow: 0px 0px 0px 1px
+        ${({ theme }) => theme.colors.mainButtonShadowColor};
+    }
+
+    p {
+      transform: translateY(0px);
+    }
   }
 
   @media (max-width: 900px) {
@@ -30,4 +43,6 @@ export const ChartTypeButtonBox = styled.button`
     }
   }
 `;
-export const ChartTypeLabel = styled(paragraph)``;
+export const ChartTypeLabel = styled(paragraph)`
+  transition: all 0.2s linear;
+`;

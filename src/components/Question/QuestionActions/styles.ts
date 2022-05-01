@@ -10,16 +10,17 @@ export const AnswerQuestionButton = styled.button`
   min-height: 40px;
   border: none;
   /* font-weight: bold; */
-  color: ${({ theme }) => theme.colors.boxColor};
-  background: ${({ theme }) => theme.colors.textColor};
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
   cursor: pointer;
 
-  &:disabled,
-  &[disabled] {
+  :disabled {
+    box-shadow: 0px 0px 0px 1px
+      ${({ theme }) => theme.colors.mainButtonShadowColor} !important;
     pointer-events: none;
     opacity: 0.6;
+
+    p {
+      transform: translateY(0px);
+    }
   }
 `;
 export const AnswerQuestionButtonLabel = styled(paragraph)``;
@@ -27,10 +28,6 @@ export const SkipQuestionButton = styled.button`
   min-height: 40px;
   border: none;
   /* font-weight: bold; */
-  color: ${({ theme }) => theme.colors.textColor};
-  background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
   cursor: pointer;
 `;
 export const SkipQuestionButtonLabel = styled(paragraph)``;

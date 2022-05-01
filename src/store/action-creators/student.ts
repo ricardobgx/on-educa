@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 import { Dispatch } from 'redux';
-import { IStudent } from '../../interfaces/IStudent';
 import { StudentActionType } from '../action-types/student';
 import { StudentAction } from '../actions/student';
 

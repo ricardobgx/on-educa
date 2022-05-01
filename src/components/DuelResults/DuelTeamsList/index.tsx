@@ -1,5 +1,4 @@
 import React from 'react';
-import { IDuelTeam } from '../../../interfaces/IDuelTeam';
 import DuelTeamResult from '../DuelTeamResult';
 import { DuelTeamsListBox } from './styles';
 

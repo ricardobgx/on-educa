@@ -2,11 +2,6 @@ import { AxiosError, AxiosInstance } from 'axios';
 import { IChangeDuelTeamPositionParams } from '../dto/IChangeDuelTeamPositionParams';
 import { IDuelTeamParticipationParams } from '../dto/IDuelTeamParticipationParams';
 import { IParticipateInDuelParams } from '../dto/IParticipateInDuelParams';
-import { IDuel } from '../interfaces/IDuel';
-import { IDuelTeam } from '../interfaces/IDuelTeam';
-import { IDuelTeamParticipation } from '../interfaces/IDuelTeamParticipation';
-import { IPeople } from '../interfaces/IPeople';
-import { IStudent } from '../interfaces/IStudent';
 import { DEFAULT_DUEL_TEAM_PARTICIPATION } from '../static/defaultEntitiesValues';
 import { isDefaultDuelTeamParticipation } from './entitiesValues';
 
@@ -75,20 +70,14 @@ export const participateInDuel = async (
   participateInDuelParams: IParticipateInDuelParams,
   token: string,
   requestSucess: (duelTeamParticipation: IDuelTeamParticipation) => void,
-  requestError: () => void,
 ): Promise<void> => {
   await API.post(`/${entityPath}/duel`, participateInDuelParams, {
     headers: {
       authorization: `Bearer ${token}`,
     },
-  }).then(
-    (response) => {
-      requestSucess(response.data);
-    },
-    () => {
-      requestError();
-    },
-  );
+  }).then((response) => {
+    requestSucess(response.data);
+  });
 };
 
 export const removeParticipant = async (
@@ -96,20 +85,14 @@ export const removeParticipant = async (
   duelTeamPartId: string,
   token: string,
   requestSucess: () => void,
-  requestError: () => void,
 ): Promise<void> => {
   await API.put(`/${entityPath}/removeParticipant/${duelTeamPartId}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },
-  }).then(
-    () => {
-      requestSucess();
-    },
-    () => {
-      requestError();
-    },
-  );
+  }).then(() => {
+    requestSucess();
+  });
 };
 
 export const getDuelTeamParts = async (

@@ -1,6 +1,7 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 import { IManyAlternativesParams } from '../../../dto/IManyAlternativesParams';
 import { IQuestionParams } from '../../../dto/IQuestionParams';
 import {
@@ -9,16 +10,12 @@ import {
   deleteAlternative,
   findAlternativeByDescFromArray,
 } from '../../../functions/alternative';
-import { isDefaultContent } from '../../../functions/entitiesValues';
 import {
   updateQuestion as updateQuestionData,
   isValidQuestion,
 } from '../../../functions/question';
-import { IAlternative } from '../../../interfaces/IAlternative';
-import { IContent } from '../../../interfaces/IContent';
-import { IQuestion } from '../../../interfaces/IQuestion';
 import OnEducaAPI from '../../../services/api';
-import { State } from '../../../store';
+import { ActionCreators, RootState } from '../../../store';
 import {
   CancelEditButton,
   CancelEditButtonLabel,
@@ -52,9 +49,15 @@ const EditQuestionActions = (props: IEditQuestionActionsProps): JSX.Element => {
     setQuestionWasUpdated,
   } = props;
 
-  const { aplication } = useSelector((store: State) => store);
+  const { aplication } = useSelector((store: RootState) => store);
 
   const { token } = aplication;
+
+  const dispatch = useDispatch();
+  const { showFloatNotification } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
 
   /* Functions */
 
@@ -65,8 +68,11 @@ const EditQuestionActions = (props: IEditQuestionActionsProps): JSX.Element => {
           OnEducaAPI,
           oldAlternative.id,
           token,
-          () => console.log(''),
-          () => console.log('error'),
+          () => showFloatNotification('Alternativas antigas excluídas'),
+          () =>
+            showFloatNotification(
+              'Ocorreu um erro ao excluir as alternativas antigas',
+            ),
         );
       }),
     ).then(() => {
@@ -76,10 +82,6 @@ const EditQuestionActions = (props: IEditQuestionActionsProps): JSX.Element => {
 
   const updateRightAlternativeQuestionSucess = (): void => {
     deleteOldAlternatives();
-  };
-
-  const updateRightAlternativeQuestionError = (): void => {
-    console.log('Erro');
   };
 
   const createAlternativesSucess = async (
@@ -102,12 +104,8 @@ const EditQuestionActions = (props: IEditQuestionActionsProps): JSX.Element => {
       questionParams,
       token,
       updateRightAlternativeQuestionSucess,
-      updateRightAlternativeQuestionError,
+      () => showFloatNotification('Ocorreu um erro ao atualizar a questão'),
     );
-  };
-
-  const createAlternativesError = (): void => {
-    console.log('erro');
   };
 
   /** ************************************************************
@@ -132,7 +130,7 @@ const EditQuestionActions = (props: IEditQuestionActionsProps): JSX.Element => {
       alternativesParams,
       token,
       createAlternativesSucess,
-      createAlternativesError,
+      () => showFloatNotification('Erro ao atualizar as alternativas'),
     );
   };
 
@@ -144,15 +142,6 @@ const EditQuestionActions = (props: IEditQuestionActionsProps): JSX.Element => {
 
   const updateQuestionSucess = (): void => {
     createAlternatives(id);
-  };
-
-  /** **********************************************************************
-   * Essa funcao retorna uma mensagem de erro na criacao da questao, ela eh
-   * chamada quando nao foi possivel criar a questao na base de dados.
-   *********************************************************************** */
-
-  const updateQuestionError = (): void => {
-    console.log('erro');
   };
 
   /** *************************************************************************
@@ -179,7 +168,7 @@ const EditQuestionActions = (props: IEditQuestionActionsProps): JSX.Element => {
       questionParams,
       token,
       updateQuestionSucess,
-      updateQuestionError,
+      () => showFloatNotification('Erro ao atualizar questão'),
     );
   };
 

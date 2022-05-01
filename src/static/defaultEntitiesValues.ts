@@ -1,37 +1,31 @@
-import { IAlternative } from '../interfaces/IAlternative';
-import { IAplication } from '../interfaces/IAplication';
-import { IContent } from '../interfaces/IContent';
-import { IDuel } from '../interfaces/IDuel';
-import { IDuelRoundQuestion } from '../interfaces/IDuelRoundQuestion';
-import { IDuelQuestionAnswer } from '../interfaces/IDuelQuestionAnswer';
-import { IDuelTeam } from '../interfaces/IDuelTeam';
-import { IDuelTeamParticipation } from '../interfaces/IDuelTeamParticipation';
-import { IQuestion } from '../interfaces/IQuestion';
-import { ISchoolGrade } from '../interfaces/ISchoolGrade';
-import { ISubject } from '../interfaces/ISubject';
-import { ITeachingType } from '../interfaces/ITeachingType';
-import { IUnity } from '../interfaces/IUnity';
-import { IPeople } from '../interfaces/IPeople';
-import { IDuelRound } from '../interfaces/IDuelRound';
-import { IPracticeQuestion } from '../interfaces/IPracticeQuestion';
-import { IPractice } from '../interfaces/IPractice';
-import { IStudentWeeklyPerformance } from '../interfaces/IStudentWeeklyPerformance';
-import { IStudentWeekDayPerformance } from '../interfaces/IStudentWeekDayPerformance';
-import { IImage } from '../interfaces/IImage';
-import { IStudent } from '../interfaces/IStudent';
-import { ITeacher } from '../interfaces/ITeacher';
 import { ThemeType } from '../types/ThemeType';
-import { IChat } from '../interfaces/IChat';
-import { ITeacherWeeklyPerformance } from '../interfaces/ITeacherWeeklyPerformance';
-import { ITeacherWeekDayPerformance } from '../interfaces/ITeacherWeekDayPerformance';
-import { IDoubt } from '../interfaces/IDoubt';
-import { DoubtStatus } from '../types/doubtStatus';
+import { TDoubtStatus } from '../types/TDoubtStatus';
+import { themes } from './themes';
 
 export const DEFAULT_APLICATION: IAplication = {
   token: '',
-  theme: ThemeType.BLUE,
+  theme: ThemeType.LIGHT_BLUE,
   isStudent: true,
   loadingAnimation: false,
+};
+
+export const DEFAULT_THEME: ITheme = themes[0];
+
+export const DEFAULT_THEME_FONTS_SIZE: IThemeFontsSize = {
+  computer: '15px',
+  tablet: '2.2vw',
+  smartphone: '3.3vw',
+};
+export const DEFAULT_THEME_SIMILAR_COLORS: IThemeSimilarColors = {
+  warningColor: '#CB0000',
+  rightQuestion: '#52b788',
+  wrongQuestion: '#f72585',
+  skippedQuestion: '#a100f2',
+};
+
+export const DEFAULT_FLOAT_NOTIFICATION: IFloatNotification = {
+  content: '',
+  isActive: false,
 };
 
 export const DEFAULT_IMAGE: IImage = {
@@ -112,7 +106,7 @@ export const DEFAULT_CONTENT: IContent = {
 export const DEFAULT_DOUBT: IDoubt = {
   id: '',
   description: '',
-  status: DoubtStatus.PENDING,
+  status: TDoubtStatus.PENDING,
   content: DEFAULT_CONTENT,
   student: DEFAULT_STUDENT,
   createdAt: new Date(),

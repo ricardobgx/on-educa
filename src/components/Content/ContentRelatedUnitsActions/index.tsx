@@ -1,7 +1,4 @@
 import React from 'react';
-import { ISchoolGrade } from '../../../interfaces/ISchoolGrade';
-import { ISubject } from '../../../interfaces/ISubject';
-import { IUnity } from '../../../interfaces/IUnity';
 import ContentPracticeButton from '../ContentPracticeButton';
 import ContentRelatedUnitsList from '../ContentRelatedUnitsList';
 import {
@@ -26,7 +23,7 @@ const ContentRelatedUnitsActions = (
   return (
     <ContentRelatedUnitsActionsBox>
       <ContentsRelated>
-        <ContentsRelatedReferenceLabel>
+        <ContentsRelatedReferenceLabel className="with-shadow bd-rd-30">
           {subject.name} - {schoolGrade.index}º ano
         </ContentsRelatedReferenceLabel>
 

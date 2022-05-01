@@ -1,6 +1,5 @@
 import { AxiosInstance } from 'axios';
 import { IUpdateTeacherWeeklyPerformanceValuesParams } from '../dto/IUpdateTeacherWeeklyPerformanceValues';
-import { ITeacherWeeklyPerformance } from '../interfaces/ITeacherWeeklyPerformance';
 
 const entityPath = 'teacherWeeklyPerformances';
 
@@ -63,7 +62,7 @@ export const updateTeacherWeeklyPerformanceValues = async (
       },
     },
   ).then(
-    (response) => {
+    () => {
       requestSucess();
     },
     () => {

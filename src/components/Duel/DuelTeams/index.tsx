@@ -1,11 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { socket } from '../../../App';
 import { sortTeams } from '../../../functions/duelTeam';
 import { findStudentDuelPartByTeams } from '../../../functions/duelTeamParts';
-import { IDuelTeam } from '../../../interfaces/IDuelTeam';
-import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
-import { IStudent } from '../../../interfaces/IStudent';
 import { DEFAULT_STUDENT } from '../../../static/defaultEntitiesValues';
 import DuelTeam from '../DuelTeam';
 import { DuelTeamsBox } from './styles';
@@ -122,7 +121,7 @@ const DuelTeams = (props: IDuelTeamsProps): JSX.Element => {
     setTeams(newTeams);
   };
 
-  useEffect((): any => {
+  useEffect(() => {
     if (teams.length === 0) {
       setTeams(sortTeams(unsortedTeams));
     }

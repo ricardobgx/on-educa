@@ -1,12 +1,8 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getFullDate, reduceTextSize } from '../../../functions/utils';
-import { IContent } from '../../../interfaces/IContent';
-import { IQuestion } from '../../../interfaces/IQuestion';
-import { ISubject } from '../../../interfaces/ISubject';
-import { IUnity } from '../../../interfaces/IUnity';
-import { ActionCreators, State } from '../../../store';
+import { ActionCreators } from '../../../store';
 import QuestionCardActions from '../QuestionCardActions';
 import {
   QuestionCardBox,
@@ -55,6 +51,7 @@ const QuestionCard = (props: IQuestionCardProps): JSX.Element => {
       <QuestionCardDetails
         to={`/questions/${id}`}
         onClick={() => loadQuestion(question)}
+        className="bd-rd-10 with-shadow"
       >
         <QuestionDetails>
           <QuestionTitle title={reduceTextSize(description, 150, 100)}>

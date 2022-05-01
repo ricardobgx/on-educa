@@ -10,12 +10,9 @@ import PracticeStatus from '../../components/Practice/PracticeStatus';
 import { getPracticeQuestions } from '../../functions/question';
 import { randInt } from '../../functions/utils';
 import { Page } from '../../global/styles/components/pageComponents';
-import { IAlternative } from '../../interfaces/IAlternative';
-import { IPracticeQuestion } from '../../interfaces/IPracticeQuestion';
-import { IQuestion } from '../../interfaces/IQuestion';
 import OnEducaAPI from '../../services/api';
 import { DEFAULT_PRACTICE_QUESTION } from '../../static/defaultEntitiesValues';
-import { ActionCreators, State } from '../../store';
+import { ActionCreators, RootState } from '../../store';
 import { PageBox, PracticeBox } from './styles';
 
 interface IPracticeRouteParams {
@@ -43,9 +40,9 @@ const Practice = (): JSX.Element => {
     dispatch,
   );
 
-  // State
+  // RootState
 
-  const { aplication, practice } = useSelector((store: State) => store);
+  const { aplication, practice } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
   /* Rota */
@@ -110,19 +107,27 @@ const Practice = (): JSX.Element => {
   };
 
   const setFirstQuestion = (questionsFound: IQuestion[]): void => {
-    loadQuestions(questionsFound);
+    // loadQuestions(questionsFound);
     const questionIndex = randInt(0, questionsFound.length - 1);
 
-    setQuestion(questionsFound[questionIndex]);
+    if (questionsFound[questionIndex])
+      setQuestion(questionsFound[questionIndex]);
   };
 
   const getPracticeQuestionsData = async (): Promise<void> => {
-    getPracticeQuestions(OnEducaAPI, contentId, setFirstQuestion, token);
+    const practiceQuestions = await getPracticeQuestions(
+      OnEducaAPI,
+      contentId,
+      token,
+    );
+    loadQuestions([...practiceQuestions]);
+
+    setFirstQuestion(practiceQuestions);
   };
 
   useEffect(() => {
-    getPracticeQuestionsData();
-  }, []);
+    if (token) getPracticeQuestionsData();
+  }, [token]);
 
   const { questions } = practice;
 

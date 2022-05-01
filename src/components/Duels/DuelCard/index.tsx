@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { socket } from '../../../App';
@@ -7,11 +9,6 @@ import {
 } from '../../../functions/duelRound';
 import { participateInDuel } from '../../../functions/duelTeamParts';
 import { isDefaultDuel } from '../../../functions/entitiesValues';
-import { getPeople } from '../../../functions/people';
-import { IDuel } from '../../../interfaces/IDuel';
-import { IDuelTeam } from '../../../interfaces/IDuelTeam';
-import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
-import { IStudent } from '../../../interfaces/IStudent';
 import OnEducaAPI from '../../../services/api';
 import { DEFAULT_PEOPLE } from '../../../static/defaultEntitiesValues';
 import {
@@ -83,15 +80,14 @@ const DuelCard = (props: IDuelCardProps): JSX.Element => {
           } as IDuelTeamParticipation,
         });
       },
-      () => console.log('erro'),
     );
   };
 
   useEffect(() => {
     if (!isDefaultDuel(duel)) {
-      const { student, duelRound } = duel;
+      const { duelRound } = duel;
       setNumParticipants(participatesInDuelCounter(duelRound.teams));
-      getPeople(OnEducaAPI, student.people.id, setPeople, token);
+      // getPeople(OnEducaAPI, student.people.id, setPeople, token);
     }
   }, [duel]);
 
@@ -103,7 +99,7 @@ const DuelCard = (props: IDuelCardProps): JSX.Element => {
   return (
     <DuelCardBox
       onClick={() => appendParticipant()}
-      className="with-shadow bd-rd-5"
+      className="block-shadow-button secondary-action bd-rd-20"
       style={{ animationDelay: `${index * 0.2}s` }}
     >
       <DuelDetails>

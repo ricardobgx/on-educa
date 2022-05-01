@@ -1,7 +1,5 @@
 import { AxiosInstance } from 'axios';
 import { IQuestionParams } from '../dto/IQuestionParams';
-import { IContent } from '../interfaces/IContent';
-import { IQuestion } from '../interfaces/IQuestion';
 import { isDefaultContent } from './entitiesValues';
 
 /** ***************************************************************************
@@ -80,16 +78,15 @@ export const getQuestionsByContent = async (
 export const getPracticeQuestions = async (
   API: AxiosInstance,
   contentId: string,
-  setQuestionsState: (value: IQuestion[]) => void,
   token: string,
-): Promise<void> => {
-  await API.get(`/questions/practiceQuestions/${contentId}`, {
+): Promise<IQuestion[]> => {
+  const { data } = await API.get(`/questions/practiceQuestions/${contentId}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },
-  }).then((response) => {
-    setQuestionsState(response.data);
   });
+
+  return data;
 };
 
 export const createQuestion = async (
@@ -103,9 +100,14 @@ export const createQuestion = async (
     headers: {
       authorization: `Bearer ${token}`,
     },
-  }).then((response) => {
-    createSucess(response.data);
-  });
+  }).then(
+    (response) => {
+      createSucess(response.data);
+    },
+    () => {
+      createError();
+    },
+  );
 };
 
 export const updateQuestion = async (

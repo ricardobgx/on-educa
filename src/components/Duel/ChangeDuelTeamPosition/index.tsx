@@ -5,10 +5,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { socket } from '../../../App';
 import { changeDuelTeamPosition } from '../../../functions/duelTeamParts';
-import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
-import { IStudent } from '../../../interfaces/IStudent';
 import OnEducaAPI from '../../../services/api';
-import { State } from '../../../store';
+import { RootState } from '../../../store';
 import { MediumMaterialIconRound } from '../../App/Icons/MaterialIcons/MaterialIconsRound';
 import {
   ChangeDuelTeamPositionBox,
@@ -17,7 +15,6 @@ import {
 
 interface IChangeDuelTeamPositionProps {
   duelId: string;
-  duelOwner: IStudent;
   loggedStudent: IStudent;
   studentParticipation: IDuelTeamParticipation;
   participation: IDuelTeamParticipation;
@@ -26,16 +23,10 @@ interface IChangeDuelTeamPositionProps {
 const ChangeDuelTeamPosition = (
   props: IChangeDuelTeamPositionProps,
 ): JSX.Element => {
-  const { aplication } = useSelector((store: State) => store);
+  const { aplication } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
-  const {
-    participation,
-    loggedStudent,
-    studentParticipation,
-    duelId,
-    duelOwner,
-  } = props;
+  const { participation, loggedStudent, studentParticipation, duelId } = props;
 
   const changePosition = async (): Promise<void> => {
     await changeDuelTeamPosition(
@@ -60,7 +51,10 @@ const ChangeDuelTeamPosition = (
   };
 
   return (
-    <ChangeDuelTeamPositionBox onClick={() => changePosition()}>
+    <ChangeDuelTeamPositionBox
+      className="block-shadow-button secondary-action bd-rd-20"
+      onClick={() => changePosition()}
+    >
       <MediumMaterialIconRound color="" icon="event_seat" />
       <ChangeDuelTeamPositionLabel>
         Vir para este lugar

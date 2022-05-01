@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { IQuestion } from '../../interfaces/IQuestion';
 import { DEFAULT_QUESTION } from '../../static/defaultEntitiesValues';
 import { QuestionActionType } from '../action-types/question';
 import { QuestionAction } from '../actions/question';

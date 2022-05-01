@@ -1,7 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { getTeacherWeeklyPerformances } from '../../../../functions/teacherWeeklyPerformance';
-import { ITeacherWeeklyPerformance } from '../../../../interfaces/ITeacherWeeklyPerformance';
 import OnEducaAPI from '../../../../services/api';
+import { ActionCreators } from '../../../../store';
 import TeacherRankingCard from '../../RankingCard/TeacherRankingCard';
 import { RankingCardsListBox } from '../styles';
 
@@ -18,13 +22,19 @@ const TeacherRankingCardsList = (
     ITeacherWeeklyPerformance[]
   >([]);
 
+  const dispatch = useDispatch();
+  const { showFloatNotification } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
+
   useEffect(() => {
     if (token) {
       getTeacherWeeklyPerformances(
         OnEducaAPI,
         token,
         setTeacherWeeklyPerformances,
-        () => console.log('erro'),
+        () => showFloatNotification('Ocorreu um erro'),
       );
     }
   }, [token]);

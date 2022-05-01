@@ -10,12 +10,14 @@ import {
 
 const NewContentAttachments = (): JSX.Element => {
   return (
-    <NewContentAttachmentsBox>
+    <NewContentAttachmentsBox className="bd-rd-30 with-shadow">
       <NewContentBoxLabel>Anexos</NewContentBoxLabel>
       <NewContentAttachmentsList>
-        <NewContentAttachmentsListBox>{}</NewContentAttachmentsListBox>
+        <NewContentAttachmentsListBox className="bd-rd-20">
+          {}
+        </NewContentAttachmentsListBox>
       </NewContentAttachmentsList>
-      <NewAttachmentButton>
+      <NewAttachmentButton className="block-shadow-button main-action bd-rd-20">
         <NewAttachmentButtonLabel>Criar anexo</NewAttachmentButtonLabel>
       </NewAttachmentButton>
     </NewContentAttachmentsBox>

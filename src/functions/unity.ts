@@ -1,6 +1,5 @@
 import { AxiosInstance } from 'axios';
 import { IUnityParams } from '../dto/IUnityParams';
-import { IUnity } from '../interfaces/IUnity';
 
 export const getUnits = async (
   API: AxiosInstance,

@@ -1,14 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
   Page,
   PageBoxColumn,
-  PageBoxRow,
 } from '../../global/styles/components/pageComponents';
 import { reduceTextSize } from '../../functions/utils';
-import { IDoubt } from '../../interfaces/IDoubt';
-import { DoubtStatus as DoubtStatusType } from '../../types/doubtStatus';
+import { TDoubtStatus } from '../../types/TDoubtStatus';
 import {
   DoubtDescription,
   DoubtBox,
@@ -24,13 +24,12 @@ import {
   DoubtActionsButton,
   DoubtActionsContainer,
 } from './styles';
-import { State } from '../../store';
+import { RootState } from '../../store';
 import { DEFAULT_DOUBT } from '../../static/defaultEntitiesValues';
 import { getDoubt } from '../../functions/doubt';
 import OnEducaAPI from '../../services/api';
 import SectionLabel from '../../components/App/SectionLabel';
 import DoubtComments from '../../components/Doubt/DoubtComments';
-import { IDoubtComment } from '../../interfaces/IDoubtComment';
 import NewDoubtComment from '../../components/Doubt/NewDoubtComment';
 import { getDoubtCommentsByDoubt } from '../../functions/doubtComment';
 import { MediumMaterialIconRound } from '../../components/App/Icons/MaterialIcons/MaterialIconsRound';
@@ -47,15 +46,15 @@ const Doubt = (): JSX.Element => {
   const { params } = route;
   const { id } = params as IDoubtRouteParams;
 
-  /* Global State */
+  /* GlobalRootState */
   const {
     aplication,
     people: loggedPeople,
     student: loggedStudent,
-  } = useSelector((store: State) => store);
+  } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
-  /* Page State */
+  /* PageRootState */
   const [doubt, setDoubt] = useState<IDoubt>(DEFAULT_DOUBT);
   const [doubtComments, setDoubtComments] = useState<IDoubtComment[]>([]);
   const [doubtActionsIsActive, setDoubtActionsIsActive] = useState(false);
@@ -132,7 +131,7 @@ const Doubt = (): JSX.Element => {
                   )}
                 <DoubtStatusIcon
                   className={`fas fa-${
-                    status === DoubtStatusType.SOLVED ? 'check' : 'exclamation'
+                    status === TDoubtStatus.SOLVED ? 'check' : 'exclamation'
                   }-circle`}
                 />
               </DoubtStatus>

@@ -14,7 +14,7 @@ const NewContentDescription = (
   const { description, setDescription } = props;
 
   return (
-    <NewContentDescriptionBox>
+    <NewContentDescriptionBox className="bd-rd-30 with-shadow">
       <NewContentBoxLabel>
         Descrição<RequiredField>*</RequiredField>
       </NewContentBoxLabel>
@@ -23,6 +23,7 @@ const NewContentDescription = (
         onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) =>
           setDescription(event.target.value)
         }
+        className="bd-rd-20"
       />
     </NewContentDescriptionBox>
   );

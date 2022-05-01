@@ -1,6 +1,5 @@
 import { AxiosInstance } from 'axios';
 import { IFriendRequestParams } from '../dto/friendRequest/IFriendRequestParams';
-import { IFriendRequest } from '../interfaces/IFriendRequest';
 
 /* Utils */
 
@@ -50,15 +49,14 @@ export const getFriendRequestsByPeople = async (
   API: AxiosInstance,
   peopleId: string,
   token: string,
-  setFriendRequests: (value: IFriendRequest[]) => void,
-): Promise<void> => {
-  await API.get(`/${entityPath}/people/${peopleId}`, {
+): Promise<IFriendRequest[]> => {
+  const { data } = await API.get(`/${entityPath}/people/${peopleId}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },
-  }).then((response) => {
-    setFriendRequests(response.data);
   });
+
+  return data;
 };
 
 export const getFriendRequest = async (
@@ -97,7 +95,6 @@ export const acceptFriendRequest = async (
   token: string,
   acceptSucess: () => void,
 ): Promise<void> => {
-  console.log(`/${entityPath}/accept/${friendRequestId}`);
   await API.put(
     `/${entityPath}/accept/${friendRequestId}`,
     {},

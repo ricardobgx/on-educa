@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import { IAlternative } from '../../../interfaces/IAlternative';
-import { IPracticeQuestion } from '../../../interfaces/IPracticeQuestion';
-import { IQuestion } from '../../../interfaces/IQuestion';
 import { DEFAULT_ALTERNATIVE } from '../../../static/defaultEntitiesValues';
 import QuestionActions from '../../Question/QuestionActions';
 import QuestionAlternativesList from '../../Question/QuestionAlternatives';

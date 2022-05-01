@@ -46,8 +46,8 @@ export const MediumMaterialIcon = styled(MaterialIcon)`
 
 export const BigMaterialIcon = styled(MaterialIcon)`
   font-size: 8vh;
-  width: 6.7vh;
-  height: 6.7vh;
+  width: 7.1vh;
+  height: 7.1vh;
 
   @media (min-width: 600px) and (max-width: 1150px) {
     font-size: 7vw;
@@ -59,5 +59,23 @@ export const BigMaterialIcon = styled(MaterialIcon)`
     font-size: 12vw;
     width: 10vw;
     height: 10vw;
+  }
+`;
+
+export const ExtraBigMaterialIcon = styled(MaterialIcon)`
+  font-size: 10vh;
+  width: 9.7vh;
+  height: 9.7vh;
+
+  @media (min-width: 600px) and (max-width: 1150px) {
+    font-size: 9vw;
+    width: 8vw;
+    height: 8vw;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 16vw;
+    width: 14vw;
+    height: 14vw;
   }
 `;

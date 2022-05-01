@@ -1,4 +1,3 @@
-import { IStudent } from '../../interfaces/IStudent';
 import { StudentActionType } from '../action-types/student';
 
 interface LoadStudent {

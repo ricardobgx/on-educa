@@ -11,17 +11,12 @@ import {
 import NewQuestionAlternatives from '../../components/NewQuestion/NewQuestionAlternatives';
 import NewQuestionDescription from '../../components/NewQuestion/NewQuestionDescription';
 import NewQuestionReferences from '../../components/NewQuestion/NewQuestionReferences';
-import { ITeachingType } from '../../interfaces/ITeachingType';
-import { ISubject } from '../../interfaces/ISubject';
-import { ISchoolGrade } from '../../interfaces/ISchoolGrade';
-import { IUnity } from '../../interfaces/IUnity';
-import { IContent } from '../../interfaces/IContent';
-import { State } from '../../store';
+import { RootState } from '../../store';
 import NewQuestionDifficulty from '../../components/NewQuestion/NewQuestionDifficulty';
 import NewQuestionActions from '../../components/NewQuestion/NewQuestionActions';
 
 const NewQuestion = (): JSX.Element => {
-  /* Global State */
+  /* GlobalRootState */
 
   const {
     aplication,
@@ -31,7 +26,7 @@ const NewQuestion = (): JSX.Element => {
     unity: globalUnity,
     content: globalContent,
     teacher,
-  } = useSelector((store: State) => store);
+  } = useSelector((store: RootState) => store);
 
   const { token } = aplication;
 

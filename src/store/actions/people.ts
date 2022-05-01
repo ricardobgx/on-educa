@@ -1,4 +1,3 @@
-import { IPeople } from '../../interfaces/IPeople';
 import { PeopleActionType } from '../action-types/people';
 
 interface Login {

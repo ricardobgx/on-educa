@@ -1,5 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { isDefaultTeacher } from '../../../../functions/entitiesValues';
 import { getTeacherWeeklyPerformanceByTeacher } from '../../../../functions/teacherWeeklyPerformance';
 import {
@@ -7,10 +10,8 @@ import {
   getFullDate,
 } from '../../../../functions/utils';
 import theme from '../../../../global/styles/theme';
-import { ITeacherWeeklyPerformance } from '../../../../interfaces/ITeacherWeeklyPerformance';
 import OnEducaAPI from '../../../../services/api';
-import { DEFAULT_TEACHER_WEEKLY_PERFORMANCE } from '../../../../static/defaultEntitiesValues';
-import { State } from '../../../../store';
+import { ActionCreators, RootState } from '../../../../store';
 import SimpleBarChart, {
   ISimpleBarChartData,
 } from '../../../App/Charts/SimpleBarChart';
@@ -28,12 +29,16 @@ const TeacherWeeklyPerformance = (): JSX.Element => {
     aplication,
     people: loggedPeople,
     teacher,
-  } = useSelector((store: State) => store);
+  } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
+  const dispatch = useDispatch();
+  const { showFloatNotification } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
+
   const [chartType, setChartType] = useState('contents');
-  const [teacherWeeklyPerformance, setTeacherWeeklyPerformance] =
-    useState<ITeacherWeeklyPerformance>(DEFAULT_TEACHER_WEEKLY_PERFORMANCE);
 
   const [contentsData, setContentsData] = useState<ISimpleBarChartData[]>([]);
   const [questionsData, setQuestionsData] = useState<ISimpleBarChartData[]>([]);
@@ -95,7 +100,6 @@ const TeacherWeeklyPerformance = (): JSX.Element => {
     setQuestionsData(questionsDataValues);
     setDoubtsData(doubtsDataValues);
     setInterativeRoomsData(interativeRoomsDataValues);
-    setTeacherWeeklyPerformance(teacherWeeklyPerformanceData);
   };
 
   useEffect(() => {
@@ -106,7 +110,7 @@ const TeacherWeeklyPerformance = (): JSX.Element => {
           teacher.id,
           token,
           setChartsData,
-          () => console.log('erro'),
+          () => showFloatNotification('Ocorreu um erro'),
         );
     }
   }, [teacher]);
@@ -132,8 +136,8 @@ const TeacherWeeklyPerformance = (): JSX.Element => {
 
   return (
     <WeeklyPerformanceBox>
-      <SectionLabel label="Desempenho" backLink="/home" />
-      <PerformanceChart>
+      <SectionLabel label="Desempenho" backLink="/" />
+      <PerformanceChart className="with-shadow bd-rd-30">
         <PerformanceChartBox>
           {chartType === 'contents' && (
             <SimpleBarChart
@@ -141,7 +145,7 @@ const TeacherWeeklyPerformance = (): JSX.Element => {
               valueLabel="Conteúdos criados"
               width={calcChartWidth()}
               height={calcChartHeight()}
-              color={theme.similarColors.rightQuestion}
+              color={theme.colors.mainButtonBgColor}
             />
           )}
           {chartType === 'questions' && (
@@ -150,7 +154,7 @@ const TeacherWeeklyPerformance = (): JSX.Element => {
               valueLabel="Questões criadas"
               width={calcChartWidth()}
               height={calcChartHeight()}
-              color={theme.similarColors.rightQuestion}
+              color={theme.colors.mainButtonBgColor}
             />
           )}
           {chartType === 'doubts' && (
@@ -159,7 +163,7 @@ const TeacherWeeklyPerformance = (): JSX.Element => {
               valueLabel="Dúvidas resolvidas"
               width={calcChartWidth()}
               height={calcChartHeight()}
-              color={theme.similarColors.rightQuestion}
+              color={theme.colors.mainButtonBgColor}
             />
           )}
           {chartType === 'interativeRooms' && (
@@ -168,7 +172,7 @@ const TeacherWeeklyPerformance = (): JSX.Element => {
               valueLabel="Salas criadas"
               width={calcChartWidth()}
               height={calcChartHeight()}
-              color={theme.similarColors.rightQuestion}
+              color={theme.colors.mainButtonBgColor}
             />
           )}
         </PerformanceChartBox>

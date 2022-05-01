@@ -1,5 +1,4 @@
 import React from 'react';
-import { IDuelRoundQuestion } from '../../../interfaces/IDuelRoundQuestion';
 import {
   Container,
   DuelProgressBar,

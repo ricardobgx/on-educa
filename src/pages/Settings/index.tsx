@@ -1,8 +1,11 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import SectionLabel from '../../components/App/SectionLabel';
+import { setAplicationTheme } from '../../functions/people';
 import { Page } from '../../global/styles/components/pageComponents';
 import { themes } from '../../static/themes';
-import { ThemeType } from '../../types/ThemeType';
+import { ActionCreators, RootState } from '../../store';
 import {
   PageBox,
   SelectedThemeButtonIcon,
@@ -14,34 +17,36 @@ import {
 } from './styles';
 
 const Settings = (): JSX.Element => {
-  const setTheme = (themeType: number): void => {
-    window.localStorage.setItem('theme', themeType.toString());
-    window.location.reload();
+  const { theme: themeSelected } = useSelector((store: RootState) => store);
+
+  const dispatch = useDispatch();
+  const { loadTheme } = bindActionCreators(ActionCreators, dispatch);
+
+  const setTheme = (theme: ITheme): void => {
+    loadTheme(theme);
+    setAplicationTheme(theme.themeType);
   };
-
-  const selectedTheme =
-    window.localStorage.getItem('theme') || ThemeType.BLUE.toString();
-
-  const selectedThemeNumber = Number(selectedTheme);
 
   return (
     <Page>
       <PageBox>
-        <SectionLabel label="Configurações" backLink="/home" />
+        <SectionLabel label="Configurações" backLink="/" />
         <SettingsBox>
-          <ThemeSettings>
+          <ThemeSettings className="with-shadow bd-rd-30">
             <SettingsBoxLabel>Selecione o tema</SettingsBoxLabel>
             <ThemesList>
-              {themes.map((theme) => (
-                <SelectThemeButton
-                  color={theme.previewColor}
-                  onClick={() => setTheme(theme.themeType)}
-                >
-                  {selectedThemeNumber === theme.themeType && (
-                    <SelectedThemeButtonIcon className="fas fa-check" />
-                  )}
-                </SelectThemeButton>
-              ))}
+              {themes.map((theme) => {
+                return (
+                  <SelectThemeButton
+                    colors={theme.previewColors}
+                    onClick={() => setTheme(theme)}
+                  >
+                    {themeSelected.themeType === theme.themeType && (
+                      <SelectedThemeButtonIcon className="fas fa-check" />
+                    )}
+                  </SelectThemeButton>
+                );
+              })}
             </ThemesList>
           </ThemeSettings>
         </SettingsBox>

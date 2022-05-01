@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { getTeachingTypes } from '../../../functions/teachingType';
-import { ITeachingType } from '../../../interfaces/ITeachingType';
 import OnEducaAPI from '../../../services/api';
 import {
   UpdateProfileOption,
@@ -25,8 +24,14 @@ const UpdateProfileTeachingType = (
 
   const { selectedTeachingTypeId, setSelectedTeachingTypeId } = props;
 
+  const getTeachingTypesData = async (): Promise<void> => {
+    const teachingTypesFound = await getTeachingTypes(OnEducaAPI);
+
+    setTeachingTypes(teachingTypesFound);
+  };
+
   useEffect(() => {
-    getTeachingTypes(OnEducaAPI, setTeachingTypes);
+    getTeachingTypesData();
   }, []);
 
   return (

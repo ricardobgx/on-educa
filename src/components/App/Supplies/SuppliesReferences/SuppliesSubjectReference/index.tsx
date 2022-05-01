@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import React from 'react';
-import { ISubject } from '../../../../../interfaces/ISubject';
-import { ISchoolGrade } from '../../../../../interfaces/ISchoolGrade';
 import { SuppliesReferenceBox } from '../styles';
 import SuppliesReferenceBoxLabel from '../SuppliesReferenceBoxLabel';
 import SuppliesSubjectReferenceSelect from '../SuppliesSubjectReferenceSelect';

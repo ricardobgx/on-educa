@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { socket } from '../../../App';
-import { IPeople } from '../../../interfaces/IPeople';
 import {
   DuelChatActionsBox,
   DuelChatMessageInput,

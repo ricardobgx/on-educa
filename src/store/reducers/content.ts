@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { IContent } from '../../interfaces/IContent';
 import { DEFAULT_CONTENT } from '../../static/defaultEntitiesValues';
 import { ContentActionType } from '../action-types/content';
 import { ContentAction } from '../actions/content';

@@ -1,4 +1,3 @@
-import { ISubject } from '../../interfaces/ISubject';
 import { SubjectActionType } from '../action-types/subject';
 
 interface LoadSubject {

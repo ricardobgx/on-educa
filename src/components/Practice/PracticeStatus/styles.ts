@@ -5,7 +5,7 @@ export const Container = styled.div`
   width: 100%;
   background: ${({ theme }) => theme.colors.boxColor};
   box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  min-height: 50px;
+  min-height: 45px;
   padding: 0 20px;
   margin: 20px;
   border-radius: 5px;
@@ -28,21 +28,21 @@ export const PracticeStatusBox = styled.div`
 `;
 export const PracticeProgress = styled.div`
   display: flex;
+  align-items: center;
   width: 100%;
 `;
 export const PracticeProgressBar = styled.div`
-  height: 19px;
-  padding: 2px;
+  height: 13px;
   margin-right: 20px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   width: 100%;
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.progressBarColor};
 `;
 export const QuestionsProgressBar = styled.div`
-  height: 15px;
-  background: ${({ theme }) => theme.colors.boxColor};
+  height: 13px;
+  background: ${({ theme }) => theme.colors.mainButtonBgColor};
   transition: 0.2s linear;
 
   &:first-of-type {

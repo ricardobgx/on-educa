@@ -7,11 +7,9 @@ export const ChangeDuelTeamPositionBox = styled.button`
   flex-direction: column;
   align-items: center;
   padding: 15px;
-  border-radius: 5px;
   margin-bottom: 20px;
   background: ${({ theme }) => theme.colors.boxColor};
   color: ${({ theme }) => theme.colors.textColor};
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border: none;
   cursor: pointer;
   position: relative;
@@ -21,8 +19,8 @@ export const ChangeDuelTeamPositionBox = styled.button`
   transition: 0.4s linear;
 
   &:hover {
-    transition: 0.4s linear;
-    color: ${({ theme }) => theme.colors.boxColor};
+    transition: 0.2s linear;
+    color: ${({ theme }) => theme.colors.boxColor} !important;
   }
 
   &:before {

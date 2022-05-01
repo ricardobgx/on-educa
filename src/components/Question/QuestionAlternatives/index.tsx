@@ -1,5 +1,4 @@
 import React from 'react';
-import { IAlternative } from '../../../interfaces/IAlternative';
 import QuestionAlternative from '../QuestionAlternative';
 import { QuestionAlternativesListBox } from './styles';
 
@@ -33,6 +32,7 @@ const QuestionAlternativesList = (
     <QuestionAlternativesListBox>
       {alternatives.map((alternative) => (
         <QuestionAlternative
+          key={alternative.id}
           alternative={alternative}
           selectedAlternative={selectedAlternative}
           setSelectedAlternative={setSelectedAlternative}

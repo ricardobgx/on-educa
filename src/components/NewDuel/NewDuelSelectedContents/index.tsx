@@ -1,6 +1,4 @@
 import React from 'react';
-import { IContent } from '../../../interfaces/IContent';
-import { DEFAULT_UNITY } from '../../../static/defaultEntitiesValues';
 import NewDuelSelectedContentCard from '../NewDuelSelectedContentCard';
 import {
   NewDuelSelectedContentsBox,

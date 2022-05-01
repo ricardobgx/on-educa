@@ -1,7 +1,6 @@
 import { AxiosInstance } from 'axios';
 import { IAlternativeParams } from '../dto/IAlternativeParams';
 import { IManyAlternativesParams } from '../dto/IManyAlternativesParams';
-import { IAlternative } from '../interfaces/IAlternative';
 
 /** *********************************************
  *
@@ -111,9 +110,14 @@ export const createAlternative = async (
     headers: {
       authorization: `Bearer ${token}`,
     },
-  }).then(() => {
-    createSucess();
-  });
+  }).then(
+    () => {
+      createSucess();
+    },
+    () => {
+      createError();
+    },
+  );
 };
 
 export const createManyAlternatives = async (

@@ -1,6 +1,5 @@
 import { AxiosInstance } from 'axios';
 import { IDoubtCommentParams } from '../dto/IDoubtCommentParams';
-import { IDoubtComment } from '../interfaces/IDoubtComment';
 
 export const getDoubtComments = async (
   API: AxiosInstance,

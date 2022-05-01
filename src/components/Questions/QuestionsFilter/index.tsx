@@ -1,9 +1,6 @@
+/* eslint-disable */
+
 import React from 'react';
-import { IContent } from '../../../interfaces/IContent';
-import { ISchoolGrade } from '../../../interfaces/ISchoolGrade';
-import { ISubject } from '../../../interfaces/ISubject';
-import { ITeachingType } from '../../../interfaces/ITeachingType';
-import { IUnity } from '../../../interfaces/IUnity';
 import SuppliesContentReference from '../../App/Supplies/SuppliesReferences/SuppliesContentReference';
 import SuppliesSubjectReference from '../../App/Supplies/SuppliesReferences/SuppliesSubjectReference';
 import SuppliesTeachSchoolReference from '../../App/Supplies/SuppliesReferences/SuppliesTeachSchoolReference';
@@ -47,7 +44,7 @@ const QuestionsFilter = (props: IQuestionsFilterProps): JSX.Element => {
   } = props;
 
   return (
-    <QuestionsFilterBox>
+    <QuestionsFilterBox className="bd-rd-30 with-shadow">
       <CloseQuestionsFilterButton
         onClick={() => setQuestionsFilterIsVisible(false)}
       >

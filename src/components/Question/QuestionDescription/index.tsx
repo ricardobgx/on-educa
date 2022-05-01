@@ -13,7 +13,7 @@ const QuestionDescription = (props: IQuestionDescriptionProps): JSX.Element => {
   const { description } = props;
 
   return (
-    <QuestionDescriptionBox>
+    <QuestionDescriptionBox className="with-shadow bd-rd-30">
       <QuestionDescriptionParagraphs>
         {description.split('\n').map((questionDescriptionParagraph) => (
           <QuestionDescriptionParagraph>

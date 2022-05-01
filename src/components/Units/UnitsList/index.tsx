@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React from 'react';
-import { IUnity } from '../../../interfaces/IUnity';
 import { ICommonUnityProps } from '../../../pages/Units';
 import UnityCard from '../UnityCard';
 import { UnitsListBox, UnitCards } from './styles';

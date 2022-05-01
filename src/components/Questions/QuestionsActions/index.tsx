@@ -1,21 +1,23 @@
 import React from 'react';
 import {
   QuestionsActionsBox,
-  SearchQuestions,
-  SearchQuestionsInputBox,
-  SearchQuestionsInput,
-  ClearSearchQuestionsInputButton,
-  ClearSearchQuestionsInputButtonIcon,
-  SearchQuestionsButton,
-  SearchQuestionsButtonIcon,
-  NewQuestionButton,
-  NewQuestionButtonLabel,
-  NewQuestionButtonIcon,
   QuestionsFiltersButton,
   QuestionsFiltersButtonLabel,
   QuestionsFiltersButtonIcon,
   Container,
 } from './styles';
+import {
+  SearchSupplies,
+  SearchSuppliesBox,
+  SearchSuppliesInput,
+  ClearSearchSuppliesInputButton,
+  ClearSearchSuppliesInputButtonIcon,
+  SearchSuppliesButton,
+  SearchSuppliesButtonIcon,
+  NewSuppliesLink,
+  NewSuppliesButtonLabel,
+  NewSuppliesButtonIcon,
+} from '../../App/Supplies/styles';
 
 interface IQuestionActionsProps {
   isStudent: boolean;
@@ -29,27 +31,31 @@ const QuestionsActions = (props: IQuestionActionsProps): JSX.Element => {
 
   return (
     <Container>
-      <SearchQuestions>
-        <SearchQuestionsInputBox>
-          <SearchQuestionsInput
+      <SearchSupplies>
+        <SearchSuppliesBox className="bd-rd-20">
+          <SearchSuppliesInput
             type="text"
             placeholder="Digite algo (descrição da questão)"
           />
-          <ClearSearchQuestionsInputButton>
-            <ClearSearchQuestionsInputButtonIcon className="fas fa-times" />
-          </ClearSearchQuestionsInputButton>
-        </SearchQuestionsInputBox>
-        <SearchQuestionsButton>
-          <SearchQuestionsButtonIcon className="fas fa-search" />
-        </SearchQuestionsButton>
-      </SearchQuestions>
+          <ClearSearchSuppliesInputButton>
+            <ClearSearchSuppliesInputButtonIcon className="fas fa-times" />
+          </ClearSearchSuppliesInputButton>
+        </SearchSuppliesBox>
+        <SearchSuppliesButton className="block-shadow-button main-action bd-rd-20">
+          <SearchSuppliesButtonIcon className="fas fa-search" />
+        </SearchSuppliesButton>
+      </SearchSupplies>
       {!isStudent && (
         <QuestionsActionsBox>
-          <NewQuestionButton to="/new-question">
-            <NewQuestionButtonLabel>Nova questão</NewQuestionButtonLabel>
-            <NewQuestionButtonIcon className="fas fa-plus" />
-          </NewQuestionButton>
+          <NewSuppliesLink
+            className="block-shadow-button main-action bd-rd-20"
+            to="/new-question"
+          >
+            <NewSuppliesButtonLabel>Nova questão</NewSuppliesButtonLabel>
+            <NewSuppliesButtonIcon className="fas fa-plus" />
+          </NewSuppliesLink>
           <QuestionsFiltersButton
+            className="block-shadow-button main-action bd-rd-20"
             onClick={() => setQuestionsFilterIsVisible(true)}
           >
             <QuestionsFiltersButtonLabel>Filtrar</QuestionsFiltersButtonLabel>

@@ -1,6 +1,5 @@
 import { AxiosInstance } from 'axios';
 import { IMessageParams } from '../dto/message/IMessageParams';
-import { IMessage } from '../interfaces/IMessage';
 
 const entityPath = 'messages';
 

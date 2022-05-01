@@ -1,5 +1,4 @@
 import React from 'react';
-import { IDoubtComment } from '../../../interfaces/IDoubtComment';
 import DoubtComment from '../DoubtComment';
 import { DoubtCommentsBox } from './styles';
 

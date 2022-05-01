@@ -1,15 +1,17 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { isDefaultPeople } from '../../../../functions/entitiesValues';
 import { getTeacherWeeklyPerformanceByTeacher } from '../../../../functions/teacherWeeklyPerformance';
-import { IPeople } from '../../../../interfaces/IPeople';
-import { ITeacher } from '../../../../interfaces/ITeacher';
-import { ITeacherWeeklyPerformance } from '../../../../interfaces/ITeacherWeeklyPerformance';
 import {
   PerformanceDetailsHeader,
   PerformanceDetailsHeaderLabel,
 } from '../../../../pages/Profile/styles';
 import OnEducaAPI from '../../../../services/api';
 import { DEFAULT_TEACHER_WEEKLY_PERFORMANCE } from '../../../../static/defaultEntitiesValues';
+import { ActionCreators } from '../../../../store';
 import { SmallMaterialIconRound } from '../../../App/Icons/MaterialIcons/MaterialIconsRound';
 import {
   Container,
@@ -33,6 +35,12 @@ const TeacherWeeklyPerformance = (
 ): JSX.Element => {
   const { people, teacher, token, isPeopleLogged } = props;
 
+  const dispatch = useDispatch();
+  const { showFloatNotification } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
+
   const [teacherWeeklyPerformance, setTeacherWeeklyPerformance] =
     useState<ITeacherWeeklyPerformance>(DEFAULT_TEACHER_WEEKLY_PERFORMANCE);
 
@@ -43,7 +51,7 @@ const TeacherWeeklyPerformance = (
         teacher.id,
         token,
         setTeacherWeeklyPerformance,
-        () => console.log('erro'),
+        () => showFloatNotification('erro'),
       );
     }
   }, [teacher]);

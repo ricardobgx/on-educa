@@ -13,9 +13,33 @@ export const NewSuppliesButton = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  box-shadow: 0px 2px 0px 3px
+    ${({ theme }) => theme.colors.mainButtonShadowColor};
+
   background: ${({ theme }) => theme.colors.textColor};
   color: ${({ theme }) => theme.colors.boxColor};
   padding: 0 20px;
+
+  transition: all 0.2s linear;
+
+  :hover {
+    box-shadow: 0px 0px 0px 1px
+      ${({ theme }) => theme.colors.mainButtonShadowColor};
+  }
+
+  & p,
+  & i {
+    transform: translateY(-1px);
+    transition: all 0.2s linear;
+  }
+
+  &:hover {
+    p,
+    i {
+      transform: translateY(0px);
+    }
+  }
 
   @media (min-width: 600px) and (max-width: 700px) {
     width: calc(50% - 10px);
@@ -30,14 +54,24 @@ export const NewSuppliesLink = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${({ theme }) => theme.colors.textColor};
-  color: ${({ theme }) => theme.colors.boxColor};
   padding: 0 20px;
   min-height: 40px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border: none;
   cursor: pointer;
+  transition: all 0.2s linear;
+
+  & p,
+  & i {
+    transform: translateY(-1px);
+    transition: all 0.2s linear;
+  }
+
+  &:hover {
+    p,
+    i {
+      transform: translateY(0px);
+    }
+  }
 
   @media (min-width: 600px) and (max-width: 700px) {
     width: calc(50% - 10px);
@@ -169,10 +203,8 @@ export const SearchSuppliesBox = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
-  padding: 0 10px;
+  background: ${({ theme }) => theme.colors.inputTextBgColor};
+  padding: 0 15px;
   margin-right: 20px;
 `;
 
@@ -186,6 +218,10 @@ export const SearchSuppliesInput = styled(inputText)`
   height: 100%;
   color: ${({ theme }) => theme.colors.textColor};
   margin-right: 10px;
+
+  ::-webkit-input-placeholder {
+    color: #949494;
+  }
 `;
 
 // Botao que limpa a caixa de pesquisa
@@ -211,8 +247,7 @@ export const ClearSearchSuppliesInputButtonIcon = styled(smallIcon)``;
 
 export const SearchSuppliesButton = styled(Button)`
   min-width: 40px;
-  background: ${({ theme }) => theme.colors.textColor};
-  color: ${({ theme }) => theme.colors.boxColor};
+
   border: none;
   cursor: pointer;
 `;

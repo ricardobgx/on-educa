@@ -5,28 +5,21 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { useHistory, useRouteMatch } from 'react-router-dom';
-import { ActionCreators, State } from '../../store';
+import { ActionCreators, RootState } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import DuelQuestion from '../../components/DuelQuestions/DuelQuestion';
 import DuelStatus from '../../components/DuelQuestions/DuelStatus';
 import { DuelQuestionsBox, PageBox } from './styles';
-import { IDuel } from '../../interfaces/IDuel';
 import {
-  DEFAULT_ALTERNATIVE,
   DEFAULT_DUEL_QUESTION,
   DEFAULT_DUEL_TEAM,
   DEFAULT_DUEL_TEAM_PARTICIPATION,
 } from '../../static/defaultEntitiesValues';
-import { IDuelRoundQuestion } from '../../interfaces/IDuelRoundQuestion';
 import { isDefaultDuel, isDefaultPeople } from '../../functions/entitiesValues';
 import { getDuel } from '../../functions/duel';
 import OnEducaAPI from '../../services/api';
 import { getDuelRoundQuestionsByDuelRound } from '../../functions/duelRoundQuestion';
-import { createDuelQuestionAnswer } from '../../functions/duelQuestionAnswer';
-import { IDuelTeamParticipation } from '../../interfaces/IDuelTeamParticipation';
-import { IDuelRound } from '../../interfaces/IDuelRound';
 import { findStudentDuelPartByTeams } from '../../functions/duelTeamParts';
-import { randInt } from '../../functions/utils';
 import { answerDuelRoundQuestion } from '../../functions/duelRound';
 import { DuelRoundStatus } from '../../types/duelRoundStatus';
 import { socket } from '../../App';
@@ -39,7 +32,7 @@ interface IDuelQuestionsRouteParams {
 const DuelQuestions = (): JSX.Element => {
   const pageHistory = useHistory();
 
-  /* Local State */
+  /* LocalRootState */
 
   const [question, setQuestion] = useState<IDuelRoundQuestion>(
     DEFAULT_DUEL_QUESTION,
@@ -52,7 +45,7 @@ const DuelQuestions = (): JSX.Element => {
     duel,
     people,
     student: loggedStudent,
-  } = useSelector((store: State) => store);
+  } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
   // Dispatch

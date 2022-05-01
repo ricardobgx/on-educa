@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { IChat } from '../../interfaces/IChat';
 import { DEFAULT_CHAT } from '../../static/defaultEntitiesValues';
 import { ChatActionType } from '../action-types/chat';
 import { ChatAction } from '../actions/chat';

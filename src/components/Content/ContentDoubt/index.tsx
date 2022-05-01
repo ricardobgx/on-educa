@@ -1,10 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
 import { getDoubtCommentsByDoubt } from '../../../functions/doubtComment';
 import { reduceTextSize } from '../../../functions/utils';
-import { IDoubt } from '../../../interfaces/IDoubt';
-import { IDoubtComment } from '../../../interfaces/IDoubtComment';
 import OnEducaAPI from '../../../services/api';
-import { DoubtStatus } from '../../../types/doubtStatus';
+import { TDoubtStatus } from '../../../types/TDoubtStatus';
 import {
   ContentDoubtDescription,
   ContentDoubtBox,
@@ -50,7 +50,7 @@ const ContentDoubt = (props: IContentDoubtProps): JSX.Element => {
   }, [token]);
 
   return (
-    <ContentDoubtBox to={`/doubts/${id}`}>
+    <ContentDoubtBox className="with-shadow bd-rd-20" to={`/doubts/${id}`}>
       <ContentDoubtHeader>
         <ContentDoubtOwner>
           <OwnerPicture src={profilePicture.path} />
@@ -62,7 +62,7 @@ const ContentDoubt = (props: IContentDoubtProps): JSX.Element => {
         <ContentDoubtStatus>
           <ContentDoubtStatusIcon
             className={`fas fa-${
-              status === DoubtStatus.SOLVED ? 'check' : 'exclamation'
+              status === TDoubtStatus.SOLVED ? 'check' : 'exclamation'
             }-circle`}
           />
           <ContentDoubtComments>

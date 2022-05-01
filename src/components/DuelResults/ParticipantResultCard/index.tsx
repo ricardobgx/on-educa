@@ -1,11 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
 import {
   isDefaultPeople,
   isDefaultStudent,
 } from '../../../functions/entitiesValues';
 import { getPeople } from '../../../functions/people';
-import { IDuelQuestionAnswer } from '../../../interfaces/IDuelQuestionAnswer';
-import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
 import OnEducaAPI from '../../../services/api';
 import {
   DEFAULT_PEOPLE,
@@ -39,10 +39,6 @@ const ParticipantResultCard = (
   const { people: studentPeople } = student;
 
   const [people, setPeople] = useState(DEFAULT_PEOPLE);
-
-  const leagueColor = (): string => {
-    return '#43DDF2';
-  };
 
   const questionsAnsweredCorrectlyScore = (
     duelQuestionsAnswers: IDuelQuestionAnswer[],
@@ -84,9 +80,15 @@ const ParticipantResultCard = (
     return score;
   };
 
+  const getParticipantPeople = async (): Promise<void> => {
+    const peopleFound = await getPeople(OnEducaAPI, studentPeople.id, token);
+
+    if (peopleFound) setPeople(peopleFound);
+  };
+
   useEffect(() => {
     if (!isDefaultStudent(student) && isDefaultPeople(people) && token) {
-      getPeople(OnEducaAPI, studentPeople.id, setPeople, token);
+      getParticipantPeople();
     }
   }, [token]);
 

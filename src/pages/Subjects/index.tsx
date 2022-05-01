@@ -7,11 +7,9 @@ import SectionLabel from '../../components/App/SectionLabel';
 import SchoolGradeSelect from '../../components/Subjects/SchoolGradeSelect';
 import SubjectSelect from '../../components/Subjects/SubjectSelect';
 import TeachingTypeSelect from '../../components/Subjects/TeachingTypeSelect';
-import { ISchoolGrade } from '../../interfaces/ISchoolGrade';
-import { ISubject } from '../../interfaces/ISubject';
 import OnEducaAPI from '../../services/api';
 import { DEFAULT_SUBJECT } from '../../static/defaultEntitiesValues';
-import { ActionCreators, State } from '../../store';
+import { ActionCreators, RootState } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import {
   CancelButton,
@@ -39,7 +37,7 @@ const Subjects = (): JSX.Element => {
     return 0;
   };
 
-  /* Global State */
+  /* GlobalRootState */
 
   // Dispatch
 
@@ -52,13 +50,13 @@ const Subjects = (): JSX.Element => {
     dispatch,
   );
 
-  // State
+  // RootState
 
   const { teachingType, schoolGrade, subject } = useSelector(
-    (store: State) => store,
+    (store: RootState) => store,
   );
 
-  /* Local State */
+  /* LocalRootState */
 
   const [teachingTypes, setTeachingTypes] = useState([]);
   const [schoolGrades, setSchoolGrades] = useState([]);
@@ -97,7 +95,7 @@ const Subjects = (): JSX.Element => {
   return (
     <Page>
       <PageBox>
-        <SectionLabel backLink="/home" label="Selecione a disciplina" />
+        <SectionLabel backLink="/" label="Selecione a disciplina" />
         <SelectSubjectsDetails>
           <TeachingTypeSelect
             label="Selecione o ensino"
@@ -119,13 +117,16 @@ const Subjects = (): JSX.Element => {
           />
         </SelectSubjectsDetails>
         <SubjectsActions>
-          <CancelButton to="/home">
+          <CancelButton
+            className="block-shadow-button secondary-action bd-rd-20"
+            to="/"
+          >
             <CancelButtonLabel>Cancelar</CancelButtonLabel>
           </CancelButton>
           <SelectUnityButton
-            style={{
-              pointerEvents: subject === DEFAULT_SUBJECT ? 'none' : 'unset',
-            }}
+            className={`block-shadow-button main-action bd-rd-20 ${
+              subject === DEFAULT_SUBJECT ? 'disabled' : ''
+            }`}
             to={`/subjects/${subject.id}`}
           >
             <SelectUnityButtonLabel>Continuar</SelectUnityButtonLabel>

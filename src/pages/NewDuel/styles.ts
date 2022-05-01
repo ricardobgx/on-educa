@@ -51,8 +51,10 @@ export const CancelNewDuelButton = styled(LinkButton)`
 export const CancelNewDuelButtonLabel = styled(paragraph)``;
 export const CreateNewDuelButton = styled(Button)`
   justify-content: center;
+
   background: ${({ theme }) => theme.colors.textColor};
   color: ${({ theme }) => theme.colors.boxColor};
+
   width: calc(50% - 20px);
 
   @media (max-width: 1150px) {

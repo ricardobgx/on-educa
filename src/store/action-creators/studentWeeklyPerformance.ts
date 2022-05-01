@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 import { Dispatch } from 'redux';
-import { IStudentWeeklyPerformance } from '../../interfaces/IStudentWeeklyPerformance';
 import { StudentWeeklyPerformanceActionType } from '../action-types/studentWeeklyPerformance';
 import { StudentWeeklyPerformanceAction } from '../actions/studentWeeklyPerformance';
 

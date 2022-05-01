@@ -9,17 +9,16 @@ import DuelCard from '../../components/Duels/DuelCard';
 import DuelsActions from '../../components/Duels/DuelsActions';
 import { getDuels } from '../../functions/duel';
 import { Page } from '../../global/styles/components/pageComponents';
-import { IDuel } from '../../interfaces/IDuel';
 import OnEducaAPI from '../../services/api';
 import { DEFAULT_DUEL } from '../../static/defaultEntitiesValues';
-import { ActionCreators, State } from '../../store';
+import { ActionCreators, RootState } from '../../store';
 import { DuelRoundStatus } from '../../types/duelRoundStatus';
 import { PageBox, DuelsBox, DuelsList, DuelsListBox } from './styles';
 
 const Duels = (): JSX.Element => {
   /* Estado da aplicacao */
 
-  const { aplication, student } = useSelector((store: State) => store);
+  const { aplication, student } = useSelector((store: RootState) => store);
   const { token, loadingAnimation } = aplication;
 
   const dispatch = useDispatch();
@@ -58,7 +57,7 @@ const Duels = (): JSX.Element => {
   return (
     <Page>
       <PageBox>
-        <SectionLabel backLink="/home" label="Duelos" />
+        <SectionLabel backLink="/" label="Duelos" />
         <DuelsBox>
           <DuelsActions />
           <DuelsList>

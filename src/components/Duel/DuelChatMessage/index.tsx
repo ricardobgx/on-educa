@@ -1,6 +1,4 @@
 import React from 'react';
-import { IDuelChatMessage } from '../../../interfaces/IDuelChatMessage';
-import { IPeople } from '../../../interfaces/IPeople';
 import {
   DuelChatMessageBox,
   DuelChatMessagePeopleName,

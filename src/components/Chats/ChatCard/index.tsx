@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
 import { getPeople } from '../../../functions/people';
-import { IChat } from '../../../interfaces/IChat';
-import { IPeople } from '../../../interfaces/IPeople';
+import { displayDayAndMonthDate, getFullDate } from '../../../functions/utils';
 import OnEducaAPI from '../../../services/api';
 import { DEFAULT_PEOPLE } from '../../../static/defaultEntitiesValues';
 import ChatPeoplePicture from '../ChatPeoplePicture';
@@ -10,26 +11,35 @@ import {
   PeopleName,
   LastMessagePreview,
   NameAndLastMessage,
+  NameAndLastMessageTime,
+  LastMessageTime,
 } from './styles';
 
 interface IChatCardProps {
   chat: IChat;
   loggedPeople: IPeople;
+  selectedChat: IChat;
   setSelectedChat: (value: IChat) => void;
   token: string;
 }
 
 const ChatCard = (props: IChatCardProps): JSX.Element => {
-  const { chat, loggedPeople, setSelectedChat, token } = props;
+  const { chat, loggedPeople, selectedChat, setSelectedChat, token } = props;
   const { chatCreator, chatParticipant, messages } = chat;
   const [people, setPeople] = useState(DEFAULT_PEOPLE);
 
-  const peopleId =
-    loggedPeople.id === chatCreator.id ? chatParticipant.id : chatCreator.id;
+  const getChatCardPeople = async (peopleId: string): Promise<void> => {
+    const chatCardPeople = await getPeople(OnEducaAPI, peopleId, token);
+    if (chatCardPeople) setPeople(chatCardPeople);
+  };
 
   useEffect(() => {
     if (token) {
-      getPeople(OnEducaAPI, peopleId, setPeople, token);
+      const peopleId =
+        loggedPeople.id === chatCreator.id
+          ? chatParticipant.id
+          : chatCreator.id;
+      getChatCardPeople(peopleId);
     }
   }, [token]);
 
@@ -37,6 +47,7 @@ const ChatCard = (props: IChatCardProps): JSX.Element => {
 
   return (
     <ChatCardBox
+      className={`${selectedChat.id === chat.id ? 'selected' : ''}`}
       onClick={() => {
         const toggleConversations = document.getElementById(
           'toggle-recent-conversations',
@@ -53,10 +64,18 @@ const ChatCard = (props: IChatCardProps): JSX.Element => {
         isOnline={isOnline}
       />
       <NameAndLastMessage>
-        <PeopleName>{name}</PeopleName>
+        <NameAndLastMessageTime>
+          <PeopleName>{name}</PeopleName>
+          <LastMessageTime>
+            {messages.length > 0 &&
+              displayDayAndMonthDate(
+                getFullDate(messages[messages.length - 1].createdAt),
+              )}
+          </LastMessageTime>
+        </NameAndLastMessageTime>
         <LastMessagePreview>
           {messages.length > 0
-            ? messages[messages.length - 1].content
+            ? messages[messages.length - 1].content.substring(0, 15)
             : 'Diga oi a ela/ele'}
         </LastMessagePreview>
       </NameAndLastMessage>

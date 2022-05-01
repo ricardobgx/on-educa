@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { updateUnity as updateUnityData } from '../../../functions/unity';
-import { IUnity } from '../../../interfaces/IUnity';
 import { ICommonUnityProps } from '../../../pages/Units';
 import OnEducaAPI from '../../../services/api';
-import { State } from '../../../store';
+import { ActionCreators, RootState } from '../../../store';
 import {
   UpdateUnityBackground,
   UpdateUnityBox,
@@ -22,17 +22,23 @@ interface IUpdateUnityProps extends ICommonUnityProps {
 }
 
 const UpdateUnity = (props: IUpdateUnityProps): JSX.Element => {
+  const dispatch = useDispatch();
+  const { showFloatNotification } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
+
   /* Props */
 
   const { unity, setUpdateUnityIsVisible, getUnits } = props;
 
-  /* Local State */
+  /* LocalRootState */
 
   const [name, setName] = useState(unity.name);
 
-  /* Global State */
+  /* GlobalRootState */
 
-  const { aplication } = useSelector((store: State) => store);
+  const { aplication } = useSelector((store: RootState) => store);
 
   const { token } = aplication;
 
@@ -42,7 +48,7 @@ const UpdateUnity = (props: IUpdateUnityProps): JSX.Element => {
   };
 
   const updateError = (): void => {
-    console.log('erro');
+    showFloatNotification('erro');
   };
 
   const updateUnity = async (): Promise<void> => {

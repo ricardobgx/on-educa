@@ -1,17 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import {
   isDefaultSchoolGrade,
   isDefaultTeachingType,
 } from '../../../../../functions/entitiesValues';
 import { getSchoolGradesByTeachingType } from '../../../../../functions/schoolGrade';
-import { ISchoolGrade } from '../../../../../interfaces/ISchoolGrade';
-import { ITeachingType } from '../../../../../interfaces/ITeachingType';
 import OnEducaAPI from '../../../../../services/api';
 import { DEFAULT_SCHOOL_GRADE } from '../../../../../static/defaultEntitiesValues';
-import { State } from '../../../../../store';
 import {
   SuppliesReferenceSelectOption,
   SuppliesReferenceSelect,
@@ -26,12 +23,7 @@ interface ISuppliesSchoolGradeReferenceSelectProps {
 const SuppliesSchoolGradeReferenceSelect = (
   props: ISuppliesSchoolGradeReferenceSelectProps,
 ): JSX.Element => {
-  /* Global State */
-
-  const { aplication } = useSelector((store: State) => store);
-  const { token } = aplication;
-
-  /* Local State */
+  /* LocalRootState */
 
   const [schoolGrades, setSchoolGrades] = useState<ISchoolGrade[]>([]);
 
@@ -62,14 +54,18 @@ const SuppliesSchoolGradeReferenceSelect = (
     } else setSelectedSchoolGrade(DEFAULT_SCHOOL_GRADE);
   };
 
+  const getSchoolGradesByTeachingTypeData = async (): Promise<void> => {
+    const schoolGradesFound = await getSchoolGradesByTeachingType(
+      OnEducaAPI,
+      teachingType.id,
+    );
+
+    setDefaultSchoolGrade(schoolGradesFound);
+  };
+
   useEffect(() => {
     if (!isDefaultTeachingType(teachingType))
-      getSchoolGradesByTeachingType(
-        OnEducaAPI,
-        teachingType.id,
-        setDefaultSchoolGrade,
-        token,
-      );
+      getSchoolGradesByTeachingTypeData();
     else {
       setSelectedSchoolGrade(DEFAULT_SCHOOL_GRADE);
       setSchoolGrades([]);
@@ -85,6 +81,7 @@ const SuppliesSchoolGradeReferenceSelect = (
             DEFAULT_SCHOOL_GRADE,
         )
       }
+      className="bd-rd-20"
     >
       {schoolGrades.map((schoolGrade) => (
         <SuppliesReferenceSelectOption value={schoolGrade.id}>

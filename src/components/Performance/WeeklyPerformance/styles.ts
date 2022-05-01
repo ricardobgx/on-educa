@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const WeeklyPerformanceBox = styled.div`
   width: 100%;

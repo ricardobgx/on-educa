@@ -1,13 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
 import { socket } from '../../../App';
 import { createMessage } from '../../../functions/message';
 import { getPeople } from '../../../functions/people';
 import { randInt } from '../../../functions/utils';
-import { IChat } from '../../../interfaces/IChat';
-import { IMessage } from '../../../interfaces/IMessage';
-import { IPeople } from '../../../interfaces/IPeople';
 import OnEducaAPI from '../../../services/api';
 import { DEFAULT_PEOPLE } from '../../../static/defaultEntitiesValues';
+import { MediumMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 import ChatMessage from '../ChatMessage';
 import ChatPeoplePicture from '../ChatPeoplePicture';
 import {
@@ -21,9 +21,7 @@ import {
   ChatMessageInput,
   MessageInput,
   SendMessageButton,
-  SendMessageButtonIcon,
   ChatPeopleNameAndOnlineLabel,
-  ChatMessagesListBox,
 } from './styles';
 
 interface IChatProps {
@@ -78,13 +76,18 @@ const Chat = (props: IChatProps): JSX.Element => {
     }
   };
 
-  useEffect((): any => {
+  const getChatPeople = async (peopleId: string): Promise<void> => {
+    const chatPeople = await getPeople(OnEducaAPI, peopleId, token);
+    if (chatPeople) setPeople(chatPeople);
+  };
+
+  useEffect(() => {
     if (token) {
       const peopleId =
         loggedPeople.id === chatCreator.id
           ? chatParticipant.id
           : chatCreator.id;
-      getPeople(OnEducaAPI, peopleId, setPeople, token);
+      getChatPeople(peopleId);
     }
 
     if (messagesList) {
@@ -143,9 +146,13 @@ const Chat = (props: IChatProps): JSX.Element => {
               sendMessage();
             }
           }}
+          className="bd-rd-20"
         />
-        <SendMessageButton onClick={() => sendMessage()}>
-          <SendMessageButtonIcon className="bi bi-send" />
+        <SendMessageButton
+          className="block-shadow-button main-action bd-rd-20"
+          onClick={() => sendMessage()}
+        >
+          <MediumMaterialIconOutlined icon="send" color="" />
         </SendMessageButton>
       </ChatMessageInput>
     </ChatBox>

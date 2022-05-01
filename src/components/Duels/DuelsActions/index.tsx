@@ -18,7 +18,7 @@ const DuelsActions = (): JSX.Element => {
   return (
     <DuelsActionsBox>
       <SearchSupplies>
-        <SearchSuppliesBox>
+        <SearchSuppliesBox className="bd-rd-20">
           <SearchSuppliesInput
             type="text"
             placeholder="Digite algo (código do duelo, nome do aluno)"
@@ -27,16 +27,19 @@ const DuelsActions = (): JSX.Element => {
             <ClearSearchSuppliesInputButtonIcon className="fas fa-times" />
           </ClearSearchSuppliesInputButton>
         </SearchSuppliesBox>
-        <SearchSuppliesButton>
+        <SearchSuppliesButton className="block-shadow-button main-action bd-rd-20">
           <SearchSuppliesButtonIcon className="fas fa-search" />
         </SearchSuppliesButton>
       </SearchSupplies>
       <DuelsActionsButtonsBox>
-        <NewSuppliesLink to="/new-duel">
+        <NewSuppliesLink
+          className="block-shadow-button main-action bd-rd-20"
+          to="/new-duel"
+        >
           <NewSuppliesButtonLabel>Novo duelo</NewSuppliesButtonLabel>
           <NewSuppliesButtonIcon className="fas fa-plus" />
         </NewSuppliesLink>
-        <NewSuppliesButton>
+        <NewSuppliesButton className="block-shadow-button main-action bd-rd-20">
           <NewSuppliesButtonLabel>Filtros</NewSuppliesButtonLabel>
           <NewSuppliesButtonIcon className="fas fa-sliders-h" />
         </NewSuppliesButton>

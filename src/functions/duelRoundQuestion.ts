@@ -1,5 +1,4 @@
 import { AxiosInstance } from 'axios';
-import { IDuelRoundQuestion } from '../interfaces/IDuelRoundQuestion';
 
 const entityPath = 'duelRoundQuestions';
 

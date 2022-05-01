@@ -1,0 +1,3 @@
+interface IPractice {
+  questions: IPracticeQuestion[];
+}

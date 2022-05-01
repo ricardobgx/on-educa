@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 import { SimplePieChartBox } from './styles';

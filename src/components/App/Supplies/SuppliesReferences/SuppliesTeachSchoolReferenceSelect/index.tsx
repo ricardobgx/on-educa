@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { isDefaultSchoolGrade } from '../../../../../functions/entitiesValues';
 import { getSchoolGrades } from '../../../../../functions/schoolGrade';
-import { ISchoolGrade } from '../../../../../interfaces/ISchoolGrade';
 import OnEducaAPI from '../../../../../services/api';
 import { DEFAULT_SCHOOL_GRADE } from '../../../../../static/defaultEntitiesValues';
-import { State } from '../../../../../store';
+import { RootState } from '../../../../../store';
 import {
   SuppliesReferenceSelectOption,
   SuppliesReferenceSelect,
@@ -21,12 +21,12 @@ interface ISuppliesTeachSchoolReferenceSelectProps {
 const SuppliesTeachSchoolReferenceSelect = (
   props: ISuppliesTeachSchoolReferenceSelectProps,
 ): JSX.Element => {
-  /* Global State */
+  /* GlobalRootState */
 
-  const { aplication } = useSelector((store: State) => store);
+  const { aplication } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
-  /* Local State */
+  /* LocalRootState */
 
   const [schoolGrades, setSchoolGrades] = useState<ISchoolGrade[]>([]);
 
@@ -57,8 +57,14 @@ const SuppliesTeachSchoolReferenceSelect = (
     } else setSelectedSchoolGrade(DEFAULT_SCHOOL_GRADE);
   };
 
+  const getSchoolGradesData = async (): Promise<void> => {
+    const schoolGradesFound = await getSchoolGrades(OnEducaAPI, token);
+
+    setDefaultSchoolGrade(schoolGradesFound);
+  };
+
   useEffect(() => {
-    getSchoolGrades(OnEducaAPI, setDefaultSchoolGrade, token);
+    getSchoolGradesData();
   }, []);
 
   return (
@@ -70,6 +76,7 @@ const SuppliesTeachSchoolReferenceSelect = (
             DEFAULT_SCHOOL_GRADE,
         )
       }
+      className="bd-rd-20"
     >
       {schoolGrades.map((schoolGrade) => (
         <SuppliesReferenceSelectOption

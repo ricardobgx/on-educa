@@ -1,4 +1,3 @@
-import { ISchoolGrade } from '../../interfaces/ISchoolGrade';
 import { SchoolGradeActionType } from '../action-types/schoolGrade';
 
 interface LoadSchoolGrade {

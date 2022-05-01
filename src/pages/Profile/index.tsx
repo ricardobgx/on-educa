@@ -15,7 +15,6 @@ import {
   isPeopleLogged,
   setUpPeopleType,
 } from '../../functions/people';
-import { IPeople } from '../../interfaces/IPeople';
 import OnEducaAPI from '../../services/api';
 import {
   DEFAULT_IMAGE,
@@ -25,7 +24,7 @@ import {
   DEFAULT_PEOPLE,
   DEFAULT_TEACHER_WEEKLY_PERFORMANCE,
 } from '../../static/defaultEntitiesValues';
-import { ActionCreators, State } from '../../store';
+import { ActionCreators, RootState } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import {
   AppearenceDetails,
@@ -49,17 +48,14 @@ import {
   SocialDetails,
 } from './styles';
 import { SmallMaterialIconRound } from '../../components/App/Icons/MaterialIcons/MaterialIconsRound';
-import { IStudentWeeklyPerformance } from '../../interfaces/IStudentWeeklyPerformance';
 import { isDefaultPeople } from '../../functions/entitiesValues';
 import { getStudentWeeklyPerformanceByStudent } from '../../functions/studentWeeklyPerformance';
 import UpdateProfilePicture from '../../components/Profile/UpdateProfilePicture';
-import { IImage } from '../../interfaces/IImage';
 import SelectSocialDetailsList from '../../components/Profile/SelectSocialDetailsList';
 import ProfileActions from '../../components/Profile/ProfileActions';
 import SocialDetail from '../../components/Profile/SocialDetail';
 import TeacherWeeklyPerformance from '../../components/Profile/WeeklyPerformance/TeacherWeeklyPerformance';
 import { getTeacherWeeklyPerformanceByTeacher } from '../../functions/teacherWeeklyPerformance';
-import { ITeacherWeeklyPerformance } from '../../interfaces/ITeacherWeeklyPerformance';
 
 interface IProfileRouteProps {
   id: string;
@@ -73,14 +69,11 @@ export enum SocialDetailType {
 }
 
 const Profile = (): JSX.Element => {
-  /* Global State */
+  /* GlobalRootState */
 
-  const {
-    people: loggedPeople,
-    student: loggedStudent,
-    teacher: loggedTeacher,
-    aplication,
-  } = useSelector((store: State) => store);
+  const { people: loggedPeople, aplication } = useSelector(
+    (store: RootState) => store,
+  );
 
   const { token, loadingAnimation } = aplication;
 
@@ -97,7 +90,7 @@ const Profile = (): JSX.Element => {
   const [student, setStudent] = useState(DEFAULT_STUDENT);
   const [teacher, setTeacher] = useState(DEFAULT_TEACHER);
 
-  /* Local State */
+  /* LocalRootState */
 
   const [people, setPeople] = useState<IPeople>(DEFAULT_PEOPLE);
 
@@ -143,12 +136,16 @@ const Profile = (): JSX.Element => {
     setProfilePicture(peopleFound.profilePicture);
   };
 
-  const getPeopleData = (): void => {
-    getPeople(OnEducaAPI, id, getPeopleSucess, token);
+  const getPeopleData = async (): Promise<void> => {
+    const peopleFound = await getPeople(OnEducaAPI, id, token);
+
+    if (peopleFound) getPeopleSucess(peopleFound);
   };
 
-  const getLoggedPeopleData = (): void => {
-    getPeople(OnEducaAPI, loggedPeople.id, getLoggedPeopleSucess, token);
+  const getLoggedPeopleData = async (): Promise<void> => {
+    const peopleFound = await getPeople(OnEducaAPI, loggedPeople.id, token);
+
+    if (peopleFound) getLoggedPeopleSucess(peopleFound);
   };
 
   const studentWeeklyPerformanceLoaded = (
@@ -263,7 +260,6 @@ const Profile = (): JSX.Element => {
               <SocialDetails>
                 <SelectSocialDetails>
                   <SelectSocialDetailsList
-                    people={people}
                     socialDetailSelected={socialDetailSelected}
                     setSocialDetailSelected={setSocialDetailSelected}
                   />
@@ -281,13 +277,7 @@ const Profile = (): JSX.Element => {
             <SectionLabel backLink="" label="Desempenho" />
             <PerformanceDetailsBox>
               <WeeklyPerformanceSummary>
-                <ProfileDailyGoal
-                  dailyXP={dailyXp}
-                  isPeopleLogged={isPeopleLogged(
-                    loggedPeople.id,
-                    people.id as string,
-                  )}
-                />
+                <ProfileDailyGoal dailyXP={dailyXp} />
                 {isStudent ? (
                   <StudentWeeklyPerformance
                     people={people}

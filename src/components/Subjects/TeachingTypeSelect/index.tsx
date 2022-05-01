@@ -1,6 +1,4 @@
 import React from 'react';
-import theme from '../../../global/styles/theme';
-import { ITeachingType } from '../../../interfaces/ITeachingType';
 import {
   RequiredFieldLabel,
   SubjectSectionSelectBox,
@@ -48,16 +46,9 @@ const TeachingTypeSelect = (props: ITeachingTypeSelectProps): JSX.Element => {
           {sortedTeachingTypes.map((teachingType) => (
             <SubjectSectionSelectOption
               key={teachingType.id}
-              style={{
-                background:
-                  teachingTypeSelectedId === teachingType.id
-                    ? theme.colors.textColor
-                    : '',
-                color:
-                  teachingTypeSelectedId === teachingType.id
-                    ? theme.colors.boxColor
-                    : '',
-              }}
+              className={`block-shadow-button bd-rd-20 ${
+                teachingType.id === teachingTypeSelectedId ? 'selected' : ''
+              }`}
               onClick={() => setTeachingTypeSelected(teachingType)}
             >
               <SubjectSectionSelectOptionLabel>

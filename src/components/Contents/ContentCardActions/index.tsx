@@ -1,5 +1,4 @@
 import React from 'react';
-import { IContent } from '../../../interfaces/IContent';
 import {
   EditSuppliesLink,
   EditSuppliesButtonIcon,

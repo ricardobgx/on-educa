@@ -1,4 +1,3 @@
-import { IChat } from '../../interfaces/IChat';
 import { ChatActionType } from '../action-types/chat';
 
 interface LoadChat {

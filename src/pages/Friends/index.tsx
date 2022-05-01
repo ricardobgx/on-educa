@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -17,10 +19,8 @@ import { isDefaultPeople } from '../../functions/entitiesValues';
 import { getFriendRequestsByPeople } from '../../functions/friendRequest';
 import { getPeoples } from '../../functions/people';
 import { Page } from '../../global/styles/components/pageComponents';
-import { IFriendRequest } from '../../interfaces/IFriendRequest';
-import { IPeople } from '../../interfaces/IPeople';
 import OnEducaAPI from '../../services/api';
-import { ActionCreators, State } from '../../store';
+import { ActionCreators, RootState } from '../../store';
 import {
   PageBox,
   FriendsBox,
@@ -38,7 +38,7 @@ const Friends = (): JSX.Element => {
     aplication,
     people: loggedPeople,
     friendRequests,
-  } = useSelector((store: State) => store);
+  } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
   const dispatch = useDispatch();
@@ -46,13 +46,14 @@ const Friends = (): JSX.Element => {
 
   const [peoplesFound, setPeoplesFound] = useState<IPeople[]>([]);
 
-  const getPeopleFriendRequests = (): void => {
-    getFriendRequestsByPeople(
+  const getPeopleFriendRequests = async (): Promise<void> => {
+    const friendRequestsFound = await getFriendRequestsByPeople(
       OnEducaAPI,
       loggedPeople.id,
       token,
-      loadFriendRequests,
     );
+
+    loadFriendRequests(friendRequestsFound);
   };
 
   useEffect(() => {

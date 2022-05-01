@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import { AxiosInstance } from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -6,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { socket } from '../../App';
-import SectionLabel from '../../components/App/SectionLabel';
 import DuelActions from '../../components/Duel/DuelActions';
 import DuelActionsBar from '../../components/Duel/DuelActionsBar';
 import DuelChat from '../../components/Duel/DuelChat';
@@ -15,22 +15,13 @@ import DuelTeams from '../../components/Duel/DuelTeams';
 import { getDuel } from '../../functions/duel';
 import { findStudentDuelPartByTeams } from '../../functions/duelTeamParts';
 import { isDefaultDuel, isDefaultPeople } from '../../functions/entitiesValues';
-import { displaySurname, getPeople } from '../../functions/people';
 import { Page } from '../../global/styles/components/pageComponents';
-import { IDuel } from '../../interfaces/IDuel';
-import { IDuelRound } from '../../interfaces/IDuelRound';
-import { IDuelTeam } from '../../interfaces/IDuelTeam';
-import { IDuelTeamParticipation } from '../../interfaces/IDuelTeamParticipation';
-import { IPeople } from '../../interfaces/IPeople';
-import { IStudent } from '../../interfaces/IStudent';
 import OnEducaAPI from '../../services/api';
 import {
   DEFAULT_DUEL,
   DEFAULT_DUEL_TEAM_PARTICIPATION,
-  DEFAULT_PEOPLE,
-  DEFAULT_STUDENT,
 } from '../../static/defaultEntitiesValues';
-import { ActionCreators, State } from '../../store';
+import { ActionCreators, RootState } from '../../store';
 import { DuelRoundStatus } from '../../types/duelRoundStatus';
 import { DuelBox, PageBox } from './styles';
 
@@ -63,7 +54,7 @@ const Duel = (): JSX.Element => {
     duel,
     people: loggedPeople,
     student: loggedStudent,
-  } = useSelector((store: State) => store);
+  } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
   const pageHistory = useHistory();
@@ -71,13 +62,15 @@ const Duel = (): JSX.Element => {
   // Funcoes
 
   const dispatch = useDispatch();
-  const { loadDuel } = bindActionCreators(ActionCreators, dispatch);
+  const { loadDuel, showFloatNotification } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
 
   /* Estado da pagina */
 
   const [studentParticipation, setStudentParticipation] =
     useState<IDuelTeamParticipation>(DEFAULT_DUEL_TEAM_PARTICIPATION);
-  const [duelOwner, setDuelOwner] = useState(DEFAULT_PEOPLE);
 
   const [showDuelDetails, setShowDuelDetails] = useState(false);
   const [showChat, setShowChat] = useState(false);
@@ -101,7 +94,7 @@ const Duel = (): JSX.Element => {
 
   const getDuelData = async (): Promise<void> => {
     await getDuel(OnEducaAPI, duelId, token, setUpDuel, () =>
-      console.log('erro'),
+      showFloatNotification('Ocorreu um erro'),
     );
   };
 
@@ -122,8 +115,8 @@ const Duel = (): JSX.Element => {
       if (isDefaultDuel(duel) && !isDefaultPeople(loggedPeople)) {
         getDuelData();
       } else {
-        const { student } = duel;
-        getPeople(OnEducaAPI, student.people.id, setDuelOwner, token);
+        // const { student } = duel;
+        // getPeople(OnEducaAPI, student.people.id, setDuelOwner, token);
       }
     }
 

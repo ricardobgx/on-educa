@@ -1,6 +1,4 @@
 import React from 'react';
-import { IUnity } from '../../../../../interfaces/IUnity';
-import { ISubject } from '../../../../../interfaces/ISubject';
 import { SuppliesReferenceBox } from '../styles';
 import SuppliesReferenceBoxLabel from '../SuppliesReferenceBoxLabel';
 import SuppliesUnityReferenceSelect from '../SuppliesUnityReferenceSelect';

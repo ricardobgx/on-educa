@@ -1,6 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
-import { IDuelQuestionAnswer } from '../../../interfaces/IDuelQuestionAnswer';
-import { IDuelTeam } from '../../../interfaces/IDuelTeam';
 import ParticipantsResultList from '../ParticipantsResultList';
 import {
   DuelTeamResultBox,

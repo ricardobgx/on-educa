@@ -2,17 +2,22 @@ import styled from 'styled-components';
 import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const ChatCardBox = styled.div`
-  padding: 15px;
+  padding: 10px;
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
-  margin-bottom: 20px;
+  border-radius: 20px;
   display: flex;
+  align-items: center;
   color: ${({ theme }) => theme.colors.textColor};
   cursor: pointer;
+  transition: all 0.2s linear;
 
   &:last-of-type {
     margin-bottom: 0;
+  }
+
+  :hover,
+  &.selected {
+    background: ${({ theme }) => theme.colors.hoverColor};
   }
 `;
 export const PeopleInfo = styled.div`
@@ -22,11 +27,22 @@ export const NameAndLastMessage = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 3px 0;
+
+  width: 100%;
+  padding: 5px 0;
+`;
+export const NameAndLastMessageTime = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
 `;
 export const PeopleName = styled(paragraph)`
   font-weight: bold;
 `;
 export const LastMessagePreview = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.boxShadowColor};
+  font-size: 14px;
+`;
+export const LastMessageTime = styled.p`
+  font-size: 14px;
 `;

@@ -1,10 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { deleteUnity as deleteUnityData } from '../../../functions/unity';
-import { IUnity } from '../../../interfaces/IUnity';
 import { ICommonUnityProps } from '../../../pages/Units';
 import OnEducaAPI from '../../../services/api';
-import { State } from '../../../store';
+import { ActionCreators, RootState } from '../../../store';
 import {
   DeleteUnityBackground,
   DeleteUnityBox,
@@ -29,11 +29,17 @@ const DeleteUnity = (props: IDeleteUnityProps): JSX.Element => {
 
   const { unity, setDeleteUnityIsVisible, getUnits } = props;
 
-  /* Global State */
+  /* GlobalRootState */
 
-  const { aplication } = useSelector((store: State) => store);
+  const { aplication } = useSelector((store: RootState) => store);
 
   const { token } = aplication;
+
+  const dispatch = useDispatch();
+  const { showFloatNotification } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
 
   const deleteSucess = (): void => {
     getUnits();
@@ -41,7 +47,7 @@ const DeleteUnity = (props: IDeleteUnityProps): JSX.Element => {
   };
 
   const deleteError = (): void => {
-    console.log('erro');
+    showFloatNotification('Ocorreu um erro');
   };
 
   const deleteUnity = async (): Promise<void> => {

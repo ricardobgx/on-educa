@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
-import { bindActionCreators } from 'redux';
 import { socket } from '../../../App';
 import { isDuelOwner } from '../../../functions/duel';
 import {
@@ -9,13 +7,10 @@ import {
   startDuelRound,
 } from '../../../functions/duelRound';
 import { removeParticipant } from '../../../functions/duelTeamParts';
-import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
 import {
   IDuelRequestComponentsProps,
   IDuelStudentInfoComponentsProps,
 } from '../../../pages/Duel';
-import { DEFAULT_DUEL } from '../../../static/defaultEntitiesValues';
-import { ActionCreators } from '../../../store';
 import {
   DuelActionsBox,
   InviteFriendsButton,
@@ -46,25 +41,11 @@ const DuelActions = (props: IDuelActionsProps): JSX.Element => {
     duelRoundId,
     duelRoundStatus,
     duelOwner,
-    loggedPeople,
     loggedStudent,
     studentParticipation,
   } = props;
 
-  /* Estado da aplicacao */
-
-  const dispatch = useDispatch();
-  const { loadDuel } = bindActionCreators(ActionCreators, dispatch);
-
   /* Estado do componente */
-
-  // Variavel de controle para iniciar o duelo
-  const [startedDuel, setStartedDuel] = useState(
-    duelRoundIsStarted(duelRoundStatus),
-  );
-
-  // Variavel de controle para sair do duelo
-  const [quitDuel, setQuitDuel] = useState(false);
 
   const startDuel = async (): Promise<void> => {
     await startDuelRound(API, duelRoundId, token, () => {
@@ -75,44 +56,37 @@ const DuelActions = (props: IDuelActionsProps): JSX.Element => {
   };
 
   const exitDuel = async (): Promise<void> => {
-    await removeParticipant(
-      API,
-      studentParticipation.id,
-      token,
-      () => {
-        socket.emit(`duel.exit-participation`, {
-          duelId,
-          data: {
-            ...studentParticipation,
-          } as IDuelTeamParticipation,
-        });
-        location.push('/duels');
-      },
-      () => console.log('erro'),
-    );
+    await removeParticipant(API, studentParticipation.id, token, () => {
+      socket.emit(`duel.exit-participation`, {
+        duelId,
+        data: {
+          ...studentParticipation,
+        } as IDuelTeamParticipation,
+      });
+      location.push('/duels');
+    });
   };
 
   return (
     <DuelActionsBox>
-      <InviteFriendsButton className="with-shadow bd-rd-5">
+      <InviteFriendsButton className="block-shadow-button secondary-action bd-rd-20">
         <InviteFriendsButtonLabel>Convidar amigos</InviteFriendsButtonLabel>
       </InviteFriendsButton>
       {!isDuelOwner(loggedStudent.id, duelOwner.id) ? (
         <QuitDuelButton
           onClick={() => exitDuel()}
-          className="with-shadow bd-rd-5"
+          className="block-shadow-button danger-action bd-rd-20"
         >
           <QuitDuelButtonLabel>Sair</QuitDuelButtonLabel>
         </QuitDuelButton>
       ) : (
         <StartDuelButton
           onClick={() => startDuel()}
-          className="with-shadow bd-rd-5"
+          className="block-shadow-button main-action bd-rd-20"
         >
           <StartDuelButtonLabel>Começar</StartDuelButtonLabel>
         </StartDuelButton>
       )}
-      {quitDuel && <Redirect to="/duels" />}
       {duelRoundIsStarted(duelRoundStatus) && (
         <Redirect to={`/duels/${duelId}/questions`} />
       )}

@@ -1,6 +1,5 @@
 import { AxiosError, AxiosInstance } from 'axios';
 import { IDuelParams } from '../dto/IDuelParams';
-import { IDuel } from '../interfaces/IDuel';
 
 // Funcoes da aplicacao
 
@@ -97,18 +96,12 @@ export const deleteDuel = async (
   duelId: string,
   token: string,
   requestSucess: () => void,
-  requestError: () => void,
 ): Promise<void> => {
   await API.delete(`/duels/${duelId}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },
-  }).then(
-    () => {
-      requestSucess();
-    },
-    () => {
-      requestError();
-    },
-  );
+  }).then(() => {
+    requestSucess();
+  });
 };

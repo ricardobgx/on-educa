@@ -3,8 +3,6 @@ import {
   acceptFriendRequest,
   deleteFriendRequest,
 } from '../../../functions/friendRequest';
-import { IFriendRequest } from '../../../interfaces/IFriendRequest';
-import { IPeople } from '../../../interfaces/IPeople';
 import OnEducaAPI from '../../../services/api';
 import {
   FriendRequesCardActionsBox,

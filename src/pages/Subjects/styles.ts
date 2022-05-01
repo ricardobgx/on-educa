@@ -36,34 +36,50 @@ export const CancelButton = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
-  color: ${({ theme }) => theme.colors.textColor};
-  background: ${({ theme }) => theme.colors.boxColor};
+
   min-height: 40px;
   width: calc(50% - 20px);
+
+  transition: all 0.2s linear;
 
   @media (max-width: 1150px) {
     width: 100%;
     margin-bottom: 20px;
   }
 `;
-export const CancelButtonLabel = styled(paragraph)``;
+export const CancelButtonLabel = styled(paragraph)`
+  transition: all 0.2s linear;
+`;
 export const SelectUnityButton = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
-  color: ${({ theme }) => theme.colors.boxColor};
-  background: ${({ theme }) => theme.colors.textColor};
-  min-height: 40px;
-  border: none;
+
   width: calc(50% - 20px);
+  min-height: 40px;
+
+  border: none;
+
   cursor: pointer;
+
+  transition: all 0.2s linear;
+
+  &.disabled {
+    opacity: 0.7;
+    box-shadow: 0px 0px 0px 1px
+      ${({ theme }) => theme.colors.mainButtonShadowColor} !important;
+
+    pointer-events: none;
+
+    p {
+      transform: translateY(0px);
+    }
+  }
 
   @media (max-width: 1150px) {
     width: 100%;
   }
 `;
-export const SelectUnityButtonLabel = styled(paragraph)``;
+export const SelectUnityButtonLabel = styled(paragraph)`
+  transition: all 0.2s linear;
+`;

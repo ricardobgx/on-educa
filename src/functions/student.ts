@@ -1,6 +1,5 @@
 import { AxiosInstance } from 'axios';
 import { IStudentParams } from '../dto/IStudentParams';
-import { IStudent } from '../interfaces/IStudent';
 
 const entityPath = 'students';
 
@@ -37,7 +36,11 @@ export const getStudent = async (
   setStudentState: (student: IStudent) => void,
   token: string,
 ): Promise<void> => {
-  await API.get(`/${entityPath}/${id}`).then((response) => {
+  await API.get(`/${entityPath}/${id}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then((response) => {
     setStudentState(response.data);
   });
 };

@@ -1,8 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useEffect, useState } from 'react';
-import { IStudentWeeklyPerformance } from '../../../../interfaces/IStudentWeeklyPerformance';
-import { IPeople } from '../../../../interfaces/IPeople';
 import PeopleCard from '../../../App/PeopleCard';
 import { RankingPosition, RankingCardBox } from '../styles';
 import {
@@ -25,17 +24,21 @@ const StudentRankingCard = (props: IStudentRankingCardProps): JSX.Element => {
 
   const [people, setPeople] = useState<IPeople>(DEFAULT_PEOPLE);
 
+  const getPeopleAction = async (): Promise<void> => {
+    const peopleFound = await getPeople(OnEducaAPI, student.people.id, token);
+
+    if (peopleFound) setPeople(peopleFound);
+  };
+
   useEffect(() => {
     if (isDefaultPeople(people)) {
-      getPeople(OnEducaAPI, student.people.id, setPeople, token);
+      getPeopleAction();
     }
   }, []);
 
   return (
-    <RankingCardBox>
-      <RankingPosition>
-        {rankingPosition < 10 ? `0${rankingPosition}` : `${rankingPosition}`}
-      </RankingPosition>
+    <RankingCardBox className="with-shadow bd-rd-20">
+      <RankingPosition>#{rankingPosition}</RankingPosition>
       <PeopleCard
         smartphoneNameLength={10}
         abbreviateName

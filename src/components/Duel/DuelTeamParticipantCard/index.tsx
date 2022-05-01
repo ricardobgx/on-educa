@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -6,15 +7,13 @@ import { socket } from '../../../App';
 import { removeParticipant } from '../../../functions/duelTeamParts';
 import { isDefaultPeople } from '../../../functions/entitiesValues';
 import { getPeople } from '../../../functions/people';
-import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
-import { IStudent } from '../../../interfaces/IStudent';
 import OnEducaAPI from '../../../services/api';
 import {
   DEFAULT_PEOPLE,
   DEFAULT_STUDENT,
   DEFAULT_TEACHER,
 } from '../../../static/defaultEntitiesValues';
-import { State } from '../../../store';
+import { RootState } from '../../../store';
 import PeopleCard from '../../App/PeopleCard';
 import {
   DuelTeamParticipantCardBox,
@@ -26,23 +25,16 @@ interface IDuelTeamParticipantCard {
   duelId: string;
   duelOwner: IStudent;
   loggedStudent: IStudent;
-  studentParticipation: IDuelTeamParticipation;
   participation: IDuelTeamParticipation;
 }
 
 const DuelTeamParticipantCard = (
   props: IDuelTeamParticipantCard,
 ): JSX.Element => {
-  const { aplication } = useSelector((store: State) => store);
+  const { aplication } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
-  const {
-    duelOwner,
-    loggedStudent,
-    studentParticipation,
-    duelId,
-    participation,
-  } = props;
+  const { duelOwner, loggedStudent, duelId, participation } = props;
 
   const [people, setPeople] = useState(DEFAULT_PEOPLE);
 
@@ -51,30 +43,34 @@ const DuelTeamParticipantCard = (
   const kickOutParticipant = async (
     duelTeamParticipationId: string,
   ): Promise<void> => {
-    await removeParticipant(
+    await removeParticipant(OnEducaAPI, duelTeamParticipationId, token, () => {
+      socket.emit(`duel.remove-participation`, {
+        duelId,
+        data: {
+          ...participation,
+        } as IDuelTeamParticipation,
+      });
+    });
+  };
+
+  const getParticipationPeople = async (): Promise<void> => {
+    const participationPeople = await getPeople(
       OnEducaAPI,
-      duelTeamParticipationId,
+      student.people.id,
       token,
-      () => {
-        socket.emit(`duel.remove-participation`, {
-          duelId,
-          data: {
-            ...participation,
-          } as IDuelTeamParticipation,
-        });
-      },
-      () => console.log('erro'),
     );
+
+    if (participationPeople) setPeople(participationPeople);
   };
 
   useEffect(() => {
     if (isDefaultPeople(people) && token) {
-      getPeople(OnEducaAPI, student.people.id, setPeople, token);
+      getParticipationPeople();
     }
   }, [token, people]);
 
   return (
-    <DuelTeamParticipantCardBox>
+    <DuelTeamParticipantCardBox className="with-shadow bd-rd-20">
       <PeopleCard
         smartphoneNameLength={20}
         abbreviateName

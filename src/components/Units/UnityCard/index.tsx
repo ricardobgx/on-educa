@@ -1,8 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { IUnity } from '../../../interfaces/IUnity';
-import { ActionCreators, State } from '../../../store';
+import { ActionCreators, RootState } from '../../../store';
 import UnityCardActions from '../UnityCardActions';
 import {
   UnityCardBox,
@@ -45,13 +44,17 @@ const UnityCard = (props: IUnityCardProps): JSX.Element => {
   const { loadUnity } = bindActionCreators(ActionCreators, dispatch);
 
   const { aplication, teachingType, schoolGrade, subject } = useSelector(
-    (store: State) => store,
+    (store: RootState) => store,
   );
   const { isStudent } = aplication;
 
   return (
     <UnityCardBox style={{ animationDelay: `${index * 0.2}s` }}>
-      <UnityCardDetails to={`/units/${id}`} onClick={() => loadUnity(unity)}>
+      <UnityCardDetails
+        className="with-shadow bd-rd-20"
+        to={`/units/${id}`}
+        onClick={() => loadUnity(unity)}
+      >
         <UnityDetails>
           <UnityTitle>{name}</UnityTitle>
           <SubjectLabel>Disciplina: {subject.name}</SubjectLabel>

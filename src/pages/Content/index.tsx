@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import { ActionCreators, State } from '../../store';
+import { ActionCreators, RootState } from '../../store';
 import SectionLabel from '../../components/App/SectionLabel';
 import { Page } from '../../global/styles/components/pageComponents';
 import {
@@ -14,8 +14,6 @@ import {
   ContentVideoAndRelatedContents,
   PageBox,
 } from './styles';
-import { IContent } from '../../interfaces/IContent';
-import { IUnity } from '../../interfaces/IUnity';
 import OnEducaAPI from '../../services/api';
 import { getUnits } from '../../functions/unity';
 import { getContent } from '../../functions/content';
@@ -34,11 +32,11 @@ const Content = (): JSX.Element => {
   const route = useRouteMatch();
   const { id: contentId } = route.params as IContentRouteParams;
 
-  /* Local State */
+  /* LocalRootState */
 
   const [units, setUnits] = useState<IUnity[]>([]);
 
-  /* Global State */
+  /* GlobalRootState */
 
   const dispatch = useDispatch();
 
@@ -51,8 +49,7 @@ const Content = (): JSX.Element => {
     subject,
     unity: selectedUnity,
     student,
-    teacher,
-  } = useSelector((store: State) => store);
+  } = useSelector((store: RootState) => store);
 
   const { token, isStudent } = aplication;
 

@@ -1,4 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import {
   MyFriendActions,
   UnfriendButton,
@@ -29,11 +33,10 @@ import {
   deleteFriendRequest,
   getFriendRequestsByPeople,
 } from '../../../functions/friendRequest';
-import { IPeople } from '../../../interfaces/IPeople';
-import { IFriendRequest } from '../../../interfaces/IFriendRequest';
 import { isDefaultPeople } from '../../../functions/entitiesValues';
 import { DEFAULT_PEOPLE } from '../../../static/defaultEntitiesValues';
 import { SendMessageButton, SendMessageButtonIcon } from '../FriendCard/styles';
+import { ActionCreators } from '../../../store';
 
 interface IFriendActionsProps {
   people: IPeople;
@@ -44,6 +47,12 @@ interface IFriendActionsProps {
 }
 
 const FriendActions = (props: IFriendActionsProps): JSX.Element => {
+  const dispatch = useDispatch();
+  const { showFloatNotification } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
+
   const { people, getPeopleData, loggedPeople, getLoggedPeopleData, token } =
     props;
 
@@ -76,9 +85,9 @@ const FriendActions = (props: IFriendActionsProps): JSX.Element => {
     }
   };
 
-  const getLoggedPeopleFriendRequestsSucess = (
+  const getLoggedPeopleFriendRequestsSucess = async (
     friendRequests: IFriendRequest[],
-  ): void => {
+  ): Promise<void> => {
     const friendRequestExists = friendRequests.find(
       (friendRequest: IFriendRequest) =>
         friendRequest.requester.id === people.id,
@@ -88,12 +97,13 @@ const FriendActions = (props: IFriendActionsProps): JSX.Element => {
       setFriendRequestToMe(friendRequestExists);
       setFriendRequestedMe(true);
     } else {
-      getFriendRequestsByPeople(
+      const friendRequestsFound = await getFriendRequestsByPeople(
         OnEducaAPI,
         people.id,
         token,
-        getPeopleFriendRequestsSucess,
       );
+
+      await getPeopleFriendRequestsSucess(friendRequestsFound);
     }
   };
 
@@ -103,6 +113,16 @@ const FriendActions = (props: IFriendActionsProps): JSX.Element => {
 
   const deleteFriendRequestSucess = (): void => {
     setMeRequestedFriend(false);
+  };
+
+  const getFriendRequestsData = async (): Promise<void> => {
+    const friendRequestsFound = await getFriendRequestsByPeople(
+      OnEducaAPI,
+      loggedPeople.id,
+      token,
+    );
+
+    await getLoggedPeopleFriendRequestsSucess(friendRequestsFound);
   };
 
   useEffect(() => {
@@ -115,12 +135,7 @@ const FriendActions = (props: IFriendActionsProps): JSX.Element => {
       if (friendshipExists) {
         setIsFriend(true);
       } else {
-        getFriendRequestsByPeople(
-          OnEducaAPI,
-          loggedPeople.id,
-          token,
-          getLoggedPeopleFriendRequestsSucess,
-        );
+        getFriendRequestsData();
       }
     }
   }, [people, loggedPeople]);
@@ -143,7 +158,7 @@ const FriendActions = (props: IFriendActionsProps): JSX.Element => {
                   getPeopleData();
                   getLoggedPeopleData();
                 },
-                () => console.log('erro'),
+                () => showFloatNotification('Ocorreu um erro'),
               )
             }
           >

@@ -1,4 +1,3 @@
-import { IPracticeQuestion } from '../../interfaces/IPracticeQuestion';
 import { PracticeActionType } from '../action-types/practice';
 
 interface LoadQuestions {

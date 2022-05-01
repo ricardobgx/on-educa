@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
@@ -8,7 +10,7 @@ import { sortTeams } from '../../functions/duelTeam';
 import { isDefaultDuel } from '../../functions/entitiesValues';
 import { Page } from '../../global/styles/components/pageComponents';
 import OnEducaAPI from '../../services/api';
-import { ActionCreators, State } from '../../store';
+import { ActionCreators, RootState } from '../../store';
 import { PageBox } from './styles';
 
 interface IDuelResultsRouteParams {
@@ -21,15 +23,20 @@ const DuelResults = (): JSX.Element => {
   const { id: duelId } = route.params as IDuelResultsRouteParams;
 
   /* Estado da aplicacao */
-  const { aplication, duel } = useSelector((store: State) => store);
+  const { aplication, duel } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
   const dispatch = useDispatch();
-  const { loadDuel } = bindActionCreators(ActionCreators, dispatch);
+  const { loadDuel, showFloatNotification } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
 
   useEffect(() => {
     if (isDefaultDuel(duel)) {
-      getDuel(OnEducaAPI, duelId, token, loadDuel, () => console.log('erro'));
+      getDuel(OnEducaAPI, duelId, token, loadDuel, () =>
+        showFloatNotification('Ocorreu um erro'),
+      );
     }
   }, [token]);
 

@@ -11,12 +11,11 @@ import {
 } from './styles';
 
 interface IProfileDailyGoalProps {
-  isPeopleLogged: boolean;
   dailyXP: number;
 }
 
 const ProfileDailyGoal = (props: IProfileDailyGoalProps): JSX.Element => {
-  const { isPeopleLogged, dailyXP } = props;
+  const { dailyXP } = props;
 
   return (
     <Container className="with-shadow bd-rd-5">

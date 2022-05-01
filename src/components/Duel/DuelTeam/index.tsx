@@ -1,7 +1,4 @@
 import React from 'react';
-import { IDuelTeam } from '../../../interfaces/IDuelTeam';
-import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
-import { IStudent } from '../../../interfaces/IStudent';
 import DuelTeamParticipantsList from '../DuelTeamParticipantsList';
 import { DuelTeamBox, DuelTeamLabel, DuelTeamParticipants } from './styles';
 
@@ -18,7 +15,7 @@ const DuelTeam = (props: IDuelTeamProps): JSX.Element => {
     props;
 
   return (
-    <DuelTeamBox className="with-shadow bd-rd-5">
+    <DuelTeamBox className="with-shadow bd-rd-30">
       <DuelTeamLabel>{team.name}</DuelTeamLabel>
       <DuelTeamParticipants>
         <DuelTeamParticipantsList

@@ -1,11 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-console */
 
-import { AxiosInstance } from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import io from 'socket.io-client';
+import { ThemeProvider } from 'styled-components';
+import { BrowserRouter } from 'react-router-dom';
 import GlobalStyle from './styles';
 import LoadAnimation from './components/App/LoadAnimation';
 import {
@@ -14,26 +15,35 @@ import {
   setAplicationTheme,
   setUpPeopleType,
 } from './functions/people';
-import { IPeople } from './interfaces/IPeople';
 import Routes from './Routes';
 import OnEducaAPI from './services/api';
-import { ActionCreators, State } from './store';
+import { ActionCreators, RootState } from './store';
 import { ThemeType } from './types/ThemeType';
-import { themes } from './static/themes';
 import { stringToBoolean } from './functions/utils';
-import { isDefaultDuel } from './functions/entitiesValues';
 import { getFriendRequestsByPeople } from './functions/friendRequest';
+import NavBar from './components/App/NavBar';
+import FloatNotification from './components/App/FloatNotification';
+import { findTheme } from './utils/application';
+import { DEFAULT_THEME } from './static/defaultEntitiesValues';
+import { isAuthenticated } from './utils/people';
 
 export const socket = io(process.env.REACT_APP_API_URL || '');
 socket.on('connect', () =>
   console.log('[IO] A new connection has been established'),
 );
 
-const App = (): JSX.Element => {
-  /* Global State */
+const App: React.FC = () => {
+  /* GlobalRootState */
 
-  const { aplication } = useSelector((store: State) => store);
+  const {
+    aplication,
+    theme,
+    floatNotification,
+    people: loggedPeople,
+  } = useSelector((store: RootState) => store);
+
   const { loadingAnimation } = aplication;
+  const { isActive: floatNotificationIsActive } = floatNotification;
 
   const dispatch = useDispatch();
   const {
@@ -44,19 +54,34 @@ const App = (): JSX.Element => {
     loadStudent,
     loadTeacher,
     loadFriendRequests,
+    enableLoadingAnimation,
+    disableLoadingAnimation,
   } = bindActionCreators(ActionCreators, dispatch);
 
   const [localVariablesLoaded, setLocalVariablesLoaded] = useState(false);
 
   /* Functions */
 
-  const login = async (
-    API: AxiosInstance,
+  const setupFriendRequestsData = async (
     id: string,
-    isStudent: boolean,
-    setPeopleState: (value: IPeople) => void,
     token: string,
   ): Promise<void> => {
+    const friendRequests = await getFriendRequestsByPeople(
+      OnEducaAPI,
+      id,
+      token,
+    );
+
+    loadFriendRequests(friendRequests);
+  };
+
+  const setupPeopleData = async (
+    id: string,
+    token: string,
+    isStudent: boolean,
+  ): Promise<void> => {
+    enableLoadingAnimation();
+
     await setUpPeopleType(
       OnEducaAPI,
       id,
@@ -65,51 +90,82 @@ const App = (): JSX.Element => {
       loadStudent,
       loadTeacher,
     );
-    await getPeople(API, id, setPeopleState, token);
-    await getFriendRequestsByPeople(OnEducaAPI, id, token, loadFriendRequests);
+
+    const people = await getPeople(OnEducaAPI, id, token);
+    if (!people) return;
+
+    loginPeople(people);
+
+    setupFriendRequestsData(id, token);
+
+    disableLoadingAnimation();
   };
 
-  const loadLocalVariables = (): void => {
+  const setupTheme = (): void => {
+    // Procurando por tema existente
+    const localTheme = window.localStorage.getItem('theme') || -1;
+    let themeType = Number(localTheme);
+
+    // Tratando tema
+    if (themeType === -1 || !findTheme(themeType)) {
+      themeType = ThemeType.LIGHT_PURPLE;
+    }
+
+    // Carregando tema
+    loadTheme(findTheme(themeType) || DEFAULT_THEME);
+    setAplicationTheme(themeType);
+  };
+
+  const setupPeopleVariables = async (): Promise<void> => {
     // Pegando variaveis
     const id = window.localStorage.getItem('id') || '';
     const token = window.localStorage.getItem('token') || '';
     const localIsStudent = window.localStorage.getItem('isStudent') || 'true';
-    const localTheme = window.localStorage.getItem('theme');
 
     // Tratando variaveis
     const isStudent = stringToBoolean(localIsStudent);
-    const theme = Number(localTheme);
 
     // Logando usuário
     if (id && token) {
       loadIsStudent(isStudent);
       loadToken(token);
-      login(OnEducaAPI, id, isStudent, loginPeople, token);
+      await setupPeopleData(id, token, isStudent);
     } else clearPeopleVariables();
+  };
 
-    // Carregando tema
-    if (theme && themes[theme]) {
-      loadTheme(theme);
-    } else {
-      loadTheme(ThemeType.BLUE);
-      setAplicationTheme(ThemeType.BLUE);
-    }
+  /** ********************************
+   * Deixa a aplicação pronta para uso
+   ********************************* */
+  const setupApplicationData = (): void => {
+    // Procurando por login existente
+    setupPeopleVariables();
+
+    // Definindo tema
+    setupTheme();
 
     // Sinalizando carregamento completo
     setLocalVariablesLoaded(true);
+
+    // disableLoadingAnimation();
   };
 
   useEffect(() => {
     if (!localVariablesLoaded) {
-      loadLocalVariables();
+      setupApplicationData();
     }
   }, []);
 
   return (
     <>
-      {loadingAnimation && <LoadAnimation />}
-      <GlobalStyle />
-      <Routes />
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          {loadingAnimation && <LoadAnimation />}
+          <GlobalStyle />
+          {floatNotificationIsActive && <FloatNotification />}
+          {isAuthenticated(loggedPeople) ? <NavBar /> : null}
+          <Routes />
+        </BrowserRouter>
+      </ThemeProvider>
     </>
   );
 };

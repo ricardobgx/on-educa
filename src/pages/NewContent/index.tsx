@@ -12,13 +12,8 @@ import NewContentReferences from '../../components/NewContent/NewContentReferenc
 import NewContentVideo from '../../components/NewContent/NewContentVideo';
 import { IContentParams } from '../../dto/IContentParams';
 import { createContent as createContentData } from '../../functions/content';
-import { IContent } from '../../interfaces/IContent';
-import { ISchoolGrade } from '../../interfaces/ISchoolGrade';
-import { ISubject } from '../../interfaces/ISubject';
-import { ITeachingType } from '../../interfaces/ITeachingType';
-import { IUnity } from '../../interfaces/IUnity';
 import OnEducaAPI from '../../services/api';
-import { State } from '../../store';
+import { RootState } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import {
   PageBox,
@@ -43,11 +38,11 @@ const NewContent = (): JSX.Element => {
     unity: globalUnity,
     content: globalContent,
     teacher,
-  } = useSelector((store: State) => store);
+  } = useSelector((store: RootState) => store);
 
   const { token } = aplication;
 
-  /* Local State */
+  /* LocalRootState */
 
   // References
 
@@ -103,8 +98,6 @@ const NewContent = (): JSX.Element => {
     );
   };
 
-  console.log(schoolGrade.id);
-
   return (
     <Page>
       <PageBox>
@@ -136,10 +129,16 @@ const NewContent = (): JSX.Element => {
             <NewContentAttachments />
           </NewContentAdditionalDetails>
           <NewContentActions>
-            <CancelButton to={`/units/${unity.id}`}>
+            <CancelButton
+              className="block-shadow-button secondary-action bd-rd-20"
+              to={`/units/${unity.id}`}
+            >
               <CancelButtonLabel>Cancelar</CancelButtonLabel>
             </CancelButton>
-            <CreateContentButton onClick={() => createContent()}>
+            <CreateContentButton
+              className="block-shadow-button main-action bd-rd-20"
+              onClick={() => createContent()}
+            >
               <CreateContentButtonLabel>
                 Criar conteúdo
               </CreateContentButtonLabel>

@@ -9,7 +9,7 @@ export const ChatsBox = styled.div`
   display: flex;
   box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   background: ${({ theme }) => theme.colors.boxColor};
-  border-radius: 5px;
+  border-radius: 30px;
   height: calc(100vh - 135px);
   position: relative;
   overflow-x: hidden;
@@ -48,10 +48,13 @@ export const ToggleRecentConversationsLabel = styled.label`
 `;
 export const ToggleRecentConversationsLabelIcon = styled(mediumIcon)``;
 export const RecentConversations = styled.div`
-  padding: 20px;
-  width: calc(35%);
+  padding: 5px;
+  width: 25%;
   background: ${({ theme }) => theme.colors.boxColor};
-  border-right: 2px solid ${({ theme }) => theme.colors.hoverColor};
+
+  &.chat-selected {
+    border-right: 2px solid ${({ theme }) => theme.colors.hoverColor};
+  }
 
   @media (max-width: 1150px) {
     position: absolute;
@@ -62,7 +65,11 @@ export const RecentConversations = styled.div`
     transition: all 0.3s linear;
   }
 `;
-export const RecentConversationsBox = styled.div``;
+export const RecentConversationsBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
 export const RecentConversationsList = styled.div`
   overflow: auto;
   padding: 5px;
@@ -74,12 +81,12 @@ export const RecentConversationsActions = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
-  margin-bottom: 20px;
+  padding: 15px;
 `;
 export const BackButton = styled(Link)`
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 15px;
+  left: 10px;
   color: ${({ theme }) => theme.colors.textColor};
 `;
 export const BackButtonIcon = styled(mediumIcon)``;
@@ -88,9 +95,8 @@ export const RecentConversationsLabel = styled(paragraph)`
   font-weight: bold;
 `;
 export const TalkWithTeacherButton = styled(Button)`
-  background: ${({ theme }) => theme.colors.textColor};
-  color: ${({ theme }) => theme.colors.boxColor};
-  width: 100%;
+  margin: 0 15px;
+  width: calc(100% - 30px);
 `;
 export const TalkWithTeacherButtonLabel = styled(paragraph)``;
 export const TalkWithTeacher = styled.div``;

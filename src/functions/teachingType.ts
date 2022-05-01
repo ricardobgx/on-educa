@@ -1,5 +1,4 @@
 import { AxiosInstance } from 'axios';
-import { ITeachingType } from '../interfaces/ITeachingType';
 
 const entityPath = 'teachingTypes';
 
@@ -7,11 +6,10 @@ const entityPath = 'teachingTypes';
 
 export const getTeachingTypes = async (
   API: AxiosInstance,
-  setTeachingTypesState: (teachingTypes: ITeachingType[]) => void,
-): Promise<void> => {
-  await API.get(`/${entityPath}`).then((response) => {
-    setTeachingTypesState(response.data);
-  });
+): Promise<ITeachingType[]> => {
+  const { data } = await API.get(`/${entityPath}`);
+
+  return data;
 };
 
 // SHOW
@@ -22,7 +20,11 @@ export const getTeachingType = async (
   setTeachingTypeState: (teachingType: ITeachingType) => void,
   token: string,
 ): Promise<void> => {
-  await API.get(`/${entityPath}/${id}`).then((response) => {
+  await API.get(`/${entityPath}/${id}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then((response) => {
     setTeachingTypeState(response.data);
   });
 };

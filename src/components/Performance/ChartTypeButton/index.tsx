@@ -1,5 +1,4 @@
 import React from 'react';
-import theme from '../../../global/styles/theme';
 import { ChartTypeButtonBox, ChartTypeLabel } from './styles';
 
 interface IChartTypeButtonProps {
@@ -15,11 +14,9 @@ const ChartTypeButton = (props: IChartTypeButtonProps): JSX.Element => {
   return (
     <ChartTypeButtonBox
       onClick={() => setSelectedChartType(chartType)}
-      style={{
-        background:
-          selectedChartType === chartType ? theme.colors.textColor : '',
-        color: selectedChartType === chartType ? theme.colors.boxColor : '',
-      }}
+      className={`block-shadow-button secondary-action bd-rd-20 ${
+        selectedChartType === chartType ? 'selected' : ''
+      }`}
     >
       <ChartTypeLabel>{label}</ChartTypeLabel>
     </ChartTypeButtonBox>

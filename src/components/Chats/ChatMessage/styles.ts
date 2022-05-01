@@ -5,8 +5,6 @@ export const ChatMessageBox = styled.div`
   width: max-content;
   max-width: 40%;
   padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   position: relative;
   margin-bottom: 10px;
 
@@ -19,8 +17,8 @@ export const ChatMessageBox = styled.div`
   }
 
   &.mine-message {
-    color: ${({ theme }) => theme.colors.boxColor};
-    background: ${({ theme }) => theme.colors.textColor};
+    color: ${({ theme }) => theme.colors.mainButtonTextColor};
+    background: ${({ theme }) => theme.colors.mainButtonBgColor};
     left: 100%;
     transform: translateX(-100%);
   }

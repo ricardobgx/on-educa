@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
 import { isDefaultAlternative } from '../../../functions/entitiesValues';
-import { IAlternative } from '../../../interfaces/IAlternative';
-import { IAnsweredQuestion } from '../../../interfaces/IAnsweredQuestion';
-import { IDuelRoundQuestion } from '../../../interfaces/IDuelRoundQuestion';
-import { IDuelTeamParticipation } from '../../../interfaces/IDuelTeamParticipation';
 import { DEFAULT_ALTERNATIVE } from '../../../static/defaultEntitiesValues';
 import DuelQuestionAlternative from '../DuelQuestionAlternative';
 import NoActionDuelQuestionAlternative from '../NoActionDuelQuestionAlternative';
@@ -41,8 +37,6 @@ const DuelQuestion = (props: IQuestionProps): JSX.Element => {
   const { question } = duelQuestion;
 
   const { description, alternatives } = question;
-
-  console.log(selectedAlternative);
 
   return (
     <Container>

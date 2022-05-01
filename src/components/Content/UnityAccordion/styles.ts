@@ -5,7 +5,7 @@ import { paragraph } from '../../../global/styles/components/textComponents';
 export const UnityAccordionBox = styled.div`
   padding: 10px 15px;
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
+  border-bottom: 2px solid rgba(0, 0, 0, 0.05);
   width: 100%;
   height: min-content;
 

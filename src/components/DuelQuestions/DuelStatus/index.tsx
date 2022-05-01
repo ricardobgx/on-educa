@@ -1,6 +1,4 @@
 import React from 'react';
-import { IDuelRound } from '../../../interfaces/IDuelRound';
-import { IDuelRoundQuestion } from '../../../interfaces/IDuelRoundQuestion';
 import DuelProgress from '../DuelProgress';
 import DuelTurn from '../DuelTurn';
 import { Container, DuelStatusBox } from './styles';

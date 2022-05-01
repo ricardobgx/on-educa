@@ -1,4 +1,3 @@
-import { IContent } from '../../interfaces/IContent';
 import { ContentActionType } from '../action-types/content';
 
 interface LoadContent {

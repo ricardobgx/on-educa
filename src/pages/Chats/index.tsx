@@ -1,18 +1,20 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Chat from '../../components/Chats/Chat';
 import ChatCard from '../../components/Chats/ChatCard';
+import NoChatSelected from '../../components/Chats/NoChatSelected';
 import { getChatsByPeople } from '../../functions/chat';
 import { isDefaultChat, isDefaultPeople } from '../../functions/entitiesValues';
 import {
   Page,
   PageBoxColumn,
 } from '../../global/styles/components/pageComponents';
-import { IChat } from '../../interfaces/IChat';
 import OnEducaAPI from '../../services/api';
 import { DEFAULT_CHAT } from '../../static/defaultEntitiesValues';
-import { ActionCreators, State } from '../../store';
+import { ActionCreators, RootState } from '../../store';
 import {
   ChatsBox,
   RecentConversations,
@@ -31,7 +33,7 @@ import {
 
 const Chats = (): JSX.Element => {
   const { aplication, people: loggedPeople } = useSelector(
-    (store: State) => store,
+    (store: RootState) => store,
   );
   const { token, loadingAnimation } = aplication;
 
@@ -82,13 +84,15 @@ const Chats = (): JSX.Element => {
             type="checkbox"
             id="toggle-recent-conversations"
           />
-          <RecentConversations>
+          <RecentConversations
+            className={`${!isDefaultChat(selectedChat) ? 'chat-selected' : ''}`}
+          >
             <ToggleRecentConversationsLabel htmlFor="toggle-recent-conversations">
               <ToggleRecentConversationsLabelIcon className="fas fa-chevron-right" />
             </ToggleRecentConversationsLabel>
             <RecentConversationsBox>
               <RecentConversationsActions>
-                <BackButton to="/home">
+                <BackButton to="/">
                   <BackButtonIcon className="fas fa-arrow-left" />
                 </BackButton>
                 <RecentConversationsLabel>Conversas</RecentConversationsLabel>
@@ -99,12 +103,13 @@ const Chats = (): JSX.Element => {
                     key={chat.id}
                     chat={chat}
                     loggedPeople={loggedPeople}
+                    selectedChat={selectedChat}
                     setSelectedChat={switchChat}
                     token={token}
                   />
                 ))}
               </RecentConversationsList>
-              <TalkWithTeacherButton>
+              <TalkWithTeacherButton className="block-shadow-button main-action bd-rd-20">
                 <TalkWithTeacherButtonLabel>
                   Fale com um professor
                 </TalkWithTeacherButtonLabel>
@@ -112,7 +117,9 @@ const Chats = (): JSX.Element => {
               {/* <TalkWithTeacher>1</TalkWithTeacher> */}
             </RecentConversationsBox>
           </RecentConversations>
-          {!isDefaultChat(selectedChat) && (
+          {isDefaultChat(selectedChat) ? (
+            <NoChatSelected />
+          ) : (
             <Chat
               chat={selectedChat}
               loggedPeople={loggedPeople}

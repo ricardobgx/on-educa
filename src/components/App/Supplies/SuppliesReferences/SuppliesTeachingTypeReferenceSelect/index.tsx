@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useEffect, useState } from 'react';
 import { isDefaultTeachingType } from '../../../../../functions/entitiesValues';
 import { getTeachingTypes } from '../../../../../functions/teachingType';
-import { ITeachingType } from '../../../../../interfaces/ITeachingType';
 import OnEducaAPI from '../../../../../services/api';
 import { DEFAULT_TEACHING_TYPE } from '../../../../../static/defaultEntitiesValues';
 import {
@@ -28,32 +28,38 @@ const SuppliesTeachingTypeReferenceSelect = (
   const { selectedTeachingType, setSelectedTeachingType } = props;
 
   const searchTeachingType = (
-    allTeachingTypes: ITeachingType[],
+    teachingTypesFound: ITeachingType[],
     id: string,
   ): ITeachingType | undefined => {
-    const foundTeachingType = allTeachingTypes.find(
+    const teachingTypeFound = teachingTypesFound.find(
       (teachingType) => teachingType.id === id,
     );
 
-    return foundTeachingType;
+    return teachingTypeFound;
   };
 
   const setDefaultTeachingType = (
-    foundTeachingTypes: ITeachingType[],
+    teachingTypesFound: ITeachingType[],
   ): void => {
-    setTeachingTypes(foundTeachingTypes);
+    setTeachingTypes(teachingTypesFound);
 
-    if (foundTeachingTypes.length > 0) {
+    if (teachingTypesFound.length > 0) {
       if (
         isDefaultTeachingType(selectedTeachingType) ||
-        !searchTeachingType(foundTeachingTypes, selectedTeachingType.id)
+        !searchTeachingType(teachingTypesFound, selectedTeachingType.id)
       )
-        setSelectedTeachingType(foundTeachingTypes[0]);
+        setSelectedTeachingType(teachingTypesFound[0]);
     } else setSelectedTeachingType(DEFAULT_TEACHING_TYPE);
   };
 
+  const getTeachingTypesData = async (): Promise<void> => {
+    const teachingTypesFound = await getTeachingTypes(OnEducaAPI);
+
+    setDefaultTeachingType(teachingTypesFound);
+  };
+
   useEffect(() => {
-    getTeachingTypes(OnEducaAPI, setDefaultTeachingType);
+    getTeachingTypesData();
   }, []);
 
   return (
@@ -65,6 +71,7 @@ const SuppliesTeachingTypeReferenceSelect = (
             DEFAULT_TEACHING_TYPE,
         )
       }
+      className="bd-rd-20"
     >
       {teachingTypes.map((teachingType) => (
         <SuppliesReferenceSelectOption value={teachingType.id}>
