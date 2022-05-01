@@ -49,11 +49,7 @@ export const SubjectSectionSelectOption = styled.button`
   color: ${({ theme }) => theme.colors.secondaryButtonTextColor};
   background: ${({ theme }) => theme.colors.secondaryButtonBgColor};
 
-  box-shadow: 0px 2px 0px 3px
-    ${({ theme }) => theme.colors.secondaryButtonShadowColor};
-
   border: none;
-  border-radius: 5px;
 
   width: 100%;
   min-height: 60px;
