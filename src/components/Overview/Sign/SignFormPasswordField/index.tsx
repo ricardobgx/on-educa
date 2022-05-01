@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import {
-  MediumMaterialIconOutlined,
-  SmallMaterialIconOutlined,
-} from '../../../App/Icons/MaterialIcons/MaterialIconsOutlined';
+import { SmallMaterialIconOutlined } from '../../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 import {
   SignFormField,
   SignFormFieldInput,

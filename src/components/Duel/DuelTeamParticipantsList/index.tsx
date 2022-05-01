@@ -42,13 +42,11 @@ const DuelTeamParticipantsList = (
             duelOwner={duelOwner}
             loggedStudent={loggedStudent}
             participation={participation}
-            studentParticipation={studentParticipation}
           />
         ) : (
           <ChangeDuelTeamPosition
             key={participation.id}
             duelId={duelId}
-            duelOwner={duelOwner}
             loggedStudent={loggedStudent}
             participation={participation}
             studentParticipation={studentParticipation}

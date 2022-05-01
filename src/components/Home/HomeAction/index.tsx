@@ -1,5 +1,4 @@
 import React from 'react';
-import theme from '../../../global/styles/theme';
 import { HomeActionBox, HomeActionIcon, HomeActionLabel } from './components';
 import { IHomeActionProps } from './interfaces';
 

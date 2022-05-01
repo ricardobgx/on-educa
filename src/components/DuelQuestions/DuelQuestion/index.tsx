@@ -38,8 +38,6 @@ const DuelQuestion = (props: IQuestionProps): JSX.Element => {
 
   const { description, alternatives } = question;
 
-  console.log(selectedAlternative);
-
   return (
     <Container>
       <DuelQuestionDescriptionBox className="with-shadow bd-rd-5">

@@ -1,7 +1,12 @@
+/* eslint-disable */
+
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { createImage } from '../../../functions/image';
 import { updatePeople } from '../../../functions/people';
 import OnEducaAPI from '../../../services/api';
+import { ActionCreators } from '../../../store';
 import { SmallMaterialIconRound } from '../../App/Icons/MaterialIcons/MaterialIconsRound';
 import {
   UpdateProfilePictureBox,
@@ -31,6 +36,12 @@ const UpdateProfilePicture = (
   const { peopleId, token, profilePicture, setIsUpdatingProfilePicture } =
     props;
 
+  const dispatch = useDispatch();
+  const { showFloatNotification } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
+
   const [file, setFile] = useState<any>();
   const [newProfilePicture, setNewProfilePicture] = useState(profilePicture);
 
@@ -57,7 +68,7 @@ const UpdateProfilePicture = (
       () => {
         window.location.reload();
       },
-      () => console.log('erro'),
+      () => showFloatNotification('Ocorreu um erro'),
     );
   };
 

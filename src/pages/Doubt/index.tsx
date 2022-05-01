@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
   Page,
   PageBoxColumn,
-  PageBoxRow,
 } from '../../global/styles/components/pageComponents';
 import { reduceTextSize } from '../../functions/utils';
 import { TDoubtStatus } from '../../types/TDoubtStatus';

@@ -5,7 +5,7 @@ import SignForms from '../../components/Overview/Sign/SignForms';
 import PlatformInformation from '../../components/Overview/PlatformInformation';
 
 const Overview = (): JSX.Element => {
-  const minHeight = `${window.innerHeight}px`;
+  // const minHeight = `${window.innerHeight}px`;
 
   return (
     <OverviewBox>

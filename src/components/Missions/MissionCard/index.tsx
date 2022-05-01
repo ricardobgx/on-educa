@@ -1,12 +1,8 @@
 import React from 'react';
-import {
-  BigMaterialIconOutlined,
-  MediumMaterialIconOutlined,
-} from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
+import { BigMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 import ProgressBar from '../../App/ProgressBar';
 import {
   Container,
-  MissionIcon,
   MissionInfo,
   MissionInfoHeader,
   MissionTitle,

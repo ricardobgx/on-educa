@@ -57,9 +57,14 @@ export const createContent = async (
     headers: {
       authorization: `Bearer ${token}`,
     },
-  }).then(() => {
-    createSucess();
-  });
+  }).then(
+    () => {
+      createSucess();
+    },
+    () => {
+      createError();
+    },
+  );
 };
 
 export const updateContent = async (
@@ -89,18 +94,12 @@ export const deleteContent = async (
   id: string,
   token: string,
   deleteSucess: () => void,
-  deleteError: () => void,
 ): Promise<void> => {
   await API.delete(`/contents/${id}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },
-  }).then(
-    () => {
-      deleteSucess();
-    },
-    () => {
-      deleteError();
-    },
-  );
+  }).then(() => {
+    deleteSucess();
+  });
 };

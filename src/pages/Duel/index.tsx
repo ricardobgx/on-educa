@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import { AxiosInstance } from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -14,13 +15,11 @@ import DuelTeams from '../../components/Duel/DuelTeams';
 import { getDuel } from '../../functions/duel';
 import { findStudentDuelPartByTeams } from '../../functions/duelTeamParts';
 import { isDefaultDuel, isDefaultPeople } from '../../functions/entitiesValues';
-import { getPeople } from '../../functions/people';
 import { Page } from '../../global/styles/components/pageComponents';
 import OnEducaAPI from '../../services/api';
 import {
   DEFAULT_DUEL,
   DEFAULT_DUEL_TEAM_PARTICIPATION,
-  DEFAULT_PEOPLE,
 } from '../../static/defaultEntitiesValues';
 import { ActionCreators, RootState } from '../../store';
 import { DuelRoundStatus } from '../../types/duelRoundStatus';
@@ -63,13 +62,15 @@ const Duel = (): JSX.Element => {
   // Funcoes
 
   const dispatch = useDispatch();
-  const { loadDuel } = bindActionCreators(ActionCreators, dispatch);
+  const { loadDuel, showFloatNotification } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
 
   /* Estado da pagina */
 
   const [studentParticipation, setStudentParticipation] =
     useState<IDuelTeamParticipation>(DEFAULT_DUEL_TEAM_PARTICIPATION);
-  const [duelOwner, setDuelOwner] = useState(DEFAULT_PEOPLE);
 
   const [showDuelDetails, setShowDuelDetails] = useState(false);
   const [showChat, setShowChat] = useState(false);
@@ -93,7 +94,7 @@ const Duel = (): JSX.Element => {
 
   const getDuelData = async (): Promise<void> => {
     await getDuel(OnEducaAPI, duelId, token, setUpDuel, () =>
-      console.log('erro'),
+      showFloatNotification('Ocorreu um erro'),
     );
   };
 
@@ -114,7 +115,7 @@ const Duel = (): JSX.Element => {
       if (isDefaultDuel(duel) && !isDefaultPeople(loggedPeople)) {
         getDuelData();
       } else {
-        const { student } = duel;
+        // const { student } = duel;
         // getPeople(OnEducaAPI, student.people.id, setDuelOwner, token);
       }
     }

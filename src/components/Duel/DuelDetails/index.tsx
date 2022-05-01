@@ -24,8 +24,7 @@ interface IDuelDetailsProps {
 
 const DuelDetails = (props: IDuelDetailsProps): JSX.Element => {
   const { duel, setShowDuelDetails } = props;
-  const { student, code, duelRound } = duel;
-  const { people } = student;
+  const { code, duelRound } = duel;
   const { maxGroupParticipants, timeForQuestion, questionsPerContent } =
     duelRound;
 

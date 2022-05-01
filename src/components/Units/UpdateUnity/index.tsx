@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { updateUnity as updateUnityData } from '../../../functions/unity';
 import { ICommonUnityProps } from '../../../pages/Units';
 import OnEducaAPI from '../../../services/api';
-import { RootState } from '../../../store';
+import { ActionCreators, RootState } from '../../../store';
 import {
   UpdateUnityBackground,
   UpdateUnityBox,
@@ -21,6 +22,12 @@ interface IUpdateUnityProps extends ICommonUnityProps {
 }
 
 const UpdateUnity = (props: IUpdateUnityProps): JSX.Element => {
+  const dispatch = useDispatch();
+  const { showFloatNotification } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
+
   /* Props */
 
   const { unity, setUpdateUnityIsVisible, getUnits } = props;
@@ -41,7 +48,7 @@ const UpdateUnity = (props: IUpdateUnityProps): JSX.Element => {
   };
 
   const updateError = (): void => {
-    console.log('erro');
+    showFloatNotification('erro');
   };
 
   const updateUnity = async (): Promise<void> => {

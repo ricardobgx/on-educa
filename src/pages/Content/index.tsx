@@ -49,7 +49,6 @@ const Content = (): JSX.Element => {
     subject,
     unity: selectedUnity,
     student,
-    teacher,
   } = useSelector((store: RootState) => store);
 
   const { token, isStudent } = aplication;

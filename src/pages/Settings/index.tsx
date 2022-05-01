@@ -6,7 +6,6 @@ import { setAplicationTheme } from '../../functions/people';
 import { Page } from '../../global/styles/components/pageComponents';
 import { themes } from '../../static/themes';
 import { ActionCreators, RootState } from '../../store';
-import { ThemeType } from '../../types/ThemeType';
 import {
   PageBox,
   SelectedThemeButtonIcon,

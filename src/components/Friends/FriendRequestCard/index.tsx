@@ -1,6 +1,6 @@
+/* eslint-disable */
+
 import React, { useEffect, useState } from 'react';
-import { getPeople, setUpPeopleType } from '../../../functions/people';
-import OnEducaAPI from '../../../services/api';
 import {
   DEFAULT_PEOPLE,
   DEFAULT_STUDENT,
@@ -18,23 +18,23 @@ interface IFriendRequestCardProps {
 
 const FriendRequestCard = (props: IFriendRequestCardProps): JSX.Element => {
   const { friendRequest, getPeopleFriendRequests, token } = props;
-  const { requester } = friendRequest;
+  // const { requester } = friendRequest;
 
   const [people, setPeople] = useState(DEFAULT_PEOPLE);
   const [student, setStudent] = useState(DEFAULT_STUDENT);
   const [teacher, setTeacher] = useState(DEFAULT_TEACHER);
 
-  const getPeopleSucess = (peopleFound: IPeople): void => {
-    setPeople(peopleFound);
-    setUpPeopleType(
-      OnEducaAPI,
-      peopleFound.id,
-      peopleFound.isStudent,
-      token,
-      setStudent,
-      setTeacher,
-    );
-  };
+  // const getPeopleSucess = (peopleFound: IPeople): void => {
+  //   setPeople(peopleFound);
+  //   setUpPeopleType(
+  //     OnEducaAPI,
+  //     peopleFound.id,
+  //     peopleFound.isStudent,
+  //     token,
+  //     setStudent,
+  //     setTeacher,
+  //   );
+  // };
 
   useEffect(() => {
     // getPeople(OnEducaAPI, requester.id, getPeopleSucess, token);

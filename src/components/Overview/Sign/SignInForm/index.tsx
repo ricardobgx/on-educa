@@ -62,8 +62,13 @@ const SignInForm: React.FC<ISignFormProps> = (props) => {
       loadStudent,
       loadTeacher,
     );
-    await getFriendRequestsByPeople(OnEducaAPI, id, token, loadFriendRequests);
+    const friendRequests = await getFriendRequestsByPeople(
+      OnEducaAPI,
+      id,
+      token,
+    );
 
+    loadFriendRequests(friendRequests);
     setPeopleVariables(id, people.isStudent, token);
   };
 

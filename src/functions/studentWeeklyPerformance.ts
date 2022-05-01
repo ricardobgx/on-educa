@@ -62,7 +62,7 @@ export const updateStudentWeeklyPerformanceValues = async (
       },
     },
   ).then(
-    (response) => {
+    () => {
       requestSucess();
     },
     () => {

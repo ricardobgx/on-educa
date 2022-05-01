@@ -71,12 +71,9 @@ export enum SocialDetailType {
 const Profile = (): JSX.Element => {
   /* GlobalRootState */
 
-  const {
-    people: loggedPeople,
-    student: loggedStudent,
-    teacher: loggedTeacher,
-    aplication,
-  } = useSelector((store: RootState) => store);
+  const { people: loggedPeople, aplication } = useSelector(
+    (store: RootState) => store,
+  );
 
   const { token, loadingAnimation } = aplication;
 
@@ -263,7 +260,6 @@ const Profile = (): JSX.Element => {
               <SocialDetails>
                 <SelectSocialDetails>
                   <SelectSocialDetailsList
-                    people={people}
                     socialDetailSelected={socialDetailSelected}
                     setSocialDetailSelected={setSocialDetailSelected}
                   />
@@ -281,13 +277,7 @@ const Profile = (): JSX.Element => {
             <SectionLabel backLink="" label="Desempenho" />
             <PerformanceDetailsBox>
               <WeeklyPerformanceSummary>
-                <ProfileDailyGoal
-                  dailyXP={dailyXp}
-                  isPeopleLogged={isPeopleLogged(
-                    loggedPeople.id,
-                    people.id as string,
-                  )}
-                />
+                <ProfileDailyGoal dailyXP={dailyXp} />
                 {isStudent ? (
                   <StudentWeeklyPerformance
                     people={people}

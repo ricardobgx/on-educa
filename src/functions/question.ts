@@ -78,7 +78,6 @@ export const getQuestionsByContent = async (
 export const getPracticeQuestions = async (
   API: AxiosInstance,
   contentId: string,
-  setQuestionsState: (value: IQuestion[]) => void,
   token: string,
 ): Promise<IQuestion[]> => {
   const { data } = await API.get(`/questions/practiceQuestions/${contentId}`, {
@@ -101,9 +100,14 @@ export const createQuestion = async (
     headers: {
       authorization: `Bearer ${token}`,
     },
-  }).then((response) => {
-    createSucess(response.data);
-  });
+  }).then(
+    (response) => {
+      createSucess(response.data);
+    },
+    () => {
+      createError();
+    },
+  );
 };
 
 export const updateQuestion = async (

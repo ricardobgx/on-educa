@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { AxiosError, AxiosInstance } from 'axios';
+import { AxiosInstance } from 'axios';
 import { IUpdatePeopleFriendParams } from '../dto/IUpdatePeopleFriendParams';
 import { DeviceType } from '../types/deviceType';
 import { getStudentByPeople } from './student';

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React from 'react';
 import { RequiredField } from '../../../global/styles/components/textComponents';
 import { NewQuestionBoxLabel } from '../../../pages/NewQuestion/styles';

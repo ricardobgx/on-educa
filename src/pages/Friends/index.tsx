@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -44,13 +46,14 @@ const Friends = (): JSX.Element => {
 
   const [peoplesFound, setPeoplesFound] = useState<IPeople[]>([]);
 
-  const getPeopleFriendRequests = (): void => {
-    getFriendRequestsByPeople(
+  const getPeopleFriendRequests = async (): Promise<void> => {
+    const friendRequestsFound = await getFriendRequestsByPeople(
       OnEducaAPI,
       loggedPeople.id,
       token,
-      loadFriendRequests,
     );
+
+    loadFriendRequests(friendRequestsFound);
   };
 
   useEffect(() => {

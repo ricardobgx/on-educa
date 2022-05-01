@@ -40,8 +40,8 @@ const DeleteSupplies = (props: IDeleteSuppliesProps): JSX.Element => {
         </CloseDeleteSuppliesButton>
         <DeleteSuppliesLabel>Excluir {suppliesType}</DeleteSuppliesLabel>
         <DeleteSuppliesWarningLabel>
-          Tem certeza que deseja excluir? Todas as informações associadas à(ao){' '}
-          {suppliesType} serão removidas.
+          Tem certeza que deseja excluir {suppliesLabel}? Todas as informações
+          associadas à(ao) {suppliesType} serão removidas.
         </DeleteSuppliesWarningLabel>
         <DeleteSuppliesActions>
           <CancelDeleteSuppliesButton

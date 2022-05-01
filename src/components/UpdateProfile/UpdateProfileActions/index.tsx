@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { IPeopleParams } from '../../../dto/IPeopleParams';
-import { getPeople, updatePeople } from '../../../functions/people';
+import { updatePeople } from '../../../functions/people';
 import { updateStudent } from '../../../functions/student';
 import { updateTeacher } from '../../../functions/teacher';
 import OnEducaAPI from '../../../services/api';
@@ -34,7 +34,10 @@ const UpdateProfileActions = (
   /* GlobalRootState */
 
   const dispatch = useDispatch();
-  const { loginPeople } = bindActionCreators(ActionCreators, dispatch);
+  const { showFloatNotification } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
   const { student, teacher } = useSelector((store: RootState) => store);
 
   const {
@@ -67,7 +70,7 @@ const UpdateProfileActions = (
   };
 
   const updateError = (): void => {
-    console.log('erro');
+    showFloatNotification('erro');
   };
 
   const updatePeopleSucess = async (): Promise<void> => {

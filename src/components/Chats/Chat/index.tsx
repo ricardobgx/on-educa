@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
 import { socket } from '../../../App';
 import { createMessage } from '../../../functions/message';
@@ -19,7 +21,6 @@ import {
   ChatMessageInput,
   MessageInput,
   SendMessageButton,
-  SendMessageButtonIcon,
   ChatPeopleNameAndOnlineLabel,
 } from './styles';
 
@@ -80,7 +81,7 @@ const Chat = (props: IChatProps): JSX.Element => {
     if (chatPeople) setPeople(chatPeople);
   };
 
-  useEffect((): any => {
+  useEffect(() => {
     if (token) {
       const peopleId =
         loggedPeople.id === chatCreator.id

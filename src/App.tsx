@@ -42,7 +42,7 @@ const App: React.FC = () => {
     people: loggedPeople,
   } = useSelector((store: RootState) => store);
 
-  const { loadingAnimation, token: loggedToken } = aplication;
+  const { loadingAnimation } = aplication;
   const { isActive: floatNotificationIsActive } = floatNotification;
 
   const dispatch = useDispatch();
@@ -70,7 +70,6 @@ const App: React.FC = () => {
       OnEducaAPI,
       id,
       token,
-      (fr: IFriendRequest[]) => console.log('hi'),
     );
 
     loadFriendRequests(friendRequests);

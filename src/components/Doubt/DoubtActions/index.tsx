@@ -33,7 +33,6 @@ const DoubtActions = (props: IDoubtActionsProps): JSX.Element => {
       { status: TDoubtStatus.SOLVED },
       token,
       () => getDoubtAction(),
-      () => console.log('erro'),
     );
   };
 
@@ -44,17 +43,12 @@ const DoubtActions = (props: IDoubtActionsProps): JSX.Element => {
       { status: TDoubtStatus.PENDING },
       token,
       () => getDoubtAction(),
-      () => console.log('erro'),
     );
   };
 
   const deleteDoubtAction = async (): Promise<void> => {
-    await deleteDoubt(
-      OnEducaAPI,
-      doubtId,
-      token,
-      () => pageHistory.push(`/contents/${contentId}`),
-      () => console.log('erro'),
+    await deleteDoubt(OnEducaAPI, doubtId, token, () =>
+      pageHistory.push(`/contents/${contentId}`),
     );
   };
 

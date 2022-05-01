@@ -4,11 +4,7 @@ import { bindActionCreators } from 'redux';
 import { clearPeopleVariables } from '../../../functions/people';
 import { ActionCreators, RootState } from '../../../store';
 import NavBarAction from './NavBarAction';
-import {
-  NavBarActionBox,
-  NavBarIcon,
-  NavBarIconLabel,
-} from './NavBarAction/styles';
+import { NavBarActionBox, NavBarIconLabel } from './NavBarAction/styles';
 
 import {
   NavBarBox,

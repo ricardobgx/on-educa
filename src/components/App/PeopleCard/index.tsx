@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-console */
+/* eslint-disable react/require-default-props */
 
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -46,7 +47,7 @@ const PeopleCard = (props: IPeopleCardProps): JSX.Element => {
     otherDevicesNameLength,
   } = props;
 
-  const { id, name, profilePicture, isStudent } = people;
+  const { name, profilePicture, isStudent } = people;
   const { schoolGrade, id: studentId } = student;
   const { teachingType, id: teacherId } = teacher;
 

@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { socket } from '../../../App';
@@ -119,7 +121,7 @@ const DuelTeams = (props: IDuelTeamsProps): JSX.Element => {
     setTeams(newTeams);
   };
 
-  useEffect((): any => {
+  useEffect(() => {
     if (teams.length === 0) {
       setTeams(sortTeams(unsortedTeams));
     }

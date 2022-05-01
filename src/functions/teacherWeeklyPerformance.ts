@@ -62,7 +62,7 @@ export const updateTeacherWeeklyPerformanceValues = async (
       },
     },
   ).then(
-    (response) => {
+    () => {
       requestSucess();
     },
     () => {

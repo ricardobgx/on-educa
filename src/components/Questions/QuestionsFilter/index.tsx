@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React from 'react';
 import SuppliesContentReference from '../../App/Supplies/SuppliesReferences/SuppliesContentReference';
 import SuppliesSubjectReference from '../../App/Supplies/SuppliesReferences/SuppliesSubjectReference';

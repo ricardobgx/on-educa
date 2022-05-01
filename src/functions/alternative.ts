@@ -110,9 +110,14 @@ export const createAlternative = async (
     headers: {
       authorization: `Bearer ${token}`,
     },
-  }).then(() => {
-    createSucess();
-  });
+  }).then(
+    () => {
+      createSucess();
+    },
+    () => {
+      createError();
+    },
+  );
 };
 
 export const createManyAlternatives = async (

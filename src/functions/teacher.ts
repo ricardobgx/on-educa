@@ -36,7 +36,11 @@ export const getTeacher = async (
   setTeacherState: (teacher: ITeacher) => void,
   token: string,
 ): Promise<void> => {
-  await API.get(`/${entityPath}/${id}`).then((response) => {
+  await API.get(`/${entityPath}/${id}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then((response) => {
     setTeacherState(response.data);
   });
 };

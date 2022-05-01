@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { socket } from '../../../App';
@@ -7,7 +9,6 @@ import {
 } from '../../../functions/duelRound';
 import { participateInDuel } from '../../../functions/duelTeamParts';
 import { isDefaultDuel } from '../../../functions/entitiesValues';
-import { getPeople } from '../../../functions/people';
 import OnEducaAPI from '../../../services/api';
 import { DEFAULT_PEOPLE } from '../../../static/defaultEntitiesValues';
 import {
@@ -79,13 +80,12 @@ const DuelCard = (props: IDuelCardProps): JSX.Element => {
           } as IDuelTeamParticipation,
         });
       },
-      () => console.log('erro'),
     );
   };
 
   useEffect(() => {
     if (!isDefaultDuel(duel)) {
-      const { student, duelRound } = duel;
+      const { duelRound } = duel;
       setNumParticipants(participatesInDuelCounter(duelRound.teams));
       // getPeople(OnEducaAPI, student.people.id, setPeople, token);
     }

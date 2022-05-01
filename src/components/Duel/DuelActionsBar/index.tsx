@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
 import { socket } from '../../../App';
 import { deleteDuel as deleteDuelData } from '../../../functions/duel';
@@ -68,9 +70,7 @@ const DuelActionsBar = (props: IDuelActionsBarProps): JSX.Element => {
   };
 
   const deleteDuel = async (): Promise<void> => {
-    await deleteDuelData(OnEducaAPI, duel.id, token, deleteDuelSucess, () =>
-      console.log('erro'),
-    );
+    await deleteDuelData(OnEducaAPI, duel.id, token, deleteDuelSucess);
   };
 
   useEffect(() => {

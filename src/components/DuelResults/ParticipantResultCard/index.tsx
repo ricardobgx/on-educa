@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
 import {
   isDefaultPeople,
@@ -37,10 +39,6 @@ const ParticipantResultCard = (
   const { people: studentPeople } = student;
 
   const [people, setPeople] = useState(DEFAULT_PEOPLE);
-
-  const leagueColor = (): string => {
-    return '#43DDF2';
-  };
 
   const questionsAnsweredCorrectlyScore = (
     duelQuestionsAnswers: IDuelQuestionAnswer[],

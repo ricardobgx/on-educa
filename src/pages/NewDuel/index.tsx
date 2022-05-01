@@ -3,16 +3,15 @@
 /* eslint-disable no-console */
 
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { bindActionCreators } from 'redux';
 import SectionLabel from '../../components/App/SectionLabel';
 import NewDuelContents from '../../components/NewDuel/NewDuelContents';
 import NewDuelSettings from '../../components/NewDuel/NewDuelSettings';
 import { IDuelParams } from '../../dto/IDuelParams';
 import { createDuel as createDuelRequest } from '../../functions/duel';
 import OnEducaAPI from '../../services/api';
-import { ActionCreators, RootState } from '../../store';
+import { RootState } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import {
   PageBox,
@@ -34,9 +33,6 @@ const NewDuel = (): JSX.Element => {
 
   const { id } = student;
   const { token } = aplication;
-
-  const dispatch = useDispatch();
-  const { loadDuel } = bindActionCreators(ActionCreators, dispatch);
 
   /* LocalRootState */
 

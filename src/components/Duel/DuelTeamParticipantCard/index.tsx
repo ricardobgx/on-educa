@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -24,7 +25,6 @@ interface IDuelTeamParticipantCard {
   duelId: string;
   duelOwner: IStudent;
   loggedStudent: IStudent;
-  studentParticipation: IDuelTeamParticipation;
   participation: IDuelTeamParticipation;
 }
 
@@ -34,13 +34,7 @@ const DuelTeamParticipantCard = (
   const { aplication } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
-  const {
-    duelOwner,
-    loggedStudent,
-    studentParticipation,
-    duelId,
-    participation,
-  } = props;
+  const { duelOwner, loggedStudent, duelId, participation } = props;
 
   const [people, setPeople] = useState(DEFAULT_PEOPLE);
 
@@ -49,20 +43,14 @@ const DuelTeamParticipantCard = (
   const kickOutParticipant = async (
     duelTeamParticipationId: string,
   ): Promise<void> => {
-    await removeParticipant(
-      OnEducaAPI,
-      duelTeamParticipationId,
-      token,
-      () => {
-        socket.emit(`duel.remove-participation`, {
-          duelId,
-          data: {
-            ...participation,
-          } as IDuelTeamParticipation,
-        });
-      },
-      () => console.log('erro'),
-    );
+    await removeParticipant(OnEducaAPI, duelTeamParticipationId, token, () => {
+      socket.emit(`duel.remove-participation`, {
+        duelId,
+        data: {
+          ...participation,
+        } as IDuelTeamParticipation,
+      });
+    });
   };
 
   const getParticipationPeople = async (): Promise<void> => {

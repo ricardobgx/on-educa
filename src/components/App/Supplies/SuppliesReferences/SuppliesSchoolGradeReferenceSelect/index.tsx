@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import {
   isDefaultSchoolGrade,
   isDefaultTeachingType,
@@ -9,7 +9,6 @@ import {
 import { getSchoolGradesByTeachingType } from '../../../../../functions/schoolGrade';
 import OnEducaAPI from '../../../../../services/api';
 import { DEFAULT_SCHOOL_GRADE } from '../../../../../static/defaultEntitiesValues';
-import { RootState } from '../../../../../store';
 import {
   SuppliesReferenceSelectOption,
   SuppliesReferenceSelect,
@@ -24,11 +23,6 @@ interface ISuppliesSchoolGradeReferenceSelectProps {
 const SuppliesSchoolGradeReferenceSelect = (
   props: ISuppliesSchoolGradeReferenceSelectProps,
 ): JSX.Element => {
-  /* GlobalRootState */
-
-  const { aplication } = useSelector((store: RootState) => store);
-  const { token } = aplication;
-
   /* LocalRootState */
 
   const [schoolGrades, setSchoolGrades] = useState<ISchoolGrade[]>([]);

@@ -121,7 +121,7 @@ export const updateDuelTeam = async (
       authorization: `Bearer ${token}`,
     },
   }).then(
-    (response) => {
+    () => {
       requestSucess();
     },
     (err: AxiosError) => {

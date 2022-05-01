@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { BlockShadowButton } from '../../../../global/styles/components/buttonComponents';
 import { inputText } from '../../../../global/styles/components/inputComponents';

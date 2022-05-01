@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Button } from '../../../global/styles/components/buttonComponents';
-import { smallIcon } from '../../../global/styles/components/iconComponents';
 import { paragraph } from '../../../global/styles/components/textComponents';
 
 /* Acoes no perfil */

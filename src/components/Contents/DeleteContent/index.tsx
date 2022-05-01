@@ -39,12 +39,8 @@ const DeleteContent = (props: IDeleteContentProps): JSX.Element => {
     setDeleteContentIsVisible(false);
   };
 
-  const deleteError = (): void => {
-    console.log('erro');
-  };
-
   const deleteContent = async (): Promise<void> => {
-    deleteContentData(OnEducaAPI, content.id, token, deleteSucess, deleteError);
+    deleteContentData(OnEducaAPI, content.id, token, deleteSucess);
   };
 
   return (

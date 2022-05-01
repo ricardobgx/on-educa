@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { bigIcon } from '../../../global/styles/components/iconComponents';
 import { paragraph } from '../../../global/styles/components/textComponents';
-import { ExtraBigMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 
 export const HomeActionBox = styled(Link)`
   display: flex;

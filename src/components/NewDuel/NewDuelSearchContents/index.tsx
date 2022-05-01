@@ -7,7 +7,6 @@ import {
   ClearSearchSuppliesInputButton,
   ClearSearchSuppliesInputButtonIcon,
   SearchSuppliesBox,
-  SearchSuppliesButton,
   SearchSuppliesButtonIcon,
   SearchSuppliesInput,
 } from '../../App/Supplies/styles';
@@ -16,7 +15,6 @@ import {
   ContentsFound,
   NewDuelSearchContentsBox,
   ContentsFoundList,
-  NewDuelSearchContentsContainer,
   SearchContentsButton,
 } from './styles';
 

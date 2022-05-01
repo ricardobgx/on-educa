@@ -118,7 +118,6 @@ const Practice = (): JSX.Element => {
     const practiceQuestions = await getPracticeQuestions(
       OnEducaAPI,
       contentId,
-      () => console.log('hi'),
       token,
     );
     loadQuestions([...practiceQuestions]);

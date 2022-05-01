@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable */
 
 import React, { useEffect } from 'react';
 import {

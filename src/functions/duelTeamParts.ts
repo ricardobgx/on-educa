@@ -70,20 +70,14 @@ export const participateInDuel = async (
   participateInDuelParams: IParticipateInDuelParams,
   token: string,
   requestSucess: (duelTeamParticipation: IDuelTeamParticipation) => void,
-  requestError: () => void,
 ): Promise<void> => {
   await API.post(`/${entityPath}/duel`, participateInDuelParams, {
     headers: {
       authorization: `Bearer ${token}`,
     },
-  }).then(
-    (response) => {
-      requestSucess(response.data);
-    },
-    () => {
-      requestError();
-    },
-  );
+  }).then((response) => {
+    requestSucess(response.data);
+  });
 };
 
 export const removeParticipant = async (
@@ -91,20 +85,14 @@ export const removeParticipant = async (
   duelTeamPartId: string,
   token: string,
   requestSucess: () => void,
-  requestError: () => void,
 ): Promise<void> => {
   await API.put(`/${entityPath}/removeParticipant/${duelTeamPartId}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },
-  }).then(
-    () => {
-      requestSucess();
-    },
-    () => {
-      requestError();
-    },
-  );
+  }).then(() => {
+    requestSucess();
+  });
 };
 
 export const getDuelTeamParts = async (

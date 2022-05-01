@@ -33,7 +33,6 @@ const NewDoubt = (props: INewDoubtProps): JSX.Element => {
         setDescription('');
         newDoubtAdded(doubt);
       },
-      () => console.log('erro'),
     );
   };
 

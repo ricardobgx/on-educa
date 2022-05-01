@@ -15,7 +15,6 @@ import {
 
 interface IChangeDuelTeamPositionProps {
   duelId: string;
-  duelOwner: IStudent;
   loggedStudent: IStudent;
   studentParticipation: IDuelTeamParticipation;
   participation: IDuelTeamParticipation;
@@ -27,13 +26,7 @@ const ChangeDuelTeamPosition = (
   const { aplication } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
-  const {
-    participation,
-    loggedStudent,
-    studentParticipation,
-    duelId,
-    duelOwner,
-  } = props;
+  const { participation, loggedStudent, studentParticipation, duelId } = props;
 
   const changePosition = async (): Promise<void> => {
     await changeDuelTeamPosition(

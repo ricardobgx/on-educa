@@ -50,20 +50,14 @@ export const createDoubt = async (
   doubtParams: IDoubtParams,
   token: string,
   requestSucess: (value: IDoubt) => void,
-  requestError: () => void,
 ): Promise<void> => {
   await API.post('/doubts', doubtParams, {
     headers: {
       authorization: `Bearer ${token}`,
     },
-  }).then(
-    (response) => {
-      requestSucess(response.data);
-    },
-    () => {
-      requestError();
-    },
-  );
+  }).then((response) => {
+    requestSucess(response.data);
+  });
 };
 
 export const updateDoubt = async (
@@ -72,20 +66,14 @@ export const updateDoubt = async (
   doubtParams: IDoubtParams,
   token: string,
   updateSucess: () => void,
-  updateError: () => void,
 ): Promise<void> => {
   await API.put(`/doubts/${id}`, doubtParams, {
     headers: {
       authorization: `Bearer ${token}`,
     },
-  }).then(
-    () => {
-      updateSucess();
-    },
-    () => {
-      updateError();
-    },
-  );
+  }).then(() => {
+    updateSucess();
+  });
 };
 
 export const deleteDoubt = async (
@@ -93,18 +81,12 @@ export const deleteDoubt = async (
   id: string,
   token: string,
   deleteSucess: () => void,
-  deleteError: () => void,
 ): Promise<void> => {
   await API.delete(`/doubts/${id}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },
-  }).then(
-    () => {
-      deleteSucess();
-    },
-    () => {
-      deleteError();
-    },
-  );
+  }).then(() => {
+    deleteSucess();
+  });
 };

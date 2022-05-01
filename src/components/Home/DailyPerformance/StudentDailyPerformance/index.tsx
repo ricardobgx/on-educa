@@ -1,10 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { isDefaultStudent } from '../../../../functions/entitiesValues';
 import { getStudentWeeklyPerformanceByStudent } from '../../../../functions/studentWeeklyPerformance';
 import OnEducaAPI from '../../../../services/api';
 import { DEFAULT_STUDENT_WEEKLY_PERFORMANCE } from '../../../../static/defaultEntitiesValues';
-import { RootState } from '../../../../store';
+import { ActionCreators, RootState } from '../../../../store';
 import { SmallMaterialIconOutlined } from '../../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 import {
   DailyPerformanceBox,
@@ -25,6 +28,12 @@ const StudentDailyPerformance: React.FC = () => {
   const { student, aplication } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
+  const dispatch = useDispatch();
+  const { showFloatNotification } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
+
   const [studentWeeklyPerformance, setStudentWeeklyPerformance] =
     useState<IStudentWeeklyPerformance>(DEFAULT_STUDENT_WEEKLY_PERFORMANCE);
 
@@ -34,7 +43,7 @@ const StudentDailyPerformance: React.FC = () => {
       student.id,
       token,
       setStudentWeeklyPerformance,
-      () => console.log('erro'),
+      () => showFloatNotification('Ocorreu um erro'),
     );
   };
 

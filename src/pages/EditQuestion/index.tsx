@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
@@ -92,8 +94,6 @@ const EditQuestion = (): JSX.Element => {
           questionFound.rightAlternative.description,
       )?.description || '',
     );
-
-    console.log(questionFound);
 
     setQuestion(questionFound);
   };

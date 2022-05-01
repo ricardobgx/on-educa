@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useEffect, useState } from 'react';
 import PeopleCard from '../../../App/PeopleCard';
@@ -10,7 +11,6 @@ import {
 import { getPeople } from '../../../../functions/people';
 import OnEducaAPI from '../../../../services/api';
 import { isDefaultPeople } from '../../../../functions/entitiesValues';
-import { TeacherSubjects } from '../../../App/PeopleCard/styles';
 
 interface ITeacherRankingCardProps {
   teacherWeeklyPerformance: ITeacherWeeklyPerformance;

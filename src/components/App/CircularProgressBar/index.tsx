@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
 import theme from '../../../global/styles/theme';
 import {
@@ -22,13 +24,13 @@ const CircularProgressBar = (props: ICircularProgressBarProps): JSX.Element => {
   const { time, stop } = props;
 
   const [progressNumber, setProgressNumber] = useState(time);
-  const [counterInterval, setCounterInterval] = useState<any>();
+  const [counterInterval, setCounterInterval] = useState<NodeJS.Timeout>();
 
   const updateProgressNumber = (): void => {
     let counter = time;
     setCounterInterval(
       setInterval(() => {
-        if (counter === 0) {
+        if (counter === 0 && counterInterval) {
           clearInterval(counterInterval);
         } else {
           counter -= 1;
@@ -39,7 +41,7 @@ const CircularProgressBar = (props: ICircularProgressBarProps): JSX.Element => {
   };
 
   useEffect(() => {
-    if (stop) {
+    if (stop && counterInterval) {
       clearInterval(counterInterval);
     } else {
       updateProgressNumber();

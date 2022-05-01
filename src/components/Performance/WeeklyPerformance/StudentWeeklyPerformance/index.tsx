@@ -1,5 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { isDefaultStudent } from '../../../../functions/entitiesValues';
 import { getStudentWeeklyPerformanceByStudent } from '../../../../functions/studentWeeklyPerformance';
 import {
@@ -7,8 +10,7 @@ import {
   getFullDate,
 } from '../../../../functions/utils';
 import OnEducaAPI from '../../../../services/api';
-import { DEFAULT_STUDENT_WEEKLY_PERFORMANCE } from '../../../../static/defaultEntitiesValues';
-import { RootState } from '../../../../store';
+import { ActionCreators, RootState } from '../../../../store';
 import BarChartWithTwoValues, {
   IBarChartWithTwoValuesData,
 } from '../../../App/Charts/BarChartWithTwoValues';
@@ -33,9 +35,13 @@ const StudentWeeklyPerformance: React.FC = () => {
   } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
+  const dispatch = useDispatch();
+  const { showFloatNotification } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
+
   const [chartType, setChartType] = useState('questions');
-  const [studentWeeklyPerformance, setStudentWeeklyPerformance] =
-    useState<IStudentWeeklyPerformance>(DEFAULT_STUDENT_WEEKLY_PERFORMANCE);
 
   const [questionsData, setQuestionsData] = useState<
     IBarChartWithTwoValuesData[]
@@ -86,7 +92,6 @@ const StudentWeeklyPerformance: React.FC = () => {
     setContentsData(contentsDataValues);
     setQuestionsData(questionsDataValues);
     setDuelsData(duelsDataValues);
-    setStudentWeeklyPerformance(studentWeeklyPerformanceData);
   };
 
   useEffect(() => {
@@ -97,7 +102,7 @@ const StudentWeeklyPerformance: React.FC = () => {
           student.id,
           token,
           setChartsData,
-          () => console.log('erro'),
+          () => showFloatNotification('Ocorreu um erro'),
         );
     }
   }, [student]);

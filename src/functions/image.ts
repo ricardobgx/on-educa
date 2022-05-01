@@ -1,5 +1,7 @@
+/* eslint-disable */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { AxiosInstance } from 'axios';
 

@@ -49,7 +49,6 @@ export const getFriendRequestsByPeople = async (
   API: AxiosInstance,
   peopleId: string,
   token: string,
-  setFriendRequests: (value: IFriendRequest[]) => void,
 ): Promise<IFriendRequest[]> => {
   const { data } = await API.get(`/${entityPath}/people/${peopleId}`, {
     headers: {
@@ -96,7 +95,6 @@ export const acceptFriendRequest = async (
   token: string,
   acceptSucess: () => void,
 ): Promise<void> => {
-  console.log(`/${entityPath}/accept/${friendRequestId}`);
   await API.put(
     `/${entityPath}/accept/${friendRequestId}`,
     {},

@@ -1,5 +1,4 @@
 import React from 'react';
-import theme from '../../../global/styles/theme';
 import { QuestionAlternativeBox, QuestionAlternativeLabel } from './styles';
 
 interface IQuestionAlternativeProps {
