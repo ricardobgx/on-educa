@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { DeviceType } from '../types/deviceType';
 
 export const randInt = (min: number, max: number): number => {
@@ -74,4 +75,14 @@ export const getFullDate = (date?: Date): string => {
   return `${day < 10 ? '0' : ''}${day}/${
     month < 10 ? '0' : ''
   }${month}/${year}`;
+};
+
+export const showErrorMessage = (
+  err: AxiosError,
+  showFloatNotification: (content: string) => void,
+): void => {
+  const errData = err.response?.data;
+  const { error: errorMsg } = errData;
+
+  showFloatNotification(errorMsg);
 };

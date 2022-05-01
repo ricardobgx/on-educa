@@ -119,7 +119,7 @@ const Subjects = (): JSX.Element => {
         <SubjectsActions>
           <CancelButton
             className="block-shadow-button secondary-action bd-rd-20"
-            to="/home"
+            to="/"
           >
             <CancelButtonLabel>Cancelar</CancelButtonLabel>
           </CancelButton>

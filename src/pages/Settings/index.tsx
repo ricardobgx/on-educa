@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import SectionLabel from '../../components/App/SectionLabel';
+import { setAplicationTheme } from '../../functions/people';
 import { Page } from '../../global/styles/components/pageComponents';
 import { themes } from '../../static/themes';
 import { ActionCreators, RootState } from '../../store';
@@ -22,6 +23,11 @@ const Settings = (): JSX.Element => {
   const dispatch = useDispatch();
   const { loadTheme } = bindActionCreators(ActionCreators, dispatch);
 
+  const setTheme = (theme: ITheme): void => {
+    loadTheme(theme);
+    setAplicationTheme(theme.themeType);
+  };
+
   return (
     <Page>
       <PageBox>
@@ -34,7 +40,7 @@ const Settings = (): JSX.Element => {
                 return (
                   <SelectThemeButton
                     colors={theme.previewColors}
-                    onClick={() => loadTheme(theme)}
+                    onClick={() => setTheme(theme)}
                   >
                     {themeSelected.themeType === theme.themeType && (
                       <SelectedThemeButtonIcon className="fas fa-check" />

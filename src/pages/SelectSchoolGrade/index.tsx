@@ -24,10 +24,7 @@ const SelectSchoolGrade: React.FC = () => {
     useState<ISchoolGrade>(DEFAULT_SCHOOL_GRADE);
 
   const getSchoolGradesAction = async (): Promise<void> => {
-    const teachingTypes = await getTeachingTypes(
-      OnEducaAPI,
-      (tt: ITeachingType[]) => console.log('hi'),
-    );
+    const teachingTypes = await getTeachingTypes(OnEducaAPI);
 
     const highSchoolTeachingType = teachingTypes.find(
       (teachingType) => teachingType.name === 'Ensino Médio',
@@ -38,7 +35,6 @@ const SelectSchoolGrade: React.FC = () => {
     const schoolGradesFound = await getSchoolGradesByTeachingType(
       OnEducaAPI,
       highSchoolTeachingType.id,
-      (sg: ISchoolGrade[]) => console.log('hi'),
     );
 
     setSchoolGrades(
@@ -68,17 +64,18 @@ const SelectSchoolGrade: React.FC = () => {
       <SchoolGrades>
         {schoolGrades.map((schoolGrade) => (
           <SchoolGrade
-            className={`${
+            className={`block-shadow-button secondary-action bd-rd-30 ${
               schoolGrade.id === schoolGradeSelected.id ? 'selected' : ''
             }`}
             onClick={() => setSchoolGradeSelected(schoolGrade)}
           >
-            <ExtraBigMaterialIconOutlined icon="book" color="#ffffff" />
+            <ExtraBigMaterialIconOutlined icon="book" color="" />
             <SchoolGradeLabel>{schoolGrade.index}º ano</SchoolGradeLabel>
           </SchoolGrade>
         ))}
       </SchoolGrades>
       <ConfirmSchoolGradeButton
+        className="block-shadow-button main-action bd-rd-20"
         disabled={isDefaultSchoolGrade(schoolGradeSelected)}
         onClick={() => pageHistory.push('/sign')}
       >

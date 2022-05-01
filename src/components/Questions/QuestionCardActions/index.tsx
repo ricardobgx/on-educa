@@ -18,10 +18,14 @@ const QuestionCardActions = (props: IQuestionCardActionsProps): JSX.Element => {
 
   return (
     <QuestionCardActionsBox>
-      <EditQuestionButton to={`/questions/${question.id}/edit`}>
+      <EditQuestionButton
+        className="block-shadow-button secondary-action bd-rd-10"
+        to={`/questions/${question.id}/edit`}
+      >
         <EditQuestionButtonIcon className="fas fa-pen" />
       </EditQuestionButton>
       <DeleteQuestionButton
+        className="block-shadow-button main-action bd-rd-10"
         onClick={() => {
           setQuestion(question);
           setDeleteQuestionIsVisible(true);

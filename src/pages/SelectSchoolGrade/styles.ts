@@ -30,41 +30,9 @@ export const SchoolGrade = styled.button`
   width: 160px;
   height: 160px;
 
-  color: #6c63ff;
-  background: none;
   border: none;
 
   cursor: pointer;
-
-  border-radius: 10px;
-  box-shadow: 0px 2px 0px 3px rgba(0, 0, 0, 0.1);
-
-  transition: all 0.2s linear;
-
-  &.selected {
-    color: #ffffff;
-    background: #6c63ff;
-
-    & span,
-    & p {
-      color: #ffffff;
-    }
-
-    box-shadow: 0px 0px 0px 2px #4138c7;
-
-    :hover {
-      box-shadow: 0px 0px 0px 2px #4138c7;
-    }
-  }
-
-  &:hover {
-    box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.1);
-  }
-
-  & span,
-  & p {
-    color: #6c63ff;
-  }
 
   @media (max-width: 1050px) {
     margin-top: 15vh;
@@ -79,28 +47,15 @@ export const SchoolGradeLabel = styled.p`
 `;
 
 export const ConfirmSchoolGradeButton = styled(BlockShadowButton)`
-  background: #6c63ff;
-  color: #ffffff;
-
   width: 250px;
   height: 40px;
 
-  border-radius: 10px;
-
-  box-shadow: 0px 2px 0px 3px #4138c7;
-
   cursor: pointer;
-
-  transition: all 0.2s linear;
 
   :disabled {
     opacity: 0.7;
-    box-shadow: 0px 0px 0px 2px #4138c7;
+    box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.colors.textColor} !important;
     pointer-events: none;
-  }
-
-  :hover {
-    box-shadow: 0px 0px 0px 2px #4138c7;
   }
 `;
 export const ConfirmSchoolGradeButtonLabel = styled.p`

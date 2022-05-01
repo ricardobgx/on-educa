@@ -60,13 +60,18 @@ const SuppliesSchoolGradeReferenceSelect = (
     } else setSelectedSchoolGrade(DEFAULT_SCHOOL_GRADE);
   };
 
+  const getSchoolGradesByTeachingTypeData = async (): Promise<void> => {
+    const schoolGradesFound = await getSchoolGradesByTeachingType(
+      OnEducaAPI,
+      teachingType.id,
+    );
+
+    setDefaultSchoolGrade(schoolGradesFound);
+  };
+
   useEffect(() => {
     if (!isDefaultTeachingType(teachingType))
-      getSchoolGradesByTeachingType(
-        OnEducaAPI,
-        teachingType.id,
-        setDefaultSchoolGrade,
-      );
+      getSchoolGradesByTeachingTypeData();
     else {
       setSelectedSchoolGrade(DEFAULT_SCHOOL_GRADE);
       setSchoolGrades([]);
@@ -82,6 +87,7 @@ const SuppliesSchoolGradeReferenceSelect = (
             DEFAULT_SCHOOL_GRADE,
         )
       }
+      className="bd-rd-20"
     >
       {schoolGrades.map((schoolGrade) => (
         <SuppliesReferenceSelectOption value={schoolGrade.id}>

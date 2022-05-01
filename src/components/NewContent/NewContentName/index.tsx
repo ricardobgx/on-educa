@@ -12,7 +12,7 @@ const NewContentName = (props: INewContentNameProps): JSX.Element => {
   const { name, setName } = props;
 
   return (
-    <NewContentNameBox>
+    <NewContentNameBox className="bd-rd-30 with-shadow">
       <NewContentBoxLabel>
         Nome do conteúdo<RequiredField>*</RequiredField>
       </NewContentBoxLabel>
@@ -22,6 +22,7 @@ const NewContentName = (props: INewContentNameProps): JSX.Element => {
           setName(event.target.value)
         }
         type="text"
+        className="bd-rd-20"
       />
     </NewContentNameBox>
   );

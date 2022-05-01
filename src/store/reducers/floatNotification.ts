@@ -9,10 +9,10 @@ const floatNotificationReducer = (
   action: FloatNotificationAction,
 ): any => {
   switch (action.type) {
-    case FloatNotificationActionType.LOAD_FLOAT_NOTIFICATION_CONTENT:
-      return { ...state, content: action.content };
-    case FloatNotificationActionType.LOAD_FLOAT_NOTIFICATION_IS_ACTIVE:
-      return { ...state, isActive: action.isActive };
+    case FloatNotificationActionType.SHOW_FLOAT_NOTIFICATION:
+      return { content: action.content, isActive: true };
+    case FloatNotificationActionType.HIDE_FLOAT_NOTIFICATION:
+      return { content: '', isActive: false };
     default:
       return state;
   }

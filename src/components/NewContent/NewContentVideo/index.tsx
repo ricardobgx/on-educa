@@ -21,7 +21,7 @@ const NewContentVideo = (props: INewContentVideoProps): JSX.Element => {
   const { video, setVideo } = props;
 
   return (
-    <NewContentVideoBox>
+    <NewContentVideoBox className="bd-rd-30 with-shadow">
       <NewContentBoxLabel>
         Link do vídeo<RequiredField>*</RequiredField>
       </NewContentBoxLabel>
@@ -33,9 +33,10 @@ const NewContentVideo = (props: INewContentVideoProps): JSX.Element => {
         }
         type="text"
         spellCheck={false}
+        className="bd-rd-20"
       />
 
-      <NewContentVideoPreview>
+      <NewContentVideoPreview className="bd-rd-20">
         <SuppliesVideo video={video} />
       </NewContentVideoPreview>
     </NewContentVideoBox>

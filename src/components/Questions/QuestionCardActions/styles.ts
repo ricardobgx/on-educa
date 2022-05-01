@@ -6,7 +6,7 @@ import { Button } from '../../../global/styles/components/buttonComponents';
 export const QuestionCardActionsBox = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 10px;
+  margin-left: 20px;
 
   @media (max-width: 900px) {
     flex-direction: row;

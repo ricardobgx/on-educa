@@ -4,9 +4,8 @@ const entityPath = '/schoolGrades';
 
 export const getSchoolGrades = async (
   API: AxiosInstance,
-  setSchoolGradesState: (schoolGrades: ISchoolGrade[]) => void,
   token: string,
-): Promise<void> => {
+): Promise<ISchoolGrade[]> => {
   const { data } = await API.get(`${entityPath}`, {
     headers: {
       authorization: `Bearer ${token}`,
@@ -19,7 +18,6 @@ export const getSchoolGrades = async (
 export const getSchoolGradesByTeachingType = async (
   API: AxiosInstance,
   teachingTypeId: string,
-  setSchoolGradesState: (schoolGrades: ISchoolGrade[]) => void,
 ): Promise<ISchoolGrade[]> => {
   const { data } = await API.get(
     `${entityPath}/teachingtype/${teachingTypeId}`,

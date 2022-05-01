@@ -24,8 +24,14 @@ const UpdateProfileTeachingType = (
 
   const { selectedTeachingTypeId, setSelectedTeachingTypeId } = props;
 
+  const getTeachingTypesData = async (): Promise<void> => {
+    const teachingTypesFound = await getTeachingTypes(OnEducaAPI);
+
+    setTeachingTypes(teachingTypesFound);
+  };
+
   useEffect(() => {
-    getTeachingTypes(OnEducaAPI, setTeachingTypes);
+    getTeachingTypesData();
   }, []);
 
   return (

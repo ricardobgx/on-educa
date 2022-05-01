@@ -17,8 +17,8 @@ export const ChatMessageBox = styled.div`
   }
 
   &.mine-message {
-    color: ${({ theme }) => theme.colors.boxColor};
-    background: ${({ theme }) => theme.colors.textColor};
+    color: ${({ theme }) => theme.colors.mainButtonTextColor};
+    background: ${({ theme }) => theme.colors.mainButtonBgColor};
     left: 100%;
     transform: translateX(-100%);
   }

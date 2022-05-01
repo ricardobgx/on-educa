@@ -51,6 +51,7 @@ const QuestionCard = (props: IQuestionCardProps): JSX.Element => {
       <QuestionCardDetails
         to={`/questions/${id}`}
         onClick={() => loadQuestion(question)}
+        className="bd-rd-10 with-shadow"
       >
         <QuestionDetails>
           <QuestionTitle title={reduceTextSize(description, 150, 100)}>

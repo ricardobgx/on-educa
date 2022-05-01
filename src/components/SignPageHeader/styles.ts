@@ -6,13 +6,13 @@ export const SignPageHeaderBox = styled.div`
   display: flex;
   align-items: center;
 
-  color: #6c63ff;
+  color: ${({ theme }) => theme.colors.textColor};
 `;
 export const SignPageHeaderBackButton = styled(Link)`
   position: absolute;
   left: 40px;
 
-  color: #6c63ff;
+  color: ${({ theme }) => theme.colors.textColor};
 `;
 export const SignPageHeaderBackButtonIcon = styled(mediumIcon)``;
 export const SignPageHeaderLabel = styled.h2`

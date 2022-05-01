@@ -1,27 +1,29 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { ActionCreators } from '../../../store';
+import { ActionCreators, RootState } from '../../../store';
 import { FloatNotificationBox, FloatNotificationContent } from './styles';
 
 const FloatNotification: React.FC = () => {
+  const { floatNotification } = useSelector((store: RootState) => store);
+  const { content } = floatNotification;
+
   const dispatch = useDispatch();
-  const { loadFloatNotificationIsActive } = bindActionCreators(
+
+  const { hideFloatNotification } = bindActionCreators(
     ActionCreators,
     dispatch,
   );
 
   useEffect(() => {
     setTimeout(() => {
-      loadFloatNotificationIsActive(false);
+      hideFloatNotification();
     }, 10000);
   }, []);
 
   return (
     <FloatNotificationBox className="with-shadow bd-rd-30">
-      <FloatNotificationContent>
-        E-mail ou senha incorretos
-      </FloatNotificationContent>
+      <FloatNotificationContent>{content}</FloatNotificationContent>
     </FloatNotificationBox>
   );
 };

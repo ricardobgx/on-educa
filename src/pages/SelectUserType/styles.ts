@@ -57,7 +57,7 @@ export const UserType = styled.button`
 `;
 export const UserTypeImage = styled.img``;
 export const UserTypeLabel = styled.p`
-  color: #6c63ff;
+  color: ${({ theme }) => theme.colors.textColor};
 
   font-size: 20px;
   font-weight: bold;

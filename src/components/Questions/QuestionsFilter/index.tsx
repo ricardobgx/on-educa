@@ -42,7 +42,7 @@ const QuestionsFilter = (props: IQuestionsFilterProps): JSX.Element => {
   } = props;
 
   return (
-    <QuestionsFilterBox>
+    <QuestionsFilterBox className="bd-rd-30 with-shadow">
       <CloseQuestionsFilterButton
         onClick={() => setQuestionsFilterIsVisible(false)}
       >

@@ -1,10 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import SignPageHeader from '../../components/SignPageHeader';
+import { RootState } from '../../store';
 import Exams from '../../svgs/Exams';
-import OnlineLearning from '../../svgs/OnlineLearning';
 import PrimarySchool from '../../svgs/PrimarySchool';
-import Teaching from '../../svgs/Teaching';
 import {
   SelectTeachingTypeBox,
   TeachingTypes,
@@ -13,6 +13,8 @@ import {
 } from './styles';
 
 const SelectTeachingType: React.FC = () => {
+  const { theme } = useSelector((store: RootState) => store);
+
   const pageHistory = useHistory();
 
   return (
@@ -24,11 +26,11 @@ const SelectTeachingType: React.FC = () => {
       />
       <TeachingTypes>
         <TeachingType onClick={() => pageHistory.push('/sign')}>
-          <PrimarySchool fill="#6C63FF" />
+          <PrimarySchool fill={theme.colors.textColor} />
           <TeachingTypeLabel>Aluno</TeachingTypeLabel>
         </TeachingType>
         <TeachingType onClick={() => pageHistory.push('/sign')}>
-          <Exams fill="#6C63FF" />
+          <Exams fill={theme.colors.textColor} />
           <TeachingTypeLabel>Professor</TeachingTypeLabel>
         </TeachingType>
       </TeachingTypes>

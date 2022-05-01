@@ -6,7 +6,6 @@ const entityPath = 'teachingTypes';
 
 export const getTeachingTypes = async (
   API: AxiosInstance,
-  setTeachingTypesState: (teachingTypes: ITeachingType[]) => void,
 ): Promise<ITeachingType[]> => {
   const { data } = await API.get(`/${entityPath}`);
 

@@ -56,8 +56,14 @@ const SuppliesTeachSchoolReferenceSelect = (
     } else setSelectedSchoolGrade(DEFAULT_SCHOOL_GRADE);
   };
 
+  const getSchoolGradesData = async (): Promise<void> => {
+    const schoolGradesFound = await getSchoolGrades(OnEducaAPI, token);
+
+    setDefaultSchoolGrade(schoolGradesFound);
+  };
+
   useEffect(() => {
-    getSchoolGrades(OnEducaAPI, setDefaultSchoolGrade, token);
+    getSchoolGradesData();
   }, []);
 
   return (
@@ -69,6 +75,7 @@ const SuppliesTeachSchoolReferenceSelect = (
             DEFAULT_SCHOOL_GRADE,
         )
       }
+      className="bd-rd-20"
     >
       {schoolGrades.map((schoolGrade) => (
         <SuppliesReferenceSelectOption

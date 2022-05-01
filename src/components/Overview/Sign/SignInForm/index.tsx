@@ -33,14 +33,19 @@ const SignInForm: React.FC<ISignFormProps> = (props) => {
     loadFriendRequests,
     loadStudent,
     loadTeacher,
+    showFloatNotification,
   } = bindActionCreators(ActionCreators, dispatch);
 
   const login = async (): Promise<void> => {
-    const authResponse = await loginPeople(OnEducaAPI, { email, password });
+    const authResponse = await loginPeople(
+      OnEducaAPI,
+      { email, password },
+      showFloatNotification,
+    );
+
+    if (!authResponse) return;
 
     const { id, token } = authResponse;
-
-    console.log(authResponse);
 
     const people = await getPeople(OnEducaAPI, id, token);
 
@@ -64,7 +69,7 @@ const SignInForm: React.FC<ISignFormProps> = (props) => {
 
   return (
     <SignForm
-      className={`form form-login ${
+      className={`with-shadow bd-rd-30 form form-login ${
         signFormType === TSignFormType.SIGNIN ? 'active' : ''
       }`}
     >

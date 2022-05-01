@@ -79,6 +79,7 @@ const SuppliesContentReferenceSelect = (
           searchContent(contents, event.target.value) || DEFAULT_CONTENT,
         )
       }
+      className="bd-rd-20"
     >
       {contents.map((content) => (
         <SuppliesReferenceSelectOption key={content.id} value={content.id}>

@@ -75,6 +75,7 @@ const SuppliesUnityReferenceSelect = (
           searchUnity(units, event.target.value) || DEFAULT_UNITY,
         )
       }
+      className="bd-rd-20"
     >
       {units.map((unity) => (
         <SuppliesReferenceSelectOption key={unity.id} value={unity.id}>

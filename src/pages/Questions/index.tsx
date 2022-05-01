@@ -97,7 +97,7 @@ const Questions = (): JSX.Element => {
   return (
     <Page>
       <PageBox>
-        <SectionLabel backLink="/home" label="Questões" />
+        <SectionLabel backLink="/" label="Questões" />
         <QuestionsBox>
           <QuestionsActions
             isStudent={isStudent}

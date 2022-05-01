@@ -82,6 +82,7 @@ const SuppliesSubjectReferenceSelect = (
           searchSubject(subjects, event.target.value) || DEFAULT_SUBJECT,
         )
       }
+      className="bd-rd-20"
     >
       {subjects.map((subject) => (
         <SuppliesReferenceSelectOption key={subject.id} value={subject.id}>

@@ -1,6 +1,8 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import SignPageHeader from '../../components/SignPageHeader';
+import { RootState } from '../../store';
 import OnlineLearning from '../../svgs/OnlineLearning';
 import Teaching from '../../svgs/Teaching';
 import {
@@ -11,6 +13,8 @@ import {
 } from './styles';
 
 const SelectUserType: React.FC = () => {
+  const { theme } = useSelector((store: RootState) => store);
+
   const pageHistory = useHistory();
 
   return (
@@ -18,11 +22,11 @@ const SelectUserType: React.FC = () => {
       <SignPageHeader title="Qual sua função?" canBack={false} backLink="/" />
       <UserTypes>
         <UserType onClick={() => pageHistory.push('/select-school-grade')}>
-          <OnlineLearning fill="#6C63FF" />
+          <OnlineLearning fill={theme.colors.mainButtonBgColor} />
           <UserTypeLabel>Aluno</UserTypeLabel>
         </UserType>
         <UserType onClick={() => pageHistory.push('/select-teaching-type')}>
-          <Teaching fill="#6C63FF" />
+          <Teaching fill={theme.colors.mainButtonBgColor} />
           <UserTypeLabel>Professor</UserTypeLabel>
         </UserType>
       </UserTypes>

@@ -6,20 +6,19 @@ import { FloatNotificationAction } from '../actions/floatNotification';
 
 // FloatNotification
 
-export const loadFloatNotificationContent = (content: string) => {
+export const showFloatNotification = (content: string) => {
   return (dispatch: Dispatch<FloatNotificationAction>) => {
     dispatch({
-      type: FloatNotificationActionType.LOAD_FLOAT_NOTIFICATION_CONTENT,
+      type: FloatNotificationActionType.SHOW_FLOAT_NOTIFICATION,
       content,
     });
   };
 };
 
-export const loadFloatNotificationIsActive = (isActive: boolean) => {
+export const hideFloatNotification = () => {
   return (dispatch: Dispatch<FloatNotificationAction>) => {
     dispatch({
-      type: FloatNotificationActionType.LOAD_FLOAT_NOTIFICATION_IS_ACTIVE,
-      isActive,
+      type: FloatNotificationActionType.HIDE_FLOAT_NOTIFICATION,
     });
   };
 };

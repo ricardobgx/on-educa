@@ -124,7 +124,6 @@ export const SignForm = styled.div`
     min-width: 330px;
     margin-top: 50px;
     padding: 30px;
-    border-radius: 10px;
     transform-origin: top;
   }
 

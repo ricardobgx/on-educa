@@ -98,8 +98,6 @@ const NewContent = (): JSX.Element => {
     );
   };
 
-  console.log(schoolGrade.id);
-
   return (
     <Page>
       <PageBox>
@@ -131,10 +129,16 @@ const NewContent = (): JSX.Element => {
             <NewContentAttachments />
           </NewContentAdditionalDetails>
           <NewContentActions>
-            <CancelButton to={`/units/${unity.id}`}>
+            <CancelButton
+              className="block-shadow-button secondary-action bd-rd-20"
+              to={`/units/${unity.id}`}
+            >
               <CancelButtonLabel>Cancelar</CancelButtonLabel>
             </CancelButton>
-            <CreateContentButton onClick={() => createContent()}>
+            <CreateContentButton
+              className="block-shadow-button main-action bd-rd-20"
+              onClick={() => createContent()}
+            >
               <CreateContentButtonLabel>
                 Criar conteúdo
               </CreateContentButtonLabel>

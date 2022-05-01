@@ -37,10 +37,8 @@ const TeacherRankingCard = (props: ITeacherRankingCardProps): JSX.Element => {
   }, []);
 
   return (
-    <RankingCardBox>
-      <RankingPosition>
-        {rankingPosition < 10 ? `0${rankingPosition}` : `${rankingPosition}`}
-      </RankingPosition>
+    <RankingCardBox className="bd-rd-20 with-shadow">
+      <RankingPosition>#{rankingPosition}</RankingPosition>
       <PeopleCard
         smartphoneNameLength={10}
         abbreviateName

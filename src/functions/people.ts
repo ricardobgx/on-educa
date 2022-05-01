@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { AxiosInstance } from 'axios';
+import { AxiosError, AxiosInstance } from 'axios';
 import { IUpdatePeopleFriendParams } from '../dto/IUpdatePeopleFriendParams';
 import { DeviceType } from '../types/deviceType';
 import { getStudentByPeople } from './student';
 import { getTeacherByPeople } from './teacher';
-import { deviceType } from './utils';
+import { deviceType, showErrorMessage } from './utils';
 
 /* Application functions */
 
@@ -119,10 +119,19 @@ const entityPath = 'peoples';
 export const loginPeople = async (
   API: AxiosInstance,
   loginParams: ILogin,
-): Promise<IAuthenticationResponse> => {
-  const { data } = await API.post(`/${entityPath}/login`, loginParams);
+  showFloatNotification: (content: string) => void,
+): Promise<IAuthenticationResponse | null> => {
+  let authResponseData = null;
 
-  return data;
+  await API.post(`/${entityPath}/login`, loginParams)
+    .then((response) => {
+      authResponseData = response.data;
+    })
+    .catch((err) => {
+      showErrorMessage(err, showFloatNotification);
+    });
+
+  return authResponseData;
 };
 
 // Create

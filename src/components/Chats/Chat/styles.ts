@@ -72,7 +72,7 @@ export const MessageInput = styled(inputText)`
   width: 100%;
   margin-right: 10px;
   color: ${({ theme }) => theme.colors.textColor};
-  background: #f3f3f3;
+  background: ${({ theme }) => theme.colors.inputTextBgColor};
 `;
 export const SendMessageButton = styled(Button)`
   min-width: 40px;

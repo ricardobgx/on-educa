@@ -17,7 +17,7 @@ export const ChatCardBox = styled.div`
 
   :hover,
   &.selected {
-    background: #f1f1f1;
+    background: ${({ theme }) => theme.colors.hoverColor};
   }
 `;
 export const PeopleInfo = styled.div`

@@ -98,56 +98,56 @@ export default createGlobalStyle`
 
 @keyframes showLogin {
 	0% {
-		background: #d7e7f1;
+		background: ${({ theme }) => theme.colors.boxColor};
 		transform: translate(40%, 10px);
 	}
 	50% {
 		transform: translate(0, 0);
 	}
 	100% {
-		background-color: #fff;
+		background-color: ${({ theme }) => theme.colors.boxColor};
 		transform: translate(35%, -20px);
 	}
 }
 
 @keyframes hideLogin {
 	0% {
-		background-color: #fff;
+		background-color: ${({ theme }) => theme.colors.boxColor};
 		transform: translate(35%, -20px);
 	}
 	50% {
 		transform: translate(0, 0);
 	}
 	100% {
-		background: #d7e7f1;
+		background: ${({ theme }) => theme.colors.boxColor};
 		transform: translate(40%, 10px);
 	}
 }
 
 @keyframes showSignup {
 	0% {
-		background: #d7e7f1;
+		background: ${({ theme }) => theme.colors.boxColor};
 		transform: translate(-40%, 10px) scaleY(.8);
 	}
 	50% {
 		transform: translate(0, 0) scaleY(.8);
 	}
 	100% {
-		background-color: #fff;
+		background-color: ${({ theme }) => theme.colors.boxColor};
 		transform: translate(-35%, -20px) scaleY(1);
 	}
 }
 
 @keyframes hideSignup {
 	0% {
-		background-color: #fff;
+		background-color: ${({ theme }) => theme.colors.boxColor};
 		transform: translate(-35%, -20px) scaleY(1);
 	}
 	50% {
 		transform: translate(0, 0) scaleY(.8);
 	}
 	100% {
-		background: #d7e7f1;
+		background: ${({ theme }) => theme.colors.boxColor};
 		transform: translate(-40%, 10px) scaleY(.8);
 	}
 }

@@ -8,12 +8,13 @@ export const FloatNotificationBox = styled.div`
   z-index: 97;
   top: 40px;
   right: 40px;
+  max-width: 350px;
 
   opacity: 0;
 
   animation: showNotification 3s ease-in-out forwards,
     hideNotification 0.25s ease-in-out forwards;
-  animation-delay: 2s, 6s;
+  animation-delay: 0s, 4s;
 
   @keyframes showNotification {
     0% {

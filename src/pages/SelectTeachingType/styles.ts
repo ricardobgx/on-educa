@@ -57,7 +57,7 @@ export const TeachingType = styled.button`
 `;
 export const TeachingTypeImage = styled.img``;
 export const TeachingTypeLabel = styled.p`
-  color: #6c63ff;
+  color: ${({ theme }) => theme.colors.textColor};
 
   font-size: 20px;
   font-weight: bold;
