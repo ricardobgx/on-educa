@@ -14,11 +14,11 @@ export const Bar = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.progressBarColor};
 `;
 export const InnerBar = styled.div`
   height: 13px;
-  background: ${({ theme }) => theme.colors.boxColor};
+  background: ${({ theme }) => theme.colors.mainButtonBgColor};
   transition: 0.2s linear;
 
   &:first-of-type {

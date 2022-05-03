@@ -144,10 +144,11 @@ const FriendActions = (props: IFriendActionsProps): JSX.Element => {
     <FriendActionsBox>
       {isFriend ? (
         <MyFriendActions>
-          <SendMessageButton>
+          <SendMessageButton className="block-shadow-button main-action bd-rd-20">
             <SendMessageButtonIcon className="fas fa-comment-alt" />
           </SendMessageButton>
           <UnfriendButton
+            className="block-shadow-button secondary-action bd-rd-20"
             onClick={() =>
               removePeopleFriend(
                 OnEducaAPI,
@@ -172,6 +173,7 @@ const FriendActions = (props: IFriendActionsProps): JSX.Element => {
             <MeFriendRequestActions>
               {!meRequestedFriend ? (
                 <SendFriendRequestButton
+                  className="block-shadow-button main-action bd-rd-20"
                   onClick={() =>
                     createFriendRequest(
                       OnEducaAPI,
@@ -188,6 +190,7 @@ const FriendActions = (props: IFriendActionsProps): JSX.Element => {
                 </SendFriendRequestButton>
               ) : (
                 <CancelFriendRequestButton
+                  className="block-shadow-button secondary-action bd-rd-20"
                   onClick={() =>
                     deleteFriendRequest(
                       OnEducaAPI,

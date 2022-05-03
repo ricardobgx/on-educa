@@ -247,9 +247,6 @@ export const ClearSearchSuppliesInputButtonIcon = styled(smallIcon)``;
 
 export const SearchSuppliesButton = styled(Button)`
   min-width: 40px;
-
-  border: none;
-  cursor: pointer;
 `;
 
 // Icone do botao de pesquisa

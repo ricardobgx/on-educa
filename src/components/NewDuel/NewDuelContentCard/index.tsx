@@ -11,7 +11,7 @@ const NewDuelContentCard = (props: INewDuelContentCardProps): JSX.Element => {
   const { content, unity } = props;
 
   return (
-    <NewDuelContentCardBox>
+    <NewDuelContentCardBox className="with-shadow bd-rd-10">
       <NewDuelContentCardSection label={content.name} bold />
       <AdditionalInfo>
         <NewDuelContentCardSection label={unity.name} bold={false} />

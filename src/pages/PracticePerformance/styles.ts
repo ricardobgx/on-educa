@@ -6,8 +6,17 @@ export const PracticePerformanceBox = styled.div`
   display: flex;
   width: calc(100vw - 40px);
 
+  & svg {
+    width: calc(50vw - 40px);
+    height: calc((50vw - 40px) * 0.9);
+  }
+
   @media (max-width: 1150px) {
     flex-wrap: wrap;
+
+    & svg {
+      display: none;
+    }
   }
 `;
 export const PerformancePageImageBox = styled.div`
@@ -82,8 +91,6 @@ export const NextContentButton = styled(Link)`
   margin: 20px;
   color: ${({ theme }) => theme.colors.boxColor};
   background: ${({ theme }) => theme.colors.textColor};
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
   width: calc(100% - 40px);
 `;
 export const NextContentButtonLabel = styled(paragraph)``;

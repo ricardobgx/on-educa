@@ -6,7 +6,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { useRouteMatch } from 'react-router-dom';
-import analytics from '../../assets/ilustrations/analytics.png';
 import { ActionCreators, RootState } from '../../store';
 import SectionLabel from '../../components/App/SectionLabel';
 import {
@@ -15,7 +14,6 @@ import {
   PerformanceDataBox,
   PerformanceDetails,
   PerformanceDetailsBox,
-  PerformancePageImage,
   PerformancePageImageBox,
   PerformanceType,
   PerformanceTypeBox,
@@ -32,11 +30,11 @@ import PracticePerformanceData from '../../components/PracticePerformance/Practi
 import SimplePieChart, {
   ISimplePieChartData,
 } from '../../components/App/Charts/SimplePieChart';
-import theme from '../../global/styles/theme';
 import { deviceHeight, deviceType, deviceWidth } from '../../functions/utils';
 import { DeviceType } from '../../types/deviceType';
 import { updateStudentWeeklyPerformanceValues } from '../../functions/studentWeeklyPerformance';
 import OnEducaAPI from '../../services/api';
+import Analytics from '../../svgs/Analytics';
 
 interface IPracticePerformanceRouteParams {
   id: string;
@@ -58,7 +56,7 @@ const PracticePerformance = (): JSX.Element => {
 
   // RootState
 
-  const { practice, people, aplication, student } = useSelector(
+  const { practice, people, aplication, student, theme } = useSelector(
     (store: RootState) => store,
   );
   const { questions } = practice;
@@ -180,11 +178,11 @@ const PracticePerformance = (): JSX.Element => {
       <PageBoxColumn>
         <PracticePerformanceBox>
           <PerformancePageImageBox>
-            <PerformancePageImage src={analytics} />
+            <Analytics fill={theme.colors.mainButtonBgColor} />
           </PerformancePageImageBox>
           <PerformanceDetails>
             <SectionLabel backLink="" label="Desempenho" />
-            <PerformanceDetailsBox className="with-shadow bd-rd-5">
+            <PerformanceDetailsBox className="with-shadow bd-rd-30">
               <PracticePerformanceChartBox>
                 <SimplePieChart
                   data={chartData}

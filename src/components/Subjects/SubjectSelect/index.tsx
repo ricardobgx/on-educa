@@ -42,7 +42,7 @@ const SubjectSelect = (props: ISubjectSelectProps): JSX.Element => {
           {sortedSubjects.map((subject) => (
             <SubjectSectionSelectOption
               key={subject.id}
-              className={`block-shadow-button bd-rd-20 ${
+              className={`block-shadow-button secondary-action bd-rd-30 ${
                 subject.id === subjectSelectedId ? 'selected' : ''
               }`}
               onClick={() => setSubjectSelected(subject)}

@@ -23,7 +23,6 @@ import { findStudentDuelPartByTeams } from '../../functions/duelTeamParts';
 import { answerDuelRoundQuestion } from '../../functions/duelRound';
 import { DuelRoundStatus } from '../../types/duelRoundStatus';
 import { socket } from '../../App';
-import CircularProgressBar from '../../components/App/CircularProgressBar';
 
 interface IDuelQuestionsRouteParams {
   id: string;
@@ -164,10 +163,6 @@ const DuelQuestions = (): JSX.Element => {
   return (
     <Page>
       <PageBox>
-        <CircularProgressBar
-          stop={false}
-          time={duelRound.timeForQuestion * 60}
-        />
         <DuelQuestionsBox>
           <DuelStatus
             duelRound={duelRound}

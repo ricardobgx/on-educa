@@ -18,7 +18,7 @@ const ProfileDailyGoal = (props: IProfileDailyGoalProps): JSX.Element => {
   const { dailyXP } = props;
 
   return (
-    <Container className="with-shadow bd-rd-5">
+    <Container className="with-shadow bd-rd-30">
       <DailyGoalHeader>
         <DailyGoalHeaderBox>
           <DailyGoalIcon className="fas fa-bullseye" />

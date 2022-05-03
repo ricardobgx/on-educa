@@ -123,13 +123,13 @@ const NewDuel = (): JSX.Element => {
           </NewDuelDetails>
           <NewDuelActions>
             <CancelNewDuelButton
-              className="block-shadow-button secondary-action"
+              className="block-shadow-button secondary-action bd-rd-20"
               to="/duels"
             >
               <CancelNewDuelButtonLabel>Cancelar</CancelNewDuelButtonLabel>
             </CancelNewDuelButton>
             <CreateNewDuelButton
-              className="block-shadow-button main-action"
+              className="block-shadow-button main-action bd-rd-20"
               onClick={() => createDuel()}
             >
               <CreateNewDuelButtonLabel>Criar duelo</CreateNewDuelButtonLabel>

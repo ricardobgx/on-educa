@@ -13,9 +13,7 @@ export const ContentAttachmentsData = styled.div`
   width: 100%;
   margin-left: 40px;
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   padding: 10px;
-  border-radius: 5px;
 
   @media (max-width: 1150px) {
     margin: 0;

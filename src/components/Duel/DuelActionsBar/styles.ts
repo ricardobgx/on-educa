@@ -19,8 +19,6 @@ export const OwnerInfo = styled.div`
   padding: 0 20px;
   height: 50px;
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
   font-weight: bold;
   color: ${({ theme }) => theme.colors.textColor};
   width: calc(50% - 20px);

@@ -215,9 +215,9 @@ const Profile = (): JSX.Element => {
         )}
         <ProfileBox>
           <ProfileDetails>
-            <SectionLabel backLink="/home" label="Perfil" />
+            <SectionLabel backLink="/" label="Perfil" />
 
-            <ProfileDetailsBox className="with-shadow bd-rd-5">
+            <ProfileDetailsBox className="with-shadow bd-rd-30">
               <ProfileBanner />
               <PeopleDetails>
                 <AppearenceDetails>

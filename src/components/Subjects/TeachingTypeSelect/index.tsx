@@ -46,7 +46,7 @@ const TeachingTypeSelect = (props: ITeachingTypeSelectProps): JSX.Element => {
           {sortedTeachingTypes.map((teachingType) => (
             <SubjectSectionSelectOption
               key={teachingType.id}
-              className={`block-shadow-button bd-rd-20 ${
+              className={`block-shadow-button secondary-action bd-rd-30 ${
                 teachingType.id === teachingTypeSelectedId ? 'selected' : ''
               }`}
               onClick={() => setTeachingTypeSelected(teachingType)}

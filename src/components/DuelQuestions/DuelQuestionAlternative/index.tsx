@@ -1,5 +1,4 @@
 import React from 'react';
-import theme from '../../../global/styles/theme';
 import { Container, QuestionAlternativeLabel } from './styles';
 
 interface IDuelQuestionAlternativeProps {
@@ -17,13 +16,9 @@ const DuelQuestionAlternative = (
 
   return (
     <Container
-      className="with-shadow bd-rd-5"
-      style={{
-        borderColor:
-          id === selectedAlternative.id ? theme.colors.textColor : '',
-        color: id === selectedAlternative.id ? theme.colors.textColor : '',
-        fontWeight: id === selectedAlternative.id ? 'bold' : 'normal',
-      }}
+      className={`block-shadow-button secondary-action bd-rd-30 ${
+        id === selectedAlternative.id ? 'selected' : ''
+      }`}
       onClick={() => setSelectedAlternative(alternative)}
     >
       <QuestionAlternativeLabel>{description}</QuestionAlternativeLabel>

@@ -87,7 +87,10 @@ const FriendCard = (props: IFriendCardProps): JSX.Element => {
 
   return (
     <FriendCardBox style={{ animationDelay: `${index * 0.2}s` }}>
-      <FriendPeople to={`/profile/${people.id}`}>
+      <FriendPeople
+        className="with-shadow bd-rd-20"
+        to={`/profile/${people.id}`}
+      >
         <PeopleCard
           people={friend}
           student={student}
@@ -98,7 +101,10 @@ const FriendCard = (props: IFriendCardProps): JSX.Element => {
         />
       </FriendPeople>
       {isFriend && (
-        <SendMessageButton onClick={() => getOrCreateChatData()}>
+        <SendMessageButton
+          className="block-shadow-button main-action bd-rd-10"
+          onClick={() => getOrCreateChatData()}
+        >
           <SendMessageButtonIcon className="fas fa-comment-alt" />
         </SendMessageButton>
       )}

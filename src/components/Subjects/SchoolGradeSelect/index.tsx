@@ -34,7 +34,7 @@ const SchoolGradeSelect = (props: ISchoolGradeSelectProps): JSX.Element => {
           {options.map((option) => (
             <SubjectSectionSelectOption
               key={option.id}
-              className={`block-shadow-button bd-rd-20 ${
+              className={`block-shadow-button secondary-action bd-rd-30 ${
                 option.id === selectedOption ? 'selected' : ''
               }`}
               onClick={() => setOption(option)}

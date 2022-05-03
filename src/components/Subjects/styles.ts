@@ -46,9 +46,6 @@ export const SubjectSectionSelectOptionsListBox = styled.div`
   }
 `;
 export const SubjectSectionSelectOption = styled.button`
-  color: ${({ theme }) => theme.colors.secondaryButtonTextColor};
-  background: ${({ theme }) => theme.colors.secondaryButtonBgColor};
-
   border: none;
 
   width: 100%;
@@ -62,28 +59,6 @@ export const SubjectSectionSelectOption = styled.button`
   transition: all 0.2s linear;
 
   cursor: pointer;
-
-  &.selected {
-    color: ${({ theme }) => theme.colors.mainButtonTextColor};
-    background: ${({ theme }) => theme.colors.mainButtonBgColor};
-
-    box-shadow: 0px 0px 0px 1px
-      ${({ theme }) => theme.colors.mainButtonShadowColor};
-
-    p {
-      transform: translateY(0px);
-    }
-
-    :hover {
-      box-shadow: 0px 0px 0px 1px
-        ${({ theme }) => theme.colors.mainButtonShadowColor};
-    }
-  }
-
-  :hover {
-    box-shadow: 0px 0px 0px 1px
-      ${({ theme }) => theme.colors.secondaryButtonShadowColor};
-  }
 
   &:last-of-type {
     margin-bottom: 0;

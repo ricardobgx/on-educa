@@ -37,6 +37,7 @@ export const ProfileDetailsBox = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};
   min-height: calc(100vh - 220px);
   position: relative;
+  overflow: hidden;
 
   @media (max-width: 1150px) {
     min-height: unset;
@@ -117,7 +118,7 @@ export const PerformanceDetailsHeaderLabel = styled(paragraph)`
   font-weight: bold;
 `;
 export const PerformanceDetailsBox = styled.div`
-  width: width: calc(100% - 40px);
+  width: calc(100% - 40px);
   margin: 20px;
 `;
 export const WeeklyPerformanceSummary = styled.div`

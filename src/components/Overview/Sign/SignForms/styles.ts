@@ -186,7 +186,6 @@ export const SignFormField = styled.div`
     padding: 10px 15px;
 
     border: none;
-    border-radius: 10px;
   }
 `;
 export const SignFormFieldLabel = styled.label``;
@@ -211,33 +210,11 @@ export const SignFormButton = styled(BlockShadowButton)`
   width: 100%;
   margin-top: 20px;
 
-  font-size: 16px;
-
-  color: #ffffff;
-  background: #6c63ff;
-
   border: none;
-  border-radius: 10px;
-  box-shadow: 0px 2px 0px 3px #4138c7;
 
   cursor: pointer;
 
   transition: all 0.2s linear;
-
-  :hover {
-    box-shadow: 0px 0px 0px 1px #4138c7;
-  }
-
-  &.btn-switch {
-    color: #6c63ff;
-    background: #ffffff;
-
-    box-shadow: 0px 2px 0px 3px rgba(0, 0, 0, 0.1);
-
-    :hover {
-      box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.1);
-    }
-  }
 `;
 
 export const SignFormButtonLabel = styled.p`

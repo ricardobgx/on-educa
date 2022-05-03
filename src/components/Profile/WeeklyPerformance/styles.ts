@@ -27,9 +27,9 @@ export const WeeklyPerformanceInfoValue = styled(paragraph)``;
 export const WeeklyPerformanceInfo = styled.div`
   display: flex;
   justify-content: space-between;
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
+  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 20px;
   margin-bottom: 20px;
 
   &:last-of-type {
@@ -40,10 +40,6 @@ export const SeeChartsButton = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${({ theme }) => theme.colors.boxColor};
-  background: ${({ theme }) => theme.colors.textColor};
-  box-shadow: 0px 0px 0px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
   border: none;
   min-height: 40px;
   margin-top: 15px;

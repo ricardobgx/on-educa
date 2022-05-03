@@ -23,7 +23,10 @@ const ProfileActions = (props: IProfileActionsProps): JSX.Element => {
   return (
     <ProfileActionsBox>
       {isPeopleLogged(loggedPeople.id, people.id as string) ? (
-        <EditProfileButton to="/update-profile" className="with-shadow bd-rd-5">
+        <EditProfileButton
+          to="/update-profile"
+          className="block-shadow-button secondary-action bd-rd-20"
+        >
           <EditProfileButtonLabel>Editar perfil</EditProfileButtonLabel>
           <SmallMaterialIconRound color="" icon="mode_edit" />
         </EditProfileButton>

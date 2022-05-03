@@ -29,7 +29,7 @@ const DuelTurn = (props: IDuelTurnProps): JSX.Element => {
   const student = studentFound || DEFAULT_STUDENT;
 
   return (
-    <Container className="with-shadow bd-rd-5">
+    <Container className="with-shadow bd-rd-30">
       <TeamTurn>
         <TeamTurnIcon className="fas fa-users" />
         <TeamTurnLabel>{team.name}</TeamTurnLabel>

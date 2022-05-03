@@ -14,29 +14,20 @@ export const Container = styled.div`
   }
 `;
 export const DuelProgressBar = styled.div`
-  height: 19px;
+  height: 15px;
   padding: 2px;
   margin-right: 20px;
-  border-radius: 10px;
   display: flex;
   align-items: center;
   width: 100%;
-  background: ${({ theme }) => theme.colors.textColor};
+  border-radius: 10px;
+  background: ${({ theme }) => theme.colors.progressBarColor};
 `;
 export const QuestionsProgressBar = styled.div`
   height: 15px;
-  background: ${({ theme }) => theme.colors.boxColor};
+  background: ${({ theme }) => theme.colors.mainButtonBgColor};
   transition: 0.2s linear;
-
-  &:first-of-type {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-  }
-
-  &:last-of-type {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-  }
+  border-radius: 10px;
 `;
 export const DuelProgressLabel = styled(paragraph)`
   color: ${({ theme }) => theme.colors.textColor};

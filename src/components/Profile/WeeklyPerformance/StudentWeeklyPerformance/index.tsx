@@ -67,7 +67,7 @@ const StudentWeeklyPerformance = (
   } = weekDay;
 
   return (
-    <Container className="with-shadow bd-rd-5">
+    <Container className="with-shadow bd-rd-30">
       <PerformanceDetailsHeader>
         <SmallMaterialIconRound color="" icon="insights" />
         <PerformanceDetailsHeaderLabel>
@@ -115,7 +115,10 @@ const StudentWeeklyPerformance = (
         </WeeklyPerformanceInfo>
       </WeeklyPerformancesList>
       {isPeopleLogged && (
-        <SeeChartsButton to="/performance/">
+        <SeeChartsButton
+          className="block-shadow-button main-action bd-rd-20"
+          to="/performance/"
+        >
           <SeeChartsButtonLabel>Ver gráficos</SeeChartsButtonLabel>
         </SeeChartsButton>
       )}

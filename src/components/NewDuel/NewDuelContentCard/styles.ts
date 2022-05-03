@@ -6,7 +6,6 @@ export const NewDuelContentCardBox = styled(SectionBox)`
   flex-direction: column;
   width: 100%;
   margin-bottom: 20px;
-  border-radius: 5px;
   padding: 20px;
 
   &:last-of-type {

@@ -14,10 +14,10 @@ export const NewDoubtInput = styled.textarea`
   height: 40px;
   min-height: 40px;
   max-height: 250px;
-  padding: 10px 10px;
+  padding: 10px 15px;
   margin-right: 10px;
   border: none;
-  background: #f3f3f3;
+  background: ${({ theme }) => theme.colors.inputTextBgColor};
   color: ${({ theme }) => theme.colors.textColor};
 
   ::-webkit-input-placeholder {
