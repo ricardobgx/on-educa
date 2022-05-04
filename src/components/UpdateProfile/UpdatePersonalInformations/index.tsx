@@ -48,31 +48,11 @@ const UpdatePersonalInformations = (
   } = props;
 
   return (
-    <UpdateProfileSection>
+    <UpdateProfileSection className="with-shadow bd-rd-30">
       <UpdateProfileSectionLabel>
         Informações pessoais
       </UpdateProfileSectionLabel>
       <UpdateProfileSectionsBox>
-        <UpdateProfileSectionBox>
-          <UpdateProfileSectionBoxLabel>
-            Foto de perfil
-          </UpdateProfileSectionBoxLabel>
-          <ProfilePictureBox>
-            <ProfilePicture src={profilePicture} />
-            <ProfilePictureActions>
-              <UploadImageButton>
-                <ProfilePictureActionLabel>
-                  Upload de imagem
-                </ProfilePictureActionLabel>
-              </UploadImageButton>
-              <RemoveImageButton>
-                <ProfilePictureActionLabel>
-                  Remover imagem
-                </ProfilePictureActionLabel>
-              </RemoveImageButton>
-            </ProfilePictureActions>
-          </ProfilePictureBox>
-        </UpdateProfileSectionBox>
         <UpdateProfileTextInputSection
           label="Nome"
           inputType="text"

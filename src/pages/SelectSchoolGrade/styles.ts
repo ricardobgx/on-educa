@@ -51,12 +51,6 @@ export const ConfirmSchoolGradeButton = styled(BlockShadowButton)`
   height: 40px;
 
   cursor: pointer;
-
-  :disabled {
-    opacity: 0.7;
-    box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.colors.textColor} !important;
-    pointer-events: none;
-  }
 `;
 export const ConfirmSchoolGradeButtonLabel = styled.p`
   text-transform: uppercase;

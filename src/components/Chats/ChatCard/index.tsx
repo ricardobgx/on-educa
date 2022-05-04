@@ -68,14 +68,12 @@ const ChatCard = (props: IChatCardProps): JSX.Element => {
           <PeopleName>{name}</PeopleName>
           <LastMessageTime>
             {messages.length > 0 &&
-              displayDayAndMonthDate(
-                getFullDate(messages[messages.length - 1].createdAt),
-              )}
+              displayDayAndMonthDate(getFullDate(messages[0].createdAt))}
           </LastMessageTime>
         </NameAndLastMessageTime>
         <LastMessagePreview>
           {messages.length > 0
-            ? messages[messages.length - 1].content.substring(0, 15)
+            ? messages[0].content.substring(0, 15)
             : 'Diga oi a ela/ele'}
         </LastMessagePreview>
       </NameAndLastMessage>

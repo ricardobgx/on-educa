@@ -18,10 +18,14 @@ const ContentCardActions = (props: IContentCardActionsProps): JSX.Element => {
 
   return (
     <ContentCardActionsBox>
-      <EditSuppliesLink to={`/contents/${content.id}/edit`}>
+      <EditSuppliesLink
+        className="block-shadow-button secondary-action bd-rd-10"
+        to={`/contents/${content.id}/edit`}
+      >
         <EditSuppliesButtonIcon className="fas fa-pen" />
       </EditSuppliesLink>
       <DeleteSuppliesButton
+        className="block-shadow-button secondary-action bd-rd-10"
         onClick={() => {
           setContent(content);
           setDeleteContentIsVisible(true);

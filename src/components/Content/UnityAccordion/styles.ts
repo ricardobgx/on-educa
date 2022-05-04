@@ -29,12 +29,9 @@ export const HiddenContentsBox = styled.div`
   max-height: 250px;
 `;
 export const HiddenContent = styled(Link)`
-  background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   width: 100%;
   margin-bottom: 10px;
   padding: 10px;
-  border-radius: 5px;
   transition: all 0.2s linear;
 
   &:last-of-type {
@@ -42,6 +39,5 @@ export const HiddenContent = styled(Link)`
   }
 `;
 export const HiddenContentLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
   transition: all 0.2s linear;
 `;

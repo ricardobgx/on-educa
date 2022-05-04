@@ -97,12 +97,16 @@ const UpdateProfileActions = (
 
   return (
     <UpdateProfileActionsBox>
-      <CancelUpdateProfileButton to={`/profile/${id}`}>
+      <CancelUpdateProfileButton
+        className="block-shadow-button secondary-action bd-rd-20"
+        to={`/profile/${id}`}
+      >
         <CancelUpdateProfileButtonLabel>
           Cancelar
         </CancelUpdateProfileButtonLabel>
       </CancelUpdateProfileButton>
       <ConfirmUpdateProfileButton
+        className="block-shadow-button main-action bd-rd-20"
         onClick={() =>
           updatePeople(
             OnEducaAPI,

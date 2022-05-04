@@ -1,9 +1,14 @@
 import { ThemeType } from '../types/ThemeType';
 
 const fontsSize = {
-  computer: '15px',
+  computer: '2.25vh',
   tablet: '2.2vw',
   smartphone: '3.3vw',
+  smallFonts: {
+    computer: '2vh',
+    tablet: '2vw',
+    smartphone: '3vw',
+  },
 };
 
 const similarColors = {
@@ -207,24 +212,24 @@ export const themes: ITheme[] = [
       backgroundColor: '#212121',
       boxColor: '#2C2C2C',
       hoverColor: '#333333',
-      textColor: '#E5E5E5',
+      textColor: '#FFFFFF',
       boxShadowColor: 'rgba(0, 0, 0, 0.5)',
-      mainButtonTextColor: '#E5E5E5',
+      mainButtonTextColor: '#FFFFFF',
       mainButtonBgColor: '#FF0054',
       mainButtonShadowColor: '#DE1457',
-      secondaryButtonTextColor: '#E5E5E5',
+      secondaryButtonTextColor: '#FFFFFF',
       secondaryButtonBgColor: '#2C2C2C',
       secondaryButtonShadowColor: 'rgba(0, 0, 0, 0.25)',
       dangerButtonTextColor: '',
       dangerButtonBgColor: '',
       dangerButtonShadowColor: '',
       commonColor: '#212121',
-      whiteColor: '#E5E5E5',
+      whiteColor: '#FFFFFF',
       secondaryColor: '#212121',
       progressBarColor: '#414141',
-      questionTextColor: '#E5E5E5',
+      questionTextColor: '#FFFFFF',
       duelCongratulationsBackground: '#212121',
-      duelCongratulationsButtonColor: '#E5E5E5',
+      duelCongratulationsButtonColor: '#FFFFFF',
       scrollBarColor: 'rgba(255, 255, 255, .2)',
       inputTextBgColor: '#333333',
     },

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button } from '../../global/styles/components/buttonComponents';
-import { mediumIcon } from '../../global/styles/components/iconComponents';
+import { smallIcon } from '../../global/styles/components/iconComponents';
 import { paragraph } from '../../global/styles/components/textComponents';
 
 export const ChatsBox = styled.div`
@@ -46,7 +46,7 @@ export const ToggleRecentConversationsLabel = styled.label`
     display: flex;
   }
 `;
-export const ToggleRecentConversationsLabelIcon = styled(mediumIcon)``;
+export const ToggleRecentConversationsLabelIcon = styled(smallIcon)``;
 export const RecentConversations = styled.div`
   padding: 5px;
   width: 25%;
@@ -89,7 +89,7 @@ export const BackButton = styled(Link)`
   left: 10px;
   color: ${({ theme }) => theme.colors.textColor};
 `;
-export const BackButtonIcon = styled(mediumIcon)``;
+export const BackButtonIcon = styled(smallIcon)``;
 export const RecentConversationsLabel = styled(paragraph)`
   color: ${({ theme }) => theme.colors.textColor};
   font-weight: bold;

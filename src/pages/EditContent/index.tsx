@@ -143,10 +143,16 @@ const EditContent = (): JSX.Element => {
             <NewContentAttachments />
           </EditContentAdditionalDetails>
           <EditContentActions>
-            <CancelButton to={`/units/${unity.id}`}>
+            <CancelButton
+              className="block-shadow-button secondary-action bd-rd-20"
+              to={`/units/${unity.id}`}
+            >
               <CancelButtonLabel>Cancelar</CancelButtonLabel>
             </CancelButton>
-            <UpdateContentButton onClick={() => updateContent()}>
+            <UpdateContentButton
+              className="block-shadow-button main-action bd-rd-20"
+              onClick={() => updateContent()}
+            >
               <UpdateContentButtonLabel>
                 Atualizar conteúdo
               </UpdateContentButtonLabel>

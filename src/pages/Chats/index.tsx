@@ -111,7 +111,7 @@ const Chats = (): JSX.Element => {
               </RecentConversationsList>
               <TalkWithTeacherButton className="block-shadow-button main-action bd-rd-20">
                 <TalkWithTeacherButtonLabel>
-                  Fale com um professor
+                  Falar com professor
                 </TalkWithTeacherButtonLabel>
               </TalkWithTeacherButton>
               {/* <TalkWithTeacher>1</TalkWithTeacher> */}

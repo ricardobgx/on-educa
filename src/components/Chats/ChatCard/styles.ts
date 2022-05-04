@@ -1,5 +1,8 @@
 import styled from 'styled-components';
-import { paragraph } from '../../../global/styles/components/textComponents';
+import {
+  paragraph,
+  smallParagraph,
+} from '../../../global/styles/components/textComponents';
 
 export const ChatCardBox = styled.div`
   padding: 10px;
@@ -40,9 +43,9 @@ export const NameAndLastMessageTime = styled.div`
 export const PeopleName = styled(paragraph)`
   font-weight: bold;
 `;
-export const LastMessagePreview = styled(paragraph)`
-  font-size: 14px;
+export const LastMessagePreview = styled(smallParagraph)`
+  /* font-size: 14px; */
 `;
-export const LastMessageTime = styled.p`
-  font-size: 14px;
+export const LastMessageTime = styled(smallParagraph)`
+  /* font-size: 14px; */
 `;

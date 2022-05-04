@@ -203,12 +203,17 @@ export default createGlobalStyle`
       transition: all 0.2s linear;
     }
 
-    &:hover {
+    :hover, :disabled, &.selected {
       p,
       i,
       span {
         transform: translateY(0px);
       }
+    }
+
+    :disabled {
+      opacity: .7;
+      pointer-events: none;
     }
 
     &.main-action {
@@ -218,7 +223,7 @@ export default createGlobalStyle`
       box-shadow: 0px 2px 0px 3px
         ${({ theme }) => theme.colors.mainButtonShadowColor};
     
-      :hover {
+      :hover, :disabled {
         box-shadow: 0px 0px 0px 1px
         ${({ theme }) => theme.colors.mainButtonShadowColor};
       }
@@ -231,7 +236,7 @@ export default createGlobalStyle`
       box-shadow: 0px 2px 0px 3px
         ${({ theme }) => theme.colors.secondaryButtonShadowColor};
     
-      :hover {
+      :hover, :disabled {
         box-shadow: 0px 0px 0px 1px
         ${({ theme }) => theme.colors.secondaryButtonShadowColor};
       }
@@ -242,12 +247,6 @@ export default createGlobalStyle`
 
         box-shadow: 0px 0px 0px 1px
           ${({ theme }) => theme.colors.mainButtonShadowColor};
-        
-        p,
-        i,
-        span {
-          transform: translateY(0px);
-        }
       }
     }
 

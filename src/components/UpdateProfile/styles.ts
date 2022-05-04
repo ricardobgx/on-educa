@@ -41,21 +41,19 @@ export const UpdateProfileSectionBoxLabel = styled(paragraph)`
 `;
 export const UpdateProfileInputText = styled(inputText)`
   color: ${({ theme }) => theme.colors.textColor};
-  background: ${({ theme }) => theme.colors.boxColor};
+  background: ${({ theme }) => theme.colors.inputTextBgColor};
   /* box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor}; */
-  border: 2px solid ${({ theme }) => theme.colors.textColor};
+  border: none;
   height: 40px;
-  border-radius: 5px;
   padding: 0 10px;
   margin-top: 10px;
 `;
 export const UpdateProfileSelect = styled(inputSelect)`
-  color: ${({ theme }) => theme.colors.boxColor};
-  background: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.mainButtonTextColor};
+  background: ${({ theme }) => theme.colors.mainButtonBgColor};
   /* box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor}; */
   border-right: 10px solid transparent;
   height: 40px;
-  border-radius: 5px;
   padding: 0 10px;
   margin-top: 10px;
 `;

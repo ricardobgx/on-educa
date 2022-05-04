@@ -97,8 +97,6 @@ export const CancelButton = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
   border: none;
   height: 40px;
   width: calc(50% - 20px);
@@ -107,8 +105,6 @@ export const CancelButton = styled(Link)`
   @media (max-width: 900px) {
     width: 100%;
   }
-  background: ${({ theme }) => theme.colors.boxColor};
-  color: ${({ theme }) => theme.colors.textColor};
 
   @media (max-width: 900px) {
     margin-bottom: 20px;
@@ -123,7 +119,5 @@ export const UpdateContentButton = styled(Button)`
   @media (max-width: 900px) {
     width: 100%;
   }
-  background: ${({ theme }) => theme.colors.textColor};
-  color: ${({ theme }) => theme.colors.boxColor};
 `;
 export const UpdateContentButtonLabel = styled(paragraph)``;

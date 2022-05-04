@@ -23,6 +23,7 @@ const UnityCardActions = (props: IUnityCardActionsProps): JSX.Element => {
   return (
     <UnityCardActionsBox>
       <EditSuppliesButton
+        className="block-shadow-button secondary-action bd-rd-10"
         onClick={() => {
           setUnity(unity);
           setUpdateUnityIsVisible(true);
@@ -31,6 +32,7 @@ const UnityCardActions = (props: IUnityCardActionsProps): JSX.Element => {
         <EditSuppliesButtonIcon className="fas fa-pen" />
       </EditSuppliesButton>
       <DeleteSuppliesButton
+        className="block-shadow-button secondary-action bd-rd-10"
         onClick={() => {
           setUnity(unity);
           setDeleteUnityIsVisible(true);

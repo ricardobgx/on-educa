@@ -1,8 +1,14 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 import SignPageHeader from '../../components/SignPageHeader';
-import { RootState } from '../../store';
+import { registerPeople } from '../../functions/people';
+import { registerTeacher } from '../../functions/teacher';
+import { getTeachingTypes } from '../../functions/teachingType';
+import OnEducaAPI from '../../services/api';
+import { DEFAULT_TEACHING_TYPE } from '../../static/defaultEntitiesValues';
+import { ActionCreators, RootState } from '../../store';
 import Exams from '../../svgs/Exams';
 import PrimarySchool from '../../svgs/PrimarySchool';
 import {
@@ -13,9 +19,69 @@ import {
 } from './styles';
 
 const SelectTeachingType: React.FC = () => {
-  const { theme } = useSelector((store: RootState) => store);
+  const { theme, signUp } = useSelector((store: RootState) => store);
+  const { name, email, password, isStudent } = signUp;
+
+  const dispatch = useDispatch();
+  const { showFloatNotification } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
 
   const pageHistory = useHistory();
+
+  const [teachingTypes, setTeachingTypes] = useState<ITeachingType[]>([]);
+  const [teachingTypeSelected, setTeachingTypeSelected] =
+    useState<ITeachingType>(DEFAULT_TEACHING_TYPE);
+
+  const getTeachingTypesAction = async (): Promise<void> => {
+    const teachingTypesFound = await getTeachingTypes(OnEducaAPI);
+
+    setTeachingTypes(
+      teachingTypesFound.sort((ttA: ITeachingType, ttB: ITeachingType) => {
+        if (ttA.name > ttB.name) {
+          return 1;
+        }
+        if (ttB.name > ttA.name) {
+          return -1;
+        }
+        return 0;
+      }),
+    );
+  };
+
+  const createTeacher = (peopleId: string, teachingTypeId: string): void => {
+    registerTeacher(
+      OnEducaAPI,
+      {
+        peopleId,
+        teachingTypeId,
+      },
+      () => {
+        showFloatNotification('Cadastro realizado com sucesso!');
+        pageHistory.push('/sign');
+      },
+      () =>
+        showFloatNotification(
+          'Não foi possível cadastrar o usuário, tente novamente',
+        ),
+    );
+  };
+
+  const createPeople = (): void => {
+    registerPeople(
+      OnEducaAPI,
+      { name, email, password, isStudent, isOnline: true },
+      (peopleCreated: IPeople) => {
+        createTeacher(peopleCreated.id, teachingTypeSelected.id);
+      },
+      () => showFloatNotification('Não foi possível cadastrar o usuário'),
+    );
+  };
+
+  useEffect(() => {
+    getTeachingTypesAction();
+  }, []);
 
   return (
     <SelectTeachingTypeBox>
@@ -25,13 +91,23 @@ const SelectTeachingType: React.FC = () => {
         backLink="/"
       />
       <TeachingTypes>
-        <TeachingType onClick={() => pageHistory.push('/sign')}>
+        <TeachingType
+          onClick={() => {
+            setTeachingTypeSelected(teachingTypes[0]);
+            createPeople();
+          }}
+        >
           <PrimarySchool fill={theme.colors.textColor} />
-          <TeachingTypeLabel>Aluno</TeachingTypeLabel>
+          <TeachingTypeLabel>Ensino Fundamental</TeachingTypeLabel>
         </TeachingType>
-        <TeachingType onClick={() => pageHistory.push('/sign')}>
+        <TeachingType
+          onClick={() => () => {
+            setTeachingTypeSelected(teachingTypes[1]);
+            createPeople();
+          }}
+        >
           <Exams fill={theme.colors.textColor} />
-          <TeachingTypeLabel>Professor</TeachingTypeLabel>
+          <TeachingTypeLabel>Ensino Médio</TeachingTypeLabel>
         </TeachingType>
       </TeachingTypes>
     </SelectTeachingTypeBox>

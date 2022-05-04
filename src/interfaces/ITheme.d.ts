@@ -49,10 +49,17 @@ interface IThemeSimilarColors {
  * Fonts size
  ********************** */
 
+interface IThemeSmallFontsSize {
+  computer: string;
+  smartphone: string;
+  tablet: string;
+}
+
 interface IThemeFontsSize {
   computer: string;
   smartphone: string;
   tablet: string;
+  smallFonts: IThemeSmallFontsSize;
 }
 
 interface ITheme {

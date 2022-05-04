@@ -21,6 +21,7 @@ const UpdateProfileTextInputSection = (
     <UpdateProfileSectionBox>
       <UpdateProfileSectionBoxLabel>{label}</UpdateProfileSectionBoxLabel>
       <UpdateProfileInputText
+        className="bd-rd-20"
         type={inputType}
         value={value}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) =>

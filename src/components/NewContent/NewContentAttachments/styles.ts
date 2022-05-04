@@ -4,8 +4,6 @@ import { FlexColumnBox } from '../../../pages/NewContent/styles';
 
 export const NewContentAttachmentsBox = styled(FlexColumnBox)`
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
   padding: 20px;
   width: calc(40vw - 80px);
 
@@ -20,7 +18,7 @@ export const NewContentAttachmentsList = styled.div`
 export const NewContentAttachmentsListBox = styled(FlexColumnBox)`
   padding: 5px;
   overflow: auto;
-  background: lightseagreen;
+  background: none;
   min-height: calc(20vw - 50px);
 
   @media (max-width: 900px) {
@@ -28,10 +26,6 @@ export const NewContentAttachmentsListBox = styled(FlexColumnBox)`
   }
 `;
 export const NewAttachmentButton = styled.button`
-  color: ${({ theme }) => theme.colors.boxColor};
-  background: ${({ theme }) => theme.colors.textColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
   border: none;
   height: 40px;
   cursor: pointer;

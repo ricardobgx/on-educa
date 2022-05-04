@@ -7,7 +7,7 @@ import { getPeople } from '../../../functions/people';
 import { randInt } from '../../../functions/utils';
 import OnEducaAPI from '../../../services/api';
 import { DEFAULT_PEOPLE } from '../../../static/defaultEntitiesValues';
-import { MediumMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
+import { SmallMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 import ChatMessage from '../ChatMessage';
 import ChatPeoplePicture from '../ChatPeoplePicture';
 import {
@@ -99,7 +99,17 @@ const Chat = (props: IChatProps): JSX.Element => {
     };
   }, [chat, lastElementTop, token]);
 
-  const { messages } = chat;
+  const messages = chat.messages.sort(
+    (messageA: IMessage, messageB: IMessage) => {
+      if (messageA.createdAt.toString() > messageB.createdAt.toString()) {
+        return 1;
+      }
+      if (messageB.createdAt.toString() > messageA.createdAt.toString()) {
+        return -1;
+      }
+      return 0;
+    },
+  );
 
   return (
     <ChatBox>
@@ -152,7 +162,7 @@ const Chat = (props: IChatProps): JSX.Element => {
           className="block-shadow-button main-action bd-rd-20"
           onClick={() => sendMessage()}
         >
-          <MediumMaterialIconOutlined icon="send" color="" />
+          <SmallMaterialIconOutlined icon="send" color="" />
         </SendMessageButton>
       </ChatMessageInput>
     </ChatBox>

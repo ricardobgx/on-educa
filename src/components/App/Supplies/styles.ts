@@ -112,13 +112,9 @@ export const EditSuppliesLink = styled(Link)`
   justify-content: center;
   align-items: center;
   min-width: 40px;
-  background: ${({ theme }) => theme.colors.boxColor};
-  color: ${({ theme }) => theme.colors.textColor};
   margin-bottom: 10px;
   min-height: 40px;
   max-height: 40px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border: none;
   cursor: pointer;
   transition: all 0.2s linear;
@@ -140,15 +136,15 @@ export const EditSuppliesButtonIcon = styled(smallIcon)``;
 
 export const DeleteSuppliesButton = styled(Button)`
   min-width: 40px;
-  background: ${({ theme }) => theme.colors.boxColor};
-  color: ${({ theme }) => theme.similarColors.warningColor};
+  /* background: ${({ theme }) => theme.colors.boxColor};
+  color: ${({ theme }) => theme.similarColors.warningColor}; */
   cursor: pointer;
   transition: all 0.2s linear;
 
-  &:hover {
+  /* &:hover {
     background: ${({ theme }) => theme.similarColors.warningColor};
     color: ${({ theme }) => theme.colors.whiteColor};
-  }
+  } */
 
   @media (max-width: 900px) {
     width: calc(50% - 5px);
@@ -162,10 +158,7 @@ export const SortSuppliesButton = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${({ theme }) => theme.colors.textColor};
-  color: ${({ theme }) => theme.colors.boxColor};
   border: none;
-  border-radius: 5px;
   padding: 0 20px;
   cursor: pointer;
 

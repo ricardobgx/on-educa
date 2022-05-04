@@ -5,7 +5,7 @@ import { smallIcon } from '../../../global/styles/components/iconComponents';
 export const FriendRequesCardActionsBox = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 10px;
+  margin-left: 20px;
 `;
 const FriendRequestButton = styled(Button)`
   color: ${({ theme }) => theme.colors.textColor};

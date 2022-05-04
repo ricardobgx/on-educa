@@ -38,6 +38,7 @@ const UpdateProfileTeachingType = (
     <UpdateProfileSectionBox>
       <UpdateProfileSectionBoxLabel>Ensino</UpdateProfileSectionBoxLabel>
       <UpdateProfileSelect
+        className="bd-rd-20"
         value={selectedTeachingTypeId}
         onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
           setSelectedTeachingTypeId(event.target.value)

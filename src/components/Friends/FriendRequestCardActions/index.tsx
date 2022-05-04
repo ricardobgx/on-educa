@@ -30,6 +30,7 @@ const FriendRequesCardActions = (
   return (
     <FriendRequesCardActionsBox>
       <AcceptRequest
+        className="block-shadow-button main-action bd-rd-10"
         onClick={() =>
           acceptFriendRequest(
             OnEducaAPI,
@@ -42,6 +43,7 @@ const FriendRequesCardActions = (
         <AcceptRequestIcon className="fas fa-check" />
       </AcceptRequest>
       <RejectRequest
+        className="block-shadow-button secondary-action bd-rd-10"
         onClick={() =>
           deleteFriendRequest(
             OnEducaAPI,

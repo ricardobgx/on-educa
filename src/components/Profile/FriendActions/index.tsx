@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { useHistory } from 'react-router-dom';
 import {
   MyFriendActions,
   UnfriendButton,
@@ -37,6 +38,7 @@ import { isDefaultPeople } from '../../../functions/entitiesValues';
 import { DEFAULT_PEOPLE } from '../../../static/defaultEntitiesValues';
 import { SendMessageButton, SendMessageButtonIcon } from '../FriendCard/styles';
 import { ActionCreators } from '../../../store';
+import { getOrCreateChat } from '../../../functions/chat';
 
 interface IFriendActionsProps {
   people: IPeople;
@@ -48,10 +50,12 @@ interface IFriendActionsProps {
 
 const FriendActions = (props: IFriendActionsProps): JSX.Element => {
   const dispatch = useDispatch();
-  const { showFloatNotification } = bindActionCreators(
+  const { showFloatNotification, loadChat } = bindActionCreators(
     ActionCreators,
     dispatch,
   );
+
+  const location = useHistory();
 
   const { people, getPeopleData, loggedPeople, getLoggedPeopleData, token } =
     props;
@@ -125,6 +129,20 @@ const FriendActions = (props: IFriendActionsProps): JSX.Element => {
     await getLoggedPeopleFriendRequestsSucess(friendRequestsFound);
   };
 
+  const redirectToChats = (chat: IChat): void => {
+    loadChat(chat);
+    location.push('/chats');
+  };
+
+  const getOrCreateChatData = (): void => {
+    getOrCreateChat(
+      OnEducaAPI,
+      { chatCreatorId: loggedPeople.id, chatParticipantId: people.id },
+      token,
+      redirectToChats,
+    );
+  };
+
   useEffect(() => {
     if (!isDefaultPeople(people) && !isDefaultPeople(loggedPeople) && token) {
       setIsFriend(false);
@@ -144,7 +162,10 @@ const FriendActions = (props: IFriendActionsProps): JSX.Element => {
     <FriendActionsBox>
       {isFriend ? (
         <MyFriendActions>
-          <SendMessageButton className="block-shadow-button main-action bd-rd-20">
+          <SendMessageButton
+            onClick={() => getOrCreateChatData()}
+            className="block-shadow-button main-action bd-rd-20"
+          >
             <SendMessageButtonIcon className="fas fa-comment-alt" />
           </SendMessageButton>
           <UnfriendButton
@@ -210,6 +231,7 @@ const FriendActions = (props: IFriendActionsProps): JSX.Element => {
           ) : (
             <FriendFriendRequestActions>
               <AcceptFriendRequestButton
+                className="block-shadow-button main-action bd-rd-20"
                 onClick={() =>
                   acceptFriendRequest(
                     OnEducaAPI,
@@ -225,6 +247,7 @@ const FriendActions = (props: IFriendActionsProps): JSX.Element => {
                 <AcceptFriendRequestButtonIcon className="fas fa-check" />
               </AcceptFriendRequestButton>
               <RejectFriendRequestButton
+                className="block-shadow-button secondary-action bd-rd-20"
                 onClick={() =>
                   deleteFriendRequest(
                     OnEducaAPI,

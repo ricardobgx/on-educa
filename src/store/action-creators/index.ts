@@ -6,8 +6,10 @@ export * from './theme';
 export * from './floatNotification';
 
 // User
+export * from './signUp';
 export * from './people';
 export * from './student';
+export * from './teacher';
 
 export * from './content';
 export * from './question';
@@ -17,7 +19,6 @@ export * from './teachingType';
 export * from './schoolGrade';
 export * from './subject';
 export * from './unity';
-export * from './teacher';
 export * from './studentWeeklyPerformance';
 export * from './chat';
 export * from './friendRequests';

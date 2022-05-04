@@ -1,8 +1,9 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 import SignPageHeader from '../../components/SignPageHeader';
-import { RootState } from '../../store';
+import { ActionCreators, RootState } from '../../store';
 import OnlineLearning from '../../svgs/OnlineLearning';
 import Teaching from '../../svgs/Teaching';
 import {
@@ -15,17 +16,30 @@ import {
 const SelectUserType: React.FC = () => {
   const { theme } = useSelector((store: RootState) => store);
 
+  const dispatch = useDispatch();
+  const { loadSignUpUserTypeData } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
+
   const pageHistory = useHistory();
+
+  const selectUserType = (isStudent: boolean): void => {
+    loadSignUpUserTypeData({ isStudent });
+
+    if (isStudent) pageHistory.push('/select-school-grade');
+    else pageHistory.push('/select-teaching-type');
+  };
 
   return (
     <SelectUserTypeBox>
       <SignPageHeader title="Qual sua função?" canBack={false} backLink="/" />
       <UserTypes>
-        <UserType onClick={() => pageHistory.push('/select-school-grade')}>
+        <UserType onClick={() => selectUserType(true)}>
           <OnlineLearning fill={theme.colors.mainButtonBgColor} />
           <UserTypeLabel>Aluno</UserTypeLabel>
         </UserType>
-        <UserType onClick={() => pageHistory.push('/select-teaching-type')}>
+        <UserType onClick={() => selectUserType(false)}>
           <Teaching fill={theme.colors.mainButtonBgColor} />
           <UserTypeLabel>Professor</UserTypeLabel>
         </UserType>

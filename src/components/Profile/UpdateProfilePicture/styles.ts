@@ -13,20 +13,20 @@ export const UpdateProfilePictureShadow = styled.div`
   width: 100vw;
   background: ${({ theme }) => theme.colors.boxShadowColor};
   z-index: 97;
+  opacity: 0;
+  animation: 0.2s fadeIn linear forwards;
 `;
 export const UpdateProfilePictureBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   background: ${({ theme }) => theme.colors.boxColor};
-  border-radius: 10px;
   padding: 20px;
 `;
 export const ProfilePicture = styled.div``;
 export const ProfilePictureImg = styled.img`
   background: ${({ theme }) => theme.colors.boxShadowColor};
   width: 300px;
-  border-radius: 10px;
 `;
 export const SelectImageInput = styled.input`
   display: none;
@@ -38,9 +38,6 @@ export const SelectImageButton = styled.label`
   margin: 20px 0;
   width: 100%;
   min-height: 40px;
-  border-radius: 5px;
-  color: ${({ theme }) => theme.colors.boxColor};
-  background: ${({ theme }) => theme.colors.textColor};
   cursor: pointer;
 `;
 export const SelectImageButtonLabel = styled(paragraph)`
@@ -53,13 +50,9 @@ export const UpdateProfilePictureActions = styled.div`
 `;
 export const CancelUpdatePictureButton = styled(Button)`
   width: calc(50% - 10px);
-  color: ${({ theme }) => theme.colors.textColor};
-  background: ${({ theme }) => theme.colors.boxColor};
 `;
 export const CancelUpdatePictureButtonLabel = styled(paragraph)``;
 export const UpdatePictureButton = styled(Button)`
   width: calc(50% - 10px);
-  color: ${({ theme }) => theme.colors.boxColor};
-  background: ${({ theme }) => theme.colors.textColor};
 `;
 export const UpdatePictureButtonLabel = styled(paragraph)``;

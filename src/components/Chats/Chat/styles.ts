@@ -2,7 +2,10 @@ import styled from 'styled-components';
 import { Button } from '../../../global/styles/components/buttonComponents';
 import { mediumIcon } from '../../../global/styles/components/iconComponents';
 import { inputText } from '../../../global/styles/components/inputComponents';
-import { paragraph } from '../../../global/styles/components/textComponents';
+import {
+  paragraph,
+  smallParagraph,
+} from '../../../global/styles/components/textComponents';
 
 export const ChatBox = styled.div`
   width: 75%;
@@ -33,9 +36,7 @@ export const ChatPeopleNameAndOnlineLabel = styled.div`
 export const ChatPeopleName = styled(paragraph)`
   font-weight: bold;
 `;
-export const ChatPeopleOnlineLabel = styled(paragraph)`
-  font-size: 14px;
-`;
+export const ChatPeopleOnlineLabel = styled(smallParagraph)``;
 export const ChatMessages = styled.div`
   display: flex;
   flex-direction: column;

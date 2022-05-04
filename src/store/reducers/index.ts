@@ -8,6 +8,7 @@ import floatNotificationReducer from './floatNotification';
 
 // Usuarios
 
+import signUpReducer from './signUp';
 import peopleReducer from './people';
 import studentReducer from './student';
 import teacherReducer from './teacher';
@@ -45,6 +46,7 @@ const reducers = combineReducers({
   aplication: aplicationReducer,
   theme: themeReducer,
   floatNotification: floatNotificationReducer,
+  signUp: signUpReducer,
   people: peopleReducer,
   student: studentReducer,
   teacher: teacherReducer,

@@ -174,10 +174,14 @@ const EditQuestionActions = (props: IEditQuestionActionsProps): JSX.Element => {
 
   return (
     <EditQuestionActionsBox>
-      <CancelEditButton to="/questions">
+      <CancelEditButton
+        className="block-shadow-button secondary-action bd-rd-20"
+        to="/questions"
+      >
         <CancelEditButtonLabel>Cancelar</CancelEditButtonLabel>
       </CancelEditButton>
       <UpdateQuestionButton
+        className="block-shadow-button secondary-action bd-rd-20"
         style={{
           pointerEvents: isValidQuestion(
             description,

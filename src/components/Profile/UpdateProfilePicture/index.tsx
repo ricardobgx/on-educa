@@ -84,9 +84,12 @@ const UpdateProfilePicture = (
 
   return (
     <UpdateProfilePictureShadow>
-      <UpdateProfilePictureBox>
+      <UpdateProfilePictureBox className="with-shadow bd-rd-30">
         <ProfilePicture>
-          <ProfilePictureImg src={newProfilePicture} />
+          <ProfilePictureImg
+            src={newProfilePicture}
+            className="with-shadow bd-rd-20"
+          />
         </ProfilePicture>
         <SelectImageInput
           id="image-input"
@@ -95,19 +98,27 @@ const UpdateProfilePicture = (
           accept="image/*"
           onChange={imageHandler}
         />
-        <SelectImageButton htmlFor="image-input">
+        <SelectImageButton
+          className="block-shadow-button secondary-action bd-rd-20"
+          htmlFor="image-input"
+        >
           <SelectImageButtonLabel>Selecionar</SelectImageButtonLabel>
           <SmallMaterialIconRound color="" icon="add_photo_alternate" />
         </SelectImageButton>
         <UpdateProfilePictureActions>
           <CancelUpdatePictureButton
+            className="block-shadow-button secondary-action bd-rd-20"
             onClick={() => setIsUpdatingProfilePicture(false)}
           >
             <CancelUpdatePictureButtonLabel>
               Cancelar
             </CancelUpdatePictureButtonLabel>
           </CancelUpdatePictureButton>
-          <UpdatePictureButton onClick={() => uploadImage()}>
+          <UpdatePictureButton
+          disabled={!file}
+            className="block-shadow-button main-action bd-rd-20"
+            onClick={() => uploadImage()}
+          >
             <UpdatePictureButtonLabel>Atualizar</UpdatePictureButtonLabel>
           </UpdatePictureButton>
         </UpdateProfilePictureActions>

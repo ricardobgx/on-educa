@@ -9,12 +9,26 @@ export const DEFAULT_APLICATION: IAplication = {
   loadingAnimation: false,
 };
 
+export const DEFAULT_SIGN_UP: ISignUp = {
+  name: '',
+  email: '',
+  password: '',
+  isStudent: false,
+  teachingTypeId: '',
+  schoolGradeId: '',
+};
+
 export const DEFAULT_THEME: ITheme = themes[0];
 
 export const DEFAULT_THEME_FONTS_SIZE: IThemeFontsSize = {
-  computer: '15px',
+  computer: '2.25vh',
   tablet: '2.2vw',
   smartphone: '3.3vw',
+  smallFonts: {
+    computer: '2vh',
+    tablet: '2vw',
+    smartphone: '3vw',
+  },
 };
 export const DEFAULT_THEME_SIMILAR_COLORS: IThemeSimilarColors = {
   warningColor: '#CB0000',

@@ -23,7 +23,7 @@ const UpdateAccountInformations = (
   const { email, setEmail, newPassword, setNewPassword } = props;
 
   return (
-    <UpdateProfileSection>
+    <UpdateProfileSection className="with-shadow bd-rd-30">
       <UpdateProfileSectionLabel>
         Informações da conta
       </UpdateProfileSectionLabel>
@@ -44,7 +44,7 @@ const UpdateAccountInformations = (
           <UpdateProfileSectionBoxLabel>
             Tempo logado
           </UpdateProfileSectionBoxLabel>
-          <UpdateProfileSelect>
+          <UpdateProfileSelect className="bd-rd-20">
             <UpdateProfileOption value={7}>7 dias</UpdateProfileOption>
             <UpdateProfileOption value={15}>15 dias</UpdateProfileOption>
             <UpdateProfileOption value={30}>30 dias</UpdateProfileOption>

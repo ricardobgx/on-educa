@@ -68,7 +68,7 @@ const Friends = (): JSX.Element => {
             <SectionLabel label="Procurar pessoas" backLink="/home" />
             <SearchPeoples>
               <SearchSupplies>
-                <SearchSuppliesBox>
+                <SearchSuppliesBox className="bd-rd-20">
                   <SearchSuppliesInput
                     type="text"
                     placeholder="Digite o nome da pessoa"
@@ -78,6 +78,7 @@ const Friends = (): JSX.Element => {
                   </ClearSearchSuppliesInputButton>
                 </SearchSuppliesBox>
                 <SearchSuppliesButton
+                  className="block-shadow-button main-action bd-rd-20"
                   onClick={() => getPeoples(OnEducaAPI, setPeoplesFound, token)}
                 >
                   <SearchSuppliesButtonIcon className="fas fa-search" />
@@ -85,7 +86,7 @@ const Friends = (): JSX.Element => {
               </SearchSupplies>
             </SearchPeoples>
 
-            <PeoplesFoundBox>
+            <PeoplesFoundBox className="with-shadow bd-rd-30">
               <PeoplesFoundList>
                 {peoplesFound.map((peopleFound, index) => (
                   <FriendCard
@@ -100,7 +101,7 @@ const Friends = (): JSX.Element => {
           </PeoplesFound>
           <FriendRequests>
             <SectionLabel label="Pedidos de amizade" backLink="" />
-            <FriendRequestsBox>
+            <FriendRequestsBox className="with-shadow bd-rd-30">
               <FriendRequestsList>
                 {friendRequests.map((friendRequest: IFriendRequest) => (
                   <FriendRequestCard
