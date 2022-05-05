@@ -1,58 +1,52 @@
 import styled from 'styled-components';
 import { BlockShadowButton } from '../../../../global/styles/components/buttonComponents';
 import { inputText } from '../../../../global/styles/components/inputComponents';
+import {
+  paragraph,
+  smallLabel,
+} from '../../../../global/styles/components/textComponents';
 
 export const SignFormsBox = styled.div`
-  &.forms {
-    display: flex;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 
-    @media (max-width: 900px) {
-      height: 100vh;
-      padding-top: 120px;
-    }
+  @media (max-width: 900px) {
+    height: 100vh;
+    width: 100%;
+
+    align-items: center;
+    justify-content: center;
   }
 `;
-export const SignFormWrapper = styled.div`
-  &.form-wrapper {
-    animation: hideLayer 0.3s ease-out forwards;
-  }
+export const SignFormLabels = styled.div`
+  display: flex;
 
-  &.form-wrapper.is-active {
-    animation: showLayer 0.3s ease-in forwards;
-  }
+  width: 100%;
 
-  &.form-wrapper.is-active .signin-label {
-    color: #fff;
-    transform: translateX(115px);
-  }
+  position: relative;
+`;
+export const SignFormsWrapper = styled.div`
+  display: flex;
+  align-items: flex-start;
 
-  &.form-wrapper.is-active .signup-label {
-    color: #fff;
-    transform: translateX(-115px);
-  }
+  @media (max-width: 900px) {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    /* min-height: 500px; */
 
-  &.form-wrapper.is-active .underline::before {
-    transform: translateX(0);
-  }
+    &.login-selected {
+      .form-signup {
+        transform: perspective(600px) rotateY(180deg) scale(0.5);
+      }
 
-  &.form-wrapper.is-active .form-login {
-    animation: showLogin 0.3s ease-in forwards;
-  }
+      .form-login {
+        transform: perspective(600px) rotateY(0deg);
+      }
+    }
 
-  &.form-wrapper.is-active .form-signup {
-    animation: showSignup 0.3s ease-in forwards;
-  }
-
-  &.form-wrapper.is-active .sign-form-fields {
-    opacity: 1;
-    transform: translateX(0);
-    transition: opacity 0.4s ease-in, transform 0.35s ease-in;
-  }
-
-  &.form-wrapper.is-active .form button {
-    opacity: 1;
-    transform: translateX(0);
+    /* transform: rotateY(180deg); */
   }
 `;
 export const SignFormLabel = styled.p`
@@ -67,7 +61,6 @@ export const SignFormLabel = styled.p`
 
   text-transform: uppercase;
   font-family: inherit;
-  font-size: 16px;
   letter-spacing: 0.5px;
 
   color: #ffffff;
@@ -81,12 +74,43 @@ export const SignFormLabel = styled.p`
 
   transition: all 0.3s ease-out;
 
-  &.signin-label .underline::before {
-    transform: translateX(101%);
+  @media (min-width: 900px) {
+    &.signin-label .underline::before {
+      transform: translateX(101%);
+    }
+
+    &.signup-label .underline::before {
+      transform: translateX(-101%);
+    }
+
+    &.signin-label.is-active {
+      color: #fff;
+      transform: translateX(115px);
+    }
+
+    &.signup-label.is-active {
+      color: #fff;
+      transform: translateX(-115px);
+    }
+
+    &.is-active .underline::before {
+      transform: translateX(0);
+    }
   }
 
-  &.signup-label .underline::before {
-    transform: translateX(-101%);
+  @media (max-width: 900px) {
+    display: none;
+    opacity: 0;
+    animation: 0.4s fadeIn linear forwards;
+    animation-delay: 0.3s;
+
+    &.is-active {
+      display: unset;
+
+      &.signin-label {
+        transform: translateY(40px);
+      }
+    }
   }
 `;
 export const Underline = styled.span`
@@ -116,58 +140,102 @@ export const Underline = styled.span`
   }
 `;
 export const SignForm = styled.div`
-  &.form {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    min-width: 330px;
-    margin-top: 50px;
-    padding: 30px;
-    transform-origin: top;
-  }
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 330px;
+  margin-top: 50px;
+  padding: 30px;
+  transform-origin: top;
+  background: ${({ theme }) => theme.colors.boxColor};
+  backface-visibility: hidden;
+  animation: hideLayer 0.3s ease-out forwards;
 
-  &.form-login {
-    animation: hideLogin 0.3s ease-out forwards;
-  }
-
-  &.form-signup {
-    animation: hideSignup 0.3s ease-out forwards;
-  }
-
-  &.form .sign-form-fields {
-    position: relative;
-    opacity: 0;
-    padding: 0;
-    border: 0;
-    transition: all 0.3s ease-out;
-  }
-
-  &.form-login .sign-form-fields {
-    transform: translateX(-50%);
-  }
-
-  &.form-signup .sign-form-fields {
-    transform: translateX(50%);
-  }
-
-  &.form button {
-    opacity: 0;
+  & button {
     display: block;
     border: none;
   }
 
-  &.form-signup button {
-    transform: translateX(30%);
+  @media (min-width: 900px) {
+    &.form-login {
+      animation: hideLogin 0.3s ease-out forwards;
+    }
+
+    &.form-signup {
+      animation: hideSignup 0.3s ease-out forwards;
+    }
+
+    &.form .sign-form-fields {
+      position: relative;
+      opacity: 0;
+      padding: 0;
+      border: 0;
+      transition: all 0.3s ease-out;
+    }
+
+    &.form-login .sign-form-fields {
+      transform: translateX(-50%);
+    }
+
+    &.form-signup .sign-form-fields {
+      transform: translateX(50%);
+    }
+
+    &.form button {
+      opacity: 0;
+    }
+
+    &.form-signup button {
+      transform: translateX(30%);
+    }
+
+    &.form-login button {
+      transform: translateX(-30%);
+    }
+
+    &.is-active {
+      &.form-login {
+        animation: showLayer 0.3s ease-in forwards,
+          showLogin 0.3s ease-in forwards;
+      }
+
+      &.form-signup {
+        animation: showLayer 0.3s ease-in forwards,
+          showSignup 0.3s ease-in forwards;
+      }
+    }
+
+    &.is-active .sign-form-fields {
+      opacity: 1;
+      transform: translateX(0);
+      transition: opacity 0.4s ease-in, transform 0.35s ease-in;
+    }
+
+    &.is-active button {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 
-  &.form-login button {
-    transform: translateX(-30%);
+  @media (max-width: 900px) {
+    transition: all 0.4s linear;
+
+    &.form-signup {
+      transform: perspective(600px) rotateY(0deg);
+    }
+
+    &.form-login {
+      position: absolute;
+      transform: perspective(600px) rotateY(-180deg);
+    }
   }
 `;
 export const SignInFormBox = styled.div``;
 export const SignUpFormBox = styled.div``;
 export const SignFormFields = styled.div`
-  opacity: 0;
+  @media (min-width: 900px) {
+    opacity: 0;
+  }
 `;
 export const SignFormField = styled.div`
   &.input-block {
@@ -175,7 +243,6 @@ export const SignFormField = styled.div`
   }
 
   &.input-block label {
-    font-size: 14px;
     color: #bfbfbf;
   }
 
@@ -188,7 +255,7 @@ export const SignFormField = styled.div`
     border: none;
   }
 `;
-export const SignFormFieldLabel = styled.label``;
+export const SignFormFieldLabel = styled(smallLabel)``;
 export const SignFormFieldInputBox = styled.div`
   display: flex;
   align-items: center;
@@ -213,10 +280,6 @@ export const SignFormButton = styled(BlockShadowButton)`
   border: none;
 
   cursor: pointer;
-
-  transition: all 0.2s linear;
 `;
 
-export const SignFormButtonLabel = styled.p`
-  transition: all 0.2s linear;
-`;
+export const SignFormButtonLabel = styled(paragraph)``;

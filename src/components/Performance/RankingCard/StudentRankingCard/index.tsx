@@ -40,7 +40,7 @@ const StudentRankingCard = (props: IStudentRankingCardProps): JSX.Element => {
     <RankingCardBox className="with-shadow bd-rd-20">
       <RankingPosition>#{rankingPosition}</RankingPosition>
       <PeopleCard
-        smartphoneNameLength={10}
+        smartphoneNameLength={20}
         abbreviateName
         showScore
         people={people}

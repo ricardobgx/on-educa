@@ -18,7 +18,7 @@ const SectionLabel = (props: ISectionLabelProps): JSX.Element => {
   const pageHistory = useHistory();
 
   return (
-    <SectionLabelBox className="with-shadow">
+    <SectionLabelBox className="with-shadow bd-rd-30">
       {backLink !== '' ? (
         <SectionLabelBackLink onClick={() => pageHistory.push(backLink)}>
           <SectionLabelBackLinkIcon className="fas fa-arrow-left" />

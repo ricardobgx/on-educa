@@ -17,14 +17,7 @@ export const FriendPeople = styled(Link)`
   width: 100%;
 `;
 export const SendMessageButton = styled(Button)`
-  color: ${({ theme }) => theme.colors.textColor};
-  background: ${({ theme }) => theme.colors.boxColor};
   width: 40px;
   margin-left: 10px;
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.boxColor};
-    background: ${({ theme }) => theme.colors.textColor};
-  }
 `;
 export const SendMessageButtonIcon = styled(smallIcon)``;

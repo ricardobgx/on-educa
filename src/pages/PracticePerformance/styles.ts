@@ -6,11 +6,6 @@ export const PracticePerformanceBox = styled.div`
   display: flex;
   width: calc(100vw - 40px);
 
-  & svg {
-    width: calc(50vw - 40px);
-    height: calc((50vw - 40px) * 0.9);
-  }
-
   @media (max-width: 1150px) {
     flex-wrap: wrap;
 
@@ -24,6 +19,11 @@ export const PerformancePageImageBox = styled.div`
   margin: 20px;
   display: flex;
   justify-content: center;
+
+  & > svg {
+    width: calc(50vw - 40px);
+    height: calc((50vw - 40px) * 0.8);
+  }
 
   @media (max-width: 1150px) {
     display: none;

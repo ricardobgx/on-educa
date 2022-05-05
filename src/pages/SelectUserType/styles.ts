@@ -53,6 +53,19 @@ export const UserType = styled.button`
 
   @media (max-width: 1050px) {
     margin-top: 15vh;
+
+    & svg {
+      height: 220px;
+      margin-bottom: 20px;
+    }
+
+    :nth-child(1) svg {
+      width: 300px;
+    }
+
+    :nth-child(2) svg {
+      width: 300px;
+    }
   }
 `;
 export const UserTypeImage = styled.img``;

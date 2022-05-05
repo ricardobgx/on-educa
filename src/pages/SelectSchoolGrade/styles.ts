@@ -20,6 +20,17 @@ export const SchoolGrades = styled.div`
   gap: 70px;
 
   width: 100%;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    align-items: center;
+
+    gap: 20px;
+  }
+
+  @media (max-width: 1050px) {
+    margin: 10vh 0;
+  }
 `;
 export const SchoolGrade = styled.button`
   display: flex;
@@ -33,10 +44,6 @@ export const SchoolGrade = styled.button`
   border: none;
 
   cursor: pointer;
-
-  @media (max-width: 1050px) {
-    margin-top: 15vh;
-  }
 `;
 export const SchoolGradeLabel = styled.p`
   margin-top: 20px;

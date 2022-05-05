@@ -75,7 +75,7 @@ const SignInForm: React.FC<ISignFormProps> = (props) => {
   return (
     <SignForm
       className={`with-shadow bd-rd-30 form form-login ${
-        signFormType === TSignFormType.SIGNIN ? 'active' : ''
+        signFormType === TSignFormType.SIGNIN ? 'is-active' : ''
       }`}
     >
       <SignFormFields className="sign-form-fields">

@@ -37,6 +37,8 @@ export const SettingsBoxLabel = styled(paragraph)`
 export const ThemeSettings = styled(SettingBox)``;
 export const ThemesList = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 `;
 
 interface SelectThemeButtonProps {
@@ -49,7 +51,6 @@ export const SelectThemeButton = styled.button<SelectThemeButtonProps>`
   border-radius: 50%;
   padding: 3px;
   border: none;
-  margin-right: 10px;
   cursor: pointer;
   position: relative;
   background: none;

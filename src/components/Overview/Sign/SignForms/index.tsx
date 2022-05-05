@@ -7,9 +7,10 @@ import SignInForm from '../SignInForm';
 import SignUpForm from '../SignUpForm';
 import {
   SignFormsBox,
-  SignFormWrapper,
   Underline,
   SignFormLabel,
+  SignFormLabels,
+  SignFormsWrapper,
 } from './styles';
 
 const SignForms: React.FC = () => {
@@ -28,34 +29,38 @@ const SignForms: React.FC = () => {
 
   return (
     <SignFormsBox className="forms">
-      <SignFormWrapper
-        className={`form-wrapper ${
-          signFormType === TSignFormType.SIGNIN ? 'is-active' : ''
-        }`}
-      >
-        <SignFormLabel className="signin-label">
+      <SignFormLabels>
+        <SignFormLabel
+          className={`signin-label ${
+            signFormType === TSignFormType.SIGNIN ? 'is-active' : ''
+          }`}
+        >
           Login
           <Underline className="underline" />
         </SignFormLabel>
+        <SignFormLabel
+          className={`signup-label ${
+            signFormType === TSignFormType.SIGNUP ? 'is-active' : ''
+          }`}
+        >
+          Sign Up
+          <Underline className="underline" />
+        </SignFormLabel>
+      </SignFormLabels>
+      <SignFormsWrapper
+        className={`${
+          signFormType === TSignFormType.SIGNIN && 'login-selected'
+        }`}
+      >
         <SignInForm
           signFormType={signFormType}
           switchSignForm={switchSignForm}
         />
-      </SignFormWrapper>
-      <SignFormWrapper
-        className={`form-wrapper ${
-          signFormType === TSignFormType.SIGNUP ? 'is-active' : ''
-        }`}
-      >
-        <SignFormLabel className="signup-label">
-          Sign Up
-          <Underline className="underline" />
-        </SignFormLabel>
         <SignUpForm
           signFormType={signFormType}
           switchSignForm={switchSignForm}
         />
-      </SignFormWrapper>
+      </SignFormsWrapper>
     </SignFormsBox>
   );
 };

@@ -5,7 +5,6 @@ import { Button } from '../../../global/styles/components/buttonComponents';
 
 export const SectionLabelBox = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};
-  border-radius: 30px;
   min-height: 45px;
   display: flex;
   align-items: center;

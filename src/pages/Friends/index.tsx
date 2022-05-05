@@ -65,7 +65,7 @@ const Friends = (): JSX.Element => {
       <PageBox>
         <FriendsBox>
           <PeoplesFound>
-            <SectionLabel label="Procurar pessoas" backLink="/home" />
+            <SectionLabel label="Procurar pessoas" backLink="/" />
             <SearchPeoples>
               <SearchSupplies>
                 <SearchSuppliesBox className="bd-rd-20">

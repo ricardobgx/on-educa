@@ -51,7 +51,7 @@ const TeacherWeeklyPerformance = (
         teacher.id,
         token,
         setTeacherWeeklyPerformance,
-        () => showFloatNotification('erro'),
+        () => showFloatNotification('Não foi possível mostrar o desempenho'),
       );
     }
   }, [teacher]);

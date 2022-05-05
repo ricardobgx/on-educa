@@ -10,8 +10,7 @@ export const NewDoubtCommentBox = styled.div`
 export const NewDoubtCommentInput = styled(inputText)`
   width: 100%;
   margin-right: 10px;
-  border-radius: 5px;
-  background: rgba(0, 0, 0, 0.04);
+  background: ${({ theme }) => theme.colors.inputTextBgColor};
   border: none;
   padding: 10px;
   color: ${({ theme }) => theme.colors.textColor};

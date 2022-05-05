@@ -17,6 +17,9 @@ export const RankingPosition = styled(paragraph)`
     min-height: unset;
     height: 80px;
     padding: 10px;
+
+    margin-left: 5px;
+    margin-right: -10px;
   }
 `;
 

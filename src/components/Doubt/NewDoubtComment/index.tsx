@@ -41,6 +41,7 @@ const NewDoubtComment = (props: INewDoubtCommentProps): JSX.Element => {
   return (
     <NewDoubtCommentBox>
       <NewDoubtCommentInput
+        className="bd-rd-20"
         type="text"
         placeholder="Escreva seu comentário"
         value={content}
@@ -51,7 +52,10 @@ const NewDoubtComment = (props: INewDoubtCommentProps): JSX.Element => {
           }
         }}
       />
-      <NewDoubtCommentButton onClick={() => createDoubtCommentAction()}>
+      <NewDoubtCommentButton
+        className="block-shadow-button main-action bd-rd-20"
+        onClick={() => createDoubtCommentAction()}
+      >
         <NewDoubtCommentButtonIcon className="bi bi-send" />
       </NewDoubtCommentButton>
     </NewDoubtCommentBox>

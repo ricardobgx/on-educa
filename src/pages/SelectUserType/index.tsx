@@ -33,7 +33,7 @@ const SelectUserType: React.FC = () => {
 
   return (
     <SelectUserTypeBox>
-      <SignPageHeader title="Qual sua função?" canBack={false} backLink="/" />
+      <SignPageHeader title="Qual sua função?" canBack backLink="/sign" />
       <UserTypes>
         <UserType onClick={() => selectUserType(true)}>
           <OnlineLearning fill={theme.colors.mainButtonBgColor} />

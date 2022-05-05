@@ -27,6 +27,10 @@ export const PerformancesBox = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 export const PerformancesDivisor = styled.div`
   width: 1px;
@@ -40,6 +44,10 @@ export const PerformancesTypeBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `;
 export const PerformanceTypeBox = styled.div`
   display: flex;

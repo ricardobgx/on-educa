@@ -93,7 +93,7 @@ const Doubt = (): JSX.Element => {
           label={`Dúvida sobre ${contentName}`}
           backLink={`/contents/${content.id}`}
         />
-        <DoubtBox>
+        <DoubtBox className="with-shadow bd-rd-30">
           <DoubtInfo>
             <DoubtHeader>
               <DoubtOwner>

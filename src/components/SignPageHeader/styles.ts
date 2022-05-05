@@ -16,7 +16,13 @@ export const SignPageHeaderBackButton = styled(Link)`
 `;
 export const SignPageHeaderBackButtonIcon = styled(mediumIcon)``;
 export const SignPageHeaderLabel = styled.h2`
-  font-size: 30px;
+  font-size: 25px;
   text-transform: uppercase;
   font-weight: bold;
+
+  @media (max-width: 600px) {
+    width: 70vw;
+    text-align: center;
+    margin: 0 auto;
+  }
 `;

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { Button } from '../../../global/styles/components/buttonComponents';
+import { smallIcon } from '../../../global/styles/components/iconComponents';
+import { inputTextArea } from '../../../global/styles/components/inputComponents';
 
 export const NewDoubtBox = styled.div`
   width: 100%;
@@ -7,7 +9,7 @@ export const NewDoubtBox = styled.div`
   margin: 0 20px;
   margin-bottom: 20px;
 `;
-export const NewDoubtInput = styled.textarea`
+export const NewDoubtInput = styled(inputTextArea)`
   width: calc(100% - 90px);
   min-width: calc(100% - 90px);
   max-width: calc(100% - 90px);
@@ -27,4 +29,4 @@ export const NewDoubtInput = styled.textarea`
 export const NewDoubtButton = styled(Button)`
   min-width: 40px;
 `;
-export const NewDoubtButtonIcon = styled.i``;
+export const NewDoubtButtonIcon = styled(smallIcon)``;

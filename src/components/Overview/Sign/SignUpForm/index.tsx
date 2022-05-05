@@ -33,7 +33,7 @@ const SignUpForm: React.FC<ISignFormProps> = (props) => {
   return (
     <SignForm
       className={`bd-rd-30 with-shadow form form-signup ${
-        signFormType === TSignFormType.SIGNIN ? 'active' : ''
+        signFormType === TSignFormType.SIGNUP ? 'is-active' : ''
       }`}
     >
       <SignFormFields className="sign-form-fields">

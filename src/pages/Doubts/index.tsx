@@ -10,7 +10,7 @@ const Doubts = (): JSX.Element => {
   return (
     <Page>
       <PageBox>
-        <SectionLabel label="Dúvidas" backLink="/home" />
+        <SectionLabel label="Dúvidas" backLink="/" />
         <DoubtsList>
           <DoubtsListBox>
             {doubts.map((doubt) => (

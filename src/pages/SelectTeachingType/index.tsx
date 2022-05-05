@@ -87,8 +87,8 @@ const SelectTeachingType: React.FC = () => {
     <SelectTeachingTypeBox>
       <SignPageHeader
         title="Qual seu nível de ensino?"
-        canBack={false}
-        backLink="/"
+        canBack
+        backLink="/select-user-type"
       />
       <TeachingTypes>
         <TeachingType
