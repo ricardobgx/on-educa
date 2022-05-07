@@ -167,7 +167,6 @@ export const SignForm = styled.div`
 
     &.form .sign-form-fields {
       position: relative;
-      opacity: 0;
       padding: 0;
       border: 0;
       transition: all 0.3s ease-out;
@@ -179,10 +178,6 @@ export const SignForm = styled.div`
 
     &.form-signup .sign-form-fields {
       transform: translateX(50%);
-    }
-
-    &.form button {
-      opacity: 0;
     }
 
     &.form-signup button {
@@ -205,15 +200,16 @@ export const SignForm = styled.div`
       }
     }
 
-    &.is-active .sign-form-fields {
-      opacity: 1;
+    &.is-active .sign-form-fields,
+    &.is-active button {
       transform: translateX(0);
       transition: opacity 0.4s ease-in, transform 0.35s ease-in;
     }
 
-    &.is-active button {
-      opacity: 1;
-      transform: translateX(0);
+    &.is-not-active button,
+    &.is-not-active .sign-form-fields {
+      opacity: 0 !important;
+      pointer-events: none !important;
     }
   }
 
@@ -232,11 +228,7 @@ export const SignForm = styled.div`
 `;
 export const SignInFormBox = styled.div``;
 export const SignUpFormBox = styled.div``;
-export const SignFormFields = styled.div`
-  @media (min-width: 900px) {
-    opacity: 0;
-  }
-`;
+export const SignFormFields = styled.div``;
 export const SignFormField = styled.div`
   &.input-block {
     margin-bottom: 10px;

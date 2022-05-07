@@ -7,7 +7,6 @@ import { registerPeople } from '../../functions/people';
 import { registerTeacher } from '../../functions/teacher';
 import { getTeachingTypes } from '../../functions/teachingType';
 import OnEducaAPI from '../../services/api';
-import { DEFAULT_TEACHING_TYPE } from '../../static/defaultEntitiesValues';
 import { ActionCreators, RootState } from '../../store';
 import Exams from '../../svgs/Exams';
 import PrimarySchool from '../../svgs/PrimarySchool';
@@ -31,8 +30,6 @@ const SelectTeachingType: React.FC = () => {
   const pageHistory = useHistory();
 
   const [teachingTypes, setTeachingTypes] = useState<ITeachingType[]>([]);
-  const [teachingTypeSelected, setTeachingTypeSelected] =
-    useState<ITeachingType>(DEFAULT_TEACHING_TYPE);
 
   const getTeachingTypesAction = async (): Promise<void> => {
     const teachingTypesFound = await getTeachingTypes(OnEducaAPI);
@@ -68,7 +65,7 @@ const SelectTeachingType: React.FC = () => {
     );
   };
 
-  const createPeople = (): void => {
+  const createPeople = (teachingTypeSelected: ITeachingType): void => {
     registerPeople(
       OnEducaAPI,
       { name, email, password, isStudent, isOnline: true },
@@ -93,17 +90,15 @@ const SelectTeachingType: React.FC = () => {
       <TeachingTypes>
         <TeachingType
           onClick={() => {
-            setTeachingTypeSelected(teachingTypes[0]);
-            createPeople();
+            createPeople(teachingTypes[0]);
           }}
         >
           <PrimarySchool fill={theme.colors.textColor} />
           <TeachingTypeLabel>Ensino Fundamental</TeachingTypeLabel>
         </TeachingType>
         <TeachingType
-          onClick={() => () => {
-            setTeachingTypeSelected(teachingTypes[1]);
-            createPeople();
+          onClick={() => {
+            createPeople(teachingTypes[1]);
           }}
         >
           <Exams fill={theme.colors.textColor} />

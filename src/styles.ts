@@ -212,7 +212,7 @@ export default createGlobalStyle`
     }
 
     :disabled {
-      opacity: .7;
+      opacity: .7 !important;
       pointer-events: none;
     }
 
@@ -220,35 +220,33 @@ export default createGlobalStyle`
       background: ${({ theme }) => theme.colors.mainButtonBgColor};
       color: ${({ theme }) => theme.colors.mainButtonTextColor};
 
-      /* box-shadow: 0px 2px 0px 3px
+      box-shadow: 0px 2px 0px 3px
         ${({ theme }) => theme.colors.mainButtonShadowColor};
     
       :hover, :disabled {
         box-shadow: 0px 0px 0px 1px
         ${({ theme }) => theme.colors.mainButtonShadowColor};
-      } */
+      }
     }
 
     &.secondary-action {
       color: ${({ theme }) => theme.colors.secondaryButtonTextColor};
       background: ${({ theme }) => theme.colors.secondaryButtonBgColor};
       
-      /* box-shadow: 0px 2px 0px 3px
-        ${({ theme }) => theme.colors.secondaryButtonShadowColor}; */
+      box-shadow: 0px 2px 0px 3px
+        ${({ theme }) => theme.colors.secondaryButtonShadowColor};
     
-      /* :hover, :disabled {
+      :hover, :disabled {
         box-shadow: 0px 0px 0px 1px
         ${({ theme }) => theme.colors.secondaryButtonShadowColor};
-      } */
-
-      box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+      }
 
       &.selected {
         background: ${({ theme }) => theme.colors.mainButtonBgColor};
         color: ${({ theme }) => theme.colors.mainButtonTextColor};
 
-        /* box-shadow: 0px 0px 0px 1px
-          ${({ theme }) => theme.colors.mainButtonShadowColor}; */
+        box-shadow: 0px 0px 0px 1px
+          ${({ theme }) => theme.colors.mainButtonShadowColor};
       }
     }
 

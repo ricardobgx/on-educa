@@ -75,7 +75,7 @@ const SignInForm: React.FC<ISignFormProps> = (props) => {
   return (
     <SignForm
       className={`with-shadow bd-rd-30 form form-login ${
-        signFormType === TSignFormType.SIGNIN ? 'is-active' : ''
+        signFormType === TSignFormType.SIGNIN ? 'is-active' : 'is-not-active'
       }`}
     >
       <SignFormFields className="sign-form-fields">
@@ -93,14 +93,15 @@ const SignInForm: React.FC<ISignFormProps> = (props) => {
         />
       </SignFormFields>
       <SignFormButton
-        className="btn-login block-shadow-button main-action bd-rd-30"
+        disabled={!email.trim() || !password.trim()}
+        className="btn-login block-shadow-button main-action bd-rd-20"
         onClick={() => login()}
       >
         <SignFormButtonLabel>Entrar</SignFormButtonLabel>
       </SignFormButton>
       <SignFormButton
         onClick={() => switchSignForm()}
-        className="btn-switch switcher block-shadow-button secondary-action bd-rd-30"
+        className="btn-switch switcher block-shadow-button secondary-action bd-rd-20"
       >
         <SignFormButtonLabel>Cadastrar</SignFormButtonLabel>
       </SignFormButton>

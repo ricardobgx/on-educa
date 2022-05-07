@@ -48,7 +48,13 @@ import {
   SocialDetails,
 } from './styles';
 import { SmallMaterialIconRound } from '../../components/App/Icons/MaterialIcons/MaterialIconsRound';
-import { isDefaultPeople } from '../../functions/entitiesValues';
+import {
+  isDefaultPeople,
+  isDefaultStudent,
+  isDefaultStudentWeeklyPerformance,
+  isDefaultTeacher,
+  isDefaultTeacherWeeklyPerformance,
+} from '../../functions/entitiesValues';
 import { getStudentWeeklyPerformanceByStudent } from '../../functions/studentWeeklyPerformance';
 import UpdateProfilePicture from '../../components/Profile/UpdateProfilePicture';
 import SelectSocialDetailsList from '../../components/Profile/SelectSocialDetailsList';
@@ -188,7 +194,14 @@ const Profile = (): JSX.Element => {
     }
     if ((isDefaultPeople(people) || people.id !== id) && token) {
       getPeopleData();
-    } else {
+    } else if (
+      (people.isStudent &&
+        !isDefaultStudent(student) &&
+        isDefaultStudentWeeklyPerformance(studentWeeklyPerformance)) ||
+      (!people.isStudent &&
+        !isDefaultTeacher(teacher) &&
+        isDefaultTeacherWeeklyPerformance(teacherWeeklyPerformance))
+    ) {
       getPeopleWeeklyPerformance();
     }
   }, [id, people, token, student, teacher]);
@@ -199,8 +212,6 @@ const Profile = (): JSX.Element => {
     ? studentWeeklyPerformance
     : teacherWeeklyPerformance;
   const { dailyXp } = weekDay;
-
-  console.log(teacher);
 
   return (
     <Page>
@@ -280,17 +291,13 @@ const Profile = (): JSX.Element => {
                 <ProfileDailyGoal dailyXP={dailyXp} />
                 {isStudent ? (
                   <StudentWeeklyPerformance
-                    people={people}
-                    student={student}
-                    token={token}
                     isPeopleLogged={isPeopleLogged(people.id, loggedPeople.id)}
+                    studentWeeklyPerformance={studentWeeklyPerformance}
                   />
                 ) : (
                   <TeacherWeeklyPerformance
-                    people={people}
-                    teacher={teacher}
-                    token={token}
                     isPeopleLogged={isPeopleLogged(people.id, loggedPeople.id)}
+                    teacherWeeklyPerformance={teacherWeeklyPerformance}
                   />
                 )}
               </WeeklyPerformanceSummary>

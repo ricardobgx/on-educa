@@ -1,17 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { isDefaultPeople } from '../../../../functions/entitiesValues';
-import { getStudentWeeklyPerformanceByStudent } from '../../../../functions/studentWeeklyPerformance';
+import React from 'react';
 import {
   PerformanceDetailsHeader,
   PerformanceDetailsHeaderLabel,
 } from '../../../../pages/Profile/styles';
-import OnEducaAPI from '../../../../services/api';
-import { DEFAULT_STUDENT_WEEKLY_PERFORMANCE } from '../../../../static/defaultEntitiesValues';
-import { ActionCreators } from '../../../../store';
 import { SmallMaterialIconRound } from '../../../App/Icons/MaterialIcons/MaterialIconsRound';
 import {
   Container,
@@ -24,37 +17,14 @@ import {
 } from '../styles';
 
 interface IWeeklyPerformanceProps {
-  people: IPeople;
-  student: IStudent;
-  token: string;
   isPeopleLogged: boolean;
+  studentWeeklyPerformance: IStudentWeeklyPerformance;
 }
 
 const StudentWeeklyPerformance = (
   props: IWeeklyPerformanceProps,
 ): JSX.Element => {
-  const { people, student, token, isPeopleLogged } = props;
-
-  const dispatch = useDispatch();
-  const { showFloatNotification } = bindActionCreators(
-    ActionCreators,
-    dispatch,
-  );
-
-  const [studentWeeklyPerformance, setStudentWeeklyPerformance] =
-    useState<IStudentWeeklyPerformance>(DEFAULT_STUDENT_WEEKLY_PERFORMANCE);
-
-  useEffect(() => {
-    if (!isDefaultPeople(people)) {
-      getStudentWeeklyPerformanceByStudent(
-        OnEducaAPI,
-        student.id,
-        token,
-        setStudentWeeklyPerformance,
-        () => showFloatNotification('erro'),
-      );
-    }
-  }, [student]);
+  const { isPeopleLogged, studentWeeklyPerformance } = props;
 
   const { weekDay } = studentWeeklyPerformance;
 

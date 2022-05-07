@@ -13,6 +13,8 @@ import {
   DEFAULT_UNITY,
   DEFAULT_PEOPLE,
   DEFAULT_CHAT,
+  DEFAULT_STUDENT_WEEKLY_PERFORMANCE,
+  DEFAULT_TEACHER_WEEKLY_PERFORMANCE,
 } from '../static/defaultEntitiesValues';
 
 // Usuarios
@@ -64,3 +66,13 @@ export const isDefaultDuelTeamParticipation = (
 /* Chats */
 
 export const isDefaultChat = (chat: IChat): boolean => chat === DEFAULT_CHAT;
+
+/* Weekly Performance */
+
+export const isDefaultStudentWeeklyPerformance = (
+  studentWeeklyPerformance: IStudentWeeklyPerformance,
+): boolean => studentWeeklyPerformance === DEFAULT_STUDENT_WEEKLY_PERFORMANCE;
+
+export const isDefaultTeacherWeeklyPerformance = (
+  teacherWeeklyPerformance: ITeacherWeeklyPerformance,
+): boolean => teacherWeeklyPerformance === DEFAULT_TEACHER_WEEKLY_PERFORMANCE;
