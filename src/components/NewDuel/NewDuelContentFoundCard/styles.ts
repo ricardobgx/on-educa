@@ -16,11 +16,11 @@ export const NewDuelContentFoundCardBox = styled.div`
 `;
 
 export const AddContentButton = styled.button`
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.mainButtonBgColor};
   min-width: 40px;
   min-height: 30px;
   border: none;
-  color: ${({ theme }) => theme.colors.boxColor};
+  color: ${({ theme }) => theme.colors.mainButtonTextColor};
   margin-left: 10px;
   cursor: pointer;
 

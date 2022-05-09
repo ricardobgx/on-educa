@@ -1,4 +1,5 @@
 import React from 'react';
+import ClickAwayListener from 'react-click-away-listener';
 import { useSelector } from 'react-redux';
 import { getContents } from '../../../functions/content';
 import OnEducaAPI from '../../../services/api';
@@ -46,58 +47,70 @@ const NewDuelSearchContents = (
     setSelectedContents,
   } = props;
 
+  const clearContentsFound = (): void => {
+    setContentsFound([]);
+    setContentsName('');
+  };
+
+  const showContentsNotSelected = (contents: IContent[]): void => {
+    setContentsFound(
+      contents.filter(
+        (content) => !selectedContents.find((c) => c.id === content.id),
+      ),
+    );
+  };
+
+  const searchContents = (): void => {
+    getContents(OnEducaAPI, showContentsNotSelected, token, contentsName);
+  };
+
   return (
-    <NewDuelSearchContentsBox>
-      <SearchSuppliesBox
-        className="bd-rd-20"
-        style={{
-          marginRight: 0,
-          borderRadius: contentsFound.length > 0 ? '5px 5px 0 0' : '',
-        }}
-      >
-        <SearchSuppliesInput
-          value={contentsName}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            setContentsName(event.target.value)
-          }
-          onKeyUp={(event: React.KeyboardEvent<HTMLInputElement>) => {
-            if (event.key === 'Enter')
-              getContents(OnEducaAPI, setContentsFound, token, contentsName);
-          }}
-          type="text"
-          placeholder="Pesquisar conteúdo (exemplo: Substantivos)"
-        />
-        <ClearSearchSuppliesInputButton
-          onClick={() => {
-            setContentsFound([]);
-            setContentsName('');
+    <ClickAwayListener onClickAway={() => clearContentsFound()}>
+      <NewDuelSearchContentsBox>
+        <SearchSuppliesBox
+          style={{
+            marginRight: 0,
+            borderRadius: contentsFound.length > 0 ? '10px 10px 0 0' : '',
           }}
         >
-          <ClearSearchSuppliesInputButtonIcon className="fas fa-times" />
-        </ClearSearchSuppliesInputButton>
-        <SearchContentsButton
-          onClick={() =>
-            getContents(OnEducaAPI, setContentsFound, token, contentsName)
-          }
-        >
-          <SearchSuppliesButtonIcon className="fas fa-search" />
-        </SearchContentsButton>
-      </SearchSuppliesBox>
-      {contentsFound.length > 0 && (
-        <ContentsFound>
-          <ContentsFoundList>
-            {contentsFound.map((contentFound) => (
-              <NewDuelContentFoundCard
-                content={contentFound}
-                unity={contentFound.unity}
-                selectedContents={selectedContents}
-                setSelectedContents={setSelectedContents}
-              />
-            ))}
-          </ContentsFoundList>
-        </ContentsFound>
-      )}
-    </NewDuelSearchContentsBox>
+          <SearchSuppliesInput
+            value={contentsName}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setContentsName(event.target.value)
+            }
+            onFocus={() => {
+              searchContents();
+            }}
+            onKeyUp={(event: React.KeyboardEvent<HTMLInputElement>) => {
+              if (event.key === 'Enter') searchContents();
+            }}
+            type="text"
+            placeholder="Pesquisar conteúdo (exemplo: Substantivos)"
+          />
+          <ClearSearchSuppliesInputButton onClick={() => clearContentsFound()}>
+            <ClearSearchSuppliesInputButtonIcon className="fas fa-times" />
+          </ClearSearchSuppliesInputButton>
+          <SearchContentsButton onClick={() => searchContents()}>
+            <SearchSuppliesButtonIcon className="fas fa-search" />
+          </SearchContentsButton>
+        </SearchSuppliesBox>
+        {contentsFound.length > 0 && (
+          <ContentsFound>
+            <ContentsFoundList>
+              {contentsFound.map((contentFound) => (
+                <NewDuelContentFoundCard
+                  content={contentFound}
+                  unity={contentFound.unity}
+                  selectedContents={selectedContents}
+                  setSelectedContents={setSelectedContents}
+                  clearContentsFound={clearContentsFound}
+                />
+              ))}
+            </ContentsFoundList>
+          </ContentsFound>
+        )}
+      </NewDuelSearchContentsBox>
+    </ClickAwayListener>
   );
 };
 

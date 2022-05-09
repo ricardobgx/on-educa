@@ -73,8 +73,8 @@ export const RecentConversationsBox = styled.div`
 export const RecentConversationsList = styled.div`
   overflow: auto;
   padding: 5px;
-  max-height: calc(100vh - 280px);
-  min-height: calc(100vh - 280px);
+  max-height: calc(100vh - 270px);
+  min-height: calc(100vh - 270px);
   margin-bottom: 20px;
 `;
 export const RecentConversationsActions = styled.div`
@@ -82,6 +82,13 @@ export const RecentConversationsActions = styled.div`
   justify-content: center;
   position: relative;
   padding: 15px;
+`;
+export const RecentConversationsBottomActions = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  padding: 0 15px;
 `;
 export const BackButton = styled(Link)`
   position: absolute;

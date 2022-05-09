@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { AxiosInstance } from 'axios';
+import { AxiosError, AxiosInstance } from 'axios';
 import { IUpdatePeopleFriendParams } from '../dto/IUpdatePeopleFriendParams';
 import { DeviceType } from '../types/deviceType';
 import { getStudentByPeople } from './student';
 import { getTeacherByPeople } from './teacher';
-import { deviceType, showErrorMessage } from './utils';
+import { deviceType } from './utils';
 
 /* Application functions */
 
@@ -119,7 +119,7 @@ const entityPath = 'peoples';
 export const loginPeople = async (
   API: AxiosInstance,
   loginParams: ILogin,
-  showFloatNotification: (content: string) => void,
+  requestError: (err: AxiosError) => void,
 ): Promise<IAuthenticationResponse | null> => {
   let authResponseData = null;
 
@@ -128,7 +128,7 @@ export const loginPeople = async (
       authResponseData = response.data;
     })
     .catch((err) => {
-      showErrorMessage(err, showFloatNotification);
+      requestError(err);
     });
 
   return authResponseData;
@@ -191,6 +191,23 @@ export const updatePeople = async (
   updateError: () => void,
 ): Promise<void> => {
   await API.put(`/${entityPath}/${id}`, peopleParams, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then(
+    () => updateSucess(),
+    () => updateError(),
+  );
+};
+
+export const deletePeople = async (
+  API: AxiosInstance,
+  id: string,
+  token: string,
+  updateSucess: () => void,
+  updateError: () => void,
+): Promise<void> => {
+  await API.delete(`/${entityPath}/${id}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },

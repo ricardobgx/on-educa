@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import SectionInDevelopment from '../../components/App/InDevelopment/SectionInDevelopment';
 import Chat from '../../components/Chats/Chat';
 import ChatCard from '../../components/Chats/ChatCard';
 import NoChatSelected from '../../components/Chats/NoChatSelected';
@@ -24,11 +25,10 @@ import {
   BackButton,
   BackButtonIcon,
   RecentConversationsLabel,
-  TalkWithTeacherButton,
-  TalkWithTeacherButtonLabel,
   ToggleRecentConversationsCheckbox,
   ToggleRecentConversationsLabel,
   ToggleRecentConversationsLabelIcon,
+  RecentConversationsBottomActions,
 } from './styles';
 
 const Chats = (): JSX.Element => {
@@ -109,12 +109,15 @@ const Chats = (): JSX.Element => {
                   />
                 ))}
               </RecentConversationsList>
-              <TalkWithTeacherButton className="block-shadow-button main-action bd-rd-20">
+              <RecentConversationsBottomActions>
+                {/* <TalkWithTeacherButton className="block-shadow-button main-action bd-rd-20">
                 <TalkWithTeacherButtonLabel>
                   Falar com professor
                 </TalkWithTeacherButtonLabel>
-              </TalkWithTeacherButton>
-              {/* <TalkWithTeacher>1</TalkWithTeacher> */}
+              </TalkWithTeacherButton> */}
+                <SectionInDevelopment />
+                {/* <TalkWithTeacher>1</TalkWithTeacher> */}
+              </RecentConversationsBottomActions>
             </RecentConversationsBox>
           </RecentConversations>
           {isDefaultChat(selectedChat) ? (

@@ -199,6 +199,9 @@ export const SearchSuppliesBox = styled.div`
   background: ${({ theme }) => theme.colors.inputTextBgColor};
   padding: 0 15px;
   margin-right: 20px;
+  border-radius: 20px;
+
+  transition: all 0.2s linear;
 `;
 
 // Input onde o texto sera digitado

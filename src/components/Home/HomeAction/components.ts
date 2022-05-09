@@ -45,12 +45,12 @@ export const HomeActionIcon = styled.span`
 
   color: ${({ theme }) => theme.colors.textColor};
 
-  @media (max-width: 600px) {
-    font-size: calc((100vw - 120px) / 6);
+  @media (min-width: 600px) and (max-width: 1150px) {
+    font-size: calc((100vw - 180px) / 7);
   }
 
-  @media (min-width: 600px) and (max-width: 1150px) {
-    font-size: calc((100vw - 180px) / 9);
+  @media (max-width: 600px) {
+    font-size: calc((100vw - 120px) / 6);
   }
 `;
 

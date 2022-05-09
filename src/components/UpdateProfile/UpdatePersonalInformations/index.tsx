@@ -11,20 +11,12 @@ import {
 import UpdateProfileSchoolGrade from '../UpdateProfileSchoolGrade';
 import UpdateProfileTeachingType from '../UpdateProfileTeachingType';
 import UpdateProfileTextInputSection from '../UpdateProfileTextInputSection';
-import {
-  ProfilePicture,
-  ProfilePictureActionLabel,
-  ProfilePictureActions,
-  ProfilePictureBox,
-  RemoveImageButton,
-  UploadImageButton,
-} from './styles';
 
 export interface IUpdatePersonalInformationsProps {
   name: string;
   setName: (value: string) => void;
-  profilePicture: string;
-  setProfilePicture: (value: string) => void;
+  email: string;
+  setEmail: (email: string) => void;
   selectedTeachingTypeId: string;
   setSelectedTeachingTypeId: (value: string) => void;
   selectedSchoolGradeId: string;
@@ -38,8 +30,8 @@ const UpdatePersonalInformations = (
   const {
     name,
     setName,
-    profilePicture,
-    setProfilePicture,
+    email,
+    setEmail,
     selectedTeachingTypeId,
     setSelectedTeachingTypeId,
     selectedSchoolGradeId,
@@ -58,6 +50,12 @@ const UpdatePersonalInformations = (
           inputType="text"
           value={name}
           setValue={setName}
+        />
+        <UpdateProfileTextInputSection
+          label="E-mail"
+          inputType="email"
+          value={email}
+          setValue={setEmail}
         />
         {isStudent ? (
           <UpdateProfileSchoolGrade

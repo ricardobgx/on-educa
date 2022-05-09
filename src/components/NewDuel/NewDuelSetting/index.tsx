@@ -21,6 +21,7 @@ const NewDuelSetting = (props: INewDuelSettingProps): JSX.Element => {
     <NewDuelSettingBox>
       <NewDuelSettingsLabel>{label}</NewDuelSettingsLabel>
       <NewDuelSettingSelect
+        className="shadow-select"
         value={selectedValue}
         onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
           setSelectedValue(Number(event.target.value))

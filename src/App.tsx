@@ -26,6 +26,7 @@ import FloatNotification from './components/App/FloatNotification';
 import { findTheme } from './utils/application';
 import { DEFAULT_THEME } from './static/defaultEntitiesValues';
 import { isAuthenticated } from './utils/people';
+import ConfirmActionPopup from './components/App/ConfirmActionPopup';
 
 export const socket = io(process.env.REACT_APP_API_URL || '');
 socket.on('connect', () =>
@@ -40,8 +41,10 @@ const App: React.FC = () => {
     theme,
     floatNotification,
     people: loggedPeople,
+    confirmActionPopup,
   } = useSelector((store: RootState) => store);
 
+  const { isActive: confirmActionPopupIsActive } = confirmActionPopup;
   const { loadingAnimation } = aplication;
   const { isActive: floatNotificationIsActive } = floatNotification;
 
@@ -161,6 +164,7 @@ const App: React.FC = () => {
         <BrowserRouter>
           {loadingAnimation && <LoadAnimation />}
           <GlobalStyle />
+          {confirmActionPopupIsActive && <ConfirmActionPopup />}
           {floatNotificationIsActive && <FloatNotification />}
           {isAuthenticated(loggedPeople) ? <NavBar /> : null}
           <Routes />

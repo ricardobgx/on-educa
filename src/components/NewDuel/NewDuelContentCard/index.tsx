@@ -11,10 +11,14 @@ const NewDuelContentCard = (props: INewDuelContentCardProps): JSX.Element => {
   const { content, unity } = props;
 
   return (
-    <NewDuelContentCardBox className="with-shadow bd-rd-10">
-      <NewDuelContentCardSection label={content.name} bold />
+    <NewDuelContentCardBox className="with-shadow bd-rd-20">
+      <NewDuelContentCardSection preMessage="" label={content.name} bold />
       <AdditionalInfo>
-        <NewDuelContentCardSection label={unity.name} bold={false} />
+        <NewDuelContentCardSection
+          preMessage="Unidade:"
+          label={unity.name}
+          bold={false}
+        />
       </AdditionalInfo>
     </NewDuelContentCardBox>
   );

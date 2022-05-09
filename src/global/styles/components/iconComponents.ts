@@ -27,10 +27,10 @@ export const mediumIcon = styled.i`
 `;
 
 export const bigIcon = styled.i`
-  font-size: 4rem;
+  font-size: 4.3rem;
 
   @media (min-width: 600px) and (max-width: 1150px) {
-    font-size: 8vw;
+    font-size: 10vw;
   }
 
   @media (max-width: 600px) {

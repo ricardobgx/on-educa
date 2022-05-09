@@ -200,10 +200,13 @@ export const SignForm = styled.div`
       }
     }
 
+    &.is-active .sign-form-fields {
+      transition: opacity 0.4s ease-in, transform 0.35s ease-in;
+    }
+
     &.is-active .sign-form-fields,
     &.is-active button {
       transform: translateX(0);
-      transition: opacity 0.4s ease-in, transform 0.35s ease-in;
     }
 
     &.is-not-active button,

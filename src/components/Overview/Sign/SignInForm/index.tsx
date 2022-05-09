@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -8,6 +9,7 @@ import {
   setPeopleVariables,
   setUpPeopleType,
 } from '../../../../functions/people';
+import { showErrorMessage } from '../../../../functions/utils';
 import OnEducaAPI from '../../../../services/api';
 import { ActionCreators } from '../../../../store';
 import { TSignFormType } from '../../../../types/TSignFormType';
@@ -34,13 +36,20 @@ const SignInForm: React.FC<ISignFormProps> = (props) => {
     loadStudent,
     loadTeacher,
     showFloatNotification,
+    enableLoadingAnimation,
+    disableLoadingAnimation,
   } = bindActionCreators(ActionCreators, dispatch);
 
   const login = async (): Promise<void> => {
+    enableLoadingAnimation();
+
     const authResponse = await loginPeople(
       OnEducaAPI,
       { email, password },
-      showFloatNotification,
+      (err: AxiosError): void => {
+        showErrorMessage(err, showFloatNotification);
+        disableLoadingAnimation();
+      },
     );
 
     if (!authResponse) return;
@@ -49,11 +58,16 @@ const SignInForm: React.FC<ISignFormProps> = (props) => {
 
     const people = await getPeople(OnEducaAPI, id, token);
 
-    if (!people) return;
+    if (!people) {
+      disableLoadingAnimation();
+
+      return;
+    }
 
     loadToken(token);
     loadIsStudent(people.isStudent);
     loadPeople(people);
+
     await setUpPeopleType(
       OnEducaAPI,
       id,

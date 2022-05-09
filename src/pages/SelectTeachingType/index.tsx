@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -76,7 +78,14 @@ const SelectTeachingType: React.FC = () => {
     );
   };
 
+  const verifySignUpProgress = (): void => {
+    if (!email.trim() || !name.trim() || !password.trim()) {
+      pageHistory.push('/sign');
+    }
+  };
+
   useEffect(() => {
+    verifySignUpProgress();
     getTeachingTypesAction();
   }, []);
 

@@ -20,6 +20,11 @@ export const NavBarBox = styled.div`
 export const Logo = styled(Link)`
   display: flex;
   align-items: center;
+
+  svg {
+    height: 35px;
+    width: 35px;
+  }
 `;
 
 export const LogoBall = styled.div`

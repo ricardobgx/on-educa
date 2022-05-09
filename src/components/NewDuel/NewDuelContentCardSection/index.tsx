@@ -8,18 +8,19 @@ import {
 interface INewDuelContentCardSectionProps {
   label: string;
   bold: boolean;
+  preMessage: string;
 }
 
 const NewDuelContentCardSection = (
   props: INewDuelContentCardSectionProps,
 ): JSX.Element => {
-  const { label, bold } = props;
+  const { label, bold, preMessage } = props;
 
   return (
     <NewDuelContentCardSectionBox>
       <ContentCardIcon className="fas fa-book" />
       <ContentCardName style={{ fontWeight: bold ? 'bold' : 'unset' }}>
-        {label}
+        {preMessage} {label}
       </ContentCardName>
     </NewDuelContentCardSectionBox>
   );

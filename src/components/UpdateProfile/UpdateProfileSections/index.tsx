@@ -17,8 +17,6 @@ const UpdateProfileSections = (
   props: IUpdateProfileSectionsProps,
 ): JSX.Element => {
   const {
-    profilePicture,
-    setProfilePicture,
     name,
     setName,
     selectedTeachingTypeId,
@@ -27,16 +25,16 @@ const UpdateProfileSections = (
     setSelectedSchoolGradeId,
     email,
     setEmail,
-    newPassword,
-    setNewPassword,
+    // newPassword,
+    // setNewPassword,
     isStudent,
   } = props;
 
   const updatePersonalInformationsProps = {
-    profilePicture,
-    setProfilePicture,
     name,
     setName,
+    email,
+    setEmail,
     selectedTeachingTypeId,
     setSelectedTeachingTypeId,
     selectedSchoolGradeId,
@@ -45,10 +43,8 @@ const UpdateProfileSections = (
   };
 
   const updateAccountInformationsProps = {
-    email,
-    setEmail,
-    newPassword,
-    setNewPassword,
+    // newPassword,
+    // setNewPassword,
   };
 
   return (

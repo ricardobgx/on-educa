@@ -24,7 +24,8 @@ export default createGlobalStyle`
   input:-webkit-autofill {
     -webkit-text-fill-color: ${({ theme }) => theme.colors.textColor};
     -webkit-box-shadow: 0 0 0px 1000px ${({ theme }) =>
-      theme.colors.backgroundColor} inset;
+      theme.colors.inputTextBgColor} inset;
+      border-radius: 20px;
   }
 
   ::-webkit-scrollbar {
@@ -192,6 +193,27 @@ export default createGlobalStyle`
     border-radius: 15px;
   }
 
+  .shadow-select {
+    cursor: pointer;
+
+    color: ${({ theme }) => theme.colors.secondaryButtonTextColor};
+    background: ${({ theme }) => theme.colors.secondaryButtonBgColor};
+    
+    border-bottom: 2px solid transparent;
+    
+    transition: all 0.2s linear;
+    
+    box-shadow: 0px 2px 0px 3px
+      ${({ theme }) => theme.colors.secondaryButtonShadowColor};
+  
+    :hover, :disabled {
+      border-bottom: 0px solid transparent;
+      
+      box-shadow: 0px 0px 0px 1px
+      ${({ theme }) => theme.colors.secondaryButtonShadowColor};
+    }
+  }
+
   .block-shadow-button {
     border: none;
     transition: all 0.2s linear;
@@ -247,19 +269,6 @@ export default createGlobalStyle`
 
         box-shadow: 0px 0px 0px 1px
           ${({ theme }) => theme.colors.mainButtonShadowColor};
-      }
-    }
-
-    &.danger-action {
-      color: ${({ theme }) => theme.colors.boxColor};
-      background: ${({ theme }) => theme.similarColors.warningColor};
-      
-      box-shadow: 0px 2px 0px 3px
-        ${({ theme }) => theme.colors.boxShadowColor};
-    
-      :hover {
-        box-shadow: 0px 0px 0px 1px
-        ${({ theme }) => theme.colors.boxShadowColor};
       }
     }
   }

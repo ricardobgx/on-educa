@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -32,6 +34,12 @@ const SelectSchoolGrade: React.FC = () => {
   );
 
   const pageHistory = useHistory();
+
+  const verifySignUpProgress = (): void => {
+    if (!email.trim() || !name.trim() || !password.trim()) {
+      pageHistory.push('/sign');
+    }
+  };
 
   const [schoolGrades, setSchoolGrades] = useState<ISchoolGrade[]>([]);
   const [schoolGradeSelected, setSchoolGradeSelected] =
@@ -94,6 +102,7 @@ const SelectSchoolGrade: React.FC = () => {
   };
 
   useEffect(() => {
+    verifySignUpProgress();
     getSchoolGradesAction();
   }, []);
 

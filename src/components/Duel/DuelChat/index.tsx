@@ -36,7 +36,7 @@ const DuelChat = (props: IDuelChatProps): JSX.Element => {
 
   return (
     <DuelChatBackground>
-      <DuelChatBox>
+      <DuelChatBox className="bd-rd-30">
         <CloseChatButton onClick={() => setShowChat(false)}>
           <CloseChatButtonIcon className="fas fa-times" />
         </CloseChatButton>

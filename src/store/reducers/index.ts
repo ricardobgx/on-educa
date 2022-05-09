@@ -5,6 +5,7 @@ import { combineReducers } from 'redux';
 import aplicationReducer from './aplication';
 import themeReducer from './theme';
 import floatNotificationReducer from './floatNotification';
+import confirmActionPopupReducer from './confirmActionPopup';
 
 // Usuarios
 
@@ -46,6 +47,7 @@ const reducers = combineReducers({
   aplication: aplicationReducer,
   theme: themeReducer,
   floatNotification: floatNotificationReducer,
+  confirmActionPopup: confirmActionPopupReducer,
   signUp: signUpReducer,
   people: peopleReducer,
   student: studentReducer,

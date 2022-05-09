@@ -11,10 +11,8 @@ export const DuelChatActionsBox = styled.div`
 `;
 export const DuelChatMessageInput = styled(inputText)`
   color: ${({ theme }) => theme.colors.textColor};
-  background: ${({ theme }) => theme.colors.boxColor};
+  background: ${({ theme }) => theme.colors.inputTextBgColor};
   border: none;
-  border-radius: 5px;
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   width: 100%;
   margin-right: 10px;
   padding: 0 10px;

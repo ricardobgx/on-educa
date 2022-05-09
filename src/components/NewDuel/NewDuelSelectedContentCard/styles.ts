@@ -15,11 +15,11 @@ export const NewDuelSelectedContentCardBox = styled.div`
   }
 `;
 export const DeleteContentButton = styled.button`
-  background: ${({ theme }) => theme.similarColors.warningColor};
+  background: ${({ theme }) => theme.colors.mainButtonBgColor};
   min-width: 40px;
-  min-height: 30px;
+  min-height: 40px;
   border: none;
-  color: ${({ theme }) => theme.colors.whiteColor};
+  color: ${({ theme }) => theme.colors.mainButtonTextColor};
   margin-left: 10px;
   cursor: pointer;
 

@@ -22,7 +22,6 @@ export const DuelChatBox = styled.div`
   color: ${({ theme }) => theme.colors.textColor};
   background: ${({ theme }) => theme.colors.boxColor};
   padding: 20px 15px;
-  border-radius: 5px;
   box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   display: flex;
   flex-direction: column;

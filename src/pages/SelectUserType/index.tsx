@@ -1,4 +1,6 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
@@ -14,7 +16,8 @@ import {
 } from './styles';
 
 const SelectUserType: React.FC = () => {
-  const { theme } = useSelector((store: RootState) => store);
+  const { theme, signUp } = useSelector((store: RootState) => store);
+  const { name, email, password } = signUp;
 
   const dispatch = useDispatch();
   const { loadSignUpUserTypeData } = bindActionCreators(
@@ -24,12 +27,22 @@ const SelectUserType: React.FC = () => {
 
   const pageHistory = useHistory();
 
+  const verifySignUpProgress = (): void => {
+    if (!email.trim() || !name.trim() || !password.trim()) {
+      pageHistory.push('/sign');
+    }
+  };
+
   const selectUserType = (isStudent: boolean): void => {
     loadSignUpUserTypeData({ isStudent });
 
     if (isStudent) pageHistory.push('/select-school-grade');
     else pageHistory.push('/select-teaching-type');
   };
+
+  useEffect(() => {
+    verifySignUpProgress();
+  }, []);
 
   return (
     <SelectUserTypeBox>

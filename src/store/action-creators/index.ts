@@ -22,3 +22,4 @@ export * from './unity';
 export * from './studentWeeklyPerformance';
 export * from './chat';
 export * from './friendRequests';
+export * from './confirmActionPopup';

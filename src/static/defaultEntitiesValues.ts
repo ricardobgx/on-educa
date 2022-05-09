@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import { ThemeType } from '../types/ThemeType';
 import { TDoubtStatus } from '../types/TDoubtStatus';
 import { themes } from './themes';
@@ -7,6 +9,12 @@ export const DEFAULT_APLICATION: IAplication = {
   theme: ThemeType.LIGHT_BLUE,
   isStudent: true,
   loadingAnimation: false,
+};
+
+export const DEFAULT_CONFIRM_ACTION_POPUP: IConfirmActionPopup = {
+  message: '',
+  isActive: false,
+  method: () => console.log(''),
 };
 
 export const DEFAULT_SIGN_UP: ISignUp = {

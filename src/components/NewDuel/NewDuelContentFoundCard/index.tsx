@@ -13,15 +13,18 @@ import {
 interface INewDuelContentFoundCardProps extends INewDuelContentCardProps {
   selectedContents: IContent[];
   setSelectedContents: (value: IContent[]) => void;
+  clearContentsFound: () => void;
 }
 
 const NewDuelContentFoundCard = (
   props: INewDuelContentFoundCardProps,
 ): JSX.Element => {
-  const { selectedContents, setSelectedContents, content } = props;
+  const { selectedContents, setSelectedContents, content, clearContentsFound } =
+    props;
 
   const addFoundContent = (newContent: IContent): void => {
     setSelectedContents([...selectedContents, newContent]);
+    clearContentsFound();
   };
 
   return (

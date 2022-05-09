@@ -21,10 +21,10 @@ const NewDuelSelectedContentCard = (
     <NewDuelSelectedContentCardBox>
       <NewDuelContentCard content={content} unity={unity} />
       <DeleteContentButton
-        className="block-shadow-button main-action bd-rd-10"
+        className="with-shadow bd-rd-20"
         onClick={() => removeSelectedContent(content)}
       >
-        <DeleteContentButtonIcon className="fas fa-times" />
+        <DeleteContentButtonIcon className="fas fa-trash" />
       </DeleteContentButton>
     </NewDuelSelectedContentCardBox>
   );

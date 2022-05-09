@@ -17,9 +17,11 @@ import { PageBox, UpdateProfileBox } from './styles';
 const UpdateProfile = (): JSX.Element => {
   /* GlobalRootState */
 
-  const { people, aplication } = useSelector((store: RootState) => store);
-  const { id } = people;
-  const { isStudent, token } = aplication;
+  const { people, aplication, student, teacher } = useSelector(
+    (store: RootState) => store,
+  );
+  const { id, isStudent } = people;
+  const { token } = aplication;
 
   /* LocalRootState */
 
@@ -32,12 +34,16 @@ const UpdateProfile = (): JSX.Element => {
 
   useEffect(() => {
     setProfilePicture(people.profilePicture.path);
+
     setName(people.name);
+
     if (!isStudent) {
-      const teachingType = people.teachingType || DEFAULT_TEACHING_TYPE;
+      const teachingType = teacher.teachingType || DEFAULT_TEACHING_TYPE;
+
       setSelectedTeachingTypeId(teachingType.id);
     } else {
-      const schoolGrade = people.schoolGrade || DEFAULT_SCHOOL_GRADE;
+      const schoolGrade = student.schoolGrade || DEFAULT_SCHOOL_GRADE;
+
       setSelectedSchoolGradeId(schoolGrade.id);
     }
     setEmail(people.email);
@@ -69,6 +75,7 @@ const UpdateProfile = (): JSX.Element => {
     newPassword,
     setNewPassword,
     isStudent,
+    test: '',
   };
 
   return (

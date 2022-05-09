@@ -22,10 +22,10 @@ export const ContentsFound = styled.div`
   position: absolute;
   top: 100%;
   width: 100%;
-  background: ${({ theme }) => theme.colors.boxColor};
+  background: ${({ theme }) => theme.colors.inputTextBgColor};
   box-shadow: 0px 1px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 0 0 5px 5px;
-  animation: fadeIn 0.1s linear;
+  border-radius: 0 0 10px 10px;
+  animation: fadeIn 0.2s linear;
 `;
 export const ContentsFoundList = styled.div`
   display: flex;

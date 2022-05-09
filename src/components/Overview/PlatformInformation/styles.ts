@@ -3,7 +3,7 @@ import { bigIcon } from '../../../global/styles/components/iconComponents';
 
 export const PlatformInformationBox = styled.div`
   color: ${({ theme }) => theme.colors.whiteColor};
-  width: 67%;
+  width: 50%;
   position: relative;
   height: 100vh;
 
@@ -31,10 +31,10 @@ export const Information = styled.div`
 
 export const InformationHeader = styled.div``;
 export const Title = styled.h1`
-  font-size: 2.35rem;
+  font-size: 2.85rem;
 
   @media (min-width: 600px) and (max-width: 1150px) {
-    font-size: 5.5vw;
+    font-size: 7vw;
   }
 
   @media (max-width: 600px) {
@@ -43,10 +43,10 @@ export const Title = styled.h1`
 `;
 export const Slogan = styled.h2`
   text-align: justify;
-  font-size: 2rem;
+  font-size: 2.05rem;
 
   @media (min-width: 600px) and (max-width: 1150px) {
-    font-size: 4.2vw;
+    font-size: 5vw;
   }
 
   @media (max-width: 600px) {
@@ -56,10 +56,10 @@ export const Slogan = styled.h2`
 export const Description = styled.p`
   margin-top: 2rem;
   text-align: justify;
-  font-size: 1.25rem;
+  font-size: 1.45rem;
 
   @media (min-width: 600px) and (max-width: 1150px) {
-    font-size: 3.1vw;
+    font-size: 3.7vw;
     margin-top: 4vw;
   }
 
@@ -71,6 +71,7 @@ export const Description = styled.p`
 export const Functions = styled.div`
   display: flex;
   justify-content: space-between;
+  padding: 0 10px;
 `;
 export const Function = styled.div`
   display: flex;
@@ -98,13 +99,12 @@ export const Icon = styled(bigIcon)`
   }
 `;
 export const Name = styled.p`
-  font-size: 1.1rem;
   text-align: center;
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 
   @media (min-width: 600px) and (max-width: 1150px) {
-    font-size: 2.6vw;
+    font-size: 2.8vw;
   }
 
   @media (max-width: 600px) {
@@ -117,7 +117,7 @@ export const ScrollIcon = styled.i`
   left: 50%;
   bottom: 5%;
   transform: translateX(-50%);
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   animation: scroll 1s linear infinite;
   display: none;
 

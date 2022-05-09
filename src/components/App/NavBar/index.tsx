@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { clearPeopleVariables } from '../../../functions/people';
 import { ActionCreators, RootState } from '../../../store';
+import DarkLogo from '../../../svgs/DarkLogo';
+import LightLogo from '../../../svgs/LightLogo';
 import NavBarAction from './NavBarAction';
 import { NavBarActionBox, NavBarIconLabel } from './NavBarAction/styles';
 
 import {
   NavBarBox,
   Logo,
-  LogoBall,
-  Title,
   Actions,
   PeoplePhoto,
   ToggleMenuButton,
@@ -20,8 +22,11 @@ import {
 const NavBar = (): JSX.Element => {
   /* GlobalRootState */
 
-  const { people, friendRequests } = useSelector((store: RootState) => store);
+  const { people, friendRequests, theme } = useSelector(
+    (store: RootState) => store,
+  );
   const { id, profilePicture } = people;
+  const [logoType, setLogoType] = useState('dark');
 
   const dispatch = useDispatch();
   const { logoutPeople, loadToken } = bindActionCreators(
@@ -48,12 +53,17 @@ const NavBar = (): JSX.Element => {
     }
   };
 
+  useEffect(() => {
+    if (theme.themeType < 6) {
+      setLogoType('dark');
+    } else {
+      setLogoType('light');
+    }
+  }, [theme]);
+
   return (
     <NavBarBox className="with-shadow">
-      <Logo to="/">
-        <LogoBall />
-        <Title>Educa</Title>
-      </Logo>
+      <Logo to="/">{logoType === 'dark' ? <DarkLogo /> : <LightLogo />}</Logo>
       <Actions style={{ right: menuRight }}>
         <NavBarActionBox to={`/profile/${id}`} onClick={() => toggleMenu()}>
           <PeoplePhoto src={profilePicture.path} />

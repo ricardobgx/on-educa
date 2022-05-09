@@ -33,6 +33,7 @@ const DuelChatActions = (props: IDuelChatActionsProps): JSX.Element => {
   return (
     <DuelChatActionsBox>
       <DuelChatMessageInput
+        className="bd-rd-20"
         placeholder="Escreva algo"
         value={content}
         onChange={(event) => setContent(event.target.value)}
@@ -42,7 +43,10 @@ const DuelChatActions = (props: IDuelChatActionsProps): JSX.Element => {
           }
         }}
       />
-      <SendDuelChatMessageButton onClick={() => sendMessage()}>
+      <SendDuelChatMessageButton
+        className="block-shadow-button main-action bd-rd-20"
+        onClick={() => sendMessage()}
+      >
         <SendDuelChatMessageButtonIcon className="bi bi-send" />
       </SendDuelChatMessageButton>
     </DuelChatActionsBox>

@@ -10,9 +10,6 @@ interface IButtonColors {
   secondaryButtonTextColor: string;
   secondaryButtonBgColor: string;
   secondaryButtonShadowColor: string;
-  dangerButtonTextColor: string;
-  dangerButtonBgColor: string;
-  dangerButtonShadowColor: string;
 }
 
 // Duel colors

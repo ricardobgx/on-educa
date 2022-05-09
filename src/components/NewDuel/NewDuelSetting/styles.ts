@@ -14,10 +14,8 @@ export const NewDuelSettingSelect = styled(inputSelect)`
   text-align: center;
   border: none;
   border-radius: 20px;
-  color: ${({ theme }) => theme.colors.mainButtonTextColor};
-  background: ${({ theme }) => theme.colors.mainButtonBgColor};
   cursor: pointer;
-  border: 10px solid ${({ theme }) => theme.colors.mainButtonBgColor};
+  border: 10px solid transparent;
   border-top-width: 0;
   border-bottom-width: 0;
 `;
