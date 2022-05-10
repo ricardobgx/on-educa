@@ -52,12 +52,13 @@ const NewUnity = (props: INewUnityProps): JSX.Element => {
 
   return (
     <NewUnityBackground>
-      <NewUnityBox>
+      <NewUnityBox className="with-shadow bd-rd-30">
         <CloseNewUnityButton onClick={() => setNewUnityIsVisible(false)}>
           <CloseNewUnityIcon className="fas fa-times" />
         </CloseNewUnityButton>
         <NewUnityLabel>Nova unidade</NewUnityLabel>
         <NewUnityInput
+          className="bd-rd-20"
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             setName(event.target.value);
           }}
@@ -65,6 +66,7 @@ const NewUnity = (props: INewUnityProps): JSX.Element => {
           placeholder="Título da unidade"
         />
         <CreateUnityButton
+          className="block-shadow-button main-action bd-rd-20"
           onClick={() =>
             createUnity(
               OnEducaAPI,

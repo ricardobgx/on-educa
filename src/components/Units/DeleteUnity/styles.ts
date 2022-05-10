@@ -24,8 +24,6 @@ export const DeleteUnityBox = styled.div`
   color: ${({ theme }) => theme.colors.textColor};
   background: ${({ theme }) => theme.colors.boxColor};
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
   position: relative;
 
   @media (max-width: 900px) {
@@ -69,8 +67,6 @@ export const DeleteUnityActions = styled.div`
   }
 `;
 export const CancelDeleteUnityButton = styled(Button)`
-  color: ${({ theme }) => theme.colors.textColor};
-  background: ${({ theme }) => theme.colors.boxColor};
   width: calc(50% - 10px);
   cursor: pointer;
 
@@ -81,8 +77,6 @@ export const CancelDeleteUnityButton = styled(Button)`
 export const CancelDeleteUnityButtonLabel = styled(paragraph)``;
 
 export const DeleteUnityButton = styled(Button)`
-  color: ${({ theme }) => theme.colors.whiteColor};
-  background: ${({ theme }) => theme.similarColors.warningColor};
   width: calc(50% - 10px);
   cursor: pointer;
 

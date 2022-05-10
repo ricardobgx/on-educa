@@ -56,7 +56,7 @@ const DeleteUnity = (props: IDeleteUnityProps): JSX.Element => {
 
   return (
     <DeleteUnityBackground>
-      <DeleteUnityBox>
+      <DeleteUnityBox className="with-shadow bd-rd-30">
         <CloseDeleteUnityButton onClick={() => setDeleteUnityIsVisible(false)}>
           <CloseDeleteUnityIcon className="fas fa-times" />
         </CloseDeleteUnityButton>
@@ -67,13 +67,17 @@ const DeleteUnity = (props: IDeleteUnityProps): JSX.Element => {
         </DeleteUnityWarningLabel>
         <DeleteUnityActions>
           <CancelDeleteUnityButton
+            className="block-shadow-button secondary-action bd-rd-20"
             onClick={() => setDeleteUnityIsVisible(false)}
           >
             <CancelDeleteUnityButtonLabel>
               Cancelar
             </CancelDeleteUnityButtonLabel>
           </CancelDeleteUnityButton>
-          <DeleteUnityButton onClick={() => deleteUnity()}>
+          <DeleteUnityButton
+            className="block-shadow-button main-action bd-rd-20"
+            onClick={() => deleteUnity()}
+          >
             <DeleteUnityButtonLabel>Excluir</DeleteUnityButtonLabel>
           </DeleteUnityButton>
         </DeleteUnityActions>

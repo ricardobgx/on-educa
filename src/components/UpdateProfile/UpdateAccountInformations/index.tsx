@@ -15,6 +15,10 @@ import SectionInDevelopment from '../../App/InDevelopment/SectionInDevelopment';
 import { ActionCreators, RootState } from '../../../store';
 import { clearPeopleVariables, deletePeople } from '../../../functions/people';
 import OnEducaAPI from '../../../services/api';
+import {
+  DEFAULT_STUDENT,
+  DEFAULT_TEACHER,
+} from '../../../static/defaultEntitiesValues';
 
 export interface IUpdateAccountInformationsProps {
   test: string;
@@ -32,6 +36,8 @@ JSX.Element => {
     showConfirmActionPopup,
     loadToken,
     logoutPeople,
+    loadStudent,
+    loadTeacher,
   } = bindActionCreators(ActionCreators, dispatch);
 
   const deletePeopleAccount = (): void => {
@@ -43,6 +49,8 @@ JSX.Element => {
         clearPeopleVariables();
         logoutPeople();
         loadToken('');
+        loadStudent(DEFAULT_STUDENT);
+        loadTeacher(DEFAULT_TEACHER);
       },
       () => showFloatNotification('Ocorreu um erro ao excluir a conta'),
     );

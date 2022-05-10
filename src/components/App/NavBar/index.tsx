@@ -4,6 +4,10 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { clearPeopleVariables } from '../../../functions/people';
+import {
+  DEFAULT_STUDENT,
+  DEFAULT_TEACHER,
+} from '../../../static/defaultEntitiesValues';
 import { ActionCreators, RootState } from '../../../store';
 import DarkLogo from '../../../svgs/DarkLogo';
 import LightLogo from '../../../svgs/LightLogo';
@@ -29,15 +33,15 @@ const NavBar = (): JSX.Element => {
   const [logoType, setLogoType] = useState('dark');
 
   const dispatch = useDispatch();
-  const { logoutPeople, loadToken } = bindActionCreators(
-    ActionCreators,
-    dispatch,
-  );
+  const { logoutPeople, loadToken, loadStudent, loadTeacher } =
+    bindActionCreators(ActionCreators, dispatch);
 
   const logout = (): void => {
     clearPeopleVariables();
     logoutPeople();
     loadToken('');
+    loadStudent(DEFAULT_STUDENT);
+    loadTeacher(DEFAULT_TEACHER);
   };
 
   const [toggleMenuIcon, setToggleMenuIcon] = useState('bars');

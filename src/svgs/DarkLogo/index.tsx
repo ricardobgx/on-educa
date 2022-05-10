@@ -1,6 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
 const DarkLogo: React.FC = () => {
+  const { theme } = useSelector((store: RootState) => store);
+
   return (
     <svg
       width="2500"
@@ -9,7 +13,12 @@ const DarkLogo: React.FC = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle cx="1250" cy="1250" r="1250" fill="#212121" />
+      <circle
+        cx="1250"
+        cy="1250"
+        r="1250"
+        fill={theme.colors.mainButtonBgColor}
+      />
       <rect
         x="842"
         y="638"

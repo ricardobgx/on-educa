@@ -23,8 +23,6 @@ export const NewUnityBox = styled.div`
   width: 40%;
   background: ${({ theme }) => theme.colors.boxColor};
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
   position: relative;
 
   @media (max-width: 900px) {
@@ -57,20 +55,14 @@ export const NewUnityLabel = styled(paragraph)`
 `;
 export const NewUnityInput = styled(inputText)`
   color: ${({ theme }) => theme.colors.textColor};
-  background: ${({ theme }) => theme.colors.hoverColor};
-  border-radius: 5px;
+  background: ${({ theme }) => theme.colors.inputTextBgColor};
   border: none;
-  border-radius: 5px;
   height: 40px;
   width: 100%;
   margin: 20px 0;
   padding: 0 10px;
 `;
 export const CreateUnityButton = styled.button`
-  color: ${({ theme }) => theme.colors.boxColor};
-  background: ${({ theme }) => theme.colors.textColor};
-  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
   border: none;
   height: 40px;
   width: 100%;
