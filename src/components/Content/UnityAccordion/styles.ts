@@ -5,7 +5,7 @@ import { paragraph } from '../../../global/styles/components/textComponents';
 export const UnityAccordionBox = styled.div`
   padding: 10px 15px;
   background: ${({ theme }) => theme.colors.boxColor};
-  border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 0px 3px ${({ theme }) => theme.colors.boxShadowColor};
   width: 100%;
   height: min-content;
 
@@ -31,7 +31,7 @@ export const HiddenContentsBox = styled.div`
 export const HiddenContent = styled(Link)`
   width: 100%;
   margin-bottom: 10px;
-  padding: 10px;
+  padding: 10px 15px;
   transition: all 0.2s linear;
 
   &:last-of-type {

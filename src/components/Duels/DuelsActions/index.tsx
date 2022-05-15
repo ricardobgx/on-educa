@@ -2,21 +2,25 @@ import React from 'react';
 import {
   ClearSearchSuppliesInputButton,
   ClearSearchSuppliesInputButtonIcon,
-  NewSuppliesButton,
-  NewSuppliesButtonIcon,
-  NewSuppliesButtonLabel,
-  NewSuppliesLink,
   SearchSupplies,
   SearchSuppliesBox,
   SearchSuppliesButton,
   SearchSuppliesButtonIcon,
   SearchSuppliesInput,
 } from '../../App/Supplies/styles';
-import { DuelsActionsBox, DuelsActionsButtonsBox } from './styles';
+import { SmallMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
+import {
+  DuelsActionsBox,
+  DuelsActionsButtonsBox,
+  NewDuelButton,
+  NewDuelButtonLabel,
+  FilterDuelsButton,
+  FilterDuelsButtonLabel,
+} from './styles';
 
 const DuelsActions = (): JSX.Element => {
   return (
-    <DuelsActionsBox>
+    <DuelsActionsBox className="supplies-actions">
       <SearchSupplies>
         <SearchSuppliesBox className="bd-rd-20">
           <SearchSuppliesInput
@@ -31,18 +35,18 @@ const DuelsActions = (): JSX.Element => {
           <SearchSuppliesButtonIcon className="fas fa-search" />
         </SearchSuppliesButton>
       </SearchSupplies>
-      <DuelsActionsButtonsBox>
-        <NewSuppliesLink
-          className="block-shadow-button main-action bd-rd-20"
+      <DuelsActionsButtonsBox className="supplies-actions-buttons">
+        <NewDuelButton
+          className="supplies-action-button block-shadow-button main-action bd-rd-20"
           to="/new-duel"
         >
-          <NewSuppliesButtonLabel>Novo duelo</NewSuppliesButtonLabel>
-          <NewSuppliesButtonIcon className="fas fa-plus" />
-        </NewSuppliesLink>
-        <NewSuppliesButton className="block-shadow-button main-action bd-rd-20">
-          <NewSuppliesButtonLabel>Filtros</NewSuppliesButtonLabel>
-          <NewSuppliesButtonIcon className="fas fa-sliders-h" />
-        </NewSuppliesButton>
+          <NewDuelButtonLabel>Novo duelo</NewDuelButtonLabel>
+          <SmallMaterialIconOutlined color="" icon="add" />
+        </NewDuelButton>
+        <FilterDuelsButton className="supplies-action-button block-shadow-button main-action bd-rd-20">
+          <FilterDuelsButtonLabel>Filtros</FilterDuelsButtonLabel>
+          <SmallMaterialIconOutlined color="" icon="filter_alt" />
+        </FilterDuelsButton>
       </DuelsActionsButtonsBox>
     </DuelsActionsBox>
   );

@@ -8,8 +8,6 @@ export const ChangeDuelTeamPositionBox = styled.button`
   align-items: center;
   padding: 15px;
   margin-bottom: 20px;
-  background: ${({ theme }) => theme.colors.boxColor};
-  color: ${({ theme }) => theme.colors.textColor};
   border: none;
   cursor: pointer;
   position: relative;
@@ -17,30 +15,6 @@ export const ChangeDuelTeamPositionBox = styled.button`
   z-index: 95;
   animation: fadeIn 0.2s linear;
   transition: 0.4s linear;
-
-  &:hover {
-    transition: 0.2s linear;
-    color: ${({ theme }) => theme.colors.boxColor} !important;
-  }
-
-  &:before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 0px;
-    height: 0px;
-    background: ${({ theme }) => theme.colors.textColor};
-    z-index: -1;
-    border-radius: 50%;
-    transition: all 0.4s linear;
-  }
-
-  &:hover::before {
-    width: 1000px;
-    height: 1000px;
-  }
 `;
 export const ChangeDuelTeamPositionIcon = styled(mediumIcon)`
   margin-bottom: 5px;

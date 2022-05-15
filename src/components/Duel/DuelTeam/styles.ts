@@ -8,7 +8,8 @@ export const DuelTeamBox = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};
   padding: 15px;
   width: calc(50% - 20px);
-  min-height: calc(100vh - 285px);
+  min-height: calc(100vh - 225px);
+  max-height: calc(100vh - 225px);
 
   @media (max-width: 1150px) {
     width: 100%;

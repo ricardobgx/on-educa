@@ -20,6 +20,7 @@ import {
   PerformanceTypeHeader,
   WeekPerformanceButton,
   WeekPerformanceButtonLabel,
+  XPBox,
   XPInnerProgressBar,
   XPProgressBar,
 } from '../styles';
@@ -63,7 +64,10 @@ const StudentDailyPerformance: React.FC = () => {
         <PerformancesTypeBox>
           <PerformanceTypeBox>
             <PerformanceTypeHeader>
-              <PerformanceLabel>XP hoje</PerformanceLabel>
+              <XPBox>
+                <SmallMaterialIconOutlined color="" icon="auto_awesome" />
+                <PerformanceLabel>XP hoje</PerformanceLabel>
+              </XPBox>
               <PerformanceDataLabel>{dailyXp}</PerformanceDataLabel>
             </PerformanceTypeHeader>
             <XPProgressBar>
@@ -74,7 +78,10 @@ const StudentDailyPerformance: React.FC = () => {
           </PerformanceTypeBox>
           <PerformanceTypeBox>
             <PerformanceTypeHeader>
-              <PerformanceLabel>XP semanal</PerformanceLabel>
+              <XPBox>
+                <SmallMaterialIconOutlined color="" icon="auto_awesome" />
+                <PerformanceLabel>XP semanal</PerformanceLabel>
+              </XPBox>
               <PerformanceDataLabel>{xp}</PerformanceDataLabel>
             </PerformanceTypeHeader>
             <XPProgressBar>

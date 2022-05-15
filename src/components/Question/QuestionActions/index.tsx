@@ -2,11 +2,9 @@ import React from 'react';
 import { isDefaultAlternative } from '../../../functions/entitiesValues';
 import { DEFAULT_ALTERNATIVE } from '../../../static/defaultEntitiesValues';
 import {
-  AnswerQuestionButton,
-  AnswerQuestionButtonLabel,
   QuestionActionsBox,
-  SkipQuestionButton,
-  SkipQuestionButtonLabel,
+  QuestionActionButton,
+  QuestionActionButtonLabel,
 } from './styles';
 
 interface IPracticeQuestionActionsProps {
@@ -32,7 +30,16 @@ const QuestionActions = (props: IPracticeQuestionActionsProps): JSX.Element => {
 
   return (
     <QuestionActionsBox>
-      <AnswerQuestionButton
+      <QuestionActionButton
+        className="block-shadow-button secondary-action bd-rd-20"
+        onClick={() => {
+          answerQuestion(questions, question, DEFAULT_ALTERNATIVE);
+          setSelectedAlternative(DEFAULT_ALTERNATIVE);
+        }}
+      >
+        <QuestionActionButtonLabel>Pular</QuestionActionButtonLabel>
+      </QuestionActionButton>
+      <QuestionActionButton
         className="block-shadow-button main-action bd-rd-20"
         disabled={isDefaultAlternative(selectedAlternative)}
         onClick={() => {
@@ -42,17 +49,8 @@ const QuestionActions = (props: IPracticeQuestionActionsProps): JSX.Element => {
           }
         }}
       >
-        <AnswerQuestionButtonLabel>Responder</AnswerQuestionButtonLabel>
-      </AnswerQuestionButton>
-      <SkipQuestionButton
-        className="block-shadow-button secondary-action bd-rd-20"
-        onClick={() => {
-          answerQuestion(questions, question, DEFAULT_ALTERNATIVE);
-          setSelectedAlternative(DEFAULT_ALTERNATIVE);
-        }}
-      >
-        <SkipQuestionButtonLabel>Pular</SkipQuestionButtonLabel>
-      </SkipQuestionButton>
+        <QuestionActionButtonLabel>Responder</QuestionActionButtonLabel>
+      </QuestionActionButton>
     </QuestionActionsBox>
   );
 };

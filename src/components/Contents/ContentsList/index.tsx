@@ -3,7 +3,7 @@
 import React from 'react';
 import { ICommonContentProps } from '../../../pages/Contents';
 import ContentCard from '../ContentCard';
-import { ContentsListBox, ContentCards } from './styles';
+import { ContentsListBox } from './styles';
 
 interface IContentsListProps extends ICommonContentProps {
   contents: IContent[];
@@ -15,17 +15,15 @@ const ContentsList = (props: IContentsListProps): JSX.Element => {
   const { contents, setContent, setDeleteContentIsVisible } = props;
 
   return (
-    <ContentsListBox>
-      <ContentCards>
-        {contents.map((content, index) => (
-          <ContentCard
-            index={index}
-            content={content}
-            setContent={setContent}
-            setDeleteContentIsVisible={setDeleteContentIsVisible}
-          />
-        ))}
-      </ContentCards>
+    <ContentsListBox className="supplies-list">
+      {contents.map((content, index) => (
+        <ContentCard
+          index={index}
+          content={content}
+          setContent={setContent}
+          setDeleteContentIsVisible={setDeleteContentIsVisible}
+        />
+      ))}
     </ContentsListBox>
   );
 };

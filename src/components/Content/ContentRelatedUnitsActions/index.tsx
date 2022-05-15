@@ -27,7 +27,7 @@ const ContentRelatedUnitsActions = (
           {subject.name} - {schoolGrade.index}º ano
         </ContentsRelatedReferenceLabel>
 
-        <ContentRelatedUnitsList units={units} />
+        <ContentRelatedUnitsList units={units} isStudent={isStudent} />
       </ContentsRelated>
 
       {isStudent && <ContentPracticeButton contentId={contentId} />}

@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 import { Button } from '../../../global/styles/components/buttonComponents';
-import { mediumIcon } from '../../../global/styles/components/iconComponents';
 import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const DuelActionsBarBox = styled.div`
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
+  gap: 20px;
   margin: 20px;
 
   @media (max-width: 1150px) {
@@ -21,145 +20,52 @@ export const OwnerInfo = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};
   font-weight: bold;
   color: ${({ theme }) => theme.colors.textColor};
-  width: calc(50% - 20px);
-
-  @media (max-width: 1150px) {
-    width: 100%;
-    margin-bottom: 20px;
-  }
+  width: 100%;
 `;
 export const OwnerName = styled(paragraph)``;
 export const Actions = styled.div`
   display: flex;
   justify-content: space-between;
+  gap: 20px;
   height: 50px;
-  width: calc(50% - 20px);
+  width: max-content;
   color: ${({ theme }) => theme.colors.textColor};
 
-  @media (max-width: 1150px) {
+  @media (max-width: 900px) {
     width: 100%;
+    gap: unset;
   }
 `;
-export const SeeDetailsButton = styled(Button)`
+export const DuelActionsBarButton = styled(Button)`
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  color: ${({ theme }) => theme.colors.textColor};
+  justify-content: center;
+  gap: 5px;
+
+  min-height: 50px;
+  min-width: 50px;
+  padding: 0 20px;
+
+  @media (min-width: 600px) and (max-width: 900px) {
+    padding: 0px 10px;
+  }
+
+  @media (max-width: 600px) {
+    padding: 0px;
+
+    p {
+      display: none;
+    }
+  }
+`;
+export const DuelActionsBarButtonLabel = styled(paragraph)``;
+export const DuelActionsBarLabel = styled(paragraph)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  padding: 0 20px;
+
   background: ${({ theme }) => theme.colors.boxColor};
-  width: 100%;
-  padding: 0 20px;
-  margin-right: 20px;
-  font-weight: bold;
-  transition: all 0.2s linear;
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.boxColor};
-    background: ${({ theme }) => theme.colors.textColor};
-  }
-
-  @media (max-width: 550px) {
-    justify-content: center;
-  }
-`;
-export const SeeDetailsButtonLabel = styled(paragraph)`
-  @media (max-width: 550px) {
-    display: none;
-  }
-`;
-export const SeeDetailsButtonIcon = styled(mediumIcon)`
-  @media (min-width: 550px) {
-    display: none;
-  }
-`;
-export const Participations = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: ${({ theme }) => theme.colors.textColor};
-  background: ${({ theme }) => theme.colors.boxColor};
-  width: 100%;
-  padding: 0 20px;
-  margin-right: 20px;
-  font-weight: bold;
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-
-  @media (max-width: 550px) {
-    justify-content: center;
-  }
-`;
-export const ChatButton = styled(Button)`
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  color: ${({ theme }) => theme.colors.textColor};
-  background: ${({ theme }) => theme.colors.boxColor};
-  width: 100%;
-  padding: 0 20px;
-  margin-right: 20px;
-  font-weight: bold;
-  transition: all 0.2s linear;
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.boxColor};
-    background: ${({ theme }) => theme.colors.textColor};
-  }
-
-  @media (max-width: 550px) {
-    justify-content: center;
-  }
-`;
-export const ChatButtonLabel = styled(paragraph)`
-  @media (max-width: 550px) {
-    display: none;
-  }
-`;
-export const ChatButtonIcon = styled(mediumIcon)`
-  @media (min-width: 550px) {
-    display: none;
-  }
-`;
-export const ParticipationsLabel = styled(paragraph)`
-  margin-right: 10px;
-
-  @media (max-width: 550px) {
-    display: none;
-  }
-`;
-export const ParticipationsNumberLabel = styled(paragraph)``;
-export const ParticipationsIcon = styled(mediumIcon)`
-  margin-left: 5px;
-
-  @media (min-width: 550px) {
-    display: none;
-  }
-`;
-export const CloseDuelButton = styled(Button)`
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  color: ${({ theme }) => theme.colors.whiteColor};
-  background: ${({ theme }) => theme.similarColors.warningColor};
-  width: 100%;
-  padding: 0 20px;
-  font-weight: bold;
-  transition: all 0.2s linear;
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.whiteColor};
-    background: ${({ theme }) => theme.similarColors.warningColor};
-  }
-
-  @media (max-width: 550px) {
-    justify-content: center;
-  }
-`;
-export const CloseDuelButtonLabel = styled(paragraph)`
-  @media (max-width: 550px) {
-    display: none;
-  }
-`;
-export const CloseDuelButtonIcon = styled(mediumIcon)`
-  @media (min-width: 550px) {
-    display: none;
-  }
 `;

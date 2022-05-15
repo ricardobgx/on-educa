@@ -41,7 +41,7 @@ const StudentWeeklyPerformance = (
       <PerformanceDetailsHeader>
         <SmallMaterialIconRound color="" icon="insights" />
         <PerformanceDetailsHeaderLabel>
-          Desempenho semanal
+          Desempenho hoje
         </PerformanceDetailsHeaderLabel>
       </PerformanceDetailsHeader>
       <WeeklyPerformancesList>

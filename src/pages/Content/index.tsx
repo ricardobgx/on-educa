@@ -15,7 +15,7 @@ import {
   PageBox,
 } from './styles';
 import OnEducaAPI from '../../services/api';
-import { getUnits } from '../../functions/unity';
+import { getUnitsBySubject } from '../../functions/unity';
 import { getContent } from '../../functions/content';
 import ContentDoubts from '../../components/Content/ContentDoubts';
 import ContentVideo from '../../components/Content/ContentVideo';
@@ -54,7 +54,7 @@ const Content = (): JSX.Element => {
   const { token, isStudent } = aplication;
 
   useEffect(() => {
-    getUnits(OnEducaAPI, setUnits, token);
+    getUnitsBySubject(OnEducaAPI, subject.id, setUnits, token);
     getContent(OnEducaAPI, contentId, token, loadContent);
   }, [contentId]);
 

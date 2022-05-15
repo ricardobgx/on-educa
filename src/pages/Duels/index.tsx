@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import SectionLabel from '../../components/App/SectionLabel';
+import { SuppliesBox } from '../../components/App/Supplies/styles';
 import DuelCard from '../../components/Duels/DuelCard';
 import DuelsActions from '../../components/Duels/DuelsActions';
 import { getDuels } from '../../functions/duel';
@@ -13,7 +14,7 @@ import OnEducaAPI from '../../services/api';
 import { DEFAULT_DUEL } from '../../static/defaultEntitiesValues';
 import { ActionCreators, RootState } from '../../store';
 import { DuelRoundStatus } from '../../types/duelRoundStatus';
-import { PageBox, DuelsBox, DuelsList, DuelsListBox } from './styles';
+import { PageBox, DuelsBox, DuelsList } from './styles';
 
 const Duels = (): JSX.Element => {
   /* Estado da aplicacao */
@@ -58,10 +59,10 @@ const Duels = (): JSX.Element => {
     <Page>
       <PageBox>
         <SectionLabel backLink="/" label="Duelos" />
-        <DuelsBox>
-          <DuelsActions />
-          <DuelsList>
-            <DuelsListBox>
+        <SuppliesBox>
+          <DuelsBox>
+            <DuelsActions />
+            <DuelsList className="supplies-list">
               {duels.map((duel, index) => (
                 <DuelCard
                   key={duel.id}
@@ -71,9 +72,9 @@ const Duels = (): JSX.Element => {
                   index={index}
                 />
               ))}
-            </DuelsListBox>
-          </DuelsList>
-        </DuelsBox>
+            </DuelsList>
+          </DuelsBox>
+        </SuppliesBox>
       </PageBox>
     </Page>
   );

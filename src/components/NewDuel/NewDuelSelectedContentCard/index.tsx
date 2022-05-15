@@ -1,10 +1,7 @@
 import React from 'react';
+import { SmallMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 import NewDuelContentCard from '../NewDuelContentCard';
-import {
-  NewDuelSelectedContentCardBox,
-  DeleteContentButton,
-  DeleteContentButtonIcon,
-} from './styles';
+import { NewDuelSelectedContentCardBox, DeleteContentButton } from './styles';
 
 interface INewDuelSelectedContentCardProps {
   content: IContent;
@@ -21,10 +18,10 @@ const NewDuelSelectedContentCard = (
     <NewDuelSelectedContentCardBox>
       <NewDuelContentCard content={content} unity={unity} />
       <DeleteContentButton
-        className="with-shadow bd-rd-20"
+        className="block-shadow-button main-action bd-rd-10"
         onClick={() => removeSelectedContent(content)}
       >
-        <DeleteContentButtonIcon className="fas fa-trash" />
+        <SmallMaterialIconOutlined color="" icon="delete" />
       </DeleteContentButton>
     </NewDuelSelectedContentCardBox>
   );

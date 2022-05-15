@@ -18,6 +18,7 @@ import { Page } from '../../global/styles/components/pageComponents';
 import { PageBox, QuestionsBox } from './styles';
 import QuestionsFilter from '../../components/Questions/QuestionsFilter';
 import { isDefaultContent } from '../../functions/entitiesValues';
+import { SuppliesBox } from '../../components/App/Supplies/styles';
 
 export interface ICommonQuestionProps {
   getQuestions: () => void;
@@ -98,45 +99,47 @@ const Questions = (): JSX.Element => {
     <Page>
       <PageBox>
         <SectionLabel backLink="/" label="Questões" />
-        <QuestionsBox>
-          <QuestionsActions
-            isStudent={isStudent}
-            setQuestionsFilterIsVisible={setQuestionsFilterIsVisible}
-          />
-          {questionsFilterIsVisible && (
-            <QuestionsFilter
-              teachingType={teachingType}
-              setTeachingType={setTeachingType}
-              schoolGrade={schoolGrade}
-              setSchoolGrade={setSchoolGrade}
-              subject={subject}
-              setSubject={setSubject}
-              unity={unity}
-              setUnity={setUnity}
-              content={content}
-              setContent={setContent}
+        <SuppliesBox>
+          <QuestionsBox>
+            <QuestionsActions
+              isStudent={isStudent}
               setQuestionsFilterIsVisible={setQuestionsFilterIsVisible}
             />
-          )}
-          {deleteQuestionIsVisible && (
-            <DeleteSupplies
-              suppliesLabel={question.description}
-              suppliesType="questão"
-              deleteSupplies={deleteQuestion}
-              setDeleteSuppliesIsVisible={setDeleteQuestionIsVisible}
+            {questionsFilterIsVisible && (
+              <QuestionsFilter
+                teachingType={teachingType}
+                setTeachingType={setTeachingType}
+                schoolGrade={schoolGrade}
+                setSchoolGrade={setSchoolGrade}
+                subject={subject}
+                setSubject={setSubject}
+                unity={unity}
+                setUnity={setUnity}
+                content={content}
+                setContent={setContent}
+                setQuestionsFilterIsVisible={setQuestionsFilterIsVisible}
+              />
+            )}
+            {deleteQuestionIsVisible && (
+              <DeleteSupplies
+                suppliesLabel={question.description}
+                suppliesType="questão"
+                deleteSupplies={deleteQuestion}
+                setDeleteSuppliesIsVisible={setDeleteQuestionIsVisible}
+              />
+            )}
+            <QuestionsList
+              subject={subject}
+              unity={unity}
+              content={content}
+              question={question}
+              questions={questions}
+              getQuestions={getQuestions}
+              setQuestion={setQuestion}
+              setDeleteQuestionIsVisible={setDeleteQuestionIsVisible}
             />
-          )}
-          <QuestionsList
-            subject={subject}
-            unity={unity}
-            content={content}
-            question={question}
-            questions={questions}
-            getQuestions={getQuestions}
-            setQuestion={setQuestion}
-            setDeleteQuestionIsVisible={setDeleteQuestionIsVisible}
-          />
-        </QuestionsBox>
+          </QuestionsBox>
+        </SuppliesBox>
       </PageBox>
     </Page>
   );

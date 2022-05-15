@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators, RootState } from '../../../store';
+import { SmallMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 import UnityCardActions from '../UnityCardActions';
 import {
   UnityCardBox,
@@ -15,10 +16,8 @@ import {
   UnityAdditionalDetails,
   UpdateDate,
   UpdateDateLabel,
-  UpdateDateIcon,
   ContentsNumber,
   ContentsNumberLabel,
-  ContentsNumberIcon,
 } from './styles';
 
 interface IUnityCardProps {
@@ -49,9 +48,12 @@ const UnityCard = (props: IUnityCardProps): JSX.Element => {
   const { isStudent } = aplication;
 
   return (
-    <UnityCardBox style={{ animationDelay: `${index * 0.2}s` }}>
+    <UnityCardBox
+      className="supplies-card"
+      style={{ animationDelay: `${index * 0.2}s` }}
+    >
       <UnityCardDetails
-        className="with-shadow bd-rd-20"
+        className="block-shadow-button secondary-action bd-rd-10"
         to={`/units/${id}`}
         onClick={() => loadUnity(unity)}
       >
@@ -66,13 +68,13 @@ const UnityCard = (props: IUnityCardProps): JSX.Element => {
         <UnityAdditionalDetails>
           <UpdateDate>
             <UpdateDateLabel>17/04/2022</UpdateDateLabel>
-            <UpdateDateIcon className="fas fa-clock" />
+            <SmallMaterialIconOutlined color="" icon="update" />
           </UpdateDate>
           <ContentsNumber>
             <ContentsNumberLabel>
               {contents.length} conteúdo(s)
             </ContentsNumberLabel>
-            <ContentsNumberIcon className="fas fa-book" />
+            <SmallMaterialIconOutlined color="" icon="description" />
           </ContentsNumber>
         </UnityAdditionalDetails>
       </UnityCardDetails>

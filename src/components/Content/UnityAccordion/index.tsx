@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getContentsByUnity } from '../../../functions/content';
-import theme from '../../../global/styles/theme';
 import OnEducaAPI from '../../../services/api';
 import { RootState } from '../../../store';
 import SuppliesAccordionCheckBox from '../../App/Supplies/SuppliesAccordion/SuppliesAccordionCheckBox';
@@ -46,14 +45,7 @@ const UnityAccordion = (props: IUnity): JSX.Element => {
                 key={content.name}
                 to={`/contents/${content.id}`}
               >
-                <HiddenContentLabel
-                  style={{
-                    color:
-                      contentNow.id === content.id ? theme.colors.boxColor : '',
-                  }}
-                >
-                  {content.name}
-                </HiddenContentLabel>
+                <HiddenContentLabel>{content.name}</HiddenContentLabel>
               </HiddenContent>
             ))}
           </HiddenContentsBox>

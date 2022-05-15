@@ -6,15 +6,21 @@ import { ContentRelatedUnitsListBox } from './styles';
 
 interface IContentRelatedUnitsListProps {
   units: IUnity[];
+  isStudent: boolean;
 }
 
 const ContentRelatedUnitsList = (
   props: IContentRelatedUnitsListProps,
 ): JSX.Element => {
-  const { units } = props;
+  const { units, isStudent } = props;
 
   return (
-    <ContentRelatedUnitsListBox className="with-shadow bd-rd-20">
+    <ContentRelatedUnitsListBox
+      style={{
+        maxHeight: isStudent ? 'calc(100vh - 350px)' : 'calc(100vh - 290px)',
+      }}
+      className="with-shadow bd-rd-20"
+    >
       {units.map((unity: IUnity) => (
         <UnityAccordion key={unity.id} {...unity} />
       ))}

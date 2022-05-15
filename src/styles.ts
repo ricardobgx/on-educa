@@ -70,6 +70,24 @@ export default createGlobalStyle`
     }
   }
 
+  @keyframes leftSlide {
+    0% {
+      transform: translateX(-5%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+  @keyframes rightSlide {
+    0% {
+      transform: translateX(5%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
   @keyframes fadeIn {
     0% {
       opacity: 0;
@@ -182,15 +200,15 @@ export default createGlobalStyle`
   }
 
   .bd-rd-10 {
-    border-radius: 5px;
-  }
-
-  .bd-rd-20 {
     border-radius: 10px;
   }
 
+  .bd-rd-20 {
+    border-radius: 20px;
+  }
+
   .bd-rd-30 {
-    border-radius: 15px;
+    border-radius: 30px;
   }
 
   .shadow-select {
@@ -241,7 +259,7 @@ export default createGlobalStyle`
     &.main-action {
       background: ${({ theme }) => theme.colors.mainButtonBgColor};
       color: ${({ theme }) => theme.colors.mainButtonTextColor};
-
+      
       box-shadow: 0px 2px 0px 3px
         ${({ theme }) => theme.colors.mainButtonShadowColor};
     

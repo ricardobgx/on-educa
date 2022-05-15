@@ -3,7 +3,7 @@
 import React from 'react';
 import { ICommonQuestionProps } from '../../../pages/Questions';
 import QuestionCard from '../QuestionCard';
-import { QuestionsListBox, QuestionCards } from './styles';
+import { QuestionsListBox } from './styles';
 
 interface IQuestionsListProps extends ICommonQuestionProps {
   subject: ISubject;
@@ -26,21 +26,19 @@ const QuestionsList = (props: IQuestionsListProps): JSX.Element => {
   } = props;
 
   return (
-    <QuestionsListBox>
-      <QuestionCards>
-        {questions.map((question) => (
-          <QuestionCard
-            key={question.id}
-            subject={subject}
-            unity={unity}
-            content={content}
-            question={question}
-            setQuestion={setQuestion}
-            setDeleteQuestionIsVisible={setDeleteQuestionIsVisible}
-            {...question}
-          />
-        ))}
-      </QuestionCards>
+    <QuestionsListBox className="supplies-list">
+      {questions.map((question) => (
+        <QuestionCard
+          key={question.id}
+          subject={subject}
+          unity={unity}
+          content={content}
+          question={question}
+          setQuestion={setQuestion}
+          setDeleteQuestionIsVisible={setDeleteQuestionIsVisible}
+          {...question}
+        />
+      ))}
     </QuestionsListBox>
   );
 };

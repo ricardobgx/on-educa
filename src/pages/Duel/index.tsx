@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { socket } from '../../App';
-import DuelActions from '../../components/Duel/DuelActions';
 import DuelActionsBar from '../../components/Duel/DuelActionsBar';
 import DuelChat from '../../components/Duel/DuelChat';
 import DuelDetails from '../../components/Duel/DuelDetails';
@@ -153,6 +152,7 @@ const Duel = (): JSX.Element => {
           <DuelActionsBar
             duel={duel}
             token={token}
+            studentParticipation={studentParticipation}
             setShowDuelDetails={setShowDuelDetails}
             setShowChat={setShowChat}
           />
@@ -160,19 +160,6 @@ const Duel = (): JSX.Element => {
             duelId={duel.id}
             duelOwner={student}
             teams={teams}
-            loggedStudent={loggedStudent}
-            studentParticipation={studentParticipation}
-            setStudentParticipation={setStudentParticipation}
-          />
-          <DuelActions
-            API={OnEducaAPI}
-            token={token}
-            getDuelData={getDuelData}
-            duelId={duel.id}
-            duelRoundId={duelRound.id}
-            duelRoundStatus={duelRound.status}
-            duelOwner={student}
-            loggedPeople={loggedPeople}
             loggedStudent={loggedStudent}
             studentParticipation={studentParticipation}
             setStudentParticipation={setStudentParticipation}

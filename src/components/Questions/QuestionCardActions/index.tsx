@@ -1,10 +1,9 @@
 import React from 'react';
+import { SmallMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 import {
   QuestionCardActionsBox,
   EditQuestionButton,
-  EditQuestionButtonIcon,
   DeleteQuestionButton,
-  DeleteQuestionButtonIcon,
 } from './styles';
 
 interface IQuestionCardActionsProps {
@@ -17,21 +16,21 @@ const QuestionCardActions = (props: IQuestionCardActionsProps): JSX.Element => {
   const { question, setQuestion, setDeleteQuestionIsVisible } = props;
 
   return (
-    <QuestionCardActionsBox>
+    <QuestionCardActionsBox className="supplies-card-actions">
       <EditQuestionButton
-        className="block-shadow-button secondary-action bd-rd-10"
+        className="supplies-card-action-button block-shadow-button secondary-action bd-rd-10"
         to={`/questions/${question.id}/edit`}
       >
-        <EditQuestionButtonIcon className="fas fa-pen" />
+        <SmallMaterialIconOutlined color="" icon="edit" />
       </EditQuestionButton>
       <DeleteQuestionButton
-        className="block-shadow-button main-action bd-rd-10"
+        className="supplies-card-action-button block-shadow-button secondary-action bd-rd-10"
         onClick={() => {
           setQuestion(question);
           setDeleteQuestionIsVisible(true);
         }}
       >
-        <DeleteQuestionButtonIcon className="fas fa-trash" />
+        <SmallMaterialIconOutlined color="" icon="delete" />
       </DeleteQuestionButton>
     </QuestionCardActionsBox>
   );

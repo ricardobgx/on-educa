@@ -26,7 +26,10 @@ export const UpdateProfilePictureBox = styled.div`
 export const ProfilePicture = styled.div``;
 export const ProfilePictureImg = styled.img`
   background: ${({ theme }) => theme.colors.boxShadowColor};
+
   width: 300px;
+  min-width: 300px;
+  min-height: 300px;
 `;
 export const SelectImageInput = styled.input`
   display: none;

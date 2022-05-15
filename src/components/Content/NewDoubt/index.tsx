@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 import { createDoubt } from '../../../functions/doubt';
 import OnEducaAPI from '../../../services/api';
-import {
-  NewDoubtBox,
-  NewDoubtInput,
-  NewDoubtButton,
-  NewDoubtButtonIcon,
-} from './styles';
+import { SmallMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
+import { NewDoubtBox, NewDoubtInput, NewDoubtButton } from './styles';
 
 interface INewDoubtProps {
   studentId: string;
@@ -48,7 +44,7 @@ const NewDoubt = (props: INewDoubtProps): JSX.Element => {
         className="block-shadow-button main-action bd-rd-20"
         onClick={() => createDoubtAction()}
       >
-        <NewDoubtButtonIcon className="bi bi-send" />
+        <SmallMaterialIconOutlined color="" icon="send" />
       </NewDoubtButton>
     </NewDoubtBox>
   );

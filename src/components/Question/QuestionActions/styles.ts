@@ -1,33 +1,17 @@
 import styled from 'styled-components';
+import { Button } from '../../../global/styles/components/buttonComponents';
 import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const QuestionActionsBox = styled.div`
   display: flex;
-  flex-direction: column;
-`;
-export const AnswerQuestionButton = styled.button`
-  margin-bottom: 20px;
-  min-height: 40px;
-  border: none;
-  /* font-weight: bold; */
-  cursor: pointer;
+  gap: 20px;
+  margin-top: 20px;
 
-  :disabled {
-    box-shadow: 0px 0px 0px 1px
-      ${({ theme }) => theme.colors.mainButtonShadowColor} !important;
-    pointer-events: none;
-    opacity: 0.6;
-
-    p {
-      transform: translateY(0px);
-    }
+  @media (max-width: 600px) {
+    flex-direction: column;
   }
 `;
-export const AnswerQuestionButtonLabel = styled(paragraph)``;
-export const SkipQuestionButton = styled.button`
-  min-height: 40px;
-  border: none;
-  /* font-weight: bold; */
-  cursor: pointer;
+export const QuestionActionButton = styled(Button)`
+  width: 100%;
 `;
-export const SkipQuestionButtonLabel = styled(paragraph)``;
+export const QuestionActionButtonLabel = styled(paragraph)``;

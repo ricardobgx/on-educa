@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   DuelChatMessageBox,
-  DuelChatMessagePeopleName,
+  DuelChatMessagePeoplePicture,
   DuelChatMessageContent,
 } from './styles';
 
@@ -16,9 +16,11 @@ const DuelChatMessage = (props: IDuelChatMessageProps): JSX.Element => {
 
   return (
     <DuelChatMessageBox
-      className={loggedPeople.id === people.id ? 'my-message' : ''}
+      className={`with-shadow bd-rd-30 ${
+        loggedPeople.id === people.id ? 'my-message' : ''
+      }`}
     >
-      <DuelChatMessagePeopleName>{people.name}</DuelChatMessagePeopleName>
+      <DuelChatMessagePeoplePicture src={people.profilePicture.path} />
       <DuelChatMessageContent>{content}</DuelChatMessageContent>
     </DuelChatMessageBox>
   );

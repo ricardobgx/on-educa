@@ -14,6 +14,7 @@ import { DEFAULT_UNITY } from '../../static/defaultEntitiesValues';
 import { RootState } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import { PageBox, UnitsBox } from './styles';
+import { SuppliesBox } from '../../components/App/Supplies/styles';
 
 interface IUnitsRouteParams {
   id: string;
@@ -51,30 +52,32 @@ const Units = (): JSX.Element => {
           backLink="/subjects"
           label={`${subject.name} - unidades`}
         />
-        <UnitsBox>
-          <UnitsActions isStudent={isStudent} getUnits={getUnits} />
-          {updateUnityIsVisible && (
-            <UpdateUnity
-              unity={unity}
+        <SuppliesBox>
+          <UnitsBox>
+            <UnitsActions isStudent={isStudent} getUnits={getUnits} />
+            {updateUnityIsVisible && (
+              <UpdateUnity
+                unity={unity}
+                setUpdateUnityIsVisible={setUpdateUnityIsVisible}
+                getUnits={getUnits}
+              />
+            )}
+            {deleteUnityIsVisible && (
+              <DeleteUnity
+                unity={unity}
+                setDeleteUnityIsVisible={setDeleteUnityIsVisible}
+                getUnits={getUnits}
+              />
+            )}
+            <UnitsList
+              units={units}
+              getUnits={getUnits}
+              setUnity={setUnity}
               setUpdateUnityIsVisible={setUpdateUnityIsVisible}
-              getUnits={getUnits}
-            />
-          )}
-          {deleteUnityIsVisible && (
-            <DeleteUnity
-              unity={unity}
               setDeleteUnityIsVisible={setDeleteUnityIsVisible}
-              getUnits={getUnits}
             />
-          )}
-          <UnitsList
-            units={units}
-            getUnits={getUnits}
-            setUnity={setUnity}
-            setUpdateUnityIsVisible={setUpdateUnityIsVisible}
-            setDeleteUnityIsVisible={setDeleteUnityIsVisible}
-          />
-        </UnitsBox>
+          </UnitsBox>
+        </SuppliesBox>
       </PageBox>
     </Page>
   );

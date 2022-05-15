@@ -13,7 +13,7 @@ const ContentDescription = (props: { description: string }): JSX.Element => {
 
   return (
     <ContentDescriptionBox>
-      <ContentDescriptionData className="with-shadow bd-rd-20">
+      <ContentDescriptionData className="with-shadow bd-rd-30">
         <SuppliesAccordionCheckBox id="description" />
         <SuppliesAccordionToggleCheckBox label="Descrição" id="description" />
         <ContentDescriptionDataBox>

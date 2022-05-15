@@ -3,7 +3,7 @@
 import React from 'react';
 import { ICommonUnityProps } from '../../../pages/Units';
 import UnityCard from '../UnityCard';
-import { UnitsListBox, UnitCards } from './styles';
+import { UnitsListBox } from './styles';
 
 interface IUnitsListProps extends ICommonUnityProps {
   units: IUnity[];
@@ -17,18 +17,16 @@ const UnitsList = (props: IUnitsListProps): JSX.Element => {
     props;
 
   return (
-    <UnitsListBox>
-      <UnitCards>
-        {units.map((unity, index) => (
-          <UnityCard
-            index={index}
-            unity={unity}
-            setUnity={setUnity}
-            setUpdateUnityIsVisible={setUpdateUnityIsVisible}
-            setDeleteUnityIsVisible={setDeleteUnityIsVisible}
-          />
-        ))}
-      </UnitCards>
+    <UnitsListBox className="supplies-list">
+      {units.map((unity, index) => (
+        <UnityCard
+          index={index}
+          unity={unity}
+          setUnity={setUnity}
+          setUpdateUnityIsVisible={setUpdateUnityIsVisible}
+          setDeleteUnityIsVisible={setDeleteUnityIsVisible}
+        />
+      ))}
     </UnitsListBox>
   );
 };

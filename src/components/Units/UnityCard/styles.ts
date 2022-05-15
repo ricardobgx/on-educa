@@ -1,23 +1,8 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { paragraph } from '../../../global/styles/components/textComponents';
-import { smallIcon } from '../../../global/styles/components/iconComponents';
 
-export const UnityCardBox = styled.div`
-  display: flex;
-  margin-bottom: 20px;
-  opacity: 0;
-  transform: translateX(-5%);
-  animation: leftSlideFadeIn 0.2s linear forwards;
-
-  &:last-of-type {
-    margin: 0;
-  }
-
-  @media (max-width: 900px) {
-    flex-direction: column;
-  }
-`;
+export const UnityCardBox = styled.div``;
 
 export const UnityCardDetails = styled(Link)`
   display: flex;
@@ -27,6 +12,8 @@ export const UnityCardDetails = styled(Link)`
   padding: 20px;
   width: 100%;
 
+  gap: 10px;
+
   @media (max-width: 900px) {
     flex-direction: column;
   }
@@ -35,6 +22,8 @@ const UnityCardDetailsBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 5px;
+
   width: 33%;
   height: 100%;
 
@@ -47,25 +36,29 @@ export const UnityDetails = styled(UnityCardDetailsBox)`
 `;
 export const UnityTitle = styled(paragraph)`
   font-weight: bold;
-  margin-bottom: 5px;
 `;
-export const SubjectLabel = styled(paragraph)``;
+export const SubjectLabel = styled(paragraph)`
+  @media (max-width: 900px) {
+    display: none;
+  }
+`;
 export const UnitySchoolGrade = styled(UnityCardDetailsBox)`
   align-items: center;
 
   @media (max-width: 900px) {
-    margin: 15px 0;
-    align-items: flex-start;
+    display: none;
+
+    /* margin: 15px 0;
+    align-items: flex-start; */
   }
 `;
-export const SchoolGradeLabel = styled(paragraph)`
-  margin-bottom: 5px;
-`;
+export const SchoolGradeLabel = styled(paragraph)``;
 export const TeachingTypeLabel = styled(paragraph)``;
 export const UnityAdditionalDetails = styled(UnityCardDetailsBox)`
   align-items: flex-end;
 
   @media (max-width: 900px) {
+    flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
   }
@@ -73,22 +66,9 @@ export const UnityAdditionalDetails = styled(UnityCardDetailsBox)`
 const UnityAdditionalDetailsBox = styled.div`
   display: flex;
   align-items: center;
+  gap: 5px;
 `;
-export const UpdateDate = styled(UnityAdditionalDetailsBox)`
-  margin-bottom: 5px;
-`;
-export const UpdateDateLabel = styled(paragraph)`
-  margin-right: 5px;
-`;
-export const UpdateDateIcon = styled(smallIcon)`
-  width: 20px;
-  text-align: center;
-`;
+export const UpdateDate = styled(UnityAdditionalDetailsBox)``;
+export const UpdateDateLabel = styled(paragraph)``;
 export const ContentsNumber = styled(UnityAdditionalDetailsBox)``;
-export const ContentsNumberLabel = styled(paragraph)`
-  margin-right: 5px;
-`;
-export const ContentsNumberIcon = styled(smallIcon)`
-  width: 20px;
-  text-align: center;
-`;
+export const ContentsNumberLabel = styled(paragraph)``;

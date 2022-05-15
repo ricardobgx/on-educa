@@ -14,11 +14,12 @@ import {
   DEFAULT_TEACHER,
 } from '../../../static/defaultEntitiesValues';
 import { RootState } from '../../../store';
+import { SmallMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 import PeopleCard from '../../App/PeopleCard';
 import {
   DuelTeamParticipantCardBox,
   KickOutButton,
-  KickOutButtonIcon,
+  PeopleCardWrapperLink,
 } from './styles';
 
 interface IDuelTeamParticipantCard {
@@ -70,18 +71,26 @@ const DuelTeamParticipantCard = (
   }, [token, people]);
 
   return (
-    <DuelTeamParticipantCardBox className="with-shadow bd-rd-20">
-      <PeopleCard
-        smartphoneNameLength={20}
-        abbreviateName
-        showScore={false}
-        people={people}
-        student={student}
-        teacher={DEFAULT_TEACHER}
-      />
+    <DuelTeamParticipantCardBox>
+      <PeopleCardWrapperLink
+        className="block-shadow-button secondary-action bd-rd-10"
+        to={`/profile/${people.id}`}
+      >
+        <PeopleCard
+          smartphoneNameLength={20}
+          abbreviateName
+          showScore={false}
+          people={people}
+          student={student}
+          teacher={DEFAULT_TEACHER}
+        />
+      </PeopleCardWrapperLink>
       {loggedStudent.id === duelOwner.id && student.id !== duelOwner.id && (
-        <KickOutButton onClick={() => kickOutParticipant(participation.id)}>
-          <KickOutButtonIcon className="fas fa-sign-out-alt" />
+        <KickOutButton
+          className="block-shadow-button main-action bd-rd-10"
+          onClick={() => kickOutParticipant(participation.id)}
+        >
+          <SmallMaterialIconOutlined color="" icon="logout" />
         </KickOutButton>
       )}
     </DuelTeamParticipantCardBox>

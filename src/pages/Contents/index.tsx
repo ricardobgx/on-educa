@@ -13,6 +13,7 @@ import { DEFAULT_CONTENT } from '../../static/defaultEntitiesValues';
 import { RootState } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import { PageBox, ContentsBox } from './styles';
+import { SuppliesBox } from '../../components/App/Supplies/styles';
 
 interface IContentsRouteParams {
   id: string;
@@ -59,22 +60,24 @@ const Contents = (): JSX.Element => {
           backLink={`/subjects/${subject.id}`}
           label={`${unity.name} - conteúdos`}
         />
-        <ContentsBox>
-          <ContentsActions isStudent={isStudent} unity={unity} />
-          {deleteContentIsVisible && (
-            <DeleteContent
-              content={content}
+        <SuppliesBox>
+          <ContentsBox>
+            <ContentsActions isStudent={isStudent} unity={unity} />
+            {deleteContentIsVisible && (
+              <DeleteContent
+                content={content}
+                getContents={getContents}
+                setDeleteContentIsVisible={setDeleteContentIsVisible}
+              />
+            )}
+            <ContentsList
+              contents={contents}
               getContents={getContents}
+              setContent={setContent}
               setDeleteContentIsVisible={setDeleteContentIsVisible}
             />
-          )}
-          <ContentsList
-            contents={contents}
-            getContents={getContents}
-            setContent={setContent}
-            setDeleteContentIsVisible={setDeleteContentIsVisible}
-          />
-        </ContentsBox>
+          </ContentsBox>
+        </SuppliesBox>
       </PageBox>
     </Page>
   );

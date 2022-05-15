@@ -3,25 +3,10 @@ import { Link } from 'react-router-dom';
 import { paragraph } from '../../../global/styles/components/textComponents';
 import { smallIcon } from '../../../global/styles/components/iconComponents';
 
-export const QuestionCardBox = styled.div`
-  display: flex;
-  margin-bottom: 20px;
-
-  &:last-of-type {
-    margin: 0;
-  }
-
-  @media (max-width: 900px) {
-    flex-direction: column;
-  }
-`;
+export const QuestionCardBox = styled.div``;
 export const QuestionCardDetails = styled(Link)`
   display: flex;
   justify-content: space-between;
-  color: ${({ theme }) => theme.colors.textColor};
-  background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
   padding: 20px;
   margin-bottom: 20px;
   width: 100%;

@@ -7,7 +7,7 @@ export const ContentRelatedUnitsActionsBox = styled.div`
   margin-left: 40px;
   width: 100%;
   height: calc(100vh - 222px);
-  max-height: calc(100vh - 20px);
+  max-height: calc(100vh - 222px);
 
   @media (max-width: 1150px) {
     margin: 40px 0 0 0;

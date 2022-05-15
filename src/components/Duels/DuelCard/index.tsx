@@ -17,8 +17,8 @@ import {
   OwnerInfo,
   OwnerName,
   DuelCode,
-  SubjectsName,
-  ContentsName,
+  QuestionsPerContentLabel,
+  TimeForQuestionLabel,
   DuelStatus,
   DuelStatusLabel,
   DuelStatusIcon,
@@ -26,7 +26,7 @@ import {
   DuelParticipantsLabel,
   DuelParticipantsIcon,
   DuelStatusBox,
-  DuelContents,
+  DuelSettings,
 } from './styles';
 
 interface IDuelCardProps {
@@ -108,14 +108,14 @@ const DuelCard = (props: IDuelCardProps): JSX.Element => {
         </OwnerInfo>
         <DuelCode>Código: {code}</DuelCode>
       </DuelDetails>
-      <DuelContents>
-        <SubjectsName>
+      <DuelSettings>
+        <QuestionsPerContentLabel>
           Questões por conteúdo: {questionsPerContent}
-        </SubjectsName>
-        <ContentsName>
+        </QuestionsPerContentLabel>
+        <TimeForQuestionLabel>
           Tempo para responder: {timeForQuestion} minuto(s)
-        </ContentsName>
-      </DuelContents>
+        </TimeForQuestionLabel>
+      </DuelSettings>
       <DuelStatus>
         <DuelStatusBox>
           <DuelStatusLabel>{duelRoundStatusLabel(status)}</DuelStatusLabel>

@@ -1,11 +1,10 @@
 import React from 'react';
+import { SmallMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 import {
-  EditSuppliesButton,
-  EditSuppliesButtonIcon,
-  DeleteSuppliesButton,
-  DeleteSuppliesButtonIcon,
-} from '../../App/Supplies/styles';
-import { UnityCardActionsBox } from './styles';
+  EditUnityButton,
+  DeleteUnityButton,
+  UnityCardActionsBox,
+} from './styles';
 
 interface IUnityCardActionsProps {
   unity: IUnity;
@@ -21,25 +20,25 @@ const UnityCardActions = (props: IUnityCardActionsProps): JSX.Element => {
     props;
 
   return (
-    <UnityCardActionsBox>
-      <EditSuppliesButton
-        className="block-shadow-button secondary-action bd-rd-10"
+    <UnityCardActionsBox className="supplies-card-actions">
+      <EditUnityButton
+        className="supplies-card-action-button block-shadow-button secondary-action bd-rd-10"
         onClick={() => {
           setUnity(unity);
           setUpdateUnityIsVisible(true);
         }}
       >
-        <EditSuppliesButtonIcon className="fas fa-pen" />
-      </EditSuppliesButton>
-      <DeleteSuppliesButton
-        className="block-shadow-button secondary-action bd-rd-10"
+        <SmallMaterialIconOutlined color="" icon="edit" />
+      </EditUnityButton>
+      <DeleteUnityButton
+        className="supplies-card-action-button block-shadow-button secondary-action bd-rd-10"
         onClick={() => {
           setUnity(unity);
           setDeleteUnityIsVisible(true);
         }}
       >
-        <DeleteSuppliesButtonIcon className="fas fa-trash" />
-      </DeleteSuppliesButton>
+        <SmallMaterialIconOutlined color="" icon="delete" />
+      </DeleteUnityButton>
     </UnityCardActionsBox>
   );
 };

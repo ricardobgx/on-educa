@@ -52,13 +52,9 @@ export const PerformancesTypeBox = styled.div`
 export const PerformanceTypeBox = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 5px;
+  justify-content: center;
 
   height: 100%;
-
-  &:last-of-type {
-    margin-bottom: 0;
-  }
 
   color: ${({ theme }) => theme.colors.textColor};
 `;
@@ -67,7 +63,11 @@ export const PerformanceTypeHeader = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-
+export const XPBox = styled.div`
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+`;
 export const PerformanceLabelBox = styled.div`
   display: flex;
   align-items: center;
@@ -82,7 +82,6 @@ export const PerformanceLabel = styled(paragraph)`
 `;
 export const PerformanceDataLabel = styled(paragraph)`
   color: ${({ theme }) => theme.colors.textColor};
-  /* font-weight: bold; */
 `;
 export const XPProgressBar = styled.div`
   background: ${({ theme }) => theme.colors.progressBarColor};

@@ -1,11 +1,10 @@
 import React from 'react';
+import { SmallMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 import {
-  EditSuppliesLink,
-  EditSuppliesButtonIcon,
-  DeleteSuppliesButton,
-  DeleteSuppliesButtonIcon,
-} from '../../App/Supplies/styles';
-import { ContentCardActionsBox } from './styles';
+  EditContentButton,
+  DeleteContentButton,
+  ContentCardActionsBox,
+} from './styles';
 
 interface IContentCardActionsProps {
   content: IContent;
@@ -17,22 +16,22 @@ const ContentCardActions = (props: IContentCardActionsProps): JSX.Element => {
   const { content, setContent, setDeleteContentIsVisible } = props;
 
   return (
-    <ContentCardActionsBox>
-      <EditSuppliesLink
-        className="block-shadow-button secondary-action bd-rd-10"
+    <ContentCardActionsBox className="supplies-card-actions">
+      <EditContentButton
+        className="supplies-card-action-button block-shadow-button secondary-action bd-rd-10"
         to={`/contents/${content.id}/edit`}
       >
-        <EditSuppliesButtonIcon className="fas fa-pen" />
-      </EditSuppliesLink>
-      <DeleteSuppliesButton
-        className="block-shadow-button secondary-action bd-rd-10"
+        <SmallMaterialIconOutlined color="" icon="edit" />
+      </EditContentButton>
+      <DeleteContentButton
+        className="supplies-card-action-button block-shadow-button secondary-action bd-rd-10"
         onClick={() => {
           setContent(content);
           setDeleteContentIsVisible(true);
         }}
       >
-        <DeleteSuppliesButtonIcon className="fas fa-trash" />
-      </DeleteSuppliesButton>
+        <SmallMaterialIconOutlined color="" icon="delete" />
+      </DeleteContentButton>
     </ContentCardActionsBox>
   );
 };

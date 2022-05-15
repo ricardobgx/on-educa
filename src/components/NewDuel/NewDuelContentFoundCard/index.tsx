@@ -1,14 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React from 'react';
+import { SmallMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 import NewDuelContentCard, {
   INewDuelContentCardProps,
 } from '../NewDuelContentCard';
-import {
-  AddContentButton,
-  AddContentButtonIcon,
-  NewDuelContentFoundCardBox,
-} from './styles';
+import { AddContentButton, NewDuelContentFoundCardBox } from './styles';
 
 interface INewDuelContentFoundCardProps extends INewDuelContentCardProps {
   selectedContents: IContent[];
@@ -31,10 +28,10 @@ const NewDuelContentFoundCard = (
     <NewDuelContentFoundCardBox>
       <NewDuelContentCard {...props} />
       <AddContentButton
-        className="with-shadow bd-rd-5"
+        className="block-shadow-button main-action bd-rd-10"
         onClick={() => addFoundContent(content)}
       >
-        <AddContentButtonIcon className="fas fa-plus" />
+        <SmallMaterialIconOutlined color="" icon="add" />
       </AddContentButton>
     </NewDuelContentFoundCardBox>
   );

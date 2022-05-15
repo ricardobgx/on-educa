@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { smallIcon } from '../../../global/styles/components/iconComponents';
 
 export const NewDuelSelectedContentCardBox = styled.div`
   display: flex;
@@ -15,11 +14,8 @@ export const NewDuelSelectedContentCardBox = styled.div`
   }
 `;
 export const DeleteContentButton = styled.button`
-  background: ${({ theme }) => theme.colors.mainButtonBgColor};
   min-width: 40px;
   min-height: 40px;
-  border: none;
-  color: ${({ theme }) => theme.colors.mainButtonTextColor};
   margin-left: 10px;
   cursor: pointer;
 
@@ -28,4 +24,3 @@ export const DeleteContentButton = styled.button`
     margin-top: 10px;
   }
 `;
-export const DeleteContentButtonIcon = styled(smallIcon)``;

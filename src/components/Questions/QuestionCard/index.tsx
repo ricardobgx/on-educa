@@ -47,11 +47,11 @@ const QuestionCard = (props: IQuestionCardProps): JSX.Element => {
   const { loadQuestion } = bindActionCreators(ActionCreators, dispatch);
 
   return (
-    <QuestionCardBox>
+    <QuestionCardBox className="supplies-card">
       <QuestionCardDetails
         to={`/questions/${id}`}
         onClick={() => loadQuestion(question)}
-        className="bd-rd-10 with-shadow"
+        className="block-shadow-button secondary-action bd-rd-10"
       >
         <QuestionDetails>
           <QuestionTitle title={reduceTextSize(description, 150, 100)}>

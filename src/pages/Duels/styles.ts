@@ -15,26 +15,4 @@ export const DuelsBox = styled.div`
   flex-direction: column;
   margin: 20px 0;
 `;
-export const DuelsList = styled.div`
-  margin-top: 20px;
-  min-height: calc(100vh - 285px);
-  max-height: calc(100vh - 285px);
-  display: flex;
-  flex-direction: column;
-
-  @media (max-width: 400px) {
-    min-height: calc(100vh - 405px);
-    max-height: calc(100vh - 405px);
-  }
-  @media (min-width: 400px) and (max-width: 700px) {
-    min-height: calc(100vh - 345px);
-    max-height: calc(100vh - 345px);
-  }
-`;
-export const DuelsListBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  overflow: auto;
-  height: 100%;
-  padding: 20px;
-`;
+export const DuelsList = styled.div``;

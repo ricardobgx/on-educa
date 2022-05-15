@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { getFullDate, reduceTextSize } from '../../../functions/utils';
 import { ActionCreators } from '../../../store';
 import { RootState } from '../../../store/store';
+import { SmallMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 import ContentCardActions from '../ContentCardActions';
 import {
   ContentCardBox,
@@ -17,10 +18,8 @@ import {
   ContentAdditionalDetails,
   UpdateDate,
   UpdateDateLabel,
-  UpdateDateIcon,
   ContentsNumber,
   ContentsNumberLabel,
-  ContentsNumberIcon,
 } from './styles';
 
 interface IContentCardProps {
@@ -44,14 +43,17 @@ const ContentCard = (props: IContentCardProps): JSX.Element => {
   const { isStudent } = aplication;
 
   return (
-    <ContentCardBox style={{ animationDelay: `${index * 0.2}s` }}>
+    <ContentCardBox
+      className="supplies-card"
+      style={{ animationDelay: `${index * 0.2}s` }}
+    >
       <ContentCardDetails
-        className="with-shadow bd-rd-20"
+        className="block-shadow-button secondary-action bd-rd-10"
         to={`/contents/${id}`}
         onClick={() => loadContent(content)}
       >
         <ContentDetails>
-          <ContentTitle>{reduceTextSize(name, 40, 50)}</ContentTitle>
+          <ContentTitle>{reduceTextSize(name, 40, 35)}</ContentTitle>
           <SubjectLabel>Unidade: {unity.name}</SubjectLabel>
         </ContentDetails>
         <ContentSchoolGrade>
@@ -61,13 +63,13 @@ const ContentCard = (props: IContentCardProps): JSX.Element => {
         <ContentAdditionalDetails>
           <UpdateDate>
             <UpdateDateLabel>{getFullDate(updatedAt)}</UpdateDateLabel>
-            <UpdateDateIcon className="fas fa-clock" />
+            <SmallMaterialIconOutlined color="" icon="update" />
           </UpdateDate>
           <ContentsNumber>
             <ContentsNumberLabel>
               {questions.length} questões
             </ContentsNumberLabel>
-            <ContentsNumberIcon className="fas fa-file-alt" />
+            <SmallMaterialIconOutlined color="" icon="description" />
           </ContentsNumber>
         </ContentAdditionalDetails>
       </ContentCardDetails>
