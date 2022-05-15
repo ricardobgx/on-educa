@@ -51,7 +51,10 @@ const DuelCongratulations = (): JSX.Element => {
             : 'Empate'}
         </CongratulationsLabel>
         <CongratulationsImage src={winners} />
-        <SeeResultsButton to={`/duels/${duelId}/results`}>
+        <SeeResultsButton
+          className="block-shadow-button main-action bd-rd-20"
+          to={`/duels/${duelId}/results`}
+        >
           <SeeResultsButtonLabel>Ver desempenho</SeeResultsButtonLabel>
         </SeeResultsButton>
       </PageBox>

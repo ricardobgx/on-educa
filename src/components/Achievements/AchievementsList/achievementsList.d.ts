@@ -1,0 +1,3 @@
+interface IAchievementsListProps {
+  achievements: IAchievement[];
+}

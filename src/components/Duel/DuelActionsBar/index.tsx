@@ -1,13 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { socket } from '../../../App';
 import {
   deleteDuel as deleteDuelData,
   isDuelOwner,
 } from '../../../functions/duel';
-import { startDuelRound } from '../../../functions/duelRound';
+import {
+  duelRoundIsStarted,
+  startDuelRound,
+} from '../../../functions/duelRound';
 import { removeParticipant } from '../../../functions/duelTeamParts';
 import { isDefaultDuel } from '../../../functions/entitiesValues';
 import OnEducaAPI from '../../../services/api';
@@ -172,6 +175,9 @@ const DuelActionsBar = (props: IDuelActionsBarProps): JSX.Element => {
           </DuelActionsBarButton>
         )}
       </Actions>
+      {duelRoundIsStarted(duelRound.status) && (
+        <Redirect to={`/duels/${duel.id}/questions`} />
+      )}
     </DuelActionsBarBox>
   );
 };

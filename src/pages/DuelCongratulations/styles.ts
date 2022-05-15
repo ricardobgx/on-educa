@@ -41,9 +41,6 @@ export const CongratulationsImage = styled.img`
 `;
 export const SeeResultsButton = styled(Link)`
   min-height: 40px;
-  background: ${({ theme }) => theme.colors.boxColor};
-  border-radius: 5px;
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   width: 50%;
   display: flex;
   align-items: center;
@@ -53,6 +50,4 @@ export const SeeResultsButton = styled(Link)`
     width: 100%;
   }
 `;
-export const SeeResultsButtonLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
-`;
+export const SeeResultsButtonLabel = styled(paragraph)``;

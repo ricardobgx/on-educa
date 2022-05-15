@@ -1,6 +1,6 @@
 import React from 'react';
 import { BigMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
-import ProgressBar from '../../App/ProgressBar';
+import BigProgressBar from '../../App/ProgressBar/BigProgressBar';
 import {
   Container,
   MissionInfo,
@@ -22,7 +22,11 @@ const MissionCard = (props: IMission): JSX.Element => {
           <MissionReward>{reward} XP</MissionReward>
         </MissionInfoHeader>
         <MissionProgress>
-          <ProgressBar now={0} max={repetitions} />
+          <BigProgressBar
+            now={0}
+            max={repetitions}
+            label={`0/${repetitions}`}
+          />
         </MissionProgress>
       </MissionInfo>
     </Container>

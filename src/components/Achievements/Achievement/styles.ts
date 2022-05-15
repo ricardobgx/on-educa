@@ -6,7 +6,7 @@ export const AchievementBox = styled.div`
   padding: 20px;
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  gap: 20px;
 
   &:last-of-type {
     margin: 0;
@@ -18,7 +18,6 @@ export const AchievementLevel = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  margin-right: 20px;
 `;
 export const AchievementLevelIcon = styled.i`
   color: ${({ theme }) => theme.colors.textColor};
@@ -32,32 +31,13 @@ export const AchievementLevelLabel = styled(paragraph)`
 export const AchievementDescription = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 5px;
+
   width: 100%;
 `;
 export const AchievementName = styled(paragraph)`
   color: ${({ theme }) => theme.colors.textColor};
   font-weight: bold;
-`;
-export const AchievementProgress = styled.div`
-  display: flex;
-  align-items: center;
-`;
-export const AchievementProgressBar = styled.div`
-  padding: 2px;
-  margin: 5px 0px;
-  width: 100%;
-  background: ${({ theme }) => theme.colors.textColor};
-  border-radius: 10px;
-`;
-export const AchievementInnerProgressBar = styled.div`
-  height: 15px;
-  width: 50%;
-  background: ${({ theme }) => theme.colors.boxColor};
-  border-radius: 10px;
-`;
-export const AchievementProgressLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
-  margin-left: 10px;
 `;
 export const AchievementDescriptionLabel = styled(paragraph)`
   color: ${({ theme }) => theme.colors.textColor};

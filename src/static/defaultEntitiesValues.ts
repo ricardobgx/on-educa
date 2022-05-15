@@ -262,3 +262,26 @@ export const DEFAULT_DUEL_QUESTION_ANSWER: IDuelQuestionAnswer = {
   question: DEFAULT_DUEL_QUESTION,
   selectedAlternative: DEFAULT_ALTERNATIVE,
 };
+
+export const DEFAULT_ACHIEVEMENT: IAchievement = {
+  id: '',
+  name: '',
+  description: '',
+  activities: [],
+  levels: [],
+};
+
+export const DEFAULT_ACHIEVEMENT_LEVEL: IAchievementLevel = {
+  id: '',
+  goal: 0,
+  level: 0,
+};
+
+export const DEFAULT_ACHIEVEMENT_PROGRESS: IAchievementProgress = {
+  id: '',
+  progress: 0,
+  status: 0,
+  achievement: DEFAULT_ACHIEVEMENT,
+  people: DEFAULT_PEOPLE,
+  level: DEFAULT_ACHIEVEMENT_LEVEL,
+};

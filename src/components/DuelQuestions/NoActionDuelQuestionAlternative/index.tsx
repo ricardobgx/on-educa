@@ -16,7 +16,7 @@ const NoActionDuelQuestionAlternative = (
 
   return (
     <Container
-      className="with-shadow bd-rd-5"
+      className="with-shadow bd-rd-20"
       style={{
         background: id === selectedAlternative.id ? theme.colors.textColor : '',
         color: id === selectedAlternative.id ? theme.colors.boxColor : '',

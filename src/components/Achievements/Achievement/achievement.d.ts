@@ -1,0 +1,3 @@
+interface IAchievementProps {
+  achievement: IAchievement;
+}

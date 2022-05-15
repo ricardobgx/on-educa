@@ -28,15 +28,21 @@ const TeamsResults = (props: ITeamResultsProps): JSX.Element => {
       <SectionLabel backLink="" label="Desempenho das equipes" />
       <DuelTeamsList teams={teams} />
       <DuelActions>
-        <BackToDuelButton to="/duels/12345">
+        <BackToDuelButton
+          className="block-shadow-button secondary-action bd-rd-20"
+          to="/duels/12345"
+        >
           <BackToDuelButtonLabel>Voltar para o duelo</BackToDuelButtonLabel>
         </BackToDuelButton>
         {!isDuelOwner() ? (
-          <QuitDuelButton to="/duels">
+          <QuitDuelButton
+            className="block-shadow-button main-action bd-rd-20"
+            to="/duels"
+          >
             <QuitDuelButtonLabel>Sair</QuitDuelButtonLabel>
           </QuitDuelButton>
         ) : (
-          <DeleteDuelButton>
+          <DeleteDuelButton className="block-shadow-button main-action bd-rd-20">
             <DeleteDuelButtonLabel>Excluir duelo</DeleteDuelButtonLabel>
           </DeleteDuelButton>
         )}

@@ -6,8 +6,6 @@ export const ParticipantCardBox = styled.div`
   flex-direction: column;
   margin-bottom: 20px;
   width: 100%;
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
 
   &:last-of-type {
     margin-bottom: 0;
@@ -32,19 +30,22 @@ export const ParticipantDuelPerformance = styled.div`
 `;
 export const QuestionsAnswered = styled.div`
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
+  gap: 10px;
+  margin: 5px 0;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 export const QuestionAnswered = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-weight: bold;
-  width: calc(50% - 5px);
+  width: 100%;
   height: 40px;
   padding: 0 10px;
-  margin: 5px 0;
-  border-radius: 5px;
   color: ${({ theme }) => theme.colors.whiteColor};
 
   @media (max-width: 500px) {
@@ -59,6 +60,11 @@ export const QuestionAnswered = styled.div`
     background: ${({ theme }) => theme.similarColors.wrongQuestion};
   }
 `;
+export const QuestionAnsweredHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`;
 export const QuestionAnsweredLabel = styled(paragraph)``;
 export const QuestionAnsweredData = styled(paragraph)``;
 
@@ -70,9 +76,8 @@ export const ParticipantXP = styled.div`
   height: 40px;
   padding: 0 10px;
   margin: 5px 0;
-  border-radius: 5px;
-  color: ${({ theme }) => theme.colors.boxColor};
-  background: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.mainButtonTextColor};
+  background: ${({ theme }) => theme.colors.mainButtonBgColor};
 `;
 export const ParticipantXPLabel = styled(paragraph)``;
 export const ParticipantXPData = styled(paragraph)``;

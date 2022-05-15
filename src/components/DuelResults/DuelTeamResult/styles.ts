@@ -6,8 +6,6 @@ export const DuelTeamResultBox = styled.div`
   flex-direction: column;
   align-items: center;
   background: ${({ theme }) => theme.colors.boxColor};
-  box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  border-radius: 5px;
   padding: 15px;
   width: calc(50% - 20px);
   min-height: calc(100vh - 285px);

@@ -1,36 +1,66 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { getAchievementProgressByPeopleAndAchievement } from '../../../functions/achievementProgress';
+import { isDefaultPeople } from '../../../functions/entitiesValues';
+import OnEducaAPI from '../../../services/api';
+import { DEFAULT_ACHIEVEMENT_PROGRESS } from '../../../static/defaultEntitiesValues';
+import { RootState } from '../../../store';
+import { handleAchievementLevelName } from '../../../utils/achievementLevel';
+import BigProgressBar from '../../App/ProgressBar/BigProgressBar';
 import {
   AchievementBox,
   AchievementDescription,
   AchievementDescriptionLabel,
-  AchievementInnerProgressBar,
   AchievementLevel,
   AchievementLevelIcon,
   AchievementLevelLabel,
   AchievementName,
-  AchievementProgress,
-  AchievementProgressBar,
-  AchievementProgressLabel,
 } from './styles';
 
-const Achievement = (): JSX.Element => {
+const Achievement: React.FC<IAchievementProps> = (props): JSX.Element => {
+  const { people, aplication } = useSelector((store: RootState) => store);
+  const { token } = aplication;
+
+  const { achievement } = props;
+  const { name, description } = achievement;
+
+  const [achievementProgress, setAchievementProgress] =
+    useState<IAchievementProgress>(DEFAULT_ACHIEVEMENT_PROGRESS);
+
+  const getAchievementProgressAction = async (): Promise<void> => {
+    await getAchievementProgressByPeopleAndAchievement(
+      OnEducaAPI,
+      people.id,
+      achievement.id,
+      setAchievementProgress,
+      token,
+    );
+  };
+
+  useEffect(() => {
+    if (!isDefaultPeople(people) && token) getAchievementProgressAction();
+  }, [people, token]);
+
+  const { progress, level } = achievementProgress;
+
   return (
-    <AchievementBox className="with-shadow bd-rd-20">
+    <AchievementBox className="with-shadow bd-rd-10">
       <AchievementLevel>
         <AchievementLevelIcon className="fas fa-star" />
-        <AchievementLevelLabel>Prata</AchievementLevelLabel>
+        <AchievementLevelLabel>
+          {handleAchievementLevelName(level.level)}
+        </AchievementLevelLabel>
       </AchievementLevel>
       <AchievementDescription>
-        <AchievementName>Estudioso</AchievementName>
-        <AchievementProgress>
-          <AchievementProgressBar>
-            <AchievementInnerProgressBar />
-          </AchievementProgressBar>
-          <AchievementProgressLabel>0/1</AchievementProgressLabel>
-        </AchievementProgress>
-        <AchievementDescriptionLabel>
-          Estude um novo conteúdo por dia durante 7 dias
-        </AchievementDescriptionLabel>
+        <AchievementName>{name}</AchievementName>
+        <BigProgressBar
+          now={progress}
+          max={level.goal}
+          label={`${progress}/${level.goal}`}
+        />
+        <AchievementDescriptionLabel>{description}</AchievementDescriptionLabel>
       </AchievementDescription>
     </AchievementBox>
   );

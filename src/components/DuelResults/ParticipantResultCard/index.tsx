@@ -12,6 +12,7 @@ import {
   DEFAULT_STUDENT,
   DEFAULT_TEACHER,
 } from '../../../static/defaultEntitiesValues';
+import { SmallMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 import PeopleCard from '../../App/PeopleCard';
 import {
   ParticipantCardBox,
@@ -23,6 +24,7 @@ import {
   ParticipantXP,
   ParticipantXPLabel,
   ParticipantXPData,
+  QuestionAnsweredHeader,
 } from './styles';
 
 interface IParticipantResultCardProps {
@@ -100,7 +102,7 @@ const ParticipantResultCard = (
   );
 
   return (
-    <ParticipantCardBox>
+    <ParticipantCardBox className="with-shadow bd-rd-20">
       <PeopleCard
         people={people}
         showScore
@@ -112,18 +114,24 @@ const ParticipantResultCard = (
       />
       <ParticipantDuelPerformance>
         <QuestionsAnswered>
-          <QuestionAnswered>
-            <QuestionAnsweredLabel>Questões corretas</QuestionAnsweredLabel>
+          <QuestionAnswered className="bd-rd-20">
+            <QuestionAnsweredHeader>
+              <SmallMaterialIconOutlined color="" icon="check_circle" />
+              <QuestionAnsweredLabel>Questões corretas</QuestionAnsweredLabel>
+            </QuestionAnsweredHeader>
             <QuestionAnsweredData>
               +{questionCorrectlyScore}
             </QuestionAnsweredData>
           </QuestionAnswered>
-          <QuestionAnswered>
-            <QuestionAnsweredLabel>Questões erradas</QuestionAnsweredLabel>
+          <QuestionAnswered className="bd-rd-20">
+            <QuestionAnsweredHeader>
+              <SmallMaterialIconOutlined color="" icon="cancel" />
+              <QuestionAnsweredLabel>Questões erradas</QuestionAnsweredLabel>
+            </QuestionAnsweredHeader>
             <QuestionAnsweredData>-{questionWrongScore}</QuestionAnsweredData>
           </QuestionAnswered>
         </QuestionsAnswered>
-        <ParticipantXP>
+        <ParticipantXP className="bd-rd-20">
           <ParticipantXPLabel>Total</ParticipantXPLabel>
           <ParticipantXPData>{questionCorrectlyScore}</ParticipantXPData>
         </ParticipantXP>

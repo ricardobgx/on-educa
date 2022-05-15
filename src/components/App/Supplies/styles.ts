@@ -63,17 +63,19 @@ export const SuppliesBox = styled.div`
   .supplies-list {
     display: flex;
     flex-direction: column;
-    padding: 5px;
-    overflow: auto;
+    gap: 20px;
+
     min-height: calc(100vh - 290px);
     max-height: calc(100vh - 290px);
+    padding: 5px;
     margin: 0 15px;
     margin-top: 15px;
+
+    overflow: auto;
   }
 
   .supplies-card {
     display: flex;
-    margin-bottom: 20px;
     opacity: 0;
     transform: translateX(-5%);
     animation: leftSlideFadeIn 0.2s linear forwards;

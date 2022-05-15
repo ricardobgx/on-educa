@@ -8,6 +8,8 @@ import { paragraph } from '../../../global/styles/components/textComponents';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 10px;
+
   padding: 20px;
   color: ${({ theme }) => theme.colors.textColor};
   background: ${({ theme }) => theme.colors.boxColor};
@@ -15,15 +17,13 @@ export const Container = styled.div`
 export const DailyGoalHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
 `;
 export const DailyGoalHeaderBox = styled.div`
   display: flex;
   align-items: center;
+  gap: 10px;
 `;
-export const DailyGoalIcon = styled(mediumIcon)`
-  margin-right: 10px;
-`;
+export const DailyGoalIcon = styled(mediumIcon)``;
 export const DailyGoalLabel = styled(paragraph)`
   font-weight: bold;
 `;

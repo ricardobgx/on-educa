@@ -1,5 +1,5 @@
 import React from 'react';
-import ProgressBar from '../../App/ProgressBar';
+import BigProgressBar from '../../App/ProgressBar/BigProgressBar';
 import {
   Container,
   DailyGoalHeader,
@@ -7,7 +7,6 @@ import {
   DailyGoalIcon,
   DailyGoalLabel,
   DailyGoalProgress,
-  DailyGoalProgressLabel,
 } from './styles';
 
 interface IProfileDailyGoalProps {
@@ -26,8 +25,7 @@ const ProfileDailyGoal = (props: IProfileDailyGoalProps): JSX.Element => {
         </DailyGoalHeaderBox>
       </DailyGoalHeader>
       <DailyGoalProgress>
-        <ProgressBar now={dailyXP} max={50} />
-        <DailyGoalProgressLabel>XP</DailyGoalProgressLabel>
+        <BigProgressBar now={dailyXP} max={50} label={`${dailyXP}/${50}XP`} />
       </DailyGoalProgress>
     </Container>
   );
