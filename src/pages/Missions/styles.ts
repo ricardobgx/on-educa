@@ -11,7 +11,7 @@ export const PageBox = styled.div`
   }
 `;
 export const MissionsList = styled.div`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   margin: 15px;
 `;
 export const MissionsListBox = styled.div`

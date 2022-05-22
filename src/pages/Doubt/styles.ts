@@ -31,22 +31,23 @@ export const OwnerInfo = styled.div`
   flex-direction: column;
 `;
 export const OwnerName = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-weight: bold;
   height: 25px;
 `;
 export const OwnerSchoolGrade = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   height: 25px;
   display: flex;
   align-items: flex-end;
 `;
 export const DoubtInfo = styled.div`
   padding-bottom: 40px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.textColor};
+  border-bottom: 1px solid
+    ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 export const DoubtDescription = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   /* font-weight: bold; */
   text-align: justify;
 `;
@@ -61,7 +62,7 @@ export const DoubtActionsContainer = styled.div`
 `;
 export const DoubtActionsButton = styled.div`
   display: flex;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   cursor: pointer;
 
   & span {
@@ -69,7 +70,7 @@ export const DoubtActionsButton = styled.div`
   }
 `;
 export const DoubtStatusIcon = styled.i`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-size: 20px;
   margin-left: 10px;
   margin-top: 10px;

@@ -5,7 +5,7 @@ import { paragraph } from '../../../global/styles/components/textComponents';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   background: ${({ theme }) => theme.colors.boxColor};
   padding: 20px;
   margin-top: 20px;
@@ -29,7 +29,7 @@ export const WeeklyPerformanceInfo = styled.div`
   justify-content: space-between;
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
   padding: 10px 20px;
-  border-radius: 20px;
+  border-radius: 10px;
   margin-bottom: 20px;
 
   &:last-of-type {

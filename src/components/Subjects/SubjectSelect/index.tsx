@@ -29,7 +29,7 @@ const SubjectSelect = (props: ISubjectSelectProps): JSX.Element => {
   const sortedSubjects = subjects.sort(sortSubjects);
 
   return (
-    <SubjectSectionSelectBox>
+    <SubjectSectionSelectBox className="with-shadow bd-rd-30">
       <SubjectSectionSelectLabel>
         {label}
         <RequiredFieldLabel>*</RequiredFieldLabel>
@@ -42,7 +42,7 @@ const SubjectSelect = (props: ISubjectSelectProps): JSX.Element => {
           {sortedSubjects.map((subject) => (
             <SubjectSectionSelectOption
               key={subject.id}
-              className={`block-shadow-button secondary-action bd-rd-30 ${
+              className={`block-shadow-button secondary-action bd-rd-20 ${
                 subject.id === subjectSelectedId ? 'selected' : ''
               }`}
               onClick={() => setSubjectSelected(subject)}

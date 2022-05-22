@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const Container = styled(Link)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   background: ${({ theme }) => theme.colors.boxColor};
   box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 5px;

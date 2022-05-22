@@ -17,14 +17,15 @@ export const ChartTypeButtonBox = styled.button`
   }
 
   &.selected {
-    color: ${({ theme }) => theme.colors.mainButtonTextColor} !important;
-    background: ${({ theme }) => theme.colors.mainButtonBgColor} !important;
+    color: ${({ theme }) =>
+      theme.colors.buttonColors.mainButtonTextColor} !important;
+    background: ${({ theme }) => theme.colors.mainColor} !important;
     box-shadow: 0px 0px 0px 1px
-      ${({ theme }) => theme.colors.mainButtonShadowColor} !important;
+      ${({ theme }) => theme.colors.buttonColors.mainButtonShadowColor} !important;
 
     :hover {
       box-shadow: 0px 0px 0px 1px
-        ${({ theme }) => theme.colors.mainButtonShadowColor};
+        ${({ theme }) => theme.colors.buttonColors.mainButtonShadowColor};
     }
 
     p {

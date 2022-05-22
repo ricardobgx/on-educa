@@ -20,7 +20,7 @@ export const PageBox = styled.div`
   animation: 0.2s fadeIn linear;
 `;
 export const CongratulationsLabel = styled.h2`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-size: 2.35rem;
 
   @media (min-width: 600px) and (max-width: 1150px) {

@@ -9,7 +9,7 @@ export const PracticePerformanceBox = styled.div`
   @media (max-width: 1150px) {
     flex-wrap: wrap;
 
-    & svg {
+    & > svg {
       display: none;
     }
   }
@@ -57,7 +57,8 @@ export const PerformanceDetailsBox = styled.div`
 `;
 export const PracticePerformanceChartBox = styled.div`
   width: 100%;
-  height: 100%;
+  display: flex;
+  justify-content: center;
 `;
 export const PerformanceType = styled.div`
   display: flex;
@@ -66,21 +67,29 @@ export const PerformanceType = styled.div`
 `;
 export const PerformanceTypeBox = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  flex: 1 1 100px;
+  gap: 10px;
+
   background: ${({ theme }) => theme.colors.boxColor};
+
   padding: 20px 0;
   padding-bottom: 0;
 `;
 export const PerformanceDataBox = styled.div`
   display: flex;
   justify-content: space-between;
+
+  &.right {
+    background: ${({ theme }) => theme.flagColors.greenColor};
+  }
 `;
 export const TotalLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-weight: bold;
 `;
 export const NewContentLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   margin-bottom: 20px;
 `;
 export const NextContentButton = styled(Link)`
@@ -90,7 +99,7 @@ export const NextContentButton = styled(Link)`
   min-height: 40px;
   margin: 20px;
   color: ${({ theme }) => theme.colors.boxColor};
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
   width: calc(100% - 40px);
 `;
 export const NextContentButtonLabel = styled(paragraph)``;

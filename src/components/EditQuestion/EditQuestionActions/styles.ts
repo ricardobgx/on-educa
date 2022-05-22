@@ -38,7 +38,7 @@ export const UpdateQuestionButton = styled.button`
   @media (max-width: 900px) {
     width: 100%;
   }
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
   color: ${({ theme }) => theme.colors.boxColor};
 `;
 export const UpdateQuestionButtonLabel = styled(paragraph)``;

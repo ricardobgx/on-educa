@@ -1,5 +1,6 @@
 import React from 'react';
-import theme from '../../../global/styles/theme';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store';
 import {
   ChatPeopleIsOnline,
   ChatPeoplePictureBox,
@@ -14,14 +15,16 @@ interface IChatPeoplePictureProps {
 const ChatPeoplePicture = (props: IChatPeoplePictureProps): JSX.Element => {
   const { profilePicturePath, isOnline } = props;
 
+  const { theme } = useSelector((store: RootState) => store);
+
   return (
     <ChatPeoplePictureBox>
       <ChatPeoplePictureImg src={profilePicturePath} />
       <ChatPeopleIsOnline
         color={
           isOnline
-            ? theme.similarColors.rightQuestion
-            : theme.colors.questionTextColor
+            ? theme.flagColors.greenColor
+            : theme.colors.textColors.secondaryColor
         }
       />
     </ChatPeoplePictureBox>

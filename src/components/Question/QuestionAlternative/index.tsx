@@ -14,7 +14,7 @@ const QuestionAlternative = (props: IQuestionAlternativeProps): JSX.Element => {
 
   return (
     <QuestionAlternativeBox
-      className={`block-shadow-button bd-rd-20 ${
+      className={`block-shadow-button secondary-action bd-rd-20 ${
         id === selectedAlternative.id ? 'selected' : ''
       }`}
       onClick={() => setSelectedAlternative(alternative)}

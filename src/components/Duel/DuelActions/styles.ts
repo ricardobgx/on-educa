@@ -20,7 +20,7 @@ export const InviteFriendsButton = styled(Button)`
   min-height: 40px;
   background: ${({ theme }) => theme.colors.boxColor};
   border: none;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   width: calc(50% - 20px);
   cursor: pointer;
 
@@ -36,8 +36,8 @@ export const QuitDuelButton = styled(Button)`
   justify-content: center;
   align-items: center;
   min-height: 40px;
-  color: ${({ theme }) => theme.colors.whiteColor};
-  background: ${({ theme }) => theme.similarColors.warningColor};
+  color: ${({ theme }) => theme.colors.buttonColors.mainButtonTextColor};
+  background: ${({ theme }) => theme.flagColors.redColor};
   width: calc(50% - 20px);
 
   @media (max-width: 1150px) {
@@ -50,7 +50,7 @@ export const StartDuelButton = styled.button`
   justify-content: center;
   align-items: center;
   min-height: 40px;
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
   border: none;
   color: ${({ theme }) => theme.colors.boxColor};
   width: calc(50% - 20px);

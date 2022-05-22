@@ -7,10 +7,10 @@ export const AccordionHeaderBox = styled.div`
   width: 100%;
 `;
 export const AccordionLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-weight: bold;
 `;
 export const AccordionToggleLabel = styled.label``;
 export const AccordionToggleIcon = styled.i`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;

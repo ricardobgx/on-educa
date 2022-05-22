@@ -7,14 +7,11 @@ import { UnitsListBox } from './styles';
 
 interface IUnitsListProps extends ICommonUnityProps {
   units: IUnity[];
-  setUnity: (value: IUnity) => void;
-  setUpdateUnityIsVisible: (value: boolean) => void;
-  setDeleteUnityIsVisible: (value: boolean) => void;
+  loadPopup: (popup: IPopup) => void;
 }
 
 const UnitsList = (props: IUnitsListProps): JSX.Element => {
-  const { units, setUnity, setUpdateUnityIsVisible, setDeleteUnityIsVisible } =
-    props;
+  const { units, getUnits, loadPopup } = props;
 
   return (
     <UnitsListBox className="supplies-list">
@@ -22,9 +19,8 @@ const UnitsList = (props: IUnitsListProps): JSX.Element => {
         <UnityCard
           index={index}
           unity={unity}
-          setUnity={setUnity}
-          setUpdateUnityIsVisible={setUpdateUnityIsVisible}
-          setDeleteUnityIsVisible={setDeleteUnityIsVisible}
+          getUnits={getUnits}
+          loadPopup={loadPopup}
         />
       ))}
     </UnitsListBox>

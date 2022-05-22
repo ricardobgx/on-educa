@@ -20,12 +20,12 @@ export const AchievementLevel = styled.div`
   height: 100%;
 `;
 export const AchievementLevelIcon = styled.i`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-size: 35px;
   margin-bottom: 10px;
 `;
 export const AchievementLevelLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-weight: bold;
 `;
 export const AchievementDescription = styled.div`
@@ -35,10 +35,15 @@ export const AchievementDescription = styled.div`
 
   width: 100%;
 `;
+export const AchievementDescriptionHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+export const AchievementProgress = styled(paragraph)``;
 export const AchievementName = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-weight: bold;
 `;
 export const AchievementDescriptionLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;

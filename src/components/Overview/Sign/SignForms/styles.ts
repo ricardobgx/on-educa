@@ -254,13 +254,13 @@ export const SignFormFieldLabel = styled(smallLabel)``;
 export const SignFormFieldInputBox = styled.div`
   display: flex;
   align-items: center;
-  background: ${({ theme }) => theme.colors.inputTextBgColor};
+  background: ${({ theme }) => theme.colors.textInputBgColor};
   border-radius: 30px;
 
   position: relative;
 `;
 export const SignFormFieldInput = styled(inputText)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   background: none;
 `;
 export const SignFormButton = styled(BlockShadowButton)`

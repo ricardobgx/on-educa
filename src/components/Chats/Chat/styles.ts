@@ -31,7 +31,7 @@ export const ChatPeopleNameAndOnlineLabel = styled.div`
   justify-content: space-between;
   height: 100%;
   padding: 5px 0;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 export const ChatPeopleName = styled(paragraph)`
   font-weight: bold;
@@ -72,8 +72,8 @@ export const MessageInput = styled(inputText)`
   padding: 0px 15px;
   width: 100%;
   margin-right: 10px;
-  color: ${({ theme }) => theme.colors.textColor};
-  background: ${({ theme }) => theme.colors.inputTextBgColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
+  background: ${({ theme }) => theme.colors.textInputBgColor};
 `;
 export const SendMessageButton = styled(Button)`
   min-width: 40px;

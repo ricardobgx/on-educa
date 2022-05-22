@@ -9,17 +9,16 @@ export const Container = styled.div`
   margin: 20px;
   display: flex;
   align-items: center;
+  gap: 10px;
 `;
 export const QuitPracticeButton = styled.button`
-  margin-right: 20px;
   background: none;
   border: none;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   display: flex;
   align-items: center;
   cursor: pointer;
 `;
-export const QuitPracticeIcon = styled.i``;
 export const PracticeStatusBox = styled.div`
   display: flex;
   width: 100%;
@@ -28,33 +27,10 @@ export const PracticeProgress = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-`;
-export const PracticeProgressBar = styled.div`
-  height: 13px;
-  margin-right: 20px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  background: ${({ theme }) => theme.colors.progressBarColor};
-`;
-export const QuestionsProgressBar = styled.div`
-  height: 13px;
-  background: ${({ theme }) => theme.colors.mainButtonBgColor};
-  transition: 0.2s linear;
-
-  &:first-of-type {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-  }
-
-  &:last-of-type {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-  }
+  gap: 10px;
 `;
 export const PracticeProgressLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-weight: bold;
   min-width: max-content;
 `;

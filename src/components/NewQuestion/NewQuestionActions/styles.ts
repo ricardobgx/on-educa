@@ -18,7 +18,7 @@ export const CancelCreateButton = styled(Link)`
   justify-content: center;
   align-items: center;
   background: ${({ theme }) => theme.colors.boxColor};
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 5px;
   border: none;
@@ -41,7 +41,7 @@ export const CreateQuestionButton = styled(Button)`
   @media (max-width: 900px) {
     width: 100%;
   }
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
   color: ${({ theme }) => theme.colors.boxColor};
 `;
 export const CreateQuestionButtonLabel = styled(paragraph)``;

@@ -8,7 +8,7 @@ export const DoubtBox = styled(Link)`
   padding: 20px;
   display: flex;
   justify-content: space-between;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 
   &:last-of-type {
     margin: 0;
@@ -82,17 +82,17 @@ export const DoubtReferenceBox = styled.div`
   margin-top: 5px;
 `;
 export const DoubtReferenceLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   margin: 0 10px;
 `;
 export const DoubtReferenceIcon = styled.i`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 export const DoubtContent = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-weight: bold;
 `;
 export const DoubtStatusIcon = styled.i`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-size: 25px;
 `;

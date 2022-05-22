@@ -16,8 +16,8 @@ import {
   DailyGoalDataBox,
   DailyGoalEditIcon,
   DailyGoalIcon,
-  AchievementsIcon,
   DailyGoalEditButton,
+  DailyGoal,
 } from './components';
 
 import HomeAction from '../../components/Home/HomeAction';
@@ -27,6 +27,11 @@ import { ActionCreators, RootState } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import SectionLabel from '../../components/App/SectionLabel';
 import { homeActions } from '../../static/homeActions';
+import SmallProgressBar from '../../components/App/ProgressBar/SmallProgressBar';
+import {
+  MediumMaterialIconOutlined,
+  SmallMaterialIconOutlined,
+} from '../../components/App/Icons/MaterialIcons/MaterialIconsOutlined';
 
 const Home = (): JSX.Element => {
   /* GlobalRootState */
@@ -83,23 +88,26 @@ const Home = (): JSX.Element => {
           <SectionLabel backLink="" label="Desempenho" />
           <DailyPerformance />
           <AchievementsBox to="/achievements" className="with-shadow bd-rd-30">
-            <AchievementsIcon className="fas fa-star" />
+            <MediumMaterialIconOutlined icon="grade" color="" />
             <AchievementsLabel>Conquistas</AchievementsLabel>
           </AchievementsBox>
-          <DailyGoalBox className="with-shadow bd-rd-30">
-            <DailyGoalDataBox>
-              <DailyGoalIcon className="fas fa-bullseye" />
-              <DailyGoalLabel>Meta diária</DailyGoalLabel>
-            </DailyGoalDataBox>
-            <DailyGoalDataBox>
-              <DailyGoalLabel>
-                {completedDailyGoal}/{dailyGoal} XP
-              </DailyGoalLabel>
-              <DailyGoalEditButton onClick={() => setEditDailyGoal(true)}>
-                <DailyGoalEditIcon className="fas fa-pen" />
-              </DailyGoalEditButton>
-            </DailyGoalDataBox>
-          </DailyGoalBox>
+          <DailyGoal className="with-shadow bd-rd-30">
+            <DailyGoalBox>
+              <DailyGoalDataBox>
+                <DailyGoalIcon className="fas fa-bullseye" />
+                <DailyGoalLabel>Meta diária</DailyGoalLabel>
+              </DailyGoalDataBox>
+              <DailyGoalDataBox>
+                <DailyGoalLabel>
+                  {completedDailyGoal}/{dailyGoal} XP
+                </DailyGoalLabel>
+                <DailyGoalEditButton onClick={() => setEditDailyGoal(true)}>
+                  <DailyGoalEditIcon className="fas fa-pen" />
+                </DailyGoalEditButton>
+              </DailyGoalDataBox>
+            </DailyGoalBox>
+            <SmallProgressBar now={20} max={50} />
+          </DailyGoal>
         </PerformanceBox>
       </PageBox>
     </Page>

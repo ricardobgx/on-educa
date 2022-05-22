@@ -10,10 +10,10 @@ export const NewDoubtCommentBox = styled.div`
 export const NewDoubtCommentInput = styled(inputText)`
   width: 100%;
   margin-right: 10px;
-  background: ${({ theme }) => theme.colors.inputTextBgColor};
+  background: ${({ theme }) => theme.colors.textInputBgColor};
   border: none;
   padding: 10px;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 
   ::-webkit-input-placeholder {
     color: #949494;
@@ -21,7 +21,7 @@ export const NewDoubtCommentInput = styled(inputText)`
 `;
 export const NewDoubtCommentButton = styled(Button)`
   min-width: 40px;
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
   color: ${({ theme }) => theme.colors.boxColor};
 `;
 export const NewDoubtCommentButtonIcon = styled(smallIcon)``;

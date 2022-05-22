@@ -22,7 +22,7 @@ export const DuelDetailsBackground = styled.div`
 
 export const DuelDetailsBox = styled.div`
   position: relative;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   background: ${({ theme }) => theme.colors.boxColor};
   padding: 20px;
   border-radius: 5px;
@@ -43,7 +43,7 @@ export const CloseDetailsButton = styled(Button)`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
   color: ${({ theme }) => theme.colors.boxColor};
   position: absolute;
   top: 20px;
@@ -73,7 +73,7 @@ export const Settings = styled.div`
 export const SettingsBox = styled.div`
   display: flex;
   justify-content: space-between;
-  border: 2px solid ${({ theme }) => theme.colors.textColor};
+  border: 2px solid ${({ theme }) => theme.colors.textColors.primaryColor};
   padding: 10px 15px;
   margin: 10px 0;
 `;
@@ -99,7 +99,7 @@ export const EditDuelDetailsButton = styled(Button)`
   justify-content: center;
   width: 100%;
   color: ${({ theme }) => theme.colors.boxColor};
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
   margin-top: 10px;
 `;
 export const EditDuelDetailsButtonLabel = styled(paragraph)`

@@ -17,14 +17,14 @@ export const ChatMessageBox = styled.div`
   }
 
   &.mine-message {
-    color: ${({ theme }) => theme.colors.mainButtonTextColor};
-    background: ${({ theme }) => theme.colors.mainButtonBgColor};
+    color: ${({ theme }) => theme.colors.buttonColors.mainButtonTextColor};
+    background: ${({ theme }) => theme.colors.mainColor};
     left: 100%;
     transform: translateX(-100%);
   }
 
   &.other-message {
-    color: ${({ theme }) => theme.colors.textColor};
+    color: ${({ theme }) => theme.colors.textColors.primaryColor};
     background: ${({ theme }) => theme.colors.boxColor};
   }
 `;

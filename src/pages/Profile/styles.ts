@@ -57,11 +57,10 @@ export const ProfileBanner = styled.div`
   min-height: 140px;
   width: 100%;
   border-radius: 5px 5px 0 0;
-  background: linear-gradient(
-    135deg,
-    ${({ theme }) => theme.colors.commonColor},
-    ${({ theme }) => theme.colors.secondaryColor}
-  );
+  background: ${({ theme }) =>
+    theme.themeId < 5
+      ? `linear-gradient(135deg,${theme.colors.secondaryGradientColor}, ${theme.colors.mainColor})`
+      : theme.colors.backgroundColor};
   position: absolute;
 
   @media (max-width: 1150px) {
@@ -90,7 +89,7 @@ export const PeoplePicture = styled.img`
   width: 110px;
   height: 110px;
   border-radius: 50%;
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
 
   @media (max-width: 1150px) {
     width: 90px;
@@ -140,13 +139,13 @@ export const MainDetails = styled.div`
 export const PeopleName = styled(paragraph)`
   margin-bottom: 10px;
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 export const TeachingTypeLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 export const SchoolGradeLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 export const SelectSocialDetails = styled.div`
   margin: 20px 5px;
@@ -161,7 +160,7 @@ export const EditImageButton = styled.button`
   border-radius: 50%;
   border: none;
   background: ${({ theme }) => theme.colors.boxColor};
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   cursor: pointer;
 `;
 

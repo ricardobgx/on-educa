@@ -11,7 +11,6 @@ import SectionLabel from '../../components/App/SectionLabel';
 import {
   NextContentButton,
   NextContentButtonLabel,
-  PerformanceDataBox,
   PerformanceDetails,
   PerformanceDetailsBox,
   PerformancePageImageBox,
@@ -19,7 +18,6 @@ import {
   PerformanceTypeBox,
   PracticePerformanceBox,
   PracticePerformanceChartBox,
-  TotalLabel,
 } from './styles';
 import {
   Page,
@@ -27,14 +25,20 @@ import {
 } from '../../global/styles/components/pageComponents';
 import { isDefaultAlternative } from '../../functions/entitiesValues';
 import PracticePerformanceData from '../../components/PracticePerformance/PracticePerformanceData';
-import SimplePieChart, {
-  ISimplePieChartData,
-} from '../../components/App/Charts/SimplePieChart';
+import { ISimplePieChartData } from '../../components/App/Charts/SimplePieChart';
 import { deviceHeight, deviceType, deviceWidth } from '../../functions/utils';
 import { DeviceType } from '../../types/deviceType';
 import { updateStudentWeeklyPerformanceValues } from '../../functions/studentWeeklyPerformance';
 import OnEducaAPI from '../../services/api';
 import Analytics from '../../svgs/Analytics';
+import PieChartWithPaddingAngle from '../../components/App/Charts/PieChartWithPaddingAngle';
+import {
+  PracticePerformanceDataBox,
+  PracticePerformanceDataHeader,
+  PracticePerformanceDataLabel,
+  PracticePerformanceDataValue,
+} from '../../components/PracticePerformance/PracticePerformanceData/styles';
+import { SmallMaterialIconOutlined } from '../../components/App/Icons/MaterialIcons/MaterialIconsOutlined';
 
 interface IPracticePerformanceRouteParams {
   id: string;
@@ -167,10 +171,13 @@ const PracticePerformance = (): JSX.Element => {
   };
 
   const calcChartHeight = (): number => {
-    if (deviceTypeData !== DeviceType.COMPUTER) {
-      return screenWidth * 0.65;
+    if (deviceTypeData === DeviceType.SMARTPHONE) {
+      return screenWidth * 0.35;
     }
-    return screenHeight - 480;
+    if (deviceTypeData === DeviceType.TABLET) {
+      return screenWidth / 4.5;
+    }
+    return screenHeight / 5;
   };
 
   return (
@@ -178,21 +185,21 @@ const PracticePerformance = (): JSX.Element => {
       <PageBoxColumn>
         <PracticePerformanceBox>
           <PerformancePageImageBox>
-            <Analytics fill={theme.colors.mainButtonBgColor} />
+            <Analytics fill={theme.colors.mainColor} />
           </PerformancePageImageBox>
           <PerformanceDetails>
             <SectionLabel backLink="" label="Desempenho" />
             <PerformanceDetailsBox className="with-shadow bd-rd-30">
               <PracticePerformanceChartBox>
-                <SimplePieChart
+                <PieChartWithPaddingAngle
                   data={chartData}
                   width={calcChartWidth()}
                   height={calcChartHeight()}
-                  color="#000000"
+                  fill="#000000"
                   colors={[
-                    theme.similarColors.rightQuestion,
-                    theme.similarColors.skippedQuestion,
-                    theme.similarColors.wrongQuestion,
+                    theme.flagColors.greenColor,
+                    theme.flagColors.redColor,
+                    theme.flagColors.yellowColor,
                   ]}
                 />
               </PracticePerformanceChartBox>
@@ -202,24 +209,31 @@ const PracticePerformance = (): JSX.Element => {
                     dataLabel="Questões corretas"
                     dataValue={rightQuestions}
                     XPValue={10}
-                    color={theme.similarColors.rightQuestion}
+                    performanceType="right"
                   />
                   <PracticePerformanceData
                     dataLabel="Questões incorretas"
                     dataValue={wrongQuestions}
                     XPValue={0}
-                    color={theme.similarColors.skippedQuestion}
+                    performanceType="wrong"
                   />
                   <PracticePerformanceData
                     dataLabel="Questões puladas"
                     dataValue={skippedQuestions}
                     XPValue={0}
-                    color={theme.similarColors.wrongQuestion}
+                    performanceType="skipped"
                   />
-                  <PerformanceDataBox>
-                    <TotalLabel>Total XP</TotalLabel>
-                    <TotalLabel>+ {questionsScore(questions)} XP</TotalLabel>
-                  </PerformanceDataBox>
+                  <PracticePerformanceDataBox className="bd-rd-30 total">
+                    <PracticePerformanceDataHeader>
+                      <SmallMaterialIconOutlined icon="data_usage" color="" />
+                      <PracticePerformanceDataLabel>
+                        Total
+                      </PracticePerformanceDataLabel>
+                    </PracticePerformanceDataHeader>
+                    <PracticePerformanceDataValue>
+                      + {questionsScore(questions)} XP
+                    </PracticePerformanceDataValue>
+                  </PracticePerformanceDataBox>
                 </PerformanceTypeBox>
               </PerformanceType>
             </PerformanceDetailsBox>

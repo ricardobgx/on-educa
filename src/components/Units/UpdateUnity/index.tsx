@@ -6,31 +6,27 @@ import { ICommonUnityProps } from '../../../pages/Units';
 import OnEducaAPI from '../../../services/api';
 import { ActionCreators, RootState } from '../../../store';
 import {
-  UpdateUnityBackground,
-  UpdateUnityBox,
-  CloseUpdateUnityButton,
-  CloseUpdateUnityIcon,
-  UpdateUnityLabel,
-  UpdateUnityInput,
-  CreateUnityButton,
-  CreateUnityButtonLabel,
-} from './styles';
+  UnityPopupBox,
+  UnityPopupInput,
+  UnityPopupButton,
+  UnityPopupButtonLabel,
+  UnityPopupActions,
+} from '../styles';
 
 interface IUpdateUnityProps extends ICommonUnityProps {
   unity: IUnity;
-  setUpdateUnityIsVisible: (value: boolean) => void;
 }
 
 const UpdateUnity = (props: IUpdateUnityProps): JSX.Element => {
   const dispatch = useDispatch();
-  const { showFloatNotification } = bindActionCreators(
+  const { showFloatNotification, closePopup } = bindActionCreators(
     ActionCreators,
     dispatch,
   );
 
   /* Props */
 
-  const { unity, setUpdateUnityIsVisible, getUnits } = props;
+  const { unity, getUnits } = props;
 
   /* LocalRootState */
 
@@ -44,7 +40,7 @@ const UpdateUnity = (props: IUpdateUnityProps): JSX.Element => {
 
   const updateSucess = (): void => {
     getUnits();
-    setUpdateUnityIsVisible(false);
+    closePopup();
   };
 
   const updateError = (): void => {
@@ -63,25 +59,30 @@ const UpdateUnity = (props: IUpdateUnityProps): JSX.Element => {
   };
 
   return (
-    <UpdateUnityBackground>
-      <UpdateUnityBox>
-        <CloseUpdateUnityButton onClick={() => setUpdateUnityIsVisible(false)}>
-          <CloseUpdateUnityIcon className="fas fa-times" />
-        </CloseUpdateUnityButton>
-        <UpdateUnityLabel>Atualizar unidade</UpdateUnityLabel>
-        <UpdateUnityInput
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setName(event.target.value);
-          }}
-          value={name}
-          type="text"
-          placeholder="Título da unidade"
-        />
-        <CreateUnityButton onClick={() => updateUnity()}>
-          <CreateUnityButtonLabel>Salvar</CreateUnityButtonLabel>
-        </CreateUnityButton>
-      </UpdateUnityBox>
-    </UpdateUnityBackground>
+    <UnityPopupBox>
+      <UnityPopupInput
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setName(event.target.value);
+        }}
+        value={name}
+        type="text"
+        placeholder="Título da unidade"
+      />
+      <UnityPopupActions>
+        <UnityPopupButton
+          className="block-shadow-button secondary-action bd-rd-20"
+          onClick={() => closePopup()}
+        >
+          <UnityPopupButtonLabel>Cancelar</UnityPopupButtonLabel>
+        </UnityPopupButton>
+        <UnityPopupButton
+          className="block-shadow-button main-action bd-rd-20"
+          onClick={() => updateUnity()}
+        >
+          <UnityPopupButtonLabel>Salvar</UnityPopupButtonLabel>
+        </UnityPopupButton>
+      </UnityPopupActions>
+    </UnityPopupBox>
   );
 };
 

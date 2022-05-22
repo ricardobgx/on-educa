@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useEffect, useState } from 'react';
-import theme from '../../../global/styles/theme';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store';
 import {
   CircularProgressBarBox,
   Circular,
@@ -25,6 +26,8 @@ const CircularProgressBar = (props: ICircularProgressBarProps): JSX.Element => {
 
   const [progressNumber, setProgressNumber] = useState(time);
   const [counterInterval, setCounterInterval] = useState<NodeJS.Timeout>();
+
+  const { theme } = useSelector((store: RootState) => store);
 
   const updateProgressNumber = (): void => {
     let counter = time;
@@ -53,7 +56,7 @@ const CircularProgressBar = (props: ICircularProgressBarProps): JSX.Element => {
       <Circular
         color={
           progressNumber > 10
-            ? theme.colors.textColor
+            ? theme.colors.textColors.primaryColor
             : theme.similarColors.warningColor
         }
       >
@@ -64,7 +67,7 @@ const CircularProgressBar = (props: ICircularProgressBarProps): JSX.Element => {
           className="circle"
           color={
             progressNumber > 10
-              ? theme.colors.textColor
+              ? theme.colors.textColors.primaryColor
               : theme.similarColors.warningColor
           }
         >

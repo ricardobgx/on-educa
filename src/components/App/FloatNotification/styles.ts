@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const FloatNotificationBox = styled.div`
-  color: ${({ theme }) => theme.colors.mainButtonTextColor};
-  background: ${({ theme }) => theme.colors.mainButtonBgColor};
+  color: ${({ theme }) => theme.colors.buttonColors.mainButtonTextColor};
+  background: ${({ theme }) => theme.colors.mainColor};
   position: fixed;
   z-index: 97;
   top: 40px;
@@ -48,5 +48,5 @@ export const FloatNotificationContent = styled(paragraph)`
 export const FloatNotificationTimeBar = styled.div`
   width: 100%;
   height: 8px;
-  background: ${({ theme }) => theme.colors.mainButtonTextColor};
+  background: ${({ theme }) => theme.colors.buttonColors.mainButtonTextColor};
 `;

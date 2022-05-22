@@ -4,7 +4,7 @@ import { paragraph } from '../../../global/styles/components/textComponents';
 export const Container = styled.div`
   border: none;
   background: ${({ theme }) => theme.colors.boxColor};
-  color: ${({ theme }) => theme.colors.questionTextColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   padding: 10px 15px;
   margin-bottom: 20px;
   cursor: pointer;

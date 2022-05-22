@@ -9,7 +9,7 @@ const NoChatSelected: React.FC = () => {
 
   return (
     <NoChatSelectedBox>
-      <SelectChat fill={theme.colors.mainButtonBgColor} />
+      <SelectChat fill={theme.colors.mainColor} />
       <StartChatLabel>Inicie uma conversa</StartChatLabel>
     </NoChatSelectedBox>
   );

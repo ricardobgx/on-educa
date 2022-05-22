@@ -6,30 +6,23 @@ import { ICommonUnityProps } from '../../../pages/Units';
 import OnEducaAPI from '../../../services/api';
 import { ActionCreators, RootState } from '../../../store';
 import {
-  NewUnityBackground,
-  NewUnityBox,
-  CloseNewUnityButton,
-  CloseNewUnityIcon,
-  NewUnityLabel,
-  NewUnityInput,
-  CreateUnityButton,
-  CreateUnityButtonLabel,
-} from './styles';
+  UnityPopupBox,
+  UnityPopupInput,
+  UnityPopupButton,
+  UnityPopupButtonLabel,
+  UnityPopupActions,
+} from '../styles';
 
-interface INewUnityProps extends ICommonUnityProps {
-  setNewUnityIsVisible: (value: boolean) => void;
-}
-
-const NewUnity = (props: INewUnityProps): JSX.Element => {
+const NewUnity = (props: ICommonUnityProps): JSX.Element => {
   const dispatch = useDispatch();
-  const { showFloatNotification } = bindActionCreators(
+  const { showFloatNotification, closePopup } = bindActionCreators(
     ActionCreators,
     dispatch,
   );
 
   /* Props */
 
-  const { setNewUnityIsVisible, getUnits } = props;
+  const { getUnits } = props;
 
   /* LocalRootState */
 
@@ -43,7 +36,7 @@ const NewUnity = (props: INewUnityProps): JSX.Element => {
 
   const createUnitySucess = (): void => {
     getUnits();
-    setNewUnityIsVisible(false);
+    closePopup();
   };
 
   const createUnityError = (): void => {
@@ -51,21 +44,23 @@ const NewUnity = (props: INewUnityProps): JSX.Element => {
   };
 
   return (
-    <NewUnityBackground>
-      <NewUnityBox className="with-shadow bd-rd-30">
-        <CloseNewUnityButton onClick={() => setNewUnityIsVisible(false)}>
-          <CloseNewUnityIcon className="fas fa-times" />
-        </CloseNewUnityButton>
-        <NewUnityLabel>Nova unidade</NewUnityLabel>
-        <NewUnityInput
-          className="bd-rd-20"
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setName(event.target.value);
-          }}
-          type="text"
-          placeholder="Título da unidade"
-        />
-        <CreateUnityButton
+    <UnityPopupBox>
+      <UnityPopupInput
+        className="bd-rd-20"
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setName(event.target.value);
+        }}
+        type="text"
+        placeholder="Título da unidade"
+      />
+      <UnityPopupActions>
+        <UnityPopupButton
+          className="block-shadow-button secondary-action bd-rd-20"
+          onClick={() => closePopup()}
+        >
+          <UnityPopupButtonLabel>Cancelar</UnityPopupButtonLabel>
+        </UnityPopupButton>
+        <UnityPopupButton
           className="block-shadow-button main-action bd-rd-20"
           onClick={() =>
             createUnity(
@@ -77,10 +72,10 @@ const NewUnity = (props: INewUnityProps): JSX.Element => {
             )
           }
         >
-          <CreateUnityButtonLabel>Criar unidade</CreateUnityButtonLabel>
-        </CreateUnityButton>
-      </NewUnityBox>
-    </NewUnityBackground>
+          <UnityPopupButtonLabel>Criar unidade</UnityPopupButtonLabel>
+        </UnityPopupButton>
+      </UnityPopupActions>
+    </UnityPopupBox>
   );
 };
 

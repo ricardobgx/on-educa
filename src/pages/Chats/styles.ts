@@ -39,7 +39,7 @@ export const ToggleRecentConversationsLabel = styled.label`
   border-radius: 0% 50% 50% 0%;
   background: ${({ theme }) => theme.colors.boxColor};
   box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   cursor: pointer;
 
   @media (max-width: 1150px) {
@@ -94,11 +94,11 @@ export const BackButton = styled(Link)`
   position: absolute;
   top: 15px;
   left: 10px;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 export const BackButtonIcon = styled(smallIcon)``;
 export const RecentConversationsLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-weight: bold;
 `;
 export const TalkWithTeacherButton = styled(Button)`

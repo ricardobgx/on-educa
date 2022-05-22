@@ -70,7 +70,7 @@ export const TeachingType = styled.button`
 `;
 export const TeachingTypeImage = styled.img``;
 export const TeachingTypeLabel = styled.p`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 
   font-size: 20px;
   font-weight: bold;

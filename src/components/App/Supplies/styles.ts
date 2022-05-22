@@ -80,22 +80,12 @@ export const SuppliesBox = styled.div`
     transform: translateX(-5%);
     animation: leftSlideFadeIn 0.2s linear forwards;
     gap: 10px;
-
-    @media (max-width: 900px) {
-      flex-direction: column;
-      gap: 15px;
-    }
   }
 
   .supplies-card-actions {
     display: flex;
     flex-direction: column;
     gap: 10px;
-
-    @media (max-width: 900px) {
-      flex-direction: row;
-      justify-content: space-between;
-    }
   }
 
   .supplies-card-action-button {
@@ -133,7 +123,7 @@ export const SearchSuppliesBox = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  background: ${({ theme }) => theme.colors.inputTextBgColor};
+  background: ${({ theme }) => theme.colors.textInputBgColor};
   padding: 0 15px;
   margin-right: 20px;
   border-radius: 20px;
@@ -149,7 +139,7 @@ export const SearchSuppliesInput = styled(inputText)`
   border-radius: 10px;
   width: 100%;
   height: 100%;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   margin-right: 10px;
 
   ::-webkit-input-placeholder {
@@ -168,7 +158,7 @@ export const ClearSearchSuppliesInputButton = styled.button`
   border-radius: 50%;
   border: none;
   background: none;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   cursor: pointer;
 `;
 
@@ -187,7 +177,7 @@ export const SearchSuppliesButton = styled(Button)`
 export const SearchSuppliesButtonIcon = styled(smallIcon)``;
 
 export const NoSelectedSupplies = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   margin-top: 30%;
 
   @media (max-width: 1150px) {

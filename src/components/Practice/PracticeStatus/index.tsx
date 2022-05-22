@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
+import { SmallMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
+import BigProgressBar from '../../App/ProgressBar/BigProgressBar';
 import ConfirmQuitPractice from '../ConfirmQuitPractice';
 import {
   Container,
   PracticeProgress,
-  PracticeProgressBar,
   PracticeProgressLabel,
   PracticeStatusBox,
-  QuestionsProgressBar,
   QuitPracticeButton,
-  QuitPracticeIcon,
 } from './styles';
 
 interface IPracticeStatusProps {
@@ -26,19 +25,14 @@ const PracticeStatus = (props: IPracticeStatusProps): JSX.Element => {
         <ConfirmQuitPractice setQuitPractice={setQuitPractice} />
       ) : null}
       <QuitPracticeButton onClick={() => setQuitPractice(true)}>
-        <QuitPracticeIcon className="fas fa-arrow-left" />
+        <SmallMaterialIconOutlined icon="arrow_back" color="" />
       </QuitPracticeButton>
       <PracticeStatusBox>
         <PracticeProgress>
-          <PracticeProgressBar>
-            <QuestionsProgressBar
-              style={{
-                width: `${
-                  (answeredQuestionsNumber(questions) / questions.length) * 100
-                }%`,
-              }}
-            />
-          </PracticeProgressBar>
+          <BigProgressBar
+            now={answeredQuestionsNumber(questions)}
+            max={questions.length}
+          />
           <PracticeProgressLabel>
             {answeredQuestionsNumber(questions)}/{questions.length}
           </PracticeProgressLabel>

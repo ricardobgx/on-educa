@@ -1,6 +1,7 @@
 import React from 'react';
+import { MediumMaterialIconOutlined } from '../../Icons/MaterialIcons/MaterialIconsOutlined';
 import { NavBarActionAlert, NavBarActionAlertNumber } from '../styles';
-import { NavBarActionBox, NavBarIcon, NavBarIconLabel } from './styles';
+import { NavBarActionBox, NavBarIconLabel } from './styles';
 
 interface INavBarActionProps {
   link: string;
@@ -21,7 +22,7 @@ const NavBarAction = (props: INavBarActionProps): JSX.Element => {
           <NavBarActionAlertNumber>{alertsNumber}</NavBarActionAlertNumber>
         </NavBarActionAlert>
       )}
-      <NavBarIcon className={icon} />
+      <MediumMaterialIconOutlined icon={icon} color="" />
       <NavBarIconLabel>{label}</NavBarIconLabel>
     </NavBarActionBox>
   );

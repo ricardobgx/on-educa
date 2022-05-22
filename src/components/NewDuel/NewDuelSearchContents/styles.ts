@@ -22,7 +22,7 @@ export const ContentsFound = styled.div`
   position: absolute;
   top: 100%;
   width: 100%;
-  background: ${({ theme }) => theme.colors.inputTextBgColor};
+  background: ${({ theme }) => theme.colors.textInputBgColor};
   box-shadow: 0px 1px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 0 0 20px 20px;
   animation: fadeIn 0.2s linear;
@@ -38,7 +38,7 @@ export const ContentsFoundList = styled.div`
 export const SearchContentsButton = styled.button`
   padding: 5px;
   background: none;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   border: none;
   cursor: pointer;
 `;

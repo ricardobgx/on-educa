@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { bigIcon } from '../../../global/styles/components/iconComponents';
 
 export const PlatformInformationBox = styled.div`
-  color: ${({ theme }) => theme.colors.whiteColor};
+  color: ${({ theme }) => theme.colors.buttonColors.mainButtonTextColor};
   width: 50%;
   position: relative;
   height: 100vh;

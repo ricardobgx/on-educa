@@ -13,6 +13,7 @@ export const HomeActionBox = styled(Link)`
   margin: 20px;
   padding: calc(((100vh - 265px) / 2) / 5);
 
+  color: ${({ theme }) => theme.colors.textColors.secondaryColor};
   background: ${({ theme }) => theme.colors.boxColor};
 
   border: 3px solid transparent;
@@ -20,8 +21,7 @@ export const HomeActionBox = styled(Link)`
   transition: all 0.2s linear;
 
   &:hover {
-    /* border-color: ${({ theme }) => theme.colors.textColor}; */
-    box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
+    color: ${({ theme }) => theme.colors.textColors.primaryColor};
     transform: translateY(-5px);
   }
 
@@ -43,8 +43,6 @@ export const HomeActionIcon = styled.span`
   display: flex;
   justify-content: center;
 
-  color: ${({ theme }) => theme.colors.textColor};
-
   @media (min-width: 600px) and (max-width: 1150px) {
     font-size: calc((100vw - 180px) / 7);
   }
@@ -55,7 +53,6 @@ export const HomeActionIcon = styled.span`
 `;
 
 export const HomeActionLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
   font-weight: bold;
   text-align: center;
 `;

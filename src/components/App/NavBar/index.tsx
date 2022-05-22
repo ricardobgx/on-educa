@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { clearPeopleVariables } from '../../../functions/people';
@@ -9,8 +9,8 @@ import {
   DEFAULT_TEACHER,
 } from '../../../static/defaultEntitiesValues';
 import { ActionCreators, RootState } from '../../../store';
-import DarkLogo from '../../../svgs/DarkLogo';
-import LightLogo from '../../../svgs/LightLogo';
+import LogoIcon from '../../../svgs/LogoIcon';
+import { MediumMaterialIconOutlined } from '../Icons/MaterialIcons/MaterialIconsOutlined';
 import NavBarAction from './NavBarAction';
 import { NavBarActionBox, NavBarIconLabel } from './NavBarAction/styles';
 
@@ -20,17 +20,13 @@ import {
   Actions,
   PeoplePhoto,
   ToggleMenuButton,
-  ToggleMenuIcon,
 } from './styles';
 
 const NavBar = (): JSX.Element => {
   /* GlobalRootState */
 
-  const { people, friendRequests, theme } = useSelector(
-    (store: RootState) => store,
-  );
+  const { people, friendRequests } = useSelector((store: RootState) => store);
   const { id, profilePicture } = people;
-  const [logoType, setLogoType] = useState('dark');
 
   const dispatch = useDispatch();
   const { logoutPeople, loadToken, loadStudent, loadTeacher } =
@@ -44,38 +40,36 @@ const NavBar = (): JSX.Element => {
     loadTeacher(DEFAULT_TEACHER);
   };
 
-  const [toggleMenuIcon, setToggleMenuIcon] = useState('bars');
+  const [toggleMenuIcon, setToggleMenuIcon] = useState('menu');
   const [menuRight, setMenuRight] = useState('-100%');
 
   const toggleMenu = (): void => {
-    if (toggleMenuIcon === 'bars') {
-      setToggleMenuIcon('times');
+    if (toggleMenuIcon === 'menu') {
+      setToggleMenuIcon('close');
       setMenuRight('0%');
     } else {
-      setToggleMenuIcon('bars');
+      setToggleMenuIcon('menu');
       setMenuRight('-100%');
     }
   };
 
-  useEffect(() => {
-    if (theme.themeType < 6) {
-      setLogoType('dark');
-    } else {
-      setLogoType('light');
-    }
-  }, [theme]);
-
   return (
     <NavBarBox className="with-shadow">
-      <Logo to="/">{logoType === 'dark' ? <DarkLogo /> : <LightLogo />}</Logo>
+      <Logo to="/">
+        <LogoIcon />
+      </Logo>
       <Actions style={{ right: menuRight }}>
-        <NavBarActionBox to={`/profile/${id}`} onClick={() => toggleMenu()}>
+        <NavBarActionBox
+          className="profile"
+          to={`/profile/${id}`}
+          onClick={() => toggleMenu()}
+        >
           <PeoplePhoto src={profilePicture.path} />
           <NavBarIconLabel>Perfil</NavBarIconLabel>
         </NavBarActionBox>
         <NavBarAction
           link="/friends"
-          icon="fas fa-users"
+          icon="group"
           label="Amigos"
           clickAction={toggleMenu}
           alertIcon={friendRequests.length > 0}
@@ -83,7 +77,7 @@ const NavBar = (): JSX.Element => {
         />
         <NavBarAction
           link="/notifications"
-          icon="fas fa-bell"
+          icon="notifications"
           label="Notificações"
           clickAction={toggleMenu}
           alertIcon={false}
@@ -91,7 +85,7 @@ const NavBar = (): JSX.Element => {
         />
         <NavBarAction
           link="/settings"
-          icon="fas fa-cog"
+          icon="settings"
           label="Configurações"
           clickAction={toggleMenu}
           alertIcon={false}
@@ -99,7 +93,7 @@ const NavBar = (): JSX.Element => {
         />
         <NavBarAction
           link="/"
-          icon="fas fa-sign-out-alt"
+          icon="logout"
           label="Sair"
           clickAction={logout}
           alertIcon={false}
@@ -111,7 +105,7 @@ const NavBar = (): JSX.Element => {
           toggleMenu();
         }}
       >
-        <ToggleMenuIcon className={`fas fa-${toggleMenuIcon}`} />
+        <MediumMaterialIconOutlined icon={toggleMenuIcon} color="" />
       </ToggleMenuButton>
     </NavBarBox>
   );

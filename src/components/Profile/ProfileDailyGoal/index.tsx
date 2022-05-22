@@ -1,4 +1,5 @@
 import React from 'react';
+import { SmallMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 import BigProgressBar from '../../App/ProgressBar/BigProgressBar';
 import {
   Container,
@@ -7,6 +8,8 @@ import {
   DailyGoalIcon,
   DailyGoalLabel,
   DailyGoalProgress,
+  DailyGoalProgressLabel,
+  EditDailyGoalValueButton,
 } from './styles';
 
 interface IProfileDailyGoalProps {
@@ -23,9 +26,17 @@ const ProfileDailyGoal = (props: IProfileDailyGoalProps): JSX.Element => {
           <DailyGoalIcon className="fas fa-bullseye" />
           <DailyGoalLabel>Meta diária</DailyGoalLabel>
         </DailyGoalHeaderBox>
+        <DailyGoalProgress>
+          <DailyGoalProgressLabel>
+            {dailyXP}/{50} XP
+          </DailyGoalProgressLabel>
+          <EditDailyGoalValueButton>
+            <SmallMaterialIconOutlined icon="edit" color="" />
+          </EditDailyGoalValueButton>
+        </DailyGoalProgress>
       </DailyGoalHeader>
       <DailyGoalProgress>
-        <BigProgressBar now={dailyXP} max={50} label={`${dailyXP}/${50}XP`} />
+        <BigProgressBar now={dailyXP} max={50} />
       </DailyGoalProgress>
     </Container>
   );

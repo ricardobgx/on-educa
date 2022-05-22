@@ -1,10 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
+import { AxiosError } from 'axios';
 import React, { useEffect, useState } from 'react';
-import { getPeople } from '../../../functions/people';
-import { displayDayAndMonthDate, getFullDate } from '../../../functions/utils';
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { displaySurname, getPeople } from '../../../functions/people';
+import {
+  displayDayAndMonthDate,
+  getFullDate,
+  showErrorMessage,
+} from '../../../functions/utils';
 import OnEducaAPI from '../../../services/api';
 import { DEFAULT_PEOPLE } from '../../../static/defaultEntitiesValues';
+import { ActionCreators } from '../../../store';
 import ChatPeoplePicture from '../ChatPeoplePicture';
 import {
   ChatCardBox,
@@ -28,8 +36,21 @@ const ChatCard = (props: IChatCardProps): JSX.Element => {
   const { chatCreator, chatParticipant, messages } = chat;
   const [people, setPeople] = useState(DEFAULT_PEOPLE);
 
+  const dispatch = useDispatch();
+  const { showFloatNotification } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
+
   const getChatCardPeople = async (peopleId: string): Promise<void> => {
-    const chatCardPeople = await getPeople(OnEducaAPI, peopleId, token);
+    const chatCardPeople = await getPeople(
+      OnEducaAPI,
+      peopleId,
+      token,
+      (err: AxiosError): void => {
+        showErrorMessage(err, showFloatNotification);
+      },
+    );
     if (chatCardPeople) setPeople(chatCardPeople);
   };
 
@@ -65,7 +86,7 @@ const ChatCard = (props: IChatCardProps): JSX.Element => {
       />
       <NameAndLastMessage>
         <NameAndLastMessageTime>
-          <PeopleName>{name}</PeopleName>
+          <PeopleName>{displaySurname(name, 20, 20)}</PeopleName>
           <LastMessageTime>
             {messages.length > 0 &&
               displayDayAndMonthDate(getFullDate(messages[0].createdAt))}

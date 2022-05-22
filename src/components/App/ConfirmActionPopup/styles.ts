@@ -28,7 +28,7 @@ export const ConfirmActionPopupBox = styled.div`
   max-width: 400px;
   padding: 20px;
 
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   background: ${({ theme }) => theme.colors.boxColor};
 
   font-weight: bold;
@@ -45,8 +45,8 @@ export const CloseConfirmActionPopupButton = styled.button`
 
   border: none;
 
-  color: ${({ theme }) => theme.colors.mainButtonTextColor};
-  background: ${({ theme }) => theme.colors.mainButtonBgColor};
+  color: ${({ theme }) => theme.colors.buttonColors.mainButtonTextColor};
+  background: ${({ theme }) => theme.colors.mainColor};
 
   border-radius: 50%;
 `;

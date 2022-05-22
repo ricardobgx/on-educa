@@ -22,7 +22,7 @@ export const QuestionsFilterBox = styled.div`
   }
 `;
 export const QuestionsFilterLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-weight: bold;
   margin: 10px 0;
 `;
@@ -40,7 +40,7 @@ export const FiltersBox = styled.div`
 `;
 export const CloseQuestionsFilterButton = styled.button`
   color: ${({ theme }) => theme.colors.boxColor};
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
   border-radius: 50px;
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
   border: none;

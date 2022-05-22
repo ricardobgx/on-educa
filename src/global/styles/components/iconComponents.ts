@@ -3,14 +3,14 @@ import styled from 'styled-components';
 // Icon
 
 export const smallIcon = styled.i`
-  font-size: ${({ theme }) => theme.fontsSize.computer};
+  font-size: ${({ theme }) => theme.fontsSize.normalFonts.computer};
 
   @media (min-width: 600px) and (max-width: 1150px) {
-    font-size: ${({ theme }) => theme.fontsSize.tablet};
+    font-size: ${({ theme }) => theme.fontsSize.normalFonts.tablet};
   }
 
   @media (max-width: 600px) {
-    font-size: ${({ theme }) => theme.fontsSize.smartphone};
+    font-size: ${({ theme }) => theme.fontsSize.normalFonts.smartphone};
   }
 `;
 

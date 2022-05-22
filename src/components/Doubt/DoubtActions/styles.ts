@@ -22,7 +22,7 @@ export const DoubtActionsBox = styled.div`
     padding: 0 10px;
     background: none;
     box-shadow: none;
-    color: ${({ theme }) => theme.colors.textColor};
+    color: ${({ theme }) => theme.colors.textColors.primaryColor};
     border-radius: 0;
 
     &:hover {

@@ -3,15 +3,15 @@ import styled from 'styled-components';
 // Text
 
 export const paragraph = styled.p`
-  font-size: ${({ theme }) => theme.fontsSize.computer};
+  font-size: ${({ theme }) => theme.fontsSize.normalFonts.computer};
   letter-spacing: 1px;
 
   @media (min-width: 600px) and (max-width: 1150px) {
-    font-size: ${({ theme }) => theme.fontsSize.tablet};
+    font-size: ${({ theme }) => theme.fontsSize.normalFonts.tablet};
   }
 
   @media (max-width: 600px) {
-    font-size: ${({ theme }) => theme.fontsSize.smartphone};
+    font-size: ${({ theme }) => theme.fontsSize.normalFonts.smartphone};
   }
 `;
 
@@ -29,15 +29,15 @@ export const smallParagraph = styled.p`
 `;
 
 export const label = styled.label`
-  font-size: ${({ theme }) => theme.fontsSize.computer};
+  font-size: ${({ theme }) => theme.fontsSize.normalFonts.computer};
   letter-spacing: 1px;
 
   @media (min-width: 600px) and (max-width: 1150px) {
-    font-size: ${({ theme }) => theme.fontsSize.tablet};
+    font-size: ${({ theme }) => theme.fontsSize.normalFonts.tablet};
   }
 
   @media (max-width: 600px) {
-    font-size: ${({ theme }) => theme.fontsSize.smartphone};
+    font-size: ${({ theme }) => theme.fontsSize.normalFonts.smartphone};
   }
 `;
 
@@ -57,5 +57,5 @@ export const smallLabel = styled.label`
 // Required field label
 
 export const RequiredField = styled.span`
-  color: ${({ theme }) => theme.similarColors.warningColor};
+  color: ${({ theme }) => theme.flagColors.redColor};
 `;

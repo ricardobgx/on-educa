@@ -6,6 +6,7 @@ import aplicationReducer from './aplication';
 import themeReducer from './theme';
 import floatNotificationReducer from './floatNotification';
 import confirmActionPopupReducer from './confirmActionPopup';
+import popupReducer from './popup';
 
 // Usuarios
 
@@ -48,6 +49,7 @@ const reducers = combineReducers({
   theme: themeReducer,
   floatNotification: floatNotificationReducer,
   confirmActionPopup: confirmActionPopupReducer,
+  popup: popupReducer,
   signUp: signUpReducer,
   people: peopleReducer,
   student: studentReducer,

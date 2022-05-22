@@ -87,7 +87,7 @@ export const DuelStatusIcon = styled(smallIcon)`
   align-items: center;
   width: 25px;
   height: 25px;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   border-radius: 50%;
 `;
 export const DuelParticipants = styled.div`
@@ -102,5 +102,5 @@ export const DuelParticipantsIcon = styled(smallIcon)`
   align-items: center;
   width: 25px;
   height: 25px;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;

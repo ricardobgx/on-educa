@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { paragraph } from '../../../global/styles/components/textComponents';
-import { mediumIcon } from '../../../global/styles/components/iconComponents';
 
 export const NavBarBox = styled.div`
   width: 100%;
@@ -31,23 +30,27 @@ export const LogoBall = styled.div`
   height: 11px;
   width: 11px;
   border-radius: 50%;
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
   margin-right: 10px;
 `;
 
 export const Title = styled(paragraph)`
   font-weight: bold;
   text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 
 export const Actions = styled.div`
-  width: max-content;
   display: flex;
   align-items: center;
-  color: ${({ theme }) => theme.colors.textColor};
+  gap: 5px;
+
+  width: max-content;
+
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 
   @media (max-width: 600px) {
+    gap: 10px;
     position: fixed;
     top: 0;
     right: 0;
@@ -69,7 +72,7 @@ export const PeoplePhoto = styled.img`
   border-radius: 50%;
   /* border: 2px solid ${({ theme }) => theme.colors.hoverColor}; */
   box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
   margin: 5px;
 
   @media (max-width: 600px) {
@@ -98,6 +101,7 @@ export const ToggleMenuButton = styled.label`
   display: none;
   justify-content: center;
   align-items: center;
+  color: ${({ theme }) => theme.colors.textColors.secondaryColor};
 
   &:hover {
     background: ${({ theme }) => theme.colors.hoverColor};
@@ -106,11 +110,6 @@ export const ToggleMenuButton = styled.label`
   @media (max-width: 600px) {
     display: flex;
   }
-`;
-
-export const ToggleMenuIcon = styled(mediumIcon)`
-  color: ${({ theme }) => theme.colors.textColor};
-  text-align: center;
 `;
 
 export const ToggleMenuCheck = styled.input`
@@ -122,14 +121,20 @@ export const NavBarActionAlert = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: -50%;
-  right: -50%;
+  top: 5%;
+  right: -2px;
   width: 15px;
   height: 15px;
   border-radius: 50%;
   color: ${({ theme }) => theme.colors.boxColor};
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
   animation: fadeIn 0.2s linear;
+
+  @media (max-width: 600px) {
+    top: 10%;
+    left: 35px;
+    right: unset;
+  }
 `;
 export const NavBarActionAlertNumber = styled(paragraph)`
   font-size: 9px;

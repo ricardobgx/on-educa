@@ -6,7 +6,7 @@ import { paragraph } from '../../../../global/styles/components/textComponents';
 export const SelectSocialDetailBox = styled(Button)`
   background: none;
   box-shadow: none;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,7 +15,7 @@ export const SelectSocialDetailBox = styled(Button)`
 
   &::before {
     content: '';
-    background: ${({ theme }) => theme.colors.textColor};
+    background: ${({ theme }) => theme.colors.textColors.primaryColor};
     width: 0%;
     height: 3px;
     position: absolute;

@@ -4,6 +4,7 @@
 export * from './aplication';
 export * from './theme';
 export * from './floatNotification';
+export * from './popup';
 
 // User
 export * from './signUp';

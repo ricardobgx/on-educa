@@ -8,13 +8,13 @@ export const FriendRequesCardActionsBox = styled.div`
   margin-left: 20px;
 `;
 const FriendRequestButton = styled(Button)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   background: ${({ theme }) => theme.colors.boxColor};
   width: 40px;
 
   &:hover {
     color: ${({ theme }) => theme.colors.boxColor};
-    background: ${({ theme }) => theme.colors.textColor};
+    background: ${({ theme }) => theme.colors.textColors.primaryColor};
   }
 `;
 export const RejectRequest = styled(FriendRequestButton)``;

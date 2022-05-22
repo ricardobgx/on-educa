@@ -17,7 +17,7 @@ export const DailyPerformanceBox = styled.div`
 `;
 export const DayLabel = styled(paragraph)`
   text-align: center;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-weight: bold;
 `;
 export const PerformancesBox = styled.div`
@@ -35,7 +35,7 @@ export const PerformancesBox = styled.div`
 export const PerformancesDivisor = styled.div`
   width: 1px;
   height: 2rem;
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 export const PerformancesTypeBox = styled.div`
   width: calc(50% - 10px);
@@ -56,7 +56,7 @@ export const PerformanceTypeBox = styled.div`
 
   height: 100%;
 
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 export const PerformanceTypeHeader = styled.div`
   display: flex;
@@ -79,12 +79,13 @@ export const PerformanceLabelBox = styled.div`
 export const PerformanceLabel = styled(paragraph)`
   color: currentColor;
   font-weight: bold;
+  font-style: normal;
 `;
 export const PerformanceDataLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 export const XPProgressBar = styled.div`
-  background: ${({ theme }) => theme.colors.progressBarColor};
+  background: ${({ theme }) => theme.colors.hoverColor};
 
   width: 100%;
   height: 11px;
@@ -98,7 +99,7 @@ export const XPInnerProgressBar = styled.div`
 
   border-radius: 10px;
 
-  background: ${({ theme }) => theme.colors.mainButtonBgColor};
+  background: ${({ theme }) => theme.colors.mainColor};
 
   transition: all 0.2s linear;
 `;

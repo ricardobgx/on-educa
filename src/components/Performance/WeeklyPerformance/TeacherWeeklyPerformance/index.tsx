@@ -9,7 +9,6 @@ import {
   displayDayAndMonthDate,
   getFullDate,
 } from '../../../../functions/utils';
-import theme from '../../../../global/styles/theme';
 import OnEducaAPI from '../../../../services/api';
 import { ActionCreators, RootState } from '../../../../store';
 import SimpleBarChart, {
@@ -29,6 +28,7 @@ const TeacherWeeklyPerformance = (): JSX.Element => {
     aplication,
     people: loggedPeople,
     teacher,
+    theme,
   } = useSelector((store: RootState) => store);
   const { token } = aplication;
 
@@ -145,7 +145,7 @@ const TeacherWeeklyPerformance = (): JSX.Element => {
               valueLabel="Conteúdos criados"
               width={calcChartWidth()}
               height={calcChartHeight()}
-              color={theme.colors.mainButtonBgColor}
+              color={theme.colors.mainColor}
             />
           )}
           {chartType === 'questions' && (
@@ -154,7 +154,7 @@ const TeacherWeeklyPerformance = (): JSX.Element => {
               valueLabel="Questões criadas"
               width={calcChartWidth()}
               height={calcChartHeight()}
-              color={theme.colors.mainButtonBgColor}
+              color={theme.colors.mainColor}
             />
           )}
           {chartType === 'doubts' && (
@@ -163,7 +163,7 @@ const TeacherWeeklyPerformance = (): JSX.Element => {
               valueLabel="Dúvidas resolvidas"
               width={calcChartWidth()}
               height={calcChartHeight()}
-              color={theme.colors.mainButtonBgColor}
+              color={theme.colors.mainColor}
             />
           )}
           {chartType === 'interativeRooms' && (
@@ -172,7 +172,7 @@ const TeacherWeeklyPerformance = (): JSX.Element => {
               valueLabel="Salas criadas"
               width={calcChartWidth()}
               height={calcChartHeight()}
-              color={theme.colors.mainButtonBgColor}
+              color={theme.colors.mainColor}
             />
           )}
         </PerformanceChartBox>

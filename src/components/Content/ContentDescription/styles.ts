@@ -22,7 +22,7 @@ export const ContentDescriptionDataBox = styled.div`
   transition: all 0.4s linear;
 `;
 export const ContentDescriptionDataText = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   text-align: justify;
   margin: 5px;
 `;

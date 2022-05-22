@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const Container = styled.div`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   display: flex;
   flex-direction: column;
   align-items: center;

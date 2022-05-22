@@ -8,7 +8,7 @@ export default createGlobalStyle`
     text-decoration: none;
     box-sizing: border-box;
     font-family: 'Sen', sans-serif;
-    font-size: ${({ theme }) => theme.fontsSize.computer};
+    font-size: ${({ theme }) => theme.fontsSize.normalFonts.computer};
     transition: background .2s linear, color .2s linear;
   }
 
@@ -22,9 +22,10 @@ export default createGlobalStyle`
   }
 
   input:-webkit-autofill {
-    -webkit-text-fill-color: ${({ theme }) => theme.colors.textColor};
+    -webkit-text-fill-color: ${({ theme }) =>
+      theme.colors.textColors.primaryColor};
     -webkit-box-shadow: 0 0 0px 1000px ${({ theme }) =>
-      theme.colors.inputTextBgColor} inset;
+      theme.colors.textInputBgColor} inset;
       border-radius: 20px;
   }
 
@@ -42,7 +43,7 @@ export default createGlobalStyle`
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => theme.colors.scrollBarColor};
+    background: ${({ theme }) => theme.colors.hoverColor};
     border-radius: 10px;
   }
 
@@ -172,11 +173,11 @@ export default createGlobalStyle`
 }
 
   @media (min-width: 600px) and (max-width: 1150px) {
-    font-size: ${({ theme }) => theme.fontsSize.tablet};
+    font-size: ${({ theme }) => theme.fontsSize.normalFonts.tablet};
   }
 
   @media (max-width: 600px) {
-    font-size: ${({ theme }) => theme.fontsSize.smartphone};
+    font-size: ${({ theme }) => theme.fontsSize.normalFonts.smartphone};
   }
 
   /* Global components design */
@@ -204,31 +205,31 @@ export default createGlobalStyle`
   }
 
   .bd-rd-20 {
-    border-radius: 20px;
+    border-radius: 10px;
   }
 
   .bd-rd-30 {
-    border-radius: 30px;
+    border-radius: 20px;
   }
 
   .shadow-select {
     cursor: pointer;
 
-    color: ${({ theme }) => theme.colors.secondaryButtonTextColor};
-    background: ${({ theme }) => theme.colors.secondaryButtonBgColor};
+    color: ${({ theme }) => theme.colors.textColors.secondaryColor};
+    background: ${({ theme }) => theme.colors.boxColor};
     
     border-bottom: 2px solid transparent;
     
     transition: all 0.2s linear;
     
-    box-shadow: 0px 2px 0px 3px
-      ${({ theme }) => theme.colors.secondaryButtonShadowColor};
+    box-shadow: 0px 1px 0px 2px
+      ${({ theme }) => theme.colors.buttonColors.secondaryButtonShadowColor};
   
     :hover, :disabled {
       border-bottom: 0px solid transparent;
       
       box-shadow: 0px 0px 0px 1px
-      ${({ theme }) => theme.colors.secondaryButtonShadowColor};
+      ${({ theme }) => theme.colors.buttonColors.secondaryButtonShadowColor};
     }
   }
 
@@ -238,7 +239,8 @@ export default createGlobalStyle`
 
     & p,
     & i,
-    & span {
+    & span,
+    & img {
       transform: translateY(-1px);
       transition: all 0.2s linear;
     }
@@ -246,7 +248,8 @@ export default createGlobalStyle`
     :hover, :disabled, &.selected {
       p,
       i,
-      span {
+      span,
+      img {
         transform: translateY(0px);
       }
     }
@@ -257,36 +260,36 @@ export default createGlobalStyle`
     }
 
     &.main-action {
-      background: ${({ theme }) => theme.colors.mainButtonBgColor};
-      color: ${({ theme }) => theme.colors.mainButtonTextColor};
+      background: ${({ theme }) => theme.colors.mainColor};
+      color: ${({ theme }) => theme.colors.buttonColors.mainButtonTextColor};
       
-      box-shadow: 0px 2px 0px 3px
-        ${({ theme }) => theme.colors.mainButtonShadowColor};
+      box-shadow: 0px 1px 0px 2px
+        ${({ theme }) => theme.colors.buttonColors.mainButtonShadowColor};
     
       :hover, :disabled {
         box-shadow: 0px 0px 0px 1px
-        ${({ theme }) => theme.colors.mainButtonShadowColor};
+        ${({ theme }) => theme.colors.buttonColors.mainButtonShadowColor};
       }
     }
 
     &.secondary-action {
-      color: ${({ theme }) => theme.colors.secondaryButtonTextColor};
-      background: ${({ theme }) => theme.colors.secondaryButtonBgColor};
+      color: ${({ theme }) => theme.colors.textColors.secondaryColor};
+      background: ${({ theme }) => theme.colors.boxColor};
       
-      box-shadow: 0px 2px 0px 3px
-        ${({ theme }) => theme.colors.secondaryButtonShadowColor};
+      box-shadow: 0px 1px 0px 2px
+        ${({ theme }) => theme.colors.buttonColors.secondaryButtonShadowColor};
     
       :hover, :disabled {
         box-shadow: 0px 0px 0px 1px
-        ${({ theme }) => theme.colors.secondaryButtonShadowColor};
+        ${({ theme }) => theme.colors.buttonColors.secondaryButtonShadowColor};
       }
 
       &.selected {
-        background: ${({ theme }) => theme.colors.mainButtonBgColor};
-        color: ${({ theme }) => theme.colors.mainButtonTextColor};
+        background: ${({ theme }) => theme.colors.mainColor};
+        color: ${({ theme }) => theme.colors.buttonColors.mainButtonTextColor};
 
         box-shadow: 0px 0px 0px 1px
-          ${({ theme }) => theme.colors.mainButtonShadowColor};
+          ${({ theme }) => theme.colors.buttonColors.mainButtonShadowColor};
       }
     }
   }

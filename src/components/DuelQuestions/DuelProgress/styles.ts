@@ -21,16 +21,16 @@ export const DuelProgressBar = styled.div`
   align-items: center;
   width: 100%;
   border-radius: 10px;
-  background: ${({ theme }) => theme.colors.progressBarColor};
+  background: ${({ theme }) => theme.colors.hoverColor};
 `;
 export const QuestionsProgressBar = styled.div`
   height: 15px;
-  background: ${({ theme }) => theme.colors.mainButtonBgColor};
+  background: ${({ theme }) => theme.colors.mainColor};
   transition: 0.2s linear;
   border-radius: 10px;
 `;
 export const DuelProgressLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-weight: bold;
   min-width: max-content;
 `;

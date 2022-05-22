@@ -19,7 +19,7 @@ export const OwnerInfo = styled.div`
   height: 50px;
   background: ${({ theme }) => theme.colors.boxColor};
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   width: 100%;
 `;
 export const OwnerName = styled(paragraph)``;
@@ -29,7 +29,7 @@ export const Actions = styled.div`
   gap: 20px;
   height: 50px;
   width: max-content;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 
   @media (max-width: 900px) {
     width: 100%;

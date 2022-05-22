@@ -1,5 +1,6 @@
 import React from 'react';
-import theme from '../../../global/styles/theme';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store';
 import { Container, QuestionAlternativeLabel } from './styles';
 
 interface INoActionDuelQuestionAlternativeProps {
@@ -14,11 +15,16 @@ const NoActionDuelQuestionAlternative = (
 
   const { id, description } = alternative;
 
+  const { theme } = useSelector((store: RootState) => store);
+
   return (
     <Container
       className="with-shadow bd-rd-20"
       style={{
-        background: id === selectedAlternative.id ? theme.colors.textColor : '',
+        background:
+          id === selectedAlternative.id
+            ? theme.colors.textColors.primaryColor
+            : '',
         color: id === selectedAlternative.id ? theme.colors.boxColor : '',
       }}
     >

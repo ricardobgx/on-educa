@@ -17,6 +17,8 @@ import {
   AchievementLevelIcon,
   AchievementLevelLabel,
   AchievementName,
+  AchievementDescriptionHeader,
+  AchievementProgress,
 } from './styles';
 
 const Achievement: React.FC<IAchievementProps> = (props): JSX.Element => {
@@ -54,12 +56,13 @@ const Achievement: React.FC<IAchievementProps> = (props): JSX.Element => {
         </AchievementLevelLabel>
       </AchievementLevel>
       <AchievementDescription>
-        <AchievementName>{name}</AchievementName>
-        <BigProgressBar
-          now={progress}
-          max={level.goal}
-          label={`${progress}/${level.goal}`}
-        />
+        <AchievementDescriptionHeader>
+          <AchievementName>{name}</AchievementName>
+          <AchievementProgress>
+            {progress}/{level.goal}
+          </AchievementProgress>
+        </AchievementDescriptionHeader>
+        <BigProgressBar now={progress} max={level.goal} />
         <AchievementDescriptionLabel>{description}</AchievementDescriptionLabel>
       </AchievementDescription>
     </AchievementBox>

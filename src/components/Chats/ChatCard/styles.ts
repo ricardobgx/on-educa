@@ -10,7 +10,7 @@ export const ChatCardBox = styled.div`
   border-radius: 20px;
   display: flex;
   align-items: center;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   cursor: pointer;
   transition: all 0.2s linear;
 

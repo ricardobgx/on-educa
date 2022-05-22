@@ -24,7 +24,7 @@ const Settings = (): JSX.Element => {
 
   const setTheme = (theme: ITheme): void => {
     loadTheme(theme);
-    setAplicationTheme(theme.themeType);
+    setAplicationTheme(theme.themeId);
   };
 
   return (
@@ -38,10 +38,10 @@ const Settings = (): JSX.Element => {
               {themes.map((theme) => {
                 return (
                   <SelectThemeButton
-                    colors={theme.previewColors}
+                    colors={theme.colors.previewColors}
                     onClick={() => setTheme(theme)}
                   >
-                    {themeSelected.themeType === theme.themeType && (
+                    {themeSelected.themeType === theme.themeId && (
                       <SelectedThemeButtonIcon className="fas fa-check" />
                     )}
                   </SelectThemeButton>
