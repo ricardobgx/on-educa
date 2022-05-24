@@ -51,7 +51,7 @@ const SignUpForm: React.FC<ISignFormProps> = (props) => {
         />
         <SignFormPasswordField
           id="signup-password"
-          label="Password"
+          label="Senha"
           value={password}
           setValue={setPassword}
         />

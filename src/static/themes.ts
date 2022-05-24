@@ -89,7 +89,7 @@ export const themes: ITheme[] = [
     themeId: ThemeType.LIGHT_PURPLE,
     colors: {
       ...lightTheme.colors,
-      secondaryGradientColor: '#B752B3',
+      secondaryGradientColor: '#CE5BEB',
       mainColor: '#6C63FF',
       previewColors: ['#FBFBFB', '#6C63FF'],
       buttonColors: {

@@ -9,7 +9,6 @@ import {
   DEFAULT_TEACHER,
 } from '../../../static/defaultEntitiesValues';
 import { ActionCreators, RootState } from '../../../store';
-import LogoIcon from '../../../svgs/LogoIcon';
 import { MediumMaterialIconOutlined } from '../Icons/MaterialIcons/MaterialIconsOutlined';
 import NavBarAction from './NavBarAction';
 import { NavBarActionBox, NavBarIconLabel } from './NavBarAction/styles';
@@ -20,6 +19,8 @@ import {
   Actions,
   PeoplePhoto,
   ToggleMenuButton,
+  LogoBall,
+  Title,
 } from './styles';
 
 const NavBar = (): JSX.Element => {
@@ -56,7 +57,8 @@ const NavBar = (): JSX.Element => {
   return (
     <NavBarBox className="with-shadow">
       <Logo to="/">
-        <LogoIcon />
+        <LogoBall />
+        <Title>EDUCA</Title>
       </Logo>
       <Actions style={{ right: menuRight }}>
         <NavBarActionBox

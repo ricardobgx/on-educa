@@ -27,8 +27,8 @@ export const Logo = styled(Link)`
 `;
 
 export const LogoBall = styled.div`
-  height: 11px;
-  width: 11px;
+  height: 9px;
+  width: 9px;
   border-radius: 50%;
   background: ${({ theme }) => theme.colors.textColors.primaryColor};
   margin-right: 10px;

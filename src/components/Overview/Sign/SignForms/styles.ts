@@ -90,7 +90,7 @@ export const SignFormLabel = styled.p`
 
     &.signup-label.is-active {
       color: #fff;
-      transform: translateX(-115px);
+      transform: translateX(-110px);
     }
 
     &.is-active .underline::before {
