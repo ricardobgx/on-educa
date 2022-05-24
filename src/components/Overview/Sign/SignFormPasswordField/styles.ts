@@ -4,7 +4,7 @@ export const ShowAndHidePasswordButton = styled.button`
   position: relative;
   margin-right: 15px;
 
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   background: none;
 
   cursor: pointer;

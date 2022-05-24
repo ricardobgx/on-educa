@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-console */
+/* eslint-disable react/jsx-props-no-spreading */
 
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,6 +8,7 @@ import { bindActionCreators } from 'redux';
 import io from 'socket.io-client';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
+import { AxiosError } from 'axios';
 import GlobalStyle from './styles';
 import LoadAnimation from './components/App/LoadAnimation';
 import {
@@ -19,14 +21,14 @@ import Routes from './Routes';
 import OnEducaAPI from './services/api';
 import { ActionCreators, RootState } from './store';
 import { ThemeType } from './types/ThemeType';
-import { stringToBoolean } from './functions/utils';
+import { showErrorMessage, stringToBoolean } from './functions/utils';
 import { getFriendRequestsByPeople } from './functions/friendRequest';
 import NavBar from './components/App/NavBar';
 import FloatNotification from './components/App/FloatNotification';
 import { findTheme } from './utils/application';
 import { DEFAULT_THEME } from './static/defaultEntitiesValues';
 import { isAuthenticated } from './utils/people';
-import ConfirmActionPopup from './components/App/ConfirmActionPopup';
+import Popup from './components/App/Popup';
 
 export const socket = io(process.env.REACT_APP_API_URL || '');
 socket.on('connect', () =>
@@ -41,10 +43,10 @@ const App: React.FC = () => {
     theme,
     floatNotification,
     people: loggedPeople,
-    confirmActionPopup,
+    popup,
   } = useSelector((store: RootState) => store);
 
-  const { isActive: confirmActionPopupIsActive } = confirmActionPopup;
+  const { isActive: popupIsActive } = popup;
   const { loadingAnimation } = aplication;
   const { isActive: floatNotificationIsActive } = floatNotification;
 
@@ -59,6 +61,7 @@ const App: React.FC = () => {
     loadFriendRequests,
     enableLoadingAnimation,
     disableLoadingAnimation,
+    showFloatNotification,
   } = bindActionCreators(ActionCreators, dispatch);
 
   const [localVariablesLoaded, setLocalVariablesLoaded] = useState(false);
@@ -85,6 +88,19 @@ const App: React.FC = () => {
   ): Promise<void> => {
     enableLoadingAnimation();
 
+    const people = await getPeople(
+      OnEducaAPI,
+      id,
+      token,
+      (err: AxiosError): void => {
+        showErrorMessage(err, showFloatNotification);
+        clearPeopleVariables();
+        window.location.reload();
+      },
+    );
+
+    if (!people) return;
+
     await setUpPeopleType(
       OnEducaAPI,
       id,
@@ -93,9 +109,6 @@ const App: React.FC = () => {
       loadStudent,
       loadTeacher,
     );
-
-    const people = await getPeople(OnEducaAPI, id, token);
-    if (!people) return;
 
     loginPeople(people);
 
@@ -164,7 +177,7 @@ const App: React.FC = () => {
         <BrowserRouter>
           {loadingAnimation && <LoadAnimation />}
           <GlobalStyle />
-          {confirmActionPopupIsActive && <ConfirmActionPopup />}
+          {popupIsActive && <Popup {...popup} />}
           {floatNotificationIsActive && <FloatNotification />}
           {isAuthenticated(loggedPeople) ? <NavBar /> : null}
           <Routes />

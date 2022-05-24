@@ -15,7 +15,7 @@ export const EditProfileButton = styled(Link)`
   align-items: center;
   min-height: 40px;
   max-height: 40px;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   background: ${({ theme }) => theme.colors.boxColor};
   cursor: pointer;
 `;

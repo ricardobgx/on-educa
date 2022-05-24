@@ -1,17 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
+import { AxiosError } from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import {
   isDefaultPeople,
   isDefaultStudent,
 } from '../../../functions/entitiesValues';
 import { getPeople } from '../../../functions/people';
+import { showErrorMessage } from '../../../functions/utils';
 import OnEducaAPI from '../../../services/api';
 import {
   DEFAULT_PEOPLE,
   DEFAULT_STUDENT,
   DEFAULT_TEACHER,
 } from '../../../static/defaultEntitiesValues';
+import { ActionCreators } from '../../../store';
 import { SmallMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 import PeopleCard from '../../App/PeopleCard';
 import {
@@ -39,6 +44,12 @@ const ParticipantResultCard = (
   const student = participation.student || DEFAULT_STUDENT;
   const { duelQuestionsAnswers: duelQuestionsAnswersFound } = participation;
   const { people: studentPeople } = student;
+
+  const dispatch = useDispatch();
+  const { showFloatNotification } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
 
   const [people, setPeople] = useState(DEFAULT_PEOPLE);
 
@@ -83,7 +94,14 @@ const ParticipantResultCard = (
   };
 
   const getParticipantPeople = async (): Promise<void> => {
-    const peopleFound = await getPeople(OnEducaAPI, studentPeople.id, token);
+    const peopleFound = await getPeople(
+      OnEducaAPI,
+      studentPeople.id,
+      token,
+      (err: AxiosError): void => {
+        showErrorMessage(err, showFloatNotification);
+      },
+    );
 
     if (peopleFound) setPeople(peopleFound);
   };

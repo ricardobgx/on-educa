@@ -9,7 +9,7 @@ export const QuitDuelButton = styled.button`
   margin-right: 20px;
   background: none;
   border: none;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   display: flex;
   align-items: center;
   cursor: pointer;

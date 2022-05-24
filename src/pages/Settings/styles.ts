@@ -28,7 +28,7 @@ const SettingBox = styled.div`
 `;
 export const SettingsBoxLabel = styled(paragraph)`
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   margin-bottom: 20px;
 `;
 
@@ -58,7 +58,7 @@ export const SelectThemeButton = styled.button<SelectThemeButtonProps>`
   z-index: 96;
 
   &.selected {
-    border-color: ${({ theme }) => theme.colors.textColor};
+    border-color: ${({ theme }) => theme.colors.textColors.primaryColor};
   }
 
   ::before {
@@ -100,7 +100,7 @@ export const SelectedThemeButtonIcon = styled(smallIcon)`
   right: -10%;
 
   color: #1b1b1b;
-  background: ${({ theme }) => theme.colors.whiteColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
 
   font-size: 8px;
 

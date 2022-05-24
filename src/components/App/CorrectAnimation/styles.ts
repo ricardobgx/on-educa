@@ -6,7 +6,7 @@ export const CorrectAnimationBox = styled.div`
   left: 0;
   height: 100vh;
   width: 100%;
-  background: ${({ theme }) => theme.similarColors.rightQuestion};
+  background: ${({ theme }) => theme.flagColors.greenColor};
   z-index: 1000;
   animation: fadeIn 0.5s linear;
 

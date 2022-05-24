@@ -19,7 +19,7 @@ export const NewContentDescriptionInput = styled(inputTextArea)`
   max-width: calc(60vw - 80px);
   min-height: 20vw;
   max-height: 20vw;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   background: ${({ theme }) => theme.colors.hoverColor};
   border-radius: 5px;
   border: none;

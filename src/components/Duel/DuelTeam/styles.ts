@@ -23,7 +23,7 @@ export const DuelTeamLabel = styled(paragraph)`
   height: 25px;
   display: flex;
   align-items: center;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 export const DuelTeamParticipants = styled.div`
   width: 100%;

@@ -34,7 +34,7 @@ export const ContentsRelatedReferenceLabel = styled(paragraph)`
   align-items: center;
   font-weight: bold;
   padding-left: 20px;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   background: ${({ theme }) => theme.colors.boxColor};
   min-height: 50px;
 `;

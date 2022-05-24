@@ -1,19 +1,22 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react-hooks/exhaustive-deps */
 
+import { AxiosError } from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { socket } from '../../../App';
 import { removeParticipant } from '../../../functions/duelTeamParts';
 import { isDefaultPeople } from '../../../functions/entitiesValues';
 import { getPeople } from '../../../functions/people';
+import { showErrorMessage } from '../../../functions/utils';
 import OnEducaAPI from '../../../services/api';
 import {
   DEFAULT_PEOPLE,
   DEFAULT_STUDENT,
   DEFAULT_TEACHER,
 } from '../../../static/defaultEntitiesValues';
-import { RootState } from '../../../store';
+import { ActionCreators, RootState } from '../../../store';
 import { SmallMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 import PeopleCard from '../../App/PeopleCard';
 import {
@@ -37,6 +40,13 @@ const DuelTeamParticipantCard = (
 
   const { duelOwner, loggedStudent, duelId, participation } = props;
 
+  const dispatch = useDispatch();
+
+  const { showFloatNotification } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
+
   const [people, setPeople] = useState(DEFAULT_PEOPLE);
 
   const student = participation.student || DEFAULT_STUDENT;
@@ -59,6 +69,9 @@ const DuelTeamParticipantCard = (
       OnEducaAPI,
       student.people.id,
       token,
+      (err: AxiosError): void => {
+        showErrorMessage(err, showFloatNotification);
+      },
     );
 
     if (participationPeople) setPeople(participationPeople);

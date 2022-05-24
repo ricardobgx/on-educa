@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
+import { AxiosError } from 'axios';
 import SectionLabel from '../../components/App/SectionLabel';
 import ProfileDailyGoal from '../../components/Profile/ProfileDailyGoal';
 import StudentWeeklyPerformance from '../../components/Profile/WeeklyPerformance/StudentWeeklyPerformance';
@@ -62,6 +63,7 @@ import ProfileActions from '../../components/Profile/ProfileActions';
 import SocialDetail from '../../components/Profile/SocialDetail';
 import TeacherWeeklyPerformance from '../../components/Profile/WeeklyPerformance/TeacherWeeklyPerformance';
 import { getTeacherWeeklyPerformanceByTeacher } from '../../functions/teacherWeeklyPerformance';
+import { showErrorMessage } from '../../functions/utils';
 
 interface IProfileRouteProps {
   id: string;
@@ -91,6 +93,7 @@ const Profile = (): JSX.Element => {
     loadTeacher,
     enableLoadingAnimation,
     disableLoadingAnimation,
+    showFloatNotification,
   } = bindActionCreators(ActionCreators, dispatch);
 
   const [student, setStudent] = useState(DEFAULT_STUDENT);
@@ -143,13 +146,27 @@ const Profile = (): JSX.Element => {
   };
 
   const getPeopleData = async (): Promise<void> => {
-    const peopleFound = await getPeople(OnEducaAPI, id, token);
+    const peopleFound = await getPeople(
+      OnEducaAPI,
+      id,
+      token,
+      (err: AxiosError): void => {
+        showErrorMessage(err, showFloatNotification);
+      },
+    );
 
     if (peopleFound) getPeopleSucess(peopleFound);
   };
 
   const getLoggedPeopleData = async (): Promise<void> => {
-    const peopleFound = await getPeople(OnEducaAPI, loggedPeople.id, token);
+    const peopleFound = await getPeople(
+      OnEducaAPI,
+      loggedPeople.id,
+      token,
+      (err: AxiosError): void => {
+        showErrorMessage(err, showFloatNotification);
+      },
+    );
 
     if (peopleFound) getLoggedPeopleSucess(peopleFound);
   };
@@ -204,6 +221,11 @@ const Profile = (): JSX.Element => {
     ) {
       getPeopleWeeklyPerformance();
     }
+
+    return () => {
+      setStudentWeeklyPerformance(DEFAULT_STUDENT_WEEKLY_PERFORMANCE);
+      setTeacherWeeklyPerformance(DEFAULT_TEACHER_WEEKLY_PERFORMANCE);
+    };
   }, [id, people, token, student, teacher]);
 
   const { isStudent } = people;

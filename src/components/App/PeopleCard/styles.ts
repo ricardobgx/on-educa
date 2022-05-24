@@ -21,7 +21,7 @@ export const PeoplePicture = styled.img`
   width: 50px;
   height: 50px;
   border-radius: 25px;
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 
 // Informações do estudante
@@ -42,20 +42,20 @@ export const PersonalInfo = styled.div`
 
 export const PeopleName = styled(paragraph)`
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 
 // Série
 
 export const StudentSchoolGrade = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   margin-right: 1rem;
 `;
 
 // Disciplinas
 
 export const TeacherSubjects = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   margin-right: 1rem;
 `;
 
@@ -74,7 +74,7 @@ export const PeopleScore = styled.div`
 export const PeopleExperience = styled.p`
   font-size: 13px;
   letter-spacing: 1px;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   height: 25px;
   display: flex;
   align-items: flex-end;

@@ -24,7 +24,7 @@ export const ConfirmQuitDuelBox = styled.div`
   border-radius: 10px;
 `;
 export const ConfirmQuitDuelLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-weight: bold;
   text-align: center;
 `;
@@ -38,11 +38,11 @@ export const ConfirmQuitDuelButton = styled.button`
 export const QuitButton = styled(ConfirmQuitDuelButton)`
   background: ${({ theme }) => theme.colors.boxColor};
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 export const CancelButton = styled(ConfirmQuitDuelButton)`
   margin: 20px 0px 10px 0px;
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
   color: ${({ theme }) => theme.colors.boxColor};
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
 `;

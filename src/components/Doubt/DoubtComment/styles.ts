@@ -5,14 +5,14 @@ export const DoubtCommentBox = styled.div`
   display: flex;
   flex-direction: column;
   margin: 20px 0;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 
   &:last-of-type {
     margin-bottom: 0px;
   }
 `;
 export const DoubtCommentContent = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 export const DoubtCommentHeader = styled.div`
   display: flex;
@@ -43,5 +43,5 @@ export const OwnerName = styled(paragraph)`
   margin-right: 40px;
 `;
 export const DoubtCommentDate = styled(paragraph)`
-  color: ;
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;

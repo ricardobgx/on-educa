@@ -56,7 +56,15 @@ const SignInForm: React.FC<ISignFormProps> = (props) => {
 
     const { id, token } = authResponse;
 
-    const people = await getPeople(OnEducaAPI, id, token);
+    const people = await getPeople(
+      OnEducaAPI,
+      id,
+      token,
+      (err: AxiosError): void => {
+        showErrorMessage(err, showFloatNotification);
+        disableLoadingAnimation();
+      },
+    );
 
     if (!people) {
       disableLoadingAnimation();
@@ -101,7 +109,7 @@ const SignInForm: React.FC<ISignFormProps> = (props) => {
         />
         <SignFormPasswordField
           id="signin-password"
-          label="Password"
+          label="Senha"
           value={password}
           setValue={setPassword}
         />

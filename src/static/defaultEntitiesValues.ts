@@ -11,6 +11,13 @@ export const DEFAULT_APLICATION: IAplication = {
   loadingAnimation: false,
 };
 
+export const DEFAULT_POPUP: IPopup = {
+  title: '',
+  Children: null,
+  childrenProps: {},
+  isActive: false,
+};
+
 export const DEFAULT_CONFIRM_ACTION_POPUP: IConfirmActionPopup = {
   message: '',
   isActive: false,
@@ -29,20 +36,21 @@ export const DEFAULT_SIGN_UP: ISignUp = {
 export const DEFAULT_THEME: ITheme = themes[0];
 
 export const DEFAULT_THEME_FONTS_SIZE: IThemeFontsSize = {
-  computer: '2.25vh',
-  tablet: '2.2vw',
-  smartphone: '3.3vw',
+  normalFonts: {
+    computer: '2.25vh',
+    tablet: '2.2vw',
+    smartphone: '3.3vw',
+  },
   smallFonts: {
     computer: '2vh',
     tablet: '2vw',
     smartphone: '3vw',
   },
 };
-export const DEFAULT_THEME_SIMILAR_COLORS: IThemeSimilarColors = {
-  warningColor: '#CB0000',
-  rightQuestion: '#52b788',
-  wrongQuestion: '#f72585',
-  skippedQuestion: '#a100f2',
+export const DEFAULT_THEME_SIMILAR_COLORS: IThemeFlagColors = {
+  redColor: '#CB0000',
+  greenColor: '#52b788',
+  yellowColor: '#f72585',
 };
 
 export const DEFAULT_FLOAT_NOTIFICATION: IFloatNotification = {

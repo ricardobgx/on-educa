@@ -10,8 +10,8 @@ export const DuelChatActionsBox = styled.div`
   margin-top: 20px;
 `;
 export const DuelChatMessageInput = styled(inputText)`
-  color: ${({ theme }) => theme.colors.textColor};
-  background: ${({ theme }) => theme.colors.inputTextBgColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
+  background: ${({ theme }) => theme.colors.textInputBgColor};
   border: none;
   width: 100%;
   margin-right: 10px;
@@ -19,12 +19,12 @@ export const DuelChatMessageInput = styled(inputText)`
 `;
 export const SendDuelChatMessageButton = styled(Button)`
   min-width: 40px;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   background: ${({ theme }) => theme.colors.boxColor};
 
   &:hover {
     color: ${({ theme }) => theme.colors.boxColor};
-    background: ${({ theme }) => theme.colors.textColor};
+    background: ${({ theme }) => theme.colors.textColors.primaryColor};
   }
 `;
 export const SendDuelChatMessageButtonIcon = styled(smallIcon)``;

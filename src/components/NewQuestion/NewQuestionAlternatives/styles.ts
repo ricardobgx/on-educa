@@ -28,7 +28,7 @@ export const NewAttachment = styled.div`
 `;
 export const NewAttachmentInput = styled(inputText)`
   width: 100%;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   background: ${({ theme }) => theme.colors.hoverColor};
   border-radius: 5px;
   border: none;
@@ -36,30 +36,30 @@ export const NewAttachmentInput = styled(inputText)`
   padding: 0 10px;
 
   &::-webkit-input-placeholder {
-    color: ${({ theme }) => theme.colors.textColor};
+    color: ${({ theme }) => theme.colors.textColors.primaryColor};
     opacity: 0.5;
   }
 
   &:-moz-placeholder {
     /* Firefox 18- */
-    color: ${({ theme }) => theme.colors.textColor};
+    color: ${({ theme }) => theme.colors.textColors.primaryColor};
     opacity: 0.5;
   }
 
   &::-moz-placeholder {
     /* Firefox 19+ */
-    color: ${({ theme }) => theme.colors.textColor};
+    color: ${({ theme }) => theme.colors.textColors.primaryColor};
     opacity: 0.5;
   }
 
   &:-ms-input-placeholder {
-    color: ${({ theme }) => theme.colors.textColor};
+    color: ${({ theme }) => theme.colors.textColors.primaryColor};
     opacity: 0.5;
   }
 `;
 export const NewAttachmentButton = styled(Button)`
   color: ${({ theme }) => theme.colors.boxColor};
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
   min-width: 40px;
   cursor: pointer;
 `;

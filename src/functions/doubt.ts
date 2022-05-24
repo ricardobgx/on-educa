@@ -1,8 +1,10 @@
 import { AxiosInstance } from 'axios';
+import { IDoubtSearchParams } from '../dto/doubt/IDoubtSearchParams';
 import { IDoubtParams } from '../dto/IDoubtParams';
 
 export const getDoubts = async (
   API: AxiosInstance,
+  searchParams: IDoubtSearchParams,
   setDoubtsState: (value: IDoubt[]) => void,
   token: string,
 ): Promise<void> => {
@@ -10,6 +12,7 @@ export const getDoubts = async (
     headers: {
       authorization: `Bearer ${token}`,
     },
+    params: searchParams,
   }).then((response) => {
     setDoubtsState(response.data);
   });

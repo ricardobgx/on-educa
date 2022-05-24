@@ -3,43 +3,37 @@
  ********************** */
 
 // Button colors
-interface IButtonColors {
+interface IThemeButtonColors {
   mainButtonTextColor: string;
-  mainButtonBgColor: string;
   mainButtonShadowColor: string;
-  secondaryButtonTextColor: string;
-  secondaryButtonBgColor: string;
   secondaryButtonShadowColor: string;
 }
 
-// Duel colors
-interface IDuelColors {
-  questionTextColor: string;
-  progressBarColor: string;
-  duelCongratulationsBackground: string;
-  duelCongratulationsButtonColor: string;
+// Text colors
+interface IThemeTextColors {
+  primaryColor: string;
+  secondaryColor: string;
 }
 
 // Theme colors
-interface IThemeColors extends IDuelColors, IButtonColors {
-  textColor: string;
+interface IThemeColors {
+  previewColors: string[];
+  mainColor: string;
+  textColors: IThemeTextColors;
   boxColor: string;
   backgroundColor: string;
   hoverColor: string;
   boxShadowColor: string;
-  commonColor: string;
-  whiteColor: string;
-  secondaryColor: string;
-  scrollBarColor: string;
-  inputTextBgColor: string;
+  secondaryGradientColor: string;
+  textInputBgColor: string;
+  buttonColors: IThemeButtonColors;
 }
 
 // Similar colors
-interface IThemeSimilarColors {
-  warningColor: string;
-  rightQuestion: string;
-  wrongQuestion: string;
-  skippedQuestion: string;
+interface IThemeFlagColors {
+  redColor: string;
+  yellowColor: string;
+  greenColor: string;
 }
 
 /** *********************
@@ -52,17 +46,20 @@ interface IThemeSmallFontsSize {
   tablet: string;
 }
 
-interface IThemeFontsSize {
+interface IThemeNormalFontsSize {
   computer: string;
   smartphone: string;
   tablet: string;
+}
+
+interface IThemeFontsSize {
+  normalFonts: IThemeNormalFontsSize;
   smallFonts: IThemeSmallFontsSize;
 }
 
 interface ITheme {
-  themeType: number;
-  previewColors: string[];
+  themeId: number;
   colors: IThemeColors;
   fontsSize: IThemeFontsSize;
-  similarColors: IThemeSimilarColors;
+  flagColors: IThemeFlagColors;
 }

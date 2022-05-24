@@ -1,12 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
+import { AxiosError } from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { socket } from '../../../App';
 import { createMessage } from '../../../functions/message';
 import { getPeople } from '../../../functions/people';
-import { randInt } from '../../../functions/utils';
+import { randInt, showErrorMessage } from '../../../functions/utils';
 import OnEducaAPI from '../../../services/api';
 import { DEFAULT_PEOPLE } from '../../../static/defaultEntitiesValues';
+import { ActionCreators } from '../../../store';
 import { SmallMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 import ChatMessage from '../ChatMessage';
 import ChatPeoplePicture from '../ChatPeoplePicture';
@@ -34,6 +38,13 @@ interface IChatProps {
 const Chat = (props: IChatProps): JSX.Element => {
   const { chat, loggedPeople, setSelectedChat, token } = props;
   const { id, chatCreator, chatParticipant } = chat;
+
+  const dispatch = useDispatch();
+
+  const { showFloatNotification } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
 
   const [lastElementTop, setLastElementTop] = useState(0);
 
@@ -77,7 +88,14 @@ const Chat = (props: IChatProps): JSX.Element => {
   };
 
   const getChatPeople = async (peopleId: string): Promise<void> => {
-    const chatPeople = await getPeople(OnEducaAPI, peopleId, token);
+    const chatPeople = await getPeople(
+      OnEducaAPI,
+      peopleId,
+      token,
+      (err: AxiosError): void => {
+        showErrorMessage(err, showFloatNotification);
+      },
+    );
     if (chatPeople) setPeople(chatPeople);
   };
 

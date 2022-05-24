@@ -6,28 +6,21 @@ import { ICommonUnityProps } from '../../../pages/Units';
 import OnEducaAPI from '../../../services/api';
 import { ActionCreators, RootState } from '../../../store';
 import {
-  DeleteUnityBackground,
-  DeleteUnityBox,
-  CloseDeleteUnityButton,
-  CloseDeleteUnityIcon,
-  DeleteUnityLabel,
-  DeleteUnityWarningLabel,
-  DeleteUnityButton,
-  DeleteUnityButtonLabel,
-  CancelDeleteUnityButton,
-  CancelDeleteUnityButtonLabel,
-  DeleteUnityActions,
-} from './styles';
+  UnityPopupBox,
+  UnityPopupButton,
+  UnityPopupButtonLabel,
+  UnityPopupActions,
+  UnityPopupLabel,
+} from '../styles';
 
-interface IDeleteUnityProps extends ICommonUnityProps {
+interface IUnityPopupProps extends ICommonUnityProps {
   unity: IUnity;
-  setDeleteUnityIsVisible: (value: boolean) => void;
 }
 
-const DeleteUnity = (props: IDeleteUnityProps): JSX.Element => {
+const UnityPopup = (props: IUnityPopupProps): JSX.Element => {
   /* Props */
 
-  const { unity, setDeleteUnityIsVisible, getUnits } = props;
+  const { unity, getUnits } = props;
 
   /* GlobalRootState */
 
@@ -36,14 +29,14 @@ const DeleteUnity = (props: IDeleteUnityProps): JSX.Element => {
   const { token } = aplication;
 
   const dispatch = useDispatch();
-  const { showFloatNotification } = bindActionCreators(
+  const { showFloatNotification, closePopup } = bindActionCreators(
     ActionCreators,
     dispatch,
   );
 
   const deleteSucess = (): void => {
     getUnits();
-    setDeleteUnityIsVisible(false);
+    closePopup();
   };
 
   const deleteError = (): void => {
@@ -55,35 +48,27 @@ const DeleteUnity = (props: IDeleteUnityProps): JSX.Element => {
   };
 
   return (
-    <DeleteUnityBackground>
-      <DeleteUnityBox className="with-shadow bd-rd-30">
-        <CloseDeleteUnityButton onClick={() => setDeleteUnityIsVisible(false)}>
-          <CloseDeleteUnityIcon className="fas fa-times" />
-        </CloseDeleteUnityButton>
-        <DeleteUnityLabel>Excluir unidade</DeleteUnityLabel>
-        <DeleteUnityWarningLabel>
-          Tem certeza que deseja excluir a unidade {unity.name}? Todos os
-          conteúdos e informações associadas à essa unidade serão excluidos
-        </DeleteUnityWarningLabel>
-        <DeleteUnityActions>
-          <CancelDeleteUnityButton
-            className="block-shadow-button secondary-action bd-rd-20"
-            onClick={() => setDeleteUnityIsVisible(false)}
-          >
-            <CancelDeleteUnityButtonLabel>
-              Cancelar
-            </CancelDeleteUnityButtonLabel>
-          </CancelDeleteUnityButton>
-          <DeleteUnityButton
-            className="block-shadow-button main-action bd-rd-20"
-            onClick={() => deleteUnity()}
-          >
-            <DeleteUnityButtonLabel>Excluir</DeleteUnityButtonLabel>
-          </DeleteUnityButton>
-        </DeleteUnityActions>
-      </DeleteUnityBox>
-    </DeleteUnityBackground>
+    <UnityPopupBox>
+      <UnityPopupLabel>
+        Tem certeza que deseja excluir a unidade {unity.name}? Todos os
+        conteúdos e informações associadas à essa unidade serão excluidos
+      </UnityPopupLabel>
+      <UnityPopupActions>
+        <UnityPopupButton
+          className="block-shadow-button secondary-action bd-rd-20"
+          onClick={() => closePopup()}
+        >
+          <UnityPopupButtonLabel>Cancelar</UnityPopupButtonLabel>
+        </UnityPopupButton>
+        <UnityPopupButton
+          className="block-shadow-button main-action bd-rd-20"
+          onClick={() => deleteUnity()}
+        >
+          <UnityPopupButtonLabel>Excluir</UnityPopupButtonLabel>
+        </UnityPopupButton>
+      </UnityPopupActions>
+    </UnityPopupBox>
   );
 };
 
-export default DeleteUnity;
+export default UnityPopup;

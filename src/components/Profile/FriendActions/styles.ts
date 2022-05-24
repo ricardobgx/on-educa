@@ -28,7 +28,7 @@ export const MyFriendActions = styled.div`
 `;
 export const UnfriendButton = styled(FriendButton)`
   margin-left: 10px;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 export const UnfriendButtonIcon = styled(smallIcon)``;
 export const UnfriendButtonLabel = styled(FriendButtonLabel)`
@@ -46,7 +46,7 @@ export const MeFriendRequestActions = styled.div``;
 // Botao para enviar solicitacao
 
 export const SendFriendRequestButton = styled(FriendButton)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 export const SendFriendRequestButtonLabel = styled(FriendButtonLabel)`
   margin-right: 5px;
@@ -56,7 +56,7 @@ export const SendFriendRequestButtonIcon = styled(smallIcon)``;
 // Botao para cancelar solicitacao
 
 export const CancelFriendRequestButton = styled(FriendButton)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 export const CancelFriendRequestButtonLabel = styled(FriendButtonLabel)`
   margin-right: 5px;
@@ -72,7 +72,7 @@ export const FriendFriendRequestActions = styled.div`
 // Botao para aceitar
 
 export const AcceptFriendRequestButton = styled(FriendButton)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   margin-right: 10px;
 `;
 export const AcceptFriendRequestButtonLabel = styled(FriendButtonLabel)`
@@ -83,7 +83,7 @@ export const AcceptFriendRequestButtonIcon = styled(smallIcon)``;
 // Botao para rejeitar
 
 export const RejectFriendRequestButton = styled(FriendButton)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 export const RejectFriendRequestButtonLabel = styled(FriendButtonLabel)`
   margin-right: 5px;

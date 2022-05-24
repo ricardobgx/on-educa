@@ -45,49 +45,44 @@ export const PerformanceBox = styled.div`
 `;
 
 export const AchievementsBox = styled(Link)`
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   background: ${({ theme }) => theme.colors.boxColor};
   padding: 20px;
   margin: 20px;
   height: calc(((100vh - 265px) / 4) - 20px);
   display: flex;
   align-items: center;
-  border: 3px solid transparent;
+  gap: 7px;
   transition: all 0.2s linear;
-
-  &:hover {
-    /* border-color: ${({ theme }) => theme.colors.textColor}; */
-    box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
-  }
-`;
-export const AchievementsIcon = styled(mediumIcon)`
-  margin-right: 20px;
-  color: ${({ theme }) => theme.colors.textColor};
 `;
 export const AchievementsLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
   font-weight: bold;
 `;
+export const DailyGoal = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 
-export const DailyGoalBox = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};
   padding: 20px;
   margin: 20px;
   height: calc(((100vh - 265px) / 4) - 20px);
+`;
+export const DailyGoalBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 3px solid transparent;
 `;
 export const DailyGoalIcon = styled(mediumIcon)`
-  margin-right: 20px;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 export const DailyGoalDataBox = styled.div`
   display: flex;
   align-items: center;
+  gap: 10px;
 `;
 export const DailyGoalLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-weight: bold;
 `;
 export const DailyGoalEditButton = styled.button`
@@ -96,6 +91,5 @@ export const DailyGoalEditButton = styled.button`
   cursor: pointer;
 `;
 export const DailyGoalEditIcon = styled(mediumIcon)`
-  color: ${({ theme }) => theme.colors.textColor};
-  margin-left: 20px;
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;

@@ -7,7 +7,7 @@ export const AttachmentCardBox = styled.a`
   background: ${({ theme }) => theme.colors.boxColor};
   padding: 10px;
   margin: 10px 5px 10px 5px;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 export const AttachmentCardIcon = styled.i`
   margin-right: 10px;

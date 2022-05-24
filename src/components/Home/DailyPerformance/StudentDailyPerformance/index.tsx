@@ -20,7 +20,6 @@ import {
   PerformanceTypeHeader,
   WeekPerformanceButton,
   WeekPerformanceButtonLabel,
-  XPBox,
   XPInnerProgressBar,
   XPProgressBar,
 } from '../styles';
@@ -64,11 +63,8 @@ const StudentDailyPerformance: React.FC = () => {
         <PerformancesTypeBox>
           <PerformanceTypeBox>
             <PerformanceTypeHeader>
-              <XPBox>
-                <SmallMaterialIconOutlined color="" icon="auto_awesome" />
-                <PerformanceLabel>XP hoje</PerformanceLabel>
-              </XPBox>
-              <PerformanceDataLabel>{dailyXp}</PerformanceDataLabel>
+              <PerformanceLabel>XP Hoje</PerformanceLabel>
+              <PerformanceDataLabel>{dailyXp} XP</PerformanceDataLabel>
             </PerformanceTypeHeader>
             <XPProgressBar>
               <XPInnerProgressBar
@@ -78,11 +74,8 @@ const StudentDailyPerformance: React.FC = () => {
           </PerformanceTypeBox>
           <PerformanceTypeBox>
             <PerformanceTypeHeader>
-              <XPBox>
-                <SmallMaterialIconOutlined color="" icon="auto_awesome" />
-                <PerformanceLabel>XP semanal</PerformanceLabel>
-              </XPBox>
-              <PerformanceDataLabel>{xp}</PerformanceDataLabel>
+              <PerformanceLabel>XP Semanal</PerformanceLabel>
+              <PerformanceDataLabel>{xp} XP</PerformanceDataLabel>
             </PerformanceTypeHeader>
             <XPProgressBar>
               <XPInnerProgressBar style={{ width: `${(xp / xp) * 100}%` }} />

@@ -27,20 +27,14 @@ export const SmallMaterialIcon = styled(MaterialIcon)`
 `;
 
 export const MediumMaterialIcon = styled(MaterialIcon)`
-  font-size: 4.5vh;
-  width: 3.7vh;
-  height: 3.7vh;
-
-  @media (min-width: 600px) and (max-width: 1150px) {
-    font-size: 4vw;
-    width: 3.3vw;
-    height: 3.3vw;
-  }
+  font-size: 26px;
+  width: 26px;
+  height: 26px;
 
   @media (max-width: 600px) {
-    font-size: 6.5vw;
-    width: 5.5vw;
-    height: 5.5vw;
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
   }
 `;
 

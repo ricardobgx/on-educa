@@ -12,7 +12,7 @@ export const NewQuestionDifficultySelect = styled(inputSelect)`
   width: 100%;
   min-width: 300px;
   color: ${({ theme }) => theme.colors.boxColor};
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
   box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 5px;
   border: none;

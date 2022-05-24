@@ -6,7 +6,7 @@ export const DuelChatMessageBox = styled.div`
   align-items: center;
   gap: 10px;
 
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   background: ${({ theme }) => theme.colors.boxColor};
 
   padding: 5px;

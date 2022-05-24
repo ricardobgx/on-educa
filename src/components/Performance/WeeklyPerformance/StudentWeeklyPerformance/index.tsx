@@ -134,8 +134,8 @@ const StudentWeeklyPerformance: React.FC = () => {
               secondValueLabel="Todas as questões"
               width={calcChartWidth()}
               height={calcChartHeight()}
-              primaryColor={theme.similarColors.rightQuestion}
-              secondaryColor={theme.colors.mainButtonBgColor}
+              primaryColor={theme.flagColors.greenColor}
+              secondaryColor={theme.colors.mainColor}
             />
           )}
           {chartType === 'duels' && (
@@ -145,8 +145,8 @@ const StudentWeeklyPerformance: React.FC = () => {
               secondValueLabel="Duelos participados"
               width={calcChartWidth()}
               height={calcChartHeight()}
-              primaryColor={theme.similarColors.rightQuestion}
-              secondaryColor={theme.colors.mainButtonBgColor}
+              primaryColor={theme.flagColors.greenColor}
+              secondaryColor={theme.colors.mainColor}
             />
           )}
           {chartType === 'contents' && (
@@ -155,7 +155,7 @@ const StudentWeeklyPerformance: React.FC = () => {
               valueLabel="Conteúdos estudados"
               width={calcChartWidth()}
               height={calcChartHeight()}
-              color={theme.colors.mainButtonBgColor}
+              color={theme.colors.mainColor}
             />
           )}
         </PerformanceChartBox>

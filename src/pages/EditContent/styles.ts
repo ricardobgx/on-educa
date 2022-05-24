@@ -24,14 +24,14 @@ export const FlexColumnBox = styled.div`
 `;
 
 export const DetailBoxLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-weight: bold;
   margin-bottom: 10px;
   display: flex;
 `;
 
 export const DetailBoxInput = styled(inputText)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   background: ${({ theme }) => theme.colors.hoverColor};
   /* box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor}; */
   border-radius: 5px;

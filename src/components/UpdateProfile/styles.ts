@@ -8,7 +8,7 @@ import {
 import { paragraph } from '../../global/styles/components/textComponents';
 
 export const UpdateProfileSectionLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-weight: bold;
 `;
 export const UpdateProfileSection = styled(SectionBox)`
@@ -38,12 +38,12 @@ export const UpdateProfileSectionBox = styled.div`
   margin-top: 20px;
 `;
 export const UpdateProfileSectionBoxLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-weight: bold;
 `;
 export const UpdateProfileInputText = styled(inputText)`
-  color: ${({ theme }) => theme.colors.textColor};
-  background: ${({ theme }) => theme.colors.inputTextBgColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
+  background: ${({ theme }) => theme.colors.textInputBgColor};
   /* box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor}; */
   border: none;
   height: 40px;

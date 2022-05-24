@@ -21,7 +21,7 @@ export const DeleteContentBox = styled.div`
   flex-direction: column;
   align-items: center;
   width: 40%;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   background: ${({ theme }) => theme.colors.boxColor};
   padding: 20px;
   border-radius: 10px;
@@ -34,7 +34,7 @@ export const DeleteContentBox = styled.div`
 `;
 export const CloseDeleteContentButton = styled.button`
   color: ${({ theme }) => theme.colors.boxColor};
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
   border-radius: 50px;
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.boxShadowColor};
   border: none;
@@ -69,7 +69,7 @@ export const DeleteContentActions = styled.div`
   }
 `;
 export const CancelDeleteContentButton = styled(Button)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   background: ${({ theme }) => theme.colors.boxColor};
   width: calc(50% - 10px);
   cursor: pointer;
@@ -81,8 +81,8 @@ export const CancelDeleteContentButton = styled(Button)`
 export const CancelDeleteContentButtonLabel = styled(paragraph)``;
 
 export const DeleteContentButton = styled(Button)`
-  color: ${({ theme }) => theme.colors.whiteColor};
-  background: ${({ theme }) => theme.similarColors.warningColor};
+  color: ${({ theme }) => theme.colors.textColors.secondaryColor};
+  background: ${({ theme }) => theme.flagColors.redColor};
   width: calc(50% - 10px);
   cursor: pointer;
 

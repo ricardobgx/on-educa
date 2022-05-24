@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { ICommonUnityProps } from '../../../pages/Units';
+import { ActionCreators } from '../../../store';
 import { SmallMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 import {
   ClearSearchSuppliesInputButton,
@@ -26,9 +29,8 @@ interface IUnitsActionsProps extends ICommonUnityProps {
 }
 
 const UnitsActions = (props: IUnitsActionsProps): JSX.Element => {
-  /* Local State */
-
-  const [newUnityIsVisible, setNewUnityIsVisible] = useState(false);
+  const dispatch = useDispatch();
+  const { loadPopup } = bindActionCreators(ActionCreators, dispatch);
 
   /* Props */
 
@@ -37,12 +39,6 @@ const UnitsActions = (props: IUnitsActionsProps): JSX.Element => {
   return (
     <SuppliesBox>
       <Container className="supplies-actions">
-        {newUnityIsVisible && (
-          <NewUnity
-            setNewUnityIsVisible={setNewUnityIsVisible}
-            getUnits={getUnits}
-          />
-        )}
         <SearchSupplies>
           <SearchSuppliesBox className="bd-rd-20">
             <SearchSuppliesInput
@@ -61,7 +57,13 @@ const UnitsActions = (props: IUnitsActionsProps): JSX.Element => {
           <UnitsActionsBox className="supplies-actions-buttons">
             <NewUnityButton
               className="supplies-action-button block-shadow-button main-action bd-rd-20"
-              onClick={() => setNewUnityIsVisible(true)}
+              onClick={() =>
+                loadPopup({
+                  title: 'Nova unidade',
+                  Children: NewUnity,
+                  childrenProps: { getUnits },
+                })
+              }
             >
               <NewUnityButtonLabel>Nova unidade</NewUnityButtonLabel>
               <SmallMaterialIconOutlined color="" icon="add" />

@@ -10,10 +10,10 @@ export const SuppliesAccordionToggleCheckBoxLabel = styled.label`
   padding: 5px;
 `;
 export const SuppliesAccordionLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-weight: bold;
 `;
 export const SuppliesAccordionIcon = styled(smallIcon)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   transition: all 0.2s linear;
 `;

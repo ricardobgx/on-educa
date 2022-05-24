@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { ICommonUnityProps } from '../../../pages/Units';
 import { ActionCreators, RootState } from '../../../store';
 import { SmallMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 import UnityCardActions from '../UnityCardActions';
@@ -20,22 +21,14 @@ import {
   ContentsNumberLabel,
 } from './styles';
 
-interface IUnityCardProps {
+interface IUnityCardProps extends ICommonUnityProps {
   index: number;
   unity: IUnity;
-  setUnity: (value: IUnity) => void;
-  setUpdateUnityIsVisible: (value: boolean) => void;
-  setDeleteUnityIsVisible: (value: boolean) => void;
+  loadPopup: (popup: IPopup) => void;
 }
 
 const UnityCard = (props: IUnityCardProps): JSX.Element => {
-  const {
-    index,
-    unity,
-    setUnity,
-    setUpdateUnityIsVisible,
-    setDeleteUnityIsVisible,
-  } = props;
+  const { index, unity, loadPopup, getUnits } = props;
   const { id, name, contents } = unity;
 
   const dispatch = useDispatch();
@@ -81,9 +74,8 @@ const UnityCard = (props: IUnityCardProps): JSX.Element => {
       {!isStudent && (
         <UnityCardActions
           unity={unity}
-          setUnity={setUnity}
-          setUpdateUnityIsVisible={setUpdateUnityIsVisible}
-          setDeleteUnityIsVisible={setDeleteUnityIsVisible}
+          getUnits={getUnits}
+          loadPopup={loadPopup}
         />
       )}
     </UnityCardBox>

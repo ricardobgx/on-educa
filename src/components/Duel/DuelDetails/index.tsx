@@ -1,5 +1,6 @@
 import React from 'react';
-import theme from '../../../global/styles/theme';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store';
 import { SmallMaterialIconRound } from '../../App/Icons/MaterialIcons/MaterialIconsRound';
 import {
   DuelDetailsBox,
@@ -28,6 +29,8 @@ const DuelDetails = (props: IDuelDetailsProps): JSX.Element => {
   const { maxGroupParticipants, timeForQuestion, questionsPerContent } =
     duelRound;
 
+  const { theme } = useSelector((store: RootState) => store);
+
   return (
     <DuelDetailsBackground>
       <DuelDetailsBox className="with-shadow bd-rd-30">
@@ -44,7 +47,7 @@ const DuelDetails = (props: IDuelDetailsProps): JSX.Element => {
             <SettingsBoxLabel>
               <SmallMaterialIconRound
                 icon="pin"
-                color={theme.colors.textColor}
+                color={theme.colors.textColors.primaryColor}
               />
               Código
             </SettingsBoxLabel>

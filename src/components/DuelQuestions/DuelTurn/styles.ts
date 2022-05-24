@@ -4,7 +4,7 @@ import { paragraph } from '../../../global/styles/components/textComponents';
 export const Container = styled.div`
   display: flex;
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   margin-right: 20px;
   min-width: max-content;
   background: ${({ theme }) => theme.colors.boxColor};

@@ -35,7 +35,7 @@ const SignForms: React.FC = () => {
             signFormType === TSignFormType.SIGNIN ? 'is-active' : ''
           }`}
         >
-          Login
+          Entrar
           <Underline className="underline" />
         </SignFormLabel>
         <SignFormLabel
@@ -43,7 +43,7 @@ const SignForms: React.FC = () => {
             signFormType === TSignFormType.SIGNUP ? 'is-active' : ''
           }`}
         >
-          Sign Up
+          Cadastrar
           <Underline className="underline" />
         </SignFormLabel>
       </SignFormLabels>

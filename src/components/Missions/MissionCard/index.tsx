@@ -22,11 +22,7 @@ const MissionCard = (props: IMission): JSX.Element => {
           <MissionReward>{reward} XP</MissionReward>
         </MissionInfoHeader>
         <MissionProgress>
-          <BigProgressBar
-            now={0}
-            max={repetitions}
-            label={`0/${repetitions}`}
-          />
+          <BigProgressBar now={0} max={repetitions} />
         </MissionProgress>
       </MissionInfo>
     </Container>

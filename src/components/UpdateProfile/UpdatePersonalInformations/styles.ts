@@ -20,10 +20,10 @@ export const ProfilePictureActions = styled.div`
 `;
 export const UploadImageButton = styled(Button)`
   color: ${({ theme }) => theme.colors.boxColor};
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 export const ProfilePictureActionLabel = styled(paragraph)``;
 export const RemoveImageButton = styled(Button)`
-  color: ${({ theme }) => theme.colors.whiteColor};
-  background: ${({ theme }) => theme.similarColors.warningColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
+  background: ${({ theme }) => theme.flagColors.redColor};
 `;

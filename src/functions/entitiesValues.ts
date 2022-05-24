@@ -15,6 +15,7 @@ import {
   DEFAULT_CHAT,
   DEFAULT_STUDENT_WEEKLY_PERFORMANCE,
   DEFAULT_TEACHER_WEEKLY_PERFORMANCE,
+  DEFAULT_POPUP,
 } from '../static/defaultEntitiesValues';
 
 // Usuarios
@@ -76,3 +77,6 @@ export const isDefaultStudentWeeklyPerformance = (
 export const isDefaultTeacherWeeklyPerformance = (
   teacherWeeklyPerformance: ITeacherWeeklyPerformance,
 ): boolean => teacherWeeklyPerformance === DEFAULT_TEACHER_WEEKLY_PERFORMANCE;
+
+export const isDefaultPopup = (popup: IPopup): boolean =>
+  popup === DEFAULT_POPUP;

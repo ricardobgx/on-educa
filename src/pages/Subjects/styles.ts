@@ -67,7 +67,7 @@ export const SelectUnityButton = styled(Link)`
   &.disabled {
     opacity: 0.7;
     box-shadow: 0px 0px 0px 1px
-      ${({ theme }) => theme.colors.mainButtonShadowColor} !important;
+      ${({ theme }) => theme.colors.buttonColors.mainButtonShadowColor} !important;
 
     pointer-events: none;
 

@@ -23,28 +23,28 @@ export const EditDailyGoalBox = styled.div`
   align-items: center;
 `;
 export const EditDailyGoalLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-weight: bold;
 `;
 export const GoalInputBox = styled.div`
   margin: 20px 0;
   display: flex;
   align-items: center;
-  border: 3px solid ${({ theme }) => theme.colors.textColor};
+  border: 3px solid ${({ theme }) => theme.colors.textColors.primaryColor};
   border-radius: 5px;
   padding: 10px;
 `;
 export const GoalInput = styled.input`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   border: none;
   background: none;
 `;
 export const ExperienceLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-weight: bold;
 `;
 export const EditDailyGoalButton = styled.button`
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
   border: none;
   height: 40px;
   width: 100%;

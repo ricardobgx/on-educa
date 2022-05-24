@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { paragraph } from '../../../global/styles/components/textComponents';
 
 export const ProgressBarBox = styled.div`
   display: flex;
@@ -9,6 +8,8 @@ export const ProgressBarBox = styled.div`
   width: 100%;
 
   border-radius: 10px;
+
+  background: ${({ theme }) => theme.colors.hoverColor};
 
   &.big-bar {
     div:nth-child(1) {
@@ -22,25 +23,13 @@ export const ProgressBarBox = styled.div`
     }
   }
 `;
-export const ProgressBarWrapperBar = styled.div`
-  background: ${({ theme }) => theme.colors.progressBarColor};
-
-  border-radius: 10px;
-
-  width: 100%;
-`;
 export const ProgressBarInnerBar = styled.div`
   height: 100%;
   width: 0%;
 
   border-radius: 10px;
 
-  background: ${({ theme }) => theme.colors.mainButtonBgColor};
+  background: ${({ theme }) => theme.colors.mainColor};
 
   transition: all 0.2s linear;
-`;
-export const ProgressBarLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
-  font-weight: bold;
-  min-width: max-content;
 `;

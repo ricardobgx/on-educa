@@ -21,7 +21,7 @@ const SchoolGradeSelect = (props: ISchoolGradeSelectProps): JSX.Element => {
   const { label, options, selectedOption, setOption } = props;
 
   return (
-    <SubjectSectionSelectBox>
+    <SubjectSectionSelectBox className="with-shadow bd-rd-30">
       <SubjectSectionSelectLabel>
         {label}
         <RequiredFieldLabel>*</RequiredFieldLabel>
@@ -34,7 +34,7 @@ const SchoolGradeSelect = (props: ISchoolGradeSelectProps): JSX.Element => {
           {options.map((option) => (
             <SubjectSectionSelectOption
               key={option.id}
-              className={`block-shadow-button secondary-action bd-rd-30 ${
+              className={`block-shadow-button secondary-action bd-rd-20 ${
                 option.id === selectedOption ? 'selected' : ''
               }`}
               onClick={() => setOption(option)}

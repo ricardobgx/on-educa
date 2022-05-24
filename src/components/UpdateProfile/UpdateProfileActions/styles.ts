@@ -38,7 +38,7 @@ export const CancelUpdateProfileButton = styled(Link)`
 `;
 export const CancelUpdateProfileButtonLabel = styled(paragraph)``;
 export const ConfirmUpdateProfileButton = styled(UpdateProfileActionButton)`
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
   color: ${({ theme }) => theme.colors.boxColor};
 `;
 export const ConfirmUpdateProfileButtonLabel = styled(paragraph)``;

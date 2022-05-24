@@ -19,8 +19,8 @@ export const NewDoubtInput = styled(inputTextArea)`
   padding: 10px 15px;
   margin-right: 10px;
   border: none;
-  background: ${({ theme }) => theme.colors.inputTextBgColor};
-  color: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textInputBgColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 
   ::-webkit-input-placeholder {
     color: #949494;

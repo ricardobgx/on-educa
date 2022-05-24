@@ -8,7 +8,7 @@ export const Container = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};
   padding: 15px;
   margin-bottom: 20px;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   width: 100%;
 
   &:last-of-type {

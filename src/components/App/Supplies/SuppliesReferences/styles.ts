@@ -10,7 +10,7 @@ export const SuppliesReferenceBox = styled.div`
   }
 `;
 export const SuppliesReferenceLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-weight: bold;
   margin-bottom: 10px;
   display: flex;
@@ -20,7 +20,7 @@ export const SuppliesReferenceSelect = styled(inputSelect)`
   width: 100%;
   min-width: 300px;
   color: ${({ theme }) => theme.colors.boxColor};
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
   box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 5px;
   border: none;

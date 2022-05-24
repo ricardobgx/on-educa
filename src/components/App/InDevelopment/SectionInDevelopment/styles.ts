@@ -12,7 +12,7 @@ export const SectionInDevelopmentBox = styled.div`
   min-height: 40px;
 
   color: #ffffff;
-  background: #ffb800;
+  background: ${({ theme }) => theme.flagColors.yellowColor};
 `;
 export const SectionInDevelopmentIcon = styled(smallIcon)``;
 export const SectionInDevelopmentLabel = styled(paragraph)``;

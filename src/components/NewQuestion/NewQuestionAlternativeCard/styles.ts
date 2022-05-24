@@ -14,7 +14,7 @@ export const NewQuestionAlternativeCardBox = styled.div`
 `;
 export const NewQuestionAlternativeDetails = styled.div`
   width: 100%;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   background: ${({ theme }) => theme.colors.boxColor};
   box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 5px;
@@ -32,18 +32,18 @@ export const DeleteAlternativeButton = styled(Button)`
   cursor: pointer;
   min-width: 40px;
   height: 100%;
-  color: ${({ theme }) => theme.colors.whiteColor};
-  background: ${({ theme }) => theme.similarColors.warningColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
+  background: ${({ theme }) => theme.flagColors.redColor};
 `;
 export const DeleteAlternativeButtonIcon = styled(smallIcon)``;
 export const RightAlternativeButton = styled(Button)`
   cursor: pointer;
   min-width: 40px;
   height: 100%;
-  color: ${({ theme }) => theme.similarColors.rightQuestion};
+  color: ${({ theme }) => theme.flagColors.greenColor};
   background: none;
   margin-right: 10px;
-  border: 2px solid ${({ theme }) => theme.similarColors.rightQuestion};
+  border: 2px solid ${({ theme }) => theme.flagColors.greenColor};
   transition: all 0.2s linear;
 `;
 export const RightAlternativeButtonIcon = styled(smallIcon)``;

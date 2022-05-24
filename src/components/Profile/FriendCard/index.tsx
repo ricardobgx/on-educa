@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
+import { AxiosError } from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -11,6 +12,7 @@ import {
   isPeopleLogged,
   setUpPeopleType,
 } from '../../../functions/people';
+import { showErrorMessage } from '../../../functions/utils';
 import OnEducaAPI from '../../../services/api';
 import {
   DEFAULT_PEOPLE,
@@ -40,7 +42,10 @@ const FriendCard = (props: IFriendCardProps): JSX.Element => {
 
   const dispatch = useDispatch();
 
-  const { loadChat } = bindActionCreators(ActionCreators, dispatch);
+  const { loadChat, showFloatNotification } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
 
   const [friend, setFriend] = useState(DEFAULT_PEOPLE);
   const [student, setStudent] = useState(DEFAULT_STUDENT);
@@ -75,7 +80,14 @@ const FriendCard = (props: IFriendCardProps): JSX.Element => {
   };
 
   const getFriendPeople = async (): Promise<void> => {
-    const peopleFound = await getPeople(OnEducaAPI, people.id, token);
+    const peopleFound = await getPeople(
+      OnEducaAPI,
+      people.id,
+      token,
+      (err: AxiosError): void => {
+        showErrorMessage(err, showFloatNotification);
+      },
+    );
     if (peopleFound) getPeopleSucess(peopleFound);
   };
 
@@ -88,7 +100,7 @@ const FriendCard = (props: IFriendCardProps): JSX.Element => {
   return (
     <FriendCardBox style={{ animationDelay: `${index * 0.2}s` }}>
       <FriendPeople
-        className="with-shadow bd-rd-20"
+        className="block-shadow-button secondary-action bd-rd-20"
         to={`/profile/${people.id}`}
       >
         <PeopleCard

@@ -19,7 +19,7 @@ export const DuelChatBackground = styled.div`
 
 export const DuelChatBox = styled.div`
   position: relative;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   background: ${({ theme }) => theme.colors.boxColor};
   padding: 20px 15px;
   box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
@@ -40,7 +40,7 @@ export const CloseChatButton = styled(Button)`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
   color: ${({ theme }) => theme.colors.boxColor};
   position: absolute;
   top: 20px;

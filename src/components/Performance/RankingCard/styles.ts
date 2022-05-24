@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { paragraph } from '../../../global/styles/components/textComponents';
 
@@ -8,7 +9,7 @@ export const RankingPosition = styled(paragraph)`
   align-items: center;
   justify-content: flex-end;
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   min-height: 85px;
   max-width: 40px;
   margin-left: 15px;
@@ -25,12 +26,11 @@ export const RankingPosition = styled(paragraph)`
 
 // Estudante e sua posição
 
-export const RankingCardBox = styled.div`
+export const RankingCardBox = styled(Link)`
   display: flex;
   justify-content: space-between;
   align-items: center;
   min-height: 85px;
-  margin-bottom: 20px;
   background: ${({ theme }) => theme.colors.boxColor};
 
   &:last-of-type {

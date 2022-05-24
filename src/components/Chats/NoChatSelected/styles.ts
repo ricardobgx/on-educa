@@ -20,5 +20,5 @@ export const StartChatLabel = styled.p`
   font-size: 20px;
   font-weight: bold;
 
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;

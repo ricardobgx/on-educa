@@ -8,7 +8,7 @@ export const QuestionDescriptionBox = styled.div`
   margin-bottom: 40px;
 `;
 export const QuestionDescriptionParagraphs = styled.div`
-  color: ${({ theme }) => theme.colors.questionTextColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   max-height: 250px;
   padding: 0 10px;
   overflow: auto;

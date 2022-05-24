@@ -1,5 +1,6 @@
 import React from 'react';
-import theme from '../../../global/styles/theme';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store';
 import {
   NewQuestionAlternativeCardBox,
   NewQuestionAlternativeDetails,
@@ -28,6 +29,8 @@ const NewQuestionAlternativeCard = (
     setRightAlternative,
   } = props;
 
+  const { theme } = useSelector((store: RootState) => store);
+
   return (
     <NewQuestionAlternativeCardBox>
       <NewQuestionAlternativeDetails>
@@ -41,10 +44,12 @@ const NewQuestionAlternativeCard = (
           style={{
             background:
               rightAlternative === description
-                ? theme.similarColors.rightQuestion
+                ? theme.flagColors.greenColor
                 : '',
             color:
-              rightAlternative === description ? theme.colors.whiteColor : '',
+              rightAlternative === description
+                ? theme.colors.textColors.primaryColor
+                : '',
           }}
         >
           <RightAlternativeButtonIcon className="fas fa-check" />

@@ -46,18 +46,18 @@ export const QuestionAnswered = styled.div`
   width: 100%;
   height: 40px;
   padding: 0 10px;
-  color: ${({ theme }) => theme.colors.whiteColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 
   @media (max-width: 500px) {
     width: 100%;
   }
 
   &:nth-child(1) {
-    background: ${({ theme }) => theme.similarColors.rightQuestion};
+    background: ${({ theme }) => theme.flagColors.greenColor};
   }
 
   &:nth-child(2) {
-    background: ${({ theme }) => theme.similarColors.wrongQuestion};
+    background: ${({ theme }) => theme.flagColors.redColor};
   }
 `;
 export const QuestionAnsweredHeader = styled.div`
@@ -76,8 +76,8 @@ export const ParticipantXP = styled.div`
   height: 40px;
   padding: 0 10px;
   margin: 5px 0;
-  color: ${({ theme }) => theme.colors.mainButtonTextColor};
-  background: ${({ theme }) => theme.colors.mainButtonBgColor};
+  color: ${({ theme }) => theme.colors.buttonColors.mainButtonTextColor};
+  background: ${({ theme }) => theme.colors.mainColor};
 `;
 export const ParticipantXPLabel = styled(paragraph)``;
 export const ParticipantXPData = styled(paragraph)``;

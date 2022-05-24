@@ -154,14 +154,23 @@ export const getPeople = async (
   API: AxiosInstance,
   id: string,
   token: string,
-): Promise<IPeople | undefined> => {
-  const { data } = await API.get(`/${entityPath}/${id}`, {
+  requestError: (err: AxiosError) => void,
+): Promise<IPeople | null> => {
+  let people = null;
+
+  await API.get(`/${entityPath}/${id}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },
-  });
+  })
+    .then((response) => {
+      people = response.data;
+    })
+    .catch((err: AxiosError) => {
+      requestError(err);
+    });
 
-  return data;
+  return people;
 };
 
 // Find all

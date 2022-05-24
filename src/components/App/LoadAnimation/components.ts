@@ -5,11 +5,6 @@ export const LoadAnimationBox = styled.div`
   width: 100vw;
   height: 100vh;
   background: ${({ theme }) => theme.colors.boxColor};
-  /* background: linear-gradient(
-    135deg,
-    ${({ theme }) => theme.colors.commonColor},
-    ${({ theme }) => theme.colors.secondaryColor}
-  ); */
   position: fixed;
   top: 0;
   left: 0;
@@ -17,7 +12,7 @@ export const LoadAnimationBox = styled.div`
 `;
 
 export const LoadIcon = styled(bigIcon)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   position: fixed;
   top: 50%;
   left: 50%;

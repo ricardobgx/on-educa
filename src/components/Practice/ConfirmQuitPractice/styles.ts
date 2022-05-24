@@ -23,7 +23,7 @@ export const ConfirmQuitPracticeBox = styled.div`
   background: ${({ theme }) => theme.colors.boxColor};
 `;
 export const ConfirmQuitPracticeLabel = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-weight: bold;
   text-align: center;
 `;
@@ -35,11 +35,11 @@ export const ConfirmQuitPracticeButton = styled.button`
 `;
 export const QuitButton = styled(ConfirmQuitPracticeButton)`
   background: ${({ theme }) => theme.colors.boxColor};
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 export const CancelButton = styled(ConfirmQuitPracticeButton)`
   margin: 20px 0px 10px 0px;
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
   color: ${({ theme }) => theme.colors.boxColor};
 `;
 export const ButtonLabel = styled(paragraph)``;

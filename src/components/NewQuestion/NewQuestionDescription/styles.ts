@@ -19,7 +19,7 @@ export const NewQuestionDescriptionInput = styled(inputTextArea)`
   max-width: calc(60vw - 80px);
   min-height: calc(100% - 30px);
   max-height: 30vw;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   background: ${({ theme }) => theme.colors.hoverColor};
   border-radius: 5px;
   border: none;

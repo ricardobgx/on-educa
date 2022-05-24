@@ -14,14 +14,14 @@ export const SectionLabelBox = styled.div`
   margin: 20px;
 `;
 export const SectionLabelText = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   font-weight: bold;
   text-align: center;
 `;
 export const SectionLabelBackLink = styled(Button)`
   position: absolute;
   left: 20px;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   background: none;
   box-shadow: none;
 `;

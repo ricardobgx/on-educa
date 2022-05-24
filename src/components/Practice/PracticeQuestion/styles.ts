@@ -22,7 +22,7 @@ export const AnswerButton = styled.button`
   border: none;
   /* font-weight: bold; */
   color: ${({ theme }) => theme.colors.boxColor};
-  background: ${({ theme }) => theme.colors.textColor};
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
   box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 5px;
   cursor: pointer;
@@ -32,7 +32,7 @@ export const SkipButton = styled.button`
   min-height: 40px;
   border: none;
   /* font-weight: bold; */
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   background: ${({ theme }) => theme.colors.boxColor};
   box-shadow: 0px 0px 2px ${({ theme }) => theme.colors.boxShadowColor};
   border-radius: 5px;
