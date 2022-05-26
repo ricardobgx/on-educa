@@ -6,7 +6,7 @@ export const NavBarActionBox = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${({ theme }) => theme.colors.textColors.secondaryColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   position: relative;
   height: 40px;
   width: 40px;
@@ -27,7 +27,6 @@ export const NavBarActionBox = styled(Link)`
   }
 
   &:hover {
-    color: ${({ theme }) => theme.colors.textColors.primaryColor};
     background: ${({ theme }) => theme.colors.hoverColor};
   }
 

@@ -11,13 +11,7 @@ import {
   PerformanceBox,
   AchievementsBox,
   AchievementsLabel,
-  DailyGoalBox,
-  DailyGoalLabel,
-  DailyGoalDataBox,
-  DailyGoalEditIcon,
-  DailyGoalIcon,
-  DailyGoalEditButton,
-  DailyGoal,
+  AchievementsAndDailyGoal,
 } from './components';
 
 import HomeAction from '../../components/Home/HomeAction';
@@ -27,11 +21,8 @@ import { ActionCreators, RootState } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import SectionLabel from '../../components/App/SectionLabel';
 import { homeActions } from '../../static/homeActions';
-import SmallProgressBar from '../../components/App/ProgressBar/SmallProgressBar';
-import {
-  MediumMaterialIconOutlined,
-  SmallMaterialIconOutlined,
-} from '../../components/App/Icons/MaterialIcons/MaterialIconsOutlined';
+import { MediumMaterialIconOutlined } from '../../components/App/Icons/MaterialIcons/MaterialIconsOutlined';
+import DailyGoal from '../../components/Home/DailyGoal';
 
 const Home = (): JSX.Element => {
   /* GlobalRootState */
@@ -87,27 +78,16 @@ const Home = (): JSX.Element => {
         <PerformanceBox>
           <SectionLabel backLink="" label="Desempenho" />
           <DailyPerformance />
-          <AchievementsBox to="/achievements" className="with-shadow bd-rd-30">
-            <MediumMaterialIconOutlined icon="grade" color="" />
-            <AchievementsLabel>Conquistas</AchievementsLabel>
-          </AchievementsBox>
-          <DailyGoal className="with-shadow bd-rd-30">
-            <DailyGoalBox>
-              <DailyGoalDataBox>
-                <DailyGoalIcon className="fas fa-bullseye" />
-                <DailyGoalLabel>Meta diária</DailyGoalLabel>
-              </DailyGoalDataBox>
-              <DailyGoalDataBox>
-                <DailyGoalLabel>
-                  {completedDailyGoal}/{dailyGoal} XP
-                </DailyGoalLabel>
-                <DailyGoalEditButton onClick={() => setEditDailyGoal(true)}>
-                  <DailyGoalEditIcon className="fas fa-pen" />
-                </DailyGoalEditButton>
-              </DailyGoalDataBox>
-            </DailyGoalBox>
-            <SmallProgressBar now={20} max={50} />
-          </DailyGoal>
+          <AchievementsAndDailyGoal>
+            <AchievementsBox
+              to="/achievements"
+              className="with-shadow bd-rd-20"
+            >
+              <MediumMaterialIconOutlined icon="grade" color="" />
+              <AchievementsLabel>Conquistas</AchievementsLabel>
+            </AchievementsBox>
+            <DailyGoal />
+          </AchievementsAndDailyGoal>
         </PerformanceBox>
       </PageBox>
     </Page>

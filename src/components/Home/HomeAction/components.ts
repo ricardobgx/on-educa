@@ -13,7 +13,7 @@ export const HomeActionBox = styled(Link)`
   margin: 20px;
   padding: calc(((100vh - 265px) / 2) / 5);
 
-  color: ${({ theme }) => theme.colors.textColors.secondaryColor};
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   background: ${({ theme }) => theme.colors.boxColor};
 
   border: 3px solid transparent;
@@ -21,7 +21,6 @@ export const HomeActionBox = styled(Link)`
   transition: all 0.2s linear;
 
   &:hover {
-    color: ${({ theme }) => theme.colors.textColors.primaryColor};
     transform: translateY(-5px);
   }
 

@@ -16,6 +16,7 @@ export const PageBox = styled.div`
 
 export const SelectSubjectsDetails = styled.div`
   display: flex;
+  gap: 40px;
   margin: 20px;
 
   @media (max-width: 1150px) {
@@ -25,10 +26,12 @@ export const SelectSubjectsDetails = styled.div`
 export const SubjectsActions = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 20px;
-  margin-top: 0;
+  gap: 40px;
 
-  @media (max-width: 1150px) {
+  margin: 20px;
+
+  @media (max-width: 900px) {
+    gap: 20px;
     flex-direction: column;
   }
 `;
@@ -37,49 +40,20 @@ export const CancelButton = styled(Link)`
   align-items: center;
   justify-content: center;
 
+  width: 100%;
   min-height: 40px;
-  width: calc(50% - 20px);
-
-  transition: all 0.2s linear;
-
-  @media (max-width: 1150px) {
-    width: 100%;
-    margin-bottom: 20px;
-  }
 `;
-export const CancelButtonLabel = styled(paragraph)`
-  transition: all 0.2s linear;
-`;
+export const CancelButtonLabel = styled(paragraph)``;
 export const SelectUnityButton = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
 
-  width: calc(50% - 20px);
+  width: 100%;
   min-height: 40px;
 
   border: none;
 
   cursor: pointer;
-
-  transition: all 0.2s linear;
-
-  &.disabled {
-    opacity: 0.7;
-    box-shadow: 0px 0px 0px 1px
-      ${({ theme }) => theme.colors.buttonColors.mainButtonShadowColor} !important;
-
-    pointer-events: none;
-
-    p {
-      transform: translateY(0px);
-    }
-  }
-
-  @media (max-width: 1150px) {
-    width: 100%;
-  }
 `;
-export const SelectUnityButtonLabel = styled(paragraph)`
-  transition: all 0.2s linear;
-`;
+export const SelectUnityButtonLabel = styled(paragraph)``;

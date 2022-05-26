@@ -8,20 +8,15 @@ import { getStudentWeeklyPerformanceByStudent } from '../../../../functions/stud
 import OnEducaAPI from '../../../../services/api';
 import { DEFAULT_STUDENT_WEEKLY_PERFORMANCE } from '../../../../static/defaultEntitiesValues';
 import { ActionCreators, RootState } from '../../../../store';
-import { SmallMaterialIconOutlined } from '../../../App/Icons/MaterialIcons/MaterialIconsOutlined';
+import SmallProgressBar from '../../../App/ProgressBar/SmallProgressBar';
+import DailyPerformancePerformanceHeader from '../DailyPerformancePerformanceHeader';
 import {
   DailyPerformanceBox,
-  PerformanceDataLabel,
-  PerformanceLabel,
-  PerformanceLabelBox,
   PerformancesBox,
   PerformancesTypeBox,
   PerformanceTypeBox,
-  PerformanceTypeHeader,
-  WeekPerformanceButton,
-  WeekPerformanceButtonLabel,
-  XPInnerProgressBar,
-  XPProgressBar,
+  SeeWeeklyPerformanceButton,
+  SeeWeeklyPerformanceButtonLabel,
 } from '../styles';
 
 const StudentDailyPerformance: React.FC = () => {
@@ -58,68 +53,58 @@ const StudentDailyPerformance: React.FC = () => {
     weekDay;
 
   return (
-    <DailyPerformanceBox className="with-shadow bd-rd-30">
+    <DailyPerformanceBox className="with-shadow bd-rd-20">
       <PerformancesBox>
         <PerformancesTypeBox>
           <PerformanceTypeBox>
-            <PerformanceTypeHeader>
-              <PerformanceLabel>XP Hoje</PerformanceLabel>
-              <PerformanceDataLabel>{dailyXp} XP</PerformanceDataLabel>
-            </PerformanceTypeHeader>
-            <XPProgressBar>
-              <XPInnerProgressBar
-                style={{ width: `${(dailyXp / xp) * 100}%` }}
-              />
-            </XPProgressBar>
+            <DailyPerformancePerformanceHeader
+              title="XP Hoje"
+              icon=""
+              dataLabel={`${dailyXp} XP`}
+            />
+            <SmallProgressBar now={dailyXp} max={xp} />
           </PerformanceTypeBox>
           <PerformanceTypeBox>
-            <PerformanceTypeHeader>
-              <PerformanceLabel>XP Semanal</PerformanceLabel>
-              <PerformanceDataLabel>{xp} XP</PerformanceDataLabel>
-            </PerformanceTypeHeader>
-            <XPProgressBar>
-              <XPInnerProgressBar style={{ width: `${(xp / xp) * 100}%` }} />
-            </XPProgressBar>
+            <DailyPerformancePerformanceHeader
+              title="XP Semanal"
+              icon=""
+              dataLabel={`${xp} XP`}
+            />
+            <SmallProgressBar now={xp} max={xp} />
           </PerformanceTypeBox>
         </PerformancesTypeBox>
         <PerformancesTypeBox>
           <PerformanceTypeBox>
-            <PerformanceTypeHeader>
-              <PerformanceLabelBox>
-                <SmallMaterialIconOutlined icon="book" color="" />
-                <PerformanceLabel>Conteúdos</PerformanceLabel>
-              </PerformanceLabelBox>
-              <PerformanceDataLabel>{contentsStudied}</PerformanceDataLabel>
-            </PerformanceTypeHeader>
+            <DailyPerformancePerformanceHeader
+              title="Conteúdos"
+              icon="book"
+              dataLabel={String(contentsStudied)}
+            />
           </PerformanceTypeBox>
           <PerformanceTypeBox>
-            <PerformanceTypeHeader>
-              <PerformanceLabelBox>
-                <SmallMaterialIconOutlined icon="article" color="" />
-                <PerformanceLabel>Questões</PerformanceLabel>
-              </PerformanceLabelBox>
-              <PerformanceDataLabel>{questionsAnswered}</PerformanceDataLabel>
-            </PerformanceTypeHeader>
+            <DailyPerformancePerformanceHeader
+              title="Questões"
+              icon="article"
+              dataLabel={String(questionsAnswered)}
+            />
           </PerformanceTypeBox>
           <PerformanceTypeBox>
-            <PerformanceTypeHeader>
-              <PerformanceLabelBox>
-                <SmallMaterialIconOutlined icon="gamepad" color="" />
-                <PerformanceLabel>Duelos</PerformanceLabel>
-              </PerformanceLabelBox>
-              <PerformanceDataLabel>{duelsParticipated}</PerformanceDataLabel>
-            </PerformanceTypeHeader>
+            <DailyPerformancePerformanceHeader
+              title="Duelos"
+              icon="gamepad"
+              dataLabel={String(duelsParticipated)}
+            />
           </PerformanceTypeBox>
         </PerformancesTypeBox>
       </PerformancesBox>
-      <WeekPerformanceButton
+      <SeeWeeklyPerformanceButton
         to="/performance"
-        className="bd-rd-20 block-shadow-button main-action"
+        className="bd-rd-10 block-shadow-button main-action"
       >
-        <WeekPerformanceButtonLabel>
+        <SeeWeeklyPerformanceButtonLabel>
           Desempenho semanal
-        </WeekPerformanceButtonLabel>
-      </WeekPerformanceButton>
+        </SeeWeeklyPerformanceButtonLabel>
+      </SeeWeeklyPerformanceButton>
     </DailyPerformanceBox>
   );
 };
