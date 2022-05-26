@@ -9,7 +9,6 @@ import { useRouteMatch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { AxiosError } from 'axios';
 import SectionLabel from '../../components/App/SectionLabel';
-import ProfileDailyGoal from '../../components/Profile/ProfileDailyGoal';
 import StudentWeeklyPerformance from '../../components/Profile/WeeklyPerformance/StudentWeeklyPerformance';
 import {
   getPeople,
@@ -64,6 +63,7 @@ import SocialDetail from '../../components/Profile/SocialDetail';
 import TeacherWeeklyPerformance from '../../components/Profile/WeeklyPerformance/TeacherWeeklyPerformance';
 import { getTeacherWeeklyPerformanceByTeacher } from '../../functions/teacherWeeklyPerformance';
 import { showErrorMessage } from '../../functions/utils';
+import DailyGoal from '../../components/Home/DailyGoal';
 
 interface IProfileRouteProps {
   id: string;
@@ -230,11 +230,6 @@ const Profile = (): JSX.Element => {
 
   const { isStudent } = people;
 
-  const { weekDay } = isStudent
-    ? studentWeeklyPerformance
-    : teacherWeeklyPerformance;
-  const { dailyXp } = weekDay;
-
   return (
     <Page>
       <PageBox>
@@ -250,7 +245,7 @@ const Profile = (): JSX.Element => {
           <ProfileDetails>
             <SectionLabel backLink="/" label="Perfil" />
 
-            <ProfileDetailsBox className="with-shadow bd-rd-30">
+            <ProfileDetailsBox className="with-shadow bd-rd-20">
               <ProfileBanner />
               <PeopleDetails>
                 <AppearenceDetails>
@@ -310,7 +305,7 @@ const Profile = (): JSX.Element => {
             <SectionLabel backLink="" label="Desempenho" />
             <PerformanceDetailsBox>
               <WeeklyPerformanceSummary>
-                <ProfileDailyGoal dailyXP={dailyXp} />
+                <DailyGoal />
                 {isStudent ? (
                   <StudentWeeklyPerformance
                     isPeopleLogged={isPeopleLogged(people.id, loggedPeople.id)}

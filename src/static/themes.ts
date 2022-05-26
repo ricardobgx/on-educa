@@ -32,7 +32,7 @@ const lightTheme: ITheme = {
     textInputBgColor: '#F3F3F3',
     textColors: {
       primaryColor: '#4E4E4E',
-      secondaryColor: '#6C6C6C',
+      secondaryColor: '#4E4E4E',
     },
     buttonColors: {
       mainButtonTextColor: '#FFFFFF',
@@ -77,6 +77,10 @@ export const themes: ITheme[] = [
       ...lightTheme.colors,
       secondaryGradientColor: '#6C63FF',
       mainColor: '#FF0054',
+      textColors: {
+        ...lightTheme.colors.textColors,
+        primaryColor: '#FF0054',
+      },
       previewColors: ['#FBFBFB', '#FF0054'],
       buttonColors: {
         ...lightTheme.colors.buttonColors,
@@ -91,6 +95,10 @@ export const themes: ITheme[] = [
       ...lightTheme.colors,
       secondaryGradientColor: '#CE5BEB',
       mainColor: '#6C63FF',
+      textColors: {
+        ...lightTheme.colors.textColors,
+        primaryColor: '#6C63FF',
+      },
       previewColors: ['#FBFBFB', '#6C63FF'],
       buttonColors: {
         ...lightTheme.colors.buttonColors,
@@ -104,6 +112,10 @@ export const themes: ITheme[] = [
     colors: {
       ...lightTheme.colors,
       mainColor: '#124899',
+      textColors: {
+        ...lightTheme.colors.textColors,
+        primaryColor: '#124899',
+      },
       previewColors: ['#FBFBFB', '#124899'],
       secondaryGradientColor: '#2886DD',
       buttonColors: {
@@ -118,6 +130,10 @@ export const themes: ITheme[] = [
     colors: {
       ...lightTheme.colors,
       mainColor: '#007f5f',
+      textColors: {
+        ...lightTheme.colors.textColors,
+        primaryColor: '#007f5f',
+      },
       previewColors: ['#FBFBFB', '#007f5f'],
       secondaryGradientColor: '#66B752',
       buttonColors: {
@@ -132,6 +148,10 @@ export const themes: ITheme[] = [
     colors: {
       ...lightTheme.colors,
       mainColor: '#d90429',
+      textColors: {
+        ...lightTheme.colors.textColors,
+        primaryColor: '#d90429',
+      },
       previewColors: ['#FBFBFB', '#d90429'],
       secondaryGradientColor: '#E7BA1E',
       buttonColors: {

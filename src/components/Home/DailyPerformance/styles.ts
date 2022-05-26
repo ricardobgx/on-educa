@@ -22,10 +22,12 @@ export const DayLabel = styled(paragraph)`
 `;
 export const PerformancesBox = styled.div`
   display: flex;
-  height: 100%;
-  width: 100%;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
+
+  height: 100%;
+  width: 100%;
   margin-bottom: 20px;
 
   @media (max-width: 600px) {
@@ -38,14 +40,15 @@ export const PerformancesDivisor = styled.div`
   background: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 export const PerformancesTypeBox = styled.div`
-  width: calc(50% - 10px);
+  width: 100%;
   height: 100%;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
-  @media (max-width: 600px) {
+  @media (max-width: 900px) {
+    gap: 10px;
     width: 100%;
   }
 `;
@@ -53,64 +56,17 @@ export const PerformanceTypeBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  height: 100%;
-
-  color: ${({ theme }) => theme.colors.textColors.primaryColor};
-`;
-export const PerformanceTypeHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-export const XPBox = styled.div`
-  display: flex;
-  align-items: flex-end;
   gap: 5px;
-`;
-export const PerformanceLabelBox = styled.div`
-  display: flex;
-  align-items: center;
 
-  & span {
-    margin-right: 5px;
-  }
-`;
-export const PerformanceLabel = styled(paragraph)`
-  color: currentColor;
-  font-weight: bold;
-  font-style: normal;
-`;
-export const PerformanceDataLabel = styled(paragraph)`
+  height: 100%;
+
   color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
-export const XPProgressBar = styled.div`
-  background: ${({ theme }) => theme.colors.hoverColor};
-
-  width: 100%;
-  height: 11px;
-  margin-top: 10px;
-
-  border-radius: 10px;
-`;
-export const XPInnerProgressBar = styled.div`
-  height: 100%;
-  width: 0%;
-
-  border-radius: 10px;
-
-  background: ${({ theme }) => theme.colors.mainColor};
-
-  transition: all 0.2s linear;
-`;
-export const WeekPerformanceButton = styled(Link)`
+export const SeeWeeklyPerformanceButton = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
 
   min-height: 40px;
 `;
-export const WeekPerformanceButtonLabel = styled(paragraph)`
-  text-align: center;
-  transition: all 0.2s linear;
-`;
+export const SeeWeeklyPerformanceButtonLabel = styled(paragraph)``;

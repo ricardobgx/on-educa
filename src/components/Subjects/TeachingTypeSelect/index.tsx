@@ -36,7 +36,7 @@ const TeachingTypeSelect = (props: ITeachingTypeSelectProps): JSX.Element => {
   const sortedTeachingTypes = teachingTypes.sort(sortTeachingTypes);
 
   return (
-    <SubjectSectionSelectBox className="with-shadow bd-rd-30">
+    <SubjectSectionSelectBox className="with-shadow bd-rd-20">
       <SubjectSectionSelectLabel>
         {label}
         <RequiredFieldLabel>*</RequiredFieldLabel>
@@ -46,7 +46,7 @@ const TeachingTypeSelect = (props: ITeachingTypeSelectProps): JSX.Element => {
           {sortedTeachingTypes.map((teachingType) => (
             <SubjectSectionSelectOption
               key={teachingType.id}
-              className={`block-shadow-button secondary-action bd-rd-20 ${
+              className={`block-shadow-button secondary-action bd-rd-15 ${
                 teachingType.id === teachingTypeSelectedId ? 'selected' : ''
               }`}
               onClick={() => setTeachingTypeSelected(teachingType)}

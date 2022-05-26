@@ -204,12 +204,16 @@ export default createGlobalStyle`
     border-radius: 10px;
   }
 
+  .bd-rd-15 {
+    border-radius: 15px;
+  }
+
   .bd-rd-20 {
-    border-radius: 10px;
+    border-radius: 20px;
   }
 
   .bd-rd-30 {
-    border-radius: 20px;
+    border-radius: 30px;
   }
 
   .shadow-select {
