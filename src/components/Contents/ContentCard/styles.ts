@@ -6,7 +6,6 @@ export const ContentCardBox = styled.div``;
 export const ContentCardDetails = styled(Link)`
   display: flex;
   justify-content: space-between;
-
   gap: 10px;
 
   padding: 20px;
@@ -26,6 +25,8 @@ const ContentCardDetailsBox = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 5px;
+
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 
   width: 33%;
   height: 100%;

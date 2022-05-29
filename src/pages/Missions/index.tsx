@@ -1,85 +1,24 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import SectionLabel from '../../components/App/SectionLabel';
 import MissionCard from '../../components/Missions/MissionCard';
+import { getMissions } from '../../functions/mission';
 import { Page } from '../../global/styles/components/pageComponents';
+import OnEducaAPI from '../../services/api';
+import { RootState } from '../../store';
 import { PageBox, MissionsList, MissionsListBox } from './styles';
 
-const missions: IMission[] = [
-  {
-    id: '1',
-    title: 'Estude 2 conteúdos',
-    relatedActivity: 'duel',
-    repetitions: 2,
-    requirements: [
-      {
-        id: '1',
-        missionId: '1',
-        description: 'win',
-      },
-    ],
-    reward: 30,
-  },
-  {
-    id: '2',
-    title: 'Participe de 2 duelos',
-    relatedActivity: 'duel',
-    repetitions: 2,
-    requirements: [
-      {
-        id: '1',
-        missionId: '1',
-        description: 'win',
-      },
-    ],
-    reward: 50,
-  },
-  {
-    id: '3',
-    title: 'Vença 1 duelo',
-    relatedActivity: 'duel',
-    repetitions: 1,
-    requirements: [
-      {
-        id: '1',
-        missionId: '1',
-        description: 'win',
-      },
-    ],
-    reward: 50,
-  },
-  {
-    id: '4',
-    title: 'Pratique 3 conteúdos',
-    relatedActivity: 'duel',
-    repetitions: 3,
-    requirements: [
-      {
-        id: '1',
-        missionId: '1',
-        description: 'win',
-      },
-    ],
-    reward: 80,
-  },
-  {
-    id: '1',
-    title: 'Vença dois duelos',
-    relatedActivity: 'duel',
-    repetitions: 2,
-    requirements: [
-      {
-        id: '1',
-        missionId: '1',
-        description: 'win',
-      },
-    ],
-    reward: 50,
-  },
-];
-
 const Missions = (): JSX.Element => {
+  const { token } = useSelector((store: RootState) => store.aplication);
+
+  const [missions, setMissions] = useState<IMission[]>([]);
+
+  useEffect(() => {
+    if (token) getMissions(OnEducaAPI, setMissions, token);
+  }, [token]);
+
   return (
     <Page>
       <PageBox>

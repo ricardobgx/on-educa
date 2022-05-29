@@ -100,7 +100,7 @@ const FriendCard = (props: IFriendCardProps): JSX.Element => {
   return (
     <FriendCardBox style={{ animationDelay: `${index * 0.2}s` }}>
       <FriendPeople
-        className="block-shadow-button secondary-action bd-rd-20"
+        className="block-shadow-button secondary-action bd-rd-15"
         to={`/profile/${people.id}`}
       >
         <PeopleCard

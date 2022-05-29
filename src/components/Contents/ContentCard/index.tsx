@@ -48,7 +48,7 @@ const ContentCard = (props: IContentCardProps): JSX.Element => {
       style={{ animationDelay: `${index * 0.2}s` }}
     >
       <ContentCardDetails
-        className="block-shadow-button secondary-action bd-rd-10"
+        className="block-shadow-button secondary-action bd-rd-15"
         to={`/contents/${id}`}
         onClick={() => loadContent(content)}
       >

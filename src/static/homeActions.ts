@@ -31,9 +31,9 @@ export const homeActions: IHomeAction[] = [
     userType: 'teacher',
   },
   {
-    icon: 'task_alt',
-    label: 'Missões',
-    link: '/missions',
+    icon: 'shield',
+    label: 'Ligas',
+    link: '/leagues',
     userType: 'both',
   },
   {

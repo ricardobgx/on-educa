@@ -46,7 +46,7 @@ const UnityCard = (props: IUnityCardProps): JSX.Element => {
       style={{ animationDelay: `${index * 0.2}s` }}
     >
       <UnityCardDetails
-        className="block-shadow-button secondary-action bd-rd-10"
+        className="block-shadow-button secondary-action bd-rd-15"
         to={`/units/${id}`}
         onClick={() => loadUnity(unity)}
       >

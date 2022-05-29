@@ -86,7 +86,7 @@ const Friends = (): JSX.Element => {
               </SearchSupplies>
             </SearchPeoples>
 
-            <PeoplesFoundBox className="with-shadow bd-rd-30">
+            <PeoplesFoundBox className="with-shadow bd-rd-20">
               <PeoplesFoundList>
                 {peoplesFound.map((peopleFound, index) => (
                   <FriendCard

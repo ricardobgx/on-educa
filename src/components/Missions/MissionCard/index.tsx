@@ -11,18 +11,18 @@ import {
 } from './styles';
 
 const MissionCard = (props: IMission): JSX.Element => {
-  const { title, reward, repetitions } = props;
+  const { description, reward, goal } = props;
 
   return (
-    <Container className="with-shadow bd-rd-30">
+    <Container className="with-shadow bd-rd-15">
       <BigMaterialIconOutlined icon="task_alt" color="" />
       <MissionInfo>
         <MissionInfoHeader>
-          <MissionTitle>{title}</MissionTitle>
+          <MissionTitle>{description}</MissionTitle>
           <MissionReward>{reward} XP</MissionReward>
         </MissionInfoHeader>
         <MissionProgress>
-          <BigProgressBar now={0} max={repetitions} />
+          <BigProgressBar now={0} max={goal} />
         </MissionProgress>
       </MissionInfo>
     </Container>

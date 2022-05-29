@@ -8,9 +8,8 @@ import {
   PageBox,
   HomeActionsBox,
   HomeActions,
-  PerformanceBox,
-  AchievementsBox,
-  AchievementsLabel,
+  HomePerformance,
+  HomePerformanceBox,
   AchievementsAndDailyGoal,
 } from './components';
 
@@ -21,8 +20,8 @@ import { ActionCreators, RootState } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import SectionLabel from '../../components/App/SectionLabel';
 import { homeActions } from '../../static/homeActions';
-import { MediumMaterialIconOutlined } from '../../components/App/Icons/MaterialIcons/MaterialIconsOutlined';
 import DailyGoal from '../../components/Home/DailyGoal';
+import PerformanceLink from '../../components/Home/PerformanceLink';
 
 const Home = (): JSX.Element => {
   /* GlobalRootState */
@@ -75,20 +74,19 @@ const Home = (): JSX.Element => {
             )}
           </HomeActions>
         </HomeActionsBox>
-        <PerformanceBox>
+        <HomePerformance>
           <SectionLabel backLink="" label="Desempenho" />
-          <DailyPerformance />
-          <AchievementsAndDailyGoal>
-            <AchievementsBox
-              to="/achievements"
-              className="with-shadow bd-rd-20"
-            >
-              <MediumMaterialIconOutlined icon="grade" color="" />
-              <AchievementsLabel>Conquistas</AchievementsLabel>
-            </AchievementsBox>
+          <HomePerformanceBox>
+            <DailyPerformance />
+            <PerformanceLink
+              link="/achievements"
+              icon="grade"
+              label="Conquistas"
+            />
+            <PerformanceLink link="/missions" icon="task_alt" label="Missões" />
             <DailyGoal />
-          </AchievementsAndDailyGoal>
-        </PerformanceBox>
+          </HomePerformanceBox>
+        </HomePerformance>
       </PageBox>
     </Page>
   );

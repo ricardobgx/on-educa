@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { paragraph } from '../../global/styles/components/textComponents';
 
 export const PageBox = styled.div`
   display: flex;
@@ -33,13 +31,33 @@ export const HomeActions = styled.div`
     min-width: unset;
   }
 `;
-export const PerformanceBox = styled.div`
+export const HomePerformance = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 20px;
+
   width: 100%;
 
   @media (max-width: 1150px) {
     width: 100%;
+  }
+`;
+
+export const HomePerformanceBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  height: calc(100vh - 225px);
+  width: 100%;
+
+  & > * {
+    margin: 0 20px;
+  }
+
+  @media (max-width: 1150px) {
+    width: 100%;
+    height: unset;
   }
 `;
 export const AchievementsAndDailyGoal = styled.div`
@@ -54,20 +72,4 @@ export const AchievementsAndDailyGoal = styled.div`
   @media (max-width: 900px) {
     height: unset;
   }
-`;
-export const AchievementsBox = styled(Link)`
-  color: ${({ theme }) => theme.colors.textColors.primaryColor};
-  background: ${({ theme }) => theme.colors.boxColor};
-
-  padding: 20px;
-  height: 100%;
-
-  display: flex;
-  align-items: center;
-  gap: 7px;
-
-  transition: all 0.2s linear;
-`;
-export const AchievementsLabel = styled(paragraph)`
-  font-weight: bold;
 `;

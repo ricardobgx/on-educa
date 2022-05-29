@@ -10,6 +10,8 @@ export const PeopleCardBox = styled.div`
   width: 100%;
   padding: 15px;
 
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
+
   @media (max-width: 1150px) {
     min-height: unset;
   }
@@ -28,6 +30,7 @@ export const PeoplePicture = styled.img`
 
 export const PeopleDetails = styled.div`
   display: flex;
+  align-items: center;
 `;
 export const PersonalInfo = styled.div`
   display: flex;
@@ -42,20 +45,17 @@ export const PersonalInfo = styled.div`
 
 export const PeopleName = styled(paragraph)`
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 
 // Série
 
 export const StudentSchoolGrade = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   margin-right: 1rem;
 `;
 
 // Disciplinas
 
 export const TeacherSubjects = styled(paragraph)`
-  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   margin-right: 1rem;
 `;
 
@@ -74,7 +74,6 @@ export const PeopleScore = styled.div`
 export const PeopleExperience = styled.p`
   font-size: 13px;
   letter-spacing: 1px;
-  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   height: 25px;
   display: flex;
   align-items: flex-end;

@@ -7,7 +7,6 @@ export const UnityCardBox = styled.div``;
 export const UnityCardDetails = styled(Link)`
   display: flex;
   justify-content: space-between;
-  color: ${({ theme }) => theme.colors.textColors.primaryColor};
   background: ${({ theme }) => theme.colors.boxColor};
   padding: 20px;
   width: 100%;
@@ -23,6 +22,8 @@ const UnityCardDetailsBox = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 5px;
+
+  color: ${({ theme }) => theme.colors.textColors.primaryColor};
 
   width: 33%;
   height: 100%;

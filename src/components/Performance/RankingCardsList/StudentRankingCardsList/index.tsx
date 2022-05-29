@@ -41,16 +41,13 @@ const StudentRankingCardsList = (
 
   return (
     <RankingCardsListBox>
-      {studentWeeklyPerformances
-        .concat(studentWeeklyPerformances)
-        .concat(studentWeeklyPerformances)
-        .map((studentWeeklyPerformance, index) => (
-          <StudentRankingCard
-            studentWeeklyPerformance={studentWeeklyPerformance}
-            rankingPosition={index + 1}
-            token={token}
-          />
-        ))}
+      {studentWeeklyPerformances.map((studentWeeklyPerformance, index) => (
+        <StudentRankingCard
+          studentWeeklyPerformance={studentWeeklyPerformance}
+          rankingPosition={index + 1}
+          token={token}
+        />
+      ))}
     </RankingCardsListBox>
   );
 };

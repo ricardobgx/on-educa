@@ -8,15 +8,16 @@ import { getTeacherWeeklyPerformanceByTeacher } from '../../../../functions/teac
 import OnEducaAPI from '../../../../services/api';
 import { DEFAULT_TEACHER_WEEKLY_PERFORMANCE } from '../../../../static/defaultEntitiesValues';
 import { ActionCreators, RootState } from '../../../../store';
-import SmallProgressBar from '../../../App/ProgressBar/SmallProgressBar';
-import DailyPerformancePerformanceHeader from '../DailyPerformancePerformanceHeader';
+import { SmallMaterialIconOutlined } from '../../../App/Icons/MaterialIcons/MaterialIconsOutlined';
+import PerformanceType from '../PerformanceType';
 import {
   DailyPerformanceBox,
-  PerformancesBox,
-  PerformancesTypeBox,
-  PerformanceTypeBox,
+  PerformanceTypes,
   SeeWeeklyPerformanceButton,
   SeeWeeklyPerformanceButtonLabel,
+  DailyPerformanceHeader,
+  DailyPerformanceHeaderBox,
+  DailyPerformanceHeaderTitle,
 } from '../styles';
 
 const TeacherDailyPerformance: React.FC = () => {
@@ -50,63 +51,47 @@ const TeacherDailyPerformance: React.FC = () => {
     }
   }, [people]);
 
-  const { xp, weekDay } = teacherWeeklyPerformance;
-  const { dailyXp, contentsCreated, questionsCreated, interativeRoomsCreated } =
-    weekDay;
+  const { weekDay } = teacherWeeklyPerformance;
+  const { contentsCreated, questionsCreated, interativeRoomsCreated } = weekDay;
 
   return (
     <DailyPerformanceBox className="with-shadow bd-rd-20">
-      <PerformancesBox>
-        <PerformancesTypeBox>
-          <PerformanceTypeBox>
-            <DailyPerformancePerformanceHeader
-              title="XP Hoje"
-              icon=""
-              dataLabel={`${dailyXp} XP`}
-            />
-            <SmallProgressBar now={dailyXp} max={xp} />
-          </PerformanceTypeBox>
-          <PerformanceTypeBox>
-            <DailyPerformancePerformanceHeader
-              title="XP Semanal"
-              icon=""
-              dataLabel={`${xp} XP`}
-            />
-            <SmallProgressBar now={xp} max={xp} />
-          </PerformanceTypeBox>
-        </PerformancesTypeBox>
-        <PerformancesTypeBox>
-          <PerformanceTypeBox>
-            <DailyPerformancePerformanceHeader
-              title="Conteúdos"
-              icon="book"
-              dataLabel={String(contentsCreated)}
-            />
-          </PerformanceTypeBox>
-          <PerformanceTypeBox>
-            <DailyPerformancePerformanceHeader
-              title="Questões"
-              icon="article"
-              dataLabel={String(questionsCreated)}
-            />
-          </PerformanceTypeBox>
-          <PerformanceTypeBox>
-            <DailyPerformancePerformanceHeader
-              title="Salas interativas"
-              icon="local_library"
-              dataLabel={String(interativeRoomsCreated)}
-            />
-          </PerformanceTypeBox>
-        </PerformancesTypeBox>
-      </PerformancesBox>
-      <SeeWeeklyPerformanceButton
-        to="/performance"
-        className="bd-rd-10 block-shadow-button main-action"
-      >
-        <SeeWeeklyPerformanceButtonLabel>
-          Desempenho semanal
-        </SeeWeeklyPerformanceButtonLabel>
-      </SeeWeeklyPerformanceButton>
+      <DailyPerformanceHeader>
+        <DailyPerformanceHeaderBox>
+          <SmallMaterialIconOutlined icon="insights" color="" />
+          <DailyPerformanceHeaderTitle>
+            Desempenho hoje
+          </DailyPerformanceHeaderTitle>
+        </DailyPerformanceHeaderBox>
+        <SeeWeeklyPerformanceButton to="/performance">
+          <SeeWeeklyPerformanceButtonLabel>
+            Ver mais
+          </SeeWeeklyPerformanceButtonLabel>
+          <SmallMaterialIconOutlined icon="east" color="" />
+        </SeeWeeklyPerformanceButton>
+      </DailyPerformanceHeader>
+      <PerformanceTypes>
+        <PerformanceType
+          icon="book"
+          title="Conteúdos"
+          label={`${contentsCreated}`}
+        />
+        <PerformanceType
+          icon="description"
+          title="Questões"
+          label={`${questionsCreated}`}
+        />
+        <PerformanceType
+          icon="question"
+          title="Dúvidas resolvidas"
+          label={`${interativeRoomsCreated}`}
+        />
+        <PerformanceType
+          icon="local_library"
+          title="Salas interativas"
+          label={`${interativeRoomsCreated}`}
+        />
+      </PerformanceTypes>
     </DailyPerformanceBox>
   );
 };

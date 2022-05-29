@@ -25,6 +25,7 @@ import {
   PeopleExperience,
 } from './styles';
 import { getTeacherWeeklyPerformanceByTeacher } from '../../../functions/teacherWeeklyPerformance';
+import { MediumMaterialIconOutlined } from '../Icons/MaterialIcons/MaterialIconsOutlined';
 
 export interface IPeopleCardProps {
   people: IPeople;
@@ -108,7 +109,7 @@ const PeopleCard = (props: IPeopleCardProps): JSX.Element => {
       </PeopleDetails>
       {showScore && (
         <PeopleScore>
-          <PeopleLeague className="fas fa-trophy" />
+          <MediumMaterialIconOutlined icon="auto_awesome" color="" />
           <PeopleExperience>{xp} XP</PeopleExperience>
         </PeopleScore>
       )}

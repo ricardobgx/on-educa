@@ -1,8 +1,8 @@
 interface IMission {
   id: string;
-  title: string;
-  relatedActivity: string;
+  description: string;
+  goal: number;
+  activities: IMissionActivity;
+  isStudentMission: boolean;
   reward: number;
-  repetitions: number;
-  requirements: IMissionRequirement[];
 }

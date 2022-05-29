@@ -48,7 +48,7 @@ const Achievement: React.FC<IAchievementProps> = (props): JSX.Element => {
   const { progress, level } = achievementProgress;
 
   return (
-    <AchievementBox className="with-shadow bd-rd-10">
+    <AchievementBox className="with-shadow bd-rd-15">
       <AchievementLevel>
         <AchievementLevelIcon className="fas fa-star" />
         <AchievementLevelLabel>

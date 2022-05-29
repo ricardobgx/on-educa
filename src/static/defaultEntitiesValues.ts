@@ -76,16 +76,25 @@ export const DEFAULT_SCHOOL_GRADE: ISchoolGrade = {
   teachingType: DEFAULT_TEACHING_TYPE,
 };
 
+export const DEFAULT_LEAGUE: ILeague = {
+  id: '',
+  type: 0,
+  level: 1,
+  minScore: 0,
+  requiredScored: 0,
+  peoples: [],
+};
+
 export const DEFAULT_PEOPLE: IPeople = {
   id: '',
   email: '',
   name: 'Default User',
   profilePicture: DEFAULT_IMAGE,
-  league: '',
   isOnline: false,
   isStudent: true,
   dailyGoal: 0,
   friends: [],
+  league: DEFAULT_LEAGUE,
 };
 
 export const DEFAULT_CHAT: IChat = {

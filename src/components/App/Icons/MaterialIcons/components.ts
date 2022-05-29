@@ -27,14 +27,20 @@ export const SmallMaterialIcon = styled(MaterialIcon)`
 `;
 
 export const MediumMaterialIcon = styled(MaterialIcon)`
-  font-size: 26px;
-  width: 26px;
-  height: 26px;
+  font-size: 3.5vh;
+  width: 3.5vh;
+  height: 3.5vh;
+
+  @media (min-width: 600px) and (max-width: 900px) {
+    font-size: 3.4vw;
+    width: 3.4vw;
+    height: 3.4vw;
+  }
 
   @media (max-width: 600px) {
-    font-size: 30px;
-    width: 30px;
-    height: 30px;
+    font-size: 5.3vw;
+    width: 5.3vw;
+    height: 5.3vw;
   }
 `;
 
@@ -44,9 +50,9 @@ export const BigMaterialIcon = styled(MaterialIcon)`
   height: 7.1vh;
 
   @media (min-width: 600px) and (max-width: 1150px) {
-    font-size: 7vw;
-    width: 6vw;
-    height: 6vw;
+    font-size: 50px;
+    width: 50px;
+    height: 50px;
   }
 
   @media (max-width: 600px) {

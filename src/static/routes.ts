@@ -13,6 +13,7 @@ import EditContent from '../pages/EditContent';
 import EditQuestion from '../pages/EditQuestion';
 import Friends from '../pages/Friends';
 import Home from '../pages/Home';
+import Leagues from '../pages/Leagues';
 import Missions from '../pages/Missions';
 import NewContent from '../pages/NewContent';
 import NewDuel from '../pages/NewDuel';
@@ -261,6 +262,13 @@ const routes: IRoute[] = [
     path: '/contents/:id/practice-performance',
     name: 'PracticePerformance',
     component: PracticePerformance,
+    exact: true,
+    private: true,
+  },
+  {
+    path: '/leagues',
+    name: 'Leagues',
+    component: Leagues,
     exact: true,
     private: true,
   },
