@@ -82,7 +82,7 @@ const TeacherDailyPerformance: React.FC = () => {
           label={`${questionsCreated}`}
         />
         <PerformanceType
-          icon="question"
+          icon="help_outline"
           title="Dúvidas resolvidas"
           label={`${interativeRoomsCreated}`}
         />

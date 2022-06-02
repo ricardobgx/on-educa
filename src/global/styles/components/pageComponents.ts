@@ -12,6 +12,26 @@ export const Page = styled.div`
   animation-fill-mode: forwards;
 `;
 
+export const AppPage = styled.div`
+  min-height: 100vh;
+  padding: 20px;
+  padding-top: 75px;
+
+  animation: 0.2s linear fadeIn;
+  animation-fill-mode: forwards;
+`;
+
+export const AppPageRow = styled(AppPage)`
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+`;
+
+export const AppPageColumn = styled(AppPageRow)`
+  flex-direction: column;
+`;
+
 export const PageBoxRow = styled.div`
   display: flex;
   justify-content: space-between;

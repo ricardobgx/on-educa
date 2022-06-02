@@ -13,10 +13,12 @@ import EditContent from '../pages/EditContent';
 import EditQuestion from '../pages/EditQuestion';
 import Friends from '../pages/Friends';
 import Home from '../pages/Home';
+import InterativeRooms from '../pages/InterativeRooms';
 import Leagues from '../pages/Leagues';
 import Missions from '../pages/Missions';
 import NewContent from '../pages/NewContent';
 import NewDuel from '../pages/NewDuel';
+import NewInterativeRoom from '../pages/NewInterativeRoom';
 import NewQuestion from '../pages/NewQuestion';
 import Overview from '../pages/Overview';
 import Performance from '../pages/Performance';
@@ -269,6 +271,20 @@ const routes: IRoute[] = [
     path: '/leagues',
     name: 'Leagues',
     component: Leagues,
+    exact: true,
+    private: true,
+  },
+  {
+    path: '/interative-rooms',
+    name: 'Interative Rooms',
+    component: InterativeRooms,
+    exact: true,
+    private: true,
+  },
+  {
+    path: '/interative-rooms/new',
+    name: 'New Interative Room',
+    component: NewInterativeRoom,
     exact: true,
     private: true,
   },
