@@ -25,17 +25,14 @@ import {
 interface IContentCardProps {
   index: number;
   content: IContent;
-  setContent: (value: IContent) => void;
-  setDeleteContentIsVisible: (value: boolean) => void;
+  loadPopup: (popup: IPopup) => void;
+  loadContent: (value: IContent) => void;
+  getContents: () => void;
 }
 
 const ContentCard = (props: IContentCardProps): JSX.Element => {
-  const { index, content, setContent, setDeleteContentIsVisible } = props;
+  const { index, content, loadContent, loadPopup, getContents } = props;
   const { id, name, questions, updatedAt } = content;
-
-  const dispatch = useDispatch();
-
-  const { loadContent } = bindActionCreators(ActionCreators, dispatch);
 
   const { schoolGrade, subject, unity, aplication } = useSelector(
     (store: RootState) => store,
@@ -76,8 +73,8 @@ const ContentCard = (props: IContentCardProps): JSX.Element => {
       {!isStudent && (
         <ContentCardActions
           content={content}
-          setContent={setContent}
-          setDeleteContentIsVisible={setDeleteContentIsVisible}
+          getContents={getContents}
+          loadPopup={loadPopup}
         />
       )}
     </ContentCardBox>

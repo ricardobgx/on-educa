@@ -25,6 +25,8 @@ export const OwnerPicture = styled.img`
   height: 50px;
   border-radius: 50%;
   margin-right: 10px;
+
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 export const OwnerInfo = styled.div`
   display: flex;

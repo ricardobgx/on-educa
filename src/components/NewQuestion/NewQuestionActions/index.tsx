@@ -174,10 +174,14 @@ const NewQuestionActions = (props: INewQuestionActionsProps): JSX.Element => {
 
   return (
     <NewQuestionActionsBox>
-      <CancelCreateButton to="/questions">
+      <CancelCreateButton
+        className="block-shadow-button secondary-action bd-rd-20"
+        to="/questions"
+      >
         <CancelCreateButtonLabel>Cancelar</CancelCreateButtonLabel>
       </CancelCreateButton>
       <CreateQuestionButton
+        className="block-shadow-button main-action bd-rd-20"
         style={{
           pointerEvents: isValidQuestion(
             description,

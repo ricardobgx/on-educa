@@ -10,6 +10,10 @@ import {
   UpdateProfileButton,
   UpdateProfileSectionBoxActions,
   UpdateProfileButtonLabel,
+  UpdateProfileSectionBoxUpdateTextActions,
+  UpdateProfileInputText,
+  UpdateProfileSelect,
+  UpdateProfileOption,
 } from '../styles';
 import SectionInDevelopment from '../../App/InDevelopment/SectionInDevelopment';
 import { ActionCreators, RootState } from '../../../store';
@@ -19,6 +23,7 @@ import {
   DEFAULT_STUDENT,
   DEFAULT_TEACHER,
 } from '../../../static/defaultEntitiesValues';
+import { SmallMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 
 export interface IUpdateAccountInformationsProps {
   test: string;
@@ -62,7 +67,7 @@ JSX.Element => {
       <UpdateProfileSectionsBox>
         <UpdateProfileSectionBox>
           <UpdateProfileSectionBoxLabel>Senha</UpdateProfileSectionBoxLabel>
-          {/* <UpdateProfileSectionBoxUpdateTextActions>
+          <UpdateProfileSectionBoxUpdateTextActions>
             <UpdateProfileInputText
               className="bd-rd-20"
               type="password"
@@ -71,31 +76,31 @@ JSX.Element => {
             <UpdateProfileButton className="block-shadow-button secondary-action bd-rd-20">
               <SmallMaterialIconOutlined color="" icon="edit" />
             </UpdateProfileButton>
-          </UpdateProfileSectionBoxUpdateTextActions> */}
-          <SectionInDevelopment />
+          </UpdateProfileSectionBoxUpdateTextActions>
+          {/* <SectionInDevelopment /> */}
         </UpdateProfileSectionBox>
         <UpdateProfileSectionBox>
           <UpdateProfileSectionBoxLabel>
             Tempo logado
           </UpdateProfileSectionBoxLabel>
-          {/* <UpdateProfileSelect className="shadow-select bd-rd-20">
+          <UpdateProfileSelect className="block-shadow-select bd-rd-20">
             <UpdateProfileOption value={7}>7 dias</UpdateProfileOption>
             <UpdateProfileOption value={15}>15 dias</UpdateProfileOption>
             <UpdateProfileOption value={30}>30 dias</UpdateProfileOption>
-          </UpdateProfileSelect> */}
-          <SectionInDevelopment />
+          </UpdateProfileSelect>
+          {/* <SectionInDevelopment /> */}
         </UpdateProfileSectionBox>
         <UpdateProfileSectionBox>
           <UpdateProfileSectionBoxLabel>
             Zona perigosa
           </UpdateProfileSectionBoxLabel>
           <UpdateProfileSectionBoxActions>
-            {/* <UpdateProfileButton className="block-shadow-button secondary-action bd-rd-20">
+            <UpdateProfileButton className="block-shadow-button secondary-action bd-rd-20">
               <UpdateProfileButtonLabel>
                 Desativar conta
               </UpdateProfileButtonLabel>
-            </UpdateProfileButton> */}
-            <SectionInDevelopment />
+            </UpdateProfileButton>
+            {/* <SectionInDevelopment /> */}
             <UpdateProfileButton
               className="block-shadow-button main-action bd-rd-20"
               onClick={() =>

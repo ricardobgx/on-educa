@@ -12,7 +12,7 @@ const NewContentName = (props: INewContentNameProps): JSX.Element => {
   const { name, setName } = props;
 
   return (
-    <NewContentNameBox className="bd-rd-30 with-shadow">
+    <NewContentNameBox className="bd-rd-20 with-shadow">
       <NewContentBoxLabel>
         Nome do conteúdo<RequiredField>*</RequiredField>
       </NewContentBoxLabel>

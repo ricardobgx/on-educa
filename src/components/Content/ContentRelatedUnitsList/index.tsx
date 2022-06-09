@@ -19,7 +19,7 @@ const ContentRelatedUnitsList = (
       style={{
         maxHeight: isStudent ? 'calc(100vh - 350px)' : 'calc(100vh - 290px)',
       }}
-      className="with-shadow bd-rd-30"
+      className="with-shadow bd-rd-20"
     >
       {units.map((unity: IUnity) => (
         <UnityAccordion key={unity.id} {...unity} />

@@ -120,7 +120,7 @@ const ParticipantResultCard = (
   );
 
   return (
-    <ParticipantCardBox className="with-shadow bd-rd-20">
+    <ParticipantCardBox className="with-shadow bd-rd-15">
       <PeopleCard
         people={people}
         showScore

@@ -39,7 +39,7 @@ const NewContentReferences = (
   } = props;
 
   return (
-    <NewContentReferencesBox className="bd-rd-30 with-shadow">
+    <NewContentReferencesBox className="bd-rd-20 with-shadow">
       <NewContentBoxLabel>
         Referência <RequiredField>*</RequiredField>
       </NewContentBoxLabel>

@@ -18,11 +18,12 @@ const NewQuestionDifficulty = (
   const { selectedDifficulty, setSelectedDifficulty } = props;
 
   return (
-    <NewQuestionDifficultyBox>
+    <NewQuestionDifficultyBox className="with-shadow bd-rd-20">
       <NewQuestionBoxLabel>
         Dificuldade<RequiredField>*</RequiredField>
       </NewQuestionBoxLabel>
       <NewQuestionDifficultySelect
+        className="block-shadow-select bd-rd-20"
         value={selectedDifficulty}
         onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
           setSelectedDifficulty(Number(event.target.value))

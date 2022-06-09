@@ -39,11 +39,11 @@ const QuestionsActions = (props: IQuestionActionsProps): JSX.Element => {
               placeholder="Digite algo (descrição da questão)"
             />
             <ClearSearchSuppliesInputButton>
-              <ClearSearchSuppliesInputButtonIcon className="fas fa-times" />
+              <SmallMaterialIconOutlined icon="close" color="" />
             </ClearSearchSuppliesInputButton>
           </SearchSuppliesBox>
           <SearchSuppliesButton className="block-shadow-button main-action bd-rd-20">
-            <SearchSuppliesButtonIcon className="fas fa-search" />
+            <SmallMaterialIconOutlined icon="search" color="" />
           </SearchSuppliesButton>
         </SearchSupplies>
         {!isStudent && (
@@ -60,7 +60,7 @@ const QuestionsActions = (props: IQuestionActionsProps): JSX.Element => {
               onClick={() => setQuestionsFilterIsVisible(true)}
             >
               <QuestionsFiltersButtonLabel>Filtrar</QuestionsFiltersButtonLabel>
-              <SmallMaterialIconOutlined color="" icon="add" />
+              <SmallMaterialIconOutlined color="" icon="filter_alt" />
             </QuestionsFiltersButton>
           </QuestionsActionsBox>
         )}

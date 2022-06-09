@@ -9,10 +9,9 @@ interface IQuestionsListProps extends ICommonQuestionProps {
   subject: ISubject;
   unity: IUnity;
   content: IContent;
-  question: IQuestion;
   questions: IQuestion[];
-  setQuestion: (value: IQuestion) => void;
-  setDeleteQuestionIsVisible: (value: boolean) => void;
+  loadQuestion: (value: IQuestion) => void;
+  loadPopup: (popup: IPopup) => void;
 }
 
 const QuestionsList = (props: IQuestionsListProps): JSX.Element => {
@@ -21,8 +20,9 @@ const QuestionsList = (props: IQuestionsListProps): JSX.Element => {
     unity,
     content,
     questions,
-    setQuestion,
-    setDeleteQuestionIsVisible,
+    loadQuestion,
+    getQuestions,
+    loadPopup,
   } = props;
 
   return (
@@ -34,9 +34,9 @@ const QuestionsList = (props: IQuestionsListProps): JSX.Element => {
           unity={unity}
           content={content}
           question={question}
-          setQuestion={setQuestion}
-          setDeleteQuestionIsVisible={setDeleteQuestionIsVisible}
-          {...question}
+          getQuestions={getQuestions}
+          loadQuestion={loadQuestion}
+          loadPopup={loadPopup}
         />
       ))}
     </QuestionsListBox>

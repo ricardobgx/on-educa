@@ -27,15 +27,8 @@ export interface ICommonQuestionProps {
 const Questions = (): JSX.Element => {
   /* GlobalRootState */
 
-  const {
-    aplication,
-    teachingType,
-    schoolGrade,
-    subject,
-    unity,
-    content,
-    question,
-  } = useSelector((store: RootState) => store);
+  const { aplication, teachingType, schoolGrade, subject, unity, content } =
+    useSelector((store: RootState) => store);
 
   const { token, isStudent } = aplication;
 
@@ -46,7 +39,8 @@ const Questions = (): JSX.Element => {
     loadSubject: setSubject,
     loadUnity: setUnity,
     loadContent: setContent,
-    loadQuestion: setQuestion,
+    loadQuestion,
+    loadPopup,
   } = bindActionCreators(ActionCreators, dispatch);
 
   /* LocalRootState */
@@ -54,8 +48,6 @@ const Questions = (): JSX.Element => {
   // References
 
   const [questions, setQuestions] = useState<IQuestion[]>([]);
-
-  const [deleteQuestionIsVisible, setDeleteQuestionIsVisible] = useState(false);
 
   // Actions
 
@@ -66,25 +58,6 @@ const Questions = (): JSX.Element => {
 
   const getQuestions = async (): Promise<void> => {
     await getQuestionsByContent(OnEducaAPI, content.id, setQuestions, token);
-  };
-
-  const deleteQuestionSucess = (): void => {
-    getQuestions();
-    setDeleteQuestionIsVisible(false);
-  };
-
-  const deleteQuestionError = (): void => {
-    console.log('erro');
-  };
-
-  const deleteQuestion = async (): Promise<void> => {
-    deleteQuestionData(
-      OnEducaAPI,
-      question.id,
-      token,
-      deleteQuestionSucess,
-      deleteQuestionError,
-    );
   };
 
   useEffect(() => {
@@ -120,23 +93,14 @@ const Questions = (): JSX.Element => {
                 setQuestionsFilterIsVisible={setQuestionsFilterIsVisible}
               />
             )}
-            {deleteQuestionIsVisible && (
-              <DeleteSupplies
-                suppliesLabel={question.description}
-                suppliesType="questão"
-                deleteSupplies={deleteQuestion}
-                setDeleteSuppliesIsVisible={setDeleteQuestionIsVisible}
-              />
-            )}
             <QuestionsList
               subject={subject}
               unity={unity}
               content={content}
-              question={question}
               questions={questions}
               getQuestions={getQuestions}
-              setQuestion={setQuestion}
-              setDeleteQuestionIsVisible={setDeleteQuestionIsVisible}
+              loadQuestion={loadQuestion}
+              loadPopup={loadPopup}
             />
           </QuestionsBox>
         </SuppliesBox>

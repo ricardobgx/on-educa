@@ -54,7 +54,7 @@ const NewQuestionAlternatives = (
   };
 
   return (
-    <NewQuestionAlternativesBox className="with-shadow bd-rd-5">
+    <NewQuestionAlternativesBox className="with-shadow bd-rd-20">
       <NewQuestionBoxLabel>
         Alternativas<RequiredField>*</RequiredField>
       </NewQuestionBoxLabel>
@@ -73,6 +73,7 @@ const NewQuestionAlternatives = (
       </NewQuestionAlternativesList>
       <NewAttachment>
         <NewAttachmentInput
+          className="bd-rd-20"
           type="text"
           placeholder="Digite o conteúdo da alternativa"
           value={newAlternative}
@@ -83,7 +84,10 @@ const NewQuestionAlternatives = (
             if (event.key === 'Enter') addAlternative(newAlternative);
           }}
         />
-        <NewAttachmentButton onClick={() => addAlternative(newAlternative)}>
+        <NewAttachmentButton
+          className="block-shadow-button main-action bd-rd-20"
+          onClick={() => addAlternative(newAlternative)}
+        >
           <NewAttachmentButtonIcon className="fas fa-plus" />
         </NewAttachmentButton>
       </NewAttachment>

@@ -10,6 +10,8 @@ export const ChatPeoplePictureImg = styled.img`
   width: 37px;
   height: 37px;
   border-radius: 50%;
+
+  background: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;
 export const ChatPeopleIsOnline = styled.div`
   position: absolute;

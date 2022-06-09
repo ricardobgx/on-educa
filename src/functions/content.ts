@@ -94,12 +94,17 @@ export const deleteContent = async (
   id: string,
   token: string,
   deleteSucess: () => void,
+  deleteError: () => void,
 ): Promise<void> => {
   await API.delete(`/contents/${id}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },
-  }).then(() => {
-    deleteSucess();
-  });
+  })
+    .then(() => {
+      deleteSucess();
+    })
+    .catch(() => {
+      deleteError();
+    });
 };

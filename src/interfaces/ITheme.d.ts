@@ -7,6 +7,8 @@ interface IThemeButtonColors {
   mainButtonTextColor: string;
   mainButtonShadowColor: string;
   secondaryButtonShadowColor: string;
+  dangerButtonShadowColor: string;
+  rightButtonShadowColor: string;
 }
 
 // Text colors

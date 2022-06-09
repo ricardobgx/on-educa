@@ -30,7 +30,6 @@ export const NewAttachmentInput = styled(inputText)`
   width: 100%;
   color: ${({ theme }) => theme.colors.textColors.primaryColor};
   background: ${({ theme }) => theme.colors.hoverColor};
-  border-radius: 5px;
   border: none;
   margin-right: 10px;
   padding: 0 10px;
@@ -58,8 +57,6 @@ export const NewAttachmentInput = styled(inputText)`
   }
 `;
 export const NewAttachmentButton = styled(Button)`
-  color: ${({ theme }) => theme.colors.boxColor};
-  background: ${({ theme }) => theme.colors.textColors.primaryColor};
   min-width: 40px;
   cursor: pointer;
 `;

@@ -5,7 +5,6 @@ export const PeopleCardBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 85px;
   height: 100%;
   width: 100%;
   padding: 15px;
@@ -20,8 +19,8 @@ export const PeopleCardBox = styled.div`
 // Foto de perfil
 
 export const PeoplePicture = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border-radius: 25px;
   background: ${({ theme }) => theme.colors.textColors.primaryColor};
 `;

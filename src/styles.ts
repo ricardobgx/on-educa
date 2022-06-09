@@ -216,10 +216,10 @@ export default createGlobalStyle`
     border-radius: 30px;
   }
 
-  .shadow-select {
+  .block-shadow-select {
     cursor: pointer;
 
-    color: ${({ theme }) => theme.colors.textColors.secondaryColor};
+    color: ${({ theme }) => theme.colors.textColors.primaryColor};
     background: ${({ theme }) => theme.colors.boxColor};
     
     border-bottom: 2px solid transparent;
@@ -263,6 +263,40 @@ export default createGlobalStyle`
       pointer-events: none;
     }
 
+    &.danger-action {
+      background: ${({ theme }) => theme.flagColors.redColor};
+      color: ${({ theme }) => theme.colors.buttonColors.mainButtonTextColor};
+      
+      box-shadow: 0px 1px 0px 2px
+        ${({ theme }) => theme.colors.buttonColors.dangerButtonShadowColor};
+    
+      :hover, :disabled {
+        box-shadow: 0px 0px 0px 1px
+        ${({ theme }) => theme.colors.buttonColors.dangerButtonShadowColor};
+      }
+    }
+
+    &.right-action {
+      color: ${({ theme }) => theme.flagColors.greenColor};
+      background: ${({ theme }) => theme.colors.boxColor};
+      
+      box-shadow: 0px 1px 0px 2px
+        ${({ theme }) => theme.colors.buttonColors.secondaryButtonShadowColor};
+    
+      :hover, :disabled {
+        box-shadow: 0px 0px 0px 1px
+        ${({ theme }) => theme.colors.buttonColors.secondaryButtonShadowColor};
+      }
+
+      &.selected {
+        background: ${({ theme }) => theme.flagColors.greenColor};
+        color: ${({ theme }) => theme.colors.buttonColors.mainButtonTextColor};
+
+        box-shadow: 0px 0px 0px 1px
+          ${({ theme }) => theme.colors.buttonColors.rightButtonShadowColor};
+      }
+    }
+
     &.main-action {
       background: ${({ theme }) => theme.colors.mainColor};
       color: ${({ theme }) => theme.colors.buttonColors.mainButtonTextColor};
@@ -277,7 +311,7 @@ export default createGlobalStyle`
     }
 
     &.secondary-action {
-      color: ${({ theme }) => theme.colors.textColors.secondaryColor};
+      color: ${({ theme }) => theme.colors.textColors.primaryColor};
       background: ${({ theme }) => theme.colors.boxColor};
       
       box-shadow: 0px 1px 0px 2px

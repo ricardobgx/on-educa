@@ -64,9 +64,13 @@ export const QuestionAnsweredHeader = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
+
+  color: ${({ theme }) => theme.colors.buttonColors.mainButtonTextColor};
 `;
 export const QuestionAnsweredLabel = styled(paragraph)``;
-export const QuestionAnsweredData = styled(paragraph)``;
+export const QuestionAnsweredData = styled(paragraph)`
+  color: ${({ theme }) => theme.colors.buttonColors.mainButtonTextColor};
+`;
 
 export const ParticipantXP = styled.div`
   display: flex;

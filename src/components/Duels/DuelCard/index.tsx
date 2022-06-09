@@ -1,5 +1,6 @@
 /* eslint-disable */
 
+import { AxiosError } from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { socket } from '../../../App';
@@ -9,6 +10,7 @@ import {
 } from '../../../functions/duelRound';
 import { participateInDuel } from '../../../functions/duelTeamParts';
 import { isDefaultDuel } from '../../../functions/entitiesValues';
+import { getPeople } from '../../../functions/people';
 import OnEducaAPI from '../../../services/api';
 import { DEFAULT_PEOPLE } from '../../../static/defaultEntitiesValues';
 import {
@@ -83,11 +85,24 @@ const DuelCard = (props: IDuelCardProps): JSX.Element => {
     );
   };
 
+  const getPeopleAction = async () => {
+    const peopleFound = await getPeople(
+      OnEducaAPI,
+      duel.student.people.id,
+      token,
+      (err: AxiosError) => console.log(err.message),
+    );
+
+    if (!peopleFound) return;
+
+    setPeople(peopleFound);
+  };
+
   useEffect(() => {
     if (!isDefaultDuel(duel)) {
       const { duelRound } = duel;
       setNumParticipants(participatesInDuelCounter(duelRound.teams));
-      // getPeople(OnEducaAPI, student.people.id, setPeople, token);
+      getPeopleAction();
     }
   }, [duel]);
 
@@ -99,7 +114,7 @@ const DuelCard = (props: IDuelCardProps): JSX.Element => {
   return (
     <DuelCardBox
       onClick={() => appendParticipant()}
-      className="block-shadow-button secondary-action bd-rd-20"
+      className="block-shadow-button secondary-action bd-rd-15"
       style={{ animationDelay: `${index * 0.2}s` }}
     >
       <DuelDetails>

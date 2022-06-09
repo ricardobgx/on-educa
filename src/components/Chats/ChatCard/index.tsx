@@ -68,7 +68,7 @@ const ChatCard = (props: IChatCardProps): JSX.Element => {
 
   return (
     <ChatCardBox
-      className={`${selectedChat.id === chat.id ? 'selected' : ''}`}
+      className={`bd-rd-15 ${selectedChat.id === chat.id ? 'selected' : ''}`}
       onClick={() => {
         const toggleConversations = document.getElementById(
           'toggle-recent-conversations',

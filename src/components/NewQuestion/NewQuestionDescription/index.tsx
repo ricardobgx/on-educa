@@ -17,11 +17,12 @@ const NewQuestionDescription = (
   const { description, setDescription } = props;
 
   return (
-    <NewQuestionDescriptionBox className="with-shadow bd-rd-5">
+    <NewQuestionDescriptionBox className="with-shadow bd-rd-20">
       <NewQuestionBoxLabel>
         Descrição<RequiredField>*</RequiredField>
       </NewQuestionBoxLabel>
       <NewQuestionDescriptionInput
+        className="bd-rd-15"
         spellCheck={false}
         value={description}
         onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) =>

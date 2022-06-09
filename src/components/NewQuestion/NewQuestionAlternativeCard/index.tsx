@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';
+import { SmallMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 import {
   NewQuestionAlternativeCardBox,
   NewQuestionAlternativeDetails,
@@ -33,29 +34,25 @@ const NewQuestionAlternativeCard = (
 
   return (
     <NewQuestionAlternativeCardBox>
-      <NewQuestionAlternativeDetails>
+      <NewQuestionAlternativeDetails className="with-shadow bd-rd-20">
         <NewQuestionAlternativeDescription>
           {description}
         </NewQuestionAlternativeDescription>
       </NewQuestionAlternativeDetails>
       <NewQuestionAlternativeActions>
         <RightAlternativeButton
+          className={`block-shadow-button right-action bd-rd-20 ${
+            rightAlternative === description && 'selected'
+          }`}
           onClick={() => setRightAlternative(description)}
-          style={{
-            background:
-              rightAlternative === description
-                ? theme.flagColors.greenColor
-                : '',
-            color:
-              rightAlternative === description
-                ? theme.colors.textColors.primaryColor
-                : '',
-          }}
         >
           <RightAlternativeButtonIcon className="fas fa-check" />
         </RightAlternativeButton>
-        <DeleteAlternativeButton onClick={() => deleteAlternative(description)}>
-          <DeleteAlternativeButtonIcon className="fas fa-trash" />
+        <DeleteAlternativeButton
+          className="block-shadow-button danger-action bd-rd-20"
+          onClick={() => deleteAlternative(description)}
+        >
+          <SmallMaterialIconOutlined icon="delete" color="" />
         </DeleteAlternativeButton>
       </NewQuestionAlternativeActions>
     </NewQuestionAlternativeCardBox>

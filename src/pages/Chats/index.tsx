@@ -29,6 +29,8 @@ import {
   ToggleRecentConversationsLabel,
   ToggleRecentConversationsLabelIcon,
   RecentConversationsBottomActions,
+  TalkWithTeacherButtonLabel,
+  TalkWithTeacherButton,
 } from './styles';
 
 const Chats = (): JSX.Element => {
@@ -110,12 +112,12 @@ const Chats = (): JSX.Element => {
                 ))}
               </RecentConversationsList>
               <RecentConversationsBottomActions>
-                {/* <TalkWithTeacherButton className="block-shadow-button main-action bd-rd-20">
-                <TalkWithTeacherButtonLabel>
-                  Falar com professor
-                </TalkWithTeacherButtonLabel>
-              </TalkWithTeacherButton> */}
-                <SectionInDevelopment />
+                <TalkWithTeacherButton className="block-shadow-button main-action bd-rd-20">
+                  <TalkWithTeacherButtonLabel>
+                    Falar com professor
+                  </TalkWithTeacherButtonLabel>
+                </TalkWithTeacherButton>
+                {/* <SectionInDevelopment /> */}
                 {/* <TalkWithTeacher>1</TalkWithTeacher> */}
               </RecentConversationsBottomActions>
             </RecentConversationsBox>

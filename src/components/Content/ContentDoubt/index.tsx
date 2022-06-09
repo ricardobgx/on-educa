@@ -50,7 +50,7 @@ const ContentDoubt = (props: IContentDoubtProps): JSX.Element => {
   }, [token]);
 
   return (
-    <ContentDoubtBox className="with-shadow bd-rd-20" to={`/doubts/${id}`}>
+    <ContentDoubtBox className="with-shadow bd-rd-15" to={`/doubts/${id}`}>
       <ContentDoubtHeader>
         <ContentDoubtOwner>
           <OwnerPicture src={profilePicture.path} />

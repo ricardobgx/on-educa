@@ -1,32 +1,26 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { deleteContent as deleteContentData } from '../../../functions/content';
 import { ICommonContentProps } from '../../../pages/Contents';
 import OnEducaAPI from '../../../services/api';
-import { RootState } from '../../../store';
+import { ActionCreators, RootState } from '../../../store';
 import {
-  DeleteContentBackground,
-  DeleteContentBox,
-  CloseDeleteContentButton,
-  CloseDeleteContentIcon,
-  DeleteContentLabel,
-  DeleteContentWarningLabel,
-  DeleteContentButton,
-  DeleteContentButtonLabel,
-  CancelDeleteContentButton,
-  CancelDeleteContentButtonLabel,
-  DeleteContentActions,
-} from './styles';
+  ContentPopupBox,
+  ContentPopupButton,
+  ContentPopupButtonLabel,
+  ContentPopupActions,
+  ContentPopupLabel,
+} from '../styles';
 
-interface IDeleteContentProps extends ICommonContentProps {
+interface IContentPopupProps extends ICommonContentProps {
   content: IContent;
-  setDeleteContentIsVisible: (value: boolean) => void;
 }
 
-const DeleteContent = (props: IDeleteContentProps): JSX.Element => {
+const ContentPopup = (props: IContentPopupProps): JSX.Element => {
   /* Props */
 
-  const { content, setDeleteContentIsVisible, getContents } = props;
+  const { content, getContents } = props;
 
   /* GlobalRootState */
 
@@ -34,43 +28,47 @@ const DeleteContent = (props: IDeleteContentProps): JSX.Element => {
 
   const { token } = aplication;
 
+  const dispatch = useDispatch();
+  const { showFloatNotification, closePopup } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
+
   const deleteSucess = (): void => {
     getContents();
-    setDeleteContentIsVisible(false);
+    closePopup();
+  };
+
+  const deleteError = (): void => {
+    showFloatNotification('Ocorreu um erro');
   };
 
   const deleteContent = async (): Promise<void> => {
-    deleteContentData(OnEducaAPI, content.id, token, deleteSucess);
+    deleteContentData(OnEducaAPI, content.id, token, deleteSucess, deleteError);
   };
 
   return (
-    <DeleteContentBackground>
-      <DeleteContentBox>
-        <CloseDeleteContentButton
-          onClick={() => setDeleteContentIsVisible(false)}
+    <ContentPopupBox>
+      <ContentPopupLabel>
+        Tem certeza que deseja excluir o conteúdo {content.name}? Todos as
+        questões e informações associadas à esse conteúdo serão excluidas
+      </ContentPopupLabel>
+      <ContentPopupActions>
+        <ContentPopupButton
+          className="block-shadow-button secondary-action bd-rd-20"
+          onClick={() => closePopup()}
         >
-          <CloseDeleteContentIcon className="fas fa-times" />
-        </CloseDeleteContentButton>
-        <DeleteContentLabel>Excluir unidade</DeleteContentLabel>
-        <DeleteContentWarningLabel>
-          Tem certeza que deseja excluir o conteúdo {content.name}? Todos as
-          questões e informações associadas à esse conteúdo serão excluidas
-        </DeleteContentWarningLabel>
-        <DeleteContentActions>
-          <CancelDeleteContentButton
-            onClick={() => setDeleteContentIsVisible(false)}
-          >
-            <CancelDeleteContentButtonLabel>
-              Cancelar
-            </CancelDeleteContentButtonLabel>
-          </CancelDeleteContentButton>
-          <DeleteContentButton onClick={() => deleteContent()}>
-            <DeleteContentButtonLabel>Excluir</DeleteContentButtonLabel>
-          </DeleteContentButton>
-        </DeleteContentActions>
-      </DeleteContentBox>
-    </DeleteContentBackground>
+          <ContentPopupButtonLabel>Cancelar</ContentPopupButtonLabel>
+        </ContentPopupButton>
+        <ContentPopupButton
+          className="block-shadow-button main-action bd-rd-20"
+          onClick={() => deleteContent()}
+        >
+          <ContentPopupButtonLabel>Excluir</ContentPopupButtonLabel>
+        </ContentPopupButton>
+      </ContentPopupActions>
+    </ContentPopupBox>
   );
 };
 
-export default DeleteContent;
+export default ContentPopup;

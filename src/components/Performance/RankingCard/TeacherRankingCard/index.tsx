@@ -57,7 +57,7 @@ const TeacherRankingCard = (props: ITeacherRankingCardProps): JSX.Element => {
   return (
     <RankingCardBox
       to={`/profile/${people.id}`}
-      className="block-shadow-button secondary-action bd-rd-20"
+      className="block-shadow-button secondary-action bd-rd-15"
     >
       <RankingPosition>#{rankingPosition}</RankingPosition>
       <PeopleCard

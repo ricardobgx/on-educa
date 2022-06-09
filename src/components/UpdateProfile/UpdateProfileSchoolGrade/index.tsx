@@ -38,7 +38,7 @@ const UpdateProfileSchoolGrade = (
     <UpdateProfileSectionBox>
       <UpdateProfileSectionBoxLabel>Aprendizado</UpdateProfileSectionBoxLabel>
       <UpdateProfileSelect
-        className="shadow-select bd-rd-20"
+        className="block-shadow-select bd-rd-20"
         value={selectedSchoolGradeId}
         onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
           setSelectedSchoolGradeId(event.target.value)

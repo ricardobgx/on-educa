@@ -7,12 +7,12 @@ import { ContentsListBox } from './styles';
 
 interface IContentsListProps extends ICommonContentProps {
   contents: IContent[];
-  setContent: (value: IContent) => void;
-  setDeleteContentIsVisible: (value: boolean) => void;
+  loadContent: (value: IContent) => void;
+  loadPopup: (popup: IPopup) => void;
 }
 
 const ContentsList = (props: IContentsListProps): JSX.Element => {
-  const { contents, setContent, setDeleteContentIsVisible } = props;
+  const { contents, loadContent, getContents, loadPopup } = props;
 
   return (
     <ContentsListBox className="supplies-list">
@@ -20,8 +20,9 @@ const ContentsList = (props: IContentsListProps): JSX.Element => {
         <ContentCard
           index={index}
           content={content}
-          setContent={setContent}
-          setDeleteContentIsVisible={setDeleteContentIsVisible}
+          loadContent={loadContent}
+          getContents={getContents}
+          loadPopup={loadPopup}
         />
       ))}
     </ContentsListBox>

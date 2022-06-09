@@ -116,7 +116,7 @@ const SelectSchoolGrade: React.FC = () => {
       <SchoolGrades>
         {schoolGrades.map((schoolGrade) => (
           <SchoolGrade
-            className={`block-shadow-button secondary-action bd-rd-30 ${
+            className={`block-shadow-button secondary-action bd-rd-15 ${
               schoolGrade.id === schoolGradeSelected.id ? 'selected' : ''
             }`}
             onClick={() => setSchoolGradeSelected(schoolGrade)}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { createDoubtComment } from '../../../functions/doubtComment';
 import OnEducaAPI from '../../../services/api';
+import { SmallMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
 import {
   NewDoubtCommentBox,
   NewDoubtCommentInput,
@@ -56,7 +57,7 @@ const NewDoubtComment = (props: INewDoubtCommentProps): JSX.Element => {
         className="block-shadow-button main-action bd-rd-20"
         onClick={() => createDoubtCommentAction()}
       >
-        <NewDoubtCommentButtonIcon className="bi bi-send" />
+        <SmallMaterialIconOutlined icon="send" color="" />
       </NewDoubtCommentButton>
     </NewDoubtCommentBox>
   );

@@ -18,7 +18,7 @@ const NewDuelContents = (props: INewDuelContentsProps): JSX.Element => {
   const { newDuelSearchContentsProps, newDuelSelectedContentsProps } = props;
 
   return (
-    <NewDuelContentsBox className="with-shadow bd-rd-30">
+    <NewDuelContentsBox className="with-shadow bd-rd-20">
       <NewDuelContentsLabel>Selecionar conteúdos</NewDuelContentsLabel>
       <NewDuelSearchContents {...newDuelSearchContentsProps} />
       <NewDuelContentsLabel>Conteúdos selecionados</NewDuelContentsLabel>

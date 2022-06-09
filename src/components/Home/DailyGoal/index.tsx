@@ -18,13 +18,13 @@ const DailyGoal: React.FC = () => {
           <DailyGoalHeaderLabel>Meta diária</DailyGoalHeaderLabel>
         </DailyGoalHeaderSection>
         <DailyGoalHeaderSection>
-          <DailyGoalHeaderLabel>20/50 XP</DailyGoalHeaderLabel>
+          <DailyGoalHeaderLabel>0/50 XP</DailyGoalHeaderLabel>
           <DailyGoalHeaderButton>
             <SmallMaterialIconOutlined icon="edit" color="" />
           </DailyGoalHeaderButton>
         </DailyGoalHeaderSection>
       </DailyGoalHeader>
-      <SmallProgressBar now={20} max={50} />
+      <SmallProgressBar now={0} max={50} />
     </DailyGoalBox>
   );
 };

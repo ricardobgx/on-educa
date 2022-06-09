@@ -81,7 +81,7 @@ const SuppliesSchoolGradeReferenceSelect = (
             DEFAULT_SCHOOL_GRADE,
         )
       }
-      className="bd-rd-20"
+      className="block-shadow-select bd-rd-20"
     >
       {schoolGrades.map((schoolGrade) => (
         <SuppliesReferenceSelectOption value={schoolGrade.id}>

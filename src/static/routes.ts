@@ -13,6 +13,7 @@ import EditContent from '../pages/EditContent';
 import EditQuestion from '../pages/EditQuestion';
 import Friends from '../pages/Friends';
 import Home from '../pages/Home';
+import InterativeRoom from '../pages/InterativeRoom';
 import InterativeRooms from '../pages/InterativeRooms';
 import Leagues from '../pages/Leagues';
 import Missions from '../pages/Missions';
@@ -285,6 +286,13 @@ const routes: IRoute[] = [
     path: '/interative-rooms/new',
     name: 'New Interative Room',
     component: NewInterativeRoom,
+    exact: true,
+    private: true,
+  },
+  {
+    path: '/interative-rooms/:id',
+    name: 'Interative Room',
+    component: InterativeRoom,
     exact: true,
     private: true,
   },

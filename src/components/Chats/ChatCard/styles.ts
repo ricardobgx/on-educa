@@ -7,7 +7,6 @@ import {
 export const ChatCardBox = styled.div`
   padding: 10px;
   background: ${({ theme }) => theme.colors.boxColor};
-  border-radius: 20px;
   display: flex;
   align-items: center;
   color: ${({ theme }) => theme.colors.textColors.primaryColor};

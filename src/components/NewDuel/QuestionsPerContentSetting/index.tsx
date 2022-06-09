@@ -55,7 +55,7 @@ const QuestionsPerContentSetting = (
     <QuestionsPerContentSettingBox>
       <NewDuelSettingsLabel>{label}</NewDuelSettingsLabel>
       <QuestionsPerContentSettingSelect
-        className="shadow-select"
+        className="block-shadow-select"
         value={selectedValue}
         onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
           setSelectedValue(Number(event.target.value))

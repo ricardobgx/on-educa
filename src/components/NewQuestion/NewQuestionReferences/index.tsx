@@ -41,7 +41,7 @@ const NewQuestionReferences = (
   /* Global State */
 
   return (
-    <NewQuestionReferencesBox className="with-shadow bd-rd-5">
+    <NewQuestionReferencesBox className="with-shadow bd-rd-20">
       <NewQuestionBoxLabel>
         Referência<RequiredField>*</RequiredField>
       </NewQuestionBoxLabel>

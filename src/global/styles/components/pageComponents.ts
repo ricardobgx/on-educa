@@ -23,7 +23,6 @@ export const AppPage = styled.div`
 
 export const AppPageRow = styled(AppPage)`
   display: flex;
-  flex-direction: column;
 
   width: 100%;
 `;

@@ -1,19 +1,20 @@
 import React from 'react';
+import { ICommonContentProps } from '../../../pages/Contents';
 import { SmallMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
+import DeleteContent from '../DeleteContent';
 import {
   EditContentButton,
   DeleteContentButton,
   ContentCardActionsBox,
 } from './styles';
 
-interface IContentCardActionsProps {
+interface IContentCardActionsProps extends ICommonContentProps {
   content: IContent;
-  setContent: (value: IContent) => void;
-  setDeleteContentIsVisible: (value: boolean) => void;
+  loadPopup: (popup: IPopup) => void;
 }
 
 const ContentCardActions = (props: IContentCardActionsProps): JSX.Element => {
-  const { content, setContent, setDeleteContentIsVisible } = props;
+  const { content, loadPopup, getContents } = props;
 
   return (
     <ContentCardActionsBox className="supplies-card-actions">
@@ -26,8 +27,11 @@ const ContentCardActions = (props: IContentCardActionsProps): JSX.Element => {
       <DeleteContentButton
         className="supplies-card-action-button block-shadow-button secondary-action bd-rd-10"
         onClick={() => {
-          setContent(content);
-          setDeleteContentIsVisible(true);
+          loadPopup({
+            title: 'Excluir conteúdo',
+            Children: DeleteContent,
+            childrenProps: { content, getContents },
+          });
         }}
       >
         <SmallMaterialIconOutlined color="" icon="delete" />

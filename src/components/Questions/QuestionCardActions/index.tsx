@@ -1,19 +1,20 @@
 import React from 'react';
+import { ICommonQuestionProps } from '../../../pages/Questions';
 import { SmallMaterialIconOutlined } from '../../App/Icons/MaterialIcons/MaterialIconsOutlined';
+import DeleteQuestionPopup from '../DeleteQuestion';
 import {
   QuestionCardActionsBox,
   EditQuestionButton,
   DeleteQuestionButton,
 } from './styles';
 
-interface IQuestionCardActionsProps {
+interface IQuestionCardActionsProps extends ICommonQuestionProps {
   question: IQuestion;
-  setQuestion: (value: IQuestion) => void;
-  setDeleteQuestionIsVisible: (value: boolean) => void;
+  loadPopup: (popup: IPopup) => void;
 }
 
 const QuestionCardActions = (props: IQuestionCardActionsProps): JSX.Element => {
-  const { question, setQuestion, setDeleteQuestionIsVisible } = props;
+  const { question, getQuestions, loadPopup } = props;
 
   return (
     <QuestionCardActionsBox className="supplies-card-actions">
@@ -26,8 +27,11 @@ const QuestionCardActions = (props: IQuestionCardActionsProps): JSX.Element => {
       <DeleteQuestionButton
         className="supplies-card-action-button block-shadow-button secondary-action bd-rd-10"
         onClick={() => {
-          setQuestion(question);
-          setDeleteQuestionIsVisible(true);
+          loadPopup({
+            title: 'Excluir questão',
+            Children: DeleteQuestionPopup,
+            childrenProps: { question, getQuestions },
+          });
         }}
       >
         <SmallMaterialIconOutlined color="" icon="delete" />

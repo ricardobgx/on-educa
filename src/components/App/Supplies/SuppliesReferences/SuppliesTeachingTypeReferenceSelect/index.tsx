@@ -71,7 +71,7 @@ const SuppliesTeachingTypeReferenceSelect = (
             DEFAULT_TEACHING_TYPE,
         )
       }
-      className="bd-rd-20"
+      className="block-shadow-select bd-rd-20"
     >
       {teachingTypes.map((teachingType) => (
         <SuppliesReferenceSelectOption value={teachingType.id}>

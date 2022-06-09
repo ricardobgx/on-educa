@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 import SectionLabel from '../../components/App/SectionLabel';
 import ContentsActions from '../../components/Contents/ContentsActions';
 import ContentsList from '../../components/Contents/ContentsList';
@@ -10,7 +11,7 @@ import DeleteContent from '../../components/Contents/DeleteContent';
 import { getContentsByUnity } from '../../functions/content';
 import OnEducaAPI from '../../services/api';
 import { DEFAULT_CONTENT } from '../../static/defaultEntitiesValues';
-import { RootState } from '../../store';
+import { ActionCreators, RootState } from '../../store';
 import { Page } from '../../global/styles/components/pageComponents';
 import { PageBox, ContentsBox } from './styles';
 import { SuppliesBox } from '../../components/App/Supplies/styles';
@@ -31,12 +32,15 @@ const Contents = (): JSX.Element => {
   );
   const { isStudent, token } = aplication;
 
+  const dispatch = useDispatch();
+  const { loadPopup, loadContent } = bindActionCreators(
+    ActionCreators,
+    dispatch,
+  );
+
   /* LocalRootState */
 
-  const [content, setContent] = useState(DEFAULT_CONTENT);
   const [contents, setContents] = useState<IContent[]>([]);
-
-  const [deleteContentIsVisible, setDeleteContentIsVisible] = useState(false);
 
   /* Route params */
 
@@ -63,18 +67,11 @@ const Contents = (): JSX.Element => {
         <SuppliesBox>
           <ContentsBox>
             <ContentsActions isStudent={isStudent} unity={unity} />
-            {deleteContentIsVisible && (
-              <DeleteContent
-                content={content}
-                getContents={getContents}
-                setDeleteContentIsVisible={setDeleteContentIsVisible}
-              />
-            )}
             <ContentsList
               contents={contents}
               getContents={getContents}
-              setContent={setContent}
-              setDeleteContentIsVisible={setDeleteContentIsVisible}
+              loadContent={loadContent}
+              loadPopup={loadPopup}
             />
           </ContentsBox>
         </SuppliesBox>

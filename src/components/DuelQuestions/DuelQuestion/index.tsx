@@ -40,7 +40,7 @@ const DuelQuestion = (props: IQuestionProps): JSX.Element => {
 
   return (
     <Container>
-      <DuelQuestionDescriptionBox className="with-shadow bd-rd-30">
+      <DuelQuestionDescriptionBox className="with-shadow bd-rd-20">
         <DuelQuestionDescription>
           {description.split('\n').map((questionDescriptionParagraph) => (
             <DuelQuestionDescriptionParagraph>

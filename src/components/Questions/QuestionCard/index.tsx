@@ -1,8 +1,6 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { getFullDate, reduceTextSize } from '../../../functions/utils';
-import { ActionCreators } from '../../../store';
+import { ICommonQuestionProps } from '../../../pages/Questions';
 import QuestionCardActions from '../QuestionCardActions';
 import {
   QuestionCardBox,
@@ -22,13 +20,13 @@ import {
   QuestionUnity,
 } from './styles';
 
-interface IQuestionCardProps {
+interface IQuestionCardProps extends ICommonQuestionProps {
   subject: ISubject;
   unity: IUnity;
   content: IContent;
   question: IQuestion;
-  setQuestion: (value: IQuestion) => void;
-  setDeleteQuestionIsVisible: (value: boolean) => void;
+  loadQuestion: (value: IQuestion) => void;
+  loadPopup: (popup: IPopup) => void;
 }
 
 const QuestionCard = (props: IQuestionCardProps): JSX.Element => {
@@ -37,14 +35,11 @@ const QuestionCard = (props: IQuestionCardProps): JSX.Element => {
     unity,
     content,
     question,
-    setQuestion,
-    setDeleteQuestionIsVisible,
+    loadQuestion,
+    loadPopup,
+    getQuestions,
   } = props;
   const { id, description, alternatives, updatedAt } = question;
-
-  const dispatch = useDispatch();
-
-  const { loadQuestion } = bindActionCreators(ActionCreators, dispatch);
 
   return (
     <QuestionCardBox className="supplies-card">
@@ -80,8 +75,8 @@ const QuestionCard = (props: IQuestionCardProps): JSX.Element => {
       </QuestionCardDetails>
       <QuestionCardActions
         question={question}
-        setQuestion={setQuestion}
-        setDeleteQuestionIsVisible={setDeleteQuestionIsVisible}
+        getQuestions={getQuestions}
+        loadPopup={loadPopup}
       />
     </QuestionCardBox>
   );
